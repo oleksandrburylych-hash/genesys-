@@ -103,14 +103,14 @@
 
 ## Установка
 
-В Foundry: **Game Systems → Install System → Manifest URL**:
+В Foundry VTT v14: **Game Systems → Install System**, в поле **Manifest URL** вставьте:
 
 ```
-https://raw.githubusercontent.com/oleksandrburylych-hash/genesys-/main/system.json
+https://raw.githubusercontent.com/oleksandrburylych-hash/genesys-/ccr-90c2297d-wriuk4/system.json
 ```
 
-(после того как изменения попадут в ветку `main`). Либо скопируйте папку репозитория в
-`Data/systems/genesys-rpg` — имя папки должно совпадать с `id` системы.
+Архив системы: `dist/genesys-rpg.zip` (собирается командой `npm run build:release`, которая же обновляет
+ссылки в `system.json`; для другой ветки — `BRANCH=main npm run build:release`).
 
 ## Макросы
 
