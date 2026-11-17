@@ -1,6 +1,6 @@
 import { GENESYS, SYSTEM_ID, TEMPLATES } from "../config.mjs";
 import { ADVENTURES, WORLDS, getAdventure, filterForAdventure } from "../worlds.mjs";
-import { adventureImg, enabledAdventureKeys } from "../helpers/adventure.mjs";
+import { adventureImg, enabledAdventureKeys, disabledSources } from "../helpers/adventure.mjs";
 
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
@@ -26,7 +26,7 @@ export class WorldSetup extends HandlebarsApplicationMixin(ApplicationV2) {
       adventures: new Set(saved.filter(k => ADVENTURES[k])),
       customWorlds: new Set(custom ? custom.slice(7).split(",") : []),
       customName: "", customSkills: "",
-      sources: Object.fromEntries(Object.keys(GENESYS.sources).map(k => [k, true])),
+      sources: Object.fromEntries(Object.keys(GENESYS.sources).map(k => [k, !disabledSources().includes(k)])),
       packs: Object.fromEntries(IMPORTABLE.map(([k, on]) => [k, on])),
       tables: true, journal: true, macros: true, storyPoints: true, replace: true
     };
@@ -124,7 +124,11 @@ export class WorldSetup extends HandlebarsApplicationMixin(ApplicationV2) {
       customName: s.customName,
       skillSets: [{ key: "", label: "GENESYS.Setup.CustomSkillsAuto", selected: !s.customSkills },
         ...Object.entries(GENESYS.skillPresets).filter(([k]) => k !== "none").map(([key, label]) => ({ key, label, selected: key === s.customSkills }))],
-      sources: Object.entries(GENESYS.sources).map(([key, cfg]) => ({ key, label: cfg.label, checked: s.sources[key] })),
+      sources: Object.entries(GENESYS.sources).filter(([, c]) => c.kind === "official").map(([key, cfg]) => ({ key, label: cfg.label, checked: s.sources[key] })),
+      fanSources: Object.entries(GENESYS.sources).filter(([, c]) => c.kind === "fan").map(([key, cfg]) => ({ key, label: cfg.label, checked: s.sources[key] })),
+      modules: Object.entries(GENESYS.sources).filter(([, c]) => c.kind === "module").map(([key, cfg]) => ({
+        key, label: `GENESYS.Modules.${key}Title`, hint: cfg.hint, checked: s.sources[key],
+        count: index.filter(d => d.system?.source?.startsWith(cfg.match)).length })),
       packs: IMPORTABLE.map(([key]) => {
         const pack = game.packs.get(`${SYSTEM_ID}.${key}`);
         return pack ? { key, label: pack.metadata.label, count: byPack.get(key) ?? 0, total: pack.index.size, checked: s.packs[key] } : null;
@@ -185,6 +189,7 @@ export class WorldSetup extends HandlebarsApplicationMixin(ApplicationV2) {
     this.log = [];
     const s = this.setup;
     try {
+      await game.settings.set(SYSTEM_ID, "disabledSources", Object.keys(s.sources).filter(k => !s.sources[k]));
       await game.settings.set(SYSTEM_ID, "customAdventure", { name: s.customName.trim(), skills: s.customSkills });
       await game.settings.set(SYSTEM_ID, "adventures", chosen.map(a => a.key));
       await game.settings.set(SYSTEM_ID, "skillPreset", chosen.length === 1 ? chosen[0].skills : (chosen.find(a => a.key === "all") ? "all" : chosen[0].skills));
@@ -291,7 +296,8 @@ export class WorldSetup extends HandlebarsApplicationMixin(ApplicationV2) {
       ["GENESYS.Setup.Macro.Crit", "", "for (const t of canvas.tokens.controlled) await t.actor?.promptCriticalInjury();", "icons/svg/blood.svg"],
       ["GENESYS.Setup.Macro.Recover", "", "for (const t of canvas.tokens.controlled) if (t.actor?.recoverStrain) await t.actor.recoverStrain();", "icons/svg/regen.svg"],
       ["GENESYS.Setup.Macro.Setup", "", "new game.genesys.WorldSetup().render({ force: true });", "icons/svg/cog.svg"],
-      ["GENESYS.GM.Title", "", "game.genesys.GMScreen.toggle();", "icons/svg/book.svg"]
+      ["GENESYS.GM.Title", "", "game.genesys.GMScreen.toggle();", "icons/svg/book.svg"],
+      ["GENESYS.Fear.Title", "", "game.genesys.fearCheck();", "systems/genesys-rpg/assets/icons/gi/status/terror.svg"]
     ];
     let slot = 1;
     for (const [key, , command, img] of defs) {

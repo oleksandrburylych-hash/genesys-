@@ -1,0 +1,48 @@
+<div class="gm">
+  <div class="gm-body">
+    {{#if active}}
+    <div class="soc-target">
+      <img src="{{img}}" alt="">
+      <div class="soc-info">
+        <h3>{{state.targetName}}</h3>
+        {{#if state.goal}}<p class="hint">{{localize "GENESYS.Social.Goal"}}: {{state.goal}}</p>{{/if}}
+        <div class="soc-bar"><div class="soc-fill stage-{{stage}}" style="width: {{pct}}%"></div><div class="soc-half"></div></div>
+        <p><b>{{state.pressure}}</b> / {{state.threshold}} — {{localize (concat "GENESYS.Social.Stage." stage)}}</p>
+      </div>
+    </div>
+    <div class="gm-actions">
+      <button type="button" data-action="press" data-amount="-1">−1</button>
+      <button type="button" data-action="press" data-amount="1">+1</button>
+      <button type="button" data-action="press" data-amount="2">+2</button>
+      <button type="button" data-action="press" data-amount="5"><i class="fa-solid fa-bolt"></i> {{localize "GENESYS.Social.CritRemark"}}</button>
+    </div>
+
+    {{#if motivations.length}}
+    <div class="gs-ribbon"><span>{{localize "GENESYS.Motivations"}}</span></div>
+    <div class="soc-mot">
+      {{#each motivations}}<a class="wz-chip {{#if revealed}}active{{/if}}" data-action="reveal" data-key="{{key}}" data-tooltip="GENESYS.Social.RevealHint">{{localize label}}: {{name}}</a>{{/each}}
+    </div>
+    {{/if}}
+
+    <div class="gs-ribbon"><span>{{localize "GENESYS.Social.Round"}} {{state.round}}</span></div>
+    {{#each pcs}}
+    <a class="gm-char {{#if acted}}on{{/if}}" data-action="acted" data-id="{{id}}">
+      <img src="{{img}}" alt=""><span><b>{{name}}</b><small class="{{#if over}}soc-over{{/if}}">{{localize "GENESYS.Strain"}} {{strain}} / {{max}}</small></span>
+      <i class="fa-solid {{#if acted}}fa-circle-check{{else}}fa-circle{{/if}}"></i>
+    </a>
+    {{/each}}
+    <div class="gm-actions">
+      <button type="button" data-action="nextRound"><i class="fa-solid fa-rotate"></i> {{localize "GENESYS.Social.NextRound"}}</button>
+      <button type="button" class="gm-primary" data-action="end"><i class="fa-solid fa-flag-checkered"></i> {{localize "GENESYS.Social.End"}}</button>
+    </div>
+    <p class="hint">{{localize "GENESYS.Social.Hint"}}</p>
+    {{else}}
+    <p>{{localize "GENESYS.Social.Intro"}}</p>
+    <label class="soc-goal">{{localize "GENESYS.Social.Goal"}} <input type="text" name="goal" value="{{goal}}" placeholder="{{localize 'GENESYS.Social.GoalPh'}}"></label>
+    {{#if candidate}}
+    <div class="soc-target"><img src="{{candidate.img}}" alt=""><div><h3>{{candidate.name}}</h3><p class="hint">{{localize "GENESYS.Social.Threshold"}}: {{candidate.threshold}}</p></div></div>
+    {{else}}<p class="gs-empty">{{localize "GENESYS.Social.NeedTarget"}}</p>{{/if}}
+    <div class="gm-actions"><button type="button" class="gm-primary" data-action="start"><i class="fa-solid fa-comments"></i> {{localize "GENESYS.Social.Start"}}</button></div>
+    {{/if}}
+  </div>
+</div>

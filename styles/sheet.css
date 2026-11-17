@@ -588,7 +588,7 @@
 .genesys .gm-table td { padding: 3px 6px; border-bottom: 1px solid #eadfc6; vertical-align: top; }
 .genesys .gm-cost { white-space: nowrap; font-weight: bold; color: var(--gs-maroon); }
 .genesys .gm-die.difficulty { display: inline-block; width: 12px; height: 12px; margin-right: 2px; background: #5b2d82; transform: rotate(45deg); }
-.genesys .gm-status-img { width: 18px; height: 18px; border: none; vertical-align: middle; filter: invert(0.2); }
+.genesys .gm-status-img { width: 22px; height: 22px; border: none; vertical-align: middle; }
 .genesys.gs-world-filter { padding: 6px 8px 2px; background: #f7f1e3; border-bottom: 1px solid #c9b48a; }
 .gs-hidden { display: none !important; }
 .genesys .wz-skillrow.locked .wz-sname { color: var(--gs-muted); }
@@ -630,3 +630,36 @@
 .genesys.workshop .window-content { padding: 0; }
 .genesys .ws { height: 100%; display: flex; flex-direction: column; }
 .genesys .gm-row.selected { border-color: var(--gs-maroon); box-shadow: 0 0 0 2px var(--gs-gold); background: #fff8ea; }
+
+/* Активные состояния на листах */
+.genesys .gs-portrait { position: relative; }
+.genesys .gs-portrait .gs-statuses { position: absolute; left: 4px; right: 4px; bottom: 4px; justify-content: center; }
+.genesys .gs-statuses { display: flex; flex-wrap: wrap; gap: 3px; }
+.genesys .gs-status { position: relative; display: inline-block; width: 30px; height: 30px; }
+.genesys .gs-status img { width: 30px; height: 30px; border: none; filter: drop-shadow(0 1px 2px rgba(0,0,0,.5)); }
+.genesys .gs-status-rounds { position: absolute; right: -3px; bottom: -3px; min-width: 15px; height: 15px; padding: 0 3px; border-radius: 8px;
+  background: var(--gs-gold, #f2a531); color: #1f3557; font: bold 10px/15px sans-serif; text-align: center; }
+.genesys .ws-sub { margin: 8px 0 2px; font-family: var(--gs-head); text-transform: uppercase; color: var(--gs-navy); font-size: 13px; }
+.genesys .ws-modules { display: grid; grid-template-columns: 1fr; gap: 6px; }
+.genesys .ws-module { display: flex; gap: 8px; align-items: flex-start; padding: 6px 8px; background: #fff; border: 1px solid #c9b48a; border-radius: 8px; }
+.genesys .ws-module.on { border-color: var(--gs-maroon); box-shadow: 0 0 0 2px var(--gs-gold); background: #fff8ea; }
+.genesys .fear-outcome { margin: 6px 0; padding: 6px 8px; border-radius: 6px; background: #2b1d33; color: #f1e7ff; display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: center; }
+.genesys .fear-outcome b { color: #f2a531; }
+.genesys .fear-outcome button { width: auto; flex: 0 0 auto; padding: 0 8px; }
+.genesys .fear-steady, .genesys .fear-rally, .genesys .fear-fearless { background: #1f3557; }
+.genesys.fear-prompt label { display: flex; flex-direction: column; gap: 2px; margin-bottom: 6px; }
+/* Социальная сцена */
+.genesys .soc-target { display: flex; gap: 10px; align-items: center; margin-bottom: 6px; }
+.genesys .soc-target img { width: 64px; height: 64px; border: 2px solid var(--gs-gold); border-radius: 8px; }
+.genesys .soc-info { flex: 1; }
+.genesys .soc-bar { position: relative; height: 14px; background: #e6dcc6; border-radius: 7px; overflow: hidden; }
+.genesys .soc-fill { height: 100%; background: var(--gs-navy); }
+.genesys .soc-fill.stage-compromise { background: var(--gs-gold); }
+.genesys .soc-fill.stage-capitulation { background: var(--gs-maroon); }
+.genesys .soc-half { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: #fff; }
+.genesys .soc-mot { display: flex; flex-wrap: wrap; gap: 4px; }
+.genesys .soc-over { color: var(--gs-maroon); font-weight: bold; }
+.genesys .soc-goal { display: flex; flex-direction: column; gap: 2px; margin: 6px 0; }
+.genesys .social-buttons { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+.genesys .social-buttons button { width: auto; flex: 0 0 auto; padding: 0 8px; }
+.genesys.social-encounter .window-content { padding: 0; }

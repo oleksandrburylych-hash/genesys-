@@ -238,6 +238,12 @@ async function main() {
   // Плашки типов приключений (мастера настройки мира и создания персонажа).
   for (const a of Object.values(ADVENTURES)) tilePath("adventure", a.icon);
   tilePath("adventure", "scroll-unfurled");
+  // Плашки состояний (значки на токенах и в справке).
+  const { GENESYS } = await import("../module/config.mjs");
+  for (const st of GENESYS.statusEffects) {
+    const icon = st.img.match(/\/status\/([^/]+)\.svg$/)?.[1];
+    if (icon) tilePath("status", icon);
+  }
   writeCredits();
   const built = [];
   for (const pack of PACKS) {

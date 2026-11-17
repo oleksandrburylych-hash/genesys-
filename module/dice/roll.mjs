@@ -104,7 +104,21 @@ export class GenesysRoll extends Roll {
       };
     }
 
+    // Проверка страха (Core Rulebook, «Эффекты страха»): подходящий результат и кнопка применения.
+    let fear = null;
+    if (this.options.fear && !isPrivate) {
+      const many = r.threat >= 3 || r.despair > 0;
+      let key;
+      if (!r.isSuccess) key = many ? "freeze" : (r.threat > 0 ? "flee" : "aversion");
+      else if (r.threat > 0 && r.advantage === 0) key = "adrenaline";
+      else if (r.triumph > 0) key = "fearless";
+      else if (r.advantage > 0) key = "rally";
+      else key = "steady";
+      fear = { key, source: this.options.fear.source, apply: ["aversion", "freeze", "adrenaline"].includes(key) };
+    }
+
     return {
+      fear,
       isPrivate,
       flavor: isPrivate ? null : (flavor ?? this.options.flavor),
       label: isPrivate ? null : this.options.label,

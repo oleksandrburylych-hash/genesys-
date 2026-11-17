@@ -35,6 +35,7 @@ export function preloadTemplates() {
     "actor/adversary.hbs",
     "actor/vehicle.hbs",
     "parts/worlds.hbs",
+    "parts/statuses.hbs",
     "actor/parts/magic.hbs",
     "dialog/spell-cast.hbs",
     "actor/parts/skill-list.hbs",

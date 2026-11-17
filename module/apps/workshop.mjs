@@ -1,5 +1,6 @@
 import { GENESYS, SYSTEM_ID, TEMPLATES } from "../config.mjs";
 import { getAdventure, filterForAdventure } from "../worlds.mjs";
+import { docAllowed } from "../helpers/adventure.mjs";
 
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
@@ -45,7 +46,7 @@ export class Workshop extends HandlebarsApplicationMixin(ApplicationV2) {
     }
     docs.push(...game.items.filter(i => ["weapon", "armor", "gear"].includes(i.type)));
     const adv = getAdventure(this.actor.system.adventure || "all");
-    this.lib = filterForAdventure(docs.filter(d => (d.system.price ?? 0) > 0 && !/транспорт/i.test(d.folder?.name ?? "")), adv);
+    this.lib = filterForAdventure(docs.filter(d => docAllowed(d) && (d.system.price ?? 0) > 0 && !/транспорт/i.test(d.folder?.name ?? "")), adv);
     return this.lib;
   }
 

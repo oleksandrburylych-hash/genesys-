@@ -75,6 +75,13 @@
   </div>
   {{/if}}
 
+  {{#if fear}}
+  <div class="fear-outcome fear-{{fear.key}}">
+    <b>{{localize (concat "GENESYS.Fear.Effect." fear.key)}}</b>
+    <span>{{localize (concat "GENESYS.Fear.EffectHint." fear.key)}}</span>
+    {{#if fear.apply}}<button type="button" data-genesys-action="fearApply" data-effect="{{fear.key}}"><i class="fa-solid fa-ghost"></i> {{localize "GENESYS.Fear.Apply"}}</button>{{/if}}
+  </div>
+  {{/if}}
   {{#if spending.length}}
   <details class="roll-spending">
     <summary><i class="fa-solid fa-coins"></i> {{localize "GENESYS.Spend.Title"}}</summary>

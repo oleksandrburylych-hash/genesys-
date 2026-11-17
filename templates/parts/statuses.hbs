@@ -1,0 +1,7 @@
+<div class="gs-statuses">
+  {{#each activeStatuses}}
+  <a class="gs-status" data-action="removeStatus" data-status="{{id}}" data-tooltip="{{tooltip}}">
+    <img src="{{img}}" alt="">{{#if rounds}}<span class="gs-status-rounds">{{rounds}}</span>{{/if}}
+  </a>
+  {{/each}}
+</div>

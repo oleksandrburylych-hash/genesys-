@@ -1,0 +1,1144 @@
+[
+  {
+    "name": "Ученик",
+    "nameEn": "Apprentice",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 1,
+      "activation": "passive",
+      "ranked": true,
+      "description": "<p>Пока персонаж находится в телепатическом контакте с другим человеком, он может добавить к любому своему навыку ранги, равные рангу таланта, но так, чтобы итог не превысил ранг этого навыка у собеседника. Заимствованные знания исчезают, как только связь прерывается.</p>",
+      "source": "PSI, с. 9",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Сновидец",
+    "nameEn": "Dreamer",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 1,
+      "activation": "action",
+      "ranked": false,
+      "description": "<p>Раз в 24 часа, пока персонаж спит, он может потратить очко сюжета, чтобы получить подсказку о связанной с ним тайне, интриге или событии — как если бы автоматически преуспел в проверке Экстрасенсорики. Форму и содержание видения определяет ведущий.</p>",
+      "source": "PSI, с. 9",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Притягивание",
+    "nameEn": "Gather",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 1,
+      "activation": "maneuver",
+      "ranked": false,
+      "description": "<p>Манёвром персонаж телекинетически подтягивает к себе подручные снаряды и добавляет кость бонуса к следующей телекинетической атаке. Если он потратит на этот манёвр два раунда подряд, ничего не бросая, вместо этого добавляет 2 кости бонуса.</p>",
+      "source": "PSI, с. 9",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Жесты",
+    "nameEn": "Gestures",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 1,
+      "activation": "incidental",
+      "ranked": false,
+      "description": "<p>Когда персонаж сопровождает применение пси-способности выразительными жестами, он добавляет к проверке кость бонуса; если он не жестикулирует (или не может), добавляет кость штрафа. Жесты делают персонажа заметным и выдают связь между ним и проявлениями силы.</p>",
+      "source": "PSI, с. 10",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Ментальная защита",
+    "nameEn": "Mental Defenses",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 1,
+      "activation": "passive",
+      "ranked": false,
+      "description": "<p>Когда кто-то впервые пытается установить с персонажем мысленный контакт или провести ментальную атаку и персонаж сопротивляется, к проверке противника добавляются 2 кости штрафа. Чтобы персонаж не заметил вторжения, противнику нужно потратить 2 преимущества. Талант доступен и не-психикам.</p>",
+      "source": "PSI, с. 10",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Кровь из носа",
+    "nameEn": "Nose Bleed",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 1,
+      "activation": "passive",
+      "ranked": false,
+      "description": "<p>При проверке пси-навыка персонаж может получить сколько угодно усталости и добавить к результату по 1 успеху за каждую полученную единицу усталости.</p>",
+      "source": "PSI, с. 10",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Открытый канал",
+    "nameEn": "Open Channel",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 1,
+      "activation": "passive",
+      "ranked": false,
+      "description": "<p>Разум персонажа всегда открыт чужим мыслям. Снижается сложность проверок Экстрасенсорики, чтобы ощутить присутствие других разумов и найти людей поблизости, но к проверкам Выдержки для сосредоточения добавляется кость штрафа, если рядом больше 4 человек.</p>",
+      "source": "PSI, с. 10",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Фокус для публики",
+    "nameEn": "Party Trick",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 1,
+      "activation": "incidental",
+      "ranked": false,
+      "description": "<p>Раз за игровую встречу персонаж простой демонстрацией силы автоматически убеждает НИП в своих пси-способностях. Если тот не враждебен персонажу и не настроен против психиков, до конца сцены он относится к нему благосклонно: проверки навыков на Харизме против него получают кость бонуса.</p>",
+      "source": "PSI, с. 10",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Личное прикосновение",
+    "nameEn": "Personal Touch",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 1,
+      "activation": "passive",
+      "ranked": true,
+      "description": "<p>Персонаж добавляет кость бонуса за ранг таланта к проверкам пси-навыков против цели, к которой прикасается.</p>",
+      "source": "PSI, с. 11",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Дух природы",
+    "nameEn": "Nature Spirit",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 1,
+      "activation": "passive",
+      "ranked": true,
+      "description": "<p>Персонаж добавляет кость бонуса за ранг таланта к проверкам пси-навыков, чтобы призывать, контролировать, понимать растения и животных или иначе влиять на них. Не действует на атаки и на перемещение цели телекинезом.</p>",
+      "source": "PSI, с. 11",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Тихий разум",
+    "nameEn": "Quiet Mind",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 1,
+      "activation": "passive",
+      "ranked": false,
+      "description": "<p>Персонаж умеет скрывать свои мысли и психическую энергию. Каждый, кто пытается найти его с помощью пси-способностей, добавляет к проверке неудачу, если персонаж не находится в пределах его прямой видимости. Талант доступен и не-психикам.</p>",
+      "source": "PSI, с. 11",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Технопатия",
+    "nameEn": "Technopathy",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 1,
+      "activation": "passive",
+      "ranked": true,
+      "description": "<p>Персонаж добавляет кость бонуса за ранг таланта к проверкам пси-навыков, чтобы управлять механизмами, компьютерами и электроникой, перепрограммировать или сканировать их. Не действует на атаки и на перемещение цели телекинезом.</p>",
+      "source": "PSI, с. 11",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Шёпот на ухо",
+    "nameEn": "Whisper In Your Ear",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 1,
+      "activation": "passive",
+      "ranked": true,
+      "description": "<p>Находясь в астральной проекции достаточно близко, чтобы шептать цели на ухо, персонаж добавляет кость бонуса за ранг таланта к проверкам Проекции, чтобы повлиять на её разум: цель принимает голос за собственные мысли. Если цель замечает присутствие персонажа, бонус пропадает.</p>",
+      "source": "PSI, с. 11",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Буйная сила",
+    "nameEn": "Wild",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 1,
+      "activation": "maneuver",
+      "ranked": true,
+      "description": "<p>При проверке пси-навыка персонаж может добавить к результату по 1 успеху и 1 осложнению — не больше пар, чем ранг таланта.</p>",
+      "source": "PSI, с. 11",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Притяжение взглядов",
+    "nameEn": "Attention Grabber",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 2,
+      "activation": "maneuver",
+      "ranked": false,
+      "description": "<p>Манёвром персонаж мысленно подталкивает окружающих смотреть на него или не замечать его. Вариант 1: все, кто видит персонажа, получают кость бонуса к поиску его самого и кость штрафа к поиску его союзников или действиям против кого-либо, кроме него. Вариант 2: наоборот — кость штрафа к попыткам увидеть персонажа или действовать против него и кость бонуса к поиску других.</p><p>Эффект также даёт кость бонуса к проверке Проекции, если персонаж заставляет цель обратить на него внимание или отвернуться.</p>",
+      "source": "PSI, с. 12",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Пробуждённый",
+    "nameEn": "Awakened",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 2,
+      "activation": "passive",
+      "ranked": false,
+      "description": "<p>Экстрасенсорика, Разум над материей и Проекция становятся для персонажа карьерными навыками. Талант не обязателен для психика: он нужен персонажам с непсихическими карьерами или тем, у кого силы проснулись во время игры.</p>",
+      "source": "PSI, с. 12",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Сила интеллекта",
+    "nameEn": "Brain Power",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 2,
+      "activation": "passive",
+      "ranked": false,
+      "description": "<p>Экстрасенсорика, Разум над материей и Проекция для персонажа связаны с Интеллектом, а не с Волей. Если ведущий по умолчанию связал пси-навыки с Интеллектом, талант, наоборот, переводит их на Волю.</p>",
+      "source": "PSI, с. 12",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Ясность",
+    "nameEn": "Clarity",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 2,
+      "activation": "action",
+      "ranked": true,
+      "description": "<p>Раз за столкновение персонаж может привести в чувство союзников (не больше ранга таланта), с которыми способен общаться вслух или телепатически: с них снимается состояние Дезориентирован, и они видят ментальные иллюзии насквозь (если сам персонаж знает, что это иллюзия).</p>",
+      "source": "PSI, с. 12",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Помутнение",
+    "nameEn": "Confusion",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 2,
+      "activation": "passive",
+      "ranked": true,
+      "description": "<p>При успешной проверке Проекции персонаж может потратить преимущество, чтобы сделать цель Дезориентированной; длительность состояния (в раундах) равна рангу таланта.</p>",
+      "source": "PSI, с. 12",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Переворот",
+    "nameEn": "Flip",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 2,
+      "activation": "action",
+      "ranked": false,
+      "description": "<p>Раз за игровую встречу персонаж выбирает одного противника (не главаря) и совершает встречную проверку Проекции против Выдержки цели. При успехе цель В замешательстве до конца своего следующего хода. Потратив триумф, персонаж делает цель своим союзником до конца столкновения; эффект может прерваться раньше, если с целью обращаются враждебно или она получает повод усомниться в своей верности.</p>",
+      "source": "PSI, с. 13",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Волшебная пуля",
+    "nameEn": "Magic Bullet",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 2,
+      "activation": "passive",
+      "ranked": true,
+      "description": "<p>Персонаж мысленно корректирует полёт пули. При проверке Дальнего боя он добавляет по 1 успеху за ранг таланта, но не больше, чем его ранг в Разуме над материей.</p>",
+      "source": "PSI, с. 13",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Многозадачность",
+    "nameEn": "Multitasker",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 2,
+      "activation": "passive",
+      "ranked": false,
+      "description": "<p>Персонаж убирает до 2 костей штрафа, налагаемых за одновременное применение нескольких пси-сил или применение силы во время другого дела.</p>",
+      "source": "PSI, с. 13",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Психический барьер",
+    "nameEn": "Psychic Barrier",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 2,
+      "activation": "passive",
+      "ranked": true,
+      "description": "<p>Каждый ранг таланта даёт персонажу 1 поглощение против усталости, нанесённой психическими атаками.</p>",
+      "source": "PSI, с. 13",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Подпитка от сети",
+    "nameEn": "Power Drain",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 2,
+      "activation": "action",
+      "ranked": false,
+      "description": "<p>Раз за столкновение персонаж может вытянуть энергию из электросети и восстановить усталость в количестве, равном его рангу в Разуме над материей. Лампы мигают, сыплются искры, возможно временное отключение света. Без источника электричества талант не работает.</p>",
+      "source": "PSI, с. 13",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Щит из обломков",
+    "nameEn": "Shield",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 2,
+      "activation": "passive",
+      "ranked": false,
+      "description": "<p>Требуется талант «Притягивание». Каждую кость бонуса, полученную манёвром «Притягивание», персонаж может обменять на +2 к поглощению, когда его атакуют физически; подтянутые предметы при этом повреждаются или разрушаются.</p>",
+      "source": "PSI, с. 14",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Размер не важен",
+    "nameEn": "Size Matters Not",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 2,
+      "activation": "passive",
+      "ranked": true,
+      "description": "<p>Когда персонаж телекинетически бросает неодушевлённые предметы среднего размера и крупнее, сложность проверки снижается на 1 за ранг таланта.</p>",
+      "source": "PSI, с. 14",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Мысленная поддержка",
+    "nameEn": "Supportive Thoughts",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 2,
+      "activation": "maneuver",
+      "ranked": true,
+      "description": "<p>Раз за ход персонаж направляет психическую энергию союзникам (не больше ранга таланта), с которыми находится в мысленном контакте. До начала следующего хода персонажа их проверки пси-навыков получают преимущества в количестве, равном его рангу в Проекции.</p>",
+      "source": "PSI, с. 14",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Технопатия (улучшенная)",
+    "nameEn": "Technopathy, Advanced",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 2,
+      "activation": "passive",
+      "ranked": true,
+      "description": "<p>Требуется талант «Технопатия». При проверках Компьютеров, Вождения, Механики, Управления и Пилотирования персонаж добавляет по 1 успеху за ранг таланта, но не больше, чем его ранг в Проекции.</p>",
+      "source": "PSI, с. 14",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera"
+      ]
+    }
+  },
+  {
+    "name": "Терморегуляция",
+    "nameEn": "Temperature Control",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 2,
+      "activation": "passive",
+      "ranked": true,
+      "description": "<p>Персонаж поддерживает вокруг себя комфортную температуру: за каждый ранг таланта он поглощает 2 урона от сильного жара или холода.</p>",
+      "source": "PSI, с. 14",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Психический взрыв",
+    "nameEn": "Burst",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 3,
+      "activation": "passive",
+      "ranked": true,
+      "description": "<p>Все пси-атаки персонажа получают свойство Взрыв с рейтингом, равным рангу таланта + 2; свойство активируется одним преимуществом.</p>",
+      "source": "PSI, с. 14",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Электрическая душа",
+    "nameEn": "Electric Soul",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 3,
+      "activation": "action",
+      "ranked": false,
+      "description": "<p>Требуется талант «Технопатия (улучшенная)». Персонаж может вселиться в машину как в собственное тело: обычная (2 кости сложности) проверка Проекции, проще для примитивных устройств и сложнее для машин с искусственным интеллектом. Вселение длится 1 час за успех; всё это время используются Ловкость и Сила машины. Управляя транспортом, персонаж может применять Атлетику и Координацию вместо Вождения, Пилотирования или Управления.</p>",
+      "source": "PSI, с. 15",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera"
+      ]
+    }
+  },
+  {
+    "name": "Призрак-спутник",
+    "nameEn": "Ghost Companion",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 3,
+      "activation": "passive",
+      "ranked": true,
+      "description": "<p>К персонажу привязан призрак — НИП со своими мотивами, который присматривает за ним и помогает. Без ранга в Экстрасенсорике персонаж видит его, только когда тот сам проявляется. Манёвром персонаж может приказать призраку совершить в его ход одно действие и один манёвр; выполнит ли он приказ — решает ведущий. За каждый ранг таланта к персонажу может быть привязан ещё один призрак.</p>",
+      "source": "PSI, с. 15",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Высокая скорость",
+    "nameEn": "High Velocity",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 3,
+      "activation": "passive",
+      "ranked": true,
+      "description": "<p>Когда персонаж успешно поражает цель телекинетически брошенным предметом, атака игнорирует 2 поглощения за ранг таланта. Сочетается с талантом «Волшебная пуля».</p>",
+      "source": "PSI, с. 15",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Ментальная пиявка",
+    "nameEn": "Mental Leech",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 3,
+      "activation": "passive",
+      "ranked": false,
+      "description": "<p>Персонаж восстанавливает 1 усталость за каждые 2 единицы усталости, которые наносит другим.</p>",
+      "source": "PSI, с. 15",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Наставник",
+    "nameEn": "Mentor",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 3,
+      "activation": "incidental",
+      "ranked": true,
+      "description": "<p>Обучая другого персонажа пользоваться пси-способностями, персонаж даёт ему по 1 автоматическому успеху за ранг таланта, если ранг наставника в соответствующем пси-навыке хотя бы на 1 выше, чем у ученика.</p>",
+      "source": "PSI, с. 15",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Разум и тело",
+    "nameEn": "Mind & Body",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 3,
+      "activation": "passive",
+      "ranked": true,
+      "description": "<p>При проверках, связанных с Силой, персонаж добавляет по 1 успеху за ранг таланта, но не больше, чем его ранг в Разуме над материей. Кроме того, он может физически касаться бесплотных психических сущностей.</p>",
+      "source": "PSI, с. 16",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Нажим",
+    "nameEn": "Push",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 3,
+      "activation": "passive",
+      "ranked": true,
+      "description": "<p>При проверках социальных навыков персонаж добавляет по 1 успеху за ранг таланта, но не больше, чем его ранг в Проекции.</p>",
+      "source": "PSI, с. 16",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Регенерация",
+    "nameEn": "Regeneration",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 3,
+      "activation": "passive",
+      "ranked": true,
+      "description": "<p>Когда персонаж лечит себя с помощью Разума над материей, он дополнительно автоматически восстанавливает 1 рану за ранг таланта.</p>",
+      "source": "PSI, с. 16",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Рикошет",
+    "nameEn": "Ricochet",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 3,
+      "activation": "incidentalOOT",
+      "ranked": false,
+      "description": "<p>Требуется хотя бы 1 ранг в Проекции. Когда поглощение персонажа гасит урон дальней атаки, он может потратить крах или 3 осложнения из проверки противника, чтобы автоматически нанести этот поглощённый урон атакующему. Урон можно разделить между другими противниками на средней дистанции, получая 1 усталость за каждую дополнительную цель. Поглощённый урон можно накапливать за раунд, если талант активирован до конца раунда.</p>",
+      "source": "PSI, с. 16",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Замедление",
+    "nameEn": "Slow",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 3,
+      "activation": "action",
+      "ranked": true,
+      "description": "<p>Раз за столкновение персонаж замедляет всех не-союзников в зоне действия: их место в очерёдности инициативы опускается на величину, равную рангу персонажа в Разуме над материей + ранг таланта. Зона действия: 1 ранг — короткая дистанция, 2 ранга — средняя, 3 ранга — длинная.</p>",
+      "source": "PSI, с. 16",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Скорость мысли",
+    "nameEn": "Speed of Thought",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 3,
+      "activation": "passive",
+      "ranked": true,
+      "description": "<p>При проверках, связанных с Ловкостью, персонаж добавляет по 1 успеху за ранг таланта, но не больше, чем его ранг в Разуме над материей.</p>",
+      "source": "PSI, с. 17",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Тысяча глаз",
+    "nameEn": "Thousand Eyes",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 3,
+      "activation": "passive",
+      "ranked": true,
+      "description": "<p>Раз за игровую встречу сложность дистанционного видения снижается на 1 за ранг таланта (но не ниже простой), если в осматриваемой области есть хоть какая-то жизнь.</p>",
+      "source": "PSI, с. 17",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Изгнание",
+    "nameEn": "Banish",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 4,
+      "activation": "incidentalOOT",
+      "ranked": false,
+      "description": "<p>Когда персонаж применяет Разум над материей против противника, он может потратить 2 преимущества или триумф, чтобы телепортировать цель в случайное место на расстояние в милях, равное его рангу в Разуме над материей. Цель появляется невредимой на уровне земли; место выбрать нельзя. Против группы приспешников переносится вся группа сразу и в одно место.</p>",
+      "source": "PSI, с. 17",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Взрыв головы",
+    "nameEn": "Head Popper",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 4,
+      "activation": "passive",
+      "ranked": false,
+      "description": "<p>Атаки Проекцией могут наносить персонажу на выбор не усталость, а раны: энергия бьёт по нервной системе, а не по разуму.</p>",
+      "source": "PSI, с. 17",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Пули разума",
+    "nameEn": "Mind Bullets",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 4,
+      "activation": "incidentalOOT",
+      "ranked": true,
+      "description": "<p>Требуется хотя бы 1 ранг в Проекции. Персонаж заряжает огнестрельное оружие пулями из психической энергии (вручную или прямо в стволе). Такие выстрелы совершаются Дальним боем и наносят усталость, равную урону оружия; ими можно поражать психических существ, неуязвимых для обычного оружия. Предел урона: 8 при 1 ранге, 20 при 2 рангах. Перезарядка кончившегося боезапаса — лёгкая (1 кость сложности) проверка Проекции.</p>",
+      "source": "PSI, с. 17",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Отключение",
+    "nameEn": "Shutdown",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 4,
+      "activation": "incidentalOOT",
+      "ranked": false,
+      "description": "<p>Когда персонаж применяет Проекцию против противника, он может потратить 2 преимущества или триумф, чтобы до конца сцены отключить у цели один пси-навык (Экстрасенсорику, Разум над материей или Проекцию), если ранг персонажа в этом навыке выше, чем у цели. Цель может вернуть навык, потратив 2 преимущества или триумф из своей проверки.</p>",
+      "source": "PSI, с. 18",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Телепортация (пси)",
+    "nameEn": "Teleportation",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 4,
+      "activation": "action",
+      "ranked": false,
+      "description": "<p>Требуется хотя бы 1 ранг в Разуме над материей и в Проекции. Находясь в астральной проекции, персонаж может распылить своё физическое тело и воссоздать его (вместе с одеждой и снаряжением) из окружающей материи в том месте, куда он спроецировался.</p>",
+      "source": "PSI, с. 18",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Альфа-состояние",
+    "nameEn": "Alpha State",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 5,
+      "activation": "maneuver",
+      "ranked": false,
+      "description": "<p>Персонаж тратит очко сюжета и отдаёт мысленную команду «спать». Засыпают до (2 × Воля) живых существ в пределах средней дистанции — без пси-навыков и ментальной защиты и с Волей не выше, чем у персонажа; конкретные цели выбрать нельзя. Они спят час или пока их не потревожат (например, атакой) и просыпаются отдохнувшими, но растерянными.</p>",
+      "source": "PSI, с. 18",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Владения",
+    "nameEn": "Domain",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 5,
+      "activation": "passive",
+      "ranked": false,
+      "description": "<p>Персонаж создаёт карманное измерение между физическим и астральным планом радиусом полмили за каждый пункт Воли и придаёт ему любой облик. Якорь в реальном мире можно по желанию открывать и закрывать; через открытый якорь войти и выйти может кто угодно. Раз в день персонаж может войти или выйти, минуя якорь. Чужие психические сущности и астральные путешественники могут найти владения у якоря, но войти без разрешения хозяина — обычно пугающая (4 кости сложности) задача. Талантом «Изгнание» можно отправлять цели прямо во владения.</p>",
+      "source": "PSI, с. 18",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Предвидение",
+    "nameEn": "Foresight",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 5,
+      "activation": "incidentalOOT",
+      "ranked": false,
+      "description": "<p>Игрок может потратить очко сюжета, и ведущий обязан рассказать, что вскоре случится с персонажем, если тот ничего не предпримет; используя это знание, персонаж получает кость бонуса к проверке. Кроме того, раз за игровую встречу, после объявления действия, но до броска, персонаж может «отмотать» время к моменту перед этим действием, чтобы повлиять на исход или предотвратить его.</p>",
+      "source": "PSI, с. 19",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Переселение",
+    "nameEn": "Migrate",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 5,
+      "activation": "incidentalOOT",
+      "ranked": false,
+      "description": "<p>Требуется хотя бы 1 ранг в Проекции. Когда персонаж должен умереть, он автоматически переходит в астральную проекцию и получает 1 час за каждый пункт Воли, чтобы найти новое тело. Успешно вселившись (по правилам одержимости), он может потратить 2 преимущества или триумф, чтобы навсегда подавить разум хозяина и сделать это тело своим.</p>",
+      "source": "PSI, с. 19",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Мировой разум",
+    "nameEn": "World Mind",
+    "type": "talent",
+    "folder": "Пси",
+    "system": {
+      "tier": 5,
+      "activation": "passive",
+      "ranked": false,
+      "description": "<p>Персонаж постоянно связан с чувствами всех не-психиков на планете. Раз за сцену он может спросить ведущего, что происходит в любой населённой части мира или где находится нужный предмет, человек или событие (если никто этого не видит — где их видели в последний раз). Кроме того, ведущий может разрешить сложную (3 кости сложности) проверку Экстрасенсорики, когда против персонажа замышляют недоброе или рядом опасность; при провале персонаж всё равно понимает, что есть повод тревожиться, но не знает источника.</p>",
+      "source": "PSI, с. 19",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera",
+        "weirdwar"
+      ]
+    }
+  }
+]

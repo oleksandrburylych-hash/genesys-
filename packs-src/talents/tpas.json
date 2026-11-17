@@ -1,0 +1,270 @@
+[
+  {
+    "name": "Мастер укрытий",
+    "nameEn": "Cover Specialist",
+    "type": "talent",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "tier": 1,
+      "activation": "passive",
+      "ranked": false,
+      "description": "<p>Если укрытие даёт персонажу не больше 1 кости штрафа, оно даёт ему 2 кости штрафа.</p>",
+      "source": "To Protect and Serve, с. 6",
+      "worlds": [
+        "fantasy",
+        "mythic",
+        "terrinoth",
+        "steampunk",
+        "weirdwar",
+        "modern",
+        "monster",
+        "postapoc",
+        "zombie",
+        "scifi",
+        "spaceopera"
+      ]
+    }
+  },
+  {
+    "name": "Осведомитель из криминала",
+    "nameEn": "Criminal Informant",
+    "type": "talent",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "tier": 1,
+      "activation": "passive",
+      "ranked": false,
+      "description": "<p>Персонаж получает карьерный навык на выбор: Жульничество или Уличная интуиция. Кроме того, один раз за игровую встречу персонаж может попросить небольшую услугу у нынешнего или бывшего преступника, даже если тот ему ничем не обязан. Стоит заранее продумать несколько таких знакомых.</p>",
+      "source": "To Protect and Serve, с. 6",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "weirdwar",
+        "steampunk",
+        "scifi"
+      ]
+    }
+  },
+  {
+    "name": "Глаза и уши",
+    "nameEn": "Eyes and Ears",
+    "type": "talent",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "tier": 1,
+      "activation": "passive",
+      "ranked": false,
+      "description": "<p>Персонаж получает карьерный навык на выбор: Уличная интуиция или Выживание. Кроме того, один раз за игровую встречу персонаж может заплатить 50 денежных единиц бездомному и получить от него небольшую услугу, даже если тот ему ничем не обязан.</p>",
+      "source": "To Protect and Serve, с. 6",
+      "worlds": [
+        "modern",
+        "monster",
+        "weirdwar",
+        "steampunk",
+        "scifi"
+      ]
+    }
+  },
+  {
+    "name": "Военное прошлое",
+    "nameEn": "Military Background",
+    "type": "talent",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "tier": 1,
+      "activation": "passive",
+      "ranked": false,
+      "description": "<p>Персонаж получает карьерный навык на выбор: Дальний бой (тяжёлое оружие) или Стойкость. Кроме того, один раз за игровую встречу персонаж может попросить небольшую услугу у нынешнего или бывшего военного, даже если тот ему ничем не обязан.</p>",
+      "source": "To Protect and Serve, с. 6",
+      "worlds": [
+        "modern",
+        "weirdwar",
+        "zombie",
+        "postapoc",
+        "monster",
+        "scifi",
+        "spaceopera"
+      ]
+    }
+  },
+  {
+    "name": "Быстрая перезарядка",
+    "nameEn": "Quick Reload",
+    "type": "talent",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "tier": 1,
+      "activation": "incidental",
+      "ranked": false,
+      "description": "<p>Один раз за раунд в свой ход персонаж может перезарядить оружие, у которого кончились боеприпасы. Запасные боеприпасы должны быть у него под рукой.</p>",
+      "source": "To Protect and Serve, с. 6",
+      "worlds": [
+        "steampunk",
+        "weirdwar",
+        "modern",
+        "monster",
+        "postapoc",
+        "zombie",
+        "scifi",
+        "spaceopera"
+      ]
+    }
+  },
+  {
+    "name": "Полицейское прошлое",
+    "nameEn": "Police Background",
+    "type": "talent",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "tier": 1,
+      "activation": "passive",
+      "ranked": false,
+      "description": "<p>Персонаж получает карьерный навык на выбор: Внимание или Дальний бой (лёгкое оружие). Кроме того, один раз за игровую встречу персонаж может попросить небольшую услугу у нынешнего или бывшего полицейского, даже если тот ему ничем не обязан.</p>",
+      "source": "To Protect and Serve, с. 6",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "weirdwar",
+        "scifi"
+      ]
+    }
+  },
+  {
+    "name": "Лётная подготовка",
+    "nameEn": "Flight Academy Training",
+    "type": "talent",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "tier": 2,
+      "activation": "passive",
+      "ranked": false,
+      "description": "<p>Вождение, Пилотирование и Управление становятся для персонажа карьерными навыками.</p>",
+      "source": "To Protect and Serve, с. 7",
+      "worlds": [
+        "modern",
+        "weirdwar",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera"
+      ]
+    }
+  },
+  {
+    "name": "Подготовка к ближнему бою",
+    "nameEn": "Close Quarters Combat Training",
+    "type": "talent",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "tier": 2,
+      "activation": "passive",
+      "ranked": false,
+      "description": "<p>Грубая сила, Ближний бой и Выдержка становятся для персонажа карьерными навыками.</p>",
+      "source": "To Protect and Serve, с. 7",
+      "worlds": [
+        "modern",
+        "weirdwar",
+        "zombie",
+        "postapoc",
+        "monster",
+        "scifi",
+        "spaceopera"
+      ]
+    }
+  },
+  {
+    "name": "Выстрел в упор",
+    "nameEn": "Point Blank Shot",
+    "type": "talent",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "tier": 2,
+      "activation": "passive",
+      "ranked": false,
+      "description": "<p>Если персонаж атакует оружием дальнего боя противника вплотную, урон успешной атаки увеличивается на 2.</p>",
+      "source": "To Protect and Serve, с. 7",
+      "worlds": [
+        "steampunk",
+        "weirdwar",
+        "modern",
+        "monster",
+        "postapoc",
+        "zombie",
+        "scifi",
+        "spaceopera"
+      ]
+    }
+  },
+  {
+    "name": "Подготовка профайлера",
+    "nameEn": "Profiler Training",
+    "type": "talent",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "tier": 2,
+      "activation": "passive",
+      "ranked": false,
+      "description": "<p>Знание (аналитика), Знание (психология) и Внимание становятся для персонажа карьерными навыками.</p>",
+      "source": "To Protect and Serve, с. 7",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "weirdwar",
+        "scifi"
+      ]
+    }
+  },
+  {
+    "name": "Грязная драка",
+    "nameEn": "Dirty Fighting",
+    "type": "talent",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "tier": 3,
+      "activation": "passive",
+      "ranked": false,
+      "description": "<p>Безоружные атаки персонажа получают свойство Дезориентация 3.</p>",
+      "source": "To Protect and Serve, с. 7",
+      "worlds": [
+        "fantasy",
+        "mythic",
+        "terrinoth",
+        "steampunk",
+        "weirdwar",
+        "modern",
+        "monster",
+        "postapoc",
+        "zombie",
+        "scifi",
+        "spaceopera"
+      ]
+    }
+  },
+  {
+    "name": "Взять их!",
+    "nameEn": "Take 'Em Down!",
+    "type": "talent",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "tier": 3,
+      "activation": "maneuver",
+      "ranked": false,
+      "description": "<p>Если персонаж держит два оружия навыка Дальний бой (лёгкое оружие), он может получить 2 усталости. Следующая боевая проверка дальнего боя в этот ход получает свойство Залповое с рейтингом, равным рангу Дальнего боя (лёгкое оружие).</p>",
+      "source": "To Protect and Serve, с. 7",
+      "worlds": [
+        "steampunk",
+        "weirdwar",
+        "modern",
+        "monster",
+        "postapoc",
+        "zombie",
+        "scifi",
+        "spaceopera"
+      ]
+    }
+  }
+]

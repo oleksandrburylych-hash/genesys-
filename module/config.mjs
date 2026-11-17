@@ -200,25 +200,25 @@ GENESYS.rangeThresholds = { engaged: 2, short: 15, medium: 50, long: 200 };
 
 /** Состояния персонажей (значки на токене). */
 GENESYS.statusEffects = [
-  { id: "incapacitated", name: "GENESYS.Status.incapacitated", img: "icons/svg/unconscious.svg" },
-  { id: "dead", name: "GENESYS.Status.dead", img: "icons/svg/skull.svg" },
-  { id: "disoriented", name: "GENESYS.Status.disoriented", img: "icons/svg/daze.svg" },
-  { id: "staggered", name: "GENESYS.Status.staggered", img: "icons/svg/stoned.svg" },
-  { id: "immobilized", name: "GENESYS.Status.immobilized", img: "icons/svg/net.svg" },
-  { id: "prone", name: "GENESYS.Status.prone", img: "icons/svg/falling.svg" },
-  { id: "burning", name: "GENESYS.Status.burning", img: "icons/svg/fire.svg" },
-  { id: "bleeding", name: "GENESYS.Status.bleeding", img: "icons/svg/blood.svg" },
-  { id: "poisoned", name: "GENESYS.Status.poisoned", img: "icons/svg/poison.svg" },
-  { id: "frightened", name: "GENESYS.Status.frightened", img: "icons/svg/terror.svg" },
-  { id: "blind", name: "GENESYS.Status.blind", img: "icons/svg/blind.svg" },
-  { id: "concentrating", name: "GENESYS.Status.concentrating", img: "icons/svg/aura.svg" },
-  { id: "invisible", name: "GENESYS.Status.invisible", img: "icons/svg/invisible.svg" },
-  { id: "defensiveStance", name: "GENESYS.Status.defensiveStance", img: "icons/svg/shield.svg" },
-  { id: "sideStep", name: "GENESYS.Status.sideStep", img: "icons/svg/wingfoot.svg" },
-  { id: "evasive", name: "GENESYS.Status.evasive", img: "icons/svg/windmill.svg" },
-  { id: "braced", name: "GENESYS.Status.braced", img: "icons/svg/anchor.svg" },
-  { id: "vehicleAdvantage", name: "GENESYS.Status.vehicleAdvantage", img: "icons/svg/target.svg" },
-  { id: "mounted", name: "GENESYS.Status.mounted", img: "icons/svg/pawprint.svg" }
+  { id: "incapacitated", name: "GENESYS.Status.incapacitated", img: "systems/genesys-rpg/assets/icons/gi/status/knocked-out-stars.svg" },
+  { id: "dead", name: "GENESYS.Status.dead", img: "systems/genesys-rpg/assets/icons/gi/status/skull-crossed-bones.svg" },
+  { id: "disoriented", name: "GENESYS.Status.disoriented", img: "systems/genesys-rpg/assets/icons/gi/status/spinning-top.svg" },
+  { id: "staggered", name: "GENESYS.Status.staggered", img: "systems/genesys-rpg/assets/icons/gi/status/stoned-skull.svg" },
+  { id: "immobilized", name: "GENESYS.Status.immobilized", img: "systems/genesys-rpg/assets/icons/gi/status/manacles.svg" },
+  { id: "prone", name: "GENESYS.Status.prone", img: "systems/genesys-rpg/assets/icons/gi/status/falling.svg" },
+  { id: "burning", name: "GENESYS.Status.burning", img: "systems/genesys-rpg/assets/icons/gi/status/burning-embers.svg" },
+  { id: "bleeding", name: "GENESYS.Status.bleeding", img: "systems/genesys-rpg/assets/icons/gi/status/bleeding-wound.svg" },
+  { id: "poisoned", name: "GENESYS.Status.poisoned", img: "systems/genesys-rpg/assets/icons/gi/status/poison-bottle.svg" },
+  { id: "frightened", name: "GENESYS.Status.frightened", img: "systems/genesys-rpg/assets/icons/gi/status/terror.svg" },
+  { id: "blind", name: "GENESYS.Status.blind", img: "systems/genesys-rpg/assets/icons/gi/status/blindfold.svg" },
+  { id: "concentrating", name: "GENESYS.Status.concentrating", img: "systems/genesys-rpg/assets/icons/gi/status/meditation.svg" },
+  { id: "invisible", name: "GENESYS.Status.invisible", img: "systems/genesys-rpg/assets/icons/gi/status/invisible.svg" },
+  { id: "defensiveStance", name: "GENESYS.Status.defensiveStance", img: "systems/genesys-rpg/assets/icons/gi/status/shield-reflect.svg" },
+  { id: "sideStep", name: "GENESYS.Status.sideStep", img: "systems/genesys-rpg/assets/icons/gi/status/dodging.svg" },
+  { id: "evasive", name: "GENESYS.Status.evasive", img: "systems/genesys-rpg/assets/icons/gi/status/fast-arrow.svg" },
+  { id: "braced", name: "GENESYS.Status.braced", img: "systems/genesys-rpg/assets/icons/gi/status/shield-impact.svg" },
+  { id: "vehicleAdvantage", name: "GENESYS.Status.vehicleAdvantage", img: "systems/genesys-rpg/assets/icons/gi/status/targeting.svg" },
+  { id: "mounted", name: "GENESYS.Status.mounted", img: "systems/genesys-rpg/assets/icons/gi/status/cavalry.svg" }
 ];
 
 /**
@@ -258,7 +258,11 @@ GENESYS.magicSkills = {
   primal: "cunning",
   runes: "intellect",
   verse: "presence",
-  psychic: "presence"
+  psychic: "presence",
+  // PSI (Genesys Foundry): три пси-навыка, все на Воле.
+  psiExtrasensory: "willpower",
+  psiMind: "willpower",
+  psiProjection: "willpower"
 };
 
 /**
@@ -282,16 +286,32 @@ GENESYS.extraSkills = {
   verse: { characteristic: "presence", category: "magic" },
   psychic: { characteristic: "presence", category: "magic" },
   knowledgeSupernatural: { characteristic: "intellect", category: "knowledge" },
-  knowledgeScience: { characteristic: "intellect", category: "knowledge" }
+  knowledgeScience: { characteristic: "intellect", category: "knowledge" },
+  psiExtrasensory: { characteristic: "willpower", category: "magic" },
+  psiMind: { characteristic: "willpower", category: "magic" },
+  psiProjection: { characteristic: "willpower", category: "magic" }
 };
 
-/** Источники (книги) по началу строки source. */
+/**
+ * Источники (книги) по началу строки source.
+ * kind: official — официальные книги; fan — фанатские дополнения Genesys Foundry; module — дополнительные модули
+ * правил (по умолчанию выключены, ведущий включает в мастере настройки мира).
+ */
 GENESYS.sources = {
-  core: { label: "Core Rulebook", match: "Core Rulebook" },
-  epg: { label: "Expanded Player's Guide", match: "Expanded Player's Guide" },
-  rot: { label: "Realms of Terrinoth", match: "Realms of Terrinoth" },
-  zgm: { label: "Zynnythryx's Guide to Magic", match: "Zynnythryx" }
+  core: { label: "Core Rulebook", match: "Core Rulebook", kind: "official" },
+  epg: { label: "Expanded Player's Guide", match: "Expanded Player's Guide", kind: "official" },
+  rot: { label: "Realms of Terrinoth", match: "Realms of Terrinoth", kind: "official" },
+  zgm: { label: "Zynnythryx's Guide to Magic", match: "Zynnythryx", kind: "official" },
+  creatures: { label: "Creature Catalogue", match: "Creature Catalogue", kind: "fan" },
+  equipment: { label: "Equipment Encyclopedia", match: "Equipment Encyclopedia", kind: "fan" },
+  tpas: { label: "To Protect and Serve", match: "To Protect and Serve", kind: "fan" },
+  psi: { label: "PSI", match: "PSI", kind: "module", hint: "GENESYS.Modules.psi" },
+  fear: { label: "Expanded Fear Guidelines", match: "Expanded Fear", kind: "module", hint: "GENESYS.Modules.fear" },
+  talentsExpanded: { label: "Talents Expanded", match: "Talents Expanded", kind: "module", hint: "GENESYS.Modules.talentsExpanded" }
 };
+
+/** Модули, выключенные, пока ведущий их не включит. */
+GENESYS.defaultDisabledSources = ["psi", "fear", "talentsExpanded"];
 
 /** Таланты Core, разрешённые в Терриноте (Таблица 2–4 Realms of Terrinoth). */
 GENESYS.terrinothCoreTalents = ["Животное-спутник", "Берсерк", "Покупка информации", "Может, обсудим это?", "Остроумный ответ",

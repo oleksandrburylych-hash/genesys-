@@ -30,6 +30,7 @@ import { registerConditionHooks } from "./module/combat/conditions.mjs";
 import { WorldSetup, newSession } from "./module/apps/world-setup.mjs";
 import { GMScreen } from "./module/apps/gm-screen.mjs";
 import { Workshop } from "./module/apps/workshop.mjs";
+import { SocialEncounter, registerSocial } from "./module/apps/social.mjs";
 import { registerCompendiumFilter } from "./module/helpers/compendium-filter.mjs";
 import { openApp } from "./module/helpers/safe.mjs";
 import * as worlds from "./module/worlds.mjs";
@@ -54,6 +55,8 @@ Hooks.once("init", () => {
     WorldSetup,
     GMScreen,
     Workshop,
+    SocialEncounter,
+    fearCheck: async () => (await import("./module/apps/fear.mjs")).promptFearCheck(),
     newSession,
     StoryPointsTracker,
     /** Открыть окно броска с заданным пулом. */
@@ -130,6 +133,7 @@ Hooks.once("ready", () => {
   registerCombatHooks();
   registerConditionHooks();
   registerReactionSocket();
+  registerSocial();
   // Первый запуск мира: мастер настройки для ведущего.
   if (game.user.isGM && !game.settings.get(SYSTEM_ID, "worldSetupDone")) openApp(() => new WorldSetup(), "WorldSetup");
   console.log(`${SYSTEM_ID} | Genesys RPG ${game.system.version} готова`);

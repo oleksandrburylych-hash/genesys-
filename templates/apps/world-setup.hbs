@@ -44,6 +44,17 @@
     <div class="setup-grid">
       {{#each sources}}<label class="checkbox"><input type="checkbox" name="sources.{{key}}" {{checked checked}}> {{label}}</label>{{/each}}
     </div>
+    <h4 class="ws-sub">{{localize "GENESYS.Setup.FanBooks"}}</h4>
+    <div class="setup-grid">
+      {{#each fanSources}}<label class="checkbox"><input type="checkbox" name="sources.{{key}}" {{checked checked}}> {{label}}</label>{{/each}}
+    </div>
+    <h4 class="ws-sub">{{localize "GENESYS.Setup.Modules"}}</h4>
+    <div class="ws-modules">
+      {{#each modules}}
+      <label class="ws-module {{#if checked}}on{{/if}}"><input type="checkbox" name="sources.{{key}}" {{checked checked}}>
+        <span><b>{{localize label}}</b> <span class="hint">({{count}})</span><br><span class="hint">{{localize hint}}</span></span></label>
+      {{/each}}
+    </div>
 
     <h3 class="ws-title"><span>3</span> {{localize "GENESYS.Setup.Import"}}</h3>
     <p class="hint">{{localize "GENESYS.Setup.ImportHint"}}</p>

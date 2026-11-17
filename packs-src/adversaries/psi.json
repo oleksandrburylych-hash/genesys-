@@ -1,0 +1,1991 @@
+[
+  {
+    "name": "Антипсионик",
+    "nameEn": "Anti-Psi",
+    "type": "adversary",
+    "folder": "Пси",
+    "system": {
+      "adversaryType": "rival",
+      "characteristics": {
+        "brawn": {
+          "value": 3
+        },
+        "agility": {
+          "value": 2
+        },
+        "intellect": {
+          "value": 1
+        },
+        "cunning": {
+          "value": 2
+        },
+        "willpower": {
+          "value": 2
+        },
+        "presence": {
+          "value": 3
+        }
+      },
+      "wounds": {
+        "value": 0,
+        "max": 13
+      },
+      "strain": {
+        "value": 0,
+        "max": 0
+      },
+      "soak": {
+        "value": 3
+      },
+      "defense": {
+        "melee": {
+          "value": 0
+        },
+        "ranged": {
+          "value": 0
+        }
+      },
+      "groupSize": 1,
+      "description": "<p>Охотник на экстрасенсов, которого тренировки или импланты сделали невосприимчивым к ментальному влиянию. Его задача — задержать или устранить экстрасенса. Его учат не давать экстрасенсу и слова сказать и валить его как можно быстрее.</p><p>От телекинеза и пирокинеза он защищён не лучше других, поэтому действует из засады и отвлекающими манёврами; варианты — добавить Вождение (для погони и перевозки) или талант «Психический барьер».</p>",
+      "source": "PSI, с. 37",
+      "worlds": [
+        "weirdwar",
+        "modern",
+        "monster",
+        "postapoc",
+        "zombie",
+        "scifi",
+        "spaceopera"
+      ]
+    },
+    "items": [
+      {
+        "name": "Грубая сила",
+        "type": "skill",
+        "system": {
+          "key": "brawl",
+          "characteristic": "brawn",
+          "category": "combat",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Внимание",
+        "type": "skill",
+        "system": {
+          "key": "perception",
+          "characteristic": "cunning",
+          "category": "general",
+          "rank": 1,
+          "career": false
+        }
+      },
+      {
+        "name": "Дальний бой",
+        "type": "skill",
+        "system": {
+          "key": "ranged",
+          "characteristic": "agility",
+          "category": "combat",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Бдительность",
+        "type": "skill",
+        "system": {
+          "key": "vigilance",
+          "characteristic": "willpower",
+          "category": "general",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Ментальная защита",
+        "nameEn": "Mental Defenses",
+        "type": "talent",
+        "system": {
+          "tier": 1,
+          "activation": "passive",
+          "ranked": false,
+          "description": "<p>Когда кто-то впервые пытается мысленно связаться с персонажем или атаковать его разум и персонаж сопротивляется, к проверке добавляются 2 кости штрафа. Чтобы персонаж не заметил вторжения, нужно потратить 2 преимущества.</p>",
+          "source": "PSI, с. 10"
+        }
+      },
+      {
+        "name": "Тихий разум",
+        "nameEn": "Quiet Mind",
+        "type": "talent",
+        "system": {
+          "tier": 1,
+          "activation": "passive",
+          "ranked": false,
+          "description": "<p>Тот, кто ищет персонажа пси-способностями, добавляет к проверке провал, если персонаж не в прямой видимости.</p>",
+          "source": "PSI, с. 11"
+        }
+      },
+      {
+        "name": "Глушилка",
+        "nameEn": "Jammer",
+        "type": "ability",
+        "system": {
+          "description": "<p>Каждый антипсионик, находящийся в пределах средней дистанции от персонажа, добавляет кость штрафа к его проверкам пси-навыков. Если антипсионика вывести из строя, эффект пропадает.</p>",
+          "source": "PSI, с. 37"
+        }
+      },
+      {
+        "name": "Пистолет",
+        "nameEn": "Pistol",
+        "type": "weapon",
+        "system": {
+          "skill": "ranged",
+          "damage": 5,
+          "brawnDamage": false,
+          "crit": 4,
+          "range": "short",
+          "encumbrance": 0,
+          "hardPoints": 0,
+          "price": 0,
+          "rarity": 0,
+          "qualities": [],
+          "description": "",
+          "equipped": true,
+          "source": "PSI, с. 37"
+        }
+      },
+      {
+        "name": "Снаряжение",
+        "nameEn": "Equipment",
+        "type": "gear",
+        "system": {
+          "description": "<ul><li>Бронежилет</li><li>Снотворное</li><li>Фотографии разыскиваемых экстрасенсов</li></ul>",
+          "source": "PSI, с. 37"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Апекс",
+    "nameEn": "Apex",
+    "type": "adversary",
+    "folder": "Пси",
+    "system": {
+      "adversaryType": "nemesis",
+      "characteristics": {
+        "brawn": {
+          "value": 4
+        },
+        "agility": {
+          "value": 3
+        },
+        "intellect": {
+          "value": 4
+        },
+        "cunning": {
+          "value": 2
+        },
+        "willpower": {
+          "value": 2
+        },
+        "presence": {
+          "value": 3
+        }
+      },
+      "wounds": {
+        "value": 0,
+        "max": 12
+      },
+      "strain": {
+        "value": 0,
+        "max": 14
+      },
+      "soak": {
+        "value": 4
+      },
+      "defense": {
+        "melee": {
+          "value": 0
+        },
+        "ranged": {
+          "value": 0
+        }
+      },
+      "groupSize": 1,
+      "description": "<p>Экстрасенс, который считает себя следующей ступенью эволюции и требует от других почтения и покорности. Это может быть затравленный подросток, который теперь мстит, неудачник, наверстывающий упущенное, фанатик или суперзлодей в костюме. Силы он тратит на то, чтобы стать сильнее и быстрее, и предпочитает действовать врукопашную.</p><p>Обожает публику, после поражения одержим местью, а лестью его можно направлять.</p>",
+      "source": "PSI, с. 38",
+      "worlds": [
+        "weirdwar",
+        "modern",
+        "monster",
+        "postapoc",
+        "zombie",
+        "scifi",
+        "spaceopera"
+      ]
+    },
+    "items": [
+      {
+        "name": "Атлетика",
+        "type": "skill",
+        "system": {
+          "key": "athletics",
+          "characteristic": "brawn",
+          "category": "general",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Грубая сила",
+        "type": "skill",
+        "system": {
+          "key": "brawl",
+          "characteristic": "brawn",
+          "category": "combat",
+          "rank": 1,
+          "career": false
+        }
+      },
+      {
+        "name": "Запугивание",
+        "type": "skill",
+        "system": {
+          "key": "coercion",
+          "characteristic": "willpower",
+          "category": "social",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Координация",
+        "type": "skill",
+        "system": {
+          "key": "coordination",
+          "characteristic": "agility",
+          "category": "general",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Разум над материей",
+        "type": "skill",
+        "system": {
+          "key": "psiMind",
+          "characteristic": "willpower",
+          "category": "magic",
+          "rank": 3,
+          "career": false
+        }
+      },
+      {
+        "name": "Проекция",
+        "type": "skill",
+        "system": {
+          "key": "psiProjection",
+          "characteristic": "willpower",
+          "category": "magic",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Сила интеллекта",
+        "nameEn": "Brain Power",
+        "type": "talent",
+        "system": {
+          "tier": 2,
+          "activation": "passive",
+          "ranked": false,
+          "description": "<p>Для персонажа Экстрасенсорика, Разум над материей и Проекция основаны на Интеллекте вместо Воли.</p>",
+          "source": "PSI, с. 12"
+        }
+      },
+      {
+        "name": "Разум и тело",
+        "nameEn": "Mind & Body",
+        "type": "talent",
+        "system": {
+          "tier": 3,
+          "activation": "passive",
+          "ranked": true,
+          "rank": 2,
+          "description": "<p>Персонаж добавляет к проверкам, связанным с Силой, по успеху за ранг, но не больше своих рангов Разума над материей. Кроме того, он может физически касаться бестелесных пси-сущностей.</p>",
+          "source": "PSI, с. 16"
+        }
+      },
+      {
+        "name": "Скорость мысли",
+        "nameEn": "Speed of Thought",
+        "type": "talent",
+        "system": {
+          "tier": 3,
+          "activation": "passive",
+          "ranked": true,
+          "rank": 2,
+          "description": "<p>Персонаж добавляет к проверкам, связанным с Ловкостью, по успеху за ранг, но не больше своих рангов Разума над материей.</p>",
+          "source": "PSI, с. 17"
+        }
+      },
+      {
+        "name": "Безрассудство",
+        "nameEn": "Reckless",
+        "type": "ability",
+        "system": {
+          "description": "<p>За каждое неотменённое осложнение в результате атаки апекса окружению наносится ущерб, который подвергает людей опасности или создаёт героям сложности.</p>",
+          "source": "PSI, с. 38"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Доминатор",
+    "nameEn": "Dominator",
+    "type": "adversary",
+    "folder": "Пси",
+    "system": {
+      "adversaryType": "nemesis",
+      "characteristics": {
+        "brawn": {
+          "value": 1
+        },
+        "agility": {
+          "value": 2
+        },
+        "intellect": {
+          "value": 2
+        },
+        "cunning": {
+          "value": 2
+        },
+        "willpower": {
+          "value": 3
+        },
+        "presence": {
+          "value": 3
+        }
+      },
+      "wounds": {
+        "value": 0,
+        "max": 15
+      },
+      "strain": {
+        "value": 0,
+        "max": 18
+      },
+      "soak": {
+        "value": 2
+      },
+      "defense": {
+        "melee": {
+          "value": 0
+        },
+        "ranged": {
+          "value": 0
+        }
+      },
+      "groupSize": 1,
+      "description": "<p>Мастер контроля разума. Людей он считает марионетками, использует и выбрасывает. Неосторожный оставляет за собой сломанные судьбы и заметает следы стиранием памяти или «самоубийствами» жертв, ловкий становится знаменитостью, политиком или лидером культа.</p><p>Действует через подкупленных и порабощённых слуг; в схватке старается остаться с противником один на один, подойти на расстояние касания и перевербовать его.</p>",
+      "source": "PSI, с. 38–39",
+      "worlds": [
+        "weirdwar",
+        "modern",
+        "monster",
+        "postapoc",
+        "zombie",
+        "scifi",
+        "spaceopera",
+        "steampunk"
+      ]
+    },
+    "items": [
+      {
+        "name": "Обаяние",
+        "type": "skill",
+        "system": {
+          "key": "charm",
+          "characteristic": "presence",
+          "category": "social",
+          "rank": 3,
+          "career": false
+        }
+      },
+      {
+        "name": "Запугивание",
+        "type": "skill",
+        "system": {
+          "key": "coercion",
+          "characteristic": "willpower",
+          "category": "social",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Экстрасенсорика",
+        "type": "skill",
+        "system": {
+          "key": "psiExtrasensory",
+          "characteristic": "willpower",
+          "category": "magic",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Переговоры",
+        "type": "skill",
+        "system": {
+          "key": "negotiation",
+          "characteristic": "presence",
+          "category": "social",
+          "rank": 1,
+          "career": false
+        }
+      },
+      {
+        "name": "Проекция",
+        "type": "skill",
+        "system": {
+          "key": "psiProjection",
+          "characteristic": "willpower",
+          "category": "magic",
+          "rank": 3,
+          "career": false
+        }
+      },
+      {
+        "name": "Личное прикосновение",
+        "nameEn": "Personal Touch",
+        "type": "talent",
+        "system": {
+          "tier": 1,
+          "activation": "passive",
+          "ranked": true,
+          "rank": 3,
+          "description": "<p>Персонаж добавляет кость бонуса за ранг к проверкам пси-навыков против того, к кому прикасается.</p>",
+          "source": "PSI, с. 11"
+        }
+      },
+      {
+        "name": "Нажим",
+        "nameEn": "Push",
+        "type": "talent",
+        "system": {
+          "tier": 3,
+          "activation": "passive",
+          "ranked": true,
+          "rank": 2,
+          "description": "<p>Персонаж добавляет к проверкам социальных навыков по успеху за ранг, но не больше своих рангов Проекции.</p>",
+          "source": "PSI, с. 16"
+        }
+      },
+      {
+        "name": "Живой щит",
+        "nameEn": "Human Shields",
+        "type": "ability",
+        "system": {
+          "description": "<p>Раз в сцену ведущий может потратить очко сюжета: подконтрольные доминатору НИП приходят ему на помощь, заслоняют его от героя или грозят навредить себе, если герои не остановятся.</p>",
+          "source": "PSI, с. 39"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Призрак (приспешник)",
+    "nameEn": "Ghost (Minion)",
+    "type": "adversary",
+    "folder": "Пси",
+    "system": {
+      "adversaryType": "minion",
+      "characteristics": {
+        "brawn": {
+          "value": 1
+        },
+        "agility": {
+          "value": 2
+        },
+        "intellect": {
+          "value": 1
+        },
+        "cunning": {
+          "value": 1
+        },
+        "willpower": {
+          "value": 3
+        },
+        "presence": {
+          "value": 1
+        }
+      },
+      "wounds": {
+        "value": 0,
+        "max": 2
+      },
+      "strain": {
+        "value": 0,
+        "max": 0
+      },
+      "soak": {
+        "value": 1
+      },
+      "defense": {
+        "melee": {
+          "value": 0
+        },
+        "ranged": {
+          "value": 0
+        }
+      },
+      "groupSize": 3,
+      "description": "<p>Слабое эхо (отпечаток сильных эмоций, который бесконечно повторяет одно и то же) или скиталец (душа, ушедшая в астральную проекцию в миг смерти), который проявляется лишь ненадолго. Обычно только пугает тех, кто его потревожил, но для беззащитных опасен. Экстрасенсы видят призраков, а психическая энергия против них действует надёжно.</p>",
+      "source": "PSI, с. 39–40",
+      "worlds": [
+        "fantasy",
+        "mythic",
+        "terrinoth",
+        "steampunk",
+        "weirdwar",
+        "modern",
+        "monster",
+        "postapoc",
+        "zombie",
+        "scifi",
+        "spaceopera"
+      ]
+    },
+    "items": [
+      {
+        "name": "Запугивание",
+        "type": "skill",
+        "system": {
+          "key": "coercion",
+          "characteristic": "willpower",
+          "category": "social",
+          "rank": 0,
+          "career": true
+        }
+      },
+      {
+        "name": "Экстрасенсорика",
+        "type": "skill",
+        "system": {
+          "key": "psiExtrasensory",
+          "characteristic": "willpower",
+          "category": "magic",
+          "rank": 0,
+          "career": true
+        }
+      },
+      {
+        "name": "Разум над материей",
+        "type": "skill",
+        "system": {
+          "key": "psiMind",
+          "characteristic": "willpower",
+          "category": "magic",
+          "rank": 0,
+          "career": true
+        }
+      },
+      {
+        "name": "Проекция",
+        "type": "skill",
+        "system": {
+          "key": "psiProjection",
+          "characteristic": "willpower",
+          "category": "magic",
+          "rank": 0,
+          "career": true
+        }
+      },
+      {
+        "name": "Бестелесность",
+        "nameEn": "Incorporeal",
+        "type": "ability",
+        "system": {
+          "description": "<p>Призрак по умолчанию невидим и неосязаем. Манёвром он может стать видимым. Физические атаки ему не вредят, если их не напитали псионической энергией.</p>",
+          "source": "PSI, с. 40"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Призрак (соперник)",
+    "nameEn": "Ghost (Rival)",
+    "type": "adversary",
+    "folder": "Пси",
+    "system": {
+      "adversaryType": "rival",
+      "characteristics": {
+        "brawn": {
+          "value": 1
+        },
+        "agility": {
+          "value": 2
+        },
+        "intellect": {
+          "value": 2
+        },
+        "cunning": {
+          "value": 2
+        },
+        "willpower": {
+          "value": 3
+        },
+        "presence": {
+          "value": 3
+        }
+      },
+      "wounds": {
+        "value": 0,
+        "max": 14
+      },
+      "strain": {
+        "value": 0,
+        "max": 0
+      },
+      "soak": {
+        "value": 2
+      },
+      "defense": {
+        "melee": {
+          "value": 0
+        },
+        "ranged": {
+          "value": 0
+        }
+      },
+      "groupSize": 1,
+      "description": "<p>Сильное эхо, оставленное очень тяжёлым событием, или целеустремлённый скиталец. У него есть свои цели, и ему хватает сил заставлять живых действовать в его интересах. Может искать экстрасенса, чтобы тот помог завершить неоконченные дела.</p>",
+      "source": "PSI, с. 39–40",
+      "worlds": [
+        "fantasy",
+        "mythic",
+        "terrinoth",
+        "steampunk",
+        "weirdwar",
+        "modern",
+        "monster",
+        "postapoc",
+        "zombie",
+        "scifi",
+        "spaceopera"
+      ]
+    },
+    "items": [
+      {
+        "name": "Запугивание",
+        "type": "skill",
+        "system": {
+          "key": "coercion",
+          "characteristic": "willpower",
+          "category": "social",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Экстрасенсорика",
+        "type": "skill",
+        "system": {
+          "key": "psiExtrasensory",
+          "characteristic": "willpower",
+          "category": "magic",
+          "rank": 1,
+          "career": false
+        }
+      },
+      {
+        "name": "Разум над материей",
+        "type": "skill",
+        "system": {
+          "key": "psiMind",
+          "characteristic": "willpower",
+          "category": "magic",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Проекция",
+        "type": "skill",
+        "system": {
+          "key": "psiProjection",
+          "characteristic": "willpower",
+          "category": "magic",
+          "rank": 3,
+          "career": false
+        }
+      },
+      {
+        "name": "Притягивание",
+        "nameEn": "Gather",
+        "type": "talent",
+        "system": {
+          "tier": 1,
+          "activation": "maneuver",
+          "ranked": false,
+          "description": "<p>Манёвром персонаж телекинезом стягивает к себе подручные предметы и добавляет кость бонуса к телекинетической атаке. Если он потратит на это манёвр два раунда подряд, ничего не бросая, костей будет две.</p>",
+          "source": "PSI, с. 9"
+        }
+      },
+      {
+        "name": "Бестелесность",
+        "nameEn": "Incorporeal",
+        "type": "ability",
+        "system": {
+          "description": "<p>Призрак по умолчанию невидим и неосязаем. Манёвром он может стать видимым. Физические атаки ему не вредят, если их не напитали псионической энергией.</p>",
+          "source": "PSI, с. 40"
+        }
+      },
+      {
+        "name": "Устрашение",
+        "nameEn": "Terrify",
+        "type": "ability",
+        "system": {
+          "description": "<p>Раз в сцену призрак может добавить кость бонуса к проверке Запугивания, чтобы напугать кого-то.</p>",
+          "source": "PSI, с. 40"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Призрак (главарь)",
+    "nameEn": "Ghost (Nemesis)",
+    "type": "adversary",
+    "folder": "Пси",
+    "system": {
+      "adversaryType": "nemesis",
+      "characteristics": {
+        "brawn": {
+          "value": 2
+        },
+        "agility": {
+          "value": 2
+        },
+        "intellect": {
+          "value": 2
+        },
+        "cunning": {
+          "value": 3
+        },
+        "willpower": {
+          "value": 4
+        },
+        "presence": {
+          "value": 3
+        }
+      },
+      "wounds": {
+        "value": 0,
+        "max": 16
+      },
+      "strain": {
+        "value": 0,
+        "max": 18
+      },
+      "soak": {
+        "value": 4
+      },
+      "defense": {
+        "melee": {
+          "value": 0
+        },
+        "ranged": {
+          "value": 0
+        }
+      },
+      "groupSize": 1,
+      "description": "<p>Чаще всего могущественный скиталец, движимый жгучей страстью. Он научился владеть призрачной формой не хуже опытного экстрасенса в астральной проекции. Эхо такой силы встречается редко, но превращает место в смертельно опасную аномалию.</p>",
+      "source": "PSI, с. 39–40",
+      "worlds": [
+        "fantasy",
+        "mythic",
+        "terrinoth",
+        "steampunk",
+        "weirdwar",
+        "modern",
+        "monster",
+        "postapoc",
+        "zombie",
+        "scifi",
+        "spaceopera"
+      ]
+    },
+    "items": [
+      {
+        "name": "Запугивание",
+        "type": "skill",
+        "system": {
+          "key": "coercion",
+          "characteristic": "willpower",
+          "category": "social",
+          "rank": 3,
+          "career": false
+        }
+      },
+      {
+        "name": "Экстрасенсорика",
+        "type": "skill",
+        "system": {
+          "key": "psiExtrasensory",
+          "characteristic": "willpower",
+          "category": "magic",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Разум над материей",
+        "type": "skill",
+        "system": {
+          "key": "psiMind",
+          "characteristic": "willpower",
+          "category": "magic",
+          "rank": 3,
+          "career": false
+        }
+      },
+      {
+        "name": "Проекция",
+        "type": "skill",
+        "system": {
+          "key": "psiProjection",
+          "characteristic": "willpower",
+          "category": "magic",
+          "rank": 4,
+          "career": false
+        }
+      },
+      {
+        "name": "Помутнение",
+        "nameEn": "Confusion",
+        "type": "talent",
+        "system": {
+          "tier": 2,
+          "activation": "passive",
+          "ranked": true,
+          "rank": 1,
+          "description": "<p>Если проверка Проекции успешна, персонаж может потратить преимущество, чтобы цель стала дезориентированной. Число раундов равно рангу таланта.</p>",
+          "source": "PSI, с. 12"
+        }
+      },
+      {
+        "name": "Притягивание",
+        "nameEn": "Gather",
+        "type": "talent",
+        "system": {
+          "tier": 1,
+          "activation": "maneuver",
+          "ranked": false,
+          "description": "<p>Манёвром персонаж телекинезом стягивает к себе подручные предметы и добавляет кость бонуса к телекинетической атаке. Если он потратит на это манёвр два раунда подряд, ничего не бросая, костей будет две.</p>",
+          "source": "PSI, с. 9"
+        }
+      },
+      {
+        "name": "Буйная сила",
+        "nameEn": "Wild",
+        "type": "talent",
+        "system": {
+          "tier": 1,
+          "activation": "maneuver",
+          "ranked": true,
+          "rank": 3,
+          "description": "<p>Персонаж выпускает силу на волю: к результату проверки пси-навыка автоматически добавляются успех и осложнение, по паре за ранг (не больше ранга).</p>",
+          "source": "PSI, с. 11"
+        }
+      },
+      {
+        "name": "Бестелесность",
+        "nameEn": "Incorporeal",
+        "type": "ability",
+        "system": {
+          "description": "<p>Призрак по умолчанию невидим и неосязаем. Манёвром он может стать видимым. Физические атаки ему не вредят, если их не напитали псионической энергией.</p>",
+          "source": "PSI, с. 40"
+        }
+      },
+      {
+        "name": "Устрашение",
+        "nameEn": "Terrify",
+        "type": "ability",
+        "system": {
+          "description": "<p>Раз в сцену призрак может добавить кость бонуса к проверке Запугивания, чтобы напугать кого-то.</p>",
+          "source": "PSI, с. 40"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Пиявка",
+    "nameEn": "Leech",
+    "type": "adversary",
+    "folder": "Пси",
+    "system": {
+      "adversaryType": "rival",
+      "characteristics": {
+        "brawn": {
+          "value": 2
+        },
+        "agility": {
+          "value": 1
+        },
+        "intellect": {
+          "value": 1
+        },
+        "cunning": {
+          "value": 2
+        },
+        "willpower": {
+          "value": 3
+        },
+        "presence": {
+          "value": 3
+        }
+      },
+      "wounds": {
+        "value": 0,
+        "max": 11
+      },
+      "strain": {
+        "value": 0,
+        "max": 0
+      },
+      "soak": {
+        "value": 2
+      },
+      "defense": {
+        "melee": {
+          "value": 0
+        },
+        "ranged": {
+          "value": 0
+        }
+      },
+      "groupSize": 1,
+      "description": "<p>Пси-сущность, которая питается сильными эмоциями, чаще всего отчаянием, страхом или гневом. Её видят только в астральной проекции. Присосавшись к носителю, пиявка изолирует его от близких и снова и снова разжигает нужное чувство, а через него может заражать им толпу.</p><p>Если пиявка закрепилась в разуме, безопасно выгнать её можно только в мысленном пространстве, где она принимает облик воспоминания, которое её питает.</p>",
+      "source": "PSI, с. 40–41",
+      "worlds": [
+        "fantasy",
+        "mythic",
+        "terrinoth",
+        "steampunk",
+        "weirdwar",
+        "modern",
+        "monster",
+        "postapoc",
+        "zombie",
+        "scifi",
+        "spaceopera"
+      ]
+    },
+    "items": [
+      {
+        "name": "Грубая сила",
+        "type": "skill",
+        "system": {
+          "key": "brawl",
+          "characteristic": "brawn",
+          "category": "combat",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Экстрасенсорика",
+        "type": "skill",
+        "system": {
+          "key": "psiExtrasensory",
+          "characteristic": "willpower",
+          "category": "magic",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Проекция",
+        "type": "skill",
+        "system": {
+          "key": "psiProjection",
+          "characteristic": "willpower",
+          "category": "magic",
+          "rank": 3,
+          "career": false
+        }
+      },
+      {
+        "name": "Личное прикосновение",
+        "nameEn": "Personal Touch",
+        "type": "talent",
+        "system": {
+          "tier": 1,
+          "activation": "passive",
+          "ranked": true,
+          "rank": 1,
+          "description": "<p>Персонаж добавляет кость бонуса за ранг к проверкам пси-навыков против того, к кому прикасается.</p>",
+          "source": "PSI, с. 11"
+        }
+      },
+      {
+        "name": "Ментальная пиявка",
+        "nameEn": "Mental Leech",
+        "type": "talent",
+        "system": {
+          "tier": 3,
+          "activation": "passive",
+          "ranked": false,
+          "description": "<p>Персонаж восстанавливает 1 усталость за каждые 2 единицы усталости, которые наносит другим.</p>",
+          "source": "PSI, с. 15"
+        }
+      },
+      {
+        "name": "Крючок",
+        "nameEn": "Hook",
+        "type": "ability",
+        "system": {
+          "description": "<p>Носитель пиявки получает столько же ран и усталости, сколько ей нанесли, если это произошло не в мысленном пространстве.</p>",
+          "source": "PSI, с. 41"
+        }
+      },
+      {
+        "name": "Бестелесность",
+        "nameEn": "Incorporeal",
+        "type": "ability",
+        "system": {
+          "description": "<p>Пиявка по умолчанию невидим и неосязаем. Манёвром он может стать видимым. Физические атаки ему не вредят, если их не напитали псионической энергией.</p>",
+          "source": "PSI, с. 41"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Медиум",
+    "nameEn": "Medium",
+    "type": "adversary",
+    "folder": "Пси",
+    "system": {
+      "adversaryType": "rival",
+      "characteristics": {
+        "brawn": {
+          "value": 1
+        },
+        "agility": {
+          "value": 1
+        },
+        "intellect": {
+          "value": 2
+        },
+        "cunning": {
+          "value": 2
+        },
+        "willpower": {
+          "value": 3
+        },
+        "presence": {
+          "value": 2
+        }
+      },
+      "wounds": {
+        "value": 0,
+        "max": 9
+      },
+      "strain": {
+        "value": 0,
+        "max": 0
+      },
+      "soak": {
+        "value": 1
+      },
+      "defense": {
+        "melee": {
+          "value": 0
+        },
+        "ranged": {
+          "value": 0
+        }
+      },
+      "groupSize": 1,
+      "description": "<p>Посредник между живыми и мёртвыми. Помогает призракам завершить неоконченные дела, от раскрытия их собственного убийства до мести обидчику. Волевой медиум может заставить призраков служить себе, получает от них сведения и целую незримую армию. Некоторые медиумы работают на полицию открыто или под прикрытием, другие — на фракции.</p>",
+      "source": "PSI, с. 41",
+      "worlds": [
+        "fantasy",
+        "mythic",
+        "steampunk",
+        "weirdwar",
+        "modern",
+        "monster",
+        "postapoc",
+        "zombie",
+        "scifi"
+      ]
+    },
+    "items": [
+      {
+        "name": "Обаяние",
+        "type": "skill",
+        "system": {
+          "key": "charm",
+          "characteristic": "presence",
+          "category": "social",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Хладнокровие",
+        "type": "skill",
+        "system": {
+          "key": "cool",
+          "characteristic": "presence",
+          "category": "general",
+          "rank": 1,
+          "career": false
+        }
+      },
+      {
+        "name": "Выдержка",
+        "type": "skill",
+        "system": {
+          "key": "discipline",
+          "characteristic": "willpower",
+          "category": "general",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Экстрасенсорика",
+        "type": "skill",
+        "system": {
+          "key": "psiExtrasensory",
+          "characteristic": "willpower",
+          "category": "magic",
+          "rank": 3,
+          "career": false
+        }
+      },
+      {
+        "name": "Внимание",
+        "type": "skill",
+        "system": {
+          "key": "perception",
+          "characteristic": "cunning",
+          "category": "general",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Проекция",
+        "type": "skill",
+        "system": {
+          "key": "psiProjection",
+          "characteristic": "willpower",
+          "category": "magic",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Сновидец",
+        "nameEn": "Dreamer",
+        "type": "talent",
+        "system": {
+          "tier": 1,
+          "activation": "action",
+          "ranked": false,
+          "description": "<p>Раз в 24 часа во сне персонаж может потратить очко сюжета, чтобы получить подсказку о тайне или событии, с которыми он связан. Это считается автоматическим успехом Экстрасенсорики, а как проявится видение, решает ведущий.</p>",
+          "source": "PSI, с. 9"
+        }
+      },
+      {
+        "name": "Призрак-спутник",
+        "nameEn": "Ghost Companion",
+        "type": "talent",
+        "system": {
+          "tier": 3,
+          "activation": "passive",
+          "ranked": true,
+          "rank": 3,
+          "description": "<p>За каждый ранг к персонажу привязан один призрак-НИП. Манёвром персонаж может приказать призраку выполнить в свой ход одно действие и один манёвр; выполнит ли он приказ, решает ведущий. Без рангов Экстрасенсорики персонаж видит призрака, только когда тот проявляется сам.</p>",
+          "source": "PSI, с. 15"
+        }
+      },
+      {
+        "name": "Открытый канал",
+        "nameEn": "Open Channel",
+        "type": "talent",
+        "system": {
+          "tier": 1,
+          "activation": "passive",
+          "ranked": false,
+          "description": "<p>Разум персонажа постоянно открыт чужим мыслям. Проверки Экстрасенсорики, чтобы почувствовать чужой разум или найти людей поблизости, становятся легче. Однако если рядом больше 4 человек, проверки Выдержки на сосредоточение получают кость штрафа.</p>",
+          "source": "PSI, с. 10"
+        }
+      },
+      {
+        "name": "Зрение на призраков",
+        "nameEn": "Ghost Sight",
+        "type": "ability",
+        "system": {
+          "description": "<p>Добавляет кость бонуса к проверке, когда ищет призрака вторым зрением.</p>",
+          "source": "PSI, с. 41"
+        }
+      },
+      {
+        "name": "Снаряжение",
+        "nameEn": "Equipment",
+        "type": "gear",
+        "system": {
+          "description": "<ul><li>Религиозная атрибутика</li><li>Ароматические свечи</li><li>Карты Таро</li></ul>",
+          "source": "PSI, с. 41"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Пси-убийца",
+    "nameEn": "Psi Assassin",
+    "type": "adversary",
+    "folder": "Пси",
+    "system": {
+      "adversaryType": "rival",
+      "characteristics": {
+        "brawn": {
+          "value": 2
+        },
+        "agility": {
+          "value": 3
+        },
+        "intellect": {
+          "value": 1
+        },
+        "cunning": {
+          "value": 3
+        },
+        "willpower": {
+          "value": 3
+        },
+        "presence": {
+          "value": 1
+        }
+      },
+      "wounds": {
+        "value": 0,
+        "max": 12
+      },
+      "strain": {
+        "value": 0,
+        "max": 0
+      },
+      "soak": {
+        "value": 2
+      },
+      "defense": {
+        "melee": {
+          "value": 0
+        },
+        "ranged": {
+          "value": 0
+        }
+      },
+      "groupSize": 1,
+      "description": "<p>Невооружённый убийца, ничем не отличимый от прохожего. Он убивает мыслью, часто выдавая смерть за несчастный случай, и срабатывает без свидетелей или в толпе и уходит в панике. Связать его с убийством можно только вторым зрением, чтением мыслей или если заметить, что он был рядом при нескольких смертях. Обычно его готовят спецслужбы.</p>",
+      "source": "PSI, с. 42",
+      "worlds": [
+        "weirdwar",
+        "modern",
+        "monster",
+        "postapoc",
+        "zombie",
+        "scifi",
+        "spaceopera",
+        "steampunk"
+      ]
+    },
+    "items": [
+      {
+        "name": "Обман",
+        "type": "skill",
+        "system": {
+          "key": "deception",
+          "characteristic": "cunning",
+          "category": "social",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Экстрасенсорика",
+        "type": "skill",
+        "system": {
+          "key": "psiExtrasensory",
+          "characteristic": "willpower",
+          "category": "magic",
+          "rank": 1,
+          "career": false
+        }
+      },
+      {
+        "name": "Ближний бой",
+        "type": "skill",
+        "system": {
+          "key": "melee",
+          "characteristic": "brawn",
+          "category": "combat",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Разум над материей",
+        "type": "skill",
+        "system": {
+          "key": "psiMind",
+          "characteristic": "willpower",
+          "category": "magic",
+          "rank": 1,
+          "career": false
+        }
+      },
+      {
+        "name": "Проекция",
+        "type": "skill",
+        "system": {
+          "key": "psiProjection",
+          "characteristic": "willpower",
+          "category": "magic",
+          "rank": 3,
+          "career": false
+        }
+      },
+      {
+        "name": "Жульничество",
+        "type": "skill",
+        "system": {
+          "key": "skulduggery",
+          "characteristic": "cunning",
+          "category": "general",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Скрытность",
+        "type": "skill",
+        "system": {
+          "key": "stealth",
+          "characteristic": "agility",
+          "category": "general",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Бдительность",
+        "type": "skill",
+        "system": {
+          "key": "vigilance",
+          "characteristic": "willpower",
+          "category": "general",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Взрыв головы",
+        "nameEn": "Head Popper",
+        "type": "talent",
+        "system": {
+          "tier": 4,
+          "activation": "passive",
+          "ranked": false,
+          "description": "<p>Атаки Проекцией могут наносить раны, а не только усталость.</p>",
+          "source": "PSI, с. 17"
+        }
+      },
+      {
+        "name": "Неприметный",
+        "nameEn": "Unremarkable",
+        "type": "talent",
+        "system": {
+          "tier": 1,
+          "activation": "passive",
+          "ranked": false,
+          "description": "<p>Другие персонажи добавляют провал к проверкам, сделанным, чтобы найти или опознать персонажа в толпе.</p>",
+          "source": "Core Rulebook, с. 74"
+        }
+      },
+      {
+        "name": "Из ниоткуда",
+        "nameEn": "Out of Nowhere",
+        "type": "ability",
+        "system": {
+          "description": "<p>Когда пси-убийца без предупреждения убивает кого-то, все его противники делают сложную (3 кости сложности) проверку Выдержки. Провалившие на мгновение замирают в растерянности и обездвижены.</p>",
+          "source": "PSI, с. 42"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Пси-снайпер",
+    "nameEn": "Psi Sniper",
+    "type": "adversary",
+    "folder": "Пси",
+    "system": {
+      "adversaryType": "rival",
+      "characteristics": {
+        "brawn": {
+          "value": 3
+        },
+        "agility": {
+          "value": 2
+        },
+        "intellect": {
+          "value": 2
+        },
+        "cunning": {
+          "value": 3
+        },
+        "willpower": {
+          "value": 3
+        },
+        "presence": {
+          "value": 2
+        }
+      },
+      "wounds": {
+        "value": 0,
+        "max": 13
+      },
+      "strain": {
+        "value": 0,
+        "max": 0
+      },
+      "soak": {
+        "value": 3
+      },
+      "defense": {
+        "melee": {
+          "value": 0
+        },
+        "ranged": {
+          "value": 0
+        }
+      },
+      "groupSize": 1,
+      "description": "<p>Хладнокровный стрелок, которому пси-силы позволяют делать невозможные выстрелы. Экстрасенсорикой он находит цель, даже не видя её, а телекинезом ведёт пулю в обход препятствий и телохранителей, разгоняя её так, что она пробивает защиту. Вблизи берёт пистолет с глушителем или бьёт пси-зарядом; силён внезапностью и слабее при затяжном штурме.</p>",
+      "source": "PSI, с. 42",
+      "worlds": [
+        "weirdwar",
+        "modern",
+        "monster",
+        "postapoc",
+        "zombie",
+        "scifi",
+        "spaceopera"
+      ]
+    },
+    "items": [
+      {
+        "name": "Атлетика",
+        "type": "skill",
+        "system": {
+          "key": "athletics",
+          "characteristic": "brawn",
+          "category": "general",
+          "rank": 1,
+          "career": false
+        }
+      },
+      {
+        "name": "Грубая сила",
+        "type": "skill",
+        "system": {
+          "key": "brawl",
+          "characteristic": "brawn",
+          "category": "combat",
+          "rank": 1,
+          "career": false
+        }
+      },
+      {
+        "name": "Экстрасенсорика",
+        "type": "skill",
+        "system": {
+          "key": "psiExtrasensory",
+          "characteristic": "willpower",
+          "category": "magic",
+          "rank": 1,
+          "career": false
+        }
+      },
+      {
+        "name": "Разум над материей",
+        "type": "skill",
+        "system": {
+          "key": "psiMind",
+          "characteristic": "willpower",
+          "category": "magic",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Проекция",
+        "type": "skill",
+        "system": {
+          "key": "psiProjection",
+          "characteristic": "willpower",
+          "category": "magic",
+          "rank": 1,
+          "career": false
+        }
+      },
+      {
+        "name": "Дальний бой",
+        "type": "skill",
+        "system": {
+          "key": "ranged",
+          "characteristic": "agility",
+          "category": "combat",
+          "rank": 3,
+          "career": false
+        }
+      },
+      {
+        "name": "Волшебная пуля",
+        "nameEn": "Magic Bullet",
+        "type": "talent",
+        "system": {
+          "tier": 2,
+          "activation": "passive",
+          "ranked": true,
+          "rank": 2,
+          "description": "<p>Персонаж добавляет к проверкам Дальнего боя по успеху за ранг, но не больше своих рангов Разума над материей.</p>",
+          "source": "PSI, с. 13"
+        }
+      },
+      {
+        "name": "Высокая скорость",
+        "nameEn": "High Velocity",
+        "type": "talent",
+        "system": {
+          "tier": 3,
+          "activation": "passive",
+          "ranked": true,
+          "rank": 1,
+          "description": "<p>Когда предмет, брошенный телекинезом, попадает в цель, персонаж игнорирует 2 поглощения за ранг. Сочетается с талантом «Волшебная пуля».</p>",
+          "source": "PSI, с. 15"
+        }
+      },
+      {
+        "name": "Снайперская винтовка",
+        "nameEn": "Sniper rifle",
+        "type": "weapon",
+        "system": {
+          "skill": "ranged",
+          "damage": 9,
+          "brawnDamage": false,
+          "crit": 2,
+          "range": "extreme",
+          "encumbrance": 0,
+          "hardPoints": 0,
+          "price": 0,
+          "rarity": 0,
+          "qualities": [],
+          "description": "",
+          "equipped": true,
+          "source": "PSI, с. 42"
+        }
+      },
+      {
+        "name": "Пистолет",
+        "nameEn": "Pistol",
+        "type": "weapon",
+        "system": {
+          "skill": "ranged",
+          "damage": 5,
+          "brawnDamage": false,
+          "crit": 4,
+          "range": "short",
+          "encumbrance": 0,
+          "hardPoints": 0,
+          "price": 0,
+          "rarity": 0,
+          "qualities": [],
+          "description": "",
+          "equipped": true,
+          "source": "PSI, с. 42"
+        }
+      },
+      {
+        "name": "Снаряжение",
+        "nameEn": "Equipment",
+        "type": "gear",
+        "system": {
+          "description": "<ul><li>Маскировка</li></ul>",
+          "source": "PSI, с. 42"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Пирокинетик",
+    "nameEn": "Pyrokinetic",
+    "type": "adversary",
+    "folder": "Пси",
+    "system": {
+      "adversaryType": "rival",
+      "characteristics": {
+        "brawn": {
+          "value": 1
+        },
+        "agility": {
+          "value": 2
+        },
+        "intellect": {
+          "value": 2
+        },
+        "cunning": {
+          "value": 2
+        },
+        "willpower": {
+          "value": 3
+        },
+        "presence": {
+          "value": 2
+        }
+      },
+      "wounds": {
+        "value": 0,
+        "max": 10
+      },
+      "strain": {
+        "value": 0,
+        "max": 0
+      },
+      "soak": {
+        "value": 2
+      },
+      "defense": {
+        "melee": {
+          "value": 0
+        },
+        "ranged": {
+          "value": 0
+        }
+      },
+      "groupSize": 1,
+      "description": "<p>Экстрасенс, одержимый огнём и властью. Создать огонь из ничего ему трудно, поэтому он разводит пожар с помощью горючего и уже потом им управляет. Выдать его может лишь неестественное поведение пламени.</p><p>Против него лучше всего действуют вода, отсутствие кислорода и холод.</p>",
+      "source": "PSI, с. 43",
+      "worlds": [
+        "weirdwar",
+        "modern",
+        "monster",
+        "postapoc",
+        "zombie",
+        "scifi",
+        "spaceopera",
+        "steampunk"
+      ]
+    },
+    "items": [
+      {
+        "name": "Обман",
+        "type": "skill",
+        "system": {
+          "key": "deception",
+          "characteristic": "cunning",
+          "category": "social",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Выдержка",
+        "type": "skill",
+        "system": {
+          "key": "discipline",
+          "characteristic": "willpower",
+          "category": "general",
+          "rank": 1,
+          "career": false
+        }
+      },
+      {
+        "name": "Лидерство",
+        "type": "skill",
+        "system": {
+          "key": "leadership",
+          "characteristic": "presence",
+          "category": "social",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Разум над материей",
+        "type": "skill",
+        "system": {
+          "key": "psiMind",
+          "characteristic": "willpower",
+          "category": "magic",
+          "rank": 3,
+          "career": false
+        }
+      },
+      {
+        "name": "Жульничество",
+        "type": "skill",
+        "system": {
+          "key": "skulduggery",
+          "characteristic": "cunning",
+          "category": "general",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Скрытность",
+        "type": "skill",
+        "system": {
+          "key": "stealth",
+          "characteristic": "agility",
+          "category": "general",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Психический взрыв",
+        "nameEn": "Burst",
+        "type": "talent",
+        "system": {
+          "tier": 3,
+          "activation": "passive",
+          "ranked": true,
+          "rank": 1,
+          "description": "<p>Все психические атаки персонажа получают свойство Взрыв с рейтингом, равным рангу таланта +2. Свойство активируется преимуществом.</p>",
+          "source": "PSI, с. 14"
+        }
+      },
+      {
+        "name": "Терморегуляция",
+        "nameEn": "Temperature Control",
+        "type": "talent",
+        "system": {
+          "tier": 2,
+          "activation": "passive",
+          "ranked": true,
+          "rank": 2,
+          "description": "<p>Персонаж поглощает 2 урона от сильного жара или холода за ранг.</p>",
+          "source": "PSI, с. 14"
+        }
+      },
+      {
+        "name": "Не тронь — обожжёшься",
+        "nameEn": "Too Hot To Handle",
+        "type": "ability",
+        "system": {
+          "description": "<p>Тот, кто вступает с пирокинетиком в физический контакт, может получить от жара по 2 раны за каждую рану, которую сам ему наносит.</p>",
+          "source": "PSI, с. 43"
+        }
+      },
+      {
+        "name": "Снаряжение",
+        "nameEn": "Equipment",
+        "type": "gear",
+        "system": {
+          "description": "<ul><li>Отмычки</li><li>Горючая смесь</li><li>Зажигалка</li><li>Спички</li></ul>",
+          "source": "PSI, с. 43"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Технопат",
+    "nameEn": "Technopath",
+    "type": "adversary",
+    "folder": "Пси",
+    "system": {
+      "adversaryType": "rival",
+      "characteristics": {
+        "brawn": {
+          "value": 1
+        },
+        "agility": {
+          "value": 1
+        },
+        "intellect": {
+          "value": 3
+        },
+        "cunning": {
+          "value": 2
+        },
+        "willpower": {
+          "value": 3
+        },
+        "presence": {
+          "value": 1
+        }
+      },
+      "wounds": {
+        "value": 0,
+        "max": 9
+      },
+      "strain": {
+        "value": 0,
+        "max": 0
+      },
+      "soak": {
+        "value": 1
+      },
+      "defense": {
+        "melee": {
+          "value": 0
+        },
+        "ranged": {
+          "value": 0
+        }
+      },
+      "groupSize": 1,
+      "description": "<p>Экстрасенс, которому с машинами проще, чем с людьми. Одни лишь переключают светофоры, другие опустошают банкоматы и крадут данные, третьи роняют самолёты и останавливают кардиостимуляторы. Обычно он одиночка и стирает себя из баз данных и записей камер, но бывают и кружки технопатов, а наёмники работают на фракции и в промышленном шпионаже.</p>",
+      "source": "PSI, с. 43",
+      "worlds": [
+        "modern",
+        "postapoc",
+        "zombie",
+        "scifi",
+        "spaceopera"
+      ]
+    },
+    "items": [
+      {
+        "name": "Компьютеры",
+        "type": "skill",
+        "system": {
+          "key": "computers",
+          "characteristic": "intellect",
+          "category": "general",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Вождение",
+        "type": "skill",
+        "system": {
+          "key": "driving",
+          "characteristic": "agility",
+          "category": "general",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Экстрасенсорика",
+        "type": "skill",
+        "system": {
+          "key": "psiExtrasensory",
+          "characteristic": "willpower",
+          "category": "magic",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Механика",
+        "type": "skill",
+        "system": {
+          "key": "mechanics",
+          "characteristic": "intellect",
+          "category": "general",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Разум над материей",
+        "type": "skill",
+        "system": {
+          "key": "psiMind",
+          "characteristic": "willpower",
+          "category": "magic",
+          "rank": 1,
+          "career": false
+        }
+      },
+      {
+        "name": "Проекция",
+        "type": "skill",
+        "system": {
+          "key": "psiProjection",
+          "characteristic": "willpower",
+          "category": "magic",
+          "rank": 3,
+          "career": false
+        }
+      },
+      {
+        "name": "Скрытность",
+        "type": "skill",
+        "system": {
+          "key": "stealth",
+          "characteristic": "agility",
+          "category": "general",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Технопатия",
+        "nameEn": "Technopathy",
+        "type": "talent",
+        "system": {
+          "tier": 1,
+          "activation": "passive",
+          "ranked": true,
+          "rank": 3,
+          "description": "<p>Персонаж добавляет кость бонуса за ранг к проверкам пси-навыков, чтобы управлять механизмами, компьютерами и электроникой, перепрограммировать или просканировать их. Не действует на атаки и на перемещение предметов телекинезом.</p>",
+          "source": "PSI, с. 11"
+        }
+      },
+      {
+        "name": "Технопатия (улучшенная)",
+        "nameEn": "Technopathy, Advanced",
+        "type": "talent",
+        "system": {
+          "tier": 2,
+          "activation": "passive",
+          "ranked": true,
+          "rank": 2,
+          "description": "<p>Требует таланта «Технопатия». Персонаж добавляет к проверкам Компьютеров, Вождения, Механики, Управления и Пилотирования по успеху за ранг, но не больше своих рангов Проекции.</p>",
+          "source": "PSI, с. 14"
+        }
+      },
+      {
+        "name": "Друг машин",
+        "nameEn": "Machine Friend",
+        "type": "ability",
+        "system": {
+          "description": "<p>Добавляет кость бонуса к любой проверке, связанной с машинами или техникой.</p>",
+          "source": "PSI, с. 43"
+        }
+      },
+      {
+        "name": "Снаряжение",
+        "nameEn": "Equipment",
+        "type": "gear",
+        "system": {
+          "description": "<ul><li>Набор инструментов</li><li>Краденая банковская карта</li><li>Мобильный телефон</li></ul>",
+          "source": "PSI, с. 43"
+        }
+      }
+    ]
+  }
+]

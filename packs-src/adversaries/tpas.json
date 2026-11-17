@@ -1,0 +1,1867 @@
+[
+  {
+    "name": "Агент ФБР",
+    "nameEn": "FBI Agent",
+    "type": "adversary",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "adversaryType": "rival",
+      "characteristics": {
+        "brawn": {
+          "value": 2
+        },
+        "agility": {
+          "value": 3
+        },
+        "intellect": {
+          "value": 2
+        },
+        "cunning": {
+          "value": 3
+        },
+        "willpower": {
+          "value": 2
+        },
+        "presence": {
+          "value": 2
+        }
+      },
+      "wounds": {
+        "value": 0,
+        "max": 12
+      },
+      "strain": {
+        "value": 0,
+        "max": 0
+      },
+      "soak": {
+        "value": 4
+      },
+      "defense": {
+        "melee": {
+          "value": 0
+        },
+        "ranged": {
+          "value": 0
+        }
+      },
+      "groupSize": 1,
+      "description": "<p>Федеральный агент: работа под прикрытием и наблюдение, аресты, штурм укреплённых объектов, борьба с организованной преступностью, расследование угроз и угонов. Полевой оперативник ФБР.</p><p><em>Уровни силы: боевой 3, социальный 1, общий 4.</em></p>",
+      "source": "To Protect and Serve, с. 12",
+      "worlds": [
+        "modern",
+        "monster"
+      ]
+    },
+    "items": [
+      {
+        "name": "Обаяние",
+        "type": "skill",
+        "system": {
+          "key": "charm",
+          "characteristic": "presence",
+          "category": "social",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Вождение",
+        "type": "skill",
+        "system": {
+          "key": "driving",
+          "characteristic": "agility",
+          "category": "general",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Знание (образование)",
+        "type": "skill",
+        "system": {
+          "key": "knowledgeEducation",
+          "characteristic": "intellect",
+          "category": "knowledge",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Внимание",
+        "type": "skill",
+        "system": {
+          "key": "perception",
+          "characteristic": "cunning",
+          "category": "general",
+          "rank": 3,
+          "career": false
+        }
+      },
+      {
+        "name": "Дальний бой (лёгкое оружие)",
+        "type": "skill",
+        "system": {
+          "key": "rangedLight",
+          "characteristic": "agility",
+          "category": "combat",
+          "rank": 3,
+          "career": false
+        }
+      },
+      {
+        "name": "Уличная интуиция",
+        "type": "skill",
+        "system": {
+          "key": "streetwise",
+          "characteristic": "cunning",
+          "category": "general",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Выживание",
+        "type": "skill",
+        "system": {
+          "key": "survival",
+          "characteristic": "cunning",
+          "category": "general",
+          "rank": 3,
+          "career": false
+        }
+      },
+      {
+        "name": "Бдительность",
+        "type": "skill",
+        "system": {
+          "key": "vigilance",
+          "characteristic": "willpower",
+          "category": "general",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Противник",
+        "nameEn": "Adversary",
+        "type": "talent",
+        "system": {
+          "tier": 1,
+          "activation": "passive",
+          "ranked": true,
+          "description": "<p>Сложность всех боевых проверок против этого персонажа усиливается один раз.</p>",
+          "source": "To Protect and Serve, с. 12",
+          "rank": 1
+        }
+      },
+      {
+        "name": "Обездвиживающий выстрел",
+        "nameEn": "Hamstring Shot",
+        "type": "talent",
+        "system": {
+          "tier": 1,
+          "activation": "action",
+          "ranked": false,
+          "description": "<p>Один раз за раунд может совершить проверку дальнего боя против цели (не транспорта) в пределах дистанции оружия. При успехе урон уменьшается вдвое (до поглощения), а цель обездвижена до конца своего следующего хода.</p>",
+          "source": "To Protect and Serve, с. 12"
+        }
+      },
+      {
+        "name": "Защитное вождение",
+        "nameEn": "Defensive Driving",
+        "type": "talent",
+        "system": {
+          "tier": 4,
+          "activation": "passive",
+          "ranked": true,
+          "description": "<p>Защита любого транспорта под управлением агента увеличивается на 1.</p>",
+          "source": "To Protect and Serve, с. 12",
+          "rank": 1
+        }
+      },
+      {
+        "name": "Вызов подкрепления",
+        "nameEn": "Agency Backup",
+        "type": "ability",
+        "system": {
+          "description": "<p>Один раз за сцену, если в проверке агента выпал триумф или в проверке противника — крах, агент может вызвать подкрепление: ещё одного агента ФБР или группу полицейских (приспешников по числу персонажей игроков). Подкрепление прибывает в конце текущего раунда и бросает инициативу перед началом следующего.</p>",
+          "source": "To Protect and Serve, с. 12"
+        }
+      },
+      {
+        "name": "Бронежилет",
+        "nameEn": "Flak vest",
+        "type": "armor",
+        "system": {
+          "soak": 2,
+          "defense": 0,
+          "encumbrance": 0,
+          "hardPoints": 0,
+          "price": 0,
+          "rarity": 0,
+          "qualities": [],
+          "description": "",
+          "equipped": true,
+          "source": "To Protect and Serve, с. 12"
+        }
+      },
+      {
+        "name": "Тяжёлый пистолет",
+        "nameEn": "Heavy pistol",
+        "type": "weapon",
+        "system": {
+          "skill": "rangedLight",
+          "damage": 6,
+          "brawnDamage": false,
+          "crit": 3,
+          "range": "medium",
+          "encumbrance": 0,
+          "hardPoints": 0,
+          "price": 0,
+          "rarity": 0,
+          "qualities": [],
+          "description": "",
+          "equipped": true,
+          "source": "To Protect and Serve, с. 12"
+        }
+      },
+      {
+        "name": "Снаряжение",
+        "nameEn": "Equipment",
+        "type": "gear",
+        "system": {
+          "description": "<ul><li>Пояс: значок, мобильный телефон, наручники, кобура, рация</li><li>Блокнот и ручка</li></ul>",
+          "source": "To Protect and Serve, с. 12"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Аналитик ФБР",
+    "nameEn": "FBI Analyst",
+    "type": "adversary",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "adversaryType": "rival",
+      "characteristics": {
+        "brawn": {
+          "value": 2
+        },
+        "agility": {
+          "value": 3
+        },
+        "intellect": {
+          "value": 3
+        },
+        "cunning": {
+          "value": 3
+        },
+        "willpower": {
+          "value": 2
+        },
+        "presence": {
+          "value": 2
+        }
+      },
+      "wounds": {
+        "value": 0,
+        "max": 10
+      },
+      "strain": {
+        "value": 0,
+        "max": 0
+      },
+      "soak": {
+        "value": 4
+      },
+      "defense": {
+        "melee": {
+          "value": 0
+        },
+        "ranged": {
+          "value": 0
+        }
+      },
+      "groupSize": 1,
+      "description": "<p>Аналитик ФБР — специалист по данным и сетям, при необходимости выезжающий на место.</p><p><em>Уровни силы: боевой 2, социальный 1, общий 5.</em></p>",
+      "source": "To Protect and Serve, с. 12",
+      "worlds": [
+        "modern"
+      ]
+    },
+    "items": [
+      {
+        "name": "Компьютеры",
+        "type": "skill",
+        "system": {
+          "key": "computers",
+          "characteristic": "intellect",
+          "category": "general",
+          "rank": 3,
+          "career": false
+        }
+      },
+      {
+        "name": "Хладнокровие",
+        "type": "skill",
+        "system": {
+          "key": "cool",
+          "characteristic": "presence",
+          "category": "general",
+          "rank": 1,
+          "career": false
+        }
+      },
+      {
+        "name": "Знание (аналитика)",
+        "type": "skill",
+        "system": {
+          "key": "knowledgeAnalytics",
+          "characteristic": "intellect",
+          "category": "knowledge",
+          "rank": 3,
+          "career": false
+        }
+      },
+      {
+        "name": "Знание (образование)",
+        "type": "skill",
+        "system": {
+          "key": "knowledgeEducation",
+          "characteristic": "intellect",
+          "category": "knowledge",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Внимание",
+        "type": "skill",
+        "system": {
+          "key": "perception",
+          "characteristic": "cunning",
+          "category": "general",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Дальний бой (лёгкое оружие)",
+        "type": "skill",
+        "system": {
+          "key": "rangedLight",
+          "characteristic": "agility",
+          "category": "combat",
+          "rank": 1,
+          "career": false
+        }
+      },
+      {
+        "name": "Уличная интуиция",
+        "type": "skill",
+        "system": {
+          "key": "streetwise",
+          "characteristic": "cunning",
+          "category": "general",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Противник",
+        "nameEn": "Adversary",
+        "type": "talent",
+        "system": {
+          "tier": 1,
+          "activation": "passive",
+          "ranked": true,
+          "description": "<p>Сложность всех боевых проверок против этого персонажа усиливается один раз.</p>",
+          "source": "To Protect and Serve, с. 12",
+          "rank": 1
+        }
+      },
+      {
+        "name": "Характерный стиль",
+        "nameEn": "Distinctive Style",
+        "type": "talent",
+        "system": {
+          "tier": 3,
+          "activation": "incidental",
+          "ranked": false,
+          "description": "<p>Перед проверкой Компьютеров для взлома системы или проникновения в защищённую сеть может добавить к результату 2 успеха и 2 осложнения.</p>",
+          "source": "To Protect and Serve, с. 12"
+        }
+      },
+      {
+        "name": "Спутниковая сеть",
+        "nameEn": "Satellite Network",
+        "type": "ability",
+        "system": {
+          "description": "<p>Может использовать Компьютеры вместо Выживания, чтобы выследить персонажа.</p>",
+          "source": "To Protect and Serve, с. 12"
+        }
+      },
+      {
+        "name": "Бронежилет",
+        "nameEn": "Flak vest",
+        "type": "armor",
+        "system": {
+          "soak": 2,
+          "defense": 0,
+          "encumbrance": 0,
+          "hardPoints": 0,
+          "price": 0,
+          "rarity": 0,
+          "qualities": [],
+          "description": "",
+          "equipped": true,
+          "source": "To Protect and Serve, с. 12"
+        }
+      },
+      {
+        "name": "Тяжёлый пистолет",
+        "nameEn": "Heavy pistol",
+        "type": "weapon",
+        "system": {
+          "skill": "rangedLight",
+          "damage": 6,
+          "brawnDamage": false,
+          "crit": 3,
+          "range": "medium",
+          "encumbrance": 0,
+          "hardPoints": 0,
+          "price": 0,
+          "rarity": 0,
+          "qualities": [],
+          "description": "",
+          "equipped": true,
+          "source": "To Protect and Serve, с. 12"
+        }
+      },
+      {
+        "name": "Снаряжение",
+        "nameEn": "Equipment",
+        "type": "gear",
+        "system": {
+          "description": "<ul><li>Пояс: значок, мобильный телефон, запасная обойма, наручники, кобура, рация</li><li>Ноутбук</li></ul>",
+          "source": "To Protect and Serve, с. 12"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Осведомитель",
+    "nameEn": "Criminal Informant",
+    "type": "adversary",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "adversaryType": "rival",
+      "characteristics": {
+        "brawn": {
+          "value": 3
+        },
+        "agility": {
+          "value": 2
+        },
+        "intellect": {
+          "value": 2
+        },
+        "cunning": {
+          "value": 3
+        },
+        "willpower": {
+          "value": 2
+        },
+        "presence": {
+          "value": 2
+        }
+      },
+      "wounds": {
+        "value": 0,
+        "max": 13
+      },
+      "strain": {
+        "value": 0,
+        "max": 0
+      },
+      "soak": {
+        "value": 4
+      },
+      "defense": {
+        "melee": {
+          "value": 0
+        },
+        "ranged": {
+          "value": 0
+        }
+      },
+      "groupSize": 1,
+      "description": "<p>Официальный или тайный информатор, завербованный полицейским. Одним разрешают продолжать дела, пока они сообщают о других; другие работают на продажных копов, прикрывающих их в обмен на долю.</p><p><em>Уровни силы: боевой 2, социальный 2, общий 3.</em></p>",
+      "source": "To Protect and Serve, с. 12",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie"
+      ]
+    },
+    "items": [
+      {
+        "name": "Запугивание",
+        "type": "skill",
+        "system": {
+          "key": "coercion",
+          "characteristic": "willpower",
+          "category": "social",
+          "rank": 1,
+          "career": false
+        }
+      },
+      {
+        "name": "Обман",
+        "type": "skill",
+        "system": {
+          "key": "deception",
+          "characteristic": "cunning",
+          "category": "social",
+          "rank": 3,
+          "career": false
+        }
+      },
+      {
+        "name": "Ближний бой",
+        "type": "skill",
+        "system": {
+          "key": "melee",
+          "characteristic": "brawn",
+          "category": "combat",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Переговоры",
+        "type": "skill",
+        "system": {
+          "key": "negotiation",
+          "characteristic": "presence",
+          "category": "social",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Дальний бой (лёгкое оружие)",
+        "type": "skill",
+        "system": {
+          "key": "rangedLight",
+          "characteristic": "agility",
+          "category": "combat",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Жульничество",
+        "type": "skill",
+        "system": {
+          "key": "skulduggery",
+          "characteristic": "cunning",
+          "category": "general",
+          "rank": 3,
+          "career": false
+        }
+      },
+      {
+        "name": "Уличная интуиция",
+        "type": "skill",
+        "system": {
+          "key": "streetwise",
+          "characteristic": "cunning",
+          "category": "general",
+          "rank": 3,
+          "career": false
+        }
+      },
+      {
+        "name": "Противник",
+        "nameEn": "Adversary",
+        "type": "talent",
+        "system": {
+          "tier": 1,
+          "activation": "passive",
+          "ranked": true,
+          "description": "<p>Сложность всех боевых проверок против этого персонажа усиливается один раз.</p>",
+          "source": "To Protect and Serve, с. 12",
+          "rank": 1
+        }
+      },
+      {
+        "name": "Грязные приёмы",
+        "nameEn": "Dirty Tricks",
+        "type": "talent",
+        "system": {
+          "tier": 2,
+          "activation": "incidental",
+          "ranked": false,
+          "description": "<p>Нанеся противнику критическую травму, может усилить сложность следующей проверки этого противника.</p>",
+          "source": "To Protect and Serve, с. 13"
+        }
+      },
+      {
+        "name": "Слабое место",
+        "nameEn": "Exploit",
+        "type": "talent",
+        "system": {
+          "tier": 2,
+          "activation": "incidental",
+          "ranked": true,
+          "description": "<p>При боевой проверке с оружием дальнего боя или ближнего боя (лёгкое оружие) может получить 2 усталости, чтобы атака получила Сковывание 2.</p>",
+          "source": "To Protect and Serve, с. 13",
+          "rank": 2
+        }
+      },
+      {
+        "name": "План отхода",
+        "nameEn": "Escape Plan",
+        "type": "ability",
+        "system": {
+          "description": "<p>Никогда не приходит на встречу без запасного плана: в любой сцене может попытаться сбежать через заранее подготовленный люк, переулок, потайную дверь или иной подходящий путь.</p>",
+          "source": "To Protect and Serve, с. 13"
+        }
+      },
+      {
+        "name": "Повреждённый бронежилет",
+        "nameEn": "Damaged flak vest",
+        "type": "armor",
+        "system": {
+          "soak": 1,
+          "defense": 0,
+          "encumbrance": 0,
+          "hardPoints": 0,
+          "price": 0,
+          "rarity": 0,
+          "qualities": [],
+          "description": "",
+          "equipped": true,
+          "source": "To Protect and Serve, с. 13"
+        }
+      },
+      {
+        "name": "Модифицированный боевой нож",
+        "nameEn": "Modified combat knife",
+        "type": "weapon",
+        "system": {
+          "skill": "melee",
+          "damage": 4,
+          "brawnDamage": false,
+          "crit": 2,
+          "range": "engaged",
+          "encumbrance": 0,
+          "hardPoints": 0,
+          "price": 0,
+          "rarity": 0,
+          "qualities": [
+            {
+              "name": "Проникающее",
+              "rating": 2
+            }
+          ],
+          "description": "",
+          "equipped": true,
+          "source": "To Protect and Serve, с. 13"
+        }
+      },
+      {
+        "name": "Модифицированный средний пистолет",
+        "nameEn": "Modified medium pistol w/ hollow-point rounds",
+        "type": "weapon",
+        "system": {
+          "skill": "rangedLight",
+          "damage": 5,
+          "brawnDamage": false,
+          "crit": 3,
+          "range": "medium",
+          "encumbrance": 0,
+          "hardPoints": 0,
+          "price": 0,
+          "rarity": 0,
+          "qualities": [
+            {
+              "name": "Высококритичное",
+              "rating": 2
+            }
+          ],
+          "description": "<p>Заряжен экспансивными пулями.</p>",
+          "equipped": true,
+          "source": "To Protect and Serve, с. 13"
+        }
+      },
+      {
+        "name": "Снаряжение",
+        "nameEn": "Equipment",
+        "type": "gear",
+        "system": {
+          "description": "<ul><li>Мобильный телефон</li><li>Запасная обойма</li></ul>",
+          "source": "To Protect and Serve, с. 13"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Агент ЦРУ",
+    "nameEn": "CIA Agent",
+    "type": "adversary",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "adversaryType": "rival",
+      "characteristics": {
+        "brawn": {
+          "value": 2
+        },
+        "agility": {
+          "value": 3
+        },
+        "intellect": {
+          "value": 2
+        },
+        "cunning": {
+          "value": 3
+        },
+        "willpower": {
+          "value": 3
+        },
+        "presence": {
+          "value": 2
+        }
+      },
+      "wounds": {
+        "value": 0,
+        "max": 11
+      },
+      "strain": {
+        "value": 0,
+        "max": 0
+      },
+      "soak": {
+        "value": 4
+      },
+      "defense": {
+        "melee": {
+          "value": 0
+        },
+        "ranged": {
+          "value": 0
+        }
+      },
+      "groupSize": 1,
+      "description": "<p>Санкционированный шпион: внешняя разведка и тайные операции. Для образа агента, действующего «вне правил», ведущий может делать упор на жёсткие допросы через Запугивание. Противника уровня главаря см. «Разведчик» современного сеттинга Core Rulebook.</p><p><em>Уровни силы: боевой 4, социальный 3, общий 5.</em></p>",
+      "source": "To Protect and Serve, с. 13",
+      "worlds": [
+        "modern"
+      ]
+    },
+    "items": [
+      {
+        "name": "Грубая сила",
+        "type": "skill",
+        "system": {
+          "key": "brawl",
+          "characteristic": "brawn",
+          "category": "combat",
+          "rank": 3,
+          "career": false
+        }
+      },
+      {
+        "name": "Запугивание",
+        "type": "skill",
+        "system": {
+          "key": "coercion",
+          "characteristic": "willpower",
+          "category": "social",
+          "rank": 3,
+          "career": false
+        }
+      },
+      {
+        "name": "Координация",
+        "type": "skill",
+        "system": {
+          "key": "coordination",
+          "characteristic": "agility",
+          "category": "general",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Выдержка",
+        "type": "skill",
+        "system": {
+          "key": "discipline",
+          "characteristic": "willpower",
+          "category": "general",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Знание (образование)",
+        "type": "skill",
+        "system": {
+          "key": "knowledgeEducation",
+          "characteristic": "intellect",
+          "category": "knowledge",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Дальний бой (лёгкое оружие)",
+        "type": "skill",
+        "system": {
+          "key": "rangedLight",
+          "characteristic": "agility",
+          "category": "combat",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Внимание",
+        "type": "skill",
+        "system": {
+          "key": "perception",
+          "characteristic": "cunning",
+          "category": "general",
+          "rank": 3,
+          "career": false
+        }
+      },
+      {
+        "name": "Жульничество",
+        "type": "skill",
+        "system": {
+          "key": "skulduggery",
+          "characteristic": "cunning",
+          "category": "general",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Скрытность",
+        "type": "skill",
+        "system": {
+          "key": "stealth",
+          "characteristic": "agility",
+          "category": "general",
+          "rank": 3,
+          "career": false
+        }
+      },
+      {
+        "name": "Противник",
+        "nameEn": "Adversary",
+        "type": "talent",
+        "system": {
+          "tier": 1,
+          "activation": "passive",
+          "ranked": true,
+          "description": "<p>Сложность всех боевых проверок против этого персонажа усиливается 2 раза.</p>",
+          "source": "To Protect and Serve, с. 13",
+          "rank": 2
+        }
+      },
+      {
+        "name": "Хлёсткая фраза (улучшенный)",
+        "nameEn": "Scathing Tirade (Improved)",
+        "type": "talent",
+        "system": {
+          "tier": 3,
+          "activation": "action",
+          "ranked": false,
+          "description": "<p>Действием совершает Обычную (2) проверку Запугивания. За каждый успех один враг в пределах короткой дистанции получает 1 усталость и добавляет кость штрафа ко всем проверкам навыков на 3 раунда; за каждое преимущество один из затронутых врагов получает ещё 1 усталость.</p>",
+          "source": "To Protect and Serve, с. 13"
+        }
+      },
+      {
+        "name": "Жёсткий допрос",
+        "nameEn": "Advanced Interrogation",
+        "type": "ability",
+        "system": {
+          "description": "<p>Подручными средствами добавляет 2 кости бонуса к проверкам Запугивания.</p>",
+          "source": "To Protect and Serve, с. 13"
+        }
+      },
+      {
+        "name": "Бронежилет",
+        "nameEn": "Flak vest",
+        "type": "armor",
+        "system": {
+          "soak": 2,
+          "defense": 0,
+          "encumbrance": 0,
+          "hardPoints": 0,
+          "price": 0,
+          "rarity": 0,
+          "qualities": [],
+          "description": "",
+          "equipped": true,
+          "source": "To Protect and Serve, с. 13"
+        }
+      },
+      {
+        "name": "Тяжёлый пистолет",
+        "nameEn": "Heavy pistol",
+        "type": "weapon",
+        "system": {
+          "skill": "rangedLight",
+          "damage": 6,
+          "brawnDamage": false,
+          "crit": 3,
+          "range": "medium",
+          "encumbrance": 0,
+          "hardPoints": 0,
+          "price": 0,
+          "rarity": 0,
+          "qualities": [],
+          "description": "<p>С глушителем: проверки Внимания, чтобы услышать выстрел, дважды усиливаются.</p>",
+          "equipped": true,
+          "source": "To Protect and Serve, с. 13"
+        }
+      },
+      {
+        "name": "Снаряжение",
+        "nameEn": "Equipment",
+        "type": "gear",
+        "system": {
+          "description": "<ul><li>Шифрованный мобильный телефон</li><li>Поддельные документы</li></ul>",
+          "source": "To Protect and Serve, с. 13"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Полицейский",
+    "nameEn": "Police Officer",
+    "type": "adversary",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "adversaryType": "minion",
+      "characteristics": {
+        "brawn": {
+          "value": 3
+        },
+        "agility": {
+          "value": 3
+        },
+        "intellect": {
+          "value": 2
+        },
+        "cunning": {
+          "value": 2
+        },
+        "willpower": {
+          "value": 2
+        },
+        "presence": {
+          "value": 2
+        }
+      },
+      "wounds": {
+        "value": 0,
+        "max": 5
+      },
+      "strain": {
+        "value": 0,
+        "max": 0
+      },
+      "soak": {
+        "value": 3
+      },
+      "defense": {
+        "melee": {
+          "value": 0
+        },
+        "ranged": {
+          "value": 0
+        }
+      },
+      "groupSize": 3,
+      "description": "<p>Местный или региональный блюститель порядка. Те же характеристики подходят и честному, и «грязному» копу — разницу показывают описанием и поступками.</p><p><em>Уровни силы: боевой 2, социальный 1, общий 1.</em></p>",
+      "source": "To Protect and Serve, с. 13",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie"
+      ]
+    },
+    "items": [
+      {
+        "name": "Запугивание",
+        "type": "skill",
+        "system": {
+          "key": "coercion",
+          "characteristic": "willpower",
+          "category": "social",
+          "rank": 0,
+          "career": true
+        }
+      },
+      {
+        "name": "Вождение",
+        "type": "skill",
+        "system": {
+          "key": "driving",
+          "characteristic": "agility",
+          "category": "general",
+          "rank": 0,
+          "career": true
+        }
+      },
+      {
+        "name": "Ближний бой",
+        "type": "skill",
+        "system": {
+          "key": "melee",
+          "characteristic": "brawn",
+          "category": "combat",
+          "rank": 0,
+          "career": true
+        }
+      },
+      {
+        "name": "Дальний бой (лёгкое оружие)",
+        "type": "skill",
+        "system": {
+          "key": "rangedLight",
+          "characteristic": "agility",
+          "category": "combat",
+          "rank": 0,
+          "career": true
+        }
+      },
+      {
+        "name": "Бдительность",
+        "type": "skill",
+        "system": {
+          "key": "vigilance",
+          "characteristic": "willpower",
+          "category": "general",
+          "rank": 0,
+          "career": true
+        }
+      },
+      {
+        "name": "Средний пистолет",
+        "nameEn": "Medium pistol",
+        "type": "weapon",
+        "system": {
+          "skill": "rangedLight",
+          "damage": 5,
+          "brawnDamage": false,
+          "crit": 4,
+          "range": "medium",
+          "encumbrance": 0,
+          "hardPoints": 0,
+          "price": 0,
+          "rarity": 0,
+          "qualities": [],
+          "description": "",
+          "equipped": true,
+          "source": "To Protect and Serve, с. 13"
+        }
+      },
+      {
+        "name": "Светошумовая граната",
+        "nameEn": "Flashbang Grenade",
+        "type": "weapon",
+        "system": {
+          "skill": "rangedLight",
+          "damage": 5,
+          "brawnDamage": false,
+          "crit": 5,
+          "range": "short",
+          "encumbrance": 0,
+          "hardPoints": 0,
+          "price": 0,
+          "rarity": 0,
+          "qualities": [
+            {
+              "name": "Взрыв",
+              "rating": 4
+            },
+            {
+              "name": "Дезориентация",
+              "rating": 3
+            },
+            {
+              "name": "Ошеломление",
+              "rating": 1
+            },
+            {
+              "name": "Оглушающий урон",
+              "rating": null
+            },
+            {
+              "name": "Ограниченный боезапас",
+              "rating": 1
+            }
+          ],
+          "description": "",
+          "equipped": true,
+          "source": "To Protect and Serve, с. 13"
+        }
+      },
+      {
+        "name": "Снаряжение",
+        "nameEn": "Equipment",
+        "type": "gear",
+        "system": {
+          "description": "<ul><li>Пояс: значок, мобильный телефон, наручники, кобура, рация, блокнот</li><li>Форма</li><li>Ручка</li></ul>",
+          "source": "To Protect and Serve, с. 13"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Огневая поддержка",
+    "nameEn": "Weapons Support",
+    "type": "adversary",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "adversaryType": "rival",
+      "characteristics": {
+        "brawn": {
+          "value": 3
+        },
+        "agility": {
+          "value": 3
+        },
+        "intellect": {
+          "value": 2
+        },
+        "cunning": {
+          "value": 2
+        },
+        "willpower": {
+          "value": 2
+        },
+        "presence": {
+          "value": 2
+        }
+      },
+      "wounds": {
+        "value": 0,
+        "max": 10
+      },
+      "strain": {
+        "value": 0,
+        "max": 0
+      },
+      "soak": {
+        "value": 5
+      },
+      "defense": {
+        "melee": {
+          "value": 0
+        },
+        "ranged": {
+          "value": 0
+        }
+      },
+      "groupSize": 1,
+      "description": "<p>Боец любого подразделения (полиция, ФБР, армия, охрана), выданный тяжёлым оружием для поддержки своих. Выберите ему одно оружие поддержки; с пулемётом или переносной ракетной установкой боевой уровень силы растёт на 2.</p><p><em>Уровни силы: боевой 4, социальный 1, общий 1.</em></p>",
+      "source": "To Protect and Serve, с. 13–14",
+      "worlds": [
+        "modern",
+        "zombie",
+        "postapoc",
+        "weirdwar"
+      ]
+    },
+    "items": [
+      {
+        "name": "Выдержка",
+        "type": "skill",
+        "system": {
+          "key": "discipline",
+          "characteristic": "willpower",
+          "category": "general",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Вождение",
+        "type": "skill",
+        "system": {
+          "key": "driving",
+          "characteristic": "agility",
+          "category": "general",
+          "rank": 1,
+          "career": false
+        }
+      },
+      {
+        "name": "Артиллерия",
+        "type": "skill",
+        "system": {
+          "key": "gunnery",
+          "characteristic": "agility",
+          "category": "combat",
+          "rank": 3,
+          "career": false
+        }
+      },
+      {
+        "name": "Ближний бой",
+        "type": "skill",
+        "system": {
+          "key": "melee",
+          "characteristic": "brawn",
+          "category": "combat",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Дальний бой (лёгкое оружие)",
+        "type": "skill",
+        "system": {
+          "key": "rangedLight",
+          "characteristic": "agility",
+          "category": "combat",
+          "rank": 1,
+          "career": false
+        }
+      },
+      {
+        "name": "Дальний бой (тяжёлое оружие)",
+        "type": "skill",
+        "system": {
+          "key": "rangedHeavy",
+          "characteristic": "agility",
+          "category": "combat",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Бдительность",
+        "type": "skill",
+        "system": {
+          "key": "vigilance",
+          "characteristic": "willpower",
+          "category": "general",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Бронежилет",
+        "nameEn": "Flak vest",
+        "type": "armor",
+        "system": {
+          "soak": 2,
+          "defense": 0,
+          "encumbrance": 0,
+          "hardPoints": 0,
+          "price": 0,
+          "rarity": 0,
+          "qualities": [],
+          "description": "",
+          "equipped": true,
+          "source": "To Protect and Serve, с. 14"
+        }
+      },
+      {
+        "name": "Пулемёт",
+        "nameEn": "Machine gun",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 10,
+          "brawnDamage": false,
+          "crit": 3,
+          "range": "long",
+          "encumbrance": 0,
+          "hardPoints": 0,
+          "price": 0,
+          "rarity": 0,
+          "qualities": [
+            {
+              "name": "Автоматическое",
+              "rating": null
+            },
+            {
+              "name": "Громоздкое",
+              "rating": 2
+            },
+            {
+              "name": "Проникающее",
+              "rating": 2
+            },
+            {
+              "name": "Высококритичное",
+              "rating": 2
+            }
+          ],
+          "description": "<p>Оружие поддержки на выбор; боевой уровень силы +2.</p>",
+          "equipped": true,
+          "source": "To Protect and Serve, с. 14"
+        }
+      },
+      {
+        "name": "Переносная ракетная установка",
+        "nameEn": "Portable missile launcher",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 20,
+          "brawnDamage": false,
+          "crit": 2,
+          "range": "extreme",
+          "encumbrance": 0,
+          "hardPoints": 0,
+          "price": 0,
+          "rarity": 0,
+          "qualities": [
+            {
+              "name": "Взрыв",
+              "rating": 10
+            },
+            {
+              "name": "Бронебойное",
+              "rating": 2
+            },
+            {
+              "name": "Громоздкое",
+              "rating": 3
+            },
+            {
+              "name": "Наведение",
+              "rating": 3
+            },
+            {
+              "name": "Ограниченный боезапас",
+              "rating": 1
+            },
+            {
+              "name": "Подготовка",
+              "rating": 1
+            }
+          ],
+          "description": "<p>Оружие поддержки на выбор; боевой уровень силы +2.</p>",
+          "equipped": true,
+          "source": "To Protect and Serve, с. 14"
+        }
+      },
+      {
+        "name": "Помповый дробовик",
+        "nameEn": "Pump action shotgun",
+        "type": "weapon",
+        "system": {
+          "skill": "rangedHeavy",
+          "damage": 8,
+          "brawnDamage": false,
+          "crit": 3,
+          "range": "short",
+          "encumbrance": 0,
+          "hardPoints": 0,
+          "price": 0,
+          "rarity": 0,
+          "qualities": [
+            {
+              "name": "Взрыв",
+              "rating": 4
+            },
+            {
+              "name": "Нокдаун",
+              "rating": null
+            },
+            {
+              "name": "Высококритичное",
+              "rating": 2
+            },
+            {
+              "name": "Ограниченный боезапас",
+              "rating": 2
+            }
+          ],
+          "description": "<p>Оружие поддержки на выбор.</p>",
+          "equipped": true,
+          "source": "To Protect and Serve, с. 14"
+        }
+      },
+      {
+        "name": "Помповый дробовик (травматические патроны)",
+        "nameEn": "Pump action shotgun w/ bean bag rounds",
+        "type": "weapon",
+        "system": {
+          "skill": "rangedHeavy",
+          "damage": 8,
+          "brawnDamage": false,
+          "crit": 5,
+          "range": "short",
+          "encumbrance": 0,
+          "hardPoints": 0,
+          "price": 0,
+          "rarity": 0,
+          "qualities": [
+            {
+              "name": "Нокдаун",
+              "rating": null
+            },
+            {
+              "name": "Оглушающий урон",
+              "rating": null
+            },
+            {
+              "name": "Оглушение",
+              "rating": 1
+            },
+            {
+              "name": "Ограниченный боезапас",
+              "rating": 2
+            }
+          ],
+          "description": "<p>Оружие поддержки на выбор.</p>",
+          "equipped": true,
+          "source": "To Protect and Serve, с. 14"
+        }
+      },
+      {
+        "name": "Гранатомёт",
+        "nameEn": "Grenade launcher",
+        "type": "weapon",
+        "system": {
+          "skill": "rangedHeavy",
+          "damage": 10,
+          "brawnDamage": false,
+          "crit": 4,
+          "range": "long",
+          "encumbrance": 0,
+          "hardPoints": 0,
+          "price": 0,
+          "rarity": 0,
+          "qualities": [
+            {
+              "name": "Взрыв",
+              "rating": 8
+            },
+            {
+              "name": "Ограниченный боезапас",
+              "rating": 2
+            }
+          ],
+          "description": "<p>Оружие поддержки на выбор. Навык в книге не указан.</p>",
+          "equipped": true,
+          "source": "To Protect and Serve, с. 14"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Начальник полиции",
+    "nameEn": "Police Chief",
+    "type": "adversary",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "adversaryType": "nemesis",
+      "characteristics": {
+        "brawn": {
+          "value": 2
+        },
+        "agility": {
+          "value": 3
+        },
+        "intellect": {
+          "value": 4
+        },
+        "cunning": {
+          "value": 3
+        },
+        "willpower": {
+          "value": 4
+        },
+        "presence": {
+          "value": 3
+        }
+      },
+      "wounds": {
+        "value": 0,
+        "max": 14
+      },
+      "strain": {
+        "value": 0,
+        "max": 14
+      },
+      "soak": {
+        "value": 4
+      },
+      "defense": {
+        "melee": {
+          "value": 0
+        },
+        "ranged": {
+          "value": 0
+        }
+      },
+      "groupSize": 1,
+      "description": "<p>Глава управления — скорее политик, чем полицейский, поэтому силён в общении. Бывает и продажным, вплоть до тайного руководства организованной преступностью; широкий список навыков позволяет подогнать его под нужный образ.</p><p><em>Уровни силы: боевой 8, социальный 6, общий 7.</em></p>",
+      "source": "To Protect and Serve, с. 14",
+      "worlds": [
+        "modern",
+        "monster"
+      ]
+    },
+    "items": [
+      {
+        "name": "Обаяние",
+        "type": "skill",
+        "system": {
+          "key": "charm",
+          "characteristic": "presence",
+          "category": "social",
+          "rank": 3,
+          "career": false
+        }
+      },
+      {
+        "name": "Хладнокровие",
+        "type": "skill",
+        "system": {
+          "key": "cool",
+          "characteristic": "presence",
+          "category": "general",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Запугивание",
+        "type": "skill",
+        "system": {
+          "key": "coercion",
+          "characteristic": "willpower",
+          "category": "social",
+          "rank": 3,
+          "career": false
+        }
+      },
+      {
+        "name": "Выдержка",
+        "type": "skill",
+        "system": {
+          "key": "discipline",
+          "characteristic": "willpower",
+          "category": "general",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Знание (аналитика)",
+        "type": "skill",
+        "system": {
+          "key": "knowledgeAnalytics",
+          "characteristic": "intellect",
+          "category": "knowledge",
+          "rank": 1,
+          "career": false
+        }
+      },
+      {
+        "name": "Знание (образование)",
+        "type": "skill",
+        "system": {
+          "key": "knowledgeEducation",
+          "characteristic": "intellect",
+          "category": "knowledge",
+          "rank": 3,
+          "career": false
+        }
+      },
+      {
+        "name": "Лидерство",
+        "type": "skill",
+        "system": {
+          "key": "leadership",
+          "characteristic": "presence",
+          "category": "social",
+          "rank": 3,
+          "career": false
+        }
+      },
+      {
+        "name": "Переговоры",
+        "type": "skill",
+        "system": {
+          "key": "negotiation",
+          "characteristic": "presence",
+          "category": "social",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Дальний бой (лёгкое оружие)",
+        "type": "skill",
+        "system": {
+          "key": "rangedLight",
+          "characteristic": "agility",
+          "category": "combat",
+          "rank": 4,
+          "career": false
+        }
+      },
+      {
+        "name": "Уличная интуиция",
+        "type": "skill",
+        "system": {
+          "key": "streetwise",
+          "characteristic": "cunning",
+          "category": "general",
+          "rank": 3,
+          "career": false
+        }
+      },
+      {
+        "name": "Бдительность",
+        "type": "skill",
+        "system": {
+          "key": "vigilance",
+          "characteristic": "willpower",
+          "category": "general",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Противник",
+        "nameEn": "Adversary",
+        "type": "talent",
+        "system": {
+          "tier": 1,
+          "activation": "passive",
+          "ranked": true,
+          "description": "<p>Сложность всех боевых проверок против этого персонажа усиливается 2 раза.</p>",
+          "source": "To Protect and Serve, с. 14",
+          "rank": 2
+        }
+      },
+      {
+        "name": "Полевой командир",
+        "nameEn": "Field Commander",
+        "type": "talent",
+        "system": {
+          "tier": 3,
+          "activation": "action",
+          "ranked": false,
+          "description": "<p>Обычная (2) проверка Лидерства: при успехе 3 союзника могут немедленно совершить по манёвру.</p>",
+          "source": "To Protect and Serve, с. 14"
+        }
+      },
+      {
+        "name": "Воодушевляющая речь (улучшенный)",
+        "nameEn": "Inspiring Rhetoric (Improved)",
+        "type": "talent",
+        "system": {
+          "tier": 3,
+          "activation": "action",
+          "ranked": false,
+          "description": "<p>Действием совершает Обычную (2) проверку Обаяния. За каждый успех один союзник в пределах короткой дистанции восстанавливает 1 усталость и добавляет кость бонуса ко всем проверкам навыков на 3 раунда; за каждое преимущество один из затронутых союзников восстанавливает ещё 1 усталость.</p>",
+          "source": "To Protect and Serve, с. 14"
+        }
+      },
+      {
+        "name": "Верные подчинённые",
+        "nameEn": "Loyal Officers",
+        "type": "ability",
+        "system": {
+          "description": "<p>Один раз за раунд, когда начальник становится целью боевой проверки, он может выбрать союзника в пределах короткой дистанции — атака направляется на этого союзника.</p>",
+          "source": "To Protect and Serve, с. 14"
+        }
+      },
+      {
+        "name": "На шаг впереди",
+        "nameEn": "One Step Ahead",
+        "type": "ability",
+        "system": {
+          "description": "<p>Один раз за раунд, после действия или манёвра противника, ведущий может потратить очко сюжета, чтобы начальник совершил действие или манёвр вне очереди как побочное действие.</p>",
+          "source": "To Protect and Serve, с. 14"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Детектив",
+    "nameEn": "Police Detective",
+    "type": "adversary",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "adversaryType": "rival",
+      "characteristics": {
+        "brawn": {
+          "value": 2
+        },
+        "agility": {
+          "value": 3
+        },
+        "intellect": {
+          "value": 2
+        },
+        "cunning": {
+          "value": 4
+        },
+        "willpower": {
+          "value": 3
+        },
+        "presence": {
+          "value": 3
+        }
+      },
+      "wounds": {
+        "value": 0,
+        "max": 12
+      },
+      "strain": {
+        "value": 0,
+        "max": 0
+      },
+      "soak": {
+        "value": 4
+      },
+      "defense": {
+        "melee": {
+          "value": 0
+        },
+        "ranged": {
+          "value": 0
+        }
+      },
+      "groupSize": 1,
+      "description": "<p>Расследует преступления на месте, опрашивает свидетелей; ходит в штатском, чтобы выделяться или, наоборот, сливаться с толпой.</p><p><em>Уровни силы: боевой 3, социальный 3, общий 5.</em></p>",
+      "source": "To Protect and Serve, с. 14–15",
+      "worlds": [
+        "modern",
+        "monster"
+      ]
+    },
+    "items": [
+      {
+        "name": "Обаяние",
+        "type": "skill",
+        "system": {
+          "key": "charm",
+          "characteristic": "presence",
+          "category": "social",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Запугивание",
+        "type": "skill",
+        "system": {
+          "key": "coercion",
+          "characteristic": "willpower",
+          "category": "social",
+          "rank": 2,
+          "career": false
+        }
+      },
+      {
+        "name": "Выдержка",
+        "type": "skill",
+        "system": {
+          "key": "discipline",
+          "characteristic": "willpower",
+          "category": "general",
+          "rank": 3,
+          "career": false
+        }
+      },
+      {
+        "name": "Внимание",
+        "type": "skill",
+        "system": {
+          "key": "perception",
+          "characteristic": "cunning",
+          "category": "general",
+          "rank": 3,
+          "career": false
+        }
+      },
+      {
+        "name": "Дальний бой (лёгкое оружие)",
+        "type": "skill",
+        "system": {
+          "key": "rangedLight",
+          "characteristic": "agility",
+          "category": "combat",
+          "rank": 3,
+          "career": false
+        }
+      },
+      {
+        "name": "Уличная интуиция",
+        "type": "skill",
+        "system": {
+          "key": "streetwise",
+          "characteristic": "cunning",
+          "category": "general",
+          "rank": 3,
+          "career": false
+        }
+      },
+      {
+        "name": "Выживание",
+        "type": "skill",
+        "system": {
+          "key": "survival",
+          "characteristic": "cunning",
+          "category": "general",
+          "rank": 3,
+          "career": false
+        }
+      },
+      {
+        "name": "Бдительность",
+        "type": "skill",
+        "system": {
+          "key": "vigilance",
+          "characteristic": "willpower",
+          "category": "general",
+          "rank": 3,
+          "career": false
+        }
+      },
+      {
+        "name": "Противник",
+        "nameEn": "Adversary",
+        "type": "talent",
+        "system": {
+          "tier": 1,
+          "activation": "passive",
+          "ranked": true,
+          "description": "<p>Сложность всех боевых проверок против этого персонажа усиливается один раз.</p>",
+          "source": "To Protect and Serve, с. 14",
+          "rank": 1
+        }
+      },
+      {
+        "name": "Намётанный глаз",
+        "nameEn": "Eye to Detail",
+        "type": "ability",
+        "system": {
+          "description": "<p>Действием совершает Обычную (2) проверку Внимания; при успехе союзники добавляют кость бонуса к своим боевым проверкам до начала следующего хода детектива.</p>",
+          "source": "To Protect and Serve, с. 14–15"
+        }
+      }
+    ]
+  }
+]

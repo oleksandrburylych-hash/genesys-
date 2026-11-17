@@ -21,6 +21,23 @@ export function registerSettings() {
     default: []
   });
 
+  // Текущая социальная сцена (давление на цель), общая для всех клиентов.
+  game.settings.register(SYSTEM_ID, "socialEncounter", {
+    scope: "world",
+    config: false,
+    type: Object,
+    default: { active: false },
+    onChange: () => game.genesys?.SocialEncounter?.instance?.render()
+  });
+
+  // Выключенные книги и модули (ключи GENESYS.sources), задаются в мастере настройки мира.
+  game.settings.register(SYSTEM_ID, "disabledSources", {
+    scope: "world",
+    config: false,
+    type: Array,
+    default: GENESYS.defaultDisabledSources
+  });
+
   // Своё приключение ведущего: имя и набор навыков (миры — в настройке adventures).
   game.settings.register(SYSTEM_ID, "customAdventure", {
     scope: "world",

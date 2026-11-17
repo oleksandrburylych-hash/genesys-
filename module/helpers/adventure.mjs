@@ -52,3 +52,24 @@ export function magicCareerOnly(adventureKey) {
   const keys = adventureKey ? [adventureKey] : enabledAdventureKeys();
   return keys.length > 0 && keys.every(k => getAdventure(k).worlds[0] === "terrinoth");
 }
+
+/** Ключ книги по строке source документа. */
+export function sourceKey(doc) {
+  const source = doc?.system?.source ?? "";
+  return Object.entries(GENESYS.sources).find(([, cfg]) => source.startsWith(cfg.match))?.[0] ?? null;
+}
+
+/** Выключенные ведущим книги и модули. */
+export function disabledSources() {
+  try { return game.settings.get(SYSTEM_ID, "disabledSources") ?? GENESYS.defaultDisabledSources; }
+  catch { return GENESYS.defaultDisabledSources ?? []; }
+}
+
+/** Включён ли модуль/книга. */
+export function sourceEnabled(key) { return !disabledSources().includes(key); }
+
+/** Разрешён ли документ включёнными книгами и модулями. */
+export function docAllowed(doc) {
+  const key = sourceKey(doc);
+  return !key || sourceEnabled(key);
+}

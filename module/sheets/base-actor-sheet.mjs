@@ -1,4 +1,4 @@
-import { GENESYS } from "../config.mjs";
+import { GENESYS, SYSTEM_ID } from "../config.mjs";
 import { WORLDS, getAdventure, fitsAdventure } from "../worlds.mjs";
 import { worldLabels } from "../helpers/adventure.mjs";
 import { DicePool } from "../dice/pool.mjs";
@@ -28,7 +28,8 @@ export class GenesysBaseActorSheet extends HandlebarsApplicationMixin(ActorSheet
       itemChat: GenesysBaseActorSheet.#onItemChat,
       itemQuantity: GenesysBaseActorSheet.#onItemQuantity,
       rollInjury: GenesysBaseActorSheet.#onRollInjury,
-      toggleWorld: GenesysBaseActorSheet.#onToggleWorld
+      toggleWorld: GenesysBaseActorSheet.#onToggleWorld,
+      removeStatus: GenesysBaseActorSheet.#onRemoveStatus
     }
   };
 
@@ -61,6 +62,12 @@ export class GenesysBaseActorSheet extends HandlebarsApplicationMixin(ActorSheet
       talents: actor.itemTypes.talent,
       abilities: actor.itemTypes.ability,
       injuries: actor.itemTypes.injury,
+      activeStatuses: GENESYS.statusEffects.filter(st => actor.statuses?.has(st.id)).map(st => {
+        const effect = actor.effects.find(e => e.statuses?.has(st.id));
+        const rounds = effect?.getFlag(SYSTEM_ID, "rounds") ?? 0;
+        const name = game.i18n.localize(st.name);
+        return { id: st.id, img: st.img, rounds, tooltip: rounds ? `${name} (${game.i18n.format("GENESYS.Conditions.RoundsLeft", { n: rounds })})` : `${name} — ${game.i18n.localize("GENESYS.Conditions.ClickRemove")}` };
+      }),
       worldTags: system.worlds ? worldLabels(system.worlds) : [],
       worldChoices: system.worlds ? Object.entries(WORLDS).map(([key, w]) => ({ key, label: w.label, color: w.color, on: system.worlds.includes(key) })) : []
     });
@@ -170,6 +177,12 @@ export class GenesysBaseActorSheet extends HandlebarsApplicationMixin(ActorSheet
   _getItem(target) {
     const id = target.closest("[data-item-id]")?.dataset.itemId;
     return this.actor.items.get(id);
+  }
+
+  /** Снять состояние щелчком по значку. */
+  static async #onRemoveStatus(event, target) {
+    if (!this.isEditable) return;
+    await this.actor.toggleStatusEffect(target.dataset.status, { active: false });
   }
 
   /** Включить/выключить тег мира (противник, транспорт). */

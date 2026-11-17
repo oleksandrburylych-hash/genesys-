@@ -224,7 +224,9 @@ export class InjuryData extends BaseItemData {
 
 /** Ключи магических навыков. */
 export const MAGIC_SKILLS = Object.keys(GENESYS.magicSkills);
-const MAGIC_NAMES = { "Магия": "arcana", "Вера": "divine", "Природа": "primal", "Псионика": "psychic", "Psychic": "psychic", "Руны": "runes", "Runes": "runes", "Стихосложение": "verse", "Verse": "verse", "Arcana": "arcana", "Divine": "divine", "Primal": "primal" };
+const MAGIC_NAMES = { "Магия": "arcana", "Вера": "divine", "Природа": "primal", "Псионика": "psychic", "Psychic": "psychic", "Руны": "runes", "Runes": "runes", "Стихосложение": "verse", "Verse": "verse", "Arcana": "arcana", "Divine": "divine", "Primal": "primal",
+  "Экстрасенсорика": "psiExtrasensory", "Extrasensory": "psiExtrasensory", "Разум над материей": "psiMind", "Mind Over Matter": "psiMind",
+  "Проекция": "psiProjection", "Projection": "psiProjection" };
 
 /**
  * Магическое действие или готовое заклинание.

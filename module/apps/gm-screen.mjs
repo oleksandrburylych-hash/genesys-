@@ -1,6 +1,6 @@
 import { GENESYS, SYSTEM_ID, TEMPLATES } from "../config.mjs";
 import { ADVENTURES, getAdventure, filterForAdventure } from "../worlds.mjs";
-import { enabledAdventureKeys } from "../helpers/adventure.mjs";
+import { enabledAdventureKeys, docAllowed } from "../helpers/adventure.mjs";
 
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
@@ -33,7 +33,9 @@ export class GMScreen extends HandlebarsApplicationMixin(ApplicationV2) {
     actions: {
       tab: GMScreen.#onTab, add: GMScreen.#onAdd, remove: GMScreen.#onRemove, count: GMScreen.#onCount,
       place: GMScreen.#onPlace, clear: GMScreen.#onClear, award: GMScreen.#onAward, refTable: GMScreen.#onRefTable,
-      toggleChar: GMScreen.#onToggleChar, open: GMScreen.#onOpen
+      toggleChar: GMScreen.#onToggleChar, open: GMScreen.#onOpen,
+      fear: async () => (await import("./fear.mjs")).promptFearCheck(),
+      social: () => game.genesys.SocialEncounter.open()
     },
     form: { handler: GMScreen.#onChange, submitOnChange: true, closeOnSubmit: false }
   };
@@ -64,7 +66,7 @@ export class GMScreen extends HandlebarsApplicationMixin(ApplicationV2) {
     const packDocs = pack ? await pack.getDocuments() : [];
     const world = game.actors.filter(a => a.type === "adversary");
     const copied = new Set(world.map(a => a._stats?.compendiumSource).filter(Boolean));
-    this.lib = [...packDocs.filter(d => !copied.has(d.uuid)), ...world];
+    this.lib = [...packDocs.filter(d => !copied.has(d.uuid) && docAllowed(d)), ...world];
     return this.lib;
   }
 

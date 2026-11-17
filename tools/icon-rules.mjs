@@ -14,6 +14,7 @@ export const PALETTES = {
   skill: ["#2a8fb0", "#14526a"],
   archetype: ["#2c4c7c", "#9c2a30"],
   adventure: ["#8e2229", "#1f3557"],
+  status: ["#a83a2a", "#3a1416"],
   career: ["#9c2a30", "#2c4c7c"],
   quality: ["#b07a2a", "#5e3d0e"],
   attachment: ["#7a6a55", "#3b3227"],

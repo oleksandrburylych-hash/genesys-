@@ -1,6 +1,6 @@
 import { GENESYS, SYSTEM_ID, TEMPLATES } from "../config.mjs";
 import { getAdventure, filterForAdventure, fitsAdventure, worldsOf } from "../worlds.mjs";
-import { enabledAdventureKeys, adventureImg, adventureSkillKeys, magicCareerOnly } from "../helpers/adventure.mjs";
+import { enabledAdventureKeys, adventureImg, adventureSkillKeys, magicCareerOnly, docAllowed, sourceEnabled } from "../helpers/adventure.mjs";
 
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
@@ -151,11 +151,12 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
     const adv = this.adventure ?? getAdventure("all");
     const key = `${list.map(a => a.key).join("|")}>${adv.key}`;
     if (this.viewCache?.key !== key) {
-      const f = docs => filterForAdventure(docs, adv);
+      // Только включённые ведущим книги и модули (PSI, Talents Expanded и т. п.).
+      const f = docs => filterForAdventure(docs.filter(docAllowed), adv);
       let archetypes = f(this.lib.archetypes);
       if (list.length > 1) {
         const all = new Map();
-        for (const a of list) for (const d of filterForAdventure(this.lib.archetypes, a)) all.set(d.uuid, d);
+        for (const a of list) for (const d of filterForAdventure(this.lib.archetypes.filter(docAllowed), a)) all.set(d.uuid, d);
         archetypes = [...all.values()];
       }
       this.viewCache = {
@@ -242,6 +243,12 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
       for (const s of owned) if (s.system.rank > 0 || !s.system.key) add(s.name, s.system.characteristic, s.system.category, s.system.rank);
     } else {
       for (const s of owned) add(s.name, s.system.characteristic, s.system.category, s.system.rank);
+    }
+    // Психик (раса или карьера из PSI): три пси-навыка на листе.
+    const psychic = sourceEnabled("psi") && [this.archetype, this.career].some(d => (d?.system.source ?? "").startsWith("PSI"));
+    if (psychic) for (const k of ["psiExtrasensory", "psiMind", "psiProjection"]) {
+      const have = owned.find(s => s.system.key === k);
+      add(have?.name ?? game.i18n.localize(`GENESYS.Skill.${k}`), "willpower", "magic", have?.system.rank ?? 0);
     }
     for (const n of careerNames) {
       if (rows.has(n.toLowerCase())) continue;

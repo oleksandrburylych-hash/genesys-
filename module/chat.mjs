@@ -21,7 +21,7 @@ function parryValue(actor, melee) {
 }
 
 /** Карточка реакции «Парировать / Принять удар»; урон применится после выбора. */
-async function offerParry(target, data, value) {
+async function offerParry(target, data, value, counter = {}) {
   const name = foundry.utils.escapeHTML(target.name);
   return ChatMessage.implementation.create({
     speaker: ChatMessage.implementation.getSpeaker({ actor: target }),
@@ -30,7 +30,7 @@ async function offerParry(target, data, value) {
         <button type="button" data-genesys-react="parry"><i class="fa-solid fa-shield-halved"></i> ${game.i18n.format("GENESYS.Reaction.ParryButton", { value })}</button>
         <button type="button" data-genesys-react="take"><i class="fa-solid fa-heart-crack"></i> ${game.i18n.localize("GENESYS.Reaction.Take")}</button>
       </div></div>`,
-    flags: { [SYSTEM_ID]: { reaction: { targetUuid: target.uuid, value, data, resolved: false } } }
+    flags: { [SYSTEM_ID]: { reaction: { targetUuid: target.uuid, value, data, counter, resolved: false } } }
   });
 }
 
@@ -50,6 +50,25 @@ async function resolveReaction(message, choice) {
   } else text = game.i18n.format("GENESYS.Reaction.Took", { name: foundry.utils.escapeHTML(target.name) });
   await message.update({ content: `<div class="genesys reaction-card resolved"><p>${text}</p></div>` });
   await actOnActor(target, "damage", data);
+  // Парирование (улучшенное): крах или 3 осложнения у атакующего — автоматическое попадание в ответ.
+  const c = r.counter ?? {};
+  if (choice === "parry" && c.attackerUuid && (c.despair > 0 || c.threat >= 3)
+    && talentRank(target, /^parry \(improved\)$/i, /^Парирование \(улучшенный\)$/i) > 0) {
+    const counterattack = talentRank(target, /^counterattack$/i, /^Контратака$/i) > 0;
+    await ChatMessage.implementation.create({
+      speaker: ChatMessage.implementation.getSpeaker({ actor: target }),
+      content: `<div class="genesys reaction-card"><p>${game.i18n.format("GENESYS.Reaction.CounterOffer", { name: foundry.utils.escapeHTML(target.name) })}${counterattack ? ` ${game.i18n.localize("GENESYS.Reaction.Counterattack")}` : ""}</p>
+        <div class="reaction-buttons"><button type="button" data-genesys-counter data-defender="${target.uuid}" data-attacker="${c.attackerUuid}"><i class="fa-solid fa-hand-fist"></i> ${game.i18n.localize("GENESYS.Reaction.CounterButton")}</button></div></div>`
+    });
+  }
+}
+
+/** Ответный удар: базовый урон оружия ближнего боя защитника (или Грубая сила) без проверки. */
+async function counterStrike(defender, attacker) {
+  const melee = defender.itemTypes?.weapon?.find(w => w.system.equipped !== false && MELEE_SKILLS.includes(w.system.skill));
+  const damage = melee ? (melee.system.totalDamage ?? melee.system.damage) : (defender.system.characteristics?.brawn?.value ?? 2);
+  const q = re => melee?.system.qualityRating?.(re) ?? 0;
+  await actOnActor(attacker, "damage", { damage, pierce: q(/проникающ|pierce/i), breach: q(/бронебойн|breach/i), source: `${game.i18n.localize("GENESYS.Reaction.CounterButton")}: ${melee?.name ?? game.i18n.localize("GENESYS.Skill.brawl")}` });
 }
 
 /**
@@ -108,6 +127,24 @@ export function registerReactionSocket() {
 
 export function registerChatHandlers() {
   Hooks.on("renderChatMessageHTML", (message, html) => {
+    // Карточка проверки страха: каждый бросает сам за своего персонажа.
+    html.querySelectorAll("[data-genesys-fear]").forEach(btn => btn.addEventListener("click", async event => {
+      event.preventDefault();
+      const actor = await fromUuid(btn.dataset.actorUuid);
+      if (!actor) return;
+      if (!actor.isOwner) return ui.notifications.warn("GENESYS.Initiative.NotYours", { localize: true });
+      const { rollFear } = await import("./apps/fear.mjs");
+      rollFear(actor, { difficulty: Number(btn.dataset.difficulty) || 2, source: btn.dataset.source ?? "" });
+    }));
+    html.querySelectorAll("[data-genesys-counter]").forEach(btn => btn.addEventListener("click", async event => {
+      event.preventDefault();
+      const defender = await fromUuid(btn.dataset.defender);
+      const attacker = await fromUuid(btn.dataset.attacker);
+      if (!defender || !attacker) return;
+      if (!game.user.isGM && !defender.isOwner) return ui.notifications.warn("GENESYS.Reaction.NotYours", { localize: true });
+      btn.disabled = true;
+      await counterStrike(defender, attacker);
+    }));
     html.querySelectorAll("[data-genesys-react]").forEach(btn => btn.addEventListener("click", async event => {
       event.preventDefault();
       const r = message.getFlag(SYSTEM_ID, "reaction");
@@ -138,7 +175,9 @@ export function registerChatHandlers() {
             };
             // Парирование: цель решает до применения поглощения.
             const parry = t.system?.strain ? parryValue(t, !!roll?.options?.melee) : 0;
-            if (parry > 0 && data.damage > 0) await offerParry(t, data, parry);
+            const attacker = rollActor(message);
+            const counter = { attackerUuid: attacker?.uuid ?? null, despair: roll?.results?.despair ?? 0, threat: roll?.results?.threat ?? 0 };
+            if (parry > 0 && data.damage > 0) await offerParry(t, data, parry, counter);
             else await actOnActor(t, "damage", data);
           }
         }
@@ -165,6 +204,14 @@ export function registerChatHandlers() {
           const who = targets.map(t => foundry.utils.escapeHTML(t.name)).join(", ");
           const note = cfg.note ? ` ${game.i18n.localize(cfg.note)}` : "";
           await say(actor, game.i18n.format("GENESYS.Spend.Quality", { name, rating: rating || "", targets: who || "—" }) + note);
+        }
+
+        else if (action === "fearApply") {
+          if (!actor) return;
+          if (!actor.isOwner && !game.user.isGM) return ui.notifications.warn("GENESYS.Initiative.NotYours", { localize: true });
+          const { applyFearEffect } = await import("./apps/fear.mjs");
+          await applyFearEffect(actor, btn.dataset.effect);
+          await say(actor, `${game.i18n.localize(`GENESYS.Fear.Effect.${btn.dataset.effect}`)}: ${game.i18n.localize(`GENESYS.Fear.EffectHint.${btn.dataset.effect}`)}`);
         }
 
         else if (action === "spend") {

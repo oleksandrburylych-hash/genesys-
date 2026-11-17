@@ -132,7 +132,7 @@ export class GenesysActor extends Actor {
    * @param {number} [options.difficulty=2]
    * @param {boolean} [options.skipDialog=false]
    */
-  async rollSkill(skillOrKey, { difficulty = 2, skipDialog = false, label, rollOptions = {} } = {}) {
+  async rollSkill(skillOrKey, { difficulty = 2, skipDialog = false, label, rollOptions = {}, notes: extraNotes = [] } = {}) {
     const skill = typeof skillOrKey === "string" ? this.getSkill(skillOrKey) : skillOrKey;
     if (!skill) {
       ui.notifications.warn(game.i18n.format("GENESYS.Warn.SkillNotFound", { name: skillOrKey }));
@@ -141,7 +141,7 @@ export class GenesysActor extends Actor {
     const key = skill.system.key;
     const target = getTargets()[0] ?? null;
     if (skill.system.category === "social") rollOptions = { ...rollOptions, social: true };
-    const notes = [];
+    const notes = [...extraNotes];
     let pool = this.getSkillPool(skill, difficulty);
 
     // Встречная проверка: сложность строится из навыка цели.
