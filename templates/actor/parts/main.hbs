@@ -41,6 +41,7 @@
             <span class="severity" data-tooltip="GENESYS.Injury.Severity">{{#times system.severity}}{{genesysDie "difficulty"}}{{/times}}</span>
             <a class="name" data-action="itemEdit">{{name}}</a>
             <span class="item-controls">
+              {{#if @root.editable}}<a data-action="healInjury" data-tooltip="GENESYS.Rest.HealInjuryHint"><i class="fa-solid fa-kit-medical"></i></a>{{/if}}
               <a data-action="itemChat" data-tooltip="GENESYS.ToChat"><i class="fa-solid fa-comment"></i></a>
               {{#if @root.editable}}<a data-action="itemDelete"><i class="fa-solid fa-trash"></i></a>{{/if}}
             </span>

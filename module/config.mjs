@@ -88,6 +88,7 @@ GENESYS.skillPresets = {
   modern: "GENESYS.Settings.SkillPreset.modern",
   scifi: "GENESYS.Settings.SkillPreset.scifi",
   spaceopera: "GENESYS.Settings.SkillPreset.spaceopera",
+  terrinoth: "GENESYS.Settings.SkillPreset.terrinoth",
   none: "GENESYS.Settings.SkillPreset.none"
 };
 
@@ -169,4 +170,103 @@ GENESYS.xp = {
   /** Максимальный ранг навыка при создании / вообще. */
   maxSkillCreation: 2,
   maxSkill: 5
+};
+
+/**
+ * Встречные проверки: навык → навык цели, который задаёт сложность
+ * (кости способности цели → кости сложности, мастерства → вызова).
+ */
+GENESYS.opposed = {
+  charm: "cool",
+  deception: "vigilance",
+  coercion: "discipline",
+  leadership: "discipline",
+  negotiation: "negotiation",
+  stealth: "perception",
+  skulduggery: "perception"
+};
+
+/**
+ * Пороги диапазонов дистанции в единицах сетки сцены (по умолчанию метры).
+ * Расстояние больше «длинной» — экстремальная. Настраивается в параметрах мира.
+ */
+GENESYS.rangeThresholds = { engaged: 2, short: 15, medium: 50, long: 200 };
+
+/** Состояния персонажей (значки на токене). */
+GENESYS.statusEffects = [
+  { id: "incapacitated", name: "GENESYS.Status.incapacitated", img: "icons/svg/unconscious.svg" },
+  { id: "dead", name: "GENESYS.Status.dead", img: "icons/svg/skull.svg" },
+  { id: "disoriented", name: "GENESYS.Status.disoriented", img: "icons/svg/daze.svg" },
+  { id: "staggered", name: "GENESYS.Status.staggered", img: "icons/svg/stoned.svg" },
+  { id: "immobilized", name: "GENESYS.Status.immobilized", img: "icons/svg/net.svg" },
+  { id: "prone", name: "GENESYS.Status.prone", img: "icons/svg/falling.svg" },
+  { id: "burning", name: "GENESYS.Status.burning", img: "icons/svg/fire.svg" },
+  { id: "bleeding", name: "GENESYS.Status.bleeding", img: "icons/svg/blood.svg" },
+  { id: "poisoned", name: "GENESYS.Status.poisoned", img: "icons/svg/poison.svg" },
+  { id: "frightened", name: "GENESYS.Status.frightened", img: "icons/svg/terror.svg" },
+  { id: "blind", name: "GENESYS.Status.blind", img: "icons/svg/blind.svg" },
+  { id: "concentrating", name: "GENESYS.Status.concentrating", img: "icons/svg/aura.svg" },
+  { id: "invisible", name: "GENESYS.Status.invisible", img: "icons/svg/invisible.svg" }
+];
+
+/**
+ * Активируемые свойства оружия: стоимость (преимуществ) и что делает автоматика.
+ * status — какое состояние повесить на цель; strain — урон усталостью (рейтинг).
+ */
+GENESYS.activeQualities = {
+  "Автоматическое": { cost: 2, note: "GENESYS.Quality.AutoFire" },
+  "Взрыв": { cost: 2, note: "GENESYS.Quality.Blast" },
+  "Дезориентация": { cost: 2, status: "disoriented" },
+  "Жжение": { cost: 2, status: "burning" },
+  "Залповое": { cost: 2, note: "GENESYS.Quality.Linked" },
+  "Наведение": { cost: 2, note: "GENESYS.Quality.Guided" },
+  "Нокдаун": { cost: 2, status: "prone" },
+  "Оглушение": { cost: 2, strain: true },
+  "Ошеломление": { cost: 2, status: "staggered" },
+  "Повреждение": { cost: 1, note: "GENESYS.Quality.Sunder" },
+  "Сковывание": { cost: 2, status: "immobilized" }
+};
+
+/**
+ * Числовые эффекты талантов (по английскому названию из флага nameEn).
+ * Значения умножаются на ранг таланта.
+ */
+GENESYS.talentEffects = {
+  "Toughened": { wounds: 2 },
+  "Grit": { strain: 1 },
+  "Durable": { critical: -10 },
+  "Defensive": { meleeDefense: 1, rangedDefense: 1 },
+  "Enduring": { soak: 1 }
+};
+
+/** Магические навыки и связанные с ними характеристики (урон Атаки). */
+GENESYS.magicSkills = {
+  arcana: "intellect",
+  divine: "willpower",
+  primal: "cunning",
+  runes: "intellect",
+  verse: "presence",
+  psychic: "presence"
+};
+
+/**
+ * Наборы навыков, заданные явным списком (вместо тегов settings).
+ * Realms of Terrinoth: четыре навыка Знания заменяют общее Знание, добавлены Руны и Стихосложение.
+ */
+GENESYS.presetSkills = {
+  terrinoth: ["alchemy", "arcana", "athletics", "brawl", "charm", "coercion", "cool", "coordination", "deception",
+    "discipline", "divine", "knowledgeAdventuring", "knowledgeForbidden", "knowledgeGeography", "knowledgeLore",
+    "leadership", "mechanics", "medicine", "meleeHeavy", "meleeLight", "negotiation", "perception", "primal",
+    "ranged", "resilience", "riding", "runes", "skulduggery", "stealth", "streetwise", "survival", "verse", "vigilance"]
+};
+
+/** Навыки, которых нет в базовом списке (характеристика, категория) — для наборов вроде Терринота. */
+GENESYS.extraSkills = {
+  knowledgeAdventuring: { characteristic: "intellect", category: "knowledge" },
+  knowledgeForbidden: { characteristic: "intellect", category: "knowledge" },
+  knowledgeGeography: { characteristic: "intellect", category: "knowledge" },
+  knowledgeLore: { characteristic: "intellect", category: "knowledge" },
+  runes: { characteristic: "intellect", category: "magic" },
+  verse: { characteristic: "presence", category: "magic" },
+  psychic: { characteristic: "presence", category: "magic" }
 };

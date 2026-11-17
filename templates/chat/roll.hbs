@@ -1,5 +1,6 @@
 <div class="genesys-roll {{outcome}}">
   {{#if label}}<h4 class="roll-label">{{label}}</h4>{{/if}}
+  {{#if target}}<div class="roll-target"><i class="fa-solid fa-crosshairs"></i> {{target.name}}</div>{{/if}}
   {{#if flavor}}<div class="roll-flavor">{{flavor}}</div>{{/if}}
 
   {{#if isPrivate}}
@@ -17,7 +18,7 @@
 
   <div class="roll-outcome">
     {{#if initiative}}
-      <strong>{{localize "GENESYS.Initiative"}}: {{initiative}}</strong>
+      <strong>{{localize "GENESYS.Initiative.label"}}: {{initiative}}</strong>
     {{else}}
       {{#if results.isSuccess}}
         <strong class="success">{{localize "GENESYS.Roll.Success"}}</strong>
@@ -62,7 +63,32 @@
     <button type="button" data-genesys-action="applyDamage" data-damage="{{attack.damage}}">
       <i class="fa-solid fa-heart-crack"></i> {{localize "GENESYS.Roll.ApplyDamage"}}
     </button>
+    {{#if activeQualities.length}}
+    <div class="quality-buttons">
+      {{#each activeQualities}}
+      <button type="button" data-genesys-action="activateQuality" data-quality="{{name}}" data-rating="{{rating}}">
+        <i class="fa-solid fa-bolt"></i> {{name}}{{#if rating}} {{rating}}{{/if}} <span class="cost">({{cost}} {{localize "GENESYS.Spend.AdvShort"}})</span>
+      </button>
+      {{/each}}
+    </div>
+    {{/if}}
   </div>
+  {{/if}}
+
+  {{#if spending.length}}
+  <details class="roll-spending">
+    <summary><i class="fa-solid fa-coins"></i> {{localize "GENESYS.Spend.Title"}}</summary>
+    {{#each spending}}
+    <div class="spend-group {{#if positive}}positive{{else}}negative{{/if}}">
+      <div class="spend-title">{{title}}</div>
+      {{#each rows}}
+      <button type="button" class="spend-row" data-genesys-action="spend" data-table="{{table}}" data-row="{{index}}">
+        <span class="spend-cost">{{cost}}</span> <span class="spend-text">{{text}}</span>
+      </button>
+      {{/each}}
+    </div>
+    {{/each}}
+  </details>
   {{/if}}
   {{/if}}
 </div>

@@ -23,6 +23,9 @@ import { SpellCastDialog } from "./module/apps/spell-cast-dialog.mjs";
 import { GenesysItemSheet } from "./module/sheets/item-sheet.mjs";
 import { registerSettings } from "./module/helpers/settings.mjs";
 import { registerHandlebarsHelpers, preloadTemplates } from "./module/helpers/handlebars.mjs";
+import { registerChatHandlers, loadSpendingTables } from "./module/chat.mjs";
+import { registerCombatSocket } from "./module/combat/combat.mjs";
+import { registerCombatHooks } from "./module/combat/initiative.mjs";
 
 /* -------------------------------------------- */
 /*  Init                                        */
@@ -67,6 +70,10 @@ Hooks.once("init", () => {
     vehicle: { bar: ["hullTrauma", "systemStrain"], value: ["speed.value"] }
   };
 
+  // Состояния (значки на токенах); «мёртв» — особое состояние поражения.
+  CONFIG.statusEffects = GENESYS.statusEffects.map(s => ({ ...s }));
+  CONFIG.specialStatusEffects.DEFEATED = "dead";
+
   // Кубики
   registerDice();
   CONFIG.Dice.rolls.push(GenesysRoll);
@@ -96,8 +103,12 @@ Hooks.once("init", () => {
 /*  Ready                                       */
 /* -------------------------------------------- */
 
+Hooks.once("setup", () => loadSpendingTables());
+
 Hooks.once("ready", () => {
   StoryPointsTracker.initialize();
+  registerCombatSocket();
+  registerCombatHooks();
   if (game.settings.get(SYSTEM_ID, "showStoryPoints")) new StoryPointsTracker().render({ force: true });
 });
 
@@ -140,31 +151,6 @@ Hooks.on("getSceneControlButtons", controls => {
 /*  Чат: кнопки на карточке броска              */
 /* -------------------------------------------- */
 
-Hooks.on("renderChatMessageHTML", (message, html) => {
-  html.querySelectorAll("[data-genesys-action='applyCrit']").forEach(btn => {
-    btn.addEventListener("click", async () => {
-      const targets = canvas?.tokens?.controlled ?? [];
-      if (!targets.length) return ui.notifications.warn("GENESYS.Warn.NoTokenSelected", { localize: true });
-      for (const token of targets) {
-        if (token.actor?.isOwner) await token.actor.rollCriticalInjury({ modifier: Number(btn.dataset.modifier) || 0 });
-      }
-    });
-  });
-  html.querySelectorAll("[data-genesys-action='applyDamage']").forEach(btn => {
-    btn.addEventListener("click", async () => {
-      const damage = Number(btn.dataset.damage) || 0;
-      const targets = canvas?.tokens?.controlled ?? [];
-      if (!targets.length) return ui.notifications.warn("GENESYS.Warn.NoTokenSelected", { localize: true });
-      for (const token of targets) {
-        const actor = token.actor;
-        if (!actor?.isOwner) continue;
-        const soak = actor.system.soak?.value ?? 0;
-        const taken = Math.max(0, damage - soak);
-        await actor.update({ "system.wounds.value": actor.system.wounds.value + taken });
-        ui.notifications.info(game.i18n.format("GENESYS.Info.DamageApplied", { name: actor.name, damage: taken, soak }));
-      }
-    });
-  });
-});
+registerChatHandlers();
 
 export { GENESYS, TEMPLATES };

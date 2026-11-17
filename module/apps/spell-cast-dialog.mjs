@@ -4,7 +4,7 @@ import { DicePoolDialog } from "./dice-pool-dialog.mjs";
 const { ApplicationV2, HandlebarsApplicationMixin, DialogV2 } = foundry.applications.api;
 
 /** Характеристика, связанная с магическим навыком (урон Атаки). */
-const MAGIC_CHAR = { arcana: "intellect", divine: "willpower", primal: "cunning", psychic: "presence" };
+const MAGIC_CHAR = GENESYS.magicSkills;
 /** Предельная сложность заклинания — Запредельная. */
 const MAX_DIFFICULTY = 5;
 /** Сколько усталости стоит проверка заклинания. */
@@ -55,12 +55,12 @@ export class SpellCastDialog extends HandlebarsApplicationMixin(ApplicationV2) {
   /** Навыки, которыми можно наложить заклинание. */
   get usableSkills() {
     const s = this.spell.system.skills;
-    return s.length ? s : ["arcana", "divine", "primal", "psychic"];
+    return s.length ? s : Object.keys(GENESYS.magicSkills);
   }
 
   /** Магические фокусы персонажа (снаряжение с бонусом к урону или из папки «Магия»). */
   get implements() {
-    return (this.actor?.itemTypes.gear ?? []).filter(i => i.system.implementDamage > 0 || /фокус|implement|жезл|посох|сфера|кольцо|символ|венец/i.test(i.name));
+    return (this.actor?.itemTypes.gear ?? []).filter(i => i.system.implementDamage > 0 || /фокус|implement|жезл|посох|сфера|кольцо|символ|венец|рун|камень странника|музыкальн|инструмент/i.test(i.name));
   }
 
   /** Ранг Знания: максимальный среди навыков категории «знания». */

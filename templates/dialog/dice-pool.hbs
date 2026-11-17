@@ -3,6 +3,12 @@
     {{#each pool}}{{genesysDie key label}}{{else}}<span class="hint">{{localize "GENESYS.Roll.EmptyPool"}}</span>{{/each}}
   </div>
 
+  {{#if notes.length}}
+  <ul class="pool-notes">
+    {{#each notes}}<li>{{this}}</li>{{/each}}
+  </ul>
+  {{/if}}
+
   <div class="pool-rows">
     {{#each rows}}
     <div class="pool-row">
@@ -34,6 +40,16 @@
     <button type="button" class="{{#if active}}active{{/if}}" data-action="setDifficulty" data-value="{{value}}" data-tooltip="{{localize label}}">{{#if value}}{{#times value}}{{genesysDie "difficulty"}}{{/times}}{{else}}—{{/if}}</button>
     {{/each}}
   </div>
+
+  {{#if storyPoints}}
+  <div class="pool-story-point">
+    <button type="button" data-action="storyPoint" {{#unless storyPoints.can}}disabled{{/unless}}>
+      <i class="fa-solid fa-book-open"></i>
+      {{#if storyPoints.gm}}{{localize "GENESYS.StoryPoints.SpendGM"}}{{else}}{{localize "GENESYS.StoryPoints.SpendPlayer"}}{{/if}}
+      ({{storyPoints.available}})
+    </button>
+  </div>
+  {{/if}}
 
   {{#if messageModes.length}}
   <div class="form-group">

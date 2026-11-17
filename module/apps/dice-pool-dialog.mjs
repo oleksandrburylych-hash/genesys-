@@ -9,8 +9,10 @@ const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
  * Использование: await DicePoolDialog.prompt({ pool, label, actor, rollOptions })
  */
 export class DicePoolDialog extends HandlebarsApplicationMixin(ApplicationV2) {
-  constructor({ pool, label, actor, rollOptions = {}, ...options } = {}) {
+  constructor({ pool, label, actor, rollOptions = {}, notes = [], ...options } = {}) {
     super(options);
+    this.notes = notes;
+    this.storyPointUsed = false;
     this.pool = pool instanceof DicePool ? pool : new DicePool(pool);
     this.label = label ?? "";
     this.actor = actor ?? null;
@@ -29,7 +31,8 @@ export class DicePoolDialog extends HandlebarsApplicationMixin(ApplicationV2) {
       upgrade: DicePoolDialog.#onUpgrade,
       downgrade: DicePoolDialog.#onDowngrade,
       setDifficulty: DicePoolDialog.#onSetDifficulty,
-      roll: DicePoolDialog.#onRoll
+      roll: DicePoolDialog.#onRoll,
+      storyPoint: DicePoolDialog.#onStoryPoint
     },
     form: { handler: DicePoolDialog.#onSubmit, submitOnChange: true, closeOnSubmit: false }
   };
@@ -57,8 +60,34 @@ export class DicePoolDialog extends HandlebarsApplicationMixin(ApplicationV2) {
       messageModes: Object.entries(modes).map(([key, cfg]) => ({
         key, label: typeof cfg === "string" ? cfg : cfg.label, selected: key === this.messageMode
       })),
-      empty: this.pool.isEmpty
+      empty: this.pool.isEmpty,
+      notes: this.notes,
+      storyPoints: this.#storyPointInfo()
     };
+  }
+
+  /** Можно ли потратить очко сюжета (одно за проверку). */
+  #storyPointInfo() {
+    let points;
+    try { points = game.settings.get("genesys-rpg", "storyPoints"); } catch { return null; }
+    const gm = game.user.isGM;
+    const available = gm ? points.gm : points.player;
+    return { gm, available, used: this.storyPointUsed, can: !this.storyPointUsed && available > 0 };
+  }
+
+  /**
+   * Потратить очко сюжета: игрок усиливает свою кость способности,
+   * ведущий — сложность проверки (очко переходит к другой стороне).
+   */
+  static async #onStoryPoint() {
+    const info = this.#storyPointInfo();
+    if (!info?.can) return;
+    const { StoryPointsTracker } = await import("./story-points.mjs");
+    StoryPointsTracker.request(info.gm ? "useGM" : "usePlayer");
+    if (info.gm) this.pool.upgradeDifficulty(); else this.pool.upgradeAbility();
+    this.storyPointUsed = true;
+    this.notes = [...this.notes, game.i18n.localize(info.gm ? "GENESYS.StoryPoints.UpgradedDifficulty" : "GENESYS.StoryPoints.UpgradedAbility")];
+    this.render();
   }
 
   static #onAdd(event, target) {

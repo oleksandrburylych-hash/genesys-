@@ -25,11 +25,13 @@ const PACKS = [
   { name: "skills", label: "Навыки", type: "Item" },
   { name: "talents", label: "Таланты", type: "Item" },
   { name: "abilities", label: "Особые способности", type: "Item" },
+  { name: "heroic", label: "Героические способности", type: "Item" },
   { name: "spells", label: "Магия", type: "Item" },
   { name: "weapons", label: "Оружие", type: "Item" },
   { name: "armor", label: "Броня", type: "Item" },
   { name: "gear", label: "Снаряжение", type: "Item" },
   { name: "qualities", label: "Свойства предметов", type: "Item" },
+  { name: "attachments", label: "Модификации и зачарования", type: "Item" },
   { name: "injuries", label: "Критические травмы", type: "Item" },
   { name: "vehicle-crits", label: "Критические попадания (транспорт)", type: "Item" },
   { name: "adversaries", label: "Противники", type: "Actor" },
@@ -48,6 +50,8 @@ const ICONS = {
   quality: "icons/svg/sun.svg",
   injury: "icons/svg/blood.svg",
   spell: "icons/svg/explosion.svg",
+  heroic: "icons/svg/sun.svg",
+  attachment: "icons/svg/padlock.svg",
   adversary: "icons/svg/skull.svg",
   vehicle: "icons/svg/cog.svg"
 };
@@ -96,7 +100,9 @@ function embeddedItem(actorId, item, index) {
 
 /** Готовые заклинания получают эффекты базового действия; сложность пересчитывается. */
 function linkSpells(docs) {
-  const actions = new Map(docs.filter(d => !d.system?.baseAction).map(d => [d.name, d]));
+  // Базовые действия по имени; при совпадении имён побеждает первый источник (Core раньше RoT).
+  const actions = new Map();
+  for (const d of docs) if (!d.system?.baseAction && !actions.has(d.name)) actions.set(d.name, d);
   for (const d of docs) {
     const sys = d.system ?? {};
     if (!sys.baseAction) continue;

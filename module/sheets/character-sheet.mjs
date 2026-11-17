@@ -20,6 +20,12 @@ export class GenesysCharacterSheet extends GenesysBaseActorSheet {
       finishCreation: GenesysCharacterSheet.#onFinishCreation,
       adjust: GenesysCharacterSheet.#onAdjust,
       castSpell: GenesysCharacterSheet.#onCastSpell,
+      activateHeroic: GenesysCharacterSheet.#onActivateHeroic,
+      resetHeroic: GenesysCharacterSheet.#onResetHeroic,
+      recoverStrain: GenesysCharacterSheet.#onRecoverStrain,
+      restOvernight: GenesysCharacterSheet.#onRestOvernight,
+      healInjury: GenesysCharacterSheet.#onHealInjury,
+      creationWizard: GenesysCharacterSheet.#onCreationWizard,
       addMagicActions: GenesysCharacterSheet.#onAddMagicActions
     }
   };
@@ -95,8 +101,15 @@ export class GenesysCharacterSheet extends GenesysBaseActorSheet {
     const spells = actor.itemTypes.spell;
     context.magicActions = spells.filter(sp => !sp.system.isPreset).map(spellRow);
     context.presetSpells = spells.filter(sp => sp.system.isPreset).map(spellRow);
-    context.magicSkills = ["arcana", "divine", "primal", "psychic"].map(k => actor.getSkill(k)).filter(Boolean)
+    context.magicSkills = Object.keys(GENESYS.magicSkills).map(k => actor.getSkill(k)).filter(Boolean)
       .map(sk => ({ name: sk.name, rank: sk.system.rank }));
+
+    context.heroics = actor.itemTypes.heroic.map(h => ({
+      id: h.id, name: h.name, img: h.img,
+      uses: h.system.uses, perSession: h.system.usesPerSession, storyCost: h.system.storyCost,
+      upgrades: h.system.upgrades.filter(u => u.count > 0).map(u => u.count > 1 ? `${u.name} ×${u.count}` : u.name).join(", ")
+    }));
+    context.heroicPoints = system.heroicPoints;
 
     context.motivations = Object.entries(GENESYS.motivations).map(([key, label]) => ({
       key, label, ...system.motivations[key]
@@ -155,6 +168,30 @@ export class GenesysCharacterSheet extends GenesysBaseActorSheet {
     if (!toCreate.length) return ui.notifications.info("GENESYS.Spell.NothingToAdd", { localize: true });
     await this.actor.createEmbeddedDocuments("Item", toCreate);
     ui.notifications.info(game.i18n.format("GENESYS.Spell.Added", { count: toCreate.length }));
+  }
+
+  static #onActivateHeroic(event, target) {
+    const item = this._getItem(target);
+    if (item) return this.actor.activateHeroic(item);
+  }
+
+  /** Новая игровая встреча: сбросить счётчики использований героических способностей. */
+  static #onResetHeroic() {
+    const updates = this.actor.itemTypes.heroic.map(h => ({ _id: h.id, "system.uses": 0 }));
+    if (updates.length) return this.actor.updateEmbeddedDocuments("Item", updates);
+  }
+
+  static #onRecoverStrain() { return this.actor.recoverStrain(); }
+  static #onRestOvernight() { return this.actor.restOvernight(); }
+
+  static #onHealInjury(event, target) {
+    const item = this._getItem(target);
+    if (item) return this.actor.healInjury(item);
+  }
+
+  static async #onCreationWizard() {
+    const { CreationWizard } = await import("../apps/creation-wizard.mjs");
+    return new CreationWizard({ actor: this.actor }).render({ force: true });
   }
 
   /** Быстрое +/- для ран и напряжения. */

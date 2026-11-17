@@ -1,0 +1,327 @@
+[
+  {
+    "name": "Древняя работа (оружие)",
+    "nameEn": "Ancient (Weapon)",
+    "type": "attachment",
+    "folder": "Терринот",
+    "system": {
+      "appliesTo": "weapon",
+      "hardPoints": 0,
+      "price": 0,
+      "rarity": 10,
+      "damage": 1,
+      "crit": -1,
+      "soak": 0,
+      "defense": 0,
+      "encumbrance": 0,
+      "qualities": [
+        {
+          "name": "Укреплённое",
+          "rating": null
+        }
+      ],
+      "modifications": "",
+      "description": "<p>Оружие эпохи Королей Пенакора. Урон +1, критический рейтинг −1, оружие получает свойство «Укреплённое». Число точек модификации оружия уменьшается на 1 (минимум 0).</p><p><strong>Цена:</strong> ×20 от базовой. <strong>Редкость:</strong> 10 (итоговая).</p><p>Предмет может иметь только один вид работы (материала); его определяет ведущий при покупке или получении, и позже он не меняется. Занимает 0 точек модификации.</p>",
+      "source": "Realms of Terrinoth, с. 97"
+    }
+  },
+  {
+    "name": "Древняя работа (доспех)",
+    "nameEn": "Ancient (Armor)",
+    "type": "attachment",
+    "folder": "Терринот",
+    "system": {
+      "appliesTo": "armor",
+      "hardPoints": 0,
+      "price": 0,
+      "rarity": 10,
+      "damage": 0,
+      "crit": 0,
+      "soak": 1,
+      "defense": 1,
+      "encumbrance": 0,
+      "qualities": [
+        {
+          "name": "Укреплённое",
+          "rating": null
+        }
+      ],
+      "modifications": "",
+      "description": "<p>Доспех эпохи Королей Пенакора. Поглощение +1, защита +1, доспех получает свойство «Укреплённое». Число точек модификации доспеха уменьшается на 1 (минимум 0).</p><p><strong>Цена:</strong> ×20 от базовой. <strong>Редкость:</strong> 10 (итоговая).</p><p>Предмет может иметь только один вид работы (материала); его определяет ведущий при покупке или получении, и позже он не меняется. Занимает 0 точек модификации.</p>",
+      "source": "Realms of Terrinoth, с. 97"
+    }
+  },
+  {
+    "name": "Дварфийская работа (оружие)",
+    "nameEn": "Dwarven (Weapon)",
+    "type": "attachment",
+    "folder": "Терринот",
+    "system": {
+      "appliesTo": "weapon",
+      "hardPoints": 0,
+      "price": 0,
+      "rarity": 2,
+      "damage": 1,
+      "crit": 0,
+      "soak": 0,
+      "defense": 0,
+      "encumbrance": 1,
+      "qualities": [],
+      "modifications": "",
+      "description": "<p>Оружие из дварфийских сплавов. Урон +1, нагрузка +1.</p><p><strong>Цена:</strong> ×2 от базовой. <strong>Редкость:</strong> +2.</p><p>Предмет может иметь только один вид работы (материала); его определяет ведущий при покупке или получении, и позже он не меняется. Занимает 0 точек модификации.</p>",
+      "source": "Realms of Terrinoth, с. 97"
+    }
+  },
+  {
+    "name": "Дварфийская работа (доспех)",
+    "nameEn": "Dwarven (Armor)",
+    "type": "attachment",
+    "folder": "Терринот",
+    "system": {
+      "appliesTo": "armor",
+      "hardPoints": 0,
+      "price": 0,
+      "rarity": 2,
+      "damage": 0,
+      "crit": 0,
+      "soak": 0,
+      "defense": 0,
+      "encumbrance": 1,
+      "qualities": [],
+      "modifications": "",
+      "description": "<p>Доспех из дварфийских сплавов. Нагрузка +1, доспех получает +1 точку модификации.</p><p><strong>Цена:</strong> ×2 от базовой. <strong>Редкость:</strong> +2.</p><p>Предмет может иметь только один вид работы (материала); его определяет ведущий при покупке или получении, и позже он не меняется. Занимает 0 точек модификации.</p>",
+      "source": "Realms of Terrinoth, с. 97"
+    }
+  },
+  {
+    "name": "Эльфийская работа (оружие)",
+    "nameEn": "Elven (Weapon)",
+    "type": "attachment",
+    "folder": "Терринот",
+    "system": {
+      "appliesTo": "weapon",
+      "hardPoints": 0,
+      "price": 0,
+      "rarity": 3,
+      "damage": -1,
+      "crit": -1,
+      "soak": 0,
+      "defense": 0,
+      "encumbrance": 0,
+      "qualities": [],
+      "modifications": "",
+      "description": "<p>Оружие из дерева Аймхелина с лунным камнем и серебром. Урон −1 и критический рейтинг −1 (до минимума 1).</p><p><strong>Цена:</strong> ×2 от базовой. <strong>Редкость:</strong> +3.</p><p>Предмет может иметь только один вид работы (материала); его определяет ведущий при покупке или получении, и позже он не меняется. Занимает 0 точек модификации.</p>",
+      "source": "Realms of Terrinoth, с. 97"
+    }
+  },
+  {
+    "name": "Эльфийская работа (доспех)",
+    "nameEn": "Elven (Armor)",
+    "type": "attachment",
+    "folder": "Терринот",
+    "system": {
+      "appliesTo": "armor",
+      "hardPoints": 0,
+      "price": 0,
+      "rarity": 3,
+      "damage": 0,
+      "crit": 0,
+      "soak": 0,
+      "defense": 0,
+      "encumbrance": -2,
+      "qualities": [],
+      "modifications": "",
+      "description": "<p>Лёгкий и прочный эльфийский доспех. Нагрузка −2 (минимум 0); владелец убирает кость штрафа из проверок Скрытности.</p><p><strong>Цена:</strong> ×2 от базовой. <strong>Редкость:</strong> +3.</p><p>Предмет может иметь только один вид работы (материала); его определяет ведущий при покупке или получении, и позже он не меняется. Занимает 0 точек модификации.</p>",
+      "source": "Realms of Terrinoth, с. 97"
+    }
+  },
+  {
+    "name": "Железо (оружие)",
+    "nameEn": "Iron (Weapon)",
+    "type": "attachment",
+    "folder": "Терринот",
+    "system": {
+      "appliesTo": "weapon",
+      "hardPoints": 0,
+      "price": 0,
+      "rarity": -1,
+      "damage": 0,
+      "crit": 1,
+      "soak": 0,
+      "defense": 0,
+      "encumbrance": 0,
+      "qualities": [],
+      "modifications": "",
+      "description": "<p>Оружие из железа вместо стали. Критический рейтинг +1. По слухам, железо особо действует на некоторых потусторонних существ (димора, фейри).</p><p><strong>Цена:</strong> ×½ от базовой. <strong>Редкость:</strong> −1.</p><p>Предмет может иметь только один вид работы (материала); его определяет ведущий при покупке или получении, и позже он не меняется. Занимает 0 точек модификации.</p>",
+      "source": "Realms of Terrinoth, с. 98"
+    }
+  },
+  {
+    "name": "Железо (доспех)",
+    "nameEn": "Iron (Armor)",
+    "type": "attachment",
+    "folder": "Терринот",
+    "system": {
+      "appliesTo": "armor",
+      "hardPoints": 0,
+      "price": 0,
+      "rarity": -1,
+      "damage": 0,
+      "crit": 0,
+      "soak": 0,
+      "defense": 0,
+      "encumbrance": 2,
+      "qualities": [],
+      "modifications": "",
+      "description": "<p>Доспех из железа вместо стали. Нагрузка +2; владелец добавляет кость штрафа к проверкам Атлетики, Верховой езды, Координации и Скрытности.</p><p><strong>Цена:</strong> ×½ от базовой. <strong>Редкость:</strong> −1.</p><p>Предмет может иметь только один вид работы (материала); его определяет ведущий при покупке или получении, и позже он не меняется. Занимает 0 точек модификации.</p>",
+      "source": "Realms of Terrinoth, с. 98"
+    }
+  },
+  {
+    "name": "Сталь (оружие)",
+    "nameEn": "Steel (Weapon)",
+    "type": "attachment",
+    "folder": "Терринот",
+    "system": {
+      "appliesTo": "weapon",
+      "hardPoints": 0,
+      "price": 0,
+      "rarity": 0,
+      "damage": 0,
+      "crit": 0,
+      "soak": 0,
+      "defense": 0,
+      "encumbrance": 0,
+      "qualities": [],
+      "modifications": "",
+      "description": "<p>Стандартный материал: профили оружия в книге соответствуют стальным предметам. Дополнительных эффектов нет.</p><p><strong>Цена:</strong> без изменений. <strong>Редкость:</strong> без изменений.</p><p>Предмет может иметь только один вид работы (материала); его определяет ведущий при покупке или получении, и позже он не меняется. Занимает 0 точек модификации.</p>",
+      "source": "Realms of Terrinoth, с. 98"
+    }
+  },
+  {
+    "name": "Сталь (доспех)",
+    "nameEn": "Steel (Armor)",
+    "type": "attachment",
+    "folder": "Терринот",
+    "system": {
+      "appliesTo": "armor",
+      "hardPoints": 0,
+      "price": 0,
+      "rarity": 0,
+      "damage": 0,
+      "crit": 0,
+      "soak": 0,
+      "defense": 0,
+      "encumbrance": 0,
+      "qualities": [],
+      "modifications": "",
+      "description": "<p>Стандартный материал: профили доспехов в книге соответствуют стальным предметам. Дополнительных эффектов нет.</p><p><strong>Цена:</strong> без изменений. <strong>Редкость:</strong> без изменений.</p><p>Предмет может иметь только один вид работы (материала); его определяет ведущий при покупке или получении, и позже он не меняется. Занимает 0 точек модификации.</p>",
+      "source": "Realms of Terrinoth, с. 98"
+    }
+  },
+  {
+    "name": "Материал приспособления: кость",
+    "nameEn": "Bone (Implement Material)",
+    "type": "attachment",
+    "folder": "Терринот",
+    "system": {
+      "appliesTo": "any",
+      "hardPoints": 0,
+      "price": 0,
+      "rarity": 2,
+      "damage": 0,
+      "crit": 0,
+      "soak": 0,
+      "defense": 0,
+      "encumbrance": 0,
+      "qualities": [],
+      "modifications": "",
+      "description": "<p>Материал магического приспособления (не оружия и не доспеха). Когда персонаж успешно сотворяет заклинание Атака или Проклятье, он восстанавливает 1 рану.</p><p><strong>Цена:</strong> ×½ от базовой. <strong>Редкость:</strong> +2.</p><p>Приспособление может иметь только один материал; его определяет ведущий при покупке или получении, и позже он не меняется. Занимает 0 точек модификации.</p>",
+      "source": "Realms of Terrinoth, с. 99"
+    }
+  },
+  {
+    "name": "Материал приспособления: дуб",
+    "nameEn": "Oak (Implement Material)",
+    "type": "attachment",
+    "folder": "Терринот",
+    "system": {
+      "appliesTo": "any",
+      "hardPoints": 0,
+      "price": 0,
+      "rarity": 0,
+      "damage": 0,
+      "crit": 0,
+      "soak": 0,
+      "defense": 0,
+      "encumbrance": 0,
+      "qualities": [],
+      "modifications": "",
+      "description": "<p>Материал магического приспособления (не оружия и не доспеха). Дополнительных эффектов нет.</p><p><strong>Цена:</strong> без изменений. <strong>Редкость:</strong> без изменений.</p><p>Приспособление может иметь только один материал; его определяет ведущий при покупке или получении, и позже он не меняется. Занимает 0 точек модификации.</p>",
+      "source": "Realms of Terrinoth, с. 99"
+    }
+  },
+  {
+    "name": "Материал приспособления: лещина",
+    "nameEn": "Hazel (Implement Material)",
+    "type": "attachment",
+    "folder": "Терринот",
+    "system": {
+      "appliesTo": "any",
+      "hardPoints": 0,
+      "price": 0,
+      "rarity": 1,
+      "damage": 0,
+      "crit": 0,
+      "soak": 0,
+      "defense": 0,
+      "encumbrance": 0,
+      "qualities": [],
+      "modifications": "",
+      "description": "<p>Материал магического приспособления (не оружия и не доспеха). Когда при сотворении заклинания с этим приспособлением выпадает триумф, можно бросить кость бонуса и добавить её результат к итогу, при этом триумф тратится как обычно.</p><p><strong>Цена:</strong> ×½ от базовой. <strong>Редкость:</strong> +1.</p><p>Приспособление может иметь только один материал; его определяет ведущий при покупке или получении, и позже он не меняется. Занимает 0 точек модификации.</p>",
+      "source": "Realms of Terrinoth, с. 99"
+    }
+  },
+  {
+    "name": "Материал приспособления: ива",
+    "nameEn": "Willow (Implement Material)",
+    "type": "attachment",
+    "folder": "Терринот",
+    "system": {
+      "appliesTo": "any",
+      "hardPoints": 0,
+      "price": 0,
+      "rarity": 2,
+      "damage": 0,
+      "crit": 0,
+      "soak": 0,
+      "defense": 0,
+      "encumbrance": 0,
+      "qualities": [],
+      "modifications": "",
+      "description": "<p>Материал магического приспособления (не оружия и не доспеха). Когда персонаж успешно сотворяет заклинание с этим приспособлением, он может добавить к результату преимущество.</p><p><strong>Цена:</strong> ×2 от базовой. <strong>Редкость:</strong> +2.</p><p>Приспособление может иметь только один материал; его определяет ведущий при покупке или получении, и позже он не меняется. Занимает 0 точек модификации.</p>",
+      "source": "Realms of Terrinoth, с. 99"
+    }
+  },
+  {
+    "name": "Материал приспособления: тис",
+    "nameEn": "Yew (Implement Material)",
+    "type": "attachment",
+    "folder": "Терринот",
+    "system": {
+      "appliesTo": "any",
+      "hardPoints": 0,
+      "price": 0,
+      "rarity": 1,
+      "damage": 0,
+      "crit": 0,
+      "soak": 0,
+      "defense": 0,
+      "encumbrance": 0,
+      "qualities": [],
+      "modifications": "",
+      "description": "<p>Материал магического приспособления (не оружия и не доспеха). Когда персонаж успешно сотворяет заклинание Усиление, Барьер или Лечение с этим приспособлением, он восстанавливает 1 усталость.</p><p><strong>Цена:</strong> ×½ от базовой. <strong>Редкость:</strong> +1.</p><p>Приспособление может иметь только один материал; его определяет ведущий при покупке или получении, и позже он не меняется. Занимает 0 точек модификации.</p>",
+      "source": "Realms of Terrinoth, с. 99"
+    }
+  }
+]

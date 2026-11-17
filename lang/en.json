@@ -127,14 +127,23 @@
       "CareerApplied": "Career \"{name}\" applied.",
       "DamageApplied": "{name}: took {damage} wounds (soak {soak})."
     },
-    "Initiative": "Initiative",
+    "Initiative": {
+      "AlreadyActed": "Этот персонаж уже действовал в этом раунде.",
+      "NotYours": "Это не ваш персонаж.",
+      "PCSlot": "Слот персонажей игроков",
+      "PCSlotHint": "Кто из персонажей действует сейчас? Нажмите на своего.",
+      "Title": "Инициатива",
+      "label": "Initiative"
+    },
     "Injury": {
       "Range": "d100 range",
       "Severity": "Severity",
       "Roll": "Roll Critical Injury",
       "Modifier": "Roll modifier",
       "ModifierHint": "E.g. +10 per rank of Vicious. +10 per existing injury is added automatically.",
-      "RollFormula": "d100 + 10 × {existing} (existing injuries) + {modifier}"
+      "RollFormula": "d100 + 10 × {existing} (existing injuries) + {modifier}",
+      "Setback": "Штраф к проверкам",
+      "SetbackHint": "Сколько костей штрафа травма добавляет ко всем проверкам, пока не вылечена"
     },
     "Key": "Key",
     "Money": "Money",
@@ -154,7 +163,12 @@
     "Qualities": "Qualities",
     "Quality": {
       "Active": "Active",
-      "Ranked": "Ranked"
+      "Ranked": "Ranked",
+      "AutoFire": "Можно совершить ещё одно попадание (2 преимущества за каждое).",
+      "Blast": "Урон по всем вплотную к цели — равный рейтингу Взрыва плюс успехи.",
+      "Guided": "В следующем раунде можно снова атаковать этим выстрелом.",
+      "Linked": "Дополнительное попадание по той же цели.",
+      "Sunder": "Оружие цели повреждается на одну ступень."
     },
     "QualityName": "Name",
     "Quantity": "Qty",
@@ -198,7 +212,8 @@
         "none": "None",
         "steampunk": "Steampunk",
         "weirdwar": "Weird War",
-        "spaceopera": "Space Opera"
+        "spaceopera": "Space Opera",
+        "terrinoth": "Терринот (Realms of Terrinoth)"
       },
       "InitiativeSkill": {
         "name": "Initiative skill",
@@ -207,6 +222,21 @@
       "ShowStoryPoints": {
         "name": "Show story points",
         "hint": "Open the story points tracker when the world loads."
+      },
+      "AutoCrit": {
+        "name": "Критическая травма при превышении порога ран",
+        "hint": "Автоматически бросать критическую травму, когда персонаж или главарь выходит за порог ран."
+      },
+      "InitiativeSlots": {
+        "name": "Слоты инициативы",
+        "hint": "Когда наступает слот персонажей игроков, предлагать игрокам выбрать, кто действует (карточка в чате)."
+      },
+      "Range": {
+        "engaged": "Дистанция «вплотную» — до",
+        "short": "Короткая дистанция — до",
+        "medium": "Средняя дистанция — до",
+        "long": "Длинная дистанция — до",
+        "hint": "В единицах сетки сцены (обычно метры). Дальше «длинной» — экстремальная. Используется для автоматической сложности атак по цели."
       }
     },
     "Sheet": {
@@ -253,7 +283,13 @@
       "leadership": "Leadership",
       "negotiation": "Negotiation",
       "knowledge": "Knowledge",
-      "psychic": "Psychic"
+      "psychic": "Psychic",
+      "runes": "Runes",
+      "verse": "Verse",
+      "knowledgeLore": "Knowledge (Lore)",
+      "knowledgeForbidden": "Knowledge (Forbidden)",
+      "knowledgeAdventuring": "Knowledge (Adventuring)",
+      "knowledgeGeography": "Knowledge (Geography)"
     },
     "SkillCategory": {
       "general": "General skills",
@@ -275,7 +311,11 @@
       "Use": "Spend",
       "NoGM": "No active GM — story points cannot be spent.",
       "PlayerUsed": "{name} spends a Story Point! It flips to the GM.",
-      "GMUsed": "The GM spends a Story Point! It flips to the players."
+      "GMUsed": "The GM spends a Story Point! It flips to the players.",
+      "SpendGM": "Очко сюжета: усилить сложность",
+      "SpendPlayer": "Очко сюжета: усилить кость",
+      "UpgradedAbility": "Потрачено очко сюжета: кость способности усилена",
+      "UpgradedDifficulty": "Потрачено очко сюжета ведущего: сложность усилена"
     },
     "Strain": "Strain",
     "StrainBase": "Strain base",
@@ -396,7 +436,119 @@
       "CritRoll": "Roll critical hit",
       "PilotHint": "Control check by the selected character (handling adds boost/setback)",
       "CrewHint": "Control and gunnery checks are made by a crew member: select their token or assign a character."
-    }
+    },
+    "Attachment": {
+      "Any": "Любой предмет",
+      "AppliesTo": "Для",
+      "DropHere": "Перетащите сюда модификацию из компендиума",
+      "HP": "тчк.",
+      "Hint": "Перетащите модификацию на лист оружия или брони — она займёт точки улучшений и изменит характеристики предмета.",
+      "Installed": "Модификации",
+      "NoHP": "Не хватает точек улучшений: нужно {need}, свободно {free}. Модификация всё равно установлена — решите с ведущим.",
+      "NotAttachment": "Это не модификация.",
+      "OverHP": "Установлено больше модификаций, чем позволяют точки улучшений.",
+      "WrongType": "Эта модификация не подходит к такому предмету."
+    },
+    "Combat": {
+      "Adversary": "Талант «Противник» {rank}: сложность усилена",
+      "AttackerProne": "Атакующий распластан: +1 кость штрафа",
+      "DamageTaken": "{name}: урон {damage} − поглощение {soak} = <strong>{taken}</strong> ран",
+      "Defeated": "{name} выбывает из боя!",
+      "Defense": "Защита цели: +{value} к. штрафа",
+      "Disoriented": "Дезориентирован: +1 кость штрафа",
+      "EngagedAlly": "Цель вплотную с союзником: сложность усилена",
+      "GunneryEngaged": "Из тяжёлого оружия нельзя стрелять вплотную с противником",
+      "HealSelf": "Лечение себя: сложность усилена дважды",
+      "HealTarget": "Лечение: {name} ({wounds}/{max} ран)",
+      "Incapacitated": "{name} выведен из строя!",
+      "InjuryPenalty": "Травма «{name}»: +{value} к. штрафа",
+      "NotEngaged": "Цель не вплотную — для ближнего боя нужно сблизиться",
+      "Opposed": "Встречная проверка против {name}: {skill}",
+      "OutOfRange": "Цель дальше дистанции оружия!",
+      "Overencumbered": "Перегруз: +{value} к. штрафа",
+      "ProneMelee": "Цель распластана: +1 кость бонуса",
+      "ProneRanged": "Цель распластана: +1 кость штрафа",
+      "Range": "Дистанция: {range}",
+      "ShootingEngaged": "Стрельба вплотную с противником: +{value} сложность",
+      "StaggeredNote": "В замешательстве: персонаж не может совершать действия",
+      "StrainTaken": "{name}: оглушающий урон {damage} − поглощение {soak} = <strong>{taken}</strong> усталости"
+    },
+    "Heroic": {
+      "Activate": "Активировать",
+      "ActivateHint": "Свободное действие: тратит очки сюжета игроков, раз за игровую встречу (+ улучшения «Частота»)",
+      "Buy": "Купить улучшение",
+      "Cost": "Цена активации",
+      "MaxReached": "Это улучшение уже куплено максимальное число раз.",
+      "NoPoints": "Не хватает очков способностей: нужно {cost}, есть {available}.",
+      "NoStoryPoints": "Нужно {cost} очка сюжета игроков.",
+      "NoUses": "Способность уже использована {max} раз в этой игровой встрече.",
+      "None": "Нет героической способности (Realms of Terrinoth).",
+      "Points": "Очки способностей",
+      "Refund": "Вернуть",
+      "Reset": "Новая игровая встреча: сбросить использования",
+      "Rules": "Одна героическая способность на персонажа. Активация — свободное действие за 2 очка сюжета (1 с улучшением «Сюжет»), раз за игровую встречу; действует до конца следующего хода. Улучшения покупаются очками способностей: 1 очко за каждые 50 опыта, полученного в игре.",
+      "Title": "Героическая способность",
+      "UpgradeCost": "Цена в очках способностей",
+      "UpgradeMax": "Сколько раз можно купить (0 — без ограничений)",
+      "Upgrades": "Улучшения"
+    },
+    "Rest": {
+      "HealInjury": "Излечение: {name}",
+      "HealInjuryHint": "Проверка Стойкости (раз в неделю): сложность — тяжесть травмы; успех излечивает её",
+      "InjuryHealed": "Травма «{name}» излечена.",
+      "Overnight": "{name} отдыхает ночь: вся усталость снята, вылечена 1 рана.",
+      "OvernightHint": "Ночной отдых: снять всю усталость и вылечить 1 рану",
+      "Recover": "Восстановление после сцены",
+      "RecoverHint": "Конец сцены: проверка Хладнокровия или Выдержки — каждый успех снимает 1 усталость",
+      "StrainRecovered": "{name} восстанавливает {value} усталости."
+    },
+    "Spend": {
+      "AdvShort": "преим.",
+      "Quality": "Активировано свойство {name} {rating} → {targets}.",
+      "Title": "Как потратить символы"
+    },
+    "Status": {
+      "bleeding": "Кровотечение",
+      "blind": "Ослеплён",
+      "burning": "Горит",
+      "concentrating": "Концентрация",
+      "dead": "Выбыл",
+      "disoriented": "Дезориентирован",
+      "frightened": "Напуган",
+      "immobilized": "Обездвижен",
+      "incapacitated": "Выведен из строя",
+      "invisible": "Невидим",
+      "poisoned": "Отравлен",
+      "prone": "Распластан",
+      "staggered": "В замешательстве"
+    },
+    "Wizard": {
+      "Back": "Назад",
+      "CareerSkillsHint": "Выберите 4 карьерных навыка — каждый получит бесплатный ранг.",
+      "Done": "Персонаж собран! Осталось потратить опыт на листе (режим создания включён).",
+      "Finish": "Создать",
+      "FreeCareerRanks": "Бесплатные ранги карьеры",
+      "FreeStartingRanks": "Стартовые навыки",
+      "HeroicHint": "Выберите героическую способность (Realms of Terrinoth) — или пропустите шаг.",
+      "Hint": "Мастер создания персонажа",
+      "MaxSkills": "Можно выбрать не больше {max}.",
+      "Next": "Далее",
+      "PickArchetype": "Выберите расу или архетип.",
+      "PickCareer": "Выберите карьеру.",
+      "StartingSkillsHint": "Стартовые навыки расы/архетипа (по описанию ниже): отметьте, какие навыки получают бесплатный ранг.",
+      "Step": {
+        "archetype": "Раса или архетип",
+        "career": "Карьера",
+        "careerSkills": "Карьерные навыки",
+        "startingSkills": "Стартовые навыки",
+        "heroic": "Героическая способность",
+        "summary": "Итог"
+      },
+      "SummaryHint": "Будут применены раса/архетип и карьера, бесплатные ранги и героическая способность. Ранги выше 2 при создании не ставятся.",
+      "Title": "Мастер создания персонажа",
+      "World": "Предметы мира"
+    },
+    "InitiativeLabel": "Инициатива"
   },
   "TYPES": {
     "Actor": {
@@ -415,7 +567,9 @@
       "gear": "Gear",
       "quality": "Quality",
       "injury": "Critical injury",
-      "spell": "Spell"
+      "spell": "Spell",
+      "heroic": "Heroic ability",
+      "attachment": "Attachment"
     }
   }
 }

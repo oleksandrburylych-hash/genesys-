@@ -20,7 +20,7 @@ export class GenesysCombatant extends Combatant {
     }
     else pool = new DicePool({ ability: 1 });
     if (pool.isEmpty) pool.ability = 1;
-    const label = game.i18n.localize("GENESYS.Initiative");
+    const label = game.i18n.localize("GENESYS.Initiative.label");
     return GenesysRoll.fromPool(pool, { initiative: true, label });
   }
 }

@@ -86,29 +86,42 @@ export default class CharacterData extends foundry.abstract.TypeDataModel {
     for (const item of actor.items) {
       const s = item.system;
       if (item.type === "armor" && s.equipped) {
-        armorSoak += s.soak;
-        armorMelee += s.defense;
-        armorRanged += s.defense;
+        armorSoak += s.totalSoak ?? s.soak;
+        armorMelee += s.totalDefense ?? s.defense;
+        armorRanged += s.totalDefense ?? s.defense;
       }
       // Нагрузка: учитываются носимые предметы. Надетая броня весит на 3 меньше.
       if (["weapon", "armor", "gear"].includes(item.type) && s.carried !== false) {
-        let enc = s.encumbrance * (s.quantity ?? 1);
-        if (item.type === "armor" && s.equipped) enc = Math.max(0, s.encumbrance - 3) * Math.max(1, s.quantity);
+        const baseEnc = s.totalEncumbrance ?? s.encumbrance;
+        let enc = baseEnc * (s.quantity ?? 1);
+        if (item.type === "armor" && s.equipped) enc = Math.max(0, baseEnc - 3) * Math.max(1, s.quantity);
         encumbrance += enc;
       }
     }
 
+    // Числовые эффекты талантов (Закалённый, Упорство, Оборона, Выносливость, Крепость…).
+    const tb = { wounds: 0, strain: 0, soak: 0, meleeDefense: 0, rangedDefense: 0, critical: 0 };
+    for (const t of actor.itemTypes?.talent ?? []) {
+      const eff = CONFIG.GENESYS?.talentEffects?.[t.getFlag?.("genesys-rpg", "nameEn") || ""];
+      if (!eff) continue;
+      const rank = t.system.ranked ? Math.max(1, t.system.rank) : 1;
+      for (const [k, v] of Object.entries(eff)) tb[k] = (tb[k] ?? 0) + v * rank;
+    }
+    this.talentBonuses = tb;
+    this.criticalModifier = tb.critical;
+
     // Порог ран/усталости: при создании — от текущих Силы/Воли, после — от зафиксированных.
     const woundChar = (!this.creation && this.wounds.creationChar) ? this.wounds.creationChar : c.brawn;
     const strainChar = (!this.creation && this.strain.creationChar) ? this.strain.creationChar : c.willpower;
-    this.wounds.max = this.wounds.base + woundChar + this.wounds.bonus;
-    this.strain.max = this.strain.base + strainChar + this.strain.bonus;
-    this.soak.value = c.brawn + armorSoak + this.soak.bonus;
-    this.defense.melee.value = armorMelee + this.defense.melee.bonus;
-    this.defense.ranged.value = armorRanged + this.defense.ranged.bonus;
+    this.wounds.max = this.wounds.base + woundChar + this.wounds.bonus + tb.wounds;
+    this.strain.max = this.strain.base + strainChar + this.strain.bonus + tb.strain;
+    this.soak.value = c.brawn + armorSoak + this.soak.bonus + tb.soak;
+    this.defense.melee.value = armorMelee + this.defense.melee.bonus + tb.meleeDefense;
+    this.defense.ranged.value = armorRanged + this.defense.ranged.bonus + tb.rangedDefense;
     this.encumbrance.value = encumbrance;
     this.encumbrance.threshold = 5 + c.brawn + this.encumbrance.bonus;
     this.encumbrance.over = encumbrance > this.encumbrance.threshold;
+    this.encumbrance.excess = Math.max(0, encumbrance - this.encumbrance.threshold);
 
     // Состояния
     this.wounds.critical = this.wounds.value > this.wounds.max;
@@ -123,6 +136,11 @@ export default class CharacterData extends foundry.abstract.TypeDataModel {
     this.experience.total = total;
     this.experience.spent = spent;
     this.experience.available = total - spent;
+    // Очки способностей для героических способностей: 1 за каждые 50 опыта, кроме стартового.
+    const earnedInPlay = this.experience.log.filter(e => e.type === "earn" && e.kind !== "archetype").reduce((s, e) => s + e.amount, 0);
+    const heroicSpent = (actor.itemTypes?.heroic ?? []).reduce((s, h) => s + h.system.spentPoints, 0);
+    this.heroicPoints = { total: Math.floor(earnedInPlay / 50), spent: heroicSpent };
+    this.heroicPoints.available = this.heroicPoints.total - heroicSpent;
 
     // Пирамида талантов: сколько «слотов» занято на каждом уровне.
     this.talentTiers = CharacterData.countTalentTiers(actor.items);

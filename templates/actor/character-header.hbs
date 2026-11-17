@@ -28,6 +28,7 @@
           <span class="hint">{{localize "GENESYS.Hint.DropCareer"}}</span>
         {{/if}}
       </div>
+      {{#if system.creation}}<button type="button" class="creation-wizard" data-action="creationWizard" data-tooltip="GENESYS.Wizard.Hint"><i class="fa-solid fa-hat-wizard"></i></button>{{/if}}
       <button type="button" class="creation-toggle {{#if system.creation}}active{{/if}}" data-action="finishCreation"
               data-tooltip="{{#if system.creation}}GENESYS.Creation.FinishHint{{else}}GENESYS.Creation.ReopenHint{{/if}}">
         <i class="fa-solid {{#if system.creation}}fa-hammer{{else}}fa-check{{/if}}"></i>
@@ -88,8 +89,10 @@
     </div>
   </div>
 
-  <a class="stat pool-button" data-action="rollPool" data-tooltip="GENESYS.Roll.Title">
-    <i class="fa-solid fa-dice-d20"></i>
-  </a>
+  <div class="stat quick-actions">
+    <a data-action="rollPool" data-tooltip="GENESYS.Roll.Title"><i class="fa-solid fa-dice-d20"></i></a>
+    <a data-action="recoverStrain" data-tooltip="GENESYS.Rest.RecoverHint"><i class="fa-solid fa-mug-hot"></i></a>
+    <a data-action="restOvernight" data-tooltip="GENESYS.Rest.OvernightHint"><i class="fa-solid fa-bed"></i></a>
+  </div>
 </section>
 </div>

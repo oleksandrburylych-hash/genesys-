@@ -34,6 +34,36 @@ export function registerSettings() {
     default: true
   });
 
+  // Пороги диапазонов дистанции (в единицах сетки сцены).
+  for (const band of ["engaged", "short", "medium", "long"]) {
+    game.settings.register(SYSTEM_ID, `range.${band}`, {
+      name: `GENESYS.Settings.Range.${band}`,
+      hint: "GENESYS.Settings.Range.hint",
+      scope: "world",
+      config: true,
+      type: Number,
+      default: GENESYS.rangeThresholds[band]
+    });
+  }
+
+  game.settings.register(SYSTEM_ID, "autoCritOnThreshold", {
+    name: "GENESYS.Settings.AutoCrit.name",
+    hint: "GENESYS.Settings.AutoCrit.hint",
+    scope: "world",
+    config: true,
+    type: Boolean,
+    default: true
+  });
+
+  game.settings.register(SYSTEM_ID, "initiativeSlots", {
+    name: "GENESYS.Settings.InitiativeSlots.name",
+    hint: "GENESYS.Settings.InitiativeSlots.hint",
+    scope: "world",
+    config: true,
+    type: Boolean,
+    default: true
+  });
+
   game.settings.register(SYSTEM_ID, "storyPoints", {
     scope: "world",
     config: false,

@@ -1,0 +1,77 @@
+<div class="wizard">
+  <header class="wizard-header">
+    <span class="wizard-step">{{stepIndex}} / {{stepCount}}</span>
+    <h3>{{localize stepTitle}}</h3>
+  </header>
+  <div class="wizard-body">
+    {{#if (eq step "archetype")}}
+      {{#each archetypes}}
+      <h4>{{folder}}</h4>
+      <div class="wizard-options">
+        {{#each items}}<button type="button" class="{{#if selected}}active{{/if}}" data-action="pick" data-kind="archetype" data-uuid="{{uuid}}">{{name}}</button>{{/each}}
+      </div>
+      {{/each}}
+      {{#if archetype}}
+      <div class="wizard-summary">
+        <strong>{{archetype.name}}</strong>:
+        {{#each archetype.chars}}{{localize label}} {{value}}{{#unless @last}}, {{/unless}}{{/each}};
+        {{localize "GENESYS.WoundBase"}} {{archetype.wounds}}, {{localize "GENESYS.StrainBase"}} {{archetype.strain}}, {{localize "GENESYS.XP.Starting"}} {{archetype.xp}}.
+        {{#if archetype.abilities}}<div>{{localize "GENESYS.Abilities"}}: {{archetype.abilities}}</div>{{/if}}
+      </div>
+      {{/if}}
+    {{/if}}
+
+    {{#if (eq step "career")}}
+      {{#each careers}}
+      <h4>{{folder}}</h4>
+      <div class="wizard-options">
+        {{#each items}}<button type="button" class="{{#if selected}}active{{/if}}" data-action="pick" data-kind="career" data-uuid="{{uuid}}">{{name}}</button>{{/each}}
+      </div>
+      {{/each}}
+      {{#if career}}<div class="wizard-summary"><strong>{{career.name}}</strong>: {{#each career.skills}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}</div>{{/if}}
+    {{/if}}
+
+    {{#if (eq step "careerSkills")}}
+      <p class="hint">{{localize "GENESYS.Wizard.CareerSkillsHint"}} ({{careerSkillCount}}/4)</p>
+      <div class="wizard-options">
+        {{#each careerSkillOptions}}<button type="button" class="{{#if checked}}active{{/if}}" data-action="toggleSkill" data-list="careerSkills" data-name="{{name}}">{{name}}</button>{{/each}}
+      </div>
+    {{/if}}
+
+    {{#if (eq step "startingSkills")}}
+      <p class="hint">{{localize "GENESYS.Wizard.StartingSkillsHint"}}</p>
+      {{#if archetype.startingSkills}}<div class="wizard-summary">{{archetype.startingSkills}}</div>{{/if}}
+      <div class="wizard-options">
+        {{#each startingSkillOptions}}<button type="button" class="{{#if checked}}active{{/if}}" data-action="toggleSkill" data-list="startingSkills" data-name="{{name}}">{{name}}</button>{{/each}}
+      </div>
+    {{/if}}
+
+    {{#if (eq step "heroic")}}
+      <p class="hint">{{localize "GENESYS.Wizard.HeroicHint"}}</p>
+      {{#each heroics}}
+      <div class="wizard-options">
+        {{#each items}}<button type="button" class="{{#if selected}}active{{/if}}" data-action="pick" data-kind="heroic" data-uuid="{{uuid}}">{{name}}</button>{{/each}}
+      </div>
+      {{/each}}
+    {{/if}}
+
+    {{#if (eq step "summary")}}
+      <ul class="wizard-final">
+        <li>{{localize "TYPES.Item.archetype"}}: <strong>{{archetype.name}}</strong></li>
+        <li>{{localize "TYPES.Item.career"}}: <strong>{{career.name}}</strong></li>
+        <li>{{localize "GENESYS.Wizard.FreeCareerRanks"}}: {{chosenCareerSkills}}</li>
+        <li>{{localize "GENESYS.Wizard.FreeStartingRanks"}}: {{chosenStartingSkills}}</li>
+        {{#if heroic}}<li>{{localize "GENESYS.Heroic.Title"}}: <strong>{{heroic}}</strong></li>{{/if}}
+      </ul>
+      <p class="hint">{{localize "GENESYS.Wizard.SummaryHint"}}</p>
+    {{/if}}
+  </div>
+  <footer class="form-footer">
+    {{#unless isFirst}}<button type="button" data-action="back"><i class="fa-solid fa-arrow-left"></i> {{localize "GENESYS.Wizard.Back"}}</button>{{/unless}}
+    {{#if isLast}}
+      <button type="button" data-action="finish" class="roll-button"><i class="fa-solid fa-check"></i> {{localize "GENESYS.Wizard.Finish"}}</button>
+    {{else}}
+      <button type="button" data-action="next" class="roll-button">{{localize "GENESYS.Wizard.Next"}} <i class="fa-solid fa-arrow-right"></i></button>
+    {{/if}}
+  </footer>
+</div>

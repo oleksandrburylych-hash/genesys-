@@ -19,7 +19,9 @@ export class GenesysItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
       removeQuality: GenesysItemSheet.#onRemoveQuality,
       addRow: GenesysItemSheet.#onAddRow,
       removeRow: GenesysItemSheet.#onRemoveRow,
-      castSpell: GenesysItemSheet.#onCastSpell
+      castSpell: GenesysItemSheet.#onCastSpell,
+      removeAttachment: GenesysItemSheet.#onRemoveAttachment,
+      buyUpgrade: GenesysItemSheet.#onBuyUpgrade
     }
   };
 
@@ -30,7 +32,7 @@ export class GenesysItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
   };
 
   /** Список типов, у которых есть свой шаблон. */
-  static DETAIL_TYPES = ["skill", "talent", "ability", "archetype", "career", "weapon", "armor", "gear", "quality", "injury", "spell"];
+  static DETAIL_TYPES = ["skill", "talent", "ability", "archetype", "career", "weapon", "armor", "gear", "quality", "injury", "spell", "heroic", "attachment"];
 
   /** @override */
   _configureRenderParts(options) {
@@ -64,19 +66,26 @@ export class GenesysItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
         characteristics: choices(GENESYS.characteristics),
         skillCategories: choices(GENESYS.skillCategories),
         activations: choices(GENESYS.activations),
-        ranges: choices(GENESYS.ranges)
+        ranges: choices(GENESYS.ranges),
+        appliesTo: { weapon: "TYPES.Item.weapon", armor: "TYPES.Item.armor", any: "GENESYS.Attachment.Any" }
       },
+      owned: !!item.actor,
+      heroicPoints: item.type === "heroic" ? item.actor?.system.heroicPoints : null,
+      attachmentsInfo: system.attachments ? {
+        used: system.installedHardPoints,
+        over: system.installedHardPoints > system.hardPoints
+      } : null,
       characteristicList: Object.entries(GENESYS.characteristics).map(([key, cfg]) => ({
         key, label: cfg.label, value: system.characteristics?.[key]
       })),
       careerSkillsText: (system.careerSkills ?? []).join(", "),
-      magicSkills: ["arcana", "divine", "primal", "psychic"].map(k => ({
+      magicSkills: Object.keys(GENESYS.magicSkills).map(k => ({
         key: k, label: `GENESYS.Skill.${k}`, on: (system.skills ?? []).includes?.(k)
       })),
       spellEffects: (system.effects ?? []).map((e, i) => ({
         ...e, index: i, only: e.skills?.[0] ?? ""
       })),
-      skillChoices: { "": "—", arcana: "GENESYS.Skill.arcana", divine: "GENESYS.Skill.divine", primal: "GENESYS.Skill.primal", psychic: "GENESYS.Skill.psychic" },
+      skillChoices: { "": "—", ...Object.fromEntries(Object.keys(GENESYS.magicSkills).map(k => [k, `GENESYS.Skill.${k}`])) },
       canCast: item.type === "spell" && !!(item.actor ?? game.user.character),
       skillOptions,
       enrichedDescription: await foundry.applications.ux.TextEditor.implementation.enrichHTML(system.description ?? "", {
@@ -91,7 +100,7 @@ export class GenesysItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
     const obj = formData.object;
     // Заклинание: навыки — чекбоксы, ограничение эффекта — один навык из списка.
     if (this.item.type === "spell") {
-      const keys = ["arcana", "divine", "primal", "psychic"];
+      const keys = Object.keys(GENESYS.magicSkills);
       if (keys.some(k => `spellSkill.${k}` in obj)) {
         obj["system.skills"] = keys.filter(k => obj[`spellSkill.${k}`]);
         for (const k of keys) delete obj[`spellSkill.${k}`];
@@ -130,6 +139,62 @@ export class GenesysItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
   static #onCastSpell() {
     const actor = this.item.actor ?? game.user.character;
     return actor?.castSpell(this.item);
+  }
+
+  /** @override — приём модификаций перетаскиванием на оружие/броню. */
+  async _onRender(context, options) {
+    await super._onRender(context, options);
+    if (!this.isEditable || !["weapon", "armor"].includes(this.item.type)) return;
+    for (const zone of this.element.querySelectorAll(".attachments-drop")) {
+      zone.addEventListener("dragover", ev => ev.preventDefault());
+      zone.addEventListener("drop", ev => this.#onDropAttachment(ev));
+    }
+  }
+
+  async #onDropAttachment(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
+    if (data?.type !== "Item") return;
+    const att = await Item.implementation.fromDropData(data);
+    if (att?.type !== "attachment") return ui.notifications.warn("GENESYS.Attachment.NotAttachment", { localize: true });
+    const sys = this.item.system;
+    if (att.system.appliesTo !== "any" && att.system.appliesTo !== this.item.type) {
+      return ui.notifications.warn("GENESYS.Attachment.WrongType", { localize: true });
+    }
+    if (att.system.hardPoints > sys.freeHardPoints) {
+      ui.notifications.warn(game.i18n.format("GENESYS.Attachment.NoHP", { need: att.system.hardPoints, free: sys.freeHardPoints }));
+    }
+    const list = foundry.utils.deepClone(sys.attachments);
+    list.push(att.system.toInstalled(att.name));
+    await this.item.update({ "system.attachments": list });
+  }
+
+  static #onRemoveAttachment(event, target) {
+    const list = foundry.utils.deepClone(this.item.system.attachments);
+    list.splice(Number(target.dataset.index), 1);
+    return this.item.update({ "system.attachments": list });
+  }
+
+  /** Купить/вернуть улучшение героической способности за очки способностей. */
+  static async #onBuyUpgrade(event, target) {
+    const actor = this.item.actor;
+    if (!actor) return;
+    const i = Number(target.dataset.index);
+    const delta = Number(target.dataset.delta);
+    const ups = foundry.utils.deepClone(this.item.system.upgrades);
+    const u = ups[i];
+    if (!u) return;
+    if (delta > 0) {
+      if (u.max && u.count >= u.max) return ui.notifications.warn("GENESYS.Heroic.MaxReached", { localize: true });
+      const avail = actor.system.heroicPoints?.available ?? 0;
+      if (u.cost > avail) return ui.notifications.warn(game.i18n.format("GENESYS.Heroic.NoPoints", { cost: u.cost, available: avail }));
+      u.count += 1;
+    } else {
+      if (u.count <= 0) return;
+      u.count -= 1;
+    }
+    return this.item.update({ "system.upgrades": ups });
   }
 
   static #onAddQuality() {

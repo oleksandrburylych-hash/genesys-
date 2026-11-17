@@ -13,7 +13,9 @@ export class GenesysItem extends Item {
     gear: "icons/svg/item-bag.svg",
     quality: "icons/svg/sun.svg",
     injury: "icons/svg/blood.svg",
-    spell: "icons/svg/explosion.svg"
+    spell: "icons/svg/explosion.svg",
+    heroic: "icons/svg/sun.svg",
+    attachment: "icons/svg/padlock.svg"
   };
 
   /** @override */

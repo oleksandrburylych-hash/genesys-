@@ -1,6 +1,7 @@
 import { TEMPLATES } from "../config.mjs";
 import { GenesysDie, emptyCounts, symbolHTML } from "./terms.mjs";
 import { DicePool } from "./pool.mjs";
+import { spendingOptions } from "../chat.mjs";
 
 /**
  * Бросок нарративных кубиков.
@@ -112,6 +113,11 @@ export class GenesysRoll extends Roll {
       results: r,
       outcome: r.isSuccess ? "success" : "failure",
       initiative: this.options.initiative ? this.total.toFixed(2) : null,
+      target: isPrivate ? null : this.options.target,
+      activeQualities: (!isPrivate && w && r.isSuccess)
+        ? (w.active ?? []).filter(q => r.triumph > 0 || r.advantage >= q.cost) : [],
+      spending: isPrivate || this.options.initiative ? [] : spendingOptions(r, this.options.spellContext
+        ?? (this.options.spell ? "magic" : (w ? "combat" : (this.options.social ? "social" : "general")))),
       spell: isPrivate ? null : this.options.spell,
       attack,
       noSymbols: summary.length === 0

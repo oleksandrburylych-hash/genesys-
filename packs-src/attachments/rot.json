@@ -1,0 +1,262 @@
+[
+ {
+  "name": "Разрывной снаряд",
+  "nameEn": "Explosive Missile",
+  "type": "attachment",
+  "folder": "Терринот",
+  "system": {
+   "appliesTo": "weapon",
+   "hardPoints": 1,
+   "price": 1250,
+   "rarity": 7,
+   "damage": 0,
+   "crit": 0,
+   "soak": 0,
+   "defense": 0,
+   "encumbrance": 0,
+   "qualities": [
+    {
+     "name": "Взрыв",
+     "rating": 5
+    }
+   ],
+   "modifications": "",
+   "description": "<p>Применяется к любому оружию дальнего боя (руническая надпись на оружии или алхимический состав на стрелах и болтах). Оружие получает качество Взрыв 5.</p>",
+   "source": "Realms of Terrinoth, с. 106"
+  }
+ },
+ {
+  "name": "Руна клинков",
+  "nameEn": "Rune of Blades",
+  "type": "attachment",
+  "folder": "Терринот",
+  "system": {
+   "appliesTo": "weapon",
+   "hardPoints": 1,
+   "price": 0,
+   "rarity": 10,
+   "damage": 0,
+   "crit": 0,
+   "soak": 0,
+   "defense": 0,
+   "encumbrance": 0,
+   "qualities": [],
+   "modifications": "",
+   "description": "<p>Зачарование для любого клинкового оружия. Когда оружие наносит критическую травму, цель вместо броска по таблице получает критическую травму «Кровотечение».</p><p>Цена «—»: не продаётся, такую руну можно лишь найти или получить по сюжету. Зачарование: устанавливать может только персонаж, владеющий магией.</p>",
+   "source": "Realms of Terrinoth, с. 106"
+  }
+ },
+ {
+  "name": "Руническое пламя",
+  "nameEn": "Runic Flame",
+  "type": "attachment",
+  "folder": "Терринот",
+  "system": {
+   "appliesTo": "weapon",
+   "hardPoints": 1,
+   "price": 2000,
+   "rarity": 8,
+   "damage": 0,
+   "crit": 0,
+   "soak": 0,
+   "defense": 0,
+   "encumbrance": 0,
+   "qualities": [
+    {
+     "name": "Жжение",
+     "rating": 1
+    }
+   ],
+   "modifications": "",
+   "description": "<p>Зачарование для любого оружия ближнего боя. Оружие получает качество Жжение 1.</p><p>Зачарование: устанавливать может только персонаж, владеющий магией.</p>",
+   "source": "Realms of Terrinoth, с. 106"
+  }
+ },
+ {
+  "name": "Рунический иней",
+  "nameEn": "Runic Frost",
+  "type": "attachment",
+  "folder": "Терринот",
+  "system": {
+   "appliesTo": "weapon",
+   "hardPoints": 1,
+   "price": 1750,
+   "rarity": 8,
+   "damage": 0,
+   "crit": 0,
+   "soak": 0,
+   "defense": 0,
+   "encumbrance": 0,
+   "qualities": [
+    {
+     "name": "Сковывание",
+     "rating": 1
+    },
+    {
+     "name": "Оглушение",
+     "rating": 4
+    }
+   ],
+   "modifications": "",
+   "description": "<p>Зачарование для любого оружия ближнего боя. Оружие получает качества Сковывание 1 и Оглушение 4.</p><p>Зачарование: устанавливать может только персонаж, владеющий магией.</p>",
+   "source": "Realms of Terrinoth, с. 107"
+  }
+ },
+ {
+  "name": "Рунический гром",
+  "nameEn": "Runic Thunder",
+  "type": "attachment",
+  "folder": "Терринот",
+  "system": {
+   "appliesTo": "weapon",
+   "hardPoints": 2,
+   "price": 2000,
+   "rarity": 8,
+   "damage": 0,
+   "crit": 0,
+   "soak": 0,
+   "defense": 0,
+   "encumbrance": 0,
+   "qualities": [
+    {
+     "name": "Ошеломление",
+     "rating": 1
+    }
+   ],
+   "modifications": "",
+   "description": "<p>Зачарование для любого оружия. Оружие получает качество Ошеломление 1.</p><p>Зачарование: устанавливать может только персонаж, владеющий магией.</p>",
+   "source": "Realms of Terrinoth, с. 107"
+  }
+ },
+ {
+  "name": "Руна рассечения",
+  "nameEn": "Rune of Severing",
+  "type": "attachment",
+  "folder": "Терринот",
+  "system": {
+   "appliesTo": "weapon",
+   "hardPoints": 2,
+   "price": 0,
+   "rarity": 10,
+   "damage": 0,
+   "crit": 0,
+   "soak": 0,
+   "defense": 0,
+   "encumbrance": 0,
+   "qualities": [
+    {
+     "name": "Высококритичное",
+     "rating": 5
+    }
+   ],
+   "modifications": "",
+   "description": "<p>Зачарование для любого клинкового оружия ближнего боя. Оружие получает качество Высококритичное 5.</p><p>Цена «—»: не продаётся, такую руну можно лишь найти или получить по сюжету. Зачарование: устанавливать может только персонаж, владеющий магией.</p>",
+   "source": "Realms of Terrinoth, с. 107"
+  }
+ },
+ {
+  "name": "Порча Инфернаэля",
+  "nameEn": "Ynfernael Corruption",
+  "type": "attachment",
+  "folder": "Терринот",
+  "system": {
+   "appliesTo": "weapon",
+   "hardPoints": 1,
+   "price": 0,
+   "rarity": 8,
+   "damage": 2,
+   "crit": 0,
+   "soak": 0,
+   "defense": 0,
+   "encumbrance": 0,
+   "qualities": [],
+   "modifications": "",
+   "description": "<p>Демоническое зачарование для любого оружия. Базовый урон оружия +2. Однако каждый раз, когда персонаж, держащий или носящий это оружие, получает усталость, он получает на 1 усталость больше.</p><p>Цена «—»: не продаётся, даруется сделкой с тёмными силами.</p>",
+   "source": "Realms of Terrinoth, с. 107"
+  }
+ },
+ {
+  "name": "Позолота",
+  "nameEn": "Gilded",
+  "type": "attachment",
+  "folder": "Терринот",
+  "system": {
+   "appliesTo": "armor",
+   "hardPoints": 0,
+   "price": 1500,
+   "rarity": 5,
+   "damage": 0,
+   "crit": 0,
+   "soak": 0,
+   "defense": 0,
+   "encumbrance": 0,
+   "qualities": [],
+   "modifications": "",
+   "description": "<p>Применяется к любой броне. Пока персонаж носит эту броню, он добавляет кость бонуса к проверкам Обаяния, Переговоров и Лидерства. Броня при этом притягивает внимание грабителей.</p>",
+   "source": "Realms of Terrinoth, с. 107"
+  }
+ },
+ {
+  "name": "Железная руна",
+  "nameEn": "Ironbound Rune",
+  "type": "attachment",
+  "folder": "Терринот",
+  "system": {
+   "appliesTo": "armor",
+   "hardPoints": 2,
+   "price": 0,
+   "rarity": 10,
+   "damage": 0,
+   "crit": 0,
+   "soak": 1,
+   "defense": 1,
+   "encumbrance": 0,
+   "qualities": [],
+   "modifications": "",
+   "description": "<p>Зачарование только для металлической брони (не действует на кожаную и стёганую). Защита брони +1, поглощение +1.</p><p>Цена «—»: не продаётся, такую руну можно лишь найти или получить по сюжету. Зачарование: устанавливать может только персонаж, владеющий магией.</p>",
+   "source": "Realms of Terrinoth, с. 108"
+  }
+ },
+ {
+  "name": "Шипы",
+  "nameEn": "Spikes",
+  "type": "attachment",
+  "folder": "Терринот",
+  "system": {
+   "appliesTo": "armor",
+   "hardPoints": 2,
+   "price": 600,
+   "rarity": 4,
+   "damage": 0,
+   "crit": 0,
+   "soak": 0,
+   "defense": 0,
+   "encumbrance": 0,
+   "qualities": [],
+   "modifications": "",
+   "description": "<p>Применяется к латной броне. Если персонажа в этой броне делают целью проверки ближнего боя, можно потратить 3 осложнения или крах из этой проверки, чтобы атакующий получил 3 раны.</p><p>Требуемые точки модификации: 2 по Таблице 2–14 (в тексте статьи указано 1).</p>",
+   "source": "Realms of Terrinoth, с. 108"
+  }
+ },
+ {
+  "name": "Сумеречная руна",
+  "nameEn": "Twilight Rune",
+  "type": "attachment",
+  "folder": "Терринот",
+  "system": {
+   "appliesTo": "armor",
+   "hardPoints": 1,
+   "price": 0,
+   "rarity": 10,
+   "damage": 0,
+   "crit": 0,
+   "soak": 0,
+   "defense": 0,
+   "encumbrance": 0,
+   "qualities": [],
+   "modifications": "",
+   "description": "<p>Зачарование для любой брони. Пока персонаж носит эту броню, он добавляет 2 кости бонуса к проверкам Скрытности и получает +2 к дальней защите (ближняя защита не меняется).</p><p>Цена «—»: не продаётся, такую руну можно лишь найти или получить по сюжету. Зачарование: устанавливать может только персонаж, владеющий магией.</p>",
+   "source": "Realms of Terrinoth, с. 108"
+  }
+ }
+]
