@@ -1,0 +1,52 @@
+<div class="dice-pool-body">
+  <div class="pool-preview">
+    {{#each pool}}{{genesysDie key label}}{{else}}<span class="hint">{{localize "GENESYS.Roll.EmptyPool"}}</span>{{/each}}
+  </div>
+
+  <div class="pool-rows">
+    {{#each rows}}
+    <div class="pool-row">
+      {{genesysDie key label}}
+      <span class="die-label">{{localize label}}</span>
+      <a class="pool-btn" data-action="remove" data-die="{{key}}"><i class="fa-solid fa-minus"></i></a>
+      <span class="die-count">{{count}}</span>
+      <a class="pool-btn" data-action="add" data-die="{{key}}"><i class="fa-solid fa-plus"></i></a>
+    </div>
+    {{/each}}
+  </div>
+
+  <div class="pool-upgrades">
+    <div class="upgrade-group">
+      <span>{{localize "GENESYS.Roll.Ability"}}</span>
+      <button type="button" data-action="upgrade" data-side="ability"><i class="fa-solid fa-arrow-up"></i> {{localize "GENESYS.Roll.Upgrade"}}</button>
+      <button type="button" data-action="downgrade" data-side="ability"><i class="fa-solid fa-arrow-down"></i> {{localize "GENESYS.Roll.Downgrade"}}</button>
+    </div>
+    <div class="upgrade-group">
+      <span>{{localize "GENESYS.Roll.DifficultySide"}}</span>
+      <button type="button" data-action="upgrade" data-side="difficulty"><i class="fa-solid fa-arrow-up"></i> {{localize "GENESYS.Roll.Upgrade"}}</button>
+      <button type="button" data-action="downgrade" data-side="difficulty"><i class="fa-solid fa-arrow-down"></i> {{localize "GENESYS.Roll.Downgrade"}}</button>
+    </div>
+  </div>
+
+  <div class="pool-difficulty">
+    <span>{{localize "GENESYS.Difficulty.label"}}:</span>
+    {{#each difficulties}}
+    <button type="button" class="{{#if active}}active{{/if}}" data-action="setDifficulty" data-value="{{value}}" data-tooltip="{{localize label}}">{{#if value}}{{#times value}}{{genesysDie "difficulty"}}{{/times}}{{else}}—{{/if}}</button>
+    {{/each}}
+  </div>
+
+  {{#if messageModes.length}}
+  <div class="form-group">
+    <label>{{localize "GENESYS.Roll.Visibility"}}</label>
+    <select name="messageMode">
+      {{#each messageModes}}<option value="{{key}}" {{#if selected}}selected{{/if}}>{{localize label}}</option>{{/each}}
+    </select>
+  </div>
+  {{/if}}
+
+  <footer class="form-footer">
+    <button type="button" data-action="roll" class="roll-button" {{#if empty}}disabled{{/if}}>
+      <i class="fa-solid fa-dice"></i> {{localize "GENESYS.Roll.Roll"}}
+    </button>
+  </footer>
+</div>

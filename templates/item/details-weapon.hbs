@@ -1,0 +1,24 @@
+<section class="item-details">
+  <div class="grid-3">
+  <div class="form-group"><label>{{localize "GENESYS.SkillLabel"}}</label>
+    <input type="text" name="system.skill" value="{{system.skill}}" list="genesys-skill-options-{{item.id}}">
+    <datalist id="genesys-skill-options-{{item.id}}">{{#each skillOptions}}<option value="{{this}}"></option>{{/each}}</datalist></div>
+  <div class="form-group"><label>{{localize "GENESYS.Damage"}}</label>
+    <input type="number" name="system.damage" value="{{system.damage}}" min="0" data-dtype="Number"></div>
+  <div class="form-group"><label>{{localize "GENESYS.BrawnDamage"}}</label>
+    <input type="checkbox" name="system.brawnDamage" {{checked system.brawnDamage}} data-tooltip="GENESYS.Hint.BrawnDamage"></div>
+  <div class="form-group"><label>{{localize "GENESYS.Crit"}}</label>
+    <input type="number" name="system.crit" value="{{system.crit}}" min="0" data-dtype="Number"></div>
+  <div class="form-group"><label>{{localize "GENESYS.Range.label"}}</label>
+    <select name="system.range">{{selectOptions choices.ranges selected=system.range localize=true}}</select></div>
+  <div class="form-group"><label>{{localize "GENESYS.HardPoints"}}</label>
+    <input type="number" name="system.hardPoints" value="{{system.hardPoints}}" min="0" data-dtype="Number"></div>
+  <div class="form-group"><label>{{localize "GENESYS.Quantity"}}</label><input type="number" name="system.quantity" value="{{system.quantity}}" min="0" data-dtype="Number"></div>
+  <div class="form-group"><label>{{localize "GENESYS.Encumbrance"}}</label><input type="number" name="system.encumbrance" value="{{system.encumbrance}}" min="0" data-dtype="Number"></div>
+  <div class="form-group"><label>{{localize "GENESYS.Price"}}</label><input type="number" name="system.price" value="{{system.price}}" min="0" data-dtype="Number"></div>
+  <div class="form-group"><label>{{localize "GENESYS.Rarity"}}</label><input type="number" name="system.rarity" value="{{system.rarity}}" min="0" max="10" data-dtype="Number"></div>
+  <div class="form-group"><label>{{localize "GENESYS.Equipped"}}</label>
+    <input type="checkbox" name="system.equipped" {{checked system.equipped}}></div>
+  </div>
+  {{> "systems/genesys-rpg/templates/item/qualities.hbs"}}
+</section>

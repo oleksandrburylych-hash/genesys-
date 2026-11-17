@@ -1,0 +1,56 @@
+<section class="tab talents {{tab.cssClass}}" data-tab="talents" data-group="primary">
+  <p class="hint">{{localize "GENESYS.Hint.TalentPyramid"}}</p>
+
+  <div class="pyramid">
+    {{#each talentTiers}}
+    <section class="tier-block">
+      <header class="list-header">
+        <h3>{{localize "GENESYS.Talent.Tier"}} {{tier}} <span class="count">({{count}})</span></h3>
+        {{#unless canAdd}}<span class="pyramid-warning" data-tooltip="GENESYS.Hint.PyramidBlocked"><i class="fa-solid fa-triangle-exclamation"></i></span>{{/unless}}
+        {{#if @root.editable}}<a class="item-control" data-action="itemCreate" data-type="talent" data-tier="{{tier}}"><i class="fa-solid fa-plus"></i></a>{{/if}}
+      </header>
+      <ol class="compact-list talent-list">
+        {{#each talents}}
+        <li class="talent" data-item-id="{{id}}">
+          <img src="{{img}}" alt="">
+          <a class="name" data-action="itemEdit">{{name}}</a>
+          <span class="activation">{{localize activation}}</span>
+          {{#if ranked}}
+          <span class="talent-rank">
+            {{#if @root.editable}}<a data-action="talentRank" data-delta="-1"><i class="fa-solid fa-minus"></i></a>{{/if}}
+            <span>{{localize "GENESYS.Rank"}} {{rank}}</span>
+            {{#if @root.editable}}<a data-action="talentRank" data-delta="1"><i class="fa-solid fa-plus"></i></a>{{/if}}
+          </span>
+          {{/if}}
+          <span class="item-controls">
+            <a data-action="itemChat" data-tooltip="GENESYS.ToChat"><i class="fa-solid fa-comment"></i></a>
+            {{#if @root.editable}}<a data-action="itemDelete"><i class="fa-solid fa-trash"></i></a>{{/if}}
+          </span>
+        </li>
+        {{/each}}
+      </ol>
+    </section>
+    {{/each}}
+  </div>
+
+  <section class="block abilities-block">
+    <header class="list-header">
+      <h3>{{localize "GENESYS.Abilities"}}</h3>
+      {{#if editable}}<a class="item-control" data-action="itemCreate" data-type="ability"><i class="fa-solid fa-plus"></i></a>{{/if}}
+    </header>
+    <ol class="compact-list">
+      {{#each abilities}}
+      <li data-item-id="{{id}}">
+        <img src="{{img}}" alt="">
+        <a class="name" data-action="itemEdit">{{name}}</a>
+        <span class="item-controls">
+          <a data-action="itemChat" data-tooltip="GENESYS.ToChat"><i class="fa-solid fa-comment"></i></a>
+          {{#if @root.editable}}<a data-action="itemDelete"><i class="fa-solid fa-trash"></i></a>{{/if}}
+        </span>
+      </li>
+      {{else}}
+      <li class="empty">{{localize "GENESYS.Hint.NoAbilities"}}</li>
+      {{/each}}
+    </ol>
+  </section>
+</section>

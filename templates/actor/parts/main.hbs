@@ -1,0 +1,73 @@
+<section class="tab main {{tab.cssClass}}" data-tab="main" data-group="primary">
+  <div class="main-columns">
+    <div class="column skills-column">
+      {{> "systems/genesys-rpg/templates/actor/parts/skill-list.hbs"}}
+    </div>
+
+    <div class="column side-column">
+      <section class="block weapons-block">
+        <header class="list-header">
+          <h3>{{localize "GENESYS.Weapons"}}</h3>
+          {{#if editable}}<a class="item-control" data-action="itemCreate" data-type="weapon"><i class="fa-solid fa-plus"></i></a>{{/if}}
+        </header>
+        <ol class="compact-list">
+          {{#each weapons}}
+          <li class="weapon {{#unless equipped}}unequipped{{/unless}}" data-item-id="{{id}}">
+            <img src="{{img}}" alt="">
+            <div class="weapon-info">
+              <a class="rollable name" data-action="rollWeapon" data-tooltip="GENESYS.Hint.RollWeapon">{{name}}</a>
+              <span class="sub">{{skillName}} · {{localize "GENESYS.DamageShort"}} {{damage}} · {{localize "GENESYS.CritShort"}} {{crit}} · {{localize range}}</span>
+              {{#if qualities}}<span class="sub qualities">{{qualities}}</span>{{/if}}
+            </div>
+            <span class="skill-pool">{{#each pool}}{{genesysDie key label}}{{/each}}</span>
+          </li>
+          {{else}}
+          <li class="empty">{{localize "GENESYS.Hint.NoWeapons"}}</li>
+          {{/each}}
+        </ol>
+      </section>
+
+      <section class="block injuries-block">
+        <header class="list-header">
+          <h3>{{localize "GENESYS.CriticalInjuries"}}</h3>
+          {{#if editable}}<a class="item-control" data-action="itemCreate" data-type="injury"><i class="fa-solid fa-plus"></i></a>{{/if}}
+        </header>
+        <ol class="compact-list">
+          {{#each injuries}}
+          <li data-item-id="{{id}}">
+            <span class="severity" data-tooltip="GENESYS.Injury.Severity">{{#times system.severity}}{{genesysDie "difficulty"}}{{/times}}</span>
+            <a class="name" data-action="itemEdit">{{name}}</a>
+            <span class="item-controls">
+              <a data-action="itemChat" data-tooltip="GENESYS.ToChat"><i class="fa-solid fa-comment"></i></a>
+              {{#if @root.editable}}<a data-action="itemDelete"><i class="fa-solid fa-trash"></i></a>{{/if}}
+            </span>
+          </li>
+          {{else}}
+          <li class="empty">{{localize "GENESYS.Hint.NoInjuries"}}</li>
+          {{/each}}
+        </ol>
+      </section>
+
+      <section class="block bonuses-block">
+        <header class="list-header"><h3>{{localize "GENESYS.Bonuses"}}</h3></header>
+        <div class="bonus-grid">
+          <label>{{localize "GENESYS.WoundBase"}}</label>
+          <input type="number" name="system.wounds.base" value="{{source.wounds.base}}" data-dtype="Number">
+          <label>{{localize "GENESYS.StrainBase"}}</label>
+          <input type="number" name="system.strain.base" value="{{source.strain.base}}" data-dtype="Number">
+          <label>{{localize "GENESYS.WoundBonus"}}</label>
+          <input type="number" name="system.wounds.bonus" value="{{source.wounds.bonus}}" data-dtype="Number">
+          <label>{{localize "GENESYS.StrainBonus"}}</label>
+          <input type="number" name="system.strain.bonus" value="{{source.strain.bonus}}" data-dtype="Number">
+          <label>{{localize "GENESYS.SoakBonus"}}</label>
+          <input type="number" name="system.soak.bonus" value="{{source.soak.bonus}}" data-dtype="Number">
+          <label>{{localize "GENESYS.DefenseMelee"}}</label>
+          <input type="number" name="system.defense.melee.bonus" value="{{source.defense.melee.bonus}}" data-dtype="Number">
+          <label>{{localize "GENESYS.DefenseRanged"}}</label>
+          <input type="number" name="system.defense.ranged.bonus" value="{{source.defense.ranged.bonus}}" data-dtype="Number">
+        </div>
+        <p class="hint">{{localize "GENESYS.Hint.Bonuses"}}</p>
+      </section>
+    </div>
+  </div>
+</section>

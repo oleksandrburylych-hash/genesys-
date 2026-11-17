@@ -1,0 +1,117 @@
+import { TEMPLATES } from "../config.mjs";
+import { GenesysDie, emptyCounts, symbolHTML } from "./terms.mjs";
+import { DicePool } from "./pool.mjs";
+
+/**
+ * Бросок нарративных кубиков.
+ * total = чистые успехи (успехи − провалы, триумф считается успехом, отчаяние — провалом).
+ *
+ * Дополнительные опции (this.options):
+ *   label      — заголовок проверки («Восприятие», «Атака: Меч»)
+ *   pool       — исходный пул (для отображения)
+ *   initiative — бросок инициативы: total = успехи + преимущества/100
+ *   weapon     — данные оружия для атаки { name, damage, crit, qualities }
+ */
+export class GenesysRoll extends Roll {
+  static CHAT_TEMPLATE = `${TEMPLATES}/chat/roll.hbs`;
+
+  /** Создать бросок из пула. */
+  static fromPool(pool, options = {}) {
+    const p = pool instanceof DicePool ? pool : new DicePool(pool);
+    return new this(p.formula, {}, { ...options, pool: p.toObject() });
+  }
+
+  /** Сырые количества символов. */
+  get symbols() {
+    const counts = emptyCounts();
+    for (const term of this.dice) {
+      if (term instanceof GenesysDie) term.countSymbols(counts);
+    }
+    return counts;
+  }
+
+  /** Итог после взаимного сокращения. */
+  get results() {
+    const c = this.symbols;
+    const successes = c.success + c.triumph;
+    const failures = c.failure + c.despair;
+    const net = successes - failures;
+    const adv = c.advantage - c.threat;
+    return {
+      raw: c,
+      success: Math.max(0, net),
+      failure: Math.max(0, -net),
+      advantage: Math.max(0, adv),
+      threat: Math.max(0, -adv),
+      triumph: c.triumph,
+      despair: c.despair,
+      netSuccess: net,
+      netAdvantage: adv,
+      isSuccess: net > 0
+    };
+  }
+
+  /** @override */
+  _evaluateTotal() {
+    const r = this.results;
+    if (this.options.initiative) return r.netSuccess + (r.netAdvantage / 100);
+    return r.netSuccess;
+  }
+
+  /** @override */
+  async render({ flavor, template = this.constructor.CHAT_TEMPLATE, isPrivate = false } = {}) {
+    if (!this._evaluated) await this.evaluate({ allowInteractive: !isPrivate });
+    const context = await this._prepareChatContext({ flavor, isPrivate });
+    return foundry.applications.handlebars.renderTemplate(template, context);
+  }
+
+  async _prepareChatContext({ flavor, isPrivate }) {
+    const r = this.results;
+    const dice = [];
+    for (const term of this.dice) {
+      if (!(term instanceof GenesysDie)) continue;
+      for (const result of term.results) {
+        if (!result.active) continue;
+        dice.push({ key: term.constructor.DIE_KEY, label: term.getResultLabel(result) });
+      }
+    }
+
+    // Строка итоговых символов.
+    const summary = [];
+    const push = (key, n) => { for (let i = 0; i < n; i++) summary.push(symbolHTML(key)); };
+    push("triumph", r.triumph);
+    push("success", r.success);
+    push("advantage", r.advantage);
+    push("despair", r.despair);
+    push("failure", r.failure);
+    push("threat", r.threat);
+
+    // Атака оружием: урон и возможность крита.
+    let attack = null;
+    const w = this.options.weapon;
+    if (w && r.isSuccess) {
+      const critReady = w.crit > 0 && (r.triumph > 0 || r.advantage >= w.crit);
+      attack = {
+        name: w.name,
+        damage: w.damage + r.success,
+        crit: w.crit,
+        critReady,
+        critCount: w.crit > 0 ? Math.floor(r.advantage / w.crit) + r.triumph : 0,
+        qualities: w.qualities
+      };
+    }
+
+    return {
+      isPrivate,
+      flavor: isPrivate ? null : (flavor ?? this.options.flavor),
+      label: isPrivate ? null : this.options.label,
+      dice: isPrivate ? [] : dice,
+      summary: summary.join(""),
+      results: r,
+      outcome: r.isSuccess ? "success" : "failure",
+      initiative: this.options.initiative ? this.total.toFixed(2) : null,
+      attack,
+      noSymbols: summary.length === 0
+    };
+  }
+}

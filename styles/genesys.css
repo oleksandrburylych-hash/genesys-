@@ -1,0 +1,507 @@
+/* ==========================================================================
+   Genesys RPG — стили системы
+   ========================================================================== */
+
+.genesys {
+  --g-accent: #2f6f8f;
+  --g-accent-soft: rgba(47, 111, 143, 0.12);
+  --g-border: rgba(0, 0, 0, 0.18);
+  --g-muted: #6b6b6b;
+  --g-danger: #a8322d;
+  --g-ok: #2f7d32;
+  --g-panel: rgba(255, 255, 255, 0.45);
+  --g-ink: #1f1f1f;
+
+  /* Цвета кубиков */
+  --die-proficiency: #f2c516;
+  --die-ability: #3aa845;
+  --die-boost: #8fd3f2;
+  --die-challenge: #c9282d;
+  --die-difficulty: #5b2d86;
+  --die-setback: #1c1c1c;
+}
+
+.theme-dark .genesys,
+.genesys.theme-dark {
+  --g-border: rgba(255, 255, 255, 0.18);
+  --g-muted: #a5a5a5;
+  --g-panel: rgba(255, 255, 255, 0.05);
+  --g-ink: #e8e6e3;
+  --g-accent-soft: rgba(90, 160, 200, 0.18);
+}
+
+/* ---------- Символы ---------- */
+.genesys-symbol {
+  display: inline-block;
+  width: 1.1em;
+  height: 1.1em;
+  vertical-align: -0.15em;
+  background-color: currentColor;
+  -webkit-mask: var(--icon) center / contain no-repeat;
+  mask: var(--icon) center / contain no-repeat;
+}
+.genesys-symbol.success   { --icon: url("../assets/icons/success.svg"); }
+.genesys-symbol.failure   { --icon: url("../assets/icons/failure.svg"); }
+.genesys-symbol.advantage { --icon: url("../assets/icons/advantage.svg"); }
+.genesys-symbol.threat    { --icon: url("../assets/icons/threat.svg"); }
+.genesys-symbol.triumph   { --icon: url("../assets/icons/triumph.svg"); }
+.genesys-symbol.despair   { --icon: url("../assets/icons/despair.svg"); }
+
+/* ---------- Иконки кубиков в пуле ---------- */
+.genesys-die-icon {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin: 0 1px;
+  vertical-align: middle;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+.genesys-die-icon.boost,
+.genesys-die-icon.setback { border-radius: 2px; }
+.genesys-die-icon.ability,
+.genesys-die-icon.difficulty { transform: rotate(45deg) scale(0.82); }
+.genesys-die-icon.proficiency,
+.genesys-die-icon.challenge {
+  clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%);
+  border: none;
+}
+.genesys-die-icon.proficiency { background: var(--die-proficiency); }
+.genesys-die-icon.ability     { background: var(--die-ability); }
+.genesys-die-icon.boost       { background: var(--die-boost); }
+.genesys-die-icon.challenge   { background: var(--die-challenge); }
+.genesys-die-icon.difficulty  { background: var(--die-difficulty); }
+.genesys-die-icon.setback     { background: var(--die-setback); }
+
+/* ==========================================================================
+   Листы
+   ========================================================================== */
+
+.genesys.sheet .window-content {
+  padding: 0.5rem 0.75rem;
+  color: var(--g-ink);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.genesys.sheet .tab { overflow-y: auto; flex: 1; padding: 0.25rem 0.1rem; }
+.genesys.sheet .tab:not(.active) { display: none; }
+.genesys.sheet nav.tabs { flex: 0 0 auto; margin: 0.4rem 0; }
+
+.genesys a.rollable { cursor: pointer; }
+.genesys a.rollable:hover { color: var(--g-accent); text-shadow: 0 0 6px var(--g-accent-soft); }
+.genesys .hint { color: var(--g-muted); font-size: 0.85em; font-style: italic; margin: 0.25rem 0; }
+
+/* ---------- Шапка ---------- */
+.genesys-header {
+  display: flex;
+  gap: 0.75rem;
+  flex: 0 0 auto;
+}
+.genesys-header .profile {
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
+  border: 1px solid var(--g-border);
+  border-radius: 6px;
+  cursor: pointer;
+  flex: 0 0 auto;
+}
+.genesys-header .header-main { flex: 1; display: flex; flex-direction: column; gap: 0.35rem; min-width: 0; }
+.genesys-header .name-row { display: flex; gap: 0.5rem; align-items: center; }
+.genesys-header .actor-name,
+.genesys-header .item-name {
+  flex: 1;
+  font-size: 1.6em;
+  height: auto;
+  font-weight: bold;
+  border: none;
+  border-bottom: 1px solid var(--g-border);
+  background: transparent;
+  border-radius: 0;
+}
+
+.xp-badge {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  background: var(--g-accent-soft);
+  border: 1px solid var(--g-accent);
+  white-space: nowrap;
+}
+.xp-badge .label { font-size: 0.8em; text-transform: uppercase; color: var(--g-muted); }
+.xp-badge .value { font-size: 1.3em; font-weight: bold; }
+.xp-badge .total { font-size: 0.85em; color: var(--g-muted); }
+.xp-badge.negative { border-color: var(--g-danger); }
+.xp-badge.negative .value { color: var(--g-danger); }
+
+.origin-row { display: flex; gap: 0.5rem; align-items: center; }
+.origin-row .origin {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0.15rem 0.5rem;
+  border: 1px dashed var(--g-border);
+  border-radius: 4px;
+  min-width: 0;
+}
+.origin-row .origin:not(.empty) { border-style: solid; background: var(--g-panel); }
+.origin-row .origin .label { font-size: 0.7em; text-transform: uppercase; color: var(--g-muted); }
+.origin-row .origin a { font-weight: bold; }
+.origin-row .creation-toggle { flex: 0 0 auto; width: auto; white-space: nowrap; }
+.origin-row .creation-toggle.active { background: var(--g-accent-soft); border-color: var(--g-accent); }
+
+/* ---------- Характеристики ---------- */
+.genesys .characteristics { display: flex; gap: 0.4rem; justify-content: space-between; }
+.genesys .characteristic {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.2rem;
+  border: 1px solid var(--g-border);
+  border-radius: 50% 50% 8px 8px;
+  background: var(--g-panel);
+  min-width: 0;
+}
+.genesys .characteristic .char-value,
+.genesys .characteristic .char-input {
+  font-size: 1.8em;
+  font-weight: bold;
+  line-height: 1.2;
+  text-align: center;
+  width: 2.2em;
+  height: auto;
+  border: none;
+  background: transparent;
+}
+.genesys .characteristic .char-label {
+  font-size: 0.7em;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+.genesys .characteristic .char-controls { display: flex; gap: 0.5rem; font-size: 0.75em; }
+
+/* ---------- Производные показатели ---------- */
+.genesys .derived-stats {
+  display: flex;
+  gap: 0.5rem;
+  margin: 0.5rem 0 0;
+  flex: 0 0 auto;
+  align-items: stretch;
+}
+.genesys .derived-stats .stat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem 0.4rem;
+  border: 1px solid var(--g-border);
+  border-radius: 6px;
+  background: var(--g-panel);
+}
+.genesys .derived-stats .stat-label { font-size: 0.72em; text-transform: uppercase; color: var(--g-muted); }
+.genesys .derived-stats .stat-value { font-size: 1.6em; font-weight: bold; }
+.genesys .derived-stats .stat .sub { font-size: 0.75em; color: var(--g-muted); }
+.genesys .derived-stats input[type="number"] { width: 3em; text-align: center; font-weight: bold; }
+.genesys .derived-stats .track-values { display: flex; align-items: center; gap: 0.25rem; }
+.genesys .derived-stats .track-values .max { font-size: 1.3em; font-weight: bold; }
+.genesys .derived-stats .track-values a { font-size: 0.8em; opacity: 0.7; }
+.genesys .derived-stats .track.critical { border-color: var(--g-danger); box-shadow: 0 0 6px rgba(168, 50, 45, 0.5); }
+.genesys .derived-stats .defense-values { display: flex; gap: 0.6rem; font-weight: bold; font-size: 1.15em; }
+.genesys .derived-stats .pool-button {
+  flex: 0 0 3rem;
+  font-size: 1.6em;
+  cursor: pointer;
+}
+.genesys .derived-stats .pool-button:hover { color: var(--g-accent); }
+
+/* ---------- Списки ---------- */
+.genesys .list-header {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-bottom: 2px solid var(--g-accent);
+  margin: 0.5rem 0 0.2rem;
+  padding-bottom: 0.1rem;
+}
+.genesys .list-header h3,
+.genesys .list-header h4 { flex: 1; margin: 0; border: none; font-size: 1.05em; }
+.genesys .list-header .count { color: var(--g-muted); font-weight: normal; }
+.genesys .item-control { cursor: pointer; opacity: 0.8; }
+.genesys .item-controls { display: flex; gap: 0.4rem; justify-content: flex-end; opacity: 0.75; }
+.genesys .item-controls a.active { color: var(--g-accent); opacity: 1; }
+.genesys ol { list-style: none; margin: 0; padding: 0; }
+.genesys li.empty { color: var(--g-muted); font-style: italic; padding: 0.25rem; }
+
+.genesys .main-columns { display: flex; gap: 0.75rem; }
+.genesys .main-columns .skills-column { flex: 1.35; min-width: 0; }
+.genesys .main-columns .side-column { flex: 1; min-width: 0; }
+
+/* Навыки */
+.genesys .skill-list li.skill {
+  display: grid;
+  grid-template-columns: 1.1rem 1fr 2.6rem 6.5rem 5.5rem 2.6rem;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.12rem 0.2rem;
+  border-bottom: 1px solid var(--g-border);
+}
+.genesys .skill-list li.skill:hover { background: var(--g-accent-soft); }
+.genesys .skill-list .career-mark { font-size: 0.65em; color: var(--g-accent); }
+.genesys .skill-list li.skill:not(.career) .career-mark { opacity: 0.35; }
+.genesys .skill-list .skill-name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.genesys .skill-list li.career .skill-name { font-weight: bold; }
+.genesys .skill-list .skill-char { font-size: 0.75em; color: var(--g-muted); text-align: center; }
+.genesys .skill-rank { display: flex; align-items: center; gap: 0.2rem; font-size: 0.85em; }
+.genesys .skill-rank a { opacity: 0.4; }
+.genesys .skill-rank a:hover { opacity: 1; }
+.genesys .pips { display: flex; gap: 2px; }
+.genesys .pip { width: 8px; height: 8px; border-radius: 50%; border: 1px solid var(--g-accent); }
+.genesys .pip.filled { background: var(--g-accent); }
+.genesys .skill-pool { display: flex; flex-wrap: wrap; align-items: center; min-height: 18px; }
+.genesys .skill-pool .genesys-die-icon { width: 12px; height: 12px; }
+
+/* Компактные списки */
+.genesys .compact-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.2rem;
+  border-bottom: 1px solid var(--g-border);
+}
+.genesys .compact-list li img { width: 28px; height: 28px; border: none; flex: 0 0 auto; }
+.genesys .compact-list li .name { flex: 1; min-width: 0; }
+.genesys .compact-list .weapon-info { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+.genesys .compact-list .weapon-info .name { font-weight: bold; }
+.genesys .compact-list .sub { font-size: 0.78em; color: var(--g-muted); }
+.genesys .compact-list .qualities { font-style: italic; }
+.genesys .unequipped { opacity: 0.55; }
+.genesys .severity { display: flex; }
+.genesys .activation { font-size: 0.78em; color: var(--g-muted); }
+.genesys .talent-rank { display: flex; gap: 0.3rem; align-items: center; font-size: 0.85em; }
+
+.genesys .bonus-grid,
+.genesys .details-grid {
+  display: grid;
+  grid-template-columns: 1fr 4rem;
+  gap: 0.2rem 0.5rem;
+  align-items: center;
+  font-size: 0.9em;
+}
+.genesys .details-grid { grid-template-columns: max-content 1fr max-content 1fr; }
+
+/* Таблицы инвентаря */
+.genesys .table-header > span,
+.genesys .table-row > span { text-align: center; font-size: 0.85em; }
+.genesys .table-row {
+  display: grid;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.15rem 0.2rem;
+  border-bottom: 1px solid var(--g-border);
+}
+.genesys .table-header { display: grid; }
+.genesys .weapon-cols { grid-template-columns: 1fr 7rem 3rem 3rem 5rem 3rem 4.5rem; }
+.genesys .armor-cols  { grid-template-columns: 1fr 4rem 4rem 3rem 4.5rem; }
+.genesys .gear-cols   { grid-template-columns: 1fr 5rem 3rem 4.5rem; }
+.genesys .xp-cols     { grid-template-columns: 3.5rem 1fr 6rem 2rem; }
+.genesys .table-row .name-cell { display: flex; align-items: center; gap: 0.4rem; text-align: left; font-size: 1em; }
+.genesys .table-row .name-cell img { width: 24px; height: 24px; border: none; }
+.genesys .table-row .quantity { display: flex; gap: 0.3rem; justify-content: center; align-items: center; }
+
+.genesys .inventory-summary { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
+.genesys .inventory-summary > div { display: flex; gap: 0.4rem; align-items: center; }
+.genesys .inventory-summary input { width: 5rem; }
+.genesys .encumbrance { padding: 0.2rem 0.6rem; border: 1px solid var(--g-border); border-radius: 6px; }
+.genesys .encumbrance .value { font-weight: bold; font-size: 1.2em; }
+.genesys .encumbrance.over { border-color: var(--g-danger); color: var(--g-danger); }
+
+/* Опыт */
+.genesys .xp-summary { display: flex; gap: 0.5rem; }
+.genesys .xp-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid var(--g-border);
+  border-radius: 6px;
+  padding: 0.3rem;
+  background: var(--g-panel);
+}
+.genesys .xp-box .label { font-size: 0.75em; text-transform: uppercase; color: var(--g-muted); }
+.genesys .xp-box .value { font-size: 1.7em; font-weight: bold; }
+.genesys .xp-box.highlight { border-color: var(--g-accent); background: var(--g-accent-soft); }
+.genesys .xp-options { margin: 0.5rem 0; }
+.genesys .xp-buttons { display: flex; gap: 0.5rem; }
+.genesys .xp-log .earn .amount { color: var(--g-ok); font-weight: bold; }
+.genesys .xp-log .spend .amount { color: var(--g-danger); font-weight: bold; }
+.genesys .xp-log .label { text-align: left; }
+.genesys .xp-log .date { color: var(--g-muted); }
+
+/* Биография */
+.genesys .motivation-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+.genesys .motivation { display: flex; flex-direction: column; gap: 0.2rem; }
+.genesys .motivation label { font-weight: bold; font-size: 0.85em; }
+.genesys .editor-block prose-mirror { min-height: 140px; }
+
+/* Пирамида */
+.genesys .pyramid .tier-block { margin-bottom: 0.3rem; }
+.genesys .pyramid-warning { color: var(--g-danger); }
+
+/* ---------- Противник ---------- */
+.genesys.adversary .adversary-header .adversary-type { width: auto; }
+.genesys.adversary .adversary-header .pool-button { font-size: 1.4em; padding: 0 0.3rem; }
+.genesys.adversary .adversary-body { flex: 1; overflow-y: auto; margin-top: 0.4rem; }
+.genesys.adversary .defense-values input { width: 2.6em; }
+
+/* ---------- Лист предмета ---------- */
+.genesys.item .window-content { gap: 0.5rem; overflow-y: auto; }
+.genesys.item .item-header .profile { width: 72px; height: 72px; }
+.genesys.item .item-meta { display: flex; gap: 0.5rem; align-items: center; }
+.genesys.item .item-type { font-size: 0.8em; text-transform: uppercase; color: var(--g-muted); white-space: nowrap; }
+.genesys.item .item-source { flex: 1; font-size: 0.85em; }
+.genesys.item .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.3rem 0.75rem; }
+.genesys.item .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.3rem 0.75rem; }
+.genesys.item .form-group { display: flex; align-items: center; gap: 0.4rem; margin: 0; }
+.genesys.item .form-group > label { flex: 1; font-size: 0.85em; }
+.genesys.item .form-group > input[type="number"] { flex: 0 0 4rem; text-align: center; }
+.genesys.item .form-group > select,
+.genesys.item .form-group > input[type="text"] { flex: 1.4; }
+.genesys.item .form-group.stacked { flex-direction: column; align-items: stretch; margin-top: 0.4rem; }
+.genesys.item .archetype-chars { display: flex; gap: 0.3rem; margin-bottom: 0.5rem; }
+.genesys.item .archetype-chars input { font-size: 1.4em; }
+.genesys.item .quality-row { display: flex; gap: 0.4rem; align-items: center; margin: 0.15rem 0; }
+.genesys.item .quality-row input[type="text"] { flex: 1; }
+.genesys.item .quality-row input[type="number"] { flex: 0 0 4rem; text-align: center; }
+.genesys.item .item-description { flex: 1; display: flex; flex-direction: column; }
+.genesys.item .item-description h3 { border-bottom: 2px solid var(--g-accent); margin: 0.3rem 0; }
+
+/* ==========================================================================
+   Окно броска
+   ========================================================================== */
+.genesys.dice-pool-dialog .window-content { padding: 0.75rem; }
+.dice-pool-body { display: flex; flex-direction: column; gap: 0.6rem; }
+.dice-pool-body .pool-preview {
+  min-height: 34px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  padding: 0.4rem;
+  border: 1px solid var(--g-border);
+  border-radius: 6px;
+  background: var(--g-panel);
+}
+.dice-pool-body .pool-preview .genesys-die-icon { width: 22px; height: 22px; }
+.dice-pool-body .pool-rows { display: grid; grid-template-columns: 1fr 1fr; gap: 0.25rem 1rem; }
+.dice-pool-body .pool-row { display: flex; align-items: center; gap: 0.4rem; }
+.dice-pool-body .pool-row .die-label { flex: 1; }
+.dice-pool-body .pool-row .die-count { width: 1.5rem; text-align: center; font-weight: bold; }
+.dice-pool-body .pool-btn { cursor: pointer; opacity: 0.7; }
+.dice-pool-body .pool-btn:hover { opacity: 1; }
+.dice-pool-body .pool-upgrades { display: flex; flex-direction: column; gap: 0.3rem; }
+.dice-pool-body .upgrade-group { display: flex; align-items: center; gap: 0.4rem; }
+.dice-pool-body .upgrade-group span { flex: 0 0 8rem; font-size: 0.85em; }
+.dice-pool-body .pool-difficulty { display: flex; align-items: center; gap: 0.25rem; flex-wrap: wrap; }
+.dice-pool-body .pool-difficulty button { flex: 0 0 auto; width: auto; min-width: 2rem; padding: 0 0.3rem; }
+.dice-pool-body .pool-difficulty button.active { border-color: var(--g-accent); background: var(--g-accent-soft); }
+.dice-pool-body .pool-difficulty .genesys-die-icon { width: 11px; height: 11px; }
+.dice-pool-body .roll-button { font-size: 1.15em; }
+
+/* ==========================================================================
+   Чат
+   ========================================================================== */
+.genesys-roll { display: flex; flex-direction: column; gap: 0.35rem; }
+.genesys-roll .roll-label { margin: 0; font-size: 1.05em; border-bottom: 1px solid var(--color-border, #999); }
+.genesys-roll .roll-dice { display: flex; flex-wrap: wrap; gap: 3px; }
+.genesys-die-result {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  font-size: 11px;
+  color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+.genesys-die-result .face { display: flex; flex-wrap: wrap; justify-content: center; line-height: 1; }
+.genesys-die-result.boost,
+.genesys-die-result.setback { border-radius: 3px; }
+.genesys-die-result.ability,
+.genesys-die-result.difficulty { transform: rotate(45deg) scale(0.85); }
+.genesys-die-result.ability .face,
+.genesys-die-result.difficulty .face { transform: rotate(-45deg); }
+.genesys-die-result.proficiency,
+.genesys-die-result.challenge {
+  clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%);
+  border: none;
+  width: 34px;
+}
+.genesys-die-result.proficiency { background: var(--die-proficiency, #f2c516); color: #111; }
+.genesys-die-result.ability     { background: var(--die-ability, #3aa845); color: #111; }
+.genesys-die-result.boost       { background: var(--die-boost, #8fd3f2); color: #111; }
+.genesys-die-result.challenge   { background: var(--die-challenge, #c9282d); }
+.genesys-die-result.difficulty  { background: var(--die-difficulty, #5b2d86); }
+.genesys-die-result.setback     { background: var(--die-setback, #1c1c1c); }
+
+.genesys-roll .roll-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  justify-content: center;
+  font-size: 1.5em;
+  padding: 0.2rem;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.06);
+}
+.genesys-roll .roll-summary .success,
+.genesys-roll .roll-summary .advantage,
+.genesys-roll .roll-summary .triumph { color: #2f7d32; }
+.genesys-roll .roll-summary .triumph { color: #c79a00; }
+.genesys-roll .roll-summary .failure,
+.genesys-roll .roll-summary .threat { color: #5b2d86; }
+.genesys-roll .roll-summary .despair { color: #c9282d; }
+.genesys-roll .roll-summary .blank { font-size: 0.6em; color: #777; }
+.genesys-roll .roll-outcome { display: flex; flex-direction: column; align-items: center; }
+.genesys-roll .roll-outcome .success { color: #2f7d32; font-size: 1.1em; }
+.genesys-roll .roll-outcome .failure { color: #a8322d; font-size: 1.1em; }
+.genesys-roll .roll-outcome .counts { font-size: 0.85em; color: #666; }
+.genesys-roll .roll-attack {
+  border-top: 1px dashed #999;
+  padding-top: 0.3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.genesys-roll .roll-attack .crit { color: #a8322d; }
+.genesys-roll .roll-attack .qualities { font-style: italic; font-size: 0.85em; }
+
+.genesys.item-card header { display: flex; align-items: center; gap: 0.5rem; }
+.genesys.item-card header img { width: 36px; height: 36px; border: none; }
+.genesys.item-card header h3 { margin: 0; border: none; }
+.genesys.story-point-message { font-style: italic; }
+
+/* ==========================================================================
+   Очки истории
+   ========================================================================== */
+.genesys.story-points .window-content { padding: 0.5rem; }
+.story-points-body { display: flex; flex-direction: column; gap: 0.5rem; }
+.story-points-body .sp-pool { display: flex; flex-direction: column; gap: 0.25rem; }
+.story-points-body .sp-label { font-weight: bold; font-size: 0.85em; text-transform: uppercase; }
+.story-points-body .sp-tokens { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; min-height: 22px; }
+.story-points-body .sp-token { width: 18px; height: 18px; border-radius: 50%; border: 2px solid rgba(0, 0, 0, 0.4); }
+.story-points-body .sp-token.player { background: radial-gradient(circle at 35% 35%, #fff 0, #8fd3f2 45%, #2f6f8f 100%); }
+.story-points-body .sp-token.gm { background: radial-gradient(circle at 35% 35%, #fff 0, #e7837f 45%, #8f2f2f 100%); }
+.story-points-body .sp-count { margin-left: auto; font-weight: bold; font-size: 1.2em; }
+.story-points-body .sp-controls { display: flex; gap: 0.4rem; align-items: center; }
+.story-points-body .sp-controls button { flex: 1; }

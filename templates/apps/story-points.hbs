@@ -1,0 +1,24 @@
+<div class="story-points-body">
+  <div class="sp-pool player">
+    <span class="sp-label">{{localize "GENESYS.StoryPoints.Players"}}</span>
+    <div class="sp-tokens">{{#each playerTokens}}<span class="sp-token player"></span>{{/each}}<span class="sp-count">{{player}}</span></div>
+    <div class="sp-controls">
+      <button type="button" data-action="usePlayer" {{#unless player}}disabled{{/unless}}>{{localize "GENESYS.StoryPoints.Use"}}</button>
+      {{#if isGM}}
+      <a data-action="adjust" data-pool="player" data-delta="-1"><i class="fa-solid fa-minus"></i></a>
+      <a data-action="adjust" data-pool="player" data-delta="1"><i class="fa-solid fa-plus"></i></a>
+      {{/if}}
+    </div>
+  </div>
+  <div class="sp-pool gm">
+    <span class="sp-label">{{localize "GENESYS.StoryPoints.GM"}}</span>
+    <div class="sp-tokens">{{#each gmTokens}}<span class="sp-token gm"></span>{{/each}}<span class="sp-count">{{gm}}</span></div>
+    {{#if isGM}}
+    <div class="sp-controls">
+      <button type="button" data-action="useGM" {{#unless gm}}disabled{{/unless}}>{{localize "GENESYS.StoryPoints.Use"}}</button>
+      <a data-action="adjust" data-pool="gm" data-delta="-1"><i class="fa-solid fa-minus"></i></a>
+      <a data-action="adjust" data-pool="gm" data-delta="1"><i class="fa-solid fa-plus"></i></a>
+    </div>
+    {{/if}}
+  </div>
+</div>

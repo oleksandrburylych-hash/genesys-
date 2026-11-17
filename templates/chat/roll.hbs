@@ -1,0 +1,51 @@
+<div class="genesys-roll {{outcome}}">
+  {{#if label}}<h4 class="roll-label">{{label}}</h4>{{/if}}
+  {{#if flavor}}<div class="roll-flavor">{{flavor}}</div>{{/if}}
+
+  {{#if isPrivate}}
+  <div class="roll-private">???</div>
+  {{else}}
+  <div class="roll-dice">
+    {{#each dice}}
+    <span class="genesys-die-result {{key}}"><span class="face">{{{label}}}</span></span>
+    {{/each}}
+  </div>
+
+  <div class="roll-summary">
+    {{#if noSymbols}}<span class="blank">{{localize "GENESYS.Roll.Blank"}}</span>{{else}}{{{summary}}}{{/if}}
+  </div>
+
+  <div class="roll-outcome">
+    {{#if initiative}}
+      <strong>{{localize "GENESYS.Initiative"}}: {{initiative}}</strong>
+    {{else}}
+      {{#if results.isSuccess}}
+        <strong class="success">{{localize "GENESYS.Roll.Success"}}</strong>
+      {{else}}
+        <strong class="failure">{{localize "GENESYS.Roll.Failure"}}</strong>
+      {{/if}}
+    {{/if}}
+    <span class="counts">
+      {{#if results.success}}{{localize "GENESYS.Symbol.success"}}: {{results.success}}{{/if}}
+      {{#if results.failure}}{{localize "GENESYS.Symbol.failure"}}: {{results.failure}}{{/if}}
+      {{#if results.advantage}} · {{localize "GENESYS.Symbol.advantage"}}: {{results.advantage}}{{/if}}
+      {{#if results.threat}} · {{localize "GENESYS.Symbol.threat"}}: {{results.threat}}{{/if}}
+      {{#if results.triumph}} · {{localize "GENESYS.Symbol.triumph"}}: {{results.triumph}}{{/if}}
+      {{#if results.despair}} · {{localize "GENESYS.Symbol.despair"}}: {{results.despair}}{{/if}}
+    </span>
+  </div>
+
+  {{#if attack}}
+  <div class="roll-attack">
+    <div class="attack-line"><i class="fa-solid fa-burst"></i> {{localize "GENESYS.Damage"}}: <strong>{{attack.damage}}</strong></div>
+    {{#if attack.critReady}}
+    <div class="attack-line crit"><i class="fa-solid fa-skull"></i> {{localize "GENESYS.Roll.CritAvailable"}} ({{localize "GENESYS.Crit"}} {{attack.crit}}, ×{{attack.critCount}})</div>
+    {{/if}}
+    {{#if attack.qualities}}<div class="attack-line qualities">{{attack.qualities}}</div>{{/if}}
+    <button type="button" data-genesys-action="applyDamage" data-damage="{{attack.damage}}">
+      <i class="fa-solid fa-heart-crack"></i> {{localize "GENESYS.Roll.ApplyDamage"}}
+    </button>
+  </div>
+  {{/if}}
+  {{/if}}
+</div>

@@ -1,0 +1,17 @@
+<div class="qualities-editor">
+  <header class="list-header">
+    <h4>{{localize "GENESYS.Qualities"}}</h4>
+    {{#if editable}}<a class="item-control" data-action="addQuality"><i class="fa-solid fa-plus"></i></a>{{/if}}
+  </header>
+  <ol class="quality-list">
+    {{#each system.qualities}}
+    <li class="quality-row">
+      <input type="text" name="system.qualities.{{@index}}.name" value="{{name}}" placeholder="{{localize 'GENESYS.QualityName'}}">
+      <input type="number" name="system.qualities.{{@index}}.rating" value="{{rating}}" min="0" placeholder="—" data-dtype="Number">
+      {{#if @root.editable}}<a data-action="removeQuality" data-index="{{@index}}"><i class="fa-solid fa-trash"></i></a>{{/if}}
+    </li>
+    {{else}}
+    <li class="empty">{{localize "GENESYS.NoQualities"}}</li>
+    {{/each}}
+  </ol>
+</div>

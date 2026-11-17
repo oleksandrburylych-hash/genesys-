@@ -1,0 +1,100 @@
+<section class="tab inventory {{tab.cssClass}}" data-tab="inventory" data-group="primary">
+  <div class="inventory-summary">
+    <div class="encumbrance {{#if system.encumbrance.over}}over{{/if}}">
+      <span class="label">{{localize "GENESYS.Encumbrance"}}</span>
+      <span class="value">{{system.encumbrance.value}} / {{system.encumbrance.threshold}}</span>
+      {{#if system.encumbrance.over}}<span class="warning" data-tooltip="GENESYS.Hint.Overencumbered"><i class="fa-solid fa-weight-hanging"></i></span>{{/if}}
+    </div>
+    <div class="money">
+      <label>{{localize "GENESYS.Money"}}</label>
+      <input type="number" name="system.money" value="{{system.money}}" min="0" data-dtype="Number">
+    </div>
+    <div class="enc-bonus">
+      <label>{{localize "GENESYS.EncumbranceBonus"}}</label>
+      <input type="number" name="system.encumbrance.bonus" value="{{source.encumbrance.bonus}}" data-dtype="Number">
+    </div>
+  </div>
+
+  {{!-- Оружие --}}
+  <section class="block">
+    <header class="list-header table-header weapon-cols">
+      <h3>{{localize "GENESYS.Weapons"}}</h3>
+      <span>{{localize "GENESYS.SkillShort"}}</span>
+      <span>{{localize "GENESYS.DamageShort"}}</span>
+      <span>{{localize "GENESYS.CritShort"}}</span>
+      <span>{{localize "GENESYS.RangeShort"}}</span>
+      <span>{{localize "GENESYS.EncShort"}}</span>
+      <span>{{#if editable}}<a class="item-control" data-action="itemCreate" data-type="weapon"><i class="fa-solid fa-plus"></i></a>{{/if}}</span>
+    </header>
+    <ol class="table-list">
+      {{#each weapons}}
+      <li class="table-row weapon-cols {{#unless equipped}}unequipped{{/unless}}" data-item-id="{{id}}">
+        <span class="name-cell"><img src="{{img}}" alt=""><a class="rollable" data-action="rollWeapon">{{name}}</a></span>
+        <span>{{skillName}}</span>
+        <span>{{damageLabel}}</span>
+        <span>{{crit}}</span>
+        <span>{{localize range}}</span>
+        <span>{{item.system.encumbrance}}</span>
+        <span class="item-controls">
+          <a data-action="itemToggle" data-field="system.equipped" data-tooltip="GENESYS.Equipped" class="{{#if equipped}}active{{/if}}"><i class="fa-solid fa-hand"></i></a>
+          <a data-action="itemEdit"><i class="fa-solid fa-pen"></i></a>
+          {{#if @root.editable}}<a data-action="itemDelete"><i class="fa-solid fa-trash"></i></a>{{/if}}
+        </span>
+      </li>
+      {{/each}}
+    </ol>
+  </section>
+
+  {{!-- Броня --}}
+  <section class="block">
+    <header class="list-header table-header armor-cols">
+      <h3>{{localize "GENESYS.Armor"}}</h3>
+      <span>{{localize "GENESYS.Defense"}}</span>
+      <span>{{localize "GENESYS.Soak"}}</span>
+      <span>{{localize "GENESYS.EncShort"}}</span>
+      <span>{{#if editable}}<a class="item-control" data-action="itemCreate" data-type="armor"><i class="fa-solid fa-plus"></i></a>{{/if}}</span>
+    </header>
+    <ol class="table-list">
+      {{#each armor}}
+      <li class="table-row armor-cols {{#unless system.equipped}}unequipped{{/unless}}" data-item-id="{{id}}">
+        <span class="name-cell"><img src="{{img}}" alt=""><a data-action="itemEdit">{{name}}</a></span>
+        <span>{{system.defense}}</span>
+        <span>{{system.soak}}</span>
+        <span>{{system.encumbrance}}</span>
+        <span class="item-controls">
+          <a data-action="itemToggle" data-field="system.equipped" data-tooltip="GENESYS.Worn" class="{{#if system.equipped}}active{{/if}}"><i class="fa-solid fa-shirt"></i></a>
+          {{#if @root.editable}}<a data-action="itemDelete"><i class="fa-solid fa-trash"></i></a>{{/if}}
+        </span>
+      </li>
+      {{/each}}
+    </ol>
+  </section>
+
+  {{!-- Снаряжение --}}
+  <section class="block">
+    <header class="list-header table-header gear-cols">
+      <h3>{{localize "GENESYS.Gear"}}</h3>
+      <span>{{localize "GENESYS.Quantity"}}</span>
+      <span>{{localize "GENESYS.EncShort"}}</span>
+      <span>{{#if editable}}<a class="item-control" data-action="itemCreate" data-type="gear"><i class="fa-solid fa-plus"></i></a>{{/if}}</span>
+    </header>
+    <ol class="table-list">
+      {{#each gear}}
+      <li class="table-row gear-cols {{#unless system.carried}}unequipped{{/unless}}" data-item-id="{{id}}">
+        <span class="name-cell"><img src="{{img}}" alt=""><a data-action="itemEdit">{{name}}</a></span>
+        <span class="quantity">
+          <a data-action="itemQuantity" data-delta="-1"><i class="fa-solid fa-minus"></i></a>
+          {{system.quantity}}
+          <a data-action="itemQuantity" data-delta="1"><i class="fa-solid fa-plus"></i></a>
+        </span>
+        <span>{{system.encumbrance}}</span>
+        <span class="item-controls">
+          <a data-action="itemToggle" data-field="system.carried" data-tooltip="GENESYS.Carried" class="{{#if system.carried}}active{{/if}}"><i class="fa-solid fa-sack"></i></a>
+          <a data-action="itemChat" data-tooltip="GENESYS.ToChat"><i class="fa-solid fa-comment"></i></a>
+          {{#if @root.editable}}<a data-action="itemDelete"><i class="fa-solid fa-trash"></i></a>{{/if}}
+        </span>
+      </li>
+      {{/each}}
+    </ol>
+  </section>
+</section>

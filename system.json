@@ -1,0 +1,49 @@
+{
+  "id": "genesys-rpg",
+  "title": "Genesys RPG",
+  "description": "Система Genesys (Narrative Dice System) для Foundry VTT v14: нарративные кубики, автоматический расчёт персонажа, трата опыта, таланты-пирамида, снаряжение, противники и очки истории.",
+  "version": "0.1.0",
+  "compatibility": {
+    "minimum": "14",
+    "verified": "14.370"
+  },
+  "authors": [
+    { "name": "oleksandrburylych-hash" }
+  ],
+  "esmodules": ["genesys.mjs"],
+  "styles": ["styles/genesys.css"],
+  "languages": [
+    { "lang": "ru", "name": "Русский", "path": "lang/ru.json" },
+    { "lang": "en", "name": "English", "path": "lang/en.json" }
+  ],
+  "documentTypes": {
+    "Actor": {
+      "character": { "htmlFields": ["biography", "notes"] },
+      "adversary": { "htmlFields": ["description", "notes"] }
+    },
+    "Item": {
+      "skill": { "htmlFields": ["description"] },
+      "talent": { "htmlFields": ["description"] },
+      "ability": { "htmlFields": ["description"] },
+      "archetype": { "htmlFields": ["description"] },
+      "career": { "htmlFields": ["description"] },
+      "weapon": { "htmlFields": ["description"] },
+      "armor": { "htmlFields": ["description"] },
+      "gear": { "htmlFields": ["description"] },
+      "quality": { "htmlFields": ["description"] },
+      "injury": { "htmlFields": ["description"] }
+    }
+  },
+  "packs": [],
+  "socket": true,
+  "grid": {
+    "type": 1,
+    "distance": 1.5,
+    "units": "м"
+  },
+  "primaryTokenAttribute": "wounds",
+  "secondaryTokenAttribute": "strain",
+  "url": "https://github.com/oleksandrburylych-hash/genesys-",
+  "manifest": "https://raw.githubusercontent.com/oleksandrburylych-hash/genesys-/main/system.json",
+  "download": "https://github.com/oleksandrburylych-hash/genesys-/archive/refs/heads/main.zip"
+}

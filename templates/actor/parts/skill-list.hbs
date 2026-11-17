@@ -1,0 +1,32 @@
+{{!-- Список навыков. Ожидает: skillGroups, editable, rankAction (skillRank|skillRankAdv), careerLabel --}}
+<div class="skill-groups">
+  {{#each skillGroups as |group|}}
+  <section class="skill-group">
+    <header class="list-header">
+      <h3>{{localize group.label}}</h3>
+      {{#if @root.editable}}
+      <a class="item-control" data-action="itemCreate" data-type="skill" data-category="{{group.key}}" data-tooltip="GENESYS.AddSkill"><i class="fa-solid fa-plus"></i></a>
+      {{/if}}
+    </header>
+    <ol class="skill-list">
+      {{#each group.skills as |skill|}}
+      <li class="skill {{#if skill.career}}career{{/if}}" data-item-id="{{skill.id}}">
+        <span class="career-mark" data-tooltip="{{#if skill.career}}{{localize @root.careerLabel}}{{/if}}">{{#if skill.career}}<i class="fa-solid fa-circle"></i>{{else}}<i class="fa-regular fa-circle"></i>{{/if}}</span>
+        <a class="skill-name rollable" data-action="rollSkill" data-tooltip="GENESYS.Hint.RollSkill">{{skill.name}}</a>
+        <span class="skill-char">{{localize skill.charAbbr}}</span>
+        <span class="skill-rank">
+          {{#if @root.editable}}<a data-action="{{@root.rankAction}}" data-delta="-1"><i class="fa-solid fa-minus"></i></a>{{/if}}
+          <span class="pips">{{#each skill.ranks}}<span class="pip {{#if this}}filled{{/if}}"></span>{{/each}}</span>
+          {{#if @root.editable}}<a data-action="{{@root.rankAction}}" data-delta="1"><i class="fa-solid fa-plus"></i></a>{{/if}}
+        </span>
+        <span class="skill-pool">{{#each skill.pool}}{{genesysDie key label}}{{/each}}</span>
+        <span class="item-controls">
+          <a data-action="itemEdit" data-tooltip="GENESYS.Edit"><i class="fa-solid fa-pen"></i></a>
+          {{#if @root.editable}}<a data-action="itemDelete" data-tooltip="GENESYS.Delete"><i class="fa-solid fa-trash"></i></a>{{/if}}
+        </span>
+      </li>
+      {{/each}}
+    </ol>
+  </section>
+  {{/each}}
+</div>

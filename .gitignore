@@ -1,0 +1,9 @@
+# Книги правил и исходники — не коммитим
+books/
+*.pdf
+*.epub
+
+# Служебное
+node_modules/
+.DS_Store
+*.log

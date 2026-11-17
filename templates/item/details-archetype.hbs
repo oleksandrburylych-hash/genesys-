@@ -1,0 +1,21 @@
+<section class="item-details">
+  <div class="archetype-chars">
+    {{#each characteristicList}}
+    <div class="characteristic">
+      <input type="number" name="system.characteristics.{{key}}" value="{{value}}" min="1" max="5" data-dtype="Number">
+      <label>{{localize label}}</label>
+    </div>
+    {{/each}}
+  </div>
+  <div class="grid-3">
+    <div class="form-group"><label>{{localize "GENESYS.WoundBase"}}</label>
+      <input type="number" name="system.wounds" value="{{system.wounds}}" min="0" data-dtype="Number"></div>
+    <div class="form-group"><label>{{localize "GENESYS.StrainBase"}}</label>
+      <input type="number" name="system.strain" value="{{system.strain}}" min="0" data-dtype="Number"></div>
+    <div class="form-group"><label>{{localize "GENESYS.XP.Starting"}}</label>
+      <input type="number" name="system.startingXP" value="{{system.startingXP}}" min="0" data-dtype="Number"></div>
+  </div>
+  <div class="form-group stacked"><label>{{localize "GENESYS.StartingSkills"}}</label>
+    <input type="text" name="system.startingSkills" value="{{system.startingSkills}}"></div>
+  <p class="hint">{{localize "GENESYS.Hint.Archetype"}}</p>
+</section>

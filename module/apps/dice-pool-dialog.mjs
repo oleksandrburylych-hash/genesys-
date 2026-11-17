@@ -1,0 +1,134 @@
+import { GENESYS, TEMPLATES } from "../config.mjs";
+import { DicePool } from "../dice/pool.mjs";
+import { GenesysRoll } from "../dice/roll.mjs";
+
+const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
+
+/**
+ * Окно сборки пула кубиков перед броском.
+ * Использование: await DicePoolDialog.prompt({ pool, label, actor, rollOptions })
+ */
+export class DicePoolDialog extends HandlebarsApplicationMixin(ApplicationV2) {
+  constructor({ pool, label, actor, rollOptions = {}, ...options } = {}) {
+    super(options);
+    this.pool = pool instanceof DicePool ? pool : new DicePool(pool);
+    this.label = label ?? "";
+    this.actor = actor ?? null;
+    this.rollOptions = rollOptions;
+    this.messageMode = game.settings.get("core", "messageMode");
+  }
+
+  static DEFAULT_OPTIONS = {
+    classes: ["genesys", "dice-pool-dialog"],
+    tag: "form",
+    window: { title: "GENESYS.Roll.Title", icon: "fa-solid fa-dice-d20", resizable: false },
+    position: { width: 460 },
+    actions: {
+      add: DicePoolDialog.#onAdd,
+      remove: DicePoolDialog.#onRemove,
+      upgrade: DicePoolDialog.#onUpgrade,
+      downgrade: DicePoolDialog.#onDowngrade,
+      setDifficulty: DicePoolDialog.#onSetDifficulty,
+      roll: DicePoolDialog.#onRoll
+    },
+    form: { handler: DicePoolDialog.#onSubmit, submitOnChange: true, closeOnSubmit: false }
+  };
+
+  static PARTS = {
+    form: { template: `${TEMPLATES}/dialog/dice-pool.hbs` }
+  };
+
+  /** @override */
+  get title() {
+    const base = game.i18n.localize("GENESYS.Roll.Title");
+    return this.label ? `${base}: ${this.label}` : base;
+  }
+
+  /** @override */
+  async _prepareContext(options) {
+    const modes = CONFIG.ChatMessage?.modes ?? {};
+    return {
+      label: this.label,
+      pool: this.pool.display,
+      rows: DicePool.KEYS.map(k => ({ key: k, label: GENESYS.dice[k].label, count: this.pool[k] })),
+      difficulties: Object.entries(GENESYS.difficulties).map(([n, label]) => ({
+        value: Number(n), label, active: (this.pool.difficulty + this.pool.challenge) === Number(n)
+      })),
+      messageModes: Object.entries(modes).map(([key, cfg]) => ({
+        key, label: typeof cfg === "string" ? cfg : cfg.label, selected: key === this.messageMode
+      })),
+      empty: this.pool.isEmpty
+    };
+  }
+
+  static #onAdd(event, target) {
+    this.pool[target.dataset.die] += 1;
+    this.render();
+  }
+
+  static #onRemove(event, target) {
+    const k = target.dataset.die;
+    this.pool[k] = Math.max(0, this.pool[k] - 1);
+    this.render();
+  }
+
+  static #onUpgrade(event, target) {
+    if (target.dataset.side === "difficulty") this.pool.upgradeDifficulty();
+    else this.pool.upgradeAbility();
+    this.render();
+  }
+
+  static #onDowngrade(event, target) {
+    if (target.dataset.side === "difficulty") this.pool.downgradeDifficulty();
+    else this.pool.downgradeAbility();
+    this.render();
+  }
+
+  static #onSetDifficulty(event, target) {
+    this.pool.setDifficulty(Number(target.dataset.value));
+    this.render();
+  }
+
+  static async #onSubmit(event, form, formData) {
+    const data = formData.object;
+    if (data.messageMode) this.messageMode = data.messageMode;
+  }
+
+  static async #onRoll() {
+    if (this.pool.isEmpty) return ui.notifications.warn("GENESYS.Roll.EmptyPool", { localize: true });
+    const roll = await DicePoolDialog.rollPool(this.pool, {
+      label: this.label, actor: this.actor, messageMode: this.messageMode, rollOptions: this.rollOptions
+    });
+    this._resolve?.(roll);
+    this._resolve = null;
+    await this.close();
+  }
+
+  /** @override */
+  _onClose(options) {
+    super._onClose(options);
+    this._resolve?.(null);
+  }
+
+  /**
+   * Открыть окно и дождаться броска.
+   * @returns {Promise<GenesysRoll|null>}
+   */
+  static prompt(config = {}) {
+    return new Promise(resolve => {
+      const app = new this(config);
+      app._resolve = resolve;
+      app.render({ force: true });
+    });
+  }
+
+  /** Бросить пул без окна и отправить в чат. */
+  static async rollPool(pool, { label = "", actor = null, messageMode, rollOptions = {}, flavor } = {}) {
+    const roll = GenesysRoll.fromPool(pool, { label, ...rollOptions });
+    await roll.evaluate();
+    const speaker = ChatMessage.implementation.getSpeaker({ actor });
+    const options = messageMode ? { messageMode } : {};
+    await roll.toMessage({ speaker, flavor }, options);
+    return roll;
+  }
+}

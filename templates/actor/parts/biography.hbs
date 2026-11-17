@@ -1,0 +1,38 @@
+<section class="tab biography {{tab.cssClass}}" data-tab="biography" data-group="primary">
+  <section class="block motivations">
+    <header class="list-header"><h3>{{localize "GENESYS.Motivations"}}</h3></header>
+    <div class="motivation-grid">
+      {{#each motivations}}
+      <div class="motivation">
+        <label>{{localize label}}</label>
+        <input type="text" name="system.motivations.{{key}}.name" value="{{name}}" placeholder="{{localize label}}">
+        <textarea name="system.motivations.{{key}}.description" rows="2">{{description}}</textarea>
+      </div>
+      {{/each}}
+    </div>
+  </section>
+
+  <section class="block details">
+    <header class="list-header"><h3>{{localize "GENESYS.Details.Title"}}</h3></header>
+    <div class="details-grid">
+      <label>{{localize "GENESYS.Details.gender"}}</label><input type="text" name="system.details.gender" value="{{system.details.gender}}">
+      <label>{{localize "GENESYS.Details.age"}}</label><input type="text" name="system.details.age" value="{{system.details.age}}">
+      <label>{{localize "GENESYS.Details.height"}}</label><input type="text" name="system.details.height" value="{{system.details.height}}">
+      <label>{{localize "GENESYS.Details.build"}}</label><input type="text" name="system.details.build" value="{{system.details.build}}">
+      <label>{{localize "GENESYS.Details.hair"}}</label><input type="text" name="system.details.hair" value="{{system.details.hair}}">
+      <label>{{localize "GENESYS.Details.eyes"}}</label><input type="text" name="system.details.eyes" value="{{system.details.eyes}}">
+    </div>
+    <label>{{localize "GENESYS.Details.features"}}</label>
+    <textarea name="system.details.features" rows="2">{{system.details.features}}</textarea>
+  </section>
+
+  <section class="block editor-block">
+    <header class="list-header"><h3>{{localize "GENESYS.Biography"}}</h3></header>
+    {{formInput systemFields.biography name="system.biography" enriched=enriched.biography value=system.biography toggled=true}}
+  </section>
+
+  <section class="block editor-block">
+    <header class="list-header"><h3>{{localize "GENESYS.Notes"}}</h3></header>
+    {{formInput systemFields.notes name="system.notes" enriched=enriched.notes value=system.notes toggled=true}}
+  </section>
+</section>

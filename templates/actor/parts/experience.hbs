@@ -1,0 +1,38 @@
+<section class="tab experience {{tab.cssClass}}" data-tab="experience" data-group="primary">
+  <div class="xp-summary">
+    <div class="xp-box"><span class="label">{{localize "GENESYS.XP.Total"}}</span><span class="value">{{system.experience.total}}</span></div>
+    <div class="xp-box"><span class="label">{{localize "GENESYS.XP.Spent"}}</span><span class="value">{{system.experience.spent}}</span></div>
+    <div class="xp-box highlight"><span class="label">{{localize "GENESYS.XP.Available"}}</span><span class="value">{{system.experience.available}}</span></div>
+  </div>
+
+  <div class="xp-options">
+    <label class="checkbox">
+      <input type="checkbox" name="system.autoXP" {{checked system.autoXP}}>
+      {{localize "GENESYS.XP.Auto"}}
+    </label>
+    <p class="hint">{{localize "GENESYS.XP.AutoHint"}}</p>
+  </div>
+
+  {{#if editable}}
+  <div class="xp-buttons">
+    <button type="button" data-action="xpAdd" data-type="earn"><i class="fa-solid fa-plus"></i> {{localize "GENESYS.XP.Earn"}}</button>
+    <button type="button" data-action="xpAdd" data-type="spend"><i class="fa-solid fa-minus"></i> {{localize "GENESYS.XP.Spend"}}</button>
+  </div>
+  {{/if}}
+
+  <section class="block">
+    <header class="list-header"><h3>{{localize "GENESYS.XP.Log"}}</h3></header>
+    <ol class="table-list xp-log">
+      {{#each xpLog}}
+      <li class="table-row xp-cols {{#if isEarn}}earn{{else}}spend{{/if}}" data-entry-id="{{id}}">
+        <span class="amount">{{#if isEarn}}+{{else}}−{{/if}}{{amount}}</span>
+        <span class="label">{{label}}</span>
+        <span class="date">{{date}}</span>
+        <span class="item-controls">{{#if @root.editable}}<a data-action="xpDelete" data-tooltip="GENESYS.XP.DeleteHint"><i class="fa-solid fa-trash"></i></a>{{/if}}</span>
+      </li>
+      {{else}}
+      <li class="empty">{{localize "GENESYS.XP.Empty"}}</li>
+      {{/each}}
+    </ol>
+  </section>
+</section>
