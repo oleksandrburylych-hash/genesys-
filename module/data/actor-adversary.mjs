@@ -24,7 +24,15 @@ export default class AdversaryData extends foundry.abstract.TypeDataModel {
       description: new HTMLField(),
       notes: new HTMLField(),
       source: new foundry.data.fields.StringField({ required: true, blank: true, initial: "" }),
-      worlds: worldsField()
+      worlds: worldsField(),
+      /** Тип существа (module/creatures.mjs) и теги добычи — для генераторов встреч и добычи. */
+      creatureType: new foundry.data.fields.StringField({ required: true, blank: true, initial: "" }),
+      /** Мотивации (для социальных сцен: их можно раскрыть). */
+      motivations: new SchemaField(Object.fromEntries(["strength", "flaw", "desire", "fear"].map(k => [k, new SchemaField({
+        name: new foundry.data.fields.StringField({ required: true, blank: true, initial: "" }),
+        description: new foundry.data.fields.StringField({ required: true, blank: true, initial: "" })
+      })]))),
+      loot: new foundry.data.fields.ArrayField(new foundry.data.fields.StringField({ required: true, blank: false }), { required: true, initial: [] })
     };
   }
 

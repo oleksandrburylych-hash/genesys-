@@ -25,7 +25,28 @@
       </div>
     </div>
     <div class="gm-encounter">
+      <div class="gm-gen">
+        <div class="gm-gen-head"><i class="fa-solid fa-dice"></i> {{localize "GENESYS.GM.Generator"}}</div>
+        <div class="gm-seg">
+          <a class="{{#if gen.budgetMode}}active{{/if}}" data-action="genMode" data-mode="budget">{{localize "GENESYS.GM.ByDifficulty"}}</a>
+          <a class="{{#unless gen.budgetMode}}active{{/unless}}" data-action="genMode" data-mode="count">{{localize "GENESYS.GM.ByCount"}}</a>
+        </div>
+        {{#if gen.budgetMode}}
+        <div class="gm-diff">{{#each gen.difficulties}}<a class="gm-diff-btn d{{index}} {{#if active}}active{{/if}}" data-action="genDifficulty" data-index="{{index}}">{{localize label}}</a>{{/each}}</div>
+        <div class="gm-gen-row"><label>{{localize "GENESYS.GM.Party"}} <input type="number" name="gen.party" value="{{gen.partySize}}" min="1" max="12"></label>
+          <span class="hint">{{localize "GENESYS.GM.PartyPower"}} {{gen.partyPower}} · {{localize "GENESYS.GM.Budget"}} <b>{{gen.budget}}</b></span></div>
+        {{else}}
+        <div class="gm-gen-row"><label>{{localize "GENESYS.GM.HowMany"}} <input type="number" name="gen.count" value="{{gen.count}}" min="1" max="30"></label></div>
+        {{/if}}
+        <div class="gm-creatures">{{#each gen.creatures}}<a class="gm-creature {{#if on}}on{{/if}}" data-action="genCreature" data-key="{{key}}" data-tooltip="{{label}}"><img src="{{img}}" alt=""><span>{{label}}</span></a>{{/each}}</div>
+        <div class="gm-gen-row">{{#each gen.kinds}}<a class="wz-chip {{#if on}}active{{/if}}" data-action="genKind" data-key="{{key}}">{{localize label}}</a>{{/each}}
+          <button type="button" class="gm-primary gm-gen-go" data-action="generate"><i class="fa-solid fa-wand-sparkles"></i> {{localize "GENESYS.GM.Generate"}}</button></div>
+      </div>
       <div class="gs-ribbon"><span>{{localize "GENESYS.GM.Encounter"}}</span></div>
+      {{#if encounter.length}}
+      <div class="gm-threat {{#if gen.over}}over{{/if}}" data-tooltip="GENESYS.GM.ThreatHint"><div class="gm-threat-fill" style="width: {{gen.pct}}%"></div>
+        <span>{{localize "GENESYS.GM.Threat"}} {{gen.threat}}{{#if gen.budgetMode}} / {{gen.budget}}{{/if}}</span></div>
+      {{/if}}
       {{#each encounter}}
       <div class="gm-enc-row">
         <img src="{{img}}" alt="">
@@ -54,6 +75,51 @@
         <button type="button" data-action="social"><i class="fa-solid fa-comments"></i> {{localize "GENESYS.Social.Title"}}</button>
       </div>
     </div>
+  </div>
+  {{/if}}
+
+  {{#if (eq tab "loot")}}
+  <div class="gm-body">
+    <div class="gm-seg">{{#each loot.sources}}<a class="{{#if active}}active{{/if}}" data-action="lootSource" data-key="{{key}}">{{localize label}}</a>{{/each}}</div>
+    <p class="hint">{{localize (concat "GENESYS.Loot.SourceHint." loot.source)}} — {{loot.sourceCount}}</p>
+    <div class="gm-loot-levels">
+      {{#each loot.levels}}
+      <a class="gm-loot-level l{{level}} {{#if active}}active{{/if}}" data-action="lootLevel" data-level="{{level}}">
+        <img src="{{img}}" alt=""><b>{{localize label}}</b><small>{{localize hint}}</small>
+      </a>
+      {{/each}}
+    </div>
+    <div class="gm-actions"><button type="button" class="gm-primary" data-action="lootGenerate"><i class="fa-solid fa-dice"></i> {{#if loot.result}}{{localize "GENESYS.Loot.Reroll"}}{{else}}{{localize "GENESYS.Loot.Generate"}}{{/if}}</button></div>
+    {{#if loot.result}}
+    <div class="gm-loot-result">
+      <div class="gm-loot-coins"><i class="fa-solid fa-coins"></i> <b>{{loot.result.coins}}</b> {{localize "GENESYS.Loot.Coins"}}</div>
+      {{#each loot.result.items}}
+      <div class="gm-enc-row"><img src="{{img}}" alt=""><div class="gm-row-text"><span class="gm-row-name">{{name}}{{#if (gt qty 1)}} ×{{qty}}{{/if}}</span>
+        <span class="gm-row-sub">{{#if origin}}{{origin}} · {{/if}}{{total}}</span></div>
+        <a data-action="lootRemove" data-index="{{index}}"><i class="fa-solid fa-xmark"></i></a></div>
+      {{else}}<p class="gs-empty">{{localize "GENESYS.Loot.NoItems"}}</p>{{/each}}
+      <p class="hint">{{localize "GENESYS.Loot.Value"}}: {{loot.result.value}}</p>
+      <div class="gm-actions"><button type="button" class="gm-primary" data-action="lootToChat"><i class="fa-solid fa-comment-dollar"></i> {{localize "GENESYS.Loot.ToChat"}}</button></div>
+    </div>
+    {{/if}}
+    <p class="hint">{{localize "GENESYS.Loot.Hint"}}</p>
+  </div>
+  {{/if}}
+
+  {{#if (eq tab "npc")}}
+  <div class="gm-body gm-npc">
+    <div class="gm-npc-form">
+      <label>{{localize "GENESYS.Wizard.Adventure"}}<select name="npc.adventure">{{#each npc.adventures}}<option value="{{key}}" {{#if selected}}selected{{/if}}>{{label}}</option>{{/each}}</select></label>
+      <label>{{localize "GENESYS.NPC.Role"}}<select name="npc.role">{{#each npc.roles}}<option value="{{key}}" {{#if selected}}selected{{/if}}>{{label}}</option>{{/each}}</select></label>
+      <label>{{localize "GENESYS.AdversaryType.label"}}<select name="npc.kind">{{#each npc.kinds}}<option value="{{key}}" {{#if selected}}selected{{/if}}>{{localize label}}</option>{{/each}}</select></label>
+      <label>{{localize "GENESYS.NPC.PowerLabel"}}<select name="npc.power">
+        <option value="1" {{#if (eq npc.power 1)}}selected{{/if}}>{{localize "GENESYS.NPC.Power.1"}}</option>
+        <option value="2" {{#if (eq npc.power 2)}}selected{{/if}}>{{localize "GENESYS.NPC.Power.2"}}</option>
+        <option value="3" {{#if (eq npc.power 3)}}selected{{/if}}>{{localize "GENESYS.NPC.Power.3"}}</option></select></label>
+    </div>
+    <div class="gm-actions"><button type="button" class="gm-primary" data-action="npcGenerate"><i class="fa-solid fa-user-plus"></i> {{localize "GENESYS.NPC.Generate"}}</button></div>
+    {{#if npc.last}}<div class="gm-enc-row"><img src="{{npc.last.img}}" alt=""><div class="gm-row-text"><a class="gm-row-name" data-action="open" data-uuid="{{npc.last.uuid}}">{{npc.last.name}}</a><span class="gm-row-sub">{{localize "GENESYS.NPC.Created"}}</span></div></div>{{/if}}
+    <p class="hint">{{localize "GENESYS.NPC.Hint"}}</p>
   </div>
   {{/if}}
 

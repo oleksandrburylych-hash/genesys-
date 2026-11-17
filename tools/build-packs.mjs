@@ -14,6 +14,7 @@ import { compilePack } from "@foundryvtt/foundryvtt-cli";
 import { pickIcon, DEFAULTS } from "./icon-rules.mjs";
 import { tilePath, TILE_DIR } from "./icon-tiles.mjs";
 import { worldsFor } from "./world-rules.mjs";
+import { creatureTypeFor, lootTagsFor } from "../module/creatures.mjs";
 import { ADVENTURES, WORLD_KEYS } from "../module/worlds.mjs";
 
 /** Картинка документа: явно заданная или плашка game-icons по названию. */
@@ -201,6 +202,10 @@ function buildPack(pack) {
       sort: count * 100,
       ownership: { default: 0 }
     };
+    if (doc.type === "adversary") {
+      out.system.creatureType ||= creatureTypeFor(doc);
+      if (!out.system.loot?.length) out.system.loot = lootTagsFor({ ...doc, system: out.system }, out.system.creatureType);
+    }
     if (isActor) {
       out.items = (doc.items ?? []).map((it, i) => embeddedItem(id, it, i));
       out.prototypeToken = {
@@ -238,6 +243,13 @@ async function main() {
   // Плашки типов приключений (мастера настройки мира и создания персонажа).
   for (const a of Object.values(ADVENTURES)) tilePath("adventure", a.icon);
   tilePath("adventure", "scroll-unfurled");
+  // Плашки генераторов: типы существ, щедрость добычи, роли NPC, ценности и трофеи.
+  const { CREATURE_TYPES, LOOT_TAGS } = await import("../module/creatures.mjs");
+  for (const c of Object.values(CREATURE_TYPES)) tilePath("creature", c.icon);
+  for (const c of Object.values(LOOT_TAGS)) tilePath("loot", c.icon);
+  for (const i of ["cobweb", "coins", "two-coins", "open-treasure-chest", "crown-coin"]) tilePath("loot", i);
+  for (const i of ["gems", "fangs"]) tilePath("gear", i);
+  for (const i of ["swordman", "bowman", "rally-the-troops", "shaking-hands", "hood", "book-pile", "wizard-face"]) tilePath("adversary", i);
   // Плашки состояний (значки на токенах и в справке).
   const { GENESYS } = await import("../module/config.mjs");
   for (const st of GENESYS.statusEffects) {

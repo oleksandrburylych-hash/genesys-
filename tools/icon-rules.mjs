@@ -15,6 +15,8 @@ export const PALETTES = {
   archetype: ["#2c4c7c", "#9c2a30"],
   adventure: ["#8e2229", "#1f3557"],
   status: ["#a83a2a", "#3a1416"],
+  creature: ["#4b2f5f", "#1d1226"],
+  loot: ["#b07a1e", "#4a2a08"],
   career: ["#9c2a30", "#2c4c7c"],
   quality: ["#b07a2a", "#5e3d0e"],
   attachment: ["#7a6a55", "#3b3227"],

@@ -663,3 +663,53 @@
 .genesys .social-buttons { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
 .genesys .social-buttons button { width: auto; flex: 0 0 auto; padding: 0 8px; }
 .genesys.social-encounter .window-content { padding: 0; }
+.genesys .gs-creature { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 4px; }
+.genesys .gs-creature select { width: auto; }
+
+/* Генератор встреч, добыча, NPC */
+.genesys .gm-gen { background: #fff; border: 1px solid #c9b48a; border-radius: 8px; padding: 8px; margin-bottom: 8px; }
+.genesys .gm-gen-head { font-family: var(--gs-head); text-transform: uppercase; color: var(--gs-navy); margin-bottom: 6px; }
+.genesys .gm-seg { display: inline-flex; border: 1px solid var(--gs-navy); border-radius: 6px; overflow: hidden; margin-bottom: 6px; }
+.genesys .gm-seg a { padding: 3px 10px; font-family: var(--gs-head); text-transform: uppercase; font-size: 12px; color: var(--gs-navy); }
+.genesys .gm-seg a.active { background: var(--gs-navy); color: #fff; }
+.genesys .gm-diff { display: grid; grid-template-columns: repeat(5, 1fr); gap: 3px; margin-bottom: 6px; }
+.genesys .gm-diff-btn { text-align: center; padding: 4px 2px; border-radius: 5px; font-size: 11px; font-family: var(--gs-head); text-transform: uppercase; color: #fff; opacity: .55; }
+.genesys .gm-diff-btn.active { opacity: 1; box-shadow: 0 0 0 2px var(--gs-gold); }
+.genesys .gm-diff-btn.d0 { background: #3d7a3a; } .genesys .gm-diff-btn.d1 { background: #2f5f8a; } .genesys .gm-diff-btn.d2 { background: #a8742a; }
+.genesys .gm-diff-btn.d3 { background: #8e2229; } .genesys .gm-diff-btn.d4 { background: #2b1020; }
+.genesys .gm-gen-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 4px 0; }
+.genesys .gm-gen-row label { display: flex; align-items: center; gap: 6px; }
+.genesys .gm-gen-row input[type="number"] { width: 56px; }
+.genesys .gm-gen-go { margin-left: auto; }
+.genesys .gm-creatures { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; margin: 4px 0; }
+.genesys .gm-creature { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 3px 1px; border-radius: 6px; border: 1px solid transparent; opacity: .6; text-align: center; }
+.genesys .gm-creature img { width: 34px; height: 34px; border: none; }
+.genesys .gm-creature span { font-size: 9px; line-height: 1.05; color: var(--gs-navy); }
+.genesys .gm-creature.on { opacity: 1; border-color: var(--gs-maroon); background: #fff8ea; }
+.genesys .gm-threat { position: relative; height: 18px; background: #e6dcc6; border-radius: 9px; overflow: hidden; margin: 4px 0 8px; }
+.genesys .gm-threat-fill { height: 100%; background: linear-gradient(90deg, #3d7a3a, #a8742a); }
+.genesys .gm-threat.over .gm-threat-fill { background: linear-gradient(90deg, #a8742a, #8e2229); }
+.genesys .gm-threat span { position: absolute; inset: 0; text-align: center; font: 11px/18px var(--gs-head); text-transform: uppercase; color: #1f1a14; }
+.genesys .gm-loot-levels { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin: 8px 0; }
+.genesys .gm-loot-level { display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 8px 4px; border-radius: 10px; background: #fff; border: 1px solid #c9b48a; text-align: center; }
+.genesys .gm-loot-level img { width: 48px; height: 48px; border: none; }
+.genesys .gm-loot-level b { font-family: var(--gs-head); text-transform: uppercase; color: var(--gs-navy); font-weight: 500; }
+.genesys .gm-loot-level small { color: var(--gs-muted); font-size: 10.5px; line-height: 1.15; }
+.genesys .gm-loot-level.active { border-color: var(--gs-maroon); box-shadow: 0 0 0 2px var(--gs-gold); background: #fff8ea; }
+.genesys .gm-loot-coins { font-size: 16px; margin: 6px 0; color: #7a5410; }
+.genesys .gm-loot-coins b { font-family: var(--gs-head); font-size: 22px; }
+.genesys .gm-npc-form { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.genesys .gm-npc-form label { display: flex; flex-direction: column; gap: 2px; }
+.genesys .gm-tab { padding: 6px 12px; }
+/* Карточка добычи в чате */
+.genesys.loot-card h4 { margin: 0 0 4px; }
+.genesys .loot-coins { display: flex; align-items: center; gap: 6px; color: #7a5410; }
+.genesys .loot-coins button { margin-left: auto; width: auto; padding: 0 8px; }
+.genesys .loot-list { list-style: none; margin: 4px 0 0; padding: 0; }
+.genesys .loot-list li { display: flex; align-items: center; gap: 6px; padding: 2px 0; border-bottom: 1px solid rgba(0,0,0,.08); }
+.genesys .loot-list li img { width: 26px; height: 26px; border: none; }
+.genesys .loot-name { flex: 1; }
+.genesys .loot-price { color: #7a5410; font-size: 11px; }
+.genesys .loot-list button { width: auto; flex: 0 0 auto; padding: 0 8px; height: 22px; line-height: 20px; }
+.genesys .loot-list li.taken { opacity: .55; }
+.genesys .loot-taken { font-size: 11px; font-style: italic; color: var(--gs-muted, #6b6258); }

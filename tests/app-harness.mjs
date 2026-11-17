@@ -51,11 +51,13 @@ const settings = { "genesys-rpg.adventures": [], "genesys-rpg.skillPreset": "all
 // Compendia from packs-src (теги миров — как при сборке)
 const { worldsFor } = await import(`${R}/tools/world-rules.mjs`);
 const { pickIcon } = await import(`${R}/tools/icon-rules.mjs`);
+const { creatureTypeFor, lootTagsFor } = await import(`${R}/module/creatures.mjs`);
 const imgOf = d => { try { return `systems/genesys-rpg/assets/icons/gi/${d.type}/${pickIcon(d)}.svg`; } catch { return "x"; } };
 let docSeq = 0;
 const mkDoc = (d, packName) => {
   d.type ??= packName === "vehicles" ? "vehicle" : "adversary";
   d.system = { ...(d.system ?? {}), worlds: worldsFor(d, packName) };
+  if (d.type === "adversary") { d.system.creatureType ||= creatureTypeFor(d); if (!d.system.loot?.length) d.system.loot = lootTagsFor(d, d.system.creatureType); }
   const uuid = `Compendium.genesys-rpg.${packName}.${d.name}#${++docSeq}`;
   return { ...d, _id: uuid, id: uuid, uuid, folder: d.folder ? { name: d.folder } : null, img: imgOf(d), system: d.system, toObject() { return structuredClone(d); } };
 };
@@ -146,6 +148,7 @@ const actor = {
   async update(u) { updates.push(u); },
   sheet: { render() {} }
 };
+globalThis.fromUuid = async uuid => { for (const p of packs.values()) { const d = (await p.getDocuments()).find(x => x.uuid === uuid); if (d) return d; } return null; };
 globalThis.foundry.utils.randomID = () => Math.random().toString(36).slice(2);
 const A = CreationWizard.DEFAULT_OPTIONS.actions;
 // Ведущий выбрал «Фэнтези»: игрок сразу выбирает расу, шага выбора приключения нет, дублей нет.
@@ -287,6 +290,47 @@ await gm.render();
 assert.equal(gm.encounter.length, 2, "minion groups stacked");
 assert.equal(gm.encounter[0].groups, 2, "two zombie groups");
 if (process.env.DUMP) fs.writeFileSync(path.join(process.env.DUMP, "gm.html"), gm.html);
+// Генератор встреч: по сложности и по количеству.
+const GA = GMScreen.DEFAULT_OPTIONS.actions;
+GA.genDifficulty.call(gm, null, { dataset: { index: "2" } });
+await gm.render();
+await GA.generate.call(gm);
+await gm.render();
+assert.ok(gm.encounter.length > 0, "encounter generated");
+const { encounterThreat } = await import(`${R}/module/encounters.mjs`);
+const th = encounterThreat(gm.encounter);
+assert.ok(th > 0 && th <= gm.budget * 1.3, `threat ${th} within budget ${gm.budget}`);
+GA.genMode.call(gm, null, { dataset: { mode: "count" } });
+gm.gen.count = 6; await GA.generate.call(gm);
+const individuals = gm.encounter.reduce((s, e) => s + e.count * (e.minion ? e.groups : 1), 0);
+assert.equal(individuals, 6, `exact count: ${individuals}`);
+GA.genCreature.call(gm, null, { dataset: { key: "undead" } }); await GA.generate.call(gm);
+assert.ok(gm.encounter.every(e => /мертвец|бегун|раздут|громила|зомби/i.test(e.name)), `only undead: ${gm.encounter.map(e => e.name)}`);
+GA.genCreature.call(gm, null, { dataset: { key: "undead" } });
+GA.genMode.call(gm, null, { dataset: { mode: "budget" } }); await gm.render(); await GA.generate.call(gm);
+await gm.render();
+if (process.env.DUMP) fs.writeFileSync(path.join(process.env.DUMP, "gm.html"), gm.html);
+// Добыча: 5 уровней щедрости.
+await new Promise(r => setTimeout(r, 50)); gm.tab = "loot";
+GA.lootLevel.call(gm, null, { dataset: { level: "5" } });
+await GA.lootGenerate.call(gm); await gm.render();
+assert.ok(gm.loot.result && (gm.loot.result.coins > 0 || gm.loot.result.items.length > 0), "rich loot generated");
+if (process.env.DUMP) fs.writeFileSync(path.join(process.env.DUMP, "gm-loot.html"), gm.html);
+GA.lootLevel.call(gm, null, { dataset: { level: "1" } });
+await GA.lootGenerate.call(gm);
+assert.ok(gm.loot.result.coins < 200, "poor loot is poor");
+// NPC
+await new Promise(r => setTimeout(r, 50)); gm.tab = "npc"; await gm.render();
+assert.ok(gm.html.includes('name="npc.role"'), "npc form");
+const { generateNPC } = await import(`${R}/module/npc.mjs`);
+let npcData = null;
+globalThis.Actor.implementation.create = async d => { npcData = d; return { ...d, uuid: "Actor.npc", sheet: { render() {} } }; };
+await generateNPC({ role: "shooter", kind: "nemesis", power: 3, adventure: "modern" });
+assert.equal(npcData.system.adversaryType, "nemesis");
+assert.ok(npcData.items.some(i => i.type === "skill" && /ranged/.test(i.system.key)), "shooter has ranged skill");
+assert.ok(npcData.items.some(i => i.name === "Противник" && i.system.rank === 3), "nemesis Adversary 3");
+assert.ok(npcData.system.strain.max > 0 && npcData.system.wounds.max > 15, "nemesis thresholds");
+if (process.env.DUMP) fs.writeFileSync(path.join(process.env.DUMP, "gm-npc.html"), gm.html);
 G.tab.call(gm, null, { dataset: { tab: "xp" } }); await gm.render();
 assert.ok(gm.html.includes("Герой"), "characters listed for XP");
 await G.award.call(gm, null, { dataset: { amount: "15" } });
