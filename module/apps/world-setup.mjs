@@ -19,7 +19,7 @@ export class WorldSetup extends HandlebarsApplicationMixin(ApplicationV2) {
     super(options);
     let preset = "all";
     try { preset = game.settings.get(SYSTEM_ID, "skillPreset"); } catch { /* ещё нет */ }
-    this.state = {
+    this.setup = {
       setting: preset,
       sources: Object.fromEntries(Object.keys(GENESYS.sources).map(k => [k, true])),
       packs: Object.fromEntries(IMPORTABLE.map(([k, on]) => [k, on])),
@@ -52,7 +52,7 @@ export class WorldSetup extends HandlebarsApplicationMixin(ApplicationV2) {
   }
 
   async #buildContext() {
-    const s = this.state;
+    const s = this.setup;
     return {
       settings: Object.entries(GENESYS.skillPresets).filter(([k]) => k !== "none")
         .map(([key, label]) => ({ key, label, selected: key === s.setting })),
@@ -69,7 +69,7 @@ export class WorldSetup extends HandlebarsApplicationMixin(ApplicationV2) {
 
   static #onChange(event, form, formData) {
     const d = foundry.utils.expandObject(formData.object);
-    const s = this.state;
+    const s = this.setup;
     if (d.setting) s.setting = d.setting;
     for (const k of Object.keys(s.sources)) s.sources[k] = !!d.sources?.[k];
     for (const k of Object.keys(s.packs)) s.packs[k] = !!d.packs?.[k];
@@ -88,7 +88,7 @@ export class WorldSetup extends HandlebarsApplicationMixin(ApplicationV2) {
 
   /** Подходит ли документ выбранным книгам и миру. */
   #accept(doc) {
-    const s = this.state;
+    const s = this.setup;
     const source = doc.system?.source ?? "";
     const book = Object.entries(GENESYS.sources).find(([, cfg]) => source.startsWith(cfg.match))?.[0];
     if (book && !s.sources[book]) return false;
@@ -105,7 +105,7 @@ export class WorldSetup extends HandlebarsApplicationMixin(ApplicationV2) {
     if (this.running) return;
     this.running = true;
     this.log = [];
-    const s = this.state;
+    const s = this.setup;
     try {
       await game.settings.set(SYSTEM_ID, "skillPreset", s.setting);
       this.#step(game.i18n.format("GENESYS.Setup.Log.Setting", { name: game.i18n.localize(GENESYS.skillPresets[s.setting]) }));
@@ -150,7 +150,7 @@ export class WorldSetup extends HandlebarsApplicationMixin(ApplicationV2) {
     const collection = type === "Actor" ? game.actors : game.items;
     const rootName = `Genesys: ${pack.metadata.label}`;
     const oldRoot = game.folders.find(f => f.type === type && f.name === rootName && !f.folder);
-    if (oldRoot && this.state.replace) await oldRoot.delete({ deleteSubfolders: true, deleteContents: true });
+    if (oldRoot && this.setup.replace) await oldRoot.delete({ deleteSubfolders: true, deleteContents: true });
     else if (oldRoot) return 0;
 
     const docs = (await pack.getDocuments()).filter(d => this.#accept(d));

@@ -18,17 +18,22 @@ H.registerHelper("lt", (a, b) => a < b);
 H.registerHelper("selectOptions", (choices, opts) => new H.SafeString(Object.entries(choices).map(([k, v]) => `<option value="${k}">${loc(v)}</option>`).join("")));
 const notes = [];
 class ApplicationV2 {
-  constructor(options = {}) { this.options = options; this.rendered = 0; }
+  constructor(options = {}) { this.options = options; this._renders = 0; }
   async render() {
     const ctx = await this._prepareContext({});
     const part = Object.values(this.constructor.PARTS)[0].template.replace("systems/genesys-rpg/", "");
     const src = fs.readFileSync(path.join(R, part), "utf8");
     this.html = H.compile(src, { strict: false })(ctx);
-    this.rendered++;
+    this._renders++;
     return this;
   }
   close() { this.closed = true; }
 }
+// Встроенные свойства окна Foundry — только для чтения (как в настоящем ApplicationV2).
+for (const name of ["children", "classList", "document", "element", "form", "hasFrame", "id", "isEditable", "isVisible", "minimized", "parent", "parts", "rendered", "state", "title", "window"]) {
+  if (!Object.getOwnPropertyDescriptor(ApplicationV2.prototype, name)) Object.defineProperty(ApplicationV2.prototype, name, { get() { return this[`_${name}`]; }, configurable: true });
+}
+
 const HandlebarsApplicationMixin = B => B;
 globalThis.foundry = {
   dice: { terms: { DiceTerm: class {} } },

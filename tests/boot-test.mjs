@@ -6,7 +6,12 @@ import assert from "node:assert/strict";
 const R = decodeURIComponent(new URL("..", import.meta.url).pathname).replace(/\/$/, "");
 const hooks = {}; const once = {};
 globalThis.Hooks = { on: (n, f) => (hooks[n] ??= []).push(f), once: (n, f) => (once[n] ??= []).push(f), callAll() {} };
-class Base { constructor(o = {}) { this.options = o; } async render() { this.rendered = true; return this; } static registerSheet() {} }
+class Base { constructor(o = {}) { this.options = o; } async render() { this._rendered = true; return this; } static registerSheet() {} }
+// Встроенные свойства окна Foundry — только для чтения (как в настоящем ApplicationV2).
+for (const name of ["children", "classList", "document", "element", "form", "hasFrame", "id", "isEditable", "isVisible", "minimized", "parent", "parts", "rendered", "state", "title", "window"]) {
+  if (!Object.getOwnPropertyDescriptor(Base.prototype, name)) Object.defineProperty(Base.prototype, name, { get() { return this[`_${name}`]; }, configurable: true });
+}
+
 const api = { ApplicationV2: Base, HandlebarsApplicationMixin: B => B, DialogV2: Base };
 const registered = {}; const menus = {};
 const settings = {
@@ -43,6 +48,9 @@ for (const f of once.init ?? []) await f();
 for (const f of once.setup ?? []) await f();
 // Мастер настройки должен открыться в ready
 const { WorldSetup } = await import(`${R}/module/apps/world-setup.mjs`);
+new WorldSetup(); // реальный конструктор: не должен трогать встроенные свойства окна
+const { CreationWizard } = await import(`${R}/module/apps/creation-wizard.mjs`);
+new CreationWizard({ actor: {} });
 const origRender = WorldSetup.prototype.render;
 WorldSetup.prototype.render = async function () { opened.push("WorldSetup"); return this; };
 for (const f of once.ready ?? []) await f();
