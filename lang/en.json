@@ -326,6 +326,11 @@
       "StartingXP": "Starting XP: {name}",
       "Talent": "Talent {name} (rank {rank}, tier {tier})",
       "Total": "Total earned"
+    },
+    "Spell": {
+      "Skills": "Magic skills",
+      "Concentration": "Concentration",
+      "Spells": "Spells"
     }
   },
   "TYPES": {
@@ -343,7 +348,8 @@
       "armor": "Armor",
       "gear": "Gear",
       "quality": "Quality",
-      "injury": "Critical injury"
+      "injury": "Critical injury",
+      "spell": "Spell"
     }
   }
 }

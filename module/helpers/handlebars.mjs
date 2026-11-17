@@ -34,7 +34,7 @@ export function preloadTemplates() {
     "item/header.hbs",
     "item/description.hbs",
     "item/qualities.hbs",
-    ...["skill", "talent", "ability", "archetype", "career", "weapon", "armor", "gear", "quality", "injury"]
+    ...["skill", "talent", "ability", "archetype", "career", "weapon", "armor", "gear", "quality", "injury", "spell"]
       .map(t => `item/details-${t}.hbs`),
     "chat/roll.hbs",
     "dialog/dice-pool.hbs",

@@ -162,7 +162,21 @@ export class InjuryData extends BaseItemData {
   }
 }
 
+/** Магическое действие (заклинание): навыки, сложность, концентрация, доп. эффекты в описании. */
+export class SpellData extends BaseItemData {
+  static defineSchema() {
+    return {
+      ...super.defineSchema(),
+      /** Какими магическими навыками можно творить (через запятую). */
+      skills: new StringField({ required: true, blank: true, initial: "" }),
+      difficulty: intField(1, { max: 5 }),
+      concentration: new BooleanField({ initial: false })
+    };
+  }
+}
+
 export const ITEM_MODELS = {
+  spell: SpellData,
   skill: SkillData,
   talent: TalentData,
   ability: AbilityData,

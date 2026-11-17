@@ -27,7 +27,7 @@ export class GenesysItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
   };
 
   /** Список типов, у которых есть свой шаблон. */
-  static DETAIL_TYPES = ["skill", "talent", "ability", "archetype", "career", "weapon", "armor", "gear", "quality", "injury"];
+  static DETAIL_TYPES = ["skill", "talent", "ability", "archetype", "career", "weapon", "armor", "gear", "quality", "injury", "spell"];
 
   /** @override */
   _configureRenderParts(options) {

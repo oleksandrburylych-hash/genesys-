@@ -2,36 +2,105 @@
   "id": "genesys-rpg",
   "title": "Genesys RPG",
   "description": "Система Genesys (Narrative Dice System) для Foundry VTT v14: нарративные кубики, автоматический расчёт персонажа, трата опыта, таланты-пирамида, снаряжение, противники и очки истории.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "compatibility": {
     "minimum": "14",
     "verified": "14.370"
   },
   "authors": [
-    { "name": "oleksandrburylych-hash" }
+    {
+      "name": "oleksandrburylych-hash"
+    }
   ],
-  "esmodules": ["genesys.mjs"],
-  "styles": ["styles/genesys.css"],
+  "esmodules": [
+    "genesys.mjs"
+  ],
+  "styles": [
+    "styles/genesys.css"
+  ],
   "languages": [
-    { "lang": "ru", "name": "Русский", "path": "lang/ru.json" },
-    { "lang": "en", "name": "English", "path": "lang/en.json" }
+    {
+      "lang": "ru",
+      "name": "Русский",
+      "path": "lang/ru.json"
+    },
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
   ],
   "documentTypes": {
     "Actor": {
-      "character": { "htmlFields": ["biography", "notes"] },
-      "adversary": { "htmlFields": ["description", "notes"] }
+      "character": {
+        "htmlFields": [
+          "biography",
+          "notes"
+        ]
+      },
+      "adversary": {
+        "htmlFields": [
+          "description",
+          "notes"
+        ]
+      }
     },
     "Item": {
-      "skill": { "htmlFields": ["description"] },
-      "talent": { "htmlFields": ["description"] },
-      "ability": { "htmlFields": ["description"] },
-      "archetype": { "htmlFields": ["description"] },
-      "career": { "htmlFields": ["description"] },
-      "weapon": { "htmlFields": ["description"] },
-      "armor": { "htmlFields": ["description"] },
-      "gear": { "htmlFields": ["description"] },
-      "quality": { "htmlFields": ["description"] },
-      "injury": { "htmlFields": ["description"] }
+      "skill": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "talent": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "ability": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "archetype": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "career": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "weapon": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "armor": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "gear": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "quality": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "injury": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "spell": {
+        "htmlFields": [
+          "description"
+        ]
+      }
     }
   },
   "packs": [],

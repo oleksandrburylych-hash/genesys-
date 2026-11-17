@@ -1,0 +1,8 @@
+<section class="item-details grid-2">
+  <div class="form-group"><label>{{localize "GENESYS.Spell.Skills"}}</label>
+    <input type="text" name="system.skills" value="{{system.skills}}"></div>
+  <div class="form-group"><label>{{localize "GENESYS.Difficulty.label"}}</label>
+    <input type="number" name="system.difficulty" value="{{system.difficulty}}" min="0" max="5" data-dtype="Number"></div>
+  <div class="form-group"><label>{{localize "GENESYS.Spell.Concentration"}}</label>
+    <input type="checkbox" name="system.concentration" {{checked system.concentration}}></div>
+</section>
