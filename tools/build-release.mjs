@@ -20,20 +20,28 @@ const manifestPath = path.join(ROOT, "system.json");
 const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
 const tag = process.env.TAG || `v${manifest.version}`;
 
-// Ссылки: манифест — всегда «последний релиз», архив — конкретная версия.
+// Ссылки: манифест — всегда «последний релиз».
+// В репозитории архив тоже «последний» (по этой копии обновляются старые установки),
+// в релизе и внутри архива — конкретная версия.
 manifest.url = `https://github.com/${REPO}`;
 manifest.manifest = `https://github.com/${REPO}/releases/latest/download/system.json`;
-manifest.download = `https://github.com/${REPO}/releases/download/${tag}/genesys-rpg.zip`;
+manifest.download = `https://github.com/${REPO}/releases/latest/download/genesys-rpg.zip`;
 fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + "\n");
 
+const release = { ...manifest, download: `https://github.com/${REPO}/releases/download/${tag}/genesys-rpg.zip` };
 const dist = path.join(ROOT, "dist");
 fs.mkdirSync(dist, { recursive: true });
-fs.copyFileSync(manifestPath, path.join(dist, "system.json"));
+fs.writeFileSync(path.join(dist, "system.json"), JSON.stringify(release, null, 2) + "\n");
 
 const INCLUDE = ["system.json", "genesys.mjs", "README.md", "module", "templates", "styles", "lang", "assets", "packs"];
 const zipPath = path.join(dist, "genesys-rpg.zip");
 fs.rmSync(zipPath, { force: true });
-execFileSync("zip", ["-r", "-q", "-X", zipPath, ...INCLUDE, "-x", "packs/*/LOCK", "packs/*/LOG", "packs/*/LOG.old"], { cwd: ROOT });
+fs.writeFileSync(manifestPath, JSON.stringify(release, null, 2) + "\n");
+try {
+  execFileSync("zip", ["-r", "-q", "-X", zipPath, ...INCLUDE, "-x", "packs/*/LOCK", "packs/*/LOG", "packs/*/LOG.old"], { cwd: ROOT });
+} finally {
+  fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + "\n");
+}
 
 const size = (fs.statSync(zipPath).size / 1024 / 1024).toFixed(2);
 console.log(`✓ ${path.relative(ROOT, zipPath)} (${size} МБ), версия ${manifest.version}, тег ${tag}`);

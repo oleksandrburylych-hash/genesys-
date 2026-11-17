@@ -324,7 +324,7 @@
   "secondaryTokenAttribute": "strain",
   "url": "https://github.com/oleksandrburylych-hash/genesys-",
   "manifest": "https://github.com/oleksandrburylych-hash/genesys-/releases/latest/download/system.json",
-  "download": "https://github.com/oleksandrburylych-hash/genesys-/releases/download/v0.5.0/genesys-rpg.zip",
+  "download": "https://github.com/oleksandrburylych-hash/genesys-/releases/latest/download/genesys-rpg.zip",
   "packFolders": [
     {
       "name": "Genesys",
