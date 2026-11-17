@@ -148,22 +148,18 @@ const actor = {
 };
 globalThis.foundry.utils.randomID = () => Math.random().toString(36).slice(2);
 const A = CreationWizard.DEFAULT_OPTIONS.actions;
-// Без ограничений ведущего: первый шаг — выбор приключения, в «Фэнтези» нет дублей.
-settings["genesys-rpg.adventures"] = [];
+// Ведущий выбрал «Фэнтези»: игрок сразу выбирает расу, шага выбора приключения нет, дублей нет.
+settings["genesys-rpg.adventures"] = ["fantasy"];
 // В мире уже лежат импортированные копии карьер (как после мастера настройки) — они не должны дублироваться.
 const careerDocs = await packs.get("genesys-rpg.careers").getDocuments();
 const worldCopies = careerDocs.map(d => ({ ...d, uuid: `Item.${d.name}`, _stats: { compendiumSource: d.uuid } }));
 game.items.filter = fn => worldCopies.filter(fn);
 const free = new CreationWizard({ actor });
 await free.render();
-if (process.env.DUMP) fs.writeFileSync(path.join(process.env.DUMP, "wz-adventure.html"), free.html);
-const advCards = [...free.html.matchAll(/data-kind="adventure" data-uuid="([^"]+)"/g)].map(m => m[1]);
-assert.ok(advCards.length >= 12, `adventure cards: ${advCards.length}`);
-A.pick.call(free, null, { dataset: { kind: "adventure", uuid: "fantasy" } });
-A.next.call(free); await free.render();
+assert.ok(!free.html.includes('data-kind="adventure"'), "no adventure step for players");
+assert.ok(free.html.includes('data-kind="archetype"'), "wizard starts with race");
 const fantasyRaces = [...free.html.matchAll(/wz-card-name">([^<]+)/g)].map(m => m[1]);
 assert.ok(fantasyRaces.includes("Эльф") && !fantasyRaces.includes("Высокородный эльф") && !fantasyRaces.includes("Робот"), `fantasy races: ${fantasyRaces}`);
-A.next.call(free);
 A.pick.call(free, null, { dataset: { kind: "archetype", uuid: [...free.html.matchAll(/data-kind="archetype" data-uuid="([^"]+)"/g)][0][1] } });
 A.next.call(free); await free.render();
 const fantasyCareers = [...free.html.matchAll(/wz-card-name">([^<]+)/g)].map(m => m[1]);
@@ -175,6 +171,22 @@ assert.ok(fantasyCareers.includes("Волшебник") && !fantasyCareers.inclu
 A.pick.call(free, null, { dataset: { kind: "career", uuid: [...free.html.matchAll(/data-kind="career" data-uuid="([^"]+)"/g)].find(m => m[1].includes("Артист"))[1] } });
 await free.render();
 assert.ok(free.html.includes("Ближний бой (лёгкое оружие)"), "career skill substituted for fantasy");
+
+// Ведущий выбрал два приключения: расы обоих, карьеры — по миру выбранной расы.
+settings["genesys-rpg.adventures"] = ["terrinoth", "spaceopera"];
+const multi = new CreationWizard({ actor });
+await multi.render();
+const multiRaces = [...multi.html.matchAll(/data-kind="archetype" data-uuid="([^"]+)"/g)].map(m => m[1]);
+assert.equal(multiRaces.length, 24, `races of both adventures: ${multiRaces.length}`);
+A.pick.call(multi, null, { dataset: { kind: "archetype", uuid: multiRaces.find(u => u.includes("Робот")) } });
+A.next.call(multi); await multi.render();
+const robotCareers = [...multi.html.matchAll(/wz-card-name">([^<]+)/g)].map(m => m[1]);
+assert.ok(robotCareers.includes("Капитан звездолёта") && !robotCareers.includes("Маг"), `robot careers: ${robotCareers}`);
+A.back.call(multi); await multi.render();
+A.pick.call(multi, null, { dataset: { kind: "archetype", uuid: multiRaces.find(u => u.includes("Кошколюд")) } });
+A.next.call(multi); await multi.render();
+const catCareers = [...multi.html.matchAll(/wz-card-name">([^<]+)/g)].map(m => m[1]);
+assert.ok(catCareers.includes("Маг") && !catCareers.includes("Капитан звездолёта"), `catfolk careers: ${catCareers}`);
 
 // Ведущий выбрал Терринот: мастер сразу начинает с расы и показывает только Терринот.
 settings["genesys-rpg.adventures"] = ["terrinoth"];

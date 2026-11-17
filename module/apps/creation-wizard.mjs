@@ -1,10 +1,10 @@
 import { GENESYS, SYSTEM_ID, TEMPLATES } from "../config.mjs";
-import { getAdventure, filterForAdventure } from "../worlds.mjs";
-import { availableAdventures, enabledAdventureKeys, adventureImg, adventureSkillKeys } from "../helpers/adventure.mjs";
+import { getAdventure, filterForAdventure, fitsAdventure, worldsOf } from "../worlds.mjs";
+import { enabledAdventureKeys, adventureImg, adventureSkillKeys } from "../helpers/adventure.mjs";
 
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
-const STEPS = ["adventure", "archetype", "career", "skills", "xp", "talents", "motivations", "heroic", "details", "summary"];
+const STEPS = ["archetype", "career", "skills", "xp", "talents", "motivations", "heroic", "details", "summary"];
 const CHARS = Object.keys(GENESYS.characteristics);
 const MOTIVATIONS = ["strength", "flaw", "desire", "fear"];
 
@@ -39,13 +39,7 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
     this.lib = null;
     this.viewCache = null;
     this.filter = { archetype: "", career: "", talent: "", archetypeSearch: "", careerSearch: "", talentSearch: "", talentTier: 0 };
-    // Приключение: сохранённое у персонажа, единственное разрешённое ведущим — или выбор на первом шаге.
-    const avail = availableAdventures();
-    const own = avail.find(a => a.key === actor?.system?.adventure)?.key;
-    const adventure = own ?? (avail.length === 1 ? avail[0].key : null);
-    if (adventure) this.stepIndex = 1;
     this.pick = {
-      adventure,
       archetype: null, career: null, heroic: null,
       careerFree: [], startFree: [],
       chars: Object.fromEntries(CHARS.map(k => [k, 0])),
@@ -114,17 +108,42 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
 
   #doc(uuid) { return uuid ? this.lib?.byUuid.get(uuid) ?? null : null; }
 
-  /** Выбранное приключение. */
-  get adventure() { return this.pick.adventure ? getAdventure(this.pick.adventure) : null; }
+  /** Типы приключений, выбранные ведущим в мастере настройки мира (пусто — без ограничений). */
+  get worldAdventures() { return enabledAdventureKeys().map(k => getAdventure(k)); }
 
-  /** Контент, подходящий приключению (без дублей); кешируется до смены приключения. */
+  /**
+   * Приключение персонажа. Игрок его не выбирает: это приключение мира, а если ведущий
+   * разрешил несколько — то, к которому относится выбранная раса.
+   */
+  get adventure() {
+    const list = this.worldAdventures;
+    if (list.length <= 1) return list[0] ?? null;
+    const arch = this.archetype;
+    if (arch) {
+      const tags = worldsOf(arch);
+      return list.find(a => tags.includes(a.worlds[0])) ?? list.find(a => fitsAdventure(arch, a)) ?? list[0];
+    }
+    return list.find(a => a.key === this.actor?.system?.adventure) ?? list[0];
+  }
+
+  /**
+   * Контент для мастера (без дублей): расы — из всех приключений мира,
+   * карьеры, таланты и героические способности — из приключения выбранной расы.
+   */
   get view() {
+    const list = this.worldAdventures;
     const adv = this.adventure ?? getAdventure("all");
-    if (this.viewCache?.key !== adv.key) {
-      const f = list => filterForAdventure(list, adv);
+    const key = `${list.map(a => a.key).join("|")}>${adv.key}`;
+    if (this.viewCache?.key !== key) {
+      const f = docs => filterForAdventure(docs, adv);
+      let archetypes = f(this.lib.archetypes);
+      if (list.length > 1) {
+        const all = new Map();
+        for (const a of list) for (const d of filterForAdventure(this.lib.archetypes, a)) all.set(d.uuid, d);
+        archetypes = [...all.values()];
+      }
       this.viewCache = {
-        key: adv.key,
-        archetypes: f(this.lib.archetypes), careers: f(this.lib.careers), heroics: f(this.lib.heroics),
+        key, archetypes, careers: f(this.lib.careers), heroics: f(this.lib.heroics),
         talents: f(this.lib.talents), skills: this.lib.skills
       };
     }
@@ -286,14 +305,7 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
       budget, archetypeName: arch?.name, careerName: career?.name,
       adventureName: this.adventure?.label, adventureImg: this.adventure ? adventureImg(this.adventure) : null
     };
-    if (this.step === "adventure") {
-      const locked = enabledAdventureKeys().length > 0;
-      ctx.adventures = availableAdventures().map(a => ({
-        key: a.key, label: a.label, hint: a.hint, img: adventureImg(a), selected: a.key === this.pick.adventure,
-        races: filterForAdventure(this.lib.archetypes, a).length, careers: filterForAdventure(this.lib.careers, a).length
-      }));
-      ctx.adventureLocked = locked;
-    }
+
 
     const cards = (docs, kind) => {
       const groups = [...new Set(docs.map(d => this.#group(d)))].sort();
@@ -400,7 +412,6 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
   }
 
   #stepDone(step) {
-    if (step === "adventure") return !!this.pick.adventure;
     if (step === "archetype") return !!this.pick.archetype;
     if (step === "career") return !!this.pick.career;
     if (step === "skills") return this.pick.careerFree.length === 4;
@@ -430,7 +441,6 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
 
   static #onGoto(event, target) { this.stepIndex = Number(target.dataset.index); this.render(); }
   static #onNext() {
-    if (this.step === "adventure" && !this.pick.adventure) return ui.notifications.warn("GENESYS.Wizard.PickAdventure", { localize: true });
     if (this.step === "archetype" && !this.pick.archetype) return ui.notifications.warn("GENESYS.Wizard.PickArchetype", { localize: true });
     if (this.step === "career" && !this.pick.career) return ui.notifications.warn("GENESYS.Wizard.PickCareer", { localize: true });
     this.stepIndex = Math.min(STEPS.length - 1, this.stepIndex + 1);
@@ -446,19 +456,15 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
   static #onPick(event, target) {
     const kind = target.dataset.kind;
     const uuid = target.dataset.uuid;
-    if (kind === "adventure") {
-      if (this.pick.adventure !== uuid) {
-        // Новый мир — прежний выбор расы, карьеры и талантов к нему может не подходить.
-        Object.assign(this.pick, { adventure: uuid, archetype: null, career: null, heroic: null, careerFree: [], startFree: [], skills: {}, talents: [] });
-        this.pick.chars = Object.fromEntries(CHARS.map(k => [k, 0]));
-        Object.assign(this.filter, { archetype: "", career: "" });
-      }
-      return this.render();
-    }
     this.pick[kind] = this.pick[kind] === uuid && kind === "heroic" ? null : uuid;
     if (kind === "career") { this.pick.careerFree = []; this.pick.skills = {}; }
     if (kind === "archetype") {
       this.pick.chars = Object.fromEntries(CHARS.map(k => [k, 0]));
+      // Раса из другого приключения мира — карьера, таланты и героическая способность могут больше не подходить.
+      const v = this.view;
+      if (this.pick.career && !v.careers.some(d => d.uuid === this.pick.career)) Object.assign(this.pick, { career: null, careerFree: [], skills: {} });
+      this.pick.talents = this.pick.talents.filter(t => v.talents.some(d => d.uuid === t.uuid));
+      if (this.pick.heroic && !v.heroics.some(d => d.uuid === this.pick.heroic)) this.pick.heroic = null;
       // Стартовые навыки: заранее отметить навыки, названные в тексте расы.
       const text = (this.archetype?.system.startingSkills ?? "").toLowerCase();
       this.pick.startFree = this.#skillRows().filter(r => {
@@ -646,7 +652,7 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
       if (det.name) update.name = det.name;
       update["system.experience.log"] = log;
       update["system.creation"] = true;
-      update["system.adventure"] = this.pick.adventure ?? "";
+      update["system.adventure"] = this.adventure?.key ?? "";
       await actor.update(update);
 
       ui.notifications.info("GENESYS.Wizard.Done", { localize: true });

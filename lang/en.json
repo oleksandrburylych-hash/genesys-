@@ -584,8 +584,7 @@
         "xp": "Характеристики и навыки",
         "talents": "Таланты",
         "motivations": "Мотивации",
-        "details": "Описание и деньги",
-        "adventure": "Adventure"
+        "details": "Описание и деньги"
       },
       "SummaryHint": "Будут применены раса/архетип и карьера, бесплатные ранги и героическая способность. Ранги выше 2 при создании не ставятся.",
       "Title": "Мастер создания персонажа",
@@ -616,12 +615,9 @@
         "motivations": "Мотивации — что движет персонажем. Выберите из таблиц книги, бросьте случайно или впишите своё.",
         "heroic": "Терринот: одна героическая способность на персонажа. Активируется за очки сюжета, улучшается очками способностей.",
         "details": "Имя, внешность и стартовые деньги.",
-        "summary": "Проверьте выбор и нажмите «Создать». Всё можно будет поправить на листе — режим создания останется включённым.",
-        "adventure": "Pick the adventure type: it defines races, careers, talents and the sheet's skill list."
+        "summary": "Проверьте выбор и нажмите «Создать». Всё можно будет поправить на листе — режим создания останется включённым."
       },
-      "PickAdventure": "Pick an adventure first.",
-      "AdventureLocked": "The GM set this list in the world setup.",
-      "AdventureFree": "The GM has not limited adventure types yet — all are available."
+      "Adventure": "Adventure"
     },
     "InitiativeLabel": "Инициатива",
     "Setup": {
@@ -665,7 +661,7 @@
         "Done": "Мир готов к игре!"
       },
       "Adventures": "Adventure type",
-      "AdventuresHint": "You may pick several; players then choose at character creation. Same-named items from different books are not duplicated.",
+      "AdventuresHint": "GM only. With several, players see races of all of them; careers, talents and skills follow the chosen race's world. Same-named items are not duplicated.",
       "CountRaces": "races",
       "CountCareers": "careers",
       "CountFoes": "foes",
