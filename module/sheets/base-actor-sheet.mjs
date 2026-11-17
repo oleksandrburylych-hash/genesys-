@@ -24,7 +24,8 @@ export class GenesysBaseActorSheet extends HandlebarsApplicationMixin(ActorSheet
       itemDelete: GenesysBaseActorSheet.#onItemDelete,
       itemToggle: GenesysBaseActorSheet.#onItemToggle,
       itemChat: GenesysBaseActorSheet.#onItemChat,
-      itemQuantity: GenesysBaseActorSheet.#onItemQuantity
+      itemQuantity: GenesysBaseActorSheet.#onItemQuantity,
+      rollInjury: GenesysBaseActorSheet.#onRollInjury
     }
   };
 
@@ -208,6 +209,10 @@ export class GenesysBaseActorSheet extends HandlebarsApplicationMixin(ActorSheet
 
   static #onItemChat(event, target) {
     return this._getItem(target)?.toChat();
+  }
+
+  static #onRollInjury() {
+    return this.actor.promptCriticalInjury();
   }
 
   static #onItemQuantity(event, target) {

@@ -126,6 +126,15 @@ Hooks.on("getSceneControlButtons", controls => {
 /* -------------------------------------------- */
 
 Hooks.on("renderChatMessageHTML", (message, html) => {
+  html.querySelectorAll("[data-genesys-action='applyCrit']").forEach(btn => {
+    btn.addEventListener("click", async () => {
+      const targets = canvas?.tokens?.controlled ?? [];
+      if (!targets.length) return ui.notifications.warn("GENESYS.Warn.NoTokenSelected", { localize: true });
+      for (const token of targets) {
+        if (token.actor?.isOwner) await token.actor.rollCriticalInjury({ modifier: Number(btn.dataset.modifier) || 0 });
+      }
+    });
+  });
   html.querySelectorAll("[data-genesys-action='applyDamage']").forEach(btn => {
     btn.addEventListener("click", async () => {
       const damage = Number(btn.dataset.damage) || 0;

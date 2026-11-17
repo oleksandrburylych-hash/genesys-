@@ -97,6 +97,7 @@ export class GenesysRoll extends Roll {
         crit: w.crit,
         critReady,
         critCount: w.crit > 0 ? Math.floor(r.advantage / w.crit) + r.triumph : 0,
+        critModifier: (w.vicious ?? 0) * 10,
         qualities: w.qualities
       };
     }

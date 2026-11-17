@@ -130,7 +130,11 @@
     "Initiative": "Initiative",
     "Injury": {
       "Range": "d100 range",
-      "Severity": "Severity"
+      "Severity": "Severity",
+      "Roll": "Roll Critical Injury",
+      "Modifier": "Roll modifier",
+      "ModifierHint": "E.g. +10 per rank of Vicious. +10 per existing injury is added automatically.",
+      "RollFormula": "d100 + 10 × {existing} (existing injuries) + {modifier}"
     },
     "Key": "Key",
     "Money": "Money",
@@ -179,7 +183,8 @@
       "Roll": "Roll",
       "Success": "Success",
       "Upgrade": "Upgrade",
-      "Visibility": "Visibility"
+      "Visibility": "Visibility",
+      "ApplyCrit": "Apply Critical Injury to selected"
     },
     "Settings": {
       "SkillPreset": {
@@ -303,7 +308,8 @@
       "SkillNotFound": "Skill \"{name}\" not found.",
       "SkillOwned": "Skill \"{name}\" already exists.",
       "TalentOwned": "Talent \"{name}\" is already owned and not ranked.",
-      "TalentPyramid": "Pyramid rule: a tier {tier} talent requires more tier {lower} talents than tier {tier} ones. Add anyway?"
+      "TalentPyramid": "Pyramid rule: a tier {tier} talent requires more tier {lower} talents than tier {tier} ones. Add anyway?",
+      "InjuryTableMissing": "Critical injury table not found."
     },
     "Weapons": "Weapons",
     "Worn": "Worn",

@@ -42,6 +42,11 @@
     <div class="attack-line crit"><i class="fa-solid fa-skull"></i> {{localize "GENESYS.Roll.CritAvailable"}} ({{localize "GENESYS.Crit"}} {{attack.crit}}, ×{{attack.critCount}})</div>
     {{/if}}
     {{#if attack.qualities}}<div class="attack-line qualities">{{attack.qualities}}</div>{{/if}}
+    {{#if attack.critReady}}
+    <button type="button" data-genesys-action="applyCrit" data-modifier="{{attack.critModifier}}">
+      <i class="fa-solid fa-skull"></i> {{localize "GENESYS.Roll.ApplyCrit"}}
+    </button>
+    {{/if}}
     <button type="button" data-genesys-action="applyDamage" data-damage="{{attack.damage}}">
       <i class="fa-solid fa-heart-crack"></i> {{localize "GENESYS.Roll.ApplyDamage"}}
     </button>

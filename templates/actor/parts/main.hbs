@@ -30,7 +30,10 @@
       <section class="block injuries-block">
         <header class="list-header">
           <h3>{{localize "GENESYS.CriticalInjuries"}}</h3>
-          {{#if editable}}<a class="item-control" data-action="itemCreate" data-type="injury"><i class="fa-solid fa-plus"></i></a>{{/if}}
+          {{#if editable}}
+          <a class="item-control" data-action="rollInjury" data-tooltip="GENESYS.Injury.Roll"><i class="fa-solid fa-dice"></i></a>
+          <a class="item-control" data-action="itemCreate" data-type="injury"><i class="fa-solid fa-plus"></i></a>
+          {{/if}}
         </header>
         <ol class="compact-list">
           {{#each injuries}}

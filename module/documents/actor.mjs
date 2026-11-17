@@ -123,7 +123,8 @@ export class GenesysActor extends Actor {
         name: weapon.name,
         damage: sys.totalDamage,
         crit: sys.crit,
-        qualities: sys.qualitiesText
+        qualities: sys.qualitiesText,
+        vicious: sys.qualities.find(q => /высококрит|vicious/i.test(q.name))?.rating ?? 0
       }
     };
     const label = game.i18n.format("GENESYS.Roll.Attack", { name: weapon.name });
@@ -298,6 +299,64 @@ export class GenesysActor extends Actor {
     data.system.rank = 1;
     const [created] = await this.createEmbeddedDocuments("Item", [data]);
     return created;
+  }
+
+  /* -------------------------------------------- */
+  /*  Критические травмы                          */
+  /* -------------------------------------------- */
+
+  /** Разобрать диапазон «01-05» / «151+» → [min, max]. */
+  static parseRollRange(range) {
+    const nums = String(range ?? "").match(/\d+/g)?.map(Number) ?? [];
+    if (!nums.length) return null;
+    if (String(range).includes("+") || nums.length === 1) return [nums[0], Infinity];
+    return [nums[0], nums[1]];
+  }
+
+  /**
+   * Бросок по таблице критических травм: d100 + 10 за каждую имеющуюся травму + модификатор
+   * (например, Высококритичное N даёт +10×N). Результат добавляется на лист и выводится в чат.
+   */
+  async rollCriticalInjury({ modifier = 0 } = {}) {
+    const existing = this.itemTypes.injury.length;
+    const roll = await new Roll(`1d100 + ${existing * 10} + ${Number(modifier) || 0}`).evaluate();
+    const total = roll.total;
+
+    // Таблица — из компендиума системы (или из предметов мира, если компендиума нет).
+    let table = [];
+    const pack = game.packs.get(`${SYSTEM_ID}.injuries`);
+    if (pack) table = await pack.getDocuments();
+    if (!table.length) table = game.items.filter(i => i.type === "injury");
+    const entry = table.find(i => {
+      const r = GenesysActor.parseRollRange(i.system.rollRange);
+      return r && total >= r[0] && total <= r[1];
+    });
+
+    let created = null;
+    if (entry) [created] = await this.createEmbeddedDocuments("Item", [entry.toObject()]);
+
+    const severity = entry ? "◆".repeat(entry.system.severity) || "—" : "";
+    const content = `<div class="genesys item-card critical-injury">
+      <header><img src="${entry?.img ?? "icons/svg/blood.svg"}" alt=""><h3>${game.i18n.localize("GENESYS.Injury.Roll")}: ${total}</h3></header>
+      ${entry ? `<p><strong>${foundry.utils.escapeHTML(entry.name)}</strong> <span class="severity-text">${severity}</span></p>${entry.system.description}`
+        : `<p>${game.i18n.localize("GENESYS.Warn.InjuryTableMissing")}</p>`}
+      <p class="hint">${game.i18n.format("GENESYS.Injury.RollFormula", { existing, modifier: Number(modifier) || 0 })}</p>
+    </div>`;
+    await roll.toMessage({ speaker: ChatMessage.implementation.getSpeaker({ actor: this }), content, flavor: this.name });
+    return created;
+  }
+
+  /** Спросить модификатор и бросить критическую травму. */
+  async promptCriticalInjury() {
+    const result = await foundry.applications.api.DialogV2.input({
+      window: { title: "GENESYS.Injury.Roll" },
+      content: `<div class="form-group"><label>${game.i18n.localize("GENESYS.Injury.Modifier")}</label>
+        <input type="number" name="modifier" value="0" step="10" autofocus></div>
+        <p class="hint">${game.i18n.localize("GENESYS.Injury.ModifierHint")}</p>`,
+      ok: { label: "GENESYS.Injury.Roll" }
+    });
+    if (!result) return null;
+    return this.rollCriticalInjury({ modifier: Number(result.modifier) || 0 });
   }
 
   /* -------------------------------------------- */
