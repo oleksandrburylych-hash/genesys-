@@ -189,7 +189,10 @@
         "fantasy": "Fantasy",
         "modern": "Modern",
         "scifi": "Science fiction",
-        "none": "None"
+        "none": "None",
+        "steampunk": "Steampunk",
+        "weirdwar": "Weird War",
+        "spaceopera": "Space Opera"
       },
       "InitiativeSkill": {
         "name": "Initiative skill",

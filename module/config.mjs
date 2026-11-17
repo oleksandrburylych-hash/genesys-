@@ -32,25 +32,25 @@ GENESYS.skillCategories = {
  * Базовый список навыков. Используется для автодобавления навыков новому персонажу.
  * key — стабильный идентификатор (не зависит от языка), по нему ищутся навыки
  * для инициативы, оружия и т.п. Список правится после загрузки книг правил.
- * settings — в каких сеттингах навык обычно используется (для пресетов).
+ * settings — в каких сеттингах навык используется (по таблице навыков Core Rulebook).
  */
 GENESYS.defaultSkills = [
   // Общие
-  { key: "alchemy", characteristic: "intellect", category: "general", settings: ["fantasy"] },
-  { key: "astrocartography", characteristic: "intellect", category: "general", settings: ["scifi"] },
+  { key: "alchemy", characteristic: "intellect", category: "general", settings: ["fantasy", "steampunk", "weirdwar"] },
+  { key: "astrocartography", characteristic: "intellect", category: "general", settings: ["spaceopera"] },
   { key: "athletics", characteristic: "brawn", category: "general", settings: ["all"] },
-  { key: "computers", characteristic: "intellect", category: "general", settings: ["modern", "scifi"] },
+  { key: "computers", characteristic: "intellect", category: "general", settings: ["modern", "scifi", "spaceopera"] },
   { key: "cool", characteristic: "presence", category: "general", settings: ["all"] },
   { key: "coordination", characteristic: "agility", category: "general", settings: ["all"] },
   { key: "discipline", characteristic: "willpower", category: "general", settings: ["all"] },
-  { key: "driving", characteristic: "agility", category: "general", settings: ["modern", "scifi"] },
+  { key: "driving", characteristic: "agility", category: "general", settings: ["steampunk", "weirdwar", "modern", "scifi", "spaceopera"] },
   { key: "mechanics", characteristic: "intellect", category: "general", settings: ["all"] },
   { key: "medicine", characteristic: "intellect", category: "general", settings: ["all"] },
-  { key: "operating", characteristic: "intellect", category: "general", settings: ["modern", "scifi"] },
+  { key: "operating", characteristic: "intellect", category: "general", settings: ["all"] },
   { key: "perception", characteristic: "cunning", category: "general", settings: ["all"] },
-  { key: "piloting", characteristic: "agility", category: "general", settings: ["modern", "scifi"] },
+  { key: "piloting", characteristic: "agility", category: "general", settings: ["weirdwar", "modern", "scifi", "spaceopera"] },
   { key: "resilience", characteristic: "brawn", category: "general", settings: ["all"] },
-  { key: "riding", characteristic: "agility", category: "general", settings: ["fantasy"] },
+  { key: "riding", characteristic: "agility", category: "general", settings: ["fantasy", "steampunk"] },
   { key: "skulduggery", characteristic: "cunning", category: "general", settings: ["all"] },
   { key: "stealth", characteristic: "agility", category: "general", settings: ["all"] },
   { key: "streetwise", characteristic: "cunning", category: "general", settings: ["all"] },
@@ -62,12 +62,12 @@ GENESYS.defaultSkills = [
   { key: "primal", characteristic: "cunning", category: "magic", settings: ["fantasy"] },
   // Боевые
   { key: "brawl", characteristic: "brawn", category: "combat", settings: ["all"] },
-  { key: "gunnery", characteristic: "agility", category: "combat", settings: ["modern", "scifi"] },
-  { key: "melee", characteristic: "brawn", category: "combat", settings: ["modern", "scifi"] },
+  { key: "gunnery", characteristic: "agility", category: "combat", settings: ["steampunk", "weirdwar", "modern", "scifi", "spaceopera"] },
+  { key: "melee", characteristic: "brawn", category: "combat", settings: ["steampunk", "weirdwar", "modern", "scifi", "spaceopera"] },
   { key: "meleeLight", characteristic: "brawn", category: "combat", settings: ["fantasy"] },
   { key: "meleeHeavy", characteristic: "brawn", category: "combat", settings: ["fantasy"] },
-  { key: "rangedLight", characteristic: "agility", category: "combat", settings: ["modern", "scifi"] },
-  { key: "rangedHeavy", characteristic: "agility", category: "combat", settings: ["modern", "scifi"] },
+  { key: "rangedLight", characteristic: "agility", category: "combat", settings: ["steampunk", "weirdwar", "modern", "scifi", "spaceopera"] },
+  { key: "rangedHeavy", characteristic: "agility", category: "combat", settings: ["steampunk", "weirdwar", "modern", "scifi", "spaceopera"] },
   { key: "ranged", characteristic: "agility", category: "combat", settings: ["fantasy"] },
   // Социальные
   { key: "charm", characteristic: "presence", category: "social", settings: ["all"] },
@@ -83,8 +83,11 @@ GENESYS.defaultSkills = [
 GENESYS.skillPresets = {
   all: "GENESYS.Settings.SkillPreset.all",
   fantasy: "GENESYS.Settings.SkillPreset.fantasy",
+  steampunk: "GENESYS.Settings.SkillPreset.steampunk",
+  weirdwar: "GENESYS.Settings.SkillPreset.weirdwar",
   modern: "GENESYS.Settings.SkillPreset.modern",
   scifi: "GENESYS.Settings.SkillPreset.scifi",
+  spaceopera: "GENESYS.Settings.SkillPreset.spaceopera",
   none: "GENESYS.Settings.SkillPreset.none"
 };
 
