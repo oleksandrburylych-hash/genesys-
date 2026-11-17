@@ -713,3 +713,49 @@
 .genesys .loot-list button { width: auto; flex: 0 0 auto; padding: 0 8px; height: 22px; line-height: 20px; }
 .genesys .loot-list li.taken { opacity: .55; }
 .genesys .loot-taken { font-size: 11px; font-style: italic; color: var(--gs-muted, #6b6258); }
+
+/* ---------- Журнал опыта ---------- */
+.genesys .gs-xpl { padding: 6px 10px 12px; }
+.genesys .gs-xpl-top { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.genesys .gs-xpl-big { display: flex; flex-direction: column; align-items: center; padding: 8px 4px 6px; border-radius: 12px; color: #fff;
+  border: 2px solid var(--gs-gold); box-shadow: inset 0 0 0 2px rgba(255,255,255,.15); }
+.genesys .gs-xpl-big span { font-family: var(--gs-head); font-size: 30px; line-height: 1; }
+.genesys .gs-xpl-big small { font-family: var(--gs-head); text-transform: uppercase; letter-spacing: .06em; font-size: 11px; opacity: .9; }
+.genesys .gs-xpl-big.earn { background: linear-gradient(160deg, #2c4c7c, #1f3557); }
+.genesys .gs-xpl-big.spend { background: linear-gradient(160deg, #a83a3f, #8e2229); }
+.genesys .gs-xpl-big.left { background: linear-gradient(160deg, #f6c35a, #e2952a); color: #2b1d08; }
+.genesys .gs-xpl-bar { display: flex; height: 16px; margin: 10px 0 4px; border-radius: 8px; overflow: hidden; background: #e6dcc6; border: 1px solid #c9b48a; }
+.genesys .gs-xpl-bar .seg { height: 100%; }
+.genesys .seg.xc-characteristic, .genesys .dot.xc-characteristic { background: #2f5f8a; }
+.genesys .seg.xc-skill, .genesys .dot.xc-skill { background: #3d7a3a; }
+.genesys .seg.xc-talent, .genesys .dot.xc-talent { background: #8e2229; }
+.genesys .seg.xc-other, .genesys .dot.xc-other { background: #7a7064; }
+.genesys .seg.xc-left, .genesys .dot.xc-left { background: #f2a531; }
+.genesys .gs-xpl-legend { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 11px; color: var(--gs-muted); }
+.genesys .gs-xpl-legend .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 4px; vertical-align: middle; }
+.genesys .gs-xpl-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 6px; margin: 10px 0 6px; }
+.genesys .gs-xpl-card { background: #fff; border: 1px solid #c9b48a; border-left-width: 5px; border-radius: 8px; padding: 5px 8px; }
+.genesys .gs-xpl-card.xc-characteristic { border-left-color: #2f5f8a; } .genesys .gs-xpl-card.xc-skill { border-left-color: #3d7a3a; }
+.genesys .gs-xpl-card.xc-talent { border-left-color: #8e2229; } .genesys .gs-xpl-card.xc-other { border-left-color: #7a7064; }
+.genesys .gs-xpl-card.xc-earned { border-left-color: #f2a531; }
+.genesys .gs-xpl-card summary, .genesys .gs-xpl-card .summary { cursor: pointer; display: flex; align-items: baseline; gap: 6px; font-family: var(--gs-head); text-transform: uppercase; color: var(--gs-navy); }
+.genesys .gs-xpl-card .amt { margin-left: auto; font-size: 18px; color: var(--gs-maroon); }
+.genesys .gs-xpl-card small { color: var(--gs-muted); font-family: var(--gs-body, inherit); text-transform: none; }
+.genesys .gs-xpl-card ul { list-style: none; margin: 4px 0 0; padding: 0; font-size: 12px; }
+.genesys .gs-xpl-card li { display: flex; justify-content: space-between; gap: 6px; padding: 1px 0; border-top: 1px dotted #e0d2b4; }
+.genesys .gs-xpl-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.genesys .gs-xpl-tools button { width: auto; flex: 0 0 auto; padding: 0 10px; }
+.genesys .gs-xpl-tools label { flex: 1; }
+.genesys .gs-xpl-day { margin: 6px 0; }
+.genesys .gs-xpl-day-head { display: flex; justify-content: space-between; font-family: var(--gs-head); text-transform: uppercase; font-size: 12px; color: var(--gs-navy);
+  border-bottom: 2px solid var(--gs-gold); padding: 2px 2px; }
+.genesys .gs-xpl-day-head .earn { color: #3d7a3a; } .genesys .gs-xpl-day-head .spend { color: #8e2229; }
+.genesys .gs-xpl-log { list-style: none; margin: 0; padding: 0; }
+.genesys .gs-xpl-log li { display: grid; grid-template-columns: 18px 1fr 48px 40px 16px; align-items: center; gap: 6px; padding: 3px 4px; border-bottom: 1px solid #eadfc6; font-size: 12.5px; }
+.genesys .gs-xpl-log li:nth-child(even) { background: rgba(255,255,255,.5); }
+.genesys .gs-xpl-log li > i { text-align: center; color: var(--gs-muted); }
+.genesys .gs-xpl-log li.xc-characteristic > i { color: #2f5f8a; } .genesys .gs-xpl-log li.xc-skill > i { color: #3d7a3a; }
+.genesys .gs-xpl-log li.xc-talent > i { color: #8e2229; } .genesys .gs-xpl-log li.earn > i { color: #c58a1e; }
+.genesys .gs-xpl-log .amt { text-align: right; font-family: var(--gs-head); font-size: 14px; }
+.genesys .gs-xpl-log li.earn .amt { color: #3d7a3a; } .genesys .gs-xpl-log li.spend .amt { color: #8e2229; }
+.genesys .gs-xpl-log .bal { text-align: right; color: var(--gs-muted); font-size: 11px; }

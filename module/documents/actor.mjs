@@ -263,10 +263,10 @@ export class GenesysActor extends Actor {
   get availableXP() { return this.system.experience?.available ?? 0; }
 
   /** Добавить запись в журнал опыта. */
-  async logXP(type, amount, label) {
+  async logXP(type, amount, label, kind = "") {
     if (!this.isCharacter) return;
     const log = foundry.utils.deepClone(this.system.experience.log);
-    log.push({ id: foundry.utils.randomID(), type, amount, label, timestamp: Date.now() });
+    log.push({ id: foundry.utils.randomID(), type, kind, amount, label, timestamp: Date.now() });
     return this.update({ "system.experience.log": log });
   }
 
@@ -280,13 +280,13 @@ export class GenesysActor extends Actor {
    * Потратить опыт, если включена автоматизация.
    * @returns {Promise<boolean>} удалось ли
    */
-  async spendXP(amount, label) {
+  async spendXP(amount, label, kind = "") {
     if (!this.isCharacter || !this.system.autoXP || amount <= 0) return true;
     if (amount > this.availableXP) {
       ui.notifications.warn(game.i18n.format("GENESYS.Warn.NotEnoughXP", { cost: amount, available: this.availableXP }));
       return false;
     }
-    await this.logXP("spend", amount, label);
+    await this.logXP("spend", amount, label, kind);
     return true;
   }
 
@@ -318,7 +318,7 @@ export class GenesysActor extends Actor {
       const label = game.i18n.format("GENESYS.XP.SkillRank", { name: skill.name, rank: rankForCost });
       if (delta > 0) {
         const cost = GENESYS.xp.skill(next, skill.system.career);
-        if (!(await this.spendXP(cost, label))) return;
+        if (!(await this.spendXP(cost, label, "skill"))) return;
       }
       else await this.refundXP(label);
     }
@@ -338,7 +338,7 @@ export class GenesysActor extends Actor {
       const value = delta > 0 ? next : current;
       const label = game.i18n.format("GENESYS.XP.Characteristic", { name, value });
       if (delta > 0) {
-        if (!(await this.spendXP(GENESYS.xp.characteristic(next), label))) return;
+        if (!(await this.spendXP(GENESYS.xp.characteristic(next), label, "characteristic"))) return;
       }
       else await this.refundXP(label);
     }
@@ -435,7 +435,7 @@ export class GenesysActor extends Actor {
 
     const rank = existing ? existing.system.rank + 1 : 1;
     const label = game.i18n.format("GENESYS.XP.Talent", { name: data.name, rank, tier });
-    if (!(await this.spendXP(GENESYS.xp.talent(tier), label))) return null;
+    if (!(await this.spendXP(GENESYS.xp.talent(tier), label, "talent"))) return null;
 
     if (existing) return existing.update({ "system.rank": rank });
     data.system.rank = 1;

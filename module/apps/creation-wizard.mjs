@@ -758,13 +758,13 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
 
       // Навыки: бесплатные ранги и покупка за опыт.
       const log = foundry.utils.deepClone(actor.system.experience.log);
-      const entry = (amount, label) => ({ id: foundry.utils.randomID(), type: "spend", kind: "", amount, label, timestamp: Date.now() });
+      const entry = (amount, label, kind = "") => ({ id: foundry.utils.randomID(), type: "spend", kind, amount, label, timestamp: Date.now() });
       const skillUpdates = [];
       for (const row of rows) {
         if (row.rank === row.base) continue;
         const skill = await this.#ensureSkill(row.name);
         skillUpdates.push({ _id: skill.id, "system.rank": row.rank });
-        for (let r = row.start + 1; r <= row.rank; r++) log.push(entry(GENESYS.xp.skill(r, row.career), L("GENESYS.XP.SkillRank", { name: row.name, rank: r })));
+        for (let r = row.start + 1; r <= row.rank; r++) log.push(entry(GENESYS.xp.skill(r, row.career), L("GENESYS.XP.SkillRank", { name: row.name, rank: r }), "skill"));
       }
       if (skillUpdates.length) await actor.updateEmbeddedDocuments("Item", skillUpdates);
 
@@ -774,7 +774,7 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
         const base = arch.system.characteristics[k];
         const value = base + this.pick.chars[k];
         update[`system.characteristics.${k}.value`] = value;
-        for (let v = base + 1; v <= value; v++) log.push(entry(GENESYS.xp.characteristic(v), L("GENESYS.XP.Characteristic", { name: game.i18n.localize(GENESYS.characteristics[k].label), value: v })));
+        for (let v = base + 1; v <= value; v++) log.push(entry(GENESYS.xp.characteristic(v), L("GENESYS.XP.Characteristic", { name: game.i18n.localize(GENESYS.characteristics[k].label), value: v }), "characteristic"));
       }
 
       // Таланты за опыт.
@@ -782,7 +782,7 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
       for (const t of this.pick.talents) {
         const doc = this.#doc(t.uuid);
         const tier = this.#talentTier(t);
-        log.push(entry(GENESYS.xp.talent(tier), L("GENESYS.XP.Talent", { name: doc.name, rank: t.rank, tier })));
+        log.push(entry(GENESYS.xp.talent(tier), L("GENESYS.XP.Talent", { name: doc.name, rank: t.rank, tier }), "talent"));
         const data = talentData.get(t.uuid) ?? doc.toObject();
         data.system.rank = t.rank;
         talentData.set(t.uuid, data);

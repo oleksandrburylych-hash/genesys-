@@ -431,7 +431,20 @@
       "Starting": "Starting XP",
       "StartingXP": "Starting XP: {name}",
       "Talent": "Talent {name} (rank {rank}, tier {tier})",
-      "Total": "Total earned"
+      "Total": "Total earned",
+      "Left": "Осталось",
+      "Earned": "Откуда опыт",
+      "BarHint": "Куда ушёл опыт: доля от всего полученного",
+      "BalanceHint": "Остаток опыта после этой записи",
+      "Cat": {
+        "characteristic": "Характеристики",
+        "skill": "Навыки",
+        "talent": "Таланты",
+        "other": "Прочее",
+        "start": "Стартовый",
+        "award": "Награды ведущего",
+        "earn": "Получено вручную"
+      }
     },
     "Spell": {
       "Skills": "Magic skills",

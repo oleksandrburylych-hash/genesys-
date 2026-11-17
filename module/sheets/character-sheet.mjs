@@ -1,4 +1,5 @@
 import { GENESYS, TEMPLATES, SYSTEM_ID } from "../config.mjs";
+import { xpLedger } from "../helpers/xp-ledger.mjs";
 import { actOnActor } from "../combat/combat.mjs";
 import { getAdventure } from "../worlds.mjs";
 import { GenesysBaseActorSheet } from "./base-actor-sheet.mjs";
@@ -133,9 +134,8 @@ export class GenesysCharacterSheet extends GenesysBaseActorSheet {
     context.showHeroic = actor.itemTypes.heroic.length > 0 || preset === "terrinoth";
 
     // Журнал опыта: новые записи сверху.
-    context.xpLog = [...system.experience.log]
-      .sort((a, b) => b.timestamp - a.timestamp)
-      .map(e => ({ ...e, date: new Date(e.timestamp).toLocaleDateString(game.i18n.lang), isEarn: e.type === "earn" }));
+    context.xpLedger = xpLedger(system.experience);
+    context.xpLog = context.xpLedger.log;
 
     // Магия: магические действия и готовые заклинания.
     const spellRow = sp => ({
@@ -407,4 +407,5 @@ export class GenesysCharacterSheet extends GenesysBaseActorSheet {
     if (cavalier) ui.notifications.info("GENESYS.Mount.Cavalier", { localize: true });
     return mount.rollWeapon(weapon);
   }
+
 }
