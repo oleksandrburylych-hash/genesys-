@@ -338,7 +338,10 @@
       "knowledgeScience": "Знание (наука)",
       "psiExtrasensory": "Экстрасенсорика",
       "psiMind": "Разум над материей",
-      "psiProjection": "Проекция"
+      "psiProjection": "Проекция",
+      "knowledgeAnalytics": "Знание (аналитика)",
+      "knowledgeEducation": "Знание (образование)",
+      "knowledgePsychology": "Знание (психология)"
     },
     "SkillCategory": {
       "general": "Общие навыки",

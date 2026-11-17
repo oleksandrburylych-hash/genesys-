@@ -287,6 +287,9 @@ GENESYS.extraSkills = {
   psychic: { characteristic: "presence", category: "magic" },
   knowledgeSupernatural: { characteristic: "intellect", category: "knowledge" },
   knowledgeScience: { characteristic: "intellect", category: "knowledge" },
+  knowledgeAnalytics: { characteristic: "intellect", category: "knowledge" },
+  knowledgeEducation: { characteristic: "intellect", category: "knowledge" },
+  knowledgePsychology: { characteristic: "intellect", category: "knowledge" },
   psiExtrasensory: { characteristic: "willpower", category: "magic" },
   psiMind: { characteristic: "willpower", category: "magic" },
   psiProjection: { characteristic: "willpower", category: "magic" }
@@ -388,6 +391,12 @@ GENESYS.icons = {
     "knowledgeAdventuring": "systems/genesys-rpg/assets/icons/gi/skill/treasure-map.svg",
     "knowledgeGeography": "systems/genesys-rpg/assets/icons/gi/skill/world.svg",
     "knowledgeScience": "systems/genesys-rpg/assets/icons/gi/skill/erlenmeyer.svg",
-    "knowledgeSupernatural": "systems/genesys-rpg/assets/icons/gi/skill/pentacle.svg"
+    "knowledgeSupernatural": "systems/genesys-rpg/assets/icons/gi/skill/pentacle.svg",
+    "knowledgeAnalytics": "systems/genesys-rpg/assets/icons/gi/skill/magnifying-glass.svg",
+    "knowledgeEducation": "systems/genesys-rpg/assets/icons/gi/skill/graduate-cap.svg",
+    "knowledgePsychology": "systems/genesys-rpg/assets/icons/gi/skill/brain.svg",
+    "psiExtrasensory": "systems/genesys-rpg/assets/icons/gi/skill/third-eye.svg",
+    "psiMind": "systems/genesys-rpg/assets/icons/gi/skill/brain-tentacle.svg",
+    "psiProjection": "systems/genesys-rpg/assets/icons/gi/skill/psychic-waves.svg"
   }
 };

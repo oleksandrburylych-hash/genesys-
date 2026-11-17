@@ -277,12 +277,12 @@ export class WorldSetup extends HandlebarsApplicationMixin(ApplicationV2) {
     const name = game.i18n.localize("GENESYS.Setup.JournalName");
     const old = game.journal.getName(name);
     if (old) await old.delete();
-    const { buildReferencePages } = await import("./reference.mjs");
+    const { buildReferencePages, buildModulePages } = await import("./reference.mjs");
     const folder = await this.#folder("Genesys", "JournalEntry");
     await JournalEntry.implementation.create({
       name, folder: folder.id,
       ownership: { default: CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER },
-      pages: buildReferencePages()
+      pages: [...buildReferencePages(), ...(await buildModulePages(this.setup.sources))]
     });
   }
 

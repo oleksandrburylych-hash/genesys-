@@ -204,6 +204,8 @@ export const DEFAULTS = {
 
 /** Иконки навыков по ключу. */
 export const SKILL_ICONS = {
+  knowledgeAnalytics: "magnifying-glass", knowledgeEducation: "graduate-cap", knowledgePsychology: "brain",
+  psiExtrasensory: "third-eye", psiMind: "brain-tentacle", psiProjection: "psychic-waves",
   alchemy: "bubbling-flask", astrocartography: "galaxy", athletics: "run", computers: "laptop", cool: "meditation",
   coordination: "acrobatic", discipline: "inner-self", driving: "steering-wheel", mechanics: "spanner", medicine: "health-normal",
   operating: "control-tower", perception: "eye-target", piloting: "jet-fighter", resilience: "muscle-up", riding: "horse-head",

@@ -61,3 +61,30 @@ export function buildReferencePages() {
     </ul>`, 600));
   return pages;
 }
+
+/**
+ * Страницы правил модулей: страх (Core + Expanded Fear), PSI (мир и фракции).
+ * @param {Record<string, boolean>} sources  включённые книги и модули
+ */
+export async function buildModulePages(sources = {}) {
+  const L = k => game.i18n.localize(k);
+  const page = (name, content, sort) => ({ name, type: "text", sort, text: { content, format: 1 } });
+  const pages = [];
+  const fx = Object.keys(GENESYS.statusEffects ? { aversion: 1, flee: 1, freeze: 1, adrenaline: 1, steady: 1, rally: 1, fearless: 1 } : {})
+    .map(k => `<li><strong>${L(`GENESYS.Fear.Effect.${k}`)}:</strong> ${L(`GENESYS.Fear.EffectHint.${k}`)}</li>`).join("");
+  const degrees = [1, 2, 3, 4, 5].map(n => `<li><strong>${L(GENESYS.difficulties[n])}</strong> — ${L(`GENESYS.Fear.Degree.${n}`)}</li>`).join("");
+  let fear = `<h2>${L("GENESYS.Fear.Title")}</h2><p>${L("GENESYS.Fear.PromptHint")}</p><h3>${L("GENESYS.Fear.Degree.label")}</h3><ul>${degrees}</ul><h3>Core Rulebook</h3><ul>${fx}</ul>
+    <p>Ширма ведущего → «Проверка страха» (или макрос): карточка в чат, каждый игрок бросает Выдержку за своего персонажа; подходящий эффект применяется кнопкой.</p>`;
+  if (sources.fear) {
+    const rows = t => (GENESYS.spending?.[t]?.rows ?? []).map(r => `<li><strong>${r.cost}:</strong> ${r.text}</li>`).join("");
+    fear += `<h3>Expanded Fear Guidelines</h3><p>Страх персонажа (мотивация) — повод для отдельной проверки или 1–2 костей штрафа, в том числе в социальных сценах.</p><ul>${rows("fearNegative")}${rows("fearPositive")}</ul>`;
+  }
+  pages.push(page(L("GENESYS.Fear.Title"), fear, 700));
+  if (sources.psi) {
+    try {
+      const res = await fetch(`systems/genesys-rpg/module/data/psi-setting.html`);
+      if (res.ok) pages.push(page("PSI: мир и фракции", await res.text(), 800));
+    } catch { /* нет файла */ }
+  }
+  return pages;
+}

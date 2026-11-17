@@ -338,7 +338,10 @@
       "knowledgeScience": "Knowledge (Science)",
       "psiExtrasensory": "Extrasensory",
       "psiMind": "Mind Over Matter",
-      "psiProjection": "Projection"
+      "psiProjection": "Projection",
+      "knowledgeAnalytics": "Knowledge (Analytics)",
+      "knowledgeEducation": "Knowledge (Education)",
+      "knowledgePsychology": "Knowledge (Psychology)"
     },
     "SkillCategory": {
       "general": "General skills",
