@@ -17,6 +17,10 @@ export class GenesysActor extends Actor {
     if ((await super._preCreate(data, options, user)) === false) return false;
 
     const updates = {};
+    if (!data.img || data.img === CONST.DEFAULT_TOKEN || data.img === "icons/svg/mystery-man.svg") {
+      const img = { character: GENESYS.icons?.defaults?.archetype, adversary: GENESYS.icons?.defaults?.adversary, vehicle: GENESYS.icons?.defaults?.vehicle }[this.type];
+      if (img) { updates.img = img; updates["prototypeToken.texture.src"] = img; }
+    }
     if (this.type === "character") {
       updates["prototypeToken.actorLink"] = true;
       updates["prototypeToken.disposition"] = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
@@ -42,7 +46,7 @@ export class GenesysActor extends Actor {
         return {
           name: game.i18n.localize(`GENESYS.Skill.${key}`),
           type: "skill",
-          img: "icons/svg/book.svg",
+          img: GENESYS.icons?.skills?.[key] ?? "icons/svg/book.svg",
           system: { key, characteristic: def.characteristic, category: def.category, rank: 0, career: false }
         };
       });
@@ -52,7 +56,7 @@ export class GenesysActor extends Actor {
       .map(s => ({
         name: game.i18n.localize(`GENESYS.Skill.${s.key}`),
         type: "skill",
-        img: "icons/svg/book.svg",
+        img: GENESYS.icons?.skills?.[s.key] ?? "icons/svg/book.svg",
         system: { key: s.key, characteristic: s.characteristic, category: s.category, rank: 0, career: false }
       }));
   }

@@ -10,7 +10,7 @@ const T = `${TEMPLATES}/actor`;
 export class GenesysCharacterSheet extends GenesysBaseActorSheet {
   static DEFAULT_OPTIONS = {
     classes: ["character"],
-    position: { width: 860, height: 900 },
+    position: { width: 940, height: 980 },
     actions: {
       skillRank: GenesysCharacterSheet.#onSkillRank,
       charChange: GenesysCharacterSheet.#onCharChange,
@@ -20,6 +20,8 @@ export class GenesysCharacterSheet extends GenesysBaseActorSheet {
       finishCreation: GenesysCharacterSheet.#onFinishCreation,
       adjust: GenesysCharacterSheet.#onAdjust,
       castSpell: GenesysCharacterSheet.#onCastSpell,
+      setSkillRank: GenesysCharacterSheet.#onSetSkillRank,
+      toggleCareer: GenesysCharacterSheet.#onToggleCareer,
       activateHeroic: GenesysCharacterSheet.#onActivateHeroic,
       resetHeroic: GenesysCharacterSheet.#onResetHeroic,
       recoverStrain: GenesysCharacterSheet.#onRecoverStrain,
@@ -80,10 +82,32 @@ export class GenesysCharacterSheet extends GenesysBaseActorSheet {
           img: t.img,
           ranked: t.system.ranked,
           rank: t.system.rank,
-          activation: GENESYS.activations[t.system.activation]
+          activation: GENESYS.activations[t.system.activation],
+          passive: t.system.activation === "passive"
         })),
+      cost: GENESYS.xp.talent(tier),
       canAdd: tier === 1 || tiers[tier - 1] > tiers[tier]
     }));
+
+    // Навыки в две колонки, как на листе из книги.
+    const byKey = Object.fromEntries(context.skillGroups.map(g => [g.key, g]));
+    context.skillColumns = [["general", "magic"], ["combat", "social", "knowledge"]]
+      .map(keys => keys.map(k => byKey[k]).filter(Boolean)).filter(c => c.length);
+    context.playerName = game.users.find(u => !u.isGM && u.character?.id === actor.id)?.name
+      ?? game.users.find(u => !u.isGM && actor.testUserPermission(u, "OWNER"))?.name ?? "";
+
+    // Что таланты добавили к показателям (для пояснения на листе).
+    const tb = system.talentBonuses ?? {};
+    const parts = [];
+    if (tb.wounds) parts.push(`${game.i18n.localize("GENESYS.Wounds")} +${tb.wounds}`);
+    if (tb.strain) parts.push(`${game.i18n.localize("GENESYS.Strain")} +${tb.strain}`);
+    if (tb.soak) parts.push(`${game.i18n.localize("GENESYS.Soak")} +${tb.soak}`);
+    if (tb.meleeDefense) parts.push(`${game.i18n.localize("GENESYS.Defense")} +${tb.meleeDefense}`);
+    if (tb.critical) parts.push(`${game.i18n.localize("GENESYS.CriticalInjuries")} ${tb.critical}`);
+    context.talentBonusText = parts.length ? game.i18n.format("GENESYS.Sheet.TalentBonuses", { list: parts.join(", ") }) : "";
+    let preset = "";
+    try { preset = game.settings.get("genesys-rpg", "skillPreset"); } catch {}
+    context.showHeroic = actor.itemTypes.heroic.length > 0 || preset === "terrinoth";
 
     // Журнал опыта: новые записи сверху.
     context.xpLog = [...system.experience.log]
@@ -168,6 +192,25 @@ export class GenesysCharacterSheet extends GenesysBaseActorSheet {
     if (!toCreate.length) return ui.notifications.info("GENESYS.Spell.NothingToAdd", { localize: true });
     await this.actor.createEmbeddedDocuments("Item", toCreate);
     ui.notifications.info(game.i18n.format("GENESYS.Spell.Added", { count: toCreate.length }));
+  }
+
+  /** Щелчок по шеврону: установить ранг (повторный щелчок по текущему — понизить). */
+  static async #onSetSkillRank(event, target) {
+    const item = this._getItem(target);
+    if (!item) return;
+    let goal = Number(target.dataset.rank);
+    if (goal === item.system.rank) goal -= 1;
+    const step = goal > item.system.rank ? 1 : -1;
+    while (item.system.rank !== goal) {
+      const before = item.system.rank;
+      await this.actor.changeSkillRank(item, step);
+      if (item.system.rank === before) break; // не хватило опыта или упёрлись в предел
+    }
+  }
+
+  static #onToggleCareer(event, target) {
+    const item = this._getItem(target);
+    if (item) return item.update({ "system.career": !item.system.career });
   }
 
   static #onActivateHeroic(event, target) {

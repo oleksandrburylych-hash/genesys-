@@ -1,0 +1,374 @@
+/* ==========================================================================
+   Genesys RPG — оформление листов в стиле книги правил
+   Бордовый · тёмно-синий · золотой · «бумага» · узкие заголовки заглавными
+   ========================================================================== */
+
+.genesys.sheet,
+.genesys.dice-pool-dialog,
+.genesys.spell-cast-dialog,
+.genesys.creation-wizard,
+.genesys.world-setup {
+  --gs-maroon: #8e2229;
+  --gs-maroon-d: #5c1217;
+  --gs-navy: #1f3557;
+  --gs-navy-d: #12223a;
+  --gs-gold: #f2a531;
+  --gs-gold-d: #c97f12;
+  --gs-paper: #fbfaf6;
+  --gs-ink: #1d1d1f;
+  --gs-line: #c5cbd2;
+  --gs-muted: #6d747c;
+  --gs-head: "Oswald", "Roboto Condensed", "Arial Narrow", sans-serif;
+  --gs-body: "Roboto Condensed", "Arial Narrow", sans-serif;
+  /* старые переменные системы — под новую палитру */
+  --g-accent: var(--gs-navy);
+  --g-accent-soft: rgba(31, 53, 87, 0.08);
+  --g-border: var(--gs-line);
+  --g-panel: rgba(255, 255, 255, 0.75);
+  --g-ink: var(--gs-ink);
+  --g-muted: var(--gs-muted);
+  --g-danger: var(--gs-maroon);
+}
+
+/* Окно: тёмно-синий заголовок, бумажный фон с тонкой сеткой */
+.genesys.sheet .window-header,
+.genesys.dice-pool-dialog .window-header,
+.genesys.spell-cast-dialog .window-header,
+.genesys.creation-wizard .window-header,
+.genesys.world-setup .window-header {
+  background: linear-gradient(180deg, var(--gs-navy) 0%, var(--gs-navy-d) 100%);
+  color: #fff;
+  border-bottom: 3px solid var(--gs-gold);
+  font-family: var(--gs-head);
+  letter-spacing: 0.04em;
+}
+.genesys.sheet .window-header .window-title { font-family: var(--gs-head); text-transform: uppercase; }
+
+.genesys.sheet .window-content,
+.genesys.dice-pool-dialog .window-content,
+.genesys.spell-cast-dialog .window-content,
+.genesys.creation-wizard .window-content,
+.genesys.world-setup .window-content {
+  color: var(--gs-ink);
+  font-family: var(--gs-body);
+  font-size: 13px;
+  background:
+    repeating-linear-gradient(60deg, transparent 0 70px, rgba(31, 53, 87, 0.035) 70px 71px),
+    repeating-linear-gradient(-60deg, transparent 0 70px, rgba(31, 53, 87, 0.035) 70px 71px),
+    radial-gradient(ellipse at 50% 0%, #ffffff 0%, var(--gs-paper) 60%, #f1eee6 100%);
+}
+
+/* Поля ввода — «бланк» */
+.genesys.sheet input[type="text"],
+.genesys.sheet input[type="number"],
+.genesys.sheet select,
+.genesys.sheet textarea {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid var(--gs-line);
+  border-radius: 3px;
+  color: var(--gs-ink);
+  font-family: var(--gs-body);
+}
+.genesys.sheet input:focus, .genesys.sheet select:focus, .genesys.sheet textarea:focus {
+  border-color: var(--gs-navy);
+  box-shadow: 0 0 0 2px rgba(242, 165, 49, 0.45);
+  outline: none;
+}
+.genesys.sheet a { color: inherit; }
+.genesys.sheet a:hover { color: var(--gs-maroon); text-shadow: none; }
+
+/* Кнопки */
+.genesys .gs-btn {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  width: auto; height: 26px; padding: 0 0.7rem;
+  font-family: var(--gs-head); font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em;
+  color: #fff; background: var(--gs-navy); border: 1px solid var(--gs-navy-d); border-radius: 3px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.25) inset, 0 1px 2px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+.genesys .gs-btn:hover { filter: brightness(1.15); }
+.genesys .gs-btn-gold { background: linear-gradient(180deg, #f6bb55, var(--gs-gold-d)); color: var(--gs-navy-d); border-color: var(--gs-gold-d); }
+.genesys .gs-btn-maroon { background: linear-gradient(180deg, #a8343b, var(--gs-maroon-d)); border-color: var(--gs-maroon-d); }
+.genesys .gs-icon-btn { font-size: 18px; color: var(--gs-navy); cursor: pointer; padding: 0 0.15rem; }
+.genesys .gs-icon-btn:hover { color: var(--gs-maroon); }
+
+/* Лента-разделитель (как «ХАРАКТЕРИСТИКИ», «НАВЫКИ» в книге) */
+.genesys .gs-ribbon {
+  position: relative; display: flex; justify-content: center; align-items: center;
+  margin: 12px 0 8px; min-height: 24px;
+}
+.genesys .gs-ribbon::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 50%;
+  border-top: 2px dotted var(--gs-gold);
+}
+.genesys .gs-ribbon span {
+  position: relative; z-index: 1;
+  padding: 3px 34px;
+  background: linear-gradient(180deg, var(--gs-navy), var(--gs-navy-d));
+  color: #fff; font-family: var(--gs-head); font-weight: 600; font-size: 13px;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  clip-path: polygon(14px 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 14px 100%, 0 50%);
+}
+.genesys .gs-ribbon-gold span { background: linear-gradient(180deg, #f6bb55, var(--gs-gold-d)); color: var(--gs-navy-d); }
+.genesys .gs-help { color: var(--gs-muted); font-size: 12px; font-style: italic; margin: 0 0 6px; text-align: center; }
+.genesys .gs-empty { color: var(--gs-muted); font-style: italic; text-align: center; padding: 6px; }
+
+/* ==========================================================================
+   Лист персонажа
+   ========================================================================== */
+.genesys.sheet.character .window-content { padding: 10px 14px; }
+
+.genesys .gs-top { display: grid; grid-template-columns: 1fr 150px 150px; gap: 14px; align-items: stretch; }
+.genesys .gs-kicker { font-family: var(--gs-head); font-size: 12px; letter-spacing: 0.3em; color: var(--gs-muted); }
+.genesys .gs-name {
+  width: 100%; height: auto !important; margin: 2px 0 6px;
+  font-family: var(--gs-head) !important; font-size: 30px; font-weight: 600; text-transform: uppercase;
+  color: var(--gs-navy) !important; background: transparent !important;
+  border: none !important; border-bottom: 2px solid var(--gs-navy) !important; border-radius: 0 !important;
+}
+.genesys .gs-lines { display: flex; flex-direction: column; gap: 3px; }
+.genesys .gs-line { display: flex; align-items: baseline; gap: 8px; border-bottom: 1px solid var(--gs-line); padding: 2px 0; }
+.genesys .gs-line label { flex: 0 0 105px; font-family: var(--gs-head); font-size: 11px; text-transform: uppercase; color: var(--gs-muted); letter-spacing: 0.08em; }
+.genesys .gs-line a, .genesys .gs-line span { font-family: var(--gs-head); font-size: 15px; color: var(--gs-ink); }
+.genesys .gs-line .gs-placeholder { color: var(--gs-muted); font-family: var(--gs-body); font-size: 12px; font-style: italic; }
+.genesys .gs-toolbar { display: flex; align-items: center; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+.genesys .gs-toolbar-sep { flex: 1; }
+
+.genesys .gs-portrait {
+  border: 3px solid var(--gs-navy); border-radius: 6px; padding: 3px;
+  background: #fff; box-shadow: 0 0 0 2px var(--gs-gold), 0 3px 8px rgba(0, 0, 0, 0.25);
+}
+.genesys .gs-portrait img { width: 100%; height: 100%; max-height: 170px; object-fit: cover; border: none; border-radius: 3px; cursor: pointer; }
+
+.genesys .gs-xp-col { display: flex; flex-direction: column; gap: 10px; justify-content: center; }
+.genesys .gs-xp-banner {
+  display: flex; flex-direction: column; align-items: center; overflow: hidden;
+  border: 2px solid var(--gs-navy); border-radius: 26px 26px 6px 6px; background: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+.genesys .gs-xp-value { font-family: var(--gs-head); font-size: 28px; font-weight: 600; color: var(--gs-navy); line-height: 1.25; }
+.genesys .gs-xp-label {
+  width: 100%; text-align: center; padding: 2px 0;
+  background: linear-gradient(180deg, #a8343b, var(--gs-maroon-d));
+  color: #fff; font-family: var(--gs-head); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+}
+.genesys .gs-xp-banner.negative .gs-xp-value { color: var(--gs-maroon); }
+
+/* Щиты: поглощение, раны, усталость, защита */
+.genesys .gs-derived { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 14px; }
+.genesys .gs-shield { display: flex; flex-direction: column; filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2)); }
+.genesys .gs-shield-title {
+  margin: 0 8px; padding: 4px 0 3px; text-align: center;
+  background: linear-gradient(180deg, #a8343b, var(--gs-maroon-d));
+  color: #fff; font-family: var(--gs-head); font-weight: 600; font-size: 15px; letter-spacing: 0.1em; text-transform: uppercase;
+  clip-path: polygon(10px 0, calc(100% - 10px) 0, 100% 100%, 0 100%);
+  border-radius: 4px 4px 0 0;
+}
+.genesys .gs-shield-body {
+  display: flex; align-items: center; justify-content: center; min-height: 54px;
+  background: #fff; border: 2px solid var(--gs-navy); border-bottom: none; border-radius: 16px 16px 0 0;
+}
+.genesys .gs-shield-body.split > * { flex: 1; display: flex; justify-content: center; align-items: center; }
+.genesys .gs-shield-body.split > *:first-child { border-right: 1px solid var(--gs-line); }
+.genesys .gs-big { font-family: var(--gs-head); font-size: 30px; font-weight: 600; color: var(--gs-navy); }
+.genesys .gs-current { gap: 3px; }
+.genesys .gs-current input { width: 44px !important; height: 32px; text-align: center; font-family: var(--gs-head); font-size: 22px; font-weight: 600; color: var(--gs-maroon) !important; border: none !important; background: transparent !important; }
+.genesys .gs-current a { font-size: 11px; color: var(--gs-muted); }
+.genesys .gs-shield-foot {
+  display: flex; background: linear-gradient(180deg, var(--gs-navy), var(--gs-navy-d));
+  border-radius: 0 0 14px 14px; padding: 2px 0;
+}
+.genesys .gs-shield-foot span { flex: 1; text-align: center; color: #fff; font-family: var(--gs-head); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; }
+.genesys .gs-shield.critical .gs-shield-body { border-color: var(--gs-maroon); box-shadow: inset 0 0 12px rgba(142, 34, 41, 0.35); }
+
+/* Характеристики: медальоны на золотой полосе */
+.genesys .gs-chars { position: relative; display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; padding: 0 4px 6px; }
+.genesys .gs-chars::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 58%; height: 26px;
+  background: linear-gradient(180deg, #f6bb55, var(--gs-gold-d)); border-radius: 3px;
+}
+.genesys .gs-char {
+  position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center;
+  padding: 8px 4px 6px; background: linear-gradient(180deg, #2b4672, var(--gs-navy-d));
+  border-radius: 46px 46px 8px 8px; box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+}
+.genesys .gs-char-circle {
+  display: flex; align-items: center; justify-content: center;
+  width: 58px; height: 58px; border-radius: 50%;
+  background: #fff; border: 3px solid var(--gs-gold);
+  font-family: var(--gs-head); font-size: 32px; font-weight: 600; color: var(--gs-navy) !important;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2); cursor: pointer;
+}
+.genesys .gs-char-circle:hover { background: #fff6e4; }
+.genesys .gs-char-name { margin-top: 5px; color: #fff; font-family: var(--gs-head); font-size: 14px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+.genesys .gs-char-ctrl { display: flex; gap: 14px; font-size: 11px; }
+.genesys .gs-char-ctrl a { color: var(--gs-gold) !important; }
+
+/* Вкладки — синяя лента с золотым активным пунктом */
+.genesys.sheet nav.tabs {
+  margin: 10px 0 4px; padding: 0 6px; border: none; border-radius: 4px;
+  background: linear-gradient(180deg, var(--gs-navy), var(--gs-navy-d));
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.genesys.sheet nav.tabs > a, .genesys.sheet nav.tabs .item {
+  color: rgba(255, 255, 255, 0.82); font-family: var(--gs-head); font-size: 13px;
+  text-transform: uppercase; letter-spacing: 0.08em; padding: 5px 10px; border-bottom: 3px solid transparent;
+}
+.genesys.sheet nav.tabs > a.active, .genesys.sheet nav.tabs .item.active { color: var(--gs-gold); border-bottom-color: var(--gs-gold); text-shadow: none; }
+.genesys.sheet nav.tabs > a:hover { color: #fff; }
+
+/* Навыки: две колонки, таблицы как в книге */
+.genesys .gs-skill-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.genesys .gs-skill-table { width: 100%; border-collapse: collapse; margin-bottom: 10px; background: rgba(255, 255, 255, 0.7); border: 1.5px solid var(--gs-navy); border-radius: 4px; }
+.genesys .gs-skill-table thead th {
+  font-family: var(--gs-head); font-weight: 500; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--gs-muted); text-align: center; padding: 3px 4px; border-bottom: 1.5px solid var(--gs-navy); background: #f3f1ea;
+}
+.genesys .gs-skill-table thead th.gs-col-name { text-align: left; color: var(--gs-navy); font-size: 12px; font-weight: 600; }
+.genesys .gs-skill-table td { padding: 2px 4px; border-bottom: 1px dotted var(--gs-line); vertical-align: middle; }
+.genesys .gs-skill-table tr:last-child td { border-bottom: none; }
+.genesys .gs-skill-table tr:hover td { background: rgba(242, 165, 49, 0.12); }
+.genesys .gs-col-career { width: 58px; text-align: center; }
+.genesys .gs-col-rank { width: 112px; text-align: center; }
+.genesys .gs-col-pool { width: 92px; }
+.genesys .gs-skill-name { font-family: var(--gs-head); font-size: 13px; font-weight: 500; text-transform: uppercase; color: var(--gs-ink); cursor: pointer; }
+.genesys .gs-skill.career .gs-skill-name { color: var(--gs-maroon); font-weight: 600; }
+.genesys .gs-abbr { color: var(--gs-muted); font-size: 11px; font-weight: 400; }
+.genesys .gs-row-edit { margin-left: 4px; font-size: 10px; opacity: 0; color: var(--gs-muted); }
+.genesys tr:hover .gs-row-edit { opacity: 0.8; }
+.genesys .gs-add { margin-left: 6px; color: var(--gs-maroon); font-size: 11px; }
+.genesys .gs-check {
+  display: inline-block; width: 16px; height: 16px; vertical-align: middle;
+  border: 2px solid var(--gs-navy); border-radius: 3px; background: #fff; cursor: pointer; position: relative;
+}
+.genesys .gs-check.on { background: var(--gs-maroon); border-color: var(--gs-maroon-d); }
+.genesys .gs-check.on::after { content: "✓"; position: absolute; inset: -3px 0 0 1px; color: #fff; font-size: 13px; font-weight: 700; }
+.genesys .gs-chevrons {
+  display: inline-flex; gap: 2px; padding: 2px 8px; vertical-align: middle;
+  border: 1.5px solid var(--gs-navy); border-radius: 999px; background: #fff;
+}
+.genesys .gs-chevron {
+  display: inline-block; width: 15px; height: 12px; background: #dfe3e8; cursor: pointer;
+  clip-path: polygon(0 0, 65% 0, 100% 50%, 65% 100%, 0 100%, 35% 50%);
+}
+.genesys .gs-chevron.on { background: linear-gradient(180deg, #2b4672, var(--gs-navy-d)); }
+.genesys .gs-chevron:hover { background: var(--gs-gold); }
+.genesys .gs-col-pool .skill-pool .genesys-die-icon { width: 11px; height: 11px; }
+
+/* Таблицы (оружие и др.) */
+.genesys .gs-table { width: 100%; border-collapse: collapse; background: rgba(255, 255, 255, 0.75); border: 1.5px solid var(--gs-navy); border-radius: 4px; }
+.genesys .gs-table thead th {
+  background: linear-gradient(180deg, var(--gs-navy), var(--gs-navy-d)); color: #fff;
+  font-family: var(--gs-head); font-weight: 500; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 4px 5px; text-align: center;
+}
+.genesys .gs-table thead th a { color: var(--gs-gold); }
+.genesys .gs-table td { padding: 3px 5px; border-bottom: 1px dotted var(--gs-line); text-align: center; font-size: 12px; }
+.genesys .gs-table tr:hover td { background: rgba(242, 165, 49, 0.12); }
+.genesys .gs-table .gs-w-name { text-align: left; }
+.genesys .gs-table .gs-w-name img { width: 26px; height: 26px; border: none; vertical-align: middle; margin-right: 6px; }
+.genesys .gs-table .gs-w-name a { font-family: var(--gs-head); font-size: 13px; text-transform: uppercase; }
+.genesys .gs-table td.gs-w-q { text-align: left; font-style: italic; color: var(--gs-muted); }
+.genesys .gs-table th.gs-w-q { text-align: left; }
+.genesys .gs-num { font-family: var(--gs-head); font-size: 15px; font-weight: 600; color: var(--gs-navy); }
+.genesys .gs-row-ctrl { white-space: nowrap; }
+.genesys .gs-row-ctrl a { margin: 0 2px; color: var(--gs-muted); }
+.genesys .gs-row-ctrl a:hover { color: var(--gs-maroon); }
+.genesys .unequipped { opacity: 0.55; }
+
+/* Блоки-рамки */
+.genesys .gs-two { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 12px; }
+.genesys .gs-box { border: 1.5px solid var(--gs-navy); border-radius: 6px; background: rgba(255, 255, 255, 0.75); overflow: hidden; }
+.genesys .gs-box-head {
+  display: flex; align-items: center; gap: 8px; padding: 4px 8px; cursor: default; list-style: none;
+  background: linear-gradient(180deg, var(--gs-navy), var(--gs-navy-d)); color: #fff;
+  font-family: var(--gs-head); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+}
+.genesys summary.gs-box-head { cursor: pointer; }
+.genesys .gs-box-head span { flex: 1; }
+.genesys .gs-box-head a { color: var(--gs-gold); }
+.genesys .gs-list { list-style: none; margin: 0; padding: 0; }
+.genesys .gs-list li { display: flex; align-items: center; gap: 6px; padding: 4px 8px; border-bottom: 1px dotted var(--gs-line); }
+.genesys .gs-list li img { width: 26px; height: 26px; border: none; }
+.genesys .gs-list-name { flex: 1; font-family: var(--gs-head); font-size: 13px; text-transform: uppercase; }
+.genesys .gs-severity .genesys-die-icon { width: 12px; height: 12px; }
+.genesys .gs-bonus-grid { display: grid; grid-template-columns: 1fr 60px; gap: 3px 8px; padding: 6px 8px; align-items: center; }
+.genesys .gs-bonus-grid label { font-size: 12px; }
+.genesys .gs-add-row { justify-content: center; }
+.genesys .gs-add-row a { color: var(--gs-maroon); font-family: var(--gs-head); text-transform: uppercase; font-size: 12px; }
+
+/* Пирамида талантов */
+.genesys .gs-pyramid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; align-items: end; }
+.genesys .gs-tier { display: flex; flex-direction: column; gap: 6px; }
+.genesys .gs-tier-cards { display: flex; flex-direction: column-reverse; gap: 6px; }
+.genesys .gs-talent {
+  background: #fff; border: 1.5px solid var(--gs-navy); border-radius: 5px; padding: 4px 5px;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
+}
+.genesys .gs-talent-head { display: flex; align-items: center; gap: 5px; }
+.genesys .gs-talent-head img { width: 26px; height: 26px; border: none; flex: 0 0 auto; }
+.genesys .gs-talent-name { font-family: var(--gs-head); font-size: 12px; font-weight: 500; text-transform: uppercase; line-height: 1.15; }
+.genesys .gs-talent-foot { display: flex; align-items: center; gap: 4px; margin-top: 3px; font-size: 11px; }
+.genesys .gs-talent-foot .gs-row-ctrl { margin-left: auto; }
+.genesys .gs-tag { padding: 0 5px; border-radius: 3px; font-family: var(--gs-head); font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: #fff; }
+.genesys .gs-tag.active { background: var(--gs-maroon); }
+.genesys .gs-tag.passive { background: var(--gs-navy); }
+.genesys .gs-talent-rank { font-family: var(--gs-head); font-size: 11px; }
+.genesys .gs-talent-slot {
+  display: flex; align-items: center; justify-content: center; height: 30px;
+  border: 1.5px dashed var(--gs-line); border-radius: 5px; color: var(--gs-muted);
+}
+.genesys .gs-talent-slot:hover { border-color: var(--gs-gold); color: var(--gs-maroon); }
+.genesys .gs-tier-label {
+  display: flex; flex-direction: column; align-items: center; padding: 3px;
+  border: 1.5px solid var(--gs-navy); border-radius: 4px; background: #fff;
+  font-family: var(--gs-head); text-transform: uppercase;
+}
+.genesys .gs-tier-label strong { color: var(--gs-navy); font-size: 13px; letter-spacing: 0.06em; }
+.genesys .gs-tier-label span { font-size: 10px; color: var(--gs-muted); }
+.genesys .gs-tier.blocked .gs-tier-label { border-color: var(--gs-maroon); }
+.genesys .gs-tier.blocked .gs-tier-label i { color: var(--gs-maroon); }
+
+/* Героическая способность */
+.genesys .gs-heroic-row { display: flex; flex-direction: column; gap: 6px; }
+.genesys .gs-heroic {
+  display: flex; align-items: center; gap: 10px; padding: 6px 10px;
+  background: linear-gradient(90deg, #fff7e6, #fff); border: 1.5px solid var(--gs-gold-d); border-radius: 6px;
+}
+.genesys .gs-heroic img { width: 44px; height: 44px; border: none; }
+.genesys .gs-heroic-info { flex: 1; display: flex; flex-direction: column; }
+.genesys .gs-heroic-name { font-family: var(--gs-head); font-size: 16px; text-transform: uppercase; color: var(--gs-navy); }
+.genesys .gs-sub { font-size: 11px; color: var(--gs-muted); }
+.genesys .gs-heroic-points { text-align: right; font-family: var(--gs-head); font-size: 12px; text-transform: uppercase; }
+.genesys .gs-heroic-points a { margin-left: 6px; color: var(--gs-maroon); }
+
+/* Остальные вкладки и листы — общий стиль заголовков */
+.genesys.sheet .list-header { border-bottom: 2px solid var(--gs-maroon); }
+.genesys.sheet .list-header h3, .genesys.sheet .list-header h4 {
+  font-family: var(--gs-head); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gs-navy);
+}
+.genesys.sheet .item-control { color: var(--gs-maroon); }
+.genesys.sheet .table-header { background: linear-gradient(180deg, var(--gs-navy), var(--gs-navy-d)); border-bottom: none; padding: 3px 4px; border-radius: 3px 3px 0 0; }
+.genesys.sheet .table-header h3, .genesys.sheet .table-header > span { color: #fff !important; font-family: var(--gs-head); }
+.genesys.sheet .table-header a { color: var(--gs-gold); }
+.genesys.sheet .compact-list li img { border-radius: 4px; }
+.genesys.sheet .xp-box, .genesys.sheet .encumbrance, .genesys.sheet .characteristic, .genesys.sheet .derived-stats .stat {
+  background: #fff; border-color: var(--gs-navy);
+}
+.genesys.sheet .xp-box .value, .genesys.sheet .derived-stats .stat-value { font-family: var(--gs-head); color: var(--gs-navy); }
+.genesys.sheet .xp-box.highlight { border-color: var(--gs-gold-d); background: #fff7e6; }
+.genesys.sheet .motivation label, .genesys.sheet .details-grid label { font-family: var(--gs-head); text-transform: uppercase; font-size: 11px; color: var(--gs-muted); }
+.genesys.sheet .genesys-header .actor-name, .genesys.sheet .genesys-header .item-name {
+  font-family: var(--gs-head); text-transform: uppercase; color: var(--gs-navy); border-bottom-color: var(--gs-navy);
+}
+.genesys.sheet .genesys-header .profile { border: 3px solid var(--gs-navy); box-shadow: 0 0 0 2px var(--gs-gold); }
+.genesys.sheet .characteristic .char-label, .genesys.sheet .derived-stats .stat-label { font-family: var(--gs-head); letter-spacing: 0.08em; }
+.genesys.item .item-type { font-family: var(--gs-head); letter-spacing: 0.12em; color: var(--gs-maroon); }
+.genesys.item .item-description h3 { font-family: var(--gs-head); text-transform: uppercase; color: var(--gs-navy); border-bottom-color: var(--gs-maroon); }
+.genesys .wizard-header h3, .genesys .world-setup h3, .genesys .spell-header h3 { font-family: var(--gs-head); text-transform: uppercase; color: var(--gs-navy); }
+.genesys .world-setup h3 { border-bottom-color: var(--gs-maroon); }
+.genesys .roll-button { font-family: var(--gs-head); text-transform: uppercase; letter-spacing: 0.08em; background: linear-gradient(180deg, #2b4672, var(--gs-navy-d)); color: #fff; border-color: var(--gs-navy-d); }
+
+/* Карточки в чате — заголовки в фирменном стиле */
+.genesys-roll .roll-label { font-family: "Oswald", sans-serif; text-transform: uppercase; letter-spacing: 0.04em; color: #1f3557; border-bottom: 2px solid #8e2229; }
+.genesys.item-card header h3 { font-family: "Oswald", sans-serif; text-transform: uppercase; color: #1f3557; }

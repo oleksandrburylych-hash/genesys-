@@ -1,98 +1,114 @@
-<div class="sheet-top">
-<header class="genesys-header">
-  <img class="profile" src="{{actor.img}}" alt="{{actor.name}}" data-edit="img" data-action="editImage" title="{{actor.name}}">
-  <div class="header-main">
-    <div class="name-row">
-      <input class="actor-name" type="text" name="name" value="{{actor.name}}" placeholder="{{localize 'GENESYS.Name'}}">
-      <div class="xp-badge {{#if (lt system.experience.available 0)}}negative{{/if}}" data-tooltip="GENESYS.XP.AvailableHint">
-        <span class="label">{{localize "GENESYS.XP.Available"}}</span>
-        <span class="value">{{system.experience.available}}</span>
-        <span class="total">/ {{system.experience.total}}</span>
-      </div>
-    </div>
-
-    <div class="origin-row">
-      <div class="origin {{#unless archetype}}empty{{/unless}}">
-        <span class="label">{{localize "TYPES.Item.archetype"}}</span>
-        {{#if archetype}}
-          <a data-action="itemEdit" data-item-id="{{archetype.id}}">{{archetype.name}}</a>
-        {{else}}
-          <span class="hint">{{localize "GENESYS.Hint.DropArchetype"}}</span>
-        {{/if}}
-      </div>
-      <div class="origin {{#unless career}}empty{{/unless}}">
-        <span class="label">{{localize "TYPES.Item.career"}}</span>
-        {{#if career}}
-          <a data-action="itemEdit" data-item-id="{{career.id}}">{{career.name}}</a>
-        {{else}}
-          <span class="hint">{{localize "GENESYS.Hint.DropCareer"}}</span>
-        {{/if}}
-      </div>
-      {{#if system.creation}}<button type="button" class="creation-wizard" data-action="creationWizard" data-tooltip="GENESYS.Wizard.Hint"><i class="fa-solid fa-hat-wizard"></i></button>{{/if}}
-      <button type="button" class="creation-toggle {{#if system.creation}}active{{/if}}" data-action="finishCreation"
-              data-tooltip="{{#if system.creation}}GENESYS.Creation.FinishHint{{else}}GENESYS.Creation.ReopenHint{{/if}}">
-        <i class="fa-solid {{#if system.creation}}fa-hammer{{else}}fa-check{{/if}}"></i>
-        {{#if system.creation}}{{localize "GENESYS.Creation.Mode"}}{{else}}{{localize "GENESYS.Creation.Done"}}{{/if}}
-      </button>
-    </div>
-
-    <div class="characteristics">
-      {{#each characteristics}}
-      <div class="characteristic">
-        <a class="char-value rollable" data-action="rollCharacteristic" data-key="{{key}}" data-tooltip="GENESYS.Hint.RollCharacteristic">{{value}}</a>
-        <span class="char-label">{{localize label}}</span>
-        {{#if @root.system.creation}}
-        <div class="char-controls">
-          <a data-action="charChange" data-key="{{key}}" data-delta="-1"><i class="fa-solid fa-minus"></i></a>
-          <a data-action="charChange" data-key="{{key}}" data-delta="1"><i class="fa-solid fa-plus"></i></a>
+<div class="gs-top-wrap">
+  <div class="gs-top">
+    <div class="gs-identity">
+      <div class="gs-kicker">{{localize "GENESYS.Sheet.Kicker"}}</div>
+      <input class="gs-name" type="text" name="name" value="{{actor.name}}" placeholder="{{localize 'GENESYS.Sheet.NamePlaceholder'}}">
+      <div class="gs-lines">
+        <div class="gs-line">
+          <label>{{localize "GENESYS.Sheet.ArchetypeLine"}}</label>
+          {{#if archetype}}<a data-action="itemEdit" data-item-id="{{archetype.id}}">{{archetype.name}}</a>
+          {{else}}<span class="gs-placeholder">{{localize "GENESYS.Hint.DropArchetype"}}</span>{{/if}}
         </div>
-        {{/if}}
+        <div class="gs-line">
+          <label>{{localize "TYPES.Item.career"}}</label>
+          {{#if career}}<a data-action="itemEdit" data-item-id="{{career.id}}">{{career.name}}</a>
+          {{else}}<span class="gs-placeholder">{{localize "GENESYS.Hint.DropCareer"}}</span>{{/if}}
+        </div>
+        <div class="gs-line">
+          <label>{{localize "GENESYS.Sheet.Player"}}</label>
+          <span>{{playerName}}</span>
+        </div>
       </div>
-      {{/each}}
+      <div class="gs-toolbar">
+        {{#if system.creation}}
+        <button type="button" class="gs-btn gs-btn-gold" data-action="creationWizard" data-tooltip="GENESYS.Wizard.Hint">
+          <i class="fa-solid fa-hat-wizard"></i> {{localize "GENESYS.Sheet.Wizard"}}
+        </button>
+        {{/if}}
+        <button type="button" class="gs-btn {{#if system.creation}}gs-btn-maroon{{/if}}" data-action="finishCreation"
+                data-tooltip="{{#if system.creation}}GENESYS.Creation.FinishHint{{else}}GENESYS.Creation.ReopenHint{{/if}}">
+          <i class="fa-solid {{#if system.creation}}fa-hammer{{else}}fa-check{{/if}}"></i>
+          {{#if system.creation}}{{localize "GENESYS.Creation.Mode"}}{{else}}{{localize "GENESYS.Creation.Done"}}{{/if}}
+        </button>
+        <span class="gs-toolbar-sep"></span>
+        <a class="gs-icon-btn" data-action="rollPool" data-tooltip="GENESYS.Roll.Title"><i class="fa-solid fa-dice-d20"></i></a>
+        <a class="gs-icon-btn" data-action="recoverStrain" data-tooltip="GENESYS.Rest.RecoverHint"><i class="fa-solid fa-mug-hot"></i></a>
+        <a class="gs-icon-btn" data-action="restOvernight" data-tooltip="GENESYS.Rest.OvernightHint"><i class="fa-solid fa-bed"></i></a>
+      </div>
     </div>
-  </div>
-</header>
 
-<section class="derived-stats">
-  <div class="stat soak">
-    <span class="stat-label">{{localize "GENESYS.Soak"}}</span>
-    <span class="stat-value">{{system.soak.value}}</span>
-  </div>
-
-  <div class="stat track {{#if system.wounds.critical}}critical{{/if}}">
-    <span class="stat-label">{{localize "GENESYS.Wounds"}}</span>
-    <div class="track-values">
-      <a data-action="adjust" data-path="system.wounds.value" data-delta="-1"><i class="fa-solid fa-minus"></i></a>
-      <input type="number" name="system.wounds.value" value="{{system.wounds.value}}" min="0" data-dtype="Number">
-      <span class="sep">/</span>
-      <span class="max" data-tooltip="GENESYS.Hint.WoundThreshold">{{system.wounds.max}}</span>
-      <a data-action="adjust" data-path="system.wounds.value" data-delta="1"><i class="fa-solid fa-plus"></i></a>
+    <div class="gs-portrait">
+      <img src="{{actor.img}}" alt="{{actor.name}}" data-edit="img" data-action="editImage" data-tooltip="GENESYS.Sheet.PortraitHint">
     </div>
-  </div>
 
-  <div class="stat track {{#if system.strain.critical}}critical{{/if}}">
-    <span class="stat-label">{{localize "GENESYS.Strain"}}</span>
-    <div class="track-values">
-      <a data-action="adjust" data-path="system.strain.value" data-delta="-1"><i class="fa-solid fa-minus"></i></a>
-      <input type="number" name="system.strain.value" value="{{system.strain.value}}" min="0" data-dtype="Number">
-      <span class="sep">/</span>
-      <span class="max" data-tooltip="GENESYS.Hint.StrainThreshold">{{system.strain.max}}</span>
-      <a data-action="adjust" data-path="system.strain.value" data-delta="1"><i class="fa-solid fa-plus"></i></a>
-    </div>
-  </div>
-
-  <div class="stat defense">
-    <span class="stat-label">{{localize "GENESYS.Defense"}}</span>
-    <div class="defense-values">
-      <span data-tooltip="GENESYS.DefenseMelee"><i class="fa-solid fa-hand-fist"></i> {{system.defense.melee.value}}</span>
-      <span data-tooltip="GENESYS.DefenseRanged"><i class="fa-solid fa-bullseye"></i> {{system.defense.ranged.value}}</span>
+    <div class="gs-xp-col">
+      <div class="gs-xp-banner">
+        <span class="gs-xp-value">{{system.experience.total}}</span>
+        <span class="gs-xp-label">{{localize "GENESYS.Sheet.XPTotal"}}</span>
+      </div>
+      <div class="gs-xp-banner {{#if (lt system.experience.available 0)}}negative{{/if}}">
+        <span class="gs-xp-value">{{system.experience.available}}</span>
+        <span class="gs-xp-label">{{localize "GENESYS.Sheet.XPAvailable"}}</span>
+      </div>
     </div>
   </div>
 
-  <div class="stat quick-actions">
-    <a data-action="rollPool" data-tooltip="GENESYS.Roll.Title"><i class="fa-solid fa-dice-d20"></i></a>
-    <a data-action="recoverStrain" data-tooltip="GENESYS.Rest.RecoverHint"><i class="fa-solid fa-mug-hot"></i></a>
-    <a data-action="restOvernight" data-tooltip="GENESYS.Rest.OvernightHint"><i class="fa-solid fa-bed"></i></a>
+  <div class="gs-derived">
+    <div class="gs-shield">
+      <div class="gs-shield-title">{{localize "GENESYS.Soak"}}</div>
+      <div class="gs-shield-body"><span class="gs-big" data-tooltip="GENESYS.Sheet.SoakHint">{{system.soak.value}}</span></div>
+      <div class="gs-shield-foot"><span>&nbsp;</span></div>
+    </div>
+
+    <div class="gs-shield {{#if system.wounds.critical}}critical{{/if}}">
+      <div class="gs-shield-title">{{localize "GENESYS.Wounds"}}</div>
+      <div class="gs-shield-body split">
+        <span class="gs-big" data-tooltip="GENESYS.Hint.WoundThreshold">{{system.wounds.max}}</span>
+        <span class="gs-current">
+          <a data-action="adjust" data-path="system.wounds.value" data-delta="-1"><i class="fa-solid fa-minus"></i></a>
+          <input type="number" name="system.wounds.value" value="{{system.wounds.value}}" min="0" data-dtype="Number">
+          <a data-action="adjust" data-path="system.wounds.value" data-delta="1"><i class="fa-solid fa-plus"></i></a>
+        </span>
+      </div>
+      <div class="gs-shield-foot split"><span>{{localize "GENESYS.Sheet.Threshold"}}</span><span>{{localize "GENESYS.Sheet.Current"}}</span></div>
+    </div>
+
+    <div class="gs-shield {{#if system.strain.critical}}critical{{/if}}">
+      <div class="gs-shield-title">{{localize "GENESYS.Strain"}}</div>
+      <div class="gs-shield-body split">
+        <span class="gs-big" data-tooltip="GENESYS.Hint.StrainThreshold">{{system.strain.max}}</span>
+        <span class="gs-current">
+          <a data-action="adjust" data-path="system.strain.value" data-delta="-1"><i class="fa-solid fa-minus"></i></a>
+          <input type="number" name="system.strain.value" value="{{system.strain.value}}" min="0" data-dtype="Number">
+          <a data-action="adjust" data-path="system.strain.value" data-delta="1"><i class="fa-solid fa-plus"></i></a>
+        </span>
+      </div>
+      <div class="gs-shield-foot split"><span>{{localize "GENESYS.Sheet.Threshold"}}</span><span>{{localize "GENESYS.Sheet.Current"}}</span></div>
+    </div>
+
+    <div class="gs-shield">
+      <div class="gs-shield-title">{{localize "GENESYS.Defense"}}</div>
+      <div class="gs-shield-body split">
+        <span class="gs-big" data-tooltip="GENESYS.DefenseMelee">{{system.defense.melee.value}}</span>
+        <span class="gs-big" data-tooltip="GENESYS.DefenseRanged">{{system.defense.ranged.value}}</span>
+      </div>
+      <div class="gs-shield-foot split"><span>{{localize "GENESYS.Sheet.Melee"}}</span><span>{{localize "GENESYS.Sheet.Ranged"}}</span></div>
+    </div>
   </div>
-</section>
+
+  <div class="gs-ribbon"><span>{{localize "GENESYS.Sheet.Characteristics"}}</span></div>
+  <div class="gs-chars">
+    {{#each characteristics}}
+    <div class="gs-char">
+      <a class="gs-char-circle" data-action="rollCharacteristic" data-key="{{key}}" data-tooltip="GENESYS.Hint.RollCharacteristic">{{value}}</a>
+      <div class="gs-char-name">{{localize label}}</div>
+      {{#if @root.system.creation}}
+      <div class="gs-char-ctrl">
+        <a data-action="charChange" data-key="{{key}}" data-delta="-1" data-tooltip="GENESYS.Sheet.CharDown"><i class="fa-solid fa-minus"></i></a>
+        <a data-action="charChange" data-key="{{key}}" data-delta="1" data-tooltip="GENESYS.Sheet.CharUp"><i class="fa-solid fa-plus"></i></a>
+      </div>
+      {{/if}}
+    </div>
+    {{/each}}
+  </div>
 </div>

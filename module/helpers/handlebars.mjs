@@ -14,6 +14,9 @@ export function registerHandlebarsHelpers() {
     return new Handlebars.SafeString(`<span class="genesys-die-icon ${Handlebars.escapeExpression(key)}"${t}></span>`);
   });
 
+  /** Сложение: {{add @index 1}} */
+  Handlebars.registerHelper("add", (a, b) => (Number(a) || 0) + (Number(b) || 0));
+
   /** Знак числа: +2 / −1 / 0 */
   Handlebars.registerHelper("signed", function (n) {
     n = Number(n) || 0;

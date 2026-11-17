@@ -11,6 +11,16 @@ import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
 import { compilePack } from "@foundryvtt/foundryvtt-cli";
+import { pickIcon, DEFAULTS } from "./icon-rules.mjs";
+import { tilePath, TILE_DIR } from "./icon-tiles.mjs";
+
+/** Картинка документа: явно заданная или плашка game-icons по названию. */
+function imageFor(doc) {
+  if (doc.img) return doc.img;
+  const category = doc.type;
+  try { return tilePath(category, pickIcon(doc)); }
+  catch (err) { console.warn(`  ! ${err.message} (${doc.name})`); return ICONS[doc.type] ?? "icons/svg/item-bag.svg"; }
+}
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
 const SRC = path.join(ROOT, "packs-src");
@@ -86,7 +96,7 @@ function embeddedItem(actorId, item, index) {
     _key: `!actors.items!${actorId}.${id}`,
     name: item.name,
     type: item.type,
-    img: item.img ?? ICONS[item.type] ?? "icons/svg/item-bag.svg",
+    img: imageFor(item),
     system: item.system ?? {},
     effects: [],
     flags: {},
@@ -179,7 +189,7 @@ function buildPack(pack) {
       _key: `!${isActor ? "actors" : "items"}!${id}`,
       name: doc.name,
       type: doc.type,
-      img: doc.img ?? ICONS[doc.type] ?? "icons/svg/item-bag.svg",
+      img: imageFor(doc),
       folder: folderId(doc.folder),
       system: doc.system ?? {},
       effects: [],
@@ -217,6 +227,9 @@ function buildPack(pack) {
 
 async function main() {
   fs.mkdirSync(OUT, { recursive: true });
+  // Плашки по умолчанию для новых документов каждого типа.
+  for (const [type, icon] of Object.entries(DEFAULTS)) tilePath(type, icon);
+  writeCredits();
   const built = [];
   for (const pack of PACKS) {
     const result = buildPack(pack);
@@ -250,6 +263,18 @@ async function main() {
   fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + "\n");
   fs.rmSync(path.join(ROOT, ".build"), { recursive: true, force: true });
   console.log(`system.json: ${built.length} компендиумов`);
+}
+
+/** Атрибуция иконок (CC BY 3.0). */
+function writeCredits() {
+  fs.mkdirSync(TILE_DIR, { recursive: true });
+  fs.writeFileSync(path.join(TILE_DIR, "CREDITS.md"), `# Иконки
+
+Символы на плашках — из коллекции [game-icons.net](https://game-icons.net)
+(авторы: Lorc, Delapouite, Skoll, sbed, John Colburn, Carl Olsen, Cathelineau и другие),
+лицензия [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/).
+Плашки (фон, рамка, цвета) сгенерированы для системы Genesys RPG скриптом \`tools/icon-tiles.mjs\`.
+`);
 }
 
 main().catch(err => { console.error(err); process.exit(1); });

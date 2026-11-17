@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<defs><radialGradient id="g" cx="50%" cy="30%" r="80%"><stop offset="0" stop-color="#3f7d4a"/><stop offset="1" stop-color="#1f4527"/></radialGradient></defs>
+<rect x="10" y="10" width="492" height="492" rx="70" fill="url(#g)" stroke="#f2a531" stroke-width="12"/>
+<rect x="30" y="30" width="452" height="452" rx="54" fill="none" stroke="#ffffff" stroke-opacity="0.22" stroke-width="4"/>
+<g transform="translate(92 100) scale(0.64)"><path fill="rgba(0,0,0,0.45)" d="m29 30l1 90h36V66h26V30zm99 0v36h72V30zm108 0v36h72V30zm108 0v36h72V30zm102 0v78h36V30zm-206 80v36h100.543l-118 118H30v218h218V289.457l118-118V272h36V110zm206 34v72h36v-72zM30 156v72h36v-72zm416 96v72h36v-72zm0 108v72h36v-72zm-166 86v36h72v-36zm108 0v36h72v-36z"/></g>
+<g transform="translate(92 92) scale(0.64)"><path fill="#ffffff" d="m29 30l1 90h36V66h26V30zm99 0v36h72V30zm108 0v36h72V30zm108 0v36h72V30zm102 0v78h36V30zm-206 80v36h100.543l-118 118H30v218h218V289.457l118-118V272h36V110zm206 34v72h36v-72zM30 156v72h36v-72zm416 96v72h36v-72zm0 108v72h36v-72zm-166 86v36h72v-36zm108 0v36h72v-36z"/></g>
+</svg>

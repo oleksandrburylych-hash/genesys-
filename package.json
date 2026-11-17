@@ -1,7 +1,7 @@
 {
   "name": "genesys-rpg",
   "private": true,
-  "version": "0.6.3",
+  "version": "0.7.0",
   "description": "Genesys RPG system for Foundry VTT v14",
   "type": "module",
   "scripts": {
@@ -11,6 +11,7 @@
   },
   "devDependencies": {
     "@foundryvtt/foundryvtt-cli": "3.0.5",
-    "handlebars": "4.7.8"
+    "handlebars": "4.7.8",
+    "@iconify-json/game-icons": "1.2.4"
   }
 }

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<defs><radialGradient id="g" cx="50%" cy="30%" r="80%"><stop offset="0" stop-color="#56626e"/><stop offset="1" stop-color="#2b3238"/></radialGradient></defs>
+<rect x="10" y="10" width="492" height="492" rx="70" fill="url(#g)" stroke="#f2a531" stroke-width="12"/>
+<rect x="30" y="30" width="452" height="452" rx="54" fill="none" stroke="#ffffff" stroke-opacity="0.22" stroke-width="4"/>
+<g transform="translate(92 100) scale(0.64)"><path fill="rgba(0,0,0,0.45)" d="M226.878 16v243.274a120.023 120.023 0 0 0 30 236.71a119.996 119.996 0 0 0 29.998-236.242v-93.747h59.998v-44.998h-59.998v-45h89.997V16zm25.312 299.99a60 60 0 0 1 2.343 0a60 60 0 0 1 2.343 0a59.998 59.998 0 0 1 0 119.996a60.044 60.044 0 0 1-4.688-119.996z"/></g>
+<g transform="translate(92 92) scale(0.64)"><path fill="#ffffff" d="M226.878 16v243.274a120.023 120.023 0 0 0 30 236.71a119.996 119.996 0 0 0 29.998-236.242v-93.747h59.998v-44.998h-59.998v-45h89.997V16zm25.312 299.99a60 60 0 0 1 2.343 0a60 60 0 0 1 2.343 0a59.998 59.998 0 0 1 0 119.996a60.044 60.044 0 0 1-4.688-119.996z"/></g>
+</svg>
