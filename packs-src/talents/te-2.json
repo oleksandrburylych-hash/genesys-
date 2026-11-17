@@ -1,0 +1,5985 @@
+[
+ {
+  "name": "Искусство ядов",
+  "nameEn": "Alchemical Arts",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "incidental",
+   "ranked": true,
+   "description": "<p>После проверки изготовления яда персонаж может получить усталость (не больше удвоенного ранга таланта): за каждые 2 усталости к результату добавляются успех и преимущество.</p>",
+   "source": "Talents Expanded (Unlimited Power), с. 32",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Засада",
+  "nameEn": "Ambush",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "maneuver",
+   "ranked": false,
+   "description": "<p>Один раз за раунд, находясь в укрытии, персонаж может совершить этот манёвр. До конца хода одно попадание его следующей успешной боевой проверки против цели на короткой дистанции наносит дополнительный урон, равный его рангу Скрытности.</p>",
+   "source": "Talents Expanded (Forged in Battle), с. 32",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Прикладные исследования",
+  "nameEn": "Applied Research",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "incidental",
+   "ranked": true,
+   "description": "<p>Перед проверкой персонаж может использовать любой навык Знания и Интеллект вместо положенных навыка и характеристики, объяснив, как знания помогают в деле. Число применений за игровую встречу равно рангу таланта; ведущий может потребовать конкретное Знание.</p>",
+   "source": "Talents Expanded (Shadow of the Beanstalk), с. 32",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Мастер доспехов",
+  "nameEn": "Armor Master",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Пока персонаж носит броню, его общее поглощение увеличивается на 1.</p>",
+   "source": "Talents Expanded (Age of Rebellion Core Rulebook, Edge of the Empire Beginner Game Rulebook, Edge of the Empire Core Rulebook, Keeping the Peace), с. 33",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Дурная привычка",
+  "nameEn": "Bad Habit",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "maneuver",
+   "ranked": false,
+   "description": "<p>Манёвром персонаж может сделать себя Дезориентированным до конца сцены (поддавшись дурной привычке). Пока это состояние от таланта длится, в начале каждого своего хода он восстанавливает 2 усталости.</p>",
+   "source": "Talents Expanded (Shadow of the Beanstalk), с. 33",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Чёрный пиар",
+  "nameEn": "Bad Press",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>Один раз за игровую встречу персонаж выбирает узкую сплочённую организацию и совершает Сложную проверку Обмана. При успехе до конца игровой встречи порог усталости её членов снижен на 1 и ещё на 1 за каждые 3 успеха. Игрок должен объяснить, как распространил порочащие сведения.</p>",
+   "source": "Talents Expanded (Desperate Allies), с. 33",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Слепая зона",
+  "nameEn": "Blind Spot",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Персонаж и союзники на короткой дистанции от него добавляют автоматическое преимущество к боевым проверкам, совершаемым из укрытия.</p>",
+   "source": "Talents Expanded (Forged in Battle, Keeping the Peace), с. 34",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Закалённый против ядов (улучшенный)",
+  "nameEn": "Blooded (Improved)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "action",
+   "ranked": true,
+   "description": "<p>Требуется талант «Закалённый против ядов». Действием персонаж совершает Сложную проверку Стойкости, чтобы сразу избавиться от всех ядов и побочных эффектов препаратов. Сложность ослабляется на 1 за каждый ранг «Закалённого против ядов».</p>",
+   "source": "Talents Expanded (Unlimited Power), с. 34",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Столкновение на прощание",
+  "nameEn": "Capital Sendoff",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>Действием персонаж выбирает два корабля или транспорта на короткой дистанции и совершает Сложную проверку Хладнокровия; при успехе они претерпевают незначительное столкновение.</p>",
+   "source": "Talents Expanded (Stay on Target), с. 34",
+   "worlds": [
+    "fantasy",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Центр равновесия",
+  "nameEn": "Center of Being",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "maneuver",
+   "ranked": true,
+   "description": "<p>Держа оружие со свойством Оборонительное, персонаж может совершить этот манёвр. До начала его следующего хода критическое значение оружия противников, атакующих его в ближнем бою, считается выше на 1 за каждый ранг таланта.</p>",
+   "source": "Talents Expanded (Force and Destiny Core Rulebook), с. 34",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Ветеран боёв",
+  "nameEn": "Combat Veteran",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Персонаж добавляет кость бонуса к проверкам Грубой силы и Выдержки.</p>",
+   "source": "Talents Expanded (Dawn of Rebellion), с. 34",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Уверенность (улучшенный)",
+  "nameEn": "Confidence (Improved)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Требуется талант «Уверенность». Делая проверку страха, персонаж может потратить преимущество, чтобы ободрить союзников на короткой дистанции, проходящих ту же проверку: каждый добавляет столько автоматических успехов, сколько у персонажа рангов «Уверенности».</p>",
+   "source": "Talents Expanded (Lead by Example), с. 34",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Обходительный",
+  "nameEn": "Congenial",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "incidental",
+   "ranked": true,
+   "description": "<p>Персонаж может получить усталость (не больше ранга таланта), чтобы на столько же ослабить сложность своей проверки Обаяния или Переговоров либо усилить сложность такой проверки, направленной против него.</p>",
+   "source": "Talents Expanded (Far Horizons, Fly Casual, Disciples of Harmony), с. 35",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Постоянная бдительность",
+  "nameEn": "Constant Vigilance",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Для определения инициативы персонаж всегда может использовать Бдительность.</p>",
+   "source": "Talents Expanded (Endless Vigil), с. 35",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Изобретательный убийца",
+  "nameEn": "Creative Killer",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Критическое значение импровизированного оружия в руках персонажа снижено на 2 (минимум до 1).</p>",
+   "source": "Talents Expanded (Age of Rebellion Core Rulebook), с. 35",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Хитрая маска",
+  "nameEn": "Cunning Persona",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "incidental",
+   "ranked": false,
+   "description": "<p>Персонаж может получить 2 усталости, чтобы совершить проверку Обаяния на Смекалке вместо Харизмы.</p>",
+   "source": "Talents Expanded (Cyphers and Masks), с. 35",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Хитрая ловушка",
+  "nameEn": "Cunning Snare",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>Один раз за сцену действием персонаж устраивает ловушку. Любой другой персонаж, оказавшийся вплотную к ней, совершает встречную проверку Бдительности против Выживания создателя, чтобы избежать вреда и неприятных эффектов.</p>",
+   "source": "Talents Expanded (Forged in Battle), с. 35",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Доработанное охлаждение",
+  "nameEn": "Customized Cooling Unit",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "passive",
+   "ranked": true,
+   "description": "<p>Требуется талант «Фирменный транспорт». Порог перегрузки систем фирменного транспорта увеличивается на 2 за каждый ранг таланта.</p>",
+   "source": "Talents Expanded (Stay on Target), с. 35",
+   "worlds": [
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "postapoc",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Дерзкий вираж",
+  "nameEn": "Daring Turn",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "maneuver",
+   "ranked": false,
+   "description": "<p>Если противник получил преимущество в манёвренном бою над транспортом, которым управляет персонаж, тот может получить 2 усталости и совершить этот манёвр, чтобы снять эффект.</p>",
+   "source": "Talents Expanded (Stay on Target), с. 35",
+   "worlds": [
+    "fantasy",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Обезоруживание",
+  "nameEn": "Disarm",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>При успешной проверке Грубой силы или Ближнего боя персонаж может потратить триумф или 2 преимущества, чтобы обезоружить противника.</p>",
+   "source": "Talents Expanded (Force and Destiny Core Rulebook), с. 36",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Обезоруживающая улыбка",
+  "nameEn": "Disarming Smile",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "action",
+   "ranked": true,
+   "description": "<p>Действием персонаж совершает встречную проверку Обаяния против цели на короткой дистанции. При успехе до конца сцены ближняя и дальняя защита цели снижены на ранг таланта.</p>",
+   "source": "Talents Expanded (Fly Casual), с. 36",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Знаток верфей",
+  "nameEn": "Dockyard Expertise",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "action",
+   "ranked": true,
+   "description": "<p>В сухом доке с подходящим персоналом и оборудованием персонаж может совершить Обычную проверку Знания. При успехе стоимость и время ремонта, установки улучшений или модификаций корабля снижаются на 20% за ранг таланта (но не меньше 100 денежных единиц и одного дня).</p>",
+   "source": "Talents Expanded (Fully Operational), с. 36",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "postapoc",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Всё или ничего",
+  "nameEn": "Double or Nothing",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Персонаж может получить 2 усталости, чтобы увеличить сложность своей следующей проверки на 1. После взаимоотмены символов число оставшихся преимуществ удваивается.</p>",
+   "source": "Talents Expanded (Fly Casual), с. 36",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Дурацкое везение",
+  "nameEn": "Dumb Luck",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "incidental",
+   "ranked": false,
+   "description": "<p>Один раз за игровую встречу, когда персонаж получает критическую травму, но до броска, можно потратить очко сюжета: противник бросает дважды, а игрок выбирает, какой результат применить.</p>",
+   "source": "Talents Expanded (Shadow of the Beanstalk), с. 37",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Шифрованное послание",
+  "nameEn": "Encoded Communique",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Сложность проверок расшифровки сообщений персонажа без нужного ключа усиливается столько раз, сколько у него рангов Компьютеров.</p>",
+   "source": "Talents Expanded (Desperate Allies), с. 37",
+   "worlds": [
+    "modern",
+    "monster",
+    "zombie",
+    "postapoc",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Слова поддержки",
+  "nameEn": "Encouraging Words",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "incidentalOOT",
+   "ranked": false,
+   "description": "<p>Когда союзник вплотную к персонажу проваливает проверку, персонаж может получить 1 усталость, чтобы помочь ему со следующей проверкой в этой сцене.</p>",
+   "source": "Talents Expanded (Desperate Allies, Lead by Example, Disciples of Harmony), с. 37",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Изнурительный допрос",
+  "nameEn": "Exhaustive Questioning",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "incidental",
+   "ranked": false,
+   "description": "<p>При успешной социальной проверке против пленника на короткой дистанции персонаж может снизить его порог усталости на 2 до конца игровой встречи и потратить преимущество, чтобы нанести ему 1 усталость.</p>",
+   "source": "Talents Expanded (Cyphers and Masks), с. 37",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Длинная рука",
+  "nameEn": "Extended Reach",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "incidental",
+   "ranked": false,
+   "description": "<p>Вооружившись двуручным оружием ближнего боя (или оружием Ближнего боя (тяжёлое оружие)), персонаж может получить 1 усталость, чтобы атаковать им цель на короткой дистанции, а не только вплотную.</p>",
+   "source": "Talents Expanded (Dawn of Rebellion), с. 37",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Внимание к деталям",
+  "nameEn": "Eye for Detail",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "incidental",
+   "ranked": true,
+   "description": "<p>После проверки Механики или Компьютеров персонаж может получить усталость (не больше ранга таланта), чтобы превратить столько же успехов в преимущества.</p>",
+   "source": "Talents Expanded (Special Modifications), с. 38",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Бойся теней",
+  "nameEn": "Fear the Shadows",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>Один раз за игровую встречу персонаж может совершить Сложную проверку Обмана, чтобы заставить одну группу приспешников или одного соперника бежать из сцены.</p>",
+   "source": "Talents Expanded (Endless Vigil), с. 38",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Грозная репутация",
+  "nameEn": "Fearsome Rep",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "passive",
+   "ranked": true,
+   "description": "<p>Персонаж добавляет к результатам проверок Запугивания по преимуществу за каждый ранг таланта.</p>",
+   "source": "Talents Expanded (Dawn of Rebellion), с. 38",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Финт",
+  "nameEn": "Feint",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "passive",
+   "ranked": true,
+   "description": "<p>Промахнувшись в ближнем бою, персонаж может потратить триумф или 3 преимущества, чтобы усилить сложность следующей атаки этого противника по нему столько раз, сколько у него рангов таланта.</p>",
+   "source": "Talents Expanded (Force and Destiny Core Rulebook), с. 38",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Звериная сила",
+  "nameEn": "Feral Strength",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "passive",
+   "ranked": true,
+   "description": "<p>Одно попадание успешной атаки Грубой силой или Ближним боем наносит +1 урон за каждый ранг таланта.</p>",
+   "source": "Talents Expanded (Age of Rebellion Beginner Game Rulebook, Age of Rebellion Core Rulebook, Edge of the Empire Beginner Game Rulebook, Edge of the Empire Core Rulebook), с. 38",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Управление огнём",
+  "nameEn": "Fire Control",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "maneuver",
+   "ranked": false,
+   "description": "<p>Манёвром персонаж настраивает огонь своего корабля или транспорта: до начала его следующего хода все боевые проверки с этого транспорта считают фигуру цели на 1 больше.</p>",
+   "source": "Talents Expanded (Age of Rebellion Core Rulebook), с. 38",
+   "worlds": [
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "postapoc",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Держать строй",
+  "nameEn": "Form On Me",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Союзники на короткой дистанции (не больше ранга Лидерства персонажа) получают выгоды действия «Завоевать преимущество» в бою транспорта.</p>",
+   "source": "Talents Expanded (Age of Rebellion Core Rulebook), с. 39",
+   "worlds": [
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Тактика строя",
+  "nameEn": "Formation Tactics",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>Персонаж совершает Сложную проверку Лидерства. При успехе он выбирает союзников на короткой дистанции (по числу успехов): до конца его следующего хода сложность атак против них усиливается один раз.</p>",
+   "source": "Talents Expanded (Dawn of Rebellion), с. 39",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Усиленная конструкция",
+  "nameEn": "Fortified Structure",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "passive",
+   "ranked": true,
+   "description": "<p>Требуется талант «Фирменный транспорт». Порог повреждений корпуса фирменного транспорта увеличивается на 1 за каждый ранг таланта.</p>",
+   "source": "Talents Expanded (Stay on Target), с. 39",
+   "worlds": [
+    "fantasy",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Бешеная атака",
+  "nameEn": "Frenzied Attack",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "incidental",
+   "ranked": true,
+   "description": "<p>Совершая проверку Ближнего боя или Грубой силы, персонаж может получить усталость (не больше ранга таланта), чтобы столько же раз усилить атаку.</p>",
+   "source": "Talents Expanded (Age of Rebellion Core Rulebook, Edge of the Empire Core Rulebook), с. 39",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Подмазать",
+  "nameEn": "Greased Palms",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "maneuver",
+   "ranked": true,
+   "description": "<p>Перед социальной проверкой персонаж может потратить до 50 денежных единиц за ранг таланта: каждые 50 потраченных усиливают проверку один раз.</p>",
+   "source": "Talents Expanded (Age of Rebellion Core Rulebook, Jewel of Yavin, Far Horizons), с. 39",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Травля",
+  "nameEn": "Harass",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "incidental",
+   "ranked": false,
+   "description": "<p>Требуется талант «Животное-спутник». Когда животное персонажа успешно атакует цель, вместо нанесения урона можно один раз усилить сложность следующей проверки цели.</p>",
+   "source": "Talents Expanded (Savage Spirits), с. 40",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Тёртый калач",
+  "nameEn": "Hard-Boiled",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "passive",
+   "ranked": true,
+   "description": "<p>Восстанавливая усталость после сцены, персонаж может потратить преимущества (не больше ранга таланта), чтобы восстановить по 1 ране за каждое.</p>",
+   "source": "Talents Expanded (No Disintegrations), с. 40",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Видавший виды",
+  "nameEn": "Hard-Boiled (Shadow of the Beanstalk)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "incidental",
+   "ranked": false,
+   "description": "<p>Восстанавливая усталость в конце сцены, персонаж может вместо Выдержки или Хладнокровия совершить Элементарную проверку Стойкости; тогда он восстанавливает 1 усталость за каждый успех и 1 рану за каждое преимущество.</p>",
+   "source": "Talents Expanded (Shadow of the Beanstalk), с. 40",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Героическая стойкость",
+  "nameEn": "Heroic Resilience",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "incidental",
+   "ranked": true,
+   "description": "<p>Сразу после попадания, но до получения урона, персонаж может потратить очко сюжета, чтобы увеличить поглощение против этого удара на свой ранг Стойкости.</p>",
+   "source": "Talents Expanded (Forged in Battle, Dangerous Covenants), с. 40",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Сдерживающий выстрел",
+  "nameEn": "Hindering Shot",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "incidental",
+   "ranked": true,
+   "description": "<p>Персонаж тратит очко сюжета и увеличивает сложность следующей проверки Артиллерии на 1. Если атака наносит урон, корабль или транспорт-цель при каждом движении получает перегрузку систем, равную своей скорости, в течение числа ходов, равного рангу таланта.</p>",
+   "source": "Talents Expanded (No Disintegrations), с. 40",
+   "worlds": [
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "postapoc",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Держи ровнее",
+  "nameEn": "Hold It Steady",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "incidental",
+   "ranked": false,
+   "description": "<p>Перед боевой проверкой оружием со свойством Автоматическое персонаж может использовать это свойство без увеличения сложности, но за каждое дополнительное попадание получает 2 усталости.</p>",
+   "source": "Talents Expanded (Shadow of the Beanstalk), с. 40",
+   "worlds": [
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Добыча охотника (улучшенный)",
+  "nameEn": "Hunter's Quarry (Improved)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Требуется талант «Добыча охотника». Персонаж может получить 2 усталости, чтобы выполнить действие «Добыча охотника» как манёвр.</p>",
+   "source": "Talents Expanded (Enter the Unknown, Savage Spirits), с. 41",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Осведомитель",
+  "nameEn": "Informant",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "incidental",
+   "ranked": false,
+   "description": "<p>Один раз за игровую встречу персонаж может представить знакомого, который способен пролить свет на выбранный вопрос.</p>",
+   "source": "Talents Expanded (Desperate Allies, No Disintegrations), с. 41",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Встрять в разговор",
+  "nameEn": "Interjection",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "incidentalOOT",
+   "ranked": false,
+   "description": "<p>После социальной проверки другого персонажа персонаж может получить 3 усталости и совершить Обычную проверку Бдительности. Каждый успех добавляет к той проверке успех или провал, каждое преимущество — преимущество или осложнение (на выбор).</p>",
+   "source": "Talents Expanded (Desperate Allies), с. 41",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Внушающий страх",
+  "nameEn": "Intimidating",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "incidentalOOT",
+   "ranked": true,
+   "description": "<p>Персонаж может получить усталость (не больше ранга таланта), чтобы на столько же ослабить сложность своей проверки Запугивания либо усилить сложность проверки Запугивания против него.</p>",
+   "source": "Talents Expanded (Age of Rebellion Core Rulebook, Edge of the Empire Core Rulebook, Force and Destiny Beginner Game Rulebook, Force and Destiny Core Rulebook), с. 41",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Железное тело",
+  "nameEn": "Iron Body",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "passive",
+   "ranked": true,
+   "description": "<p>Персонаж убирает по кости штрафа за ранг таланта из проверок Координации и Стойкости. Критическое значение его безоружных атак снижено на 1 за ранг (минимум до 1).</p>",
+   "source": "Talents Expanded (No Disintegrations), с. 41",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Проект покрупнее",
+  "nameEn": "Larger Project",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "passive",
+   "ranked": true,
+   "description": "<p>Требуется талант «Фирменный транспорт». Фигура фирменного транспорта может быть на 1 больше за каждый ранг таланта.</p>",
+   "source": "Talents Expanded (Stay on Target, Special Modifications), с. 41",
+   "worlds": [
+    "fantasy",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Посмеяться в ответ",
+  "nameEn": "Laugh It Off",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "incidentalOOT",
+   "ranked": false,
+   "description": "<p>Когда персонажа выбирают целью социальной проверки, он может потратить 3 осложнения или крах, чтобы уменьшить нанесённую усталость на свой ранг Обаяния; инициатор проверки получает столько же усталости.</p>",
+   "source": "Talents Expanded (Shadow of the Beanstalk), с. 42",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Смертельные удары",
+  "nameEn": "Lethal Blows",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "passive",
+   "ranked": true,
+   "description": "<p>Персонаж добавляет +10 за каждый ранг таланта к броскам критических травм, которые он наносит противникам.</p>",
+   "source": "Talents Expanded (Age of Rebellion Core Rulebook, Edge of the Empire Core Rulebook, Savage Spirits), с. 42",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Разговорили",
+  "nameEn": "Made You Talk",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>Один раз за игровую встречу персонаж может совершить встречную социальную проверку против пленника на короткой дистанции, добавив кость бонуса за каждые 2 усталости, полученные целью в этой сцене.</p>",
+   "source": "Talents Expanded (Cyphers and Masks), с. 42",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Изящество боевых искусств",
+  "nameEn": "Martial Grace",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "incidental",
+   "ranked": false,
+   "description": "<p>Один раз за раунд персонаж может получить 3 усталости, чтобы одно попадание успешной атаки Грубой силой нанесло дополнительный урон, равный его рангу Координации.</p>",
+   "source": "Talents Expanded (Knights of Fate), с. 42",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Мастер боевого оружия",
+  "nameEn": "Martial Weapons Master",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>С оружием ближнего боя персонаж может совершить Обычную проверку Ближнего боя. При успехе один противник вплотную роняет одно оружие или отбрасывается на одну категорию дистанции в выбранном направлении. Если так сталкивают в опасное место именного соперника или главаря, ведущий может за очко сюжета позволить ему удержаться, упав Распластанным.</p>",
+   "source": "Talents Expanded (Shadow of the Beanstalk), с. 42",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Сетевой боец",
+  "nameEn": "Net Warrior",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>Подключившись к системе через нейроинтерфейс, персонаж может совершить встречную проверку Компьютеров (взлом) против Компьютеров (защита) другого известного ему пользователя системы. Цель получает 1 усталость за каждый успех, а если тоже подключена через нейроинтерфейс — ещё и 1 рану за каждый успех.</p>",
+   "source": "Talents Expanded (Shadow of the Beanstalk), с. 42",
+   "worlds": [
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Проворный",
+  "nameEn": "Nimble",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "incidental",
+   "ranked": false,
+   "description": "<p>В начале хода персонаж может потратить очко сюжета, чтобы совершить манёвр перемещения как побочное действие (не в счёт лимита манёвров). В этот ход он может совершить лишь ещё один манёвр перемещения.</p>",
+   "source": "Talents Expanded (Shadow of the Beanstalk), с. 43",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Никуда не денешься",
+  "nameEn": "No Escape",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Персонаж может потратить 2 преимущества своей проверки Запугивания или 2 осложнения проверки Выдержки противника, чтобы тот не мог совершить бесплатный манёвр в свой следующий ход.</p>",
+   "source": "Talents Expanded (Keeping the Peace), с. 43",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Не дурак",
+  "nameEn": "Nobody's Fool",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "passive",
+   "ranked": true,
+   "description": "<p>Сложность проверок Обаяния, Запугивания и Обмана, направленных против персонажа, усиливается один раз за каждый ранг таланта.</p>",
+   "source": "Talents Expanded (Age of Rebellion Core Rulebook, Edge of the Empire Core Rulebook, Force and Destiny Core Rulebook), с. 43",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Оппортунист",
+  "nameEn": "Opportunist",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "incidental",
+   "ranked": true,
+   "description": "<p>При покупке выберите один небоевой и немагический навык. После его проверки персонаж может получить усталость (не больше ранга таланта), чтобы превратить столько же успехов в преимущества.</p>",
+   "source": "Talents Expanded (Special Modifications), с. 43",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Нестандартное мышление",
+  "nameEn": "Outside the Box",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>При покупке выберите характеристику. Один раз за игровую встречу персонаж может совершить проверку любого навыка с этой характеристикой вместо связанной с навыком.</p>",
+   "source": "Talents Expanded (Age of Rebellion Core Rulebook), с. 43",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Подавление защиты",
+  "nameEn": "Overwhelm Defenses",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "incidental",
+   "ranked": true,
+   "description": "<p>После неудачной атаки оружием корабля или транспорта персонаж может потратить по 2 преимущества (не больше ранга таланта раз): каждая пара снижает защиту цели в атакованном секторе на 1.</p>",
+   "source": "Talents Expanded (Age of Rebellion Core Rulebook, No Disintegrations), с. 43",
+   "worlds": [
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Прижать к земле",
+  "nameEn": "Pin",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>Действием персонаж совершает встречную проверку Атлетики против противника вплотную; при успехе цель Обездвижена до конца следующего хода персонажа. Триумф продлевает эффект на раунд.</p>",
+   "source": "Talents Expanded (Enter the Unknown), с. 44",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Правдоподобное отрицание",
+  "nameEn": "Plausible Deniability",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>Действием персонаж совершает Сложную проверку Запугивания, чтобы убедить свидетелей (не больше его Воли) тихо уйти.</p>",
+   "source": "Talents Expanded (Desperate Allies), с. 44",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "В упор",
+  "nameEn": "Point Blank",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "passive",
+   "ranked": true,
+   "description": "<p>Одно попадание успешной атаки Дальним боем (лёгкое или тяжёлое оружие) по цели вплотную или на короткой дистанции наносит +1 урон за каждый ранг таланта.</p>",
+   "source": "Talents Expanded (Age of Rebellion Beginner Game Rulebook, Age of Rebellion Core Rulebook, Edge of the Empire Beginner Game Rulebook, Edge of the Empire Core Rulebook), с. 44",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Мощный взрыв",
+  "nameEn": "Powerful Blast",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "passive",
+   "ranked": true,
+   "description": "<p>Урон свойства Взрыв от атак персонажа увеличивается на 1 за каждый ранг таланта.</p>",
+   "source": "Talents Expanded (Age of Rebellion Core Rulebook, Dangerous Covenants), с. 44",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Упреждающий отход",
+  "nameEn": "Preemptive Avoidance",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "incidentalOOT",
+   "ranked": false,
+   "description": "<p>Персонаж может потратить очко сюжета, чтобы вне своего хода выйти из ближнего боя с противником.</p>",
+   "source": "Talents Expanded (Force and Destiny Core Rulebook), с. 44",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Гордость и радость (улучшенный)",
+  "nameEn": "Pride and Joy (Improved)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Требуется талант «Гордость и радость». Находясь в своём транспорте, персонаж восстанавливает на 1 усталость больше при любом восстановлении и может потратить преимущество при проверке восстановления, чтобы союзник в том же транспорте восстановил 1 усталость.</p>",
+   "source": "Talents Expanded (Dawn of Rebellion), с. 45",
+   "worlds": [
+    "fantasy",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Отражение (улучшенный)",
+  "nameEn": "Reflect (Improved)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "incidentalOOT",
+   "ranked": false,
+   "description": "<p>Требуется талант «Отражение». Персонаж может применять «Отражение» с подходящим (по решению ведущего) оружием ближнего боя. Если отражённое попадание дало крах или 3 осложнения, после атаки он может поразить одну цель на средней дистанции с тем же уроном.</p>",
+   "source": "Talents Expanded (Force and Destiny Beginner Game Rulebook, Force and Destiny Core Rulebook), с. 45",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Стойкость к допросу",
+  "nameEn": "Resist Questioning",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "incidentalOOT",
+   "ranked": false,
+   "description": "<p>Когда персонаж становится целью встречной социальной проверки, он может получить 2 усталости, чтобы добавить к ней кость штрафа. Если проверка провалена, можно потратить крах: собеседник поверил ложным сведениям персонажа.</p>",
+   "source": "Talents Expanded (Cyphers and Masks), с. 45",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Находчивая переделка",
+  "nameEn": "Resourceful Refit",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>Действием персонаж совершает Обычную проверку Механики, чтобы разобрать старое улучшение и собрать из него новое; цена нового снижается на стоимость разобранного.</p>",
+   "source": "Talents Expanded (Special Modifications), с. 45",
+   "worlds": [
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Рассекающий удар",
+  "nameEn": "Scything Strike",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "passive",
+   "ranked": true,
+   "description": "<p>Безоружные атаки Грубой силой получают свойство Проникающее с рейтингом, равным рангу таланта.</p>",
+   "source": "Talents Expanded (Knights of Fate), с. 45",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Перехват инициативы",
+  "nameEn": "Seize the Initiative",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "maneuver",
+   "ranked": false,
+   "description": "<p>Один раз за игровую встречу манёвром персонаж совершает Сложную проверку Атлетики; при успехе другие персонажи игроков могут сразу совершить свои ходы.</p>",
+   "source": "Talents Expanded (Forged in Battle), с. 46",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Чутьё на выгоду",
+  "nameEn": "Sense Advantage",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "incidentalOOT",
+   "ranked": false,
+   "description": "<p>Один раз за игровую встречу персонаж может добавить 2 кости штрафа к проверке навыка одного неигрового персонажа.</p>",
+   "source": "Talents Expanded (Force and Destiny Beginner Game Rulebook, Force and Destiny Core Rulebook), с. 46",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Разделить боль",
+  "nameEn": "Share Pain",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "incidentalOOT",
+   "ranked": false,
+   "description": "<p>Требуется талант «Животное-спутник». Когда животное персонажа получает раны, он может вдвое уменьшить их и сам получить столько ран, на сколько они уменьшены.</p>",
+   "source": "Talents Expanded (Force and Destiny Core Rulebook), с. 46",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Короткий путь (улучшенный)",
+  "nameEn": "Shortcut (Improved)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Требуется талант «Короткий путь». В погоне или гонке персонаж может получить 2 усталости, чтобы добавить к проверке успехи по числу рангов «Короткого пути».</p>",
+   "source": "Talents Expanded (No Disintegrations, Endless Vigil, Savage Spirits), с. 46",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Опытный учитель",
+  "nameEn": "Skilled Teacher",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "incidentalOOT",
+   "ranked": true,
+   "description": "<p>Перед проверкой союзника на короткой дистанции, у которого рангов навыка меньше, чем у персонажа, тот может получить усталость (не больше ранга таланта), чтобы добавить к его проверке столько же успехов.</p>",
+   "source": "Talents Expanded (Disciples of Harmony), с. 46",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Умелое управление",
+  "nameEn": "Smart Handling",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>Один раз за игровую встречу на корабле с фигурой 4 и больше персонаж совершает Сложную проверку Знания. При успехе до начала следующего раунда манёвренность корабля растёт на 2 и ещё на 1 за каждое преимущество (максимум до +4). Триумф продлевает эффект до конца сцены.</p>",
+   "source": "Talents Expanded (Fully Operational), с. 46",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "postapoc",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Цифровой капкан",
+  "nameEn": "Snare",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>Один раз за игровую встречу персонаж совершает Сложную проверку Компьютеров (защита). При успехе до конца сцены можно потратить очко сюжета, чтобы один персонаж совершил Пугающую проверку Бдительности; при провале он В замешательстве до конца своего следующего хода и ещё на ход за каждые 2 осложнения.</p>",
+   "source": "Talents Expanded (Shadow of the Beanstalk), с. 46",
+   "worlds": [
+    "modern",
+    "monster",
+    "zombie",
+    "postapoc",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Надёжные вложения",
+  "nameEn": "Sound Investments",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "passive",
+   "ranked": true,
+   "description": "<p>В начале каждой игровой встречи персонаж получает 100 денежных единиц за каждый ранг таланта.</p>",
+   "source": "Talents Expanded (Age of Rebellion Core Rulebook, Far Horizons), с. 47",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Пришпорить",
+  "nameEn": "Spur",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>Действием персонаж совершает Сложную проверку Верховой езды, чтобы увеличить максимальную скорость скакуна на 1. Пока эффект длится, животное получает 2 усталости каждый раунд.</p>",
+   "source": "Talents Expanded (Stay on Target), с. 47",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "monster",
+    "postapoc",
+    "zombie"
+   ]
+  }
+ },
+ {
+  "name": "Прокладка маршрута",
+  "nameEn": "Studious Plotting",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>В проверках Уличной интуиции или Выживания для поиска пути персонаж может использовать Интеллект вместо Смекалки.</p>",
+   "source": "Talents Expanded (Savage Spirits), с. 47",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Оглушающий удар (улучшенный)",
+  "nameEn": "Stunning Blow (Improved)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "incidental",
+   "ranked": false,
+   "description": "<p>Требуется талант «Оглушающий удар». Нанося урон по усталости проверкой Ближнего боя или Грубой силы, персонаж может тратить триумфы: каждый вводит цель В замешательство на 1 раунд.</p>",
+   "source": "Talents Expanded (Age of Rebellion Core Rulebook, Edge of the Empire Core Rulebook), с. 47",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Мастер разрушения",
+  "nameEn": "Sunder Expertise",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Каждое преимущество, потраченное на свойство Повреждение, повреждает предмет цели на две ступени вместо одной.</p>",
+   "source": "Talents Expanded (Disciples of Harmony), с. 47",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Огонь на подавление",
+  "nameEn": "Suppressing Fire",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "maneuver",
+   "ranked": true,
+   "description": "<p>Если персонаж с оружием дальнего боя не совершает боевых проверок в свой ход, он может выбрать цель (или группу приспешников) на длинной дистанции в зоне обстрела: до конца следующего хода персонажа сложность её проверок дальнего боя усиливается один раз. Каждый следующий ранг добавляет ещё одну цель.</p>",
+   "source": "Talents Expanded (Shadow of the Beanstalk), с. 47",
+   "worlds": [
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Захват",
+  "nameEn": "Takedown",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>Действием персонаж совершает встречную проверку Грубой силы против Стойкости противника вплотную. При успехе цель Распластана и Обездвижена до конца следующего хода персонажа; приспешника или соперника можно за триумф вывести из строя, не убивая.</p>",
+   "source": "Talents Expanded (Shadow of the Beanstalk), с. 47",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Пора уходить (улучшенный)",
+  "nameEn": "Time to Go (Improved)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "maneuver",
+   "ranked": false,
+   "description": "<p>Требуется талант «Пора уходить». Применяя «Пора уходить», персонаж позволяет одному союзнику вплотную тоже вне хода совершить манёвр перемещения в укрытие или из зоны взрыва.</p>",
+   "source": "Talents Expanded (Age of Rebellion Core Rulebook, Dangerous Covenants), с. 48",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Закалённый (улучшенный)",
+  "nameEn": "Toughened (Improved)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "incidental",
+   "ranked": false,
+   "description": "<p>Требуется талант «Закалённый». Один раз за игровую встречу персонаж может излечить столько ран, сколько у него рангов «Закалённого».</p>",
+   "source": "Talents Expanded (Knights of Fate), с. 48",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Вёрткая цель",
+  "nameEn": "Tricky Target",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Транспорт, которым управляет персонаж, при атаках по нему считается имеющим фигуру на 1 меньше.</p>",
+   "source": "Talents Expanded (Age of Rebellion Beginner Game Rulebook, Age of Rebellion Core Rulebook, Edge of the Empire Core Rulebook, Force and Destiny Core Rulebook), с. 48",
+   "worlds": [
+    "fantasy",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Доверьтесь капитану",
+  "nameEn": "Trust the Captain",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "action",
+   "ranked": true,
+   "description": "<p>Персонаж совершает Сложную проверку Лидерства. При успехе до конца сцены союзники на короткой дистанции повышают ранг Выдержки на ранг этого таланта.</p>",
+   "source": "Talents Expanded (Dawn of Rebellion), с. 48",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Настроенные маневровые двигатели",
+  "nameEn": "Tuned Maneuvering Thrusters",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "passive",
+   "ranked": true,
+   "description": "<p>Требуется талант «Фирменный транспорт». Манёвренность фирменного транспорта увеличивается на 1 за каждый ранг таланта.</p>",
+   "source": "Talents Expanded (Stay on Target), с. 48",
+   "worlds": [
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Извращённые слова",
+  "nameEn": "Twisted Words",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "incidentalOOT",
+   "ranked": false,
+   "description": "<p>Если направленная против персонажа социальная проверка дала 2 осложнения или крах, он может получить 1 усталость, чтобы нанести говорящему усталость, равную своему рангу Запугивания.</p>",
+   "source": "Talents Expanded (Desperate Allies), с. 48",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Связи в Подгороде (улучшенный)",
+  "nameEn": "Undercity Contacts (Improved)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "incidental",
+   "ranked": false,
+   "description": "<p>Требуется талант «Связи в Подгороде». Применяя его, можно потратить 2 очка сюжета вместо одного, чтобы узнать точное местонахождение цели.</p>",
+   "source": "Talents Expanded (Shadow of the Beanstalk), с. 48",
+   "worlds": [
+    "steampunk",
+    "modern",
+    "monster",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Неприметный (улучшенный)",
+  "nameEn": "Unremarkable (Improved)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Требуется талант «Неприметный». Персонаж может распространить его эффект на союзников на короткой дистанции — не больше своего ранга Обмана.</p>",
+   "source": "Talents Expanded (Cyphers and Masks), с. 48",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Поднять ставки",
+  "nameEn": "Up the Ante",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "passive",
+   "ranked": true,
+   "description": "<p>Выигрывая в азартных играх, персонаж получает на 10% больше денег за каждый ранг таланта.</p>",
+   "source": "Talents Expanded (Fly Casual), с. 49",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Ценные сведения",
+  "nameEn": "Valuable Facts",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>Один раз за сцену действием персонаж совершает Обычную проверку Знания. При успехе он может добавить триумф к одной проверке союзника в этой сцене.</p>",
+   "source": "Talents Expanded (Desperate Allies, Force and Destiny Beginner Game Rulebook, Force and Destiny Core Rulebook), с. 49",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Разносторонний",
+  "nameEn": "Well Rounded",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Персонаж выбирает два немагических навыка: они навсегда становятся для него карьерными.</p>",
+   "source": "Talents Expanded (Age of Rebellion Core Rulebook, Edge of the Empire Beginner Game Rulebook, Edge of the Empire Core Rulebook, Force and Destiny Beginner Game Rulebook, Force and Destiny Core Rulebook), с. 49",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "За тобой должок",
+  "nameEn": "You Owe Me One",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "incidental",
+   "ranked": false,
+   "description": "<p>Один раз за игровую встречу можно потратить 2 очка сюжета, чтобы один неигровой персонаж сцены оказался должен персонажу услугу (причину определяют игрок и ведущий). Не возвращённый до конца сцены долг забывается.</p>",
+   "source": "Talents Expanded (Shadow of the Beanstalk), с. 49",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "На шаг впереди",
+  "nameEn": "A Step Ahead",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "incidental",
+   "ranked": false,
+   "description": "<p>Один раз за игровую встречу персонаж может получить 2 усталости, чтобы до конца сцены считать свою Смекалку на 1 выше.</p>",
+   "source": "Talents Expanded (Cyphers and Masks), с. 50",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Анализ данных",
+  "nameEn": "Analyze Data",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>Один раз за игровую встречу, захватив или похитив сведения о противнике, персонаж может совершить Обычную проверку Знания. При успехе до конца игровой встречи он добавляет к одной связанной с ними проверке автоматические успехи по числу рангов Знания (связь определяет ведущий).</p>",
+   "source": "Talents Expanded (Cyphers and Masks), с. 50",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Мастер доспехов (улучшенный)",
+  "nameEn": "Armor Master (Improved)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Требуется талант «Мастер доспехов». В броне с поглощением 2 и выше защита персонажа увеличивается на 1.</p>",
+   "source": "Talents Expanded (Age of Rebellion Core Rulebook, Edge of the Empire Core Rulebook, Keeping the Peace), с. 50",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "В другой раз повезёт",
+  "nameEn": "Better Luck Next Time",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>Действием персонаж совершает Сложную проверку Хладнокровия, чтобы соперник в состязании (гонке, игре и т. п.) потерпел серьёзную неудачу.</p>",
+   "source": "Talents Expanded (Endless Vigil), с. 50",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Телохранитель (улучшенный)",
+  "nameEn": "Body Guard (Improved)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Требуется талант «Телохранитель». Один раз за игровую встречу, когда защищаемый «Телохранителем» союзник получает попадание, персонаж может принять это попадание на себя.</p>",
+   "source": "Talents Expanded (Lead by Example, Forged in Battle, Edge of the Empire Beginner Game Rulebook, Force and Destiny Core Rulebook), с. 50",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Усиленная броня",
+  "nameEn": "Bolstered Armor",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "passive",
+   "ranked": true,
+   "description": "<p>Требуется талант «Фирменный транспорт». Броня фирменного транспорта увеличивается на 1 за каждый ранг таланта.</p>",
+   "source": "Talents Expanded (Stay on Target), с. 50",
+   "worlds": [
+    "fantasy",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Блестящее уклонение",
+  "nameEn": "Brilliant Evasion",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>Один раз за сцену с транспортом персонаж выбирает противника и совершает встречную проверку Вождения или Пилотирования; при успехе тот не может атаковать персонажа число раундов, равное Ловкости персонажа.</p>",
+   "source": "Talents Expanded (Age of Rebellion Core Rulebook, Edge of the Empire Core Rulebook), с. 51",
+   "worlds": [
+    "fantasy",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Прожечь насквозь",
+  "nameEn": "Burn Through",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "incidental",
+   "ranked": false,
+   "description": "<p>После успешного действия взлома защитной программы (ICE) персонаж может получить 3 усталости, чтобы побочным действием совершить ещё одно действие обхода защиты в той же системе.</p>",
+   "source": "Talents Expanded (Shadow of the Beanstalk), с. 51",
+   "worlds": [
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "По уставу",
+  "nameEn": "By the Book",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "incidental",
+   "ranked": true,
+   "description": "<p>Один раз за сцену перед боевой проверкой персонаж может получить 2 усталости, чтобы добавить к результату преимущества по числу рангов таланта.</p>",
+   "source": "Talents Expanded (Dawn of Rebellion), с. 51",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Столкновение на прощание (улучшенный)",
+  "nameEn": "Capital Sendoff (Improved)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Требуется талант «Столкновение на прощание». Цели этого таланта претерпевают серьёзное столкновение вместо незначительного.</p>",
+   "source": "Talents Expanded (Stay on Target), с. 51",
+   "worlds": [
+    "fantasy",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Тщательное планирование",
+  "nameEn": "Careful Planning",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>Один раз за игровую встречу персонаж может ввести в повествование «факт», как если бы было потрачено очко сюжета.</p>",
+   "source": "Talents Expanded (Age of Rebellion Core Rulebook, Keeping the Peace), с. 51",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Центр равновесия (улучшенный)",
+  "nameEn": "Center of Being (Improved)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Требуется талант «Центр равновесия». Персонаж может получить 1 усталость, чтобы совершить манёвр «Центр равновесия» как побочное действие.</p>",
+   "source": "Talents Expanded (Force and Destiny Core Rulebook), с. 51",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Властный вид",
+  "nameEn": "Commanding Presence",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Один раз за игровую встречу персонаж может совершить действие: встречную проверку Хладнокровия против Выдержки цели. При успехе цель покидает сцену.</p>",
+   "source": "Talents Expanded (Lead by Example), с. 52",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Братья по оружию",
+  "nameEn": "Comrades in Arms",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>Один раз за сцену персонаж совершает Сложную проверку Выдержки. При успехе он и по союзнику за каждый успех на средней дистанции получают +1 к защите до конца сцены; эффект пропадает у тех, кто ушёл дальше средней дистанции.</p>",
+   "source": "Talents Expanded (Dawn of Rebellion), с. 52",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Смертельная точность",
+  "nameEn": "Deadly Accuracy",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "passive",
+   "ranked": true,
+   "description": "<p>При получении ранга выберите боевой навык (каждый раз другой). Одно попадание успешной атаки этим навыком наносит дополнительный урон, равный рангу персонажа в нём.</p>",
+   "source": "Talents Expanded (Age of Rebellion Beginner Game Rulebook, Age of Rebellion Core Rulebook, Edge of the Empire Core Rulebook), с. 52",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Встречный рывок",
+  "nameEn": "Deflection",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "incidentalOOT",
+   "ranked": false,
+   "description": "<p>Требуется талант «Отражение». После применения «Отражения» персонаж может потратить очко сюжета, чтобы вне хода совершить манёвр перемещения и сблизиться с противником или вступить с ним в ближний бой.</p>",
+   "source": "Talents Expanded (Force and Destiny Core Rulebook), с. 53",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Дискредитация",
+  "nameEn": "Discredit",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>Один раз за сцену действием персонаж совершает Сложную проверку Обмана: до конца сцены сложность социальных проверок одного персонажа усиливается один раз и ещё раз за каждые 2 преимущества.</p>",
+   "source": "Talents Expanded (Desperate Allies), с. 53",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Отвлекающее поведение (улучшенный)",
+  "nameEn": "Distracting Behavior (Improved)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Требуется талант «Отвлекающее поведение». Осложнения от этого манёвра добавляются и к проверкам неигровых персонажей, направленным против союзников персонажа.</p>",
+   "source": "Talents Expanded (Far Horizons), с. 53",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Уклонение (улучшенный)",
+  "nameEn": "Dodge (Improved)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "incidental",
+   "ranked": false,
+   "description": "<p>Требуется талант «Уклонение». Применив «Уклонение», после разрешения атаки персонаж может вне хода совершить манёвр перемещения.</p>",
+   "source": "Talents Expanded (Knights of Fate), с. 53",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Не стреляйте!",
+  "nameEn": "Don't Shoot!",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>Один раз за игровую встречу действием персонаж совершает Сложную проверку Обаяния. При успехе его нельзя выбирать целью боевых проверок до конца сцены или пока он сам не совершит боевую проверку.</p>",
+   "source": "Talents Expanded (Fly Casual), с. 53",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Всё или ничего (улучшенный)",
+  "nameEn": "Double or Nothing (Improved)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Требуется талант «Всё или ничего». Применяя его, персонаж после взаимоотмены символов удваивает также число оставшихся успехов.</p>",
+   "source": "Talents Expanded (Fly Casual), с. 53",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Заговаривание зубов",
+  "nameEn": "Double-Talk",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Потратив 2 преимущества или триумф успешной проверки Обаяния или Обмана, персонаж Дезориентирует противников на короткой дистанции (не больше своей Харизмы) до конца раунда и ещё на два раунда.</p>",
+   "source": "Talents Expanded (Dawn of Rebellion), с. 53",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Элементарно",
+  "nameEn": "Elementary",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>Один раз за игровую встречу на месте преступления (не старше 48 часов) персонаж может совершить Сложную проверку Внимания. При успехе он узнаёт все заметные приметы одного человека, бывшего там во время преступления (рост, сложение, одежду, раса), и ещё одного за каждый дополнительный успех.</p>",
+   "source": "Talents Expanded (Shadow of the Beanstalk), с. 53",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Тактика строя (улучшенный)",
+  "nameEn": "Formation Tactics (Improved)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Требуется талант «Тактика строя». Сложность проверки «Тактики строя» снижается до Обычной; потратив триумф или 6 преимуществ, персонаж продлевает эффект до конца сцены.</p>",
+   "source": "Talents Expanded (Dawn of Rebellion), с. 54",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Удача любит смелых",
+  "nameEn": "Fortune Favors the Bold",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "incidental",
+   "ranked": false,
+   "description": "<p>Один раз за игровую встречу персонаж может получить 2 усталости, чтобы перевернуть одно очко сюжета ведущего на сторону игроков.</p>",
+   "source": "Talents Expanded (Fly Casual), с. 54",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Полный вперёд (улучшенный)",
+  "nameEn": "Full Throttle (Improved)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>Требуется талант «Полный вперёд». Персонаж может получить 1 усталость, чтобы выполнить «Полный вперёд» манёвром; сложность проверки снижается до Обычной.</p>",
+   "source": "Talents Expanded (Age of Rebellion Beginner Game Rulebook, Age of Rebellion Core Rulebook, Edge of the Empire Beginner Game Rulebook, Edge of the Empire Core Rulebook, Endless Vigil), с. 54",
+   "worlds": [
+    "spaceopera",
+    "weirdwar",
+    "scifi",
+    "modern",
+    "steampunk"
+   ]
+  }
+ },
+ {
+  "name": "Целостная навигация",
+  "nameEn": "Holistic Navigation",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "incidental",
+   "ranked": false,
+   "description": "<p>При проверке Астрокартографии персонаж может потратить очко сюжета, чтобы убрать крах или осложнения (не больше своего ранга Внимания).</p>",
+   "source": "Talents Expanded (Savage Spirits), с. 54",
+   "worlds": [
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Импровизированная позиция",
+  "nameEn": "Improvised Position",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>Персонаж совершает Сложную проверку Механики и за 12 часов строит защищённую позицию для группы и её транспорта (суммарная фигура не больше 4). Позиция даёт укрытие и, по решению ведущего, иные преимущества; за 2 преимущества или триумф её дальняя защита возрастает до 2.</p>",
+   "source": "Talents Expanded (Fully Operational), с. 55",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "В курсе дел",
+  "nameEn": "In The Know",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>Один раз за игровую встречу персонаж совершает встречную проверку Обмана против Бдительности; сложность ослабляется на его ранг Обмана. При успехе неигровой персонаж верит в конкретные ложные сведения.</p>",
+   "source": "Talents Expanded (Desperate Allies), с. 55",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Устроить переполох",
+  "nameEn": "Incite Distraction",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>В толпе или людном месте персонаж может совершить Обычную проверку Обмана. При успехе до конца сцены местность для противников считается пересечённой, а за триумф — непроходимой.</p>",
+   "source": "Talents Expanded (Cyphers and Masks), с. 55",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Подстрекательство к бунту",
+  "nameEn": "Incite Rebellion",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>Один раз за игровую встречу действием персонаж совершает Сложную проверку Запугивания, чтобы до конца сцены поднять на бунт существ числом не больше своего ранга Запугивания.</p>",
+   "source": "Talents Expanded (Age of Rebellion Core Rulebook), с. 55",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Не так уж плохо",
+  "nameEn": "It's Not that Bad",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>Один раз за игровую встречу, когда союзник должен получить критическую травму, персонаж может действием совершить Сложную проверку Медицины, чтобы предотвратить травму.</p>",
+   "source": "Talents Expanded (Age of Rebellion Core Rulebook), с. 55",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Кустарная доработка",
+  "nameEn": "Jury Rigged",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "passive",
+   "ranked": true,
+   "description": "<p>За каждый ранг персонаж выбирает одно личное оружие или доспех. Оружию можно добавить +1 урон или снизить на 1 стоимость активации крита либо другого эффекта (минимум до 1); доспеху — +1 к ближней или дальней защите; либо снизить обременение предмета на 2 (минимум до 1). Бонус действует, пока предметом пользуется персонаж; утраченный предмет можно заменить.</p>",
+   "source": "Talents Expanded (Age of Rebellion Core Rulebook, Edge of the Empire Beginner Game Rulebook, Edge of the Empire Core Rulebook), с. 55",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Оторваться",
+  "nameEn": "Lose Them",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>Если за персонажем следят или гонятся, он может совершить Сложную проверку Скрытности. При успехе до конца сцены проверки преследования добавляют 2 кости штрафа, а за триумф он полностью отрывается от погони.</p>",
+   "source": "Talents Expanded (Cyphers and Masks), с. 56",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Угрожающий вид",
+  "nameEn": "Menace",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "maneuver",
+   "ranked": false,
+   "description": "<p>Требуется талант «Животное-спутник». Один раз за раунд персонаж может потратить манёвр, чтобы его грозное животное с фигурой 2 и больше на короткой дистанции от врага припугнуло его: враг добавляет кость штрафа к следующей боевой проверке против персонажа.</p>",
+   "source": "Talents Expanded (Savage Spirits), с. 56",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Движущаяся мишень",
+  "nameEn": "Moving Target",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "passive",
+   "ranked": true,
+   "description": "<p>Если персонаж уже действовал в этом раунде, его дальняя защита увеличивается на 1 за каждый ранг таланта.</p>",
+   "source": "Talents Expanded (Forged in Battle), с. 56",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Не сегодня",
+  "nameEn": "Not Today",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "incidental",
+   "ranked": false,
+   "description": "<p>Требуется талант «Фирменный транспорт». Один раз за игровую встречу персонаж может потратить очко сюжета, чтобы спасти фирменный транспорт от уничтожения.</p>",
+   "source": "Talents Expanded (Stay on Target), с. 56",
+   "worlds": [
+    "fantasy",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Агрессивное вождение",
+  "nameEn": "Offensive Driving",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "maneuver",
+   "ranked": false,
+   "description": "<p>Манёвром персонаж может нанести своему транспорту перегрузку систем (не больше его наибольшей защиты), чтобы столько же раз усилить сложность следующей проверки управления транспортом цели.</p>",
+   "source": "Talents Expanded (No Disintegrations), с. 56",
+   "worlds": [
+    "fantasy",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Таран",
+  "nameEn": "Offensive Driving (Shadow of the Beanstalk)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>Управляя транспортом, персонаж выбирает другой транспорт на средней дистанции и совершает встречную проверку Вождения или Пилотирования против его водителя. При успехе он дважды бросает по таблице критических повреждений транспорта и распределяет результаты между своим транспортом и целью. Триумф даёт +20 к одному результату, а крах позволяет ведущему добавить +20 к обоим.</p>",
+   "source": "Talents Expanded (Shadow of the Beanstalk), с. 57",
+   "worlds": [
+    "fantasy",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Вывести из равновесия",
+  "nameEn": "Overbalance",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Когда противник вплотную к персонажу совершает боевую проверку, после её разрешения персонаж может потратить крах или 3 осложнения, чтобы ввести атакующего В замешательство до конца его следующего хода.</p>",
+   "source": "Talents Expanded (No Disintegrations, Keeping the Peace), с. 57",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Паркур! (улучшенный)",
+  "nameEn": "Parkour! (Improved)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "incidental",
+   "ranked": false,
+   "description": "<p>Требуется талант «Паркур!». Один раз за раунд, применяя «Паркур!», персонаж может получить 4 усталости вместо 1, чтобы переместиться в любую точку на средней дистанции вместо короткой; прочие ограничения сохраняются.</p>",
+   "source": "Talents Expanded (Shadow of the Beanstalk), с. 57",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Точное прицеливание",
+  "nameEn": "Precise Aim",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "incidental",
+   "ranked": true,
+   "description": "<p>Один раз за раунд, совершив манёвр прицеливания перед боевой проверкой, персонаж может получить усталость (не больше ранга таланта): ближняя и дальняя защита цели снижается на 1 за каждую единицу усталости в этой проверке.</p>",
+   "source": "Talents Expanded (Edge of the Empire Beginner Game Rulebook, Edge of the Empire Core Rulebook, Savage Spirits), с. 57",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Добивать слабых",
+  "nameEn": "Prey on the Weak",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "passive",
+   "ranked": true,
+   "description": "<p>Одно попадание успешной боевой проверки против Дезориентированной цели наносит +1 урон за каждый ранг таланта.</p>",
+   "source": "Talents Expanded (Forged in Battle, Force and Destiny Core Rulebook), с. 58",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Гордость и радость (мастерский)",
+  "nameEn": "Pride and Joy (Supreme)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "incidental",
+   "ranked": false,
+   "description": "<p>Требуется талант «Гордость и радость». Один раз за игровую встречу, находясь в своём транспорте, персонаж может уменьшить его фигуру на 2 (минимум до 0) до конца этого и следующего раунда.</p>",
+   "source": "Talents Expanded (Dawn of Rebellion), с. 58",
+   "worlds": [
+    "fantasy",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Лучшие позиции",
+  "nameEn": "Prime Positions",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "passive",
+   "ranked": true,
+   "description": "<p>Когда персонаж или союзник на короткой дистанции занимает укрытие, его поглощение против дальних атак увеличивается на 1 за ранг таланта, пока он остаётся в укрытии.</p>",
+   "source": "Talents Expanded (Forged in Battle, Keeping the Peace), с. 58",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Пророческий прицел",
+  "nameEn": "Prophetic Aim",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Пока действует прицеливание персонажа, крах в его проверках дальнего боя не может привести к попаданию в союзников, находящихся вплотную к цели.</p>",
+   "source": "Talents Expanded (Keeping the Peace), с. 58",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Выжать всё",
+  "nameEn": "Push the Specs",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>На корабле или транспорте персонаж может совершить Обычную проверку Знания. При успехе максимальная скорость возрастает на 1 на число раундов, равное его Интеллекту; каждое преимущество вместе с 2 перегрузками систем продлевает эффект на раунд. Невозможные для транспорта действия и манёвры не становятся доступны.</p>",
+   "source": "Talents Expanded (Fully Operational), с. 58",
+   "worlds": [
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "postapoc",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Находчивый",
+  "nameEn": "Quick-Witted",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "incidentalOOT",
+   "ranked": false,
+   "description": "<p>Один раз за сцену после социальной проверки другого персонажа можно совершить Обычную проверку Бдительности. При успехе к той проверке добавляются успехи или преимущества (на выбор) по рангу Обаяния персонажа, при провале он получает 3 усталости.</p>",
+   "source": "Talents Expanded (Shadow of the Beanstalk), с. 58",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Смертельный ливень",
+  "nameEn": "Rain of Death",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "maneuver",
+   "ranked": false,
+   "description": "<p>Манёвром персонаж до конца хода игнорирует повышение сложности от свойства Автоматическое в своих атаках.</p>",
+   "source": "Talents Expanded (Forged in Battle, Dangerous Covenants), с. 58",
+   "worlds": [
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Отражение (мастерский)",
+  "nameEn": "Reflect (Supreme)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "incidentalOOT",
+   "ranked": false,
+   "description": "<p>Требуется талант «Отражение». Если в предыдущий ход персонаж не совершал боевых проверок, он может применять «Отражение» всего за 1 усталость.</p>",
+   "source": "Talents Expanded (Force and Destiny Core Rulebook), с. 58",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Укреплённый каркас",
+  "nameEn": "Reinforced Frame",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Требуется талант «Фирменный транспорт». Фирменный транспорт получает свойство Массивный (Massive) 1: критическое значение оружия, атакующего его, считается на 1 выше.</p>",
+   "source": "Talents Expanded (Stay on Target), с. 59",
+   "worlds": [
+    "fantasy",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Перенастройка процессоров",
+  "nameEn": "Reroute Processors",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>Один раз за сцену действием персонаж совершает Обычную проверку Компьютеров, чтобы снизить одну характеристику искусственного существа на 1 и повысить другую на 1.</p>",
+   "source": "Talents Expanded (Special Modifications), с. 59",
+   "worlds": [
+    "steampunk",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Стойкость к допросу (улучшенный)",
+  "nameEn": "Resist Questioning (Improved)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Требуется талант «Стойкость к допросу». Персонаж может применить его к встречной социальной проверке против союзника на короткой дистанции; при провале проверки можно потратить крах, чтобы противник поверил ложным сведениям союзника.</p>",
+   "source": "Talents Expanded (Cyphers and Masks), с. 59",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Решимость",
+  "nameEn": "Resolve",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "passive",
+   "ranked": true,
+   "description": "<p>Получая усталость не по своей воле, персонаж получает на 1 меньше за каждый ранг таланта (минимум 1).</p>",
+   "source": "Talents Expanded (Age of Rebellion Beginner Game Rulebook, Age of Rebellion Core Rulebook, Edge of the Empire Beginner Game Rulebook, Edge of the Empire Core Rulebook), с. 59",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Искусный спорщик",
+  "nameEn": "Savvy Negotiator",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>В споре или дебатах персонаж совершает Сложную проверку Переговоров. При успехе зрители (не больше его Харизмы) считают один выбранный довод оппонента злонамеренно неразумным; ведущий решает, насколько это правдоподобно.</p>",
+   "source": "Talents Expanded (Disciples of Harmony), с. 59",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Второй шанс",
+  "nameEn": "Second Chances",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "incidental",
+   "ranked": true,
+   "description": "<p>Один раз за сцену персонаж может перебросить положительные кости (не больше ранга таланта).</p>",
+   "source": "Talents Expanded (Stay on Target, Fly Casual), с. 59",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Всякое повидал",
+  "nameEn": "Seen a Lot of Things",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Провалив проверку Знания, персонаж может потратить 3 преимущества, чтобы повторить её в свой следующий ход.</p>",
+   "source": "Talents Expanded (Dawn of Rebellion), с. 60",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Показуха",
+  "nameEn": "Showboat",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "incidental",
+   "ranked": false,
+   "description": "<p>Совершая проверку в транспорте, персонаж может получить 2 усталости: при успехе он добавляет к результату триумф, при провале — крах.</p>",
+   "source": "Talents Expanded (Stay on Target), с. 60",
+   "worlds": [
+    "fantasy",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Умелый взломщик",
+  "nameEn": "Skilled Slicer",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "incidental",
+   "ranked": false,
+   "description": "<p>При проверке Компьютеров персонаж может потратить триумф, чтобы последующие проверки Компьютеров в этой системе совершать манёврами.</p>",
+   "source": "Talents Expanded (Age of Rebellion Core Rulebook, Edge of the Empire Core Rulebook), с. 60",
+   "worlds": [
+    "modern",
+    "monster",
+    "zombie",
+    "postapoc",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Извините за беспорядок",
+  "nameEn": "Sorry About the Mess",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Против целей, ещё не действовавших в этой сцене, критическое значение оружия персонажа снижено на 1 (минимум до 1).</p>",
+   "source": "Talents Expanded (Fly Casual), с. 60",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Язык машин (улучшенный)",
+  "nameEn": "Speaks Binary (Improved)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Требуется талант «Язык машин». Неразумные искусственные существа под командой персонажа получают дополнительную кость бонуса.</p>",
+   "source": "Talents Expanded (Special Modifications), с. 60",
+   "worlds": [
+    "steampunk",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Огонь с двух рук",
+  "nameEn": "Spitfire",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>После успешной комбинированной проверки с двумя видами оружия Дальнего боя (лёгкое оружие) дополнительные попадания можно распределять по другим целям в пределах дальности оружия.</p>",
+   "source": "Talents Expanded (Fly Casual), с. 60",
+   "worlds": [
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Пришпорить (улучшенный)",
+  "nameEn": "Spur (Improved)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "maneuver",
+   "ranked": false,
+   "description": "<p>Требуется талант «Пришпорить». Персонаж может получить 1 усталость, чтобы выполнить «Пришпорить» манёвром; сложность снижается до Обычной.</p>",
+   "source": "Talents Expanded (Stay on Target), с. 60",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "monster",
+    "postapoc",
+    "zombie"
+   ]
+  }
+ },
+ {
+  "name": "Твёрдая рука",
+  "nameEn": "Steady Aim",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Персонаж не теряет выгоду прицеливания, совершая другие манёвры (в том числе перемещение) или действия; она пропадает лишь с концом сцены.</p>",
+   "source": "Talents Expanded (Dawn of Rebellion), с. 60",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Уличная смекалка",
+  "nameEn": "Street Smarts",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "action",
+   "ranked": true,
+   "description": "<p>Один раз за игровую встречу действием персонаж совершает Запредельную проверку Уличной интуиции или Знания, чтобы узнать у ведущего одну важную улику. Сложность ослабляется на 1 за каждый ранг таланта.</p>",
+   "source": "Talents Expanded (Age of Rebellion Core Rulebook, Edge of the Empire Beginner Game Rulebook, Edge of the Empire Core Rulebook, Force and Destiny Core Rulebook), с. 61",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Подкреплённые доводы",
+  "nameEn": "Supporting Evidence",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "passive",
+   "ranked": true,
+   "description": "<p>Помогая союзнику в проверке Обаяния, Обмана, Лидерства или Переговоров, персонаж добавляет автоматическое преимущество за каждый ранг таланта.</p>",
+   "source": "Talents Expanded (Desperate Allies), с. 61",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Прицельный огонь",
+  "nameEn": "Targeted Firepower",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>Один раз за игровую встречу персонаж выбирает вражескую цель и совершает Сложную проверку подходящего Знания. При успехе до конца сцены союзники на короткой дистанции от него добавляют к атакам против цели преимущества по числу полученных успехов.</p>",
+   "source": "Talents Expanded (Dawn of Rebellion), с. 61",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Вот как надо",
+  "nameEn": "That's How It's Done",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "incidental",
+   "ranked": true,
+   "description": "<p>После успешной проверки навыка персонаж может получить 1 усталость: союзники на короткой дистанции (не больше его Воли) добавляют преимущество к проверкам того же навыка в течение следующего раунда. Каждый ранг после первого увеличивает дистанцию на одну категорию.</p>",
+   "source": "Talents Expanded (Lead by Example), с. 61",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Никому не верь",
+  "nameEn": "Trust No One",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "incidentalOOT",
+   "ranked": false,
+   "description": "<p>Когда персонаж становится целью социальной проверки, он может получить 1 усталость, чтобы добавить к ней автоматический провал. Если проверка провалена с крахом, он может сразу вне хода совершить манёвр.</p>",
+   "source": "Talents Expanded (Dawn of Rebellion), с. 61",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Непреклонный скептик",
+  "nameEn": "Unrelenting Skeptic",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Проверки Обмана против персонажа автоматически получают провалы по числу его рангов Бдительности.</p>",
+   "source": "Talents Expanded (Far Horizons, Endless Vigil), с. 61",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Городской боец",
+  "nameEn": "Urban Combatant",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "incidentalOOT",
+   "ranked": false,
+   "description": "<p>Когда персонажа атакуют в городской среде, до броска можно потратить очко сюжета: атакующий убирает из пула все кости штрафа и вместо них добавляет столько же автоматических провалов.</p>",
+   "source": "Talents Expanded (Shadow of the Beanstalk), с. 62",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Слабый фундамент",
+  "nameEn": "Weak Foundation",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>Один раз за игровую встречу персонаж указывает бункер, огневую точку или иное укрепление (с одобрения ведущего) и действием совершает Сложную проверку Знания. При успехе до конца сцены он и союзники добавляют к атакам по этому сооружению 2 автоматических преимущества или успех (на выбор персонажа).</p>",
+   "source": "Talents Expanded (Fully Operational), с. 62",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "За тобой должок (улучшенный)",
+  "nameEn": "You Owe Me One (Improved)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "incidental",
+   "ranked": false,
+   "description": "<p>Требуется талант «За тобой должок». Применяя его, персонаж может сделать неигрового персонажа должным крупную услугу вместо обычной.</p>",
+   "source": "Talents Expanded (Shadow of the Beanstalk), с. 62",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Изменённая сделка",
+  "nameEn": "Altered Deal",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 5,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>Один раз за игровую встречу персонаж может совершить Сложную проверку Запугивания, чтобы радикально изменить ранее заключённую сделку в свою пользу.</p>",
+   "source": "Talents Expanded (Dawn of Rebellion), с. 63",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Мастер доспехов (мастерский)",
+  "nameEn": "Armor Master (Supreme)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 5,
+   "activation": "incidentalOOT",
+   "ranked": false,
+   "description": "<p>Требуется талант «Мастер доспехов». Один раз за раунд, получая критическую травму, персонаж может получить 3 усталости, чтобы уменьшить результат травмы на 10 за каждую единицу своего поглощения (минимум до 1).</p>",
+   "source": "Talents Expanded (Keeping the Peace), с. 63",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Зловещий взгляд",
+  "nameEn": "Baleful Gaze",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 5,
+   "activation": "incidentalOOT",
+   "ranked": false,
+   "description": "<p>Когда персонажа атакуют с дистанции не дальше средней, он может потратить очко сюжета, чтобы усилить сложность атаки столько раз, сколько у него рангов Запугивания.</p>",
+   "source": "Talents Expanded (Keeping the Peace), с. 63",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Самый преданный поклонник",
+  "nameEn": "Biggest Fan",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 5,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>Один раз за игровую встречу действием персонаж совершает Сложную проверку Обаяния, чтобы сделать неигрового персонажа своим преданным поклонником: тот легче поддаётся социальным проверкам, оказывает услуги или становится постоянным союзником. Ведущий может запретить цели, чья враждебность важна для сюжета.</p>",
+   "source": "Talents Expanded (Far Horizons), с. 63",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Телохранитель (мастерский)",
+  "nameEn": "Body Guard (Supreme)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 5,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Требуется талант «Телохранитель». Манёвр «Телохранителя» может защищать сразу нескольких персонажей вплотную — не больше ранга Стойкости персонажа.</p>",
+   "source": "Talents Expanded (Forged in Battle), с. 63",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Братья по оружию (улучшенный)",
+  "nameEn": "Comrades in Arms (Improved)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 5,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Требуется талант «Братья по оружию». Применяя его, персонаж может потратить триумф или 3 преимущества, чтобы также получить +1 к поглощению или дать +1 к поглощению одному затронутому союзнику.</p>",
+   "source": "Talents Expanded (Dawn of Rebellion), с. 63",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Ловкий уворот",
+  "nameEn": "Coordination Dodge",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 5,
+   "activation": "incidental",
+   "ranked": false,
+   "description": "<p>Когда персонажа выбирают целью боевой проверки, он может потратить очко сюжета, чтобы добавить к ней провалы по числу своих рангов Координации.</p>",
+   "source": "Talents Expanded (Far Horizons, No Disintegrations), с. 64",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Решающий довод",
+  "nameEn": "Crucial Point",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 5,
+   "activation": "incidental",
+   "ranked": false,
+   "description": "<p>Один раз за игровую встречу персонаж может ввести в переговоры уступку, ради которой оппонент готов почти на всё.</p>",
+   "source": "Talents Expanded (Disciples of Harmony), с. 64",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Особое оснащение",
+  "nameEn": "Custom Loadout",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 5,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Требуется талант «Фирменный транспорт». На фирменный транспорт можно установить дополнительное крепление для оружия или оборудования (с одобрения ведущего).</p>",
+   "source": "Talents Expanded (Special Modifications), с. 64",
+   "worlds": [
+    "fantasy",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Всё или ничего (мастерский)",
+  "nameEn": "Double or Nothing (Supreme)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 5,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Требуется талант «Всё или ничего». Применяя его, персонаж удваивает также число триумфов и крахов.</p>",
+   "source": "Talents Expanded (Fly Casual), с. 64",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Повелитель дронов",
+  "nameEn": "Drone Master",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 5,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Персонаж может управлять сразу двумя дронами или группами дронов-приспешников (размером не больше его Воли) — по правилам дронов или таланта «Животное-спутник». Ход каждого дрона или группы разыгрывается отдельно в выбранном им порядке.</p>",
+   "source": "Talents Expanded (Shadow of the Beanstalk), с. 64",
+   "worlds": [
+    "modern",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Полный вперёд (мастерский)",
+  "nameEn": "Full Throttle (Supreme)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 5,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Требуется талант «Полный вперёд». При его применении максимальная скорость транспорта растёт на 2 вместо 1.</p>",
+   "source": "Talents Expanded (Age of Rebellion Core Rulebook, Edge of the Empire Core Rulebook, Endless Vigil), с. 64",
+   "worlds": [
+    "spaceopera",
+    "weirdwar",
+    "scifi",
+    "modern",
+    "steampunk"
+   ]
+  }
+ },
+ {
+  "name": "Призрак в машине",
+  "nameEn": "Ghost In The Machine",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 5,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>Имея точку доступа к Сети, персонаж может совершить Сложную проверку Компьютеров (взлом). При успехе до начала его следующего хода он управляет дроном, транспортом или устройством в сцене либо кибернетикой или силовой бронёй персонажа (с одобрения ведущего). 3 преимущества продлевают эффект на раунд, триумф — до конца сцены.</p>",
+   "source": "Talents Expanded (Shadow of the Beanstalk), с. 65",
+   "worlds": [
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Тяжёлый удар",
+  "nameEn": "Heavy Hitter",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 5,
+   "activation": "incidental",
+   "ranked": false,
+   "description": "<p>Один раз за игровую встречу при успешной проверке Дальнего боя (тяжёлое оружие) или Артиллерии персонаж может потратить триумф, чтобы атака получила свойство Бронебойное 1 или повысила имеющийся рейтинг Бронебойного на 1.</p>",
+   "source": "Talents Expanded (Forged in Battle, Dangerous Covenants), с. 65",
+   "worlds": [
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Знание изнутри",
+  "nameEn": "Inside Knowledge",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 5,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>Один раз за игровую встречу на вражеском объекте или судне персонаж может совершить Сложную проверку Жульничества. При успехе он находит заранее спрятанное там личное оружие или предмет (редкость не выше Смекалки + 2) либо получает повествовательную выгоду: коды дверей, расположение помещений, слабости персонала, неисправные системы охраны, тайные комнаты.</p>",
+   "source": "Talents Expanded (Cyphers and Masks), с. 65",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Свой человек",
+  "nameEn": "Inside Person",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 5,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>Один раз за игровую встречу персонаж может потратить очко сюжета, объявив, что раньше работал под прикрытием на указанной вражеской базе или крупном транспорте. До конца игровой встречи он и союзники добавляют 2 преимущества к проверкам, связанным с этим местом.</p>",
+   "source": "Talents Expanded (Cyphers and Masks), с. 65",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Вдохновляющее руководство",
+  "nameEn": "Inspiring Leadership",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 5,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>Персонаж совершает Сложную проверку Лидерства. При успехе союзники на короткой дистанции (не больше его Харизмы) добавляют успех к своей следующей проверке навыка.</p>",
+   "source": "Talents Expanded (Dawn of Rebellion), с. 66",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Полная сосредоточенность",
+  "nameEn": "Intense Focus",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 5,
+   "activation": "maneuver",
+   "ranked": false,
+   "description": "<p>Манёвром персонаж получает 1 усталость и один раз усиливает свою следующую проверку навыка.</p>",
+   "source": "Talents Expanded (Age of Rebellion Beginner Game Rulebook, Age of Rebellion Core Rulebook, Edge of the Empire Core Rulebook, Disciples of Harmony), с. 66",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Шучу!",
+  "nameEn": "Just Kidding!",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 5,
+   "activation": "incidental",
+   "ranked": false,
+   "description": "<p>Один раз за раунд персонаж может потратить очко сюжета, чтобы проигнорировать крах в социальной проверке своей или союзника на короткой дистанции.</p>",
+   "source": "Talents Expanded (Fly Casual), с. 66",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Мастер подрывного дела",
+  "nameEn": "Master Demolitionist",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 5,
+   "activation": "incidental",
+   "ranked": false,
+   "description": "<p>При атаке личным взрывным оружием персонаж может потратить преимущество или триумф, чтобы свойство Взрыв поражало всех на короткой дистанции, а не только вплотную; если оно и так действует на короткой дистанции, радиус возрастает до средней.</p>",
+   "source": "Talents Expanded (Fully Operational), с. 66",
+   "worlds": [
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Мастер вождения и пилотирования",
+  "nameEn": "Master Driver/Pilot",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 5,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Один раз за раунд, управляя транспортом, персонаж может получить 2 усталости, чтобы совершить любое действие как манёвр.</p>",
+   "source": "Talents Expanded (Age of Rebellion Core Rulebook, Enter the Unknown, Edge of the Empire Core Rulebook), с. 66",
+   "worlds": [
+    "fantasy",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Мастер-гренадёр",
+  "nameEn": "Master Grenadier",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 5,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Стоимость активации свойства Взрыв в атаках персонажа снижается на 1 преимущество (минимум до 1).</p>",
+   "source": "Talents Expanded (Age of Rebellion Core Rulebook, Dangerous Covenants), с. 67",
+   "worlds": [
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Мастер-наставник",
+  "nameEn": "Master Instructor",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 5,
+   "activation": "incidentalOOT",
+   "ranked": false,
+   "description": "<p>Один раз за раунд персонаж может получить 2 усталости, чтобы союзник на короткой дистанции при следующей проверке Выдержки считался имеющим столько же рангов Выдержки, сколько у персонажа.</p>",
+   "source": "Talents Expanded (Disciples of Harmony), с. 67",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Мастер торговли",
+  "nameEn": "Master Merchant",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 5,
+   "activation": "incidental",
+   "ranked": false,
+   "description": "<p>Покупая или продавая товары, персонаж может получить 2 усталости, чтобы продать на 25% дороже или купить на 25% дешевле.</p>",
+   "source": "Talents Expanded (Age of Rebellion Core Rulebook, Edge of the Empire Core Rulebook), с. 67",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Генеральный план",
+  "nameEn": "Master Plan",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 5,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>Один раз за игровую встречу персонаж может совершить Сложную проверку Выдержки. При успехе он объявляет, что текущая беда — часть его давнего плана, и раскрывает одного противника в сцене (не главаря) как союзника, который ждал этого момента или заранее подготовил помощь (с одобрения ведущего).</p>",
+   "source": "Talents Expanded (Shadow of the Beanstalk), с. 67",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Весьма впечатляюще",
+  "nameEn": "Most Impressive",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 5,
+   "activation": "incidental",
+   "ranked": false,
+   "description": "<p>Потратив триумф любой проверки навыка, персонаж позволяет союзникам на короткой дистанции (не больше его Харизмы) добавить преимущество к их следующей проверке.</p>",
+   "source": "Talents Expanded (Dawn of Rebellion), с. 67",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Сила тьмы",
+  "nameEn": "Power of Darkness",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 5,
+   "activation": "maneuver",
+   "ranked": false,
+   "description": "<p>Один раз за игровую встречу манёвром персонаж до конца сцены увеличивает пороги ран и усталости на 1 за каждое очко сюжета ведущего.</p>",
+   "source": "Talents Expanded (Unlimited Power), с. 67",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "monster"
+   ]
+  }
+ },
+ {
+  "name": "Готовьтесь к абордажу",
+  "nameEn": "Prepare to be Boarded",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 5,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>Один раз за сцену персонаж совершает встречную проверку Запугивания против Выдержки капитана вражеского корабля. При успехе тот получает 1 усталость за успех и сдаёт корабль, если превысит порог усталости. Триумф или 4 преимущества наносят дополнительно усталость, равную рангу Запугивания персонажа.</p>",
+   "source": "Talents Expanded (Dawn of Rebellion), с. 68",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "postapoc",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Язык машин (мастерский)",
+  "nameEn": "Speaks Binary (Supreme)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 5,
+   "activation": "maneuver",
+   "ranked": false,
+   "description": "<p>Требуется талант «Язык машин». Один раз за сцену манёвром персонаж позволяет искусственным существам (не больше рангов «Язык машин») использовать его ранги одного выбранного навыка.</p>",
+   "source": "Talents Expanded (Special Modifications), с. 68",
+   "worlds": [
+    "steampunk",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Пришпорить (мастерский)",
+  "nameEn": "Spur (Supreme)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 5,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Требуется талант «Пришпорить». Пришпоренный скакун получает 1 усталость в раунд вместо 2.</p>",
+   "source": "Talents Expanded (Stay on Target), с. 68",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "monster",
+    "postapoc",
+    "zombie"
+   ]
+  }
+ },
+ {
+  "name": "Сверхчеловеческие рефлексы",
+  "nameEn": "Superhuman Reflexes",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 5,
+   "activation": "incidental",
+   "ranked": false,
+   "description": "<p>Один раз за игровую встречу, получив крах в проверке Пилотирования, персонаж может отменить его и добавить успехи по числу своих рангов Хладнокровия.</p>",
+   "source": "Talents Expanded (Endless Vigil), с. 68",
+   "worlds": [
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "postapoc",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Тщательная оценка",
+  "nameEn": "Thorough Assessment",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 5,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>Один раз за игровую встречу действием персонаж совершает Сложную проверку Знания и получает кости бонуса по числу успехов, которые может распределять по проверкам в течение сцены.</p>",
+   "source": "Talents Expanded (Desperate Allies, Lead by Example), с. 68",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Игра света",
+  "nameEn": "Trick Of The Light",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 5,
+   "activation": "incidental",
+   "ranked": false,
+   "description": "<p>При атаке лазерным или мазерным оружием персонаж может потратить преимущество, чтобы нанести ещё одно попадание: базовый урон плюс общее число успехов. Его можно направить в исходную цель или в другую на короткой дистанции от неё.</p>",
+   "source": "Talents Expanded (Shadow of the Beanstalk), с. 69",
+   "worlds": [
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Непреклонный скептик (улучшенный)",
+  "nameEn": "Unrelenting Skeptic (Improved)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 5,
+   "activation": "incidental",
+   "ranked": false,
+   "description": "<p>Требуется талант «Непреклонный скептик». Если проверка Обмана против персонажа провалилась, он может потратить очко сюжета, чтобы добавить к ней крах.</p>",
+   "source": "Talents Expanded (Far Horizons), с. 69",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Паутина знаний",
+  "nameEn": "Web Of Knowledge",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 5,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>Один раз за игровую встречу в сетевой сцене персонаж совершает Обычную проверку Знания (Сеть). При успехе он узнаёт все защитные программы (ICE) одной доступной системы и всех, кто сейчас к ней подключён. За 3 преимущества или триумф (даже при провале) он добавляет успех ко всем проверкам Компьютеров в этой системе до конца сцены.</p>",
+   "source": "Talents Expanded (Shadow of the Beanstalk), с. 69",
+   "worlds": [
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Слепое чутьё",
+  "nameEn": "Blindsense",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "passive",
+   "ranked": true,
+   "description": "<p>Пока персонаж слышит, он игнорирует кости штрафа за темноту или слепоту в пределах короткой дистанции; каждый следующий ранг увеличивает дистанцию.</p>",
+   "source": "Talents Expanded, с. 72",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Магия крови",
+  "nameEn": "Blood Magic",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "incidental",
+   "ranked": false,
+   "description": "<p>Сотворяя заклинание, персонаж может получить 2 раны вместо 2 усталости.</p>",
+   "source": "Talents Expanded, с. 72",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "monster"
+   ]
+  }
+ },
+ {
+  "name": "Связанный инструмент",
+  "nameEn": "Bonded Implement",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>Выберите принадлежащий персонажу магический инструмент: никто другой не может им пользоваться, а персонаж может призвать его Сложной проверкой магического навыка. Утраченный навсегда инструмент можно заменить другим той же стоимости.</p>",
+   "source": "Talents Expanded, с. 72",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "monster"
+   ]
+  }
+ },
+ {
+  "name": "Боевой маг",
+  "nameEn": "Combat Caster",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Один раз за игровую встречу персонаж может добавить заклинанию атаки эффект «Смертельный», не повышая сложность.</p>",
+   "source": "Talents Expanded, с. 72",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "monster"
+   ]
+  }
+ },
+ {
+  "name": "Дальнее заклинание",
+  "nameEn": "Distant Spell",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Один раз за игровую встречу первый эффект увеличения дистанции заклинания не повышает его сложность.</p>",
+   "source": "Talents Expanded, с. 72",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "monster"
+   ]
+  }
+ },
+ {
+  "name": "Фамильяр (улучшенный)",
+  "nameEn": "Familiar (Improved)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>Требуется талант «Фамильяр». Персонаж может получить 2 усталости и совершить Лёгкую проверку магического навыка, чтобы раунд видеть и слышать чувствами фамильяра (продление — 1 усталость за раунд). Помощь фамильяра в магических проверках даёт 2 кости бонуса. Фамильяр должен быть в пределах дистанции таланта «Фамильяр».</p>",
+   "source": "Talents Expanded, с. 72",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "monster"
+   ]
+  }
+ },
+ {
+  "name": "Запретное знание",
+  "nameEn": "Forbidden Knowledge",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "maneuver",
+   "ranked": false,
+   "description": "<p>Один раз за игровую встречу манёвром персонаж может получить усталость (не больше своего ранга Знания), чтобы на столько же повысить ранг Знания для расчёта силы дополнительных эффектов следующего заклинания в этом раунде (можно выше 5).</p>",
+   "source": "Talents Expanded, с. 72",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "monster"
+   ]
+  }
+ },
+ {
+  "name": "Жизнь или смерть",
+  "nameEn": "Life or Death",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Пока раны персонажа составляют не меньше половины его порога ран, он добавляет кость бонуса ко всем своим боевым проверкам.</p>",
+   "source": "Talents Expanded, с. 73",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Затяжное заклинание",
+  "nameEn": "Lingering Spell",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "incidental",
+   "ranked": false,
+   "description": "<p>Потратив очко сюжета, персонаж может совершить манёвр концентрации как побочное действие.</p>",
+   "source": "Talents Expanded, с. 73",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "monster"
+   ]
+  }
+ },
+ {
+  "name": "Сопротивление магии",
+  "nameEn": "Magic Resistance",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "passive",
+   "ranked": true,
+   "description": "<p>Враг, направляющий заклинание на персонажа, добавляет к проверке кость штрафа; проверяя сопротивление вредному магическому эффекту, персонаж может добавить кость бонуса.</p>",
+   "source": "Talents Expanded, с. 73",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "monster"
+   ]
+  }
+ },
+ {
+  "name": "Максимальное заклинание",
+  "nameEn": "Maximize Spell",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "incidental",
+   "ranked": true,
+   "description": "<p>Один раз за игровую встречу персонаж может добавить к проверке сотворения заклинания кость бонуса за каждый ранг таланта.</p>",
+   "source": "Talents Expanded, с. 73",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "monster"
+   ]
+  }
+ },
+ {
+  "name": "Перенасыщение (улучшенный)",
+  "nameEn": "Overchannel (Improved)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Требуется талант «Перенасыщение». Персонаж может добавлять и эффекты с модификатором сложности +2: вместо повышения сложности за каждый такой эффект к результату добавляется крах (вместе с его провалом).</p>",
+   "source": "Talents Expanded, с. 73",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "monster"
+   ]
+  }
+ },
+ {
+  "name": "Прижимающий огонь",
+  "nameEn": "Pinning Fire",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "action",
+   "ranked": true,
+   "description": "<p>Действием персонаж выбирает цель в пределах дальности своего оружия дальнего боя: до начала его следующего хода цель добавляет кость штрафа к своим проверкам за каждый ранг таланта и получает 1 усталость.</p>",
+   "source": "Talents Expanded, с. 73",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Формирование заклинания",
+  "nameEn": "Shape Spell",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "incidental",
+   "ranked": true,
+   "description": "<p>Сотворяя заклинание со свойством Взрыв, персонаж может тратить преимущества, чтобы исключить из зоны взрыва по одной цели за каждое (не больше ранга таланта).</p>",
+   "source": "Talents Expanded, с. 73",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "monster"
+   ]
+  }
+ },
+ {
+  "name": "Мастер щита",
+  "nameEn": "Shield Master",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "maneuver",
+   "ranked": false,
+   "description": "<p>Держа щит, персонаж может манёвром получить 1 усталость: до конца его следующего хода свойства щита Оборонительное и Отражающее увеличиваются на 1.</p>",
+   "source": "Talents Expanded, с. 73",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Внезапная атака",
+  "nameEn": "Sneak Attack",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "incidental",
+   "ranked": false,
+   "description": "<p>Один раз за раунд, совершая прицеливание, персонаж может получить 1 усталость, чтобы его следующая боевая проверка в этом раунде получила свойство Проникающее 2 (или +1 к имеющемуся рейтингу Проникающего).</p>",
+   "source": "Talents Expanded, с. 74",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Изгнание нежити",
+  "nameEn": "Turn Undead",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 3,
+   "activation": "action",
+   "ranked": true,
+   "description": "<p>Действием персонаж заставляет всю нежить (или иных существ по решению ведущего) на короткой дистанции пройти проверку страха со сложностью, равной его рангу Выдержки. Провалившие, помимо обычных последствий, в свой следующий ход уходят за пределы действия таланта. Каждый ранг увеличивает дистанцию на одну категорию.</p>",
+   "source": "Talents Expanded, с. 74",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "monster"
+   ]
+  }
+ },
+ {
+  "name": "Удар убийцы",
+  "nameEn": "Assassin Strike",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "incidental",
+   "ranked": false,
+   "description": "<p>После успешной проверки ближнего боя персонаж может потратить очко сюжета, чтобы выйти из ближнего боя с противником как побочное действие.</p>",
+   "source": "Talents Expanded, с. 74",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Магия крови (улучшенный)",
+  "nameEn": "Blood Magic (Improved)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "incidental",
+   "ranked": false,
+   "description": "<p>Требуется талант «Магия крови». Один раз за сцену, применяя «Магию крови», персонаж может получить ещё 2 раны, чтобы добавить заклинанию один эффект с модификатором сложности +1, не повышая сложность.</p>",
+   "source": "Talents Expanded, с. 74",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "monster"
+   ]
+  }
+ },
+ {
+  "name": "Исцеление верой",
+  "nameEn": "Faith Healing",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "incidental",
+   "ranked": true,
+   "description": "<p>После проверки заклинания лечения персонаж может превратить по одному успеху в преимущество за каждый ранг таланта.</p>",
+   "source": "Talents Expanded, с. 74",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "monster"
+   ]
+  }
+ },
+ {
+  "name": "Фамильяр (мастерский)",
+  "nameEn": "Familiar (Supreme)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "incidental",
+   "ranked": false,
+   "description": "<p>Требуется талант «Фамильяр». Потратив очко сюжета, персонаж может сотворить заклинание так, будто оно исходит от фамильяра, находящегося в пределах дистанции таланта «Фамильяр».</p>",
+   "source": "Talents Expanded, с. 74",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "monster"
+   ]
+  }
+ },
+ {
+  "name": "Изящество (улучшенный)",
+  "nameEn": "Finesse (Improved)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Требуется талант «Изящество». Базовый урон атак Грубой силой и Ближним боем (лёгкое оружие) персонаж определяет по Ловкости вместо Силы.</p>",
+   "source": "Talents Expanded, с. 74",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Град ударов",
+  "nameEn": "Flurry of Blows",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "maneuver",
+   "ranked": false,
+   "description": "<p>Манёвром персонаж получает усталость (не больше своего ранга Координации): его следующая проверка Ближнего боя или Грубой силы в этот ход получает свойство Залповое с рейтингом, равным полученной усталости.</p>",
+   "source": "Talents Expanded, с. 75",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Жизнь или смерть (улучшенный)",
+  "nameEn": "Life or Death (Improved)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Требуется талант «Жизнь или смерть». Пока раны персонажа составляют не меньше половины порога ран, он один раз усиливает все свои боевые проверки (вместо добавления кости бонуса).</p>",
+   "source": "Talents Expanded, с. 75",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Охотник на магов",
+  "nameEn": "Mage Hunter",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "action",
+   "ranked": true,
+   "description": "<p>Когда на персонажа успешно наложено проклятие, он может действием совершить Пугающую проверку Выдержки, чтобы снять его. Сложность ослабляется на 1 за каждый ранг таланта.</p>",
+   "source": "Talents Expanded, с. 75",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "monster"
+   ]
+  }
+ },
+ {
+  "name": "Мистический теург (улучшенный)",
+  "nameEn": "Mystic Theurge (Improved)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Требуется талант «Мистический теург». Выбранный магический навык больше не ограничен одной проверкой за сцену.</p>",
+   "source": "Talents Expanded, с. 75",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "monster"
+   ]
+  }
+ },
+ {
+  "name": "Прижимающий огонь (улучшенный)",
+  "nameEn": "Pinning Fire (Improved)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "action",
+   "ranked": false,
+   "description": "<p>Требуется талант «Прижимающий огонь». Действие «Прижимающего огня» может затрагивать несколько целей — не больше рангов этого таланта.</p>",
+   "source": "Talents Expanded, с. 75",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Ускоренное заклинание",
+  "nameEn": "Quickened Spell",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "maneuver",
+   "ranked": false,
+   "description": "<p>Один раз за игровую встречу персонаж может получить 2 усталости, чтобы совершить проверку магического навыка как манёвр.</p>",
+   "source": "Talents Expanded, с. 75",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "monster"
+   ]
+  }
+ },
+ {
+  "name": "Рефлекторный барьер",
+  "nameEn": "Reflexive Barrier",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "incidentalOOT",
+   "ranked": false,
+   "description": "<p>Один раз за игровую встречу, когда персонажа атакуют, он может вне хода сотворить заклинание барьера как побочное действие.</p>",
+   "source": "Talents Expanded, с. 75",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "monster"
+   ]
+  }
+ },
+ {
+  "name": "Внезапная атака (улучшенный)",
+  "nameEn": "Sneak Attack (Improved)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "incidental",
+   "ranked": false,
+   "description": "<p>Требуется талант «Внезапная атака». Один раз за раунд, совершая прицеливание, персонаж может получить 1 усталость, чтобы следующая боевая проверка в этом раунде получила свойство Высококритичное 2 (или +1 к имеющемуся рейтингу) — вместо эффекта «Внезапной атаки» или вместе с ним.</p>",
+   "source": "Talents Expanded, с. 75",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Видение будущего",
+  "nameEn": "Vision of the Future",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 4,
+   "activation": "incidental",
+   "ranked": false,
+   "description": "<p>Один раз за игровую встречу после успешного сотворения заклинания персонаж может потратить 2 преимущества или триумф, чтобы добавить один дополнительный эффект с модификатором сложности +1.</p>",
+   "source": "Talents Expanded, с. 76",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "monster"
+   ]
+  }
+ },
+ {
+  "name": "Варварская сила",
+  "nameEn": "Barbaric Strength",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 5,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Персонаж может держать оружие Ближнего боя (тяжёлое оружие) одной рукой; атаки им по-прежнему используют этот навык.</p>",
+   "source": "Talents Expanded, с. 76",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Магия крови (мастерский)",
+  "nameEn": "Blood Magic (Supreme)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 5,
+   "activation": "incidental",
+   "ranked": false,
+   "description": "<p>Требуется талант «Магия крови». Один раз за игровую встречу, применяя «Магию крови», персонаж может получить критическую травму, чтобы ослабить сложность следующей проверки заклинания на 3 (но не ниже Обычной).</p>",
+   "source": "Talents Expanded, с. 76",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "monster"
+   ]
+  }
+ },
+ {
+  "name": "Отскакивающее заклинание",
+  "nameEn": "Bouncing Spell",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 5,
+   "activation": "incidental",
+   "ranked": false,
+   "description": "<p>Провалив проверку заклинания против другого персонажа, персонаж может потратить триумф или 3 преимущества, чтобы сразу повторить попытку против новой цели.</p>",
+   "source": "Talents Expanded, с. 76",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "monster"
+   ]
+  }
+ },
+ {
+  "name": "Жизнь или смерть (мастерский)",
+  "nameEn": "Life or Death (Supreme)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 5,
+   "activation": "passive",
+   "ranked": false,
+   "description": "<p>Требуется талант «Жизнь или смерть». Эффекты «Жизни или смерти» включаются, когда раны персонажа достигают четверти порога ран, а не половины.</p>",
+   "source": "Talents Expanded, с. 76",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Внезапная атака (мастерский)",
+  "nameEn": "Sneak Attack (Supreme)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 5,
+   "activation": "incidental",
+   "ranked": false,
+   "description": "<p>Требуется талант «Внезапная атака». Один раз за сцену персонаж может потратить очко сюжета, чтобы добавить к результату своей атаки триумф (без сопутствующего успеха).</p>",
+   "source": "Talents Expanded, с. 76",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi",
+    "spaceopera"
+   ]
+  }
+ },
+ {
+  "name": "Изгнание нежити (улучшенный)",
+  "nameEn": "Turn Undead (Improved)",
+  "type": "talent",
+  "folder": "Расширенные таланты",
+  "system": {
+   "tier": 5,
+   "activation": "incidental",
+   "ranked": false,
+   "description": "<p>Требуется талант «Изгнание нежити». Совершая это действие, персонаж может перевернуть очко сюжета, чтобы нанести каждому провалившему проверку страха 2 усталости за каждый ранг «Изгнания нежити»; манёвром концентрации он может поддерживать эффект в следующих раундах.</p>",
+   "source": "Talents Expanded, с. 76",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "monster"
+   ]
+  }
+ }
+]
