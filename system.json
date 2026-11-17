@@ -323,8 +323,8 @@
   "primaryTokenAttribute": "wounds",
   "secondaryTokenAttribute": "strain",
   "url": "https://github.com/oleksandrburylych-hash/genesys-",
-  "manifest": "https://raw.githubusercontent.com/oleksandrburylych-hash/genesys-/ccr-90c2297d-wriuk4/system.json",
-  "download": "https://raw.githubusercontent.com/oleksandrburylych-hash/genesys-/ccr-90c2297d-wriuk4/dist/genesys-rpg.zip",
+  "manifest": "https://github.com/oleksandrburylych-hash/genesys-/releases/latest/download/system.json",
+  "download": "https://github.com/oleksandrburylych-hash/genesys-/releases/download/v0.5.0/genesys-rpg.zip",
   "packFolders": [
     {
       "name": "Genesys",

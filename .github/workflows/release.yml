@@ -1,0 +1,33 @@
+# Публикация релиза для установки в Foundry по ссылке на манифест:
+#   https://github.com/oleksandrburylych-hash/genesys-/releases/latest/download/system.json
+# Запускается при отправке тега вида v1.2.3.
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build system archive
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          node -e "const f='system.json';const d=JSON.parse(require('fs').readFileSync(f));d.version='${VERSION}';require('fs').writeFileSync(f,JSON.stringify(d,null,2)+'\n')"
+          TAG="${GITHUB_REF_NAME}" node tools/build-release.mjs
+
+      - name: Publish release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: Genesys RPG ${{ github.ref_name }}
+          generate_release_notes: true
+          files: |
+            dist/system.json
+            dist/genesys-rpg.zip

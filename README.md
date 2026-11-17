@@ -106,11 +106,13 @@
 В Foundry VTT v14: **Game Systems → Install System**, в поле **Manifest URL** вставьте:
 
 ```
-https://raw.githubusercontent.com/oleksandrburylych-hash/genesys-/ccr-90c2297d-wriuk4/system.json
+https://github.com/oleksandrburylych-hash/genesys-/releases/latest/download/system.json
 ```
 
-Архив системы: `dist/genesys-rpg.zip` (собирается командой `npm run build:release`, которая же обновляет
-ссылки в `system.json`; для другой ветки — `BRANCH=main npm run build:release`).
+Ссылка всегда ведёт на последний релиз; обновления Foundry предложит сам.
+
+**Выпуск новой версии:** поднять `version` в `system.json`, закоммитить и отправить тег `vX.Y.Z` —
+GitHub Actions (`.github/workflows/release.yml`) соберёт архив и опубликует релиз.
 
 ## Макросы
 
