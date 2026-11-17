@@ -1,0 +1,791 @@
+[
+  {
+    "name": "Анкил",
+    "nameEn": "Ancile",
+    "type": "weapon",
+    "folder": "Эпоха мифов",
+    "system": {
+      "skill": "meleeLight",
+      "damage": 1,
+      "brawnDamage": true,
+      "crit": 4,
+      "range": "engaged",
+      "encumbrance": 2,
+      "hardPoints": 0,
+      "price": 0,
+      "rarity": 10,
+      "qualities": [
+        {
+          "name": "Защитное",
+          "rating": 3
+        },
+        {
+          "name": "Отражающее",
+          "rating": 3
+        },
+        {
+          "name": "Сбивающее с ног",
+          "rating": null
+        },
+        {
+          "name": "Укреплённое",
+          "rating": null
+        }
+      ],
+      "description": "<p>Священный щит Рима (римская мифология). Пока персонаж держит его, все союзники, находящиеся с ним вплотную, повышают свою защиту в ближнем и дальнем бою на 3. Бесценный артефакт: цены не имеет.</p>",
+      "source": "Expanded Player's Guide, с. 12"
+    }
+  },
+  {
+    "name": "Дайнслейф",
+    "nameEn": "Dáinsleif",
+    "type": "weapon",
+    "folder": "Эпоха мифов",
+    "system": {
+      "skill": "meleeLight",
+      "damage": 5,
+      "brawnDamage": true,
+      "crit": 2,
+      "range": "engaged",
+      "encumbrance": 2,
+      "hardPoints": 0,
+      "price": 0,
+      "rarity": 10,
+      "qualities": [
+        {
+          "name": "Защитное",
+          "rating": 1
+        },
+        {
+          "name": "Укреплённое",
+          "rating": null
+        },
+        {
+          "name": "Жестокое",
+          "rating": 4
+        }
+      ],
+      "description": "<p>Меч из скандинавских мифов. Сложность проверок лечения критических ранений, нанесённых Дайнслейфом, повышается на 2 (максимум до невероятной — 5 кубиков сложности). Бесценный артефакт: цены не имеет.</p>",
+      "source": "Expanded Player's Guide, с. 12"
+    }
+  },
+  {
+    "name": "Аркан Паша",
+    "nameEn": "Pasha",
+    "type": "weapon",
+    "folder": "Эпоха мифов",
+    "system": {
+      "skill": "meleeHeavy",
+      "damage": 2,
+      "brawnDamage": true,
+      "crit": 1,
+      "range": "short",
+      "encumbrance": 1,
+      "hardPoints": 0,
+      "price": 0,
+      "rarity": 9,
+      "qualities": [
+        {
+          "name": "Опутывающее",
+          "rating": 3
+        },
+        {
+          "name": "Укреплённое",
+          "rating": null
+        },
+        {
+          "name": "Оглушающий урон",
+          "rating": null
+        }
+      ],
+      "description": "<p>Живая петля из индуистских мифов. Позволяет атаковать цели на короткой дистанции; сложность проверки остаётся средней (2 кубика сложности). При успешной атаке можно активировать качество Опутывающее, не тратя преимущества. Чтобы освободиться, опутанный персонаж должен пройти невероятную (5 кубиков сложности) проверку Атлетики вместо обычной трудной. Бесценный артефакт: цены не имеет.</p>",
+      "source": "Expanded Player's Guide, с. 12"
+    }
+  },
+  {
+    "name": "Мьёльнир (ближний бой)",
+    "nameEn": "Mjölnir (melee)",
+    "type": "weapon",
+    "folder": "Эпоха мифов",
+    "system": {
+      "skill": "meleeLight",
+      "damage": 8,
+      "brawnDamage": true,
+      "crit": 4,
+      "range": "engaged",
+      "encumbrance": 10,
+      "hardPoints": 0,
+      "price": 0,
+      "rarity": 10,
+      "qualities": [
+        {
+          "name": "Контузящее",
+          "rating": 2
+        },
+        {
+          "name": "Громоздкое",
+          "rating": 6
+        },
+        {
+          "name": "Укреплённое",
+          "rating": null
+        },
+        {
+          "name": "Превосходное",
+          "rating": null
+        }
+      ],
+      "description": "<p>Молот Тора (скандинавские мифы). При боевой проверке каждый успех увеличивает урон на +2 (а не на +1). Бесценный артефакт: цены не имеет.</p>",
+      "source": "Expanded Player's Guide, с. 12"
+    }
+  },
+  {
+    "name": "Мьёльнир (бросок)",
+    "nameEn": "Mjölnir (ranged)",
+    "type": "weapon",
+    "folder": "Эпоха мифов",
+    "system": {
+      "skill": "ranged",
+      "damage": 10,
+      "brawnDamage": false,
+      "crit": 4,
+      "range": "medium",
+      "encumbrance": 10,
+      "hardPoints": 0,
+      "price": 0,
+      "rarity": 10,
+      "qualities": [
+        {
+          "name": "Контузящее",
+          "rating": 2
+        },
+        {
+          "name": "Громоздкое",
+          "rating": 6
+        },
+        {
+          "name": "Самонаводящееся",
+          "rating": 3
+        },
+        {
+          "name": "Ограниченный боезапас",
+          "rating": 1
+        },
+        {
+          "name": "Укреплённое",
+          "rating": null
+        },
+        {
+          "name": "Превосходное",
+          "rating": null
+        }
+      ],
+      "description": "<p>Молот Тора при метании. Каждый успех увеличивает урон на +2 (а не на +1). При дальнобойной атаке можно потратить 2 преимущества или триумф, чтобы молот вернулся в руку в начале следующего хода персонажа. Бесценный артефакт: цены не имеет.</p>",
+      "source": "Expanded Player's Guide, с. 12"
+    }
+  },
+  {
+    "name": "Жуи Цзиньгу Бан",
+    "nameEn": "Ruyi Jingu Bang",
+    "type": "weapon",
+    "folder": "Эпоха мифов",
+    "system": {
+      "skill": "meleeHeavy",
+      "damage": 6,
+      "brawnDamage": true,
+      "crit": 4,
+      "range": "extreme",
+      "encumbrance": 0,
+      "hardPoints": 0,
+      "price": 0,
+      "rarity": 10,
+      "qualities": [
+        {
+          "name": "Защитное",
+          "rating": 2
+        },
+        {
+          "name": "Отражающее",
+          "rating": 2
+        },
+        {
+          "name": "Сбивающее с ног",
+          "rating": null
+        },
+        {
+          "name": "Укреплённое",
+          "rating": null
+        },
+        {
+          "name": "Превосходное",
+          "rating": null
+        }
+      ],
+      "description": "<p>Посох Сунь Укуна (китайские мифы). Дальность в таблице — «особая»: можно атаковать любого противника в пределах предельной дистанции, повышая сложность на 1 за каждую дистанцию дальше короткой. Действием персонаж может установить посох на месте и задать ему силуэт от 0 до 6 и нагрузку от 1 до 1000, изменить эти значения или убрать посох. Поднять и использовать его может только достойный. Бесценный артефакт: цены не имеет.</p>",
+      "source": "Expanded Player's Guide, с. 12"
+    }
+  },
+  {
+    "name": "Меч Пелея",
+    "nameEn": "Sword of Peleus",
+    "type": "weapon",
+    "folder": "Эпоха мифов",
+    "system": {
+      "skill": "meleeLight",
+      "damage": 2,
+      "brawnDamage": true,
+      "crit": 2,
+      "range": "engaged",
+      "encumbrance": 2,
+      "hardPoints": 0,
+      "price": 0,
+      "rarity": 10,
+      "qualities": [
+        {
+          "name": "Защитное",
+          "rating": 2
+        },
+        {
+          "name": "Укреплённое",
+          "rating": null
+        },
+        {
+          "name": "Раскалывающее",
+          "rating": null
+        },
+        {
+          "name": "Превосходное",
+          "rating": null
+        }
+      ],
+      "description": "<p>Меч работы Гефеста (греческие мифы). Пока персонаж держит его, раны, получаемые им в результате боевых проверок, снижаются до 0; однако при каждом попадании по нему он получает 2 напряжения. Бесценный артефакт: цены не имеет.</p>",
+      "source": "Expanded Player's Guide, с. 12"
+    }
+  },
+  {
+    "name": "Тирс",
+    "nameEn": "Thyrsus",
+    "type": "weapon",
+    "folder": "Эпоха мифов",
+    "system": {
+      "skill": "meleeLight",
+      "damage": 2,
+      "brawnDamage": true,
+      "crit": 4,
+      "range": "engaged",
+      "encumbrance": 2,
+      "hardPoints": 0,
+      "price": 0,
+      "rarity": 7,
+      "qualities": [
+        {
+          "name": "Дезориентирующее",
+          "rating": 3
+        },
+        {
+          "name": "Оглушающий урон",
+          "rating": null
+        }
+      ],
+      "description": "<p>Жезл Диониса (греческие мифы). Если боевая проверка с тирсом вывела бы цель из строя, вместо этого цель исцеляет всё напряжение и до конца сцены впадает в исступление: в свой ход она обязана атаковать (проверка Рукопашной) ближайшего персонажа, находящегося с ней вплотную (при нескольких — случайного); если рядом никого нет, она движется в случайном направлении, совершая бессмысленные действия по выбору ведущего. Бесценный артефакт: цены не имеет.</p>",
+      "source": "Expanded Player's Guide, с. 12"
+    }
+  },
+  {
+    "name": "Лук Аполлона",
+    "nameEn": "Bow of Apollo",
+    "type": "weapon",
+    "folder": "Эпоха мифов",
+    "system": {
+      "skill": "ranged",
+      "damage": 10,
+      "brawnDamage": false,
+      "crit": 2,
+      "range": "extreme",
+      "encumbrance": 4,
+      "hardPoints": 0,
+      "price": 0,
+      "rarity": 10,
+      "qualities": [
+        {
+          "name": "Укреплённое",
+          "rating": null
+        },
+        {
+          "name": "Неудобное",
+          "rating": 3
+        }
+      ],
+      "description": "<p>Лук бога (греческие мифы). Перед боевой проверкой с этим луком из пула убираются все кубики помехи. Если цель получает критическое ранение от лука и ещё не страдает «Изнурительной болезнью», нужно выбрать именно это ранение: «Изнурительная болезнь» (трудная, 3 кубика сложности) — пороги ран и напряжения цели уменьшаются вдвое (с округлением вверх), пока ранение не излечено. Бесценный артефакт: цены не имеет.</p>",
+      "source": "Expanded Player's Guide, с. 12"
+    }
+  },
+  {
+    "name": "Кувшин святой воды",
+    "nameEn": "Jug of Blessed Water",
+    "type": "weapon",
+    "folder": "Мир чудовищ",
+    "system": {
+      "skill": "brawl",
+      "damage": 6,
+      "brawnDamage": false,
+      "crit": 2,
+      "range": "engaged",
+      "encumbrance": 1,
+      "hardPoints": 0,
+      "price": 50,
+      "rarity": 6,
+      "qualities": [
+        {
+          "name": "Пролом",
+          "rating": 1
+        },
+        {
+          "name": "Поджигающее",
+          "rating": 1
+        },
+        {
+          "name": "Неточное",
+          "rating": 2
+        },
+        {
+          "name": "Ограниченный боезапас",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Освящённая вода, обжигающая плоть нежити как кислота. Действует как оружие только против нежити; для всех прочих целей это обычная вода.</p>",
+      "source": "Expanded Player's Guide, с. 22"
+    }
+  },
+  {
+    "name": "Кавалерийская сабля",
+    "nameEn": "Cavalry Saber",
+    "type": "weapon",
+    "folder": "Мир чудовищ",
+    "system": {
+      "skill": "melee",
+      "damage": 3,
+      "brawnDamage": true,
+      "crit": 3,
+      "range": "engaged",
+      "encumbrance": 1,
+      "hardPoints": 0,
+      "price": 90,
+      "rarity": 2,
+      "qualities": [
+        {
+          "name": "Защитное",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Однолезвийный изогнутый клинок для размашистых рубящих ударов.</p>",
+      "source": "Expanded Player's Guide, с. 22"
+    }
+  },
+  {
+    "name": "Дуэльная шпага",
+    "nameEn": "Duelist's Foil",
+    "type": "weapon",
+    "folder": "Мир чудовищ",
+    "system": {
+      "skill": "melee",
+      "damage": 1,
+      "brawnDamage": true,
+      "crit": 2,
+      "range": "engaged",
+      "encumbrance": 1,
+      "hardPoints": 0,
+      "price": 90,
+      "rarity": 2,
+      "qualities": [
+        {
+          "name": "Пробивающее",
+          "rating": 3
+        }
+      ],
+      "description": "<p>Тонкий клинок, пробивающий большинство доспехов, но не слишком прочный: при боевой проверке с ним ведущий может потратить 2 угрозы, чтобы шпага получила повреждение на одну ступень (Core Rulebook, с. 89).</p>",
+      "source": "Expanded Player's Guide, с. 22"
+    }
+  },
+  {
+    "name": "Кол",
+    "nameEn": "Stake",
+    "type": "weapon",
+    "folder": "Мир чудовищ",
+    "system": {
+      "skill": "melee",
+      "damage": 1,
+      "brawnDamage": true,
+      "crit": 5,
+      "range": "engaged",
+      "encumbrance": 1,
+      "hardPoints": 0,
+      "price": 5,
+      "rarity": 0,
+      "qualities": [
+        {
+          "name": "Пробивающее",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Неудобное, но действенное оружие против некоторых неуязвимых в остальном существ (например, деревянное оружие против дампиров и вампиров).</p>",
+      "source": "Expanded Player's Guide, с. 23"
+    }
+  },
+  {
+    "name": "Арбалет",
+    "nameEn": "Crossbow",
+    "type": "weapon",
+    "folder": "Мир чудовищ",
+    "system": {
+      "skill": "rangedHeavy",
+      "damage": 7,
+      "brawnDamage": false,
+      "crit": 2,
+      "range": "medium",
+      "encumbrance": 3,
+      "hardPoints": 0,
+      "price": 600,
+      "rarity": 2,
+      "qualities": [
+        {
+          "name": "Ограниченный боезапас",
+          "rating": 1
+        },
+        {
+          "name": "Пробивающее",
+          "rating": 2
+        },
+        {
+          "name": "Подготовка",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Устаревающее оружие, ценимое охотниками: деревянные болты против некоторых тварей действеннее свинца.</p>",
+      "source": "Expanded Player's Guide, с. 22"
+    }
+  },
+  {
+    "name": "Охотничья винтовка",
+    "nameEn": "Hunting Rifle",
+    "type": "weapon",
+    "folder": "Мир чудовищ",
+    "system": {
+      "skill": "rangedHeavy",
+      "damage": 8,
+      "brawnDamage": false,
+      "crit": 3,
+      "range": "long",
+      "encumbrance": 3,
+      "hardPoints": 0,
+      "price": 300,
+      "rarity": 3,
+      "qualities": [
+        {
+          "name": "Точное",
+          "rating": 1
+        },
+        {
+          "name": "Ограниченный боезапас",
+          "rating": 2
+        }
+      ],
+      "description": "<p>Дальнобойнее револьвера, но её трудно спрятать.</p>",
+      "source": "Expanded Player's Guide, с. 22"
+    }
+  },
+  {
+    "name": "Пистолет",
+    "nameEn": "Pistol",
+    "type": "weapon",
+    "folder": "Мир чудовищ",
+    "system": {
+      "skill": "rangedLight",
+      "damage": 6,
+      "brawnDamage": false,
+      "crit": 4,
+      "range": "medium",
+      "encumbrance": 2,
+      "hardPoints": 0,
+      "price": 350,
+      "rarity": 4,
+      "qualities": [
+        {
+          "name": "Точное",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Револьвер, позволяющий сделать несколько выстрелов подряд.</p>",
+      "source": "Expanded Player's Guide, с. 23"
+    }
+  },
+  {
+    "name": "Солнечная граната",
+    "nameEn": "Sunlight Grenade",
+    "type": "weapon",
+    "folder": "Мир чудовищ",
+    "system": {
+      "skill": "rangedLight",
+      "damage": 0,
+      "brawnDamage": false,
+      "crit": 0,
+      "range": "short",
+      "encumbrance": 1,
+      "hardPoints": 0,
+      "price": 800,
+      "rarity": 4,
+      "qualities": [
+        {
+          "name": "Ограниченный боезапас",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Урона не наносит. При взрыве до конца текущего раунда действует как прямой солнечный свет на всех персонажей в пределах средней дистанции. Персонажи со способностью «Чувствительность к солнцу», находящиеся в укрытии, вместо её обычного эффекта получают 3 раны и 6 напряжения.</p>",
+      "source": "Expanded Player's Guide, с. 23"
+    }
+  },
+  {
+    "name": "Меч из рессоры",
+    "nameEn": "Leaf-Spring Sword",
+    "type": "weapon",
+    "folder": "Постапокалипсис",
+    "system": {
+      "skill": "melee",
+      "damage": 3,
+      "brawnDamage": true,
+      "crit": 2,
+      "range": "engaged",
+      "encumbrance": 2,
+      "hardPoints": 0,
+      "price": 150,
+      "rarity": 3,
+      "qualities": [
+        {
+          "name": "Громоздкое",
+          "rating": 2
+        },
+        {
+          "name": "Защитное",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Тяжёлый меч, выпрямленный и заточенный из листовой рессоры автомобиля.</p><p>Трофейное (собранное из хлама) оружие: при любой проверке навыка с ним ведущий может потратить 2 угрозы или отчаяние, чтобы оно получило повреждение на одну ступень.</p>",
+      "source": "Expanded Player's Guide, с. 34"
+    }
+  },
+  {
+    "name": "Бита с гвоздями",
+    "nameEn": "Nailbat",
+    "type": "weapon",
+    "folder": "Постапокалипсис",
+    "system": {
+      "skill": "melee",
+      "damage": 3,
+      "brawnDamage": true,
+      "crit": 3,
+      "range": "engaged",
+      "encumbrance": 2,
+      "hardPoints": 0,
+      "price": 100,
+      "rarity": 2,
+      "qualities": [
+        {
+          "name": "Жестокое",
+          "rating": 2
+        }
+      ],
+      "description": "<p>Деревянная дубина с вбитыми гвоздями, шипами или колючей проволокой.</p><p>Трофейное (собранное из хлама) оружие: при любой проверке навыка с ним ведущий может потратить 2 угрозы или отчаяние, чтобы оно получило повреждение на одну ступень.</p>",
+      "source": "Expanded Player's Guide, с. 34"
+    }
+  },
+  {
+    "name": "Заточка",
+    "nameEn": "Shiv",
+    "type": "weapon",
+    "folder": "Постапокалипсис",
+    "system": {
+      "skill": "melee",
+      "damage": 1,
+      "brawnDamage": true,
+      "crit": 4,
+      "range": "engaged",
+      "encumbrance": 1,
+      "hardPoints": 0,
+      "price": 50,
+      "rarity": 3,
+      "qualities": [
+        {
+          "name": "Жестокое",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Самодельный нож из любого заточенного обломка; персонаж может сделать его почти из любого куска хлама.</p><p>Трофейное (собранное из хлама) оружие: при любой проверке навыка с ним ведущий может потратить 2 угрозы или отчаяние, чтобы оно получило повреждение на одну ступень.</p>",
+      "source": "Expanded Player's Guide, с. 35"
+    }
+  },
+  {
+    "name": "Громобой (ближний бой)",
+    "nameEn": "Thunderstick (melee)",
+    "type": "weapon",
+    "folder": "Постапокалипсис",
+    "system": {
+      "skill": "melee",
+      "damage": 8,
+      "brawnDamage": false,
+      "crit": 3,
+      "range": "engaged",
+      "encumbrance": 3,
+      "hardPoints": 0,
+      "price": 250,
+      "rarity": 5,
+      "qualities": [
+        {
+          "name": "Взрывное",
+          "rating": 4
+        },
+        {
+          "name": "Пролом",
+          "rating": 1
+        },
+        {
+          "name": "Защитное",
+          "rating": 1
+        },
+        {
+          "name": "Ограниченный боезапас",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Взрывной заряд на длинном шесте, использованный в ближнем бою. При боевой проверке с ним ведущий может потратить 2 угрозы или отчаяние, чтобы персонаж получил 4 раны.</p><p>Трофейное (собранное из хлама) оружие: при любой проверке навыка с ним ведущий может потратить 2 угрозы или отчаяние, чтобы оно получило повреждение на одну ступень.</p>",
+      "source": "Expanded Player's Guide, с. 35"
+    }
+  },
+  {
+    "name": "Винтовка-самопал",
+    "nameEn": "Pipe Rifle",
+    "type": "weapon",
+    "folder": "Постапокалипсис",
+    "system": {
+      "skill": "rangedHeavy",
+      "damage": 7,
+      "brawnDamage": false,
+      "crit": 4,
+      "range": "medium",
+      "encumbrance": 4,
+      "hardPoints": 0,
+      "price": 100,
+      "rarity": 3,
+      "qualities": [
+        {
+          "name": "Низкокачественное",
+          "rating": null
+        },
+        {
+          "name": "Ограниченный боезапас",
+          "rating": 2
+        }
+      ],
+      "description": "<p>Самодельное ружьё из труб, металлолома и дерева.</p><p>Трофейное (собранное из хлама) оружие: при любой проверке навыка с ним ведущий может потратить 2 угрозы или отчаяние, чтобы оно получило повреждение на одну ступень.</p>",
+      "source": "Expanded Player's Guide, с. 35"
+    }
+  },
+  {
+    "name": "Пороховой заряд",
+    "nameEn": "Powder Charge",
+    "type": "weapon",
+    "folder": "Постапокалипсис",
+    "system": {
+      "skill": "rangedHeavy",
+      "damage": 12,
+      "brawnDamage": false,
+      "crit": 3,
+      "range": "short",
+      "encumbrance": 2,
+      "hardPoints": 0,
+      "price": 200,
+      "rarity": 4,
+      "qualities": [
+        {
+          "name": "Взрывное",
+          "rating": 9
+        },
+        {
+          "name": "Ограниченный боезапас",
+          "rating": 1
+        },
+        {
+          "name": "Подготовка",
+          "rating": 2
+        },
+        {
+          "name": "Жестокое",
+          "rating": 3
+        }
+      ],
+      "description": "<p>Ёмкость с порохом и поражающими элементами, поджигаемая фитилём. При использовании ведущий может потратить 4 угрозы или отчаяние, чтобы заряд не взорвался либо взорвался преждевременно, нанеся базовый урон всем, кто находится вплотную (включая самого персонажа).</p><p>Трофейное (собранное из хлама) оружие: при любой проверке навыка с ним ведущий может потратить 2 угрозы или отчаяние, чтобы оно получило повреждение на одну ступень.</p>",
+      "source": "Expanded Player's Guide, с. 35"
+    }
+  },
+  {
+    "name": "Громобой (бросок)",
+    "nameEn": "Thunderstick (Thrown)",
+    "type": "weapon",
+    "folder": "Постапокалипсис",
+    "system": {
+      "skill": "rangedLight",
+      "damage": 8,
+      "brawnDamage": false,
+      "crit": 3,
+      "range": "short",
+      "encumbrance": 3,
+      "hardPoints": 0,
+      "price": 250,
+      "rarity": 5,
+      "qualities": [
+        {
+          "name": "Взрывное",
+          "rating": 4
+        },
+        {
+          "name": "Пролом",
+          "rating": 1
+        },
+        {
+          "name": "Ограниченный боезапас",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Взрывной заряд на шесте, метаемый как дротик. При боевой проверке с ним ведущий может потратить 2 угрозы или отчаяние, чтобы персонаж получил 4 раны.</p><p>Трофейное (собранное из хлама) оружие: при любой проверке навыка с ним ведущий может потратить 2 угрозы или отчаяние, чтобы оно получило повреждение на одну ступень.</p>",
+      "source": "Expanded Player's Guide, с. 35"
+    }
+  },
+  {
+    "name": "Самопал",
+    "nameEn": "Zipgun",
+    "type": "weapon",
+    "folder": "Постапокалипсис",
+    "system": {
+      "skill": "rangedLight",
+      "damage": 5,
+      "brawnDamage": false,
+      "crit": 4,
+      "range": "short",
+      "encumbrance": 1,
+      "hardPoints": 0,
+      "price": 20,
+      "rarity": 2,
+      "qualities": [
+        {
+          "name": "Низкокачественное",
+          "rating": null
+        },
+        {
+          "name": "Ограниченный боезапас",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Самодельный пистолет из трубы и металлолома.</p><p>Трофейное (собранное из хлама) оружие: при любой проверке навыка с ним ведущий может потратить 2 угрозы или отчаяние, чтобы оно получило повреждение на одну ступень.</p>",
+      "source": "Expanded Player's Guide, с. 35"
+    }
+  }
+]
