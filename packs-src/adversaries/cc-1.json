@@ -1,0 +1,6187 @@
+[
+ {
+  "name": "Тур",
+  "nameEn": "Aurochs",
+  "type": "adversary",
+  "folder": "Каталог существ: Звери",
+  "system": {
+   "adversaryType": "rival",
+   "characteristics": {
+    "brawn": {
+     "value": 4
+    },
+    "agility": {
+     "value": 1
+    },
+    "intellect": {
+     "value": 1
+    },
+    "cunning": {
+     "value": 1
+    },
+    "willpower": {
+     "value": 2
+    },
+    "presence": {
+     "value": 1
+    }
+   },
+   "wounds": {
+    "value": 0,
+    "max": 18
+   },
+   "strain": {
+    "value": 0,
+    "max": 0
+   },
+   "soak": {
+    "value": 6
+   },
+   "defense": {
+    "melee": {
+     "value": 0
+    },
+    "ranged": {
+     "value": 0
+    }
+   },
+   "groupSize": 1,
+   "description": "<p>Крупный косматый травоядный бык, которого часто используют как вьючное животное. Обычно смирный, но раненый или напуганный становится очень опасен.</p>",
+   "source": "Creature Catalogue, с. 1",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth"
+   ]
+  },
+  "items": [
+   {
+    "name": "Атлетика",
+    "type": "skill",
+    "system": {
+     "key": "athletics",
+     "characteristic": "brawn",
+     "category": "general",
+     "rank": 1,
+     "career": false
+    }
+   },
+   {
+    "name": "Грубая сила",
+    "type": "skill",
+    "system": {
+     "key": "brawl",
+     "characteristic": "brawn",
+     "category": "combat",
+     "rank": 1,
+     "career": false
+    }
+   },
+   {
+    "name": "Стойкость",
+    "type": "skill",
+    "system": {
+     "key": "resilience",
+     "characteristic": "brawn",
+     "category": "general",
+     "rank": 1,
+     "career": false
+    }
+   },
+   {
+    "name": "Фигура 2",
+    "nameEn": "Silhouette 2",
+    "type": "ability",
+    "system": {
+     "description": "<p>Фигура (размер) существа равна 2.</p>",
+     "source": "Creature Catalogue, с. 1"
+    }
+   },
+   {
+    "name": "Вьючное животное 8",
+    "nameEn": "Beast of Burden 8",
+    "type": "ability",
+    "system": {
+     "description": "<p>Порог нагрузки существа увеличен на 8.</p>",
+     "source": "Creature Catalogue, с. 1"
+    }
+   },
+   {
+    "name": "Растаптывание",
+    "nameEn": "Tramplie",
+    "type": "weapon",
+    "system": {
+     "skill": "brawl",
+     "damage": 8,
+     "brawnDamage": false,
+     "crit": 5,
+     "range": "engaged",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Неточное",
+       "rating": 1
+      },
+      {
+       "name": "Нокдаун",
+       "rating": null
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 1"
+    }
+   }
+  ]
+ },
+ {
+  "name": "Медведь (каталог)",
+  "nameEn": "Bear",
+  "type": "adversary",
+  "folder": "Каталог существ: Звери",
+  "system": {
+   "adversaryType": "rival",
+   "characteristics": {
+    "brawn": {
+     "value": 4
+    },
+    "agility": {
+     "value": 2
+    },
+    "intellect": {
+     "value": 1
+    },
+    "cunning": {
+     "value": 1
+    },
+    "willpower": {
+     "value": 1
+    },
+    "presence": {
+     "value": 1
+    }
+   },
+   "wounds": {
+    "value": 0,
+    "max": 20
+   },
+   "strain": {
+    "value": 0,
+    "max": 0
+   },
+   "soak": {
+    "value": 6
+   },
+   "defense": {
+    "melee": {
+     "value": 0
+    },
+    "ranged": {
+     "value": 0
+    }
+   },
+   "groupSize": 1,
+   "description": "<p>Профиль любого крупного медведя — гризли или белого. Белому медведю добавьте невосприимчивость к холоду.</p>",
+   "source": "Creature Catalogue, с. 1",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi"
+   ]
+  },
+  "items": [
+   {
+    "name": "Атлетика",
+    "type": "skill",
+    "system": {
+     "key": "athletics",
+     "characteristic": "brawn",
+     "category": "general",
+     "rank": 1,
+     "career": false
+    }
+   },
+   {
+    "name": "Грубая сила",
+    "type": "skill",
+    "system": {
+     "key": "brawl",
+     "characteristic": "brawn",
+     "category": "combat",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Стойкость",
+    "type": "skill",
+    "system": {
+     "key": "resilience",
+     "characteristic": "brawn",
+     "category": "general",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Фигура 2",
+    "nameEn": "Silhouette 2",
+    "type": "ability",
+    "system": {
+     "description": "<p>Фигура (размер) существа равна 2.</p>",
+     "source": "Creature Catalogue, с. 1"
+    }
+   },
+   {
+    "name": "Толстая шкура",
+    "nameEn": "Thick Hide",
+    "type": "ability",
+    "system": {
+     "description": "<p>Естественная броня: +2 к поглощению (уже учтено в блоке характеристик).</p>",
+     "source": "Creature Catalogue, с. 1"
+    }
+   },
+   {
+    "name": "Когти",
+    "nameEn": "Claws",
+    "type": "weapon",
+    "system": {
+     "skill": "brawl",
+     "damage": 7,
+     "brawnDamage": false,
+     "crit": 3,
+     "range": "engaged",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Дезориентация",
+       "rating": 1
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 1"
+    }
+   },
+   {
+    "name": "Укус",
+    "nameEn": "Bite",
+    "type": "weapon",
+    "system": {
+     "skill": "brawl",
+     "damage": 8,
+     "brawnDamage": false,
+     "crit": 3,
+     "range": "engaged",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Проникающее",
+       "rating": 1
+      },
+      {
+       "name": "Высококритичное",
+       "rating": 2
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 1"
+    }
+   }
+  ]
+ },
+ {
+  "name": "Верблюд",
+  "nameEn": "Camel",
+  "type": "adversary",
+  "folder": "Каталог существ: Звери",
+  "system": {
+   "adversaryType": "rival",
+   "characteristics": {
+    "brawn": {
+     "value": 3
+    },
+    "agility": {
+     "value": 1
+    },
+    "intellect": {
+     "value": 1
+    },
+    "cunning": {
+     "value": 1
+    },
+    "willpower": {
+     "value": 2
+    },
+    "presence": {
+     "value": 1
+    }
+   },
+   "wounds": {
+    "value": 0,
+    "max": 14
+   },
+   "strain": {
+    "value": 0,
+    "max": 0
+   },
+   "soak": {
+    "value": 3
+   },
+   "defense": {
+    "melee": {
+     "value": 0
+    },
+    "ranged": {
+     "value": 0
+    }
+   },
+   "groupSize": 1,
+   "description": "<p>Злобный и упрямый, но превосходный скакун и вьючное животное для засушливых пустынь.</p>",
+   "source": "Creature Catalogue, с. 1",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi"
+   ]
+  },
+  "items": [
+   {
+    "name": "Атлетика",
+    "type": "skill",
+    "system": {
+     "key": "athletics",
+     "characteristic": "brawn",
+     "category": "general",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Грубая сила",
+    "type": "skill",
+    "system": {
+     "key": "brawl",
+     "characteristic": "brawn",
+     "category": "combat",
+     "rank": 1,
+     "career": false
+    }
+   },
+   {
+    "name": "Выживание",
+    "type": "skill",
+    "system": {
+     "key": "survival",
+     "characteristic": "cunning",
+     "category": "general",
+     "rank": 1,
+     "career": false
+    }
+   },
+   {
+    "name": "Фигура 2",
+    "nameEn": "Silhouette 2",
+    "type": "ability",
+    "system": {
+     "description": "<p>Фигура (размер) существа равна 2.</p>",
+     "source": "Creature Catalogue, с. 1"
+    }
+   },
+   {
+    "name": "Обученный скакун 1",
+    "nameEn": "Trained Mount 1",
+    "type": "ability",
+    "system": {
+     "description": "<p>Всадник добавляет 1 кость бонуса к проверкам Верховой езды, пока сидит на нём.</p>",
+     "source": "Creature Catalogue, с. 1"
+    }
+   },
+   {
+    "name": "Песчаный ходок",
+    "nameEn": "Sand Walker",
+    "type": "ability",
+    "system": {
+     "description": "<p>Убирает 1 кость штрафа из проверок, связанных с передвижением по песку и пустыне.</p>",
+     "source": "Creature Catalogue, с. 1"
+    }
+   },
+   {
+    "name": "Вьючное животное 5",
+    "nameEn": "Beast of Burden 5",
+    "type": "ability",
+    "system": {
+     "description": "<p>Порог нагрузки существа увеличен на 5.</p>",
+     "source": "Creature Catalogue, с. 1"
+    }
+   },
+   {
+    "name": "Копыта",
+    "nameEn": "Hooves",
+    "type": "weapon",
+    "system": {
+     "skill": "brawl",
+     "damage": 5,
+     "brawnDamage": false,
+     "crit": 5,
+     "range": "engaged",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 1"
+    }
+   }
+  ]
+ },
+ {
+  "name": "Крокодил",
+  "nameEn": "Crocodile",
+  "type": "adversary",
+  "folder": "Каталог существ: Звери",
+  "system": {
+   "adversaryType": "rival",
+   "characteristics": {
+    "brawn": {
+     "value": 3
+    },
+    "agility": {
+     "value": 2
+    },
+    "intellect": {
+     "value": 1
+    },
+    "cunning": {
+     "value": 1
+    },
+    "willpower": {
+     "value": 1
+    },
+    "presence": {
+     "value": 1
+    }
+   },
+   "wounds": {
+    "value": 0,
+    "max": 16
+   },
+   "strain": {
+    "value": 0,
+    "max": 0
+   },
+   "soak": {
+    "value": 5
+   },
+   "defense": {
+    "melee": {
+     "value": 0
+    },
+    "ranged": {
+     "value": 0
+    }
+   },
+   "groupSize": 1,
+   "description": "<p>Профиль любого крупного крокодила, аллигатора или каймана.</p>",
+   "source": "Creature Catalogue, с. 1",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi"
+   ]
+  },
+  "items": [
+   {
+    "name": "Атлетика",
+    "type": "skill",
+    "system": {
+     "key": "athletics",
+     "characteristic": "brawn",
+     "category": "general",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Грубая сила",
+    "type": "skill",
+    "system": {
+     "key": "brawl",
+     "characteristic": "brawn",
+     "category": "combat",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Хладнокровие",
+    "type": "skill",
+    "system": {
+     "key": "cool",
+     "characteristic": "presence",
+     "category": "general",
+     "rank": 1,
+     "career": false
+    }
+   },
+   {
+    "name": "Скрытность",
+    "type": "skill",
+    "system": {
+     "key": "stealth",
+     "characteristic": "agility",
+     "category": "general",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Стойкость",
+    "type": "skill",
+    "system": {
+     "key": "resilience",
+     "characteristic": "brawn",
+     "category": "general",
+     "rank": 1,
+     "career": false
+    }
+   },
+   {
+    "name": "Фигура 2",
+    "nameEn": "Silhouette 2",
+    "type": "ability",
+    "system": {
+     "description": "<p>Фигура (размер) существа равна 2.</p>",
+     "source": "Creature Catalogue, с. 1"
+    }
+   },
+   {
+    "name": "Чешуйчатая шкура",
+    "nameEn": "Scaled Hide",
+    "type": "ability",
+    "system": {
+     "description": "<p>Естественная броня: +2 к поглощению (уже учтено в блоке характеристик).</p>",
+     "source": "Creature Catalogue, с. 1"
+    }
+   },
+   {
+    "name": "Укус",
+    "nameEn": "Bite",
+    "type": "weapon",
+    "system": {
+     "skill": "brawl",
+     "damage": 6,
+     "brawnDamage": false,
+     "crit": 3,
+     "range": "engaged",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Сковывание",
+       "rating": 2
+      },
+      {
+       "name": "Высококритичное",
+       "rating": 2
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 1"
+    }
+   }
+  ]
+ },
+ {
+  "name": "Лось",
+  "nameEn": "Elk",
+  "type": "adversary",
+  "folder": "Каталог существ: Звери",
+  "system": {
+   "adversaryType": "rival",
+   "characteristics": {
+    "brawn": {
+     "value": 4
+    },
+    "agility": {
+     "value": 3
+    },
+    "intellect": {
+     "value": 1
+    },
+    "cunning": {
+     "value": 2
+    },
+    "willpower": {
+     "value": 2
+    },
+    "presence": {
+     "value": 1
+    }
+   },
+   "wounds": {
+    "value": 0,
+    "max": 14
+   },
+   "strain": {
+    "value": 0,
+    "max": 0
+   },
+   "soak": {
+    "value": 4
+   },
+   "defense": {
+    "melee": {
+     "value": 0
+    },
+    "ranged": {
+     "value": 0
+    }
+   },
+   "groupSize": 1,
+   "description": "<p>Крупный и сильный обитатель глухих лесов. Предпочитает избегать драки, но загнанный в угол сражается яростно.</p>",
+   "source": "Creature Catalogue, с. 2",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi"
+   ]
+  },
+  "items": [
+   {
+    "name": "Атлетика",
+    "type": "skill",
+    "system": {
+     "key": "athletics",
+     "characteristic": "brawn",
+     "category": "general",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Грубая сила",
+    "type": "skill",
+    "system": {
+     "key": "brawl",
+     "characteristic": "brawn",
+     "category": "combat",
+     "rank": 1,
+     "career": false
+    }
+   },
+   {
+    "name": "Бдительность",
+    "type": "skill",
+    "system": {
+     "key": "vigilance",
+     "characteristic": "willpower",
+     "category": "general",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Фигура 2",
+    "nameEn": "Silhouette 2",
+    "type": "ability",
+    "system": {
+     "description": "<p>Фигура (размер) существа равна 2.</p>",
+     "source": "Creature Catalogue, с. 2"
+    }
+   },
+   {
+    "name": "Твёрдая поступь",
+    "nameEn": "Sure Footed",
+    "type": "ability",
+    "system": {
+     "description": "<p>Не получает штрафов при передвижении по труднопроходимой местности.</p>",
+     "source": "Creature Catalogue, с. 2"
+    }
+   },
+   {
+    "name": "Рога",
+    "nameEn": "Antlers",
+    "type": "weapon",
+    "system": {
+     "skill": "brawl",
+     "damage": 7,
+     "brawnDamage": false,
+     "crit": 5,
+     "range": "engaged",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Дезориентация",
+       "rating": 1
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 2"
+    }
+   },
+   {
+    "name": "Копыта",
+    "nameEn": "Hooves",
+    "type": "weapon",
+    "system": {
+     "skill": "brawl",
+     "damage": 5,
+     "brawnDamage": false,
+     "crit": 5,
+     "range": "engaged",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 2"
+    }
+   }
+  ]
+ },
+ {
+  "name": "Лошадь (каталог)",
+  "nameEn": "Horse",
+  "type": "adversary",
+  "folder": "Каталог существ: Звери",
+  "system": {
+   "adversaryType": "rival",
+   "characteristics": {
+    "brawn": {
+     "value": 3
+    },
+    "agility": {
+     "value": 3
+    },
+    "intellect": {
+     "value": 1
+    },
+    "cunning": {
+     "value": 1
+    },
+    "willpower": {
+     "value": 1
+    },
+    "presence": {
+     "value": 1
+    }
+   },
+   "wounds": {
+    "value": 0,
+    "max": 12
+   },
+   "strain": {
+    "value": 0,
+    "max": 0
+   },
+   "soak": {
+    "value": 3
+   },
+   "defense": {
+    "melee": {
+     "value": 0
+    },
+    "ranged": {
+     "value": 0
+    }
+   },
+   "groupSize": 1,
+   "description": "<p>Обычная рабочая или верховая лошадь. В отличие от профиля Expanded Player's Guide — соперник.</p>",
+   "source": "Creature Catalogue, с. 2",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi"
+   ]
+  },
+  "items": [
+   {
+    "name": "Атлетика",
+    "type": "skill",
+    "system": {
+     "key": "athletics",
+     "characteristic": "brawn",
+     "category": "general",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Грубая сила",
+    "type": "skill",
+    "system": {
+     "key": "brawl",
+     "characteristic": "brawn",
+     "category": "combat",
+     "rank": 1,
+     "career": false
+    }
+   },
+   {
+    "name": "Фигура 2",
+    "nameEn": "Silhouette 2",
+    "type": "ability",
+    "system": {
+     "description": "<p>Фигура (размер) существа равна 2.</p>",
+     "source": "Creature Catalogue, с. 2"
+    }
+   },
+   {
+    "name": "Обученный скакун 1",
+    "nameEn": "Trained Mount 1",
+    "type": "ability",
+    "system": {
+     "description": "<p>Всадник добавляет 1 кость бонуса к проверкам Верховой езды, пока сидит на нём.</p>",
+     "source": "Creature Catalogue, с. 2"
+    }
+   },
+   {
+    "name": "Копыта",
+    "nameEn": "Hooves",
+    "type": "weapon",
+    "system": {
+     "skill": "brawl",
+     "damage": 5,
+     "brawnDamage": false,
+     "crit": 5,
+     "range": "engaged",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 2"
+    }
+   }
+  ]
+ },
+ {
+  "name": "Носорог",
+  "nameEn": "Rhinoceros",
+  "type": "adversary",
+  "folder": "Каталог существ: Звери",
+  "system": {
+   "adversaryType": "rival",
+   "characteristics": {
+    "brawn": {
+     "value": 4
+    },
+    "agility": {
+     "value": 2
+    },
+    "intellect": {
+     "value": 1
+    },
+    "cunning": {
+     "value": 1
+    },
+    "willpower": {
+     "value": 1
+    },
+    "presence": {
+     "value": 1
+    }
+   },
+   "wounds": {
+    "value": 0,
+    "max": 12
+   },
+   "strain": {
+    "value": 0,
+    "max": 0
+   },
+   "soak": {
+    "value": 6
+   },
+   "defense": {
+    "melee": {
+     "value": 0
+    },
+    "ranged": {
+     "value": 0
+    }
+   },
+   "groupSize": 1,
+   "description": "<p>Крупное, мощное и вспыльчивое животное — впечатляющее, но опасное.</p>",
+   "source": "Creature Catalogue, с. 2",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi"
+   ]
+  },
+  "items": [
+   {
+    "name": "Грубая сила",
+    "type": "skill",
+    "system": {
+     "key": "brawl",
+     "characteristic": "brawn",
+     "category": "combat",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Стойкость",
+    "type": "skill",
+    "system": {
+     "key": "resilience",
+     "characteristic": "brawn",
+     "category": "general",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Выживание",
+    "type": "skill",
+    "system": {
+     "key": "survival",
+     "characteristic": "cunning",
+     "category": "general",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Фигура 2",
+    "nameEn": "Silhouette 2",
+    "type": "ability",
+    "system": {
+     "description": "<p>Фигура (размер) существа равна 2.</p>",
+     "source": "Creature Catalogue, с. 2"
+    }
+   },
+   {
+    "name": "Рог",
+    "nameEn": "Goring Horn",
+    "type": "weapon",
+    "system": {
+     "skill": "brawl",
+     "damage": 8,
+     "brawnDamage": false,
+     "crit": 4,
+     "range": "engaged",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Проникающее",
+       "rating": 3
+      },
+      {
+       "name": "Высококритичное",
+       "rating": 2
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 2"
+    }
+   },
+   {
+    "name": "Растаптывание",
+    "nameEn": "Trample",
+    "type": "weapon",
+    "system": {
+     "skill": "brawl",
+     "damage": 10,
+     "brawnDamage": false,
+     "crit": 5,
+     "range": "engaged",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Нокдаун",
+       "rating": null
+      },
+      {
+       "name": "Дезориентация",
+       "rating": 3
+      },
+      {
+       "name": "Неточное",
+       "rating": 1
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 2"
+    }
+   }
+  ]
+ },
+ {
+  "name": "Ездовой слон",
+  "nameEn": "Riding Elephant",
+  "type": "adversary",
+  "folder": "Каталог существ: Звери",
+  "system": {
+   "adversaryType": "rival",
+   "characteristics": {
+    "brawn": {
+     "value": 5
+    },
+    "agility": {
+     "value": 1
+    },
+    "intellect": {
+     "value": 1
+    },
+    "cunning": {
+     "value": 1
+    },
+    "willpower": {
+     "value": 2
+    },
+    "presence": {
+     "value": 1
+    }
+   },
+   "wounds": {
+    "value": 0,
+    "max": 26
+   },
+   "strain": {
+    "value": 0,
+    "max": 0
+   },
+   "soak": {
+    "value": 8
+   },
+   "defense": {
+    "melee": {
+     "value": 0
+    },
+    "ranged": {
+     "value": 0
+    }
+   },
+   "groupSize": 1,
+   "description": "<p>Обученный слон — впечатляющий и опасный боевой скакун.</p>",
+   "source": "Creature Catalogue, с. 2",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc"
+   ]
+  },
+  "items": [
+   {
+    "name": "Грубая сила",
+    "type": "skill",
+    "system": {
+     "key": "brawl",
+     "characteristic": "brawn",
+     "category": "combat",
+     "rank": 1,
+     "career": false
+    }
+   },
+   {
+    "name": "Стойкость",
+    "type": "skill",
+    "system": {
+     "key": "resilience",
+     "characteristic": "brawn",
+     "category": "general",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Фигура 3",
+    "nameEn": "Silhouette 3",
+    "type": "ability",
+    "system": {
+     "description": "<p>Фигура (размер) существа равна 3.</p>",
+     "source": "Creature Catalogue, с. 2"
+    }
+   },
+   {
+    "name": "Размах",
+    "nameEn": "Sweep",
+    "type": "ability",
+    "system": {
+     "description": "<p>Может потратить 2 преимущества с успешной проверки Грубой силы, чтобы поразить ещё одну цель, находящуюся вплотную к первой.</p>",
+     "source": "Creature Catalogue, с. 2"
+    }
+   },
+   {
+    "name": "Растаптывание",
+    "nameEn": "Trample",
+    "type": "ability",
+    "system": {
+     "description": "<p>Если перед атакой ногами слон манёвром сближается с целью, он добавляет 1 кость бонуса к атаке и наносит +2 урона.</p>",
+     "source": "Creature Catalogue, с. 2"
+    }
+   },
+   {
+    "name": "Обученный скакун 1",
+    "nameEn": "Trained Mount 1",
+    "type": "ability",
+    "system": {
+     "description": "<p>Всадник добавляет 1 кость бонуса к проверкам Верховой езды, пока сидит на нём.</p>",
+     "source": "Creature Catalogue, с. 2"
+    }
+   },
+   {
+    "name": "Вьючное животное 15",
+    "nameEn": "Beast of Burden 15",
+    "type": "ability",
+    "system": {
+     "description": "<p>Порог нагрузки существа увеличен на 15.</p>",
+     "source": "Creature Catalogue, с. 2"
+    }
+   },
+   {
+    "name": "Бивни",
+    "nameEn": "Tusks",
+    "type": "weapon",
+    "system": {
+     "skill": "brawl",
+     "damage": 10,
+     "brawnDamage": false,
+     "crit": 5,
+     "range": "engaged",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Ошеломление",
+       "rating": 1
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 2"
+    }
+   },
+   {
+    "name": "Ноги",
+    "nameEn": "Feet",
+    "type": "weapon",
+    "system": {
+     "skill": "brawl",
+     "damage": 12,
+     "brawnDamage": false,
+     "crit": 4,
+     "range": "engaged",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Нокдаун",
+       "rating": null
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 2"
+    }
+   }
+  ]
+ },
+ {
+  "name": "Тигр",
+  "nameEn": "Tiger",
+  "type": "adversary",
+  "folder": "Каталог существ: Звери",
+  "system": {
+   "adversaryType": "rival",
+   "characteristics": {
+    "brawn": {
+     "value": 3
+    },
+    "agility": {
+     "value": 4
+    },
+    "intellect": {
+     "value": 1
+    },
+    "cunning": {
+     "value": 3
+    },
+    "willpower": {
+     "value": 1
+    },
+    "presence": {
+     "value": 1
+    }
+   },
+   "wounds": {
+    "value": 0,
+    "max": 18
+   },
+   "strain": {
+    "value": 0,
+    "max": 0
+   },
+   "soak": {
+    "value": 3
+   },
+   "defense": {
+    "melee": {
+     "value": 0
+    },
+    "ranged": {
+     "value": 0
+    }
+   },
+   "groupSize": 1,
+   "description": "<p>Профиль подходит для большинства крупных кошек.</p>",
+   "source": "Creature Catalogue, с. 3",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi"
+   ]
+  },
+  "items": [
+   {
+    "name": "Атлетика",
+    "type": "skill",
+    "system": {
+     "key": "athletics",
+     "characteristic": "brawn",
+     "category": "general",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Грубая сила",
+    "type": "skill",
+    "system": {
+     "key": "brawl",
+     "characteristic": "brawn",
+     "category": "combat",
+     "rank": 1,
+     "career": false
+    }
+   },
+   {
+    "name": "Хладнокровие",
+    "type": "skill",
+    "system": {
+     "key": "cool",
+     "characteristic": "presence",
+     "category": "general",
+     "rank": 3,
+     "career": false
+    }
+   },
+   {
+    "name": "Координация",
+    "type": "skill",
+    "system": {
+     "key": "coordination",
+     "characteristic": "agility",
+     "category": "general",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Внимание",
+    "type": "skill",
+    "system": {
+     "key": "perception",
+     "characteristic": "cunning",
+     "category": "general",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Скрытность",
+    "type": "skill",
+    "system": {
+     "key": "stealth",
+     "characteristic": "agility",
+     "category": "general",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Бдительность",
+    "type": "skill",
+    "system": {
+     "key": "vigilance",
+     "characteristic": "willpower",
+     "category": "general",
+     "rank": 3,
+     "career": false
+    }
+   },
+   {
+    "name": "Свирепый прыжок",
+    "nameEn": "Fierce Pounce",
+    "type": "ability",
+    "system": {
+     "description": "<p>Если тигр выполнил манёвр прицеливания, его следующая атака когтями получает свойство Нокдаун.</p>",
+     "source": "Creature Catalogue, с. 3"
+    }
+   },
+   {
+    "name": "Когти",
+    "nameEn": "Claws",
+    "type": "weapon",
+    "system": {
+     "skill": "brawl",
+     "damage": 6,
+     "brawnDamage": false,
+     "crit": 3,
+     "range": "engaged",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 3"
+    }
+   },
+   {
+    "name": "Укус",
+    "nameEn": "Bite",
+    "type": "weapon",
+    "system": {
+     "skill": "brawl",
+     "damage": 7,
+     "brawnDamage": false,
+     "crit": 3,
+     "range": "engaged",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Проникающее",
+       "rating": 1
+      },
+      {
+       "name": "Высококритичное",
+       "rating": 2
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 3"
+    }
+   }
+  ]
+ },
+ {
+  "name": "Боевой конь",
+  "nameEn": "Warhorse",
+  "type": "adversary",
+  "folder": "Каталог существ: Звери",
+  "system": {
+   "adversaryType": "rival",
+   "characteristics": {
+    "brawn": {
+     "value": 4
+    },
+    "agility": {
+     "value": 3
+    },
+    "intellect": {
+     "value": 1
+    },
+    "cunning": {
+     "value": 1
+    },
+    "willpower": {
+     "value": 2
+    },
+    "presence": {
+     "value": 2
+    }
+   },
+   "wounds": {
+    "value": 0,
+    "max": 16
+   },
+   "strain": {
+    "value": 0,
+    "max": 0
+   },
+   "soak": {
+    "value": 7
+   },
+   "defense": {
+    "melee": {
+     "value": 0
+    },
+    "ranged": {
+     "value": 0
+    }
+   },
+   "groupSize": 1,
+   "description": "<p>Выведенный и обученный для войны конь — ценное подспорье любому войску и надёжный товарищ солдата или рыцаря.</p>",
+   "source": "Creature Catalogue, с. 3",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "monster",
+    "postapoc"
+   ]
+  },
+  "items": [
+   {
+    "name": "Атлетика",
+    "type": "skill",
+    "system": {
+     "key": "athletics",
+     "characteristic": "brawn",
+     "category": "general",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Грубая сила",
+    "type": "skill",
+    "system": {
+     "key": "brawl",
+     "characteristic": "brawn",
+     "category": "combat",
+     "rank": 1,
+     "career": false
+    }
+   },
+   {
+    "name": "Фигура 2",
+    "nameEn": "Silhouette 2",
+    "type": "ability",
+    "system": {
+     "description": "<p>Фигура (размер) существа равна 2.</p>",
+     "source": "Creature Catalogue, с. 3"
+    }
+   },
+   {
+    "name": "Обученный скакун 2",
+    "nameEn": "Trained Mount 2",
+    "type": "ability",
+    "system": {
+     "description": "<p>Всадник добавляет 2 кости бонуса к проверкам Верховой езды, пока сидит на нём.</p>",
+     "source": "Creature Catalogue, с. 3"
+    }
+   },
+   {
+    "name": "Топчущие копыта",
+    "nameEn": "Trampling Hooves",
+    "type": "weapon",
+    "system": {
+     "skill": "brawl",
+     "damage": 8,
+     "brawnDamage": false,
+     "crit": 4,
+     "range": "engaged",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Нокдаун",
+       "rating": null
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 3"
+    }
+   }
+  ]
+ },
+ {
+  "name": "Волк (каталог)",
+  "nameEn": "Wolf",
+  "type": "adversary",
+  "folder": "Каталог существ: Звери",
+  "system": {
+   "adversaryType": "minion",
+   "characteristics": {
+    "brawn": {
+     "value": 2
+    },
+    "agility": {
+     "value": 3
+    },
+    "intellect": {
+     "value": 1
+    },
+    "cunning": {
+     "value": 3
+    },
+    "willpower": {
+     "value": 1
+    },
+    "presence": {
+     "value": 1
+    }
+   },
+   "wounds": {
+    "value": 0,
+    "max": 5
+   },
+   "strain": {
+    "value": 0,
+    "max": 0
+   },
+   "soak": {
+    "value": 3
+   },
+   "defense": {
+    "melee": {
+     "value": 0
+    },
+    "ranged": {
+     "value": 0
+    }
+   },
+   "groupSize": 3,
+   "description": "<p>Профиль подходит для многих хищников, охотящихся стаей.</p>",
+   "source": "Creature Catalogue, с. 3",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk",
+    "weirdwar",
+    "modern",
+    "monster",
+    "postapoc",
+    "zombie",
+    "scifi"
+   ]
+  },
+  "items": [
+   {
+    "name": "Атлетика",
+    "type": "skill",
+    "system": {
+     "key": "athletics",
+     "characteristic": "brawn",
+     "category": "general",
+     "rank": 0,
+     "career": true
+    }
+   },
+   {
+    "name": "Грубая сила",
+    "type": "skill",
+    "system": {
+     "key": "brawl",
+     "characteristic": "brawn",
+     "category": "combat",
+     "rank": 0,
+     "career": true
+    }
+   },
+   {
+    "name": "Внимание",
+    "type": "skill",
+    "system": {
+     "key": "perception",
+     "characteristic": "cunning",
+     "category": "general",
+     "rank": 0,
+     "career": true
+    }
+   },
+   {
+    "name": "Стайная тактика",
+    "nameEn": "Pack Tactics",
+    "type": "ability",
+    "system": {
+     "description": "<p>Если с целью в ближнем бою находится больше одного волка, все волки, сцепившиеся с ней, добавляют 1 кость бонуса к боевым проверкам.</p>",
+     "source": "Creature Catalogue, с. 3"
+    }
+   },
+   {
+    "name": "Укус",
+    "nameEn": "Bite",
+    "type": "weapon",
+    "system": {
+     "skill": "brawl",
+     "damage": 5,
+     "brawnDamage": false,
+     "crit": 3,
+     "range": "engaged",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Высококритичное",
+       "rating": 1
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 3"
+    }
+   }
+  ]
+ },
+ {
+  "name": "Шерстистый мамонт",
+  "nameEn": "Wooly Mammoth",
+  "type": "adversary",
+  "folder": "Каталог существ: Звери",
+  "system": {
+   "adversaryType": "rival",
+   "characteristics": {
+    "brawn": {
+     "value": 5
+    },
+    "agility": {
+     "value": 1
+    },
+    "intellect": {
+     "value": 1
+    },
+    "cunning": {
+     "value": 2
+    },
+    "willpower": {
+     "value": 2
+    },
+    "presence": {
+     "value": 1
+    }
+   },
+   "wounds": {
+    "value": 0,
+    "max": 28
+   },
+   "strain": {
+    "value": 0,
+    "max": 0
+   },
+   "soak": {
+    "value": 10
+   },
+   "defense": {
+    "melee": {
+     "value": 0
+    },
+    "ranged": {
+     "value": 0
+    }
+   },
+   "groupSize": 1,
+   "description": "<p>Могучий, покрытый густой шерстью слоноподобный зверь холодных краёв с огромными бивнями и раздражительным нравом.</p>",
+   "source": "Creature Catalogue, с. 3",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth"
+   ]
+  },
+  "items": [
+   {
+    "name": "Грубая сила",
+    "type": "skill",
+    "system": {
+     "key": "brawl",
+     "characteristic": "brawn",
+     "category": "combat",
+     "rank": 1,
+     "career": false
+    }
+   },
+   {
+    "name": "Выживание",
+    "type": "skill",
+    "system": {
+     "key": "survival",
+     "characteristic": "cunning",
+     "category": "general",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Стойкость",
+    "type": "skill",
+    "system": {
+     "key": "resilience",
+     "characteristic": "brawn",
+     "category": "general",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Фигура 3",
+    "nameEn": "Silhouette 3",
+    "type": "ability",
+    "system": {
+     "description": "<p>Фигура (размер) существа равна 3.</p>",
+     "source": "Creature Catalogue, с. 3"
+    }
+   },
+   {
+    "name": "Размах",
+    "nameEn": "Sweep",
+    "type": "ability",
+    "system": {
+     "description": "<p>Может потратить 2 преимущества с успешной проверки Грубой силы, чтобы поразить ещё одну цель, находящуюся вплотную к первой.</p>",
+     "source": "Creature Catalogue, с. 3"
+    }
+   },
+   {
+    "name": "Растаптывание",
+    "nameEn": "Trample",
+    "type": "ability",
+    "system": {
+     "description": "<p>Если перед атакой ногами мамонт манёвром сближается с целью, он добавляет 1 кость бонуса к атаке и наносит +2 урона.</p>",
+     "source": "Creature Catalogue, с. 3"
+    }
+   },
+   {
+    "name": "Вьючное животное 18",
+    "nameEn": "Beast of Burden 18",
+    "type": "ability",
+    "system": {
+     "description": "<p>Порог нагрузки существа увеличен на 18.</p>",
+     "source": "Creature Catalogue, с. 3"
+    }
+   },
+   {
+    "name": "Бивни",
+    "nameEn": "Tusks",
+    "type": "weapon",
+    "system": {
+     "skill": "brawl",
+     "damage": 10,
+     "brawnDamage": false,
+     "crit": 5,
+     "range": "engaged",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Ошеломление",
+       "rating": 1
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 3"
+    }
+   },
+   {
+    "name": "Ноги",
+    "nameEn": "Feet",
+    "type": "weapon",
+    "system": {
+     "skill": "brawl",
+     "damage": 12,
+     "brawnDamage": false,
+     "crit": 4,
+     "range": "engaged",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Нокдаун",
+       "rating": null
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 3"
+    }
+   }
+  ]
+ },
+ {
+  "name": "Погибшие души",
+  "nameEn": "Lost Souls",
+  "type": "adversary",
+  "folder": "Каталог существ: Демоны",
+  "system": {
+   "adversaryType": "minion",
+   "characteristics": {
+    "brawn": {
+     "value": 2
+    },
+    "agility": {
+     "value": 1
+    },
+    "intellect": {
+     "value": 1
+    },
+    "cunning": {
+     "value": 1
+    },
+    "willpower": {
+     "value": 1
+    },
+    "presence": {
+     "value": 1
+    }
+   },
+   "wounds": {
+    "value": 0,
+    "max": 3
+   },
+   "strain": {
+    "value": 0,
+    "max": 0
+   },
+   "soak": {
+    "value": 2
+   },
+   "defense": {
+    "melee": {
+     "value": 0
+    },
+    "ranged": {
+     "value": 0
+    }
+   },
+   "groupSize": 3,
+   "description": "<p>Проклятые души продавших себя адским силам — игрушки и пушечное мясо даже для низших демонов, которых гонят в бой забавы ради.</p>",
+   "source": "Creature Catalogue, с. 4",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "monster",
+    "weirdwar"
+   ]
+  },
+  "items": [
+   {
+    "name": "Грубая сила",
+    "type": "skill",
+    "system": {
+     "key": "brawl",
+     "characteristic": "brawn",
+     "category": "combat",
+     "rank": 0,
+     "career": true
+    }
+   },
+   {
+    "name": "Стойкость",
+    "type": "skill",
+    "system": {
+     "key": "resilience",
+     "characteristic": "brawn",
+     "category": "general",
+     "rank": 0,
+     "career": true
+    }
+   },
+   {
+    "name": "Демоническая природа",
+    "nameEn": "Demonic",
+    "type": "ability",
+    "system": {
+     "description": "<p>Невосприимчив к ядам и болезням. Против немагических атак его поглощение удваивается.</p>",
+     "source": "Creature Catalogue, с. 4"
+    }
+   },
+   {
+    "name": "Аура отчаяния",
+    "nameEn": "Aura of Despair",
+    "type": "ability",
+    "system": {
+     "description": "<p>Не-демон, находящийся вплотную к группе погибших душ, проходит все проверки навыков на Воле с увеличенной на 1 сложностью.</p>",
+     "source": "Creature Catalogue, с. 4"
+    }
+   },
+   {
+    "name": "Когти",
+    "nameEn": "Claws",
+    "type": "weapon",
+    "system": {
+     "skill": "brawl",
+     "damage": 3,
+     "brawnDamage": false,
+     "crit": 4,
+     "range": "engaged",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 4"
+    }
+   }
+  ]
+ },
+ {
+  "name": "Низший демон",
+  "nameEn": "Lesser Demon",
+  "type": "adversary",
+  "folder": "Каталог существ: Демоны",
+  "system": {
+   "adversaryType": "minion",
+   "characteristics": {
+    "brawn": {
+     "value": 2
+    },
+    "agility": {
+     "value": 1
+    },
+    "intellect": {
+     "value": 1
+    },
+    "cunning": {
+     "value": 2
+    },
+    "willpower": {
+     "value": 2
+    },
+    "presence": {
+     "value": 1
+    }
+   },
+   "wounds": {
+    "value": 0,
+    "max": 5
+   },
+   "strain": {
+    "value": 0,
+    "max": 0
+   },
+   "soak": {
+    "value": 3
+   },
+   "defense": {
+    "melee": {
+     "value": 0
+    },
+    "ranged": {
+     "value": 0
+    }
+   },
+   "groupSize": 3,
+   "description": "<p>Неуклюжие, медлительные и тупые, но опасные в больших количествах. Особенно жестоки к погибшим душам и всем, кого можно мучить. Внешне очень разнообразны, но используют один блок характеристик.</p>",
+   "source": "Creature Catalogue, с. 4",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "monster",
+    "weirdwar"
+   ]
+  },
+  "items": [
+   {
+    "name": "Грубая сила",
+    "type": "skill",
+    "system": {
+     "key": "brawl",
+     "characteristic": "brawn",
+     "category": "combat",
+     "rank": 0,
+     "career": true
+    }
+   },
+   {
+    "name": "Стойкость",
+    "type": "skill",
+    "system": {
+     "key": "resilience",
+     "characteristic": "brawn",
+     "category": "general",
+     "rank": 0,
+     "career": true
+    }
+   },
+   {
+    "name": "Бдительность",
+    "type": "skill",
+    "system": {
+     "key": "vigilance",
+     "characteristic": "willpower",
+     "category": "general",
+     "rank": 0,
+     "career": true
+    }
+   },
+   {
+    "name": "Демоническая природа",
+    "nameEn": "Demonic",
+    "type": "ability",
+    "system": {
+     "description": "<p>Невосприимчив к ядам и болезням. Против немагических атак его поглощение удваивается.</p>",
+     "source": "Creature Catalogue, с. 4"
+    }
+   },
+   {
+    "name": "Миазмы",
+    "nameEn": "Miasma",
+    "type": "ability",
+    "system": {
+     "description": "<p>Не-демон в пределах короткой дистанции от низших демонов в начале своего хода делает сложную (3 кости сложности) проверку Стойкости; при провале получает 2 усталости от тошнотворных испарений.</p>",
+     "source": "Creature Catalogue, с. 4"
+    }
+   },
+   {
+    "name": "Сила в числе",
+    "nameEn": "Strength in Numbers",
+    "type": "ability",
+    "system": {
+     "description": "<p>Если в пределах короткой дистанции друг от друга находится больше одной группы низших демонов, все такие группы наносят +1 урона.</p>",
+     "source": "Creature Catalogue, с. 4"
+    }
+   },
+   {
+    "name": "Когти",
+    "nameEn": "Claws",
+    "type": "weapon",
+    "system": {
+     "skill": "brawl",
+     "damage": 3,
+     "brawnDamage": false,
+     "crit": 4,
+     "range": "engaged",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 4"
+    }
+   },
+   {
+    "name": "Укус",
+    "nameEn": "Bite",
+    "type": "weapon",
+    "system": {
+     "skill": "brawl",
+     "damage": 5,
+     "brawnDamage": false,
+     "crit": 3,
+     "range": "engaged",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Высококритичное",
+       "rating": 1
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 4"
+    }
+   }
+  ]
+ },
+ {
+  "name": "Рой адских нетопырей",
+  "nameEn": "Hell Bat Swarm",
+  "type": "adversary",
+  "folder": "Каталог существ: Демоны",
+  "system": {
+   "adversaryType": "rival",
+   "characteristics": {
+    "brawn": {
+     "value": 2
+    },
+    "agility": {
+     "value": 3
+    },
+    "intellect": {
+     "value": 1
+    },
+    "cunning": {
+     "value": 2
+    },
+    "willpower": {
+     "value": 1
+    },
+    "presence": {
+     "value": 1
+    }
+   },
+   "wounds": {
+    "value": 0,
+    "max": 30
+   },
+   "strain": {
+    "value": 0,
+    "max": 0
+   },
+   "soak": {
+    "value": 1
+   },
+   "defense": {
+    "melee": {
+     "value": 1
+    },
+    "ranged": {
+     "value": 1
+    }
+   },
+   "groupSize": 1,
+   "description": "<p>Похожие на мерзких летучих мышей настоящие демоны. Кружат стаями над полями сражений, ослепляя врагов и пожирая павших.</p>",
+   "source": "Creature Catalogue, с. 4",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "monster",
+    "weirdwar"
+   ]
+  },
+  "items": [
+   {
+    "name": "Грубая сила",
+    "type": "skill",
+    "system": {
+     "key": "brawl",
+     "characteristic": "brawn",
+     "category": "combat",
+     "rank": 1,
+     "career": false
+    }
+   },
+   {
+    "name": "Координация",
+    "type": "skill",
+    "system": {
+     "key": "coordination",
+     "characteristic": "agility",
+     "category": "general",
+     "rank": 3,
+     "career": false
+    }
+   },
+   {
+    "name": "Фигура 0",
+    "nameEn": "Silhouette 0",
+    "type": "ability",
+    "system": {
+     "description": "<p>Фигура (размер) существа равна 0.</p>",
+     "source": "Creature Catalogue, с. 4"
+    }
+   },
+   {
+    "name": "Летун",
+    "nameEn": "Flyer",
+    "type": "ability",
+    "system": {
+     "description": "<p>Умеет летать (Core Rulebook, с. 100).</p>",
+     "source": "Creature Catalogue, с. 4"
+    }
+   },
+   {
+    "name": "Демоническая природа",
+    "nameEn": "Demonic",
+    "type": "ability",
+    "system": {
+     "description": "<p>Невосприимчив к ядам и болезням. Против немагических атак его поглощение удваивается.</p>",
+     "source": "Creature Catalogue, с. 4"
+    }
+   },
+   {
+    "name": "Кишащая угроза",
+    "nameEn": "Teeming Threat",
+    "type": "ability",
+    "system": {
+     "description": "<p>Манёвром рой вступает в ближний бой со всеми живыми целями в пределах короткой дистанции и может атаковать каждую. Атаки роя нельзя парировать.</p>",
+     "source": "Creature Catalogue, с. 4"
+    }
+   },
+   {
+    "name": "Рой",
+    "nameEn": "Swarm",
+    "type": "ability",
+    "system": {
+     "description": "<p>Урон по рою уменьшается вдвое до вычета поглощения, если у оружия нет свойства Взрыв или Жжение (даже неактивированного).</p>",
+     "source": "Creature Catalogue, с. 4"
+    }
+   },
+   {
+    "name": "Слепящий рой",
+    "nameEn": "Blinding Swarm",
+    "type": "ability",
+    "system": {
+     "description": "<p>Враги, находящиеся вплотную к рою, добавляют 2 кости штрафа ко всем проверкам.</p>",
+     "source": "Creature Catalogue, с. 4"
+    }
+   },
+   {
+    "name": "Пронзающие укусы",
+    "nameEn": "Piercing Bites",
+    "type": "weapon",
+    "system": {
+     "skill": "brawl",
+     "damage": 3,
+     "brawnDamage": false,
+     "crit": 4,
+     "range": "engaged",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Проникающее",
+       "rating": 3
+      }
+     ],
+     "description": "<p>Можно потратить 2 преимущества, чтобы нанести 2 дополнительные раны.</p>",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 4"
+    }
+   }
+  ]
+ },
+ {
+  "name": "Демон-барбакул",
+  "nameEn": "Barbakul Demon",
+  "type": "adversary",
+  "folder": "Каталог существ: Демоны",
+  "system": {
+   "adversaryType": "rival",
+   "characteristics": {
+    "brawn": {
+     "value": 3
+    },
+    "agility": {
+     "value": 3
+    },
+    "intellect": {
+     "value": 2
+    },
+    "cunning": {
+     "value": 3
+    },
+    "willpower": {
+     "value": 2
+    },
+    "presence": {
+     "value": 1
+    }
+   },
+   "wounds": {
+    "value": 0,
+    "max": 10
+   },
+   "strain": {
+    "value": 0,
+    "max": 0
+   },
+   "soak": {
+    "value": 5
+   },
+   "defense": {
+    "melee": {
+     "value": 0
+    },
+    "ranged": {
+     "value": 0
+    }
+   },
+   "groupSize": 1,
+   "description": "<p>«Шипастые демоны» — хитрые, бдительные и скрытные разведчики и сторожевые псы демонических воинств. Не так сильны, как другие демоны, но их колючие шкуры и длинные когти опасны для большинства смертных.</p>",
+   "source": "Creature Catalogue, с. 5",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "monster",
+    "weirdwar"
+   ]
+  },
+  "items": [
+   {
+    "name": "Грубая сила",
+    "type": "skill",
+    "system": {
+     "key": "brawl",
+     "characteristic": "brawn",
+     "category": "combat",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Хладнокровие",
+    "type": "skill",
+    "system": {
+     "key": "cool",
+     "characteristic": "presence",
+     "category": "general",
+     "rank": 3,
+     "career": false
+    }
+   },
+   {
+    "name": "Внимание",
+    "type": "skill",
+    "system": {
+     "key": "perception",
+     "characteristic": "cunning",
+     "category": "general",
+     "rank": 3,
+     "career": false
+    }
+   },
+   {
+    "name": "Скрытность",
+    "type": "skill",
+    "system": {
+     "key": "stealth",
+     "characteristic": "agility",
+     "category": "general",
+     "rank": 3,
+     "career": false
+    }
+   },
+   {
+    "name": "Бдительность",
+    "type": "skill",
+    "system": {
+     "key": "vigilance",
+     "characteristic": "willpower",
+     "category": "general",
+     "rank": 3,
+     "career": false
+    }
+   },
+   {
+    "name": "Демоническая природа",
+    "nameEn": "Demonic",
+    "type": "ability",
+    "system": {
+     "description": "<p>Невосприимчив к ядам и болезням. Против немагических атак его поглощение удваивается.</p>",
+     "source": "Creature Catalogue, с. 5"
+    }
+   },
+   {
+    "name": "Пронзание",
+    "nameEn": "Impalement",
+    "type": "ability",
+    "system": {
+     "description": "<p>Может потратить 3 осложнения или крах с проверки атаки ближнего боя против него, чтобы атакующий получил 4 ран от зазубренных шипов.</p>",
+     "source": "Creature Catalogue, с. 5"
+    }
+   },
+   {
+    "name": "Множественная атака",
+    "nameEn": "Multiattack",
+    "type": "ability",
+    "system": {
+     "description": "<p>Не увеличивает сложность комбинированных проверок атаки (когтями и укусом); может потратить 2 преимущества или триумф, чтобы поразить каждым дополнительным оружием.</p>",
+     "source": "Creature Catalogue, с. 5"
+    }
+   },
+   {
+    "name": "Когти",
+    "nameEn": "Claws",
+    "type": "weapon",
+    "system": {
+     "skill": "brawl",
+     "damage": 5,
+     "brawnDamage": false,
+     "crit": 3,
+     "range": "engaged",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Проникающее",
+       "rating": 2
+      },
+      {
+       "name": "Залповое",
+       "rating": 1
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 5"
+    }
+   },
+   {
+    "name": "Укус",
+    "nameEn": "Bite",
+    "type": "weapon",
+    "system": {
+     "skill": "brawl",
+     "damage": 6,
+     "brawnDamage": false,
+     "crit": 2,
+     "range": "engaged",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Высококритичное",
+       "rating": 3
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 5"
+    }
+   }
+  ]
+ },
+ {
+  "name": "Демон-наркарекс",
+  "nameEn": "Narcarex Demon",
+  "type": "adversary",
+  "folder": "Каталог существ: Демоны",
+  "system": {
+   "adversaryType": "rival",
+   "characteristics": {
+    "brawn": {
+     "value": 4
+    },
+    "agility": {
+     "value": 2
+    },
+    "intellect": {
+     "value": 2
+    },
+    "cunning": {
+     "value": 3
+    },
+    "willpower": {
+     "value": 2
+    },
+    "presence": {
+     "value": 2
+    }
+   },
+   "wounds": {
+    "value": 0,
+    "max": 12
+   },
+   "strain": {
+    "value": 0,
+    "max": 0
+   },
+   "soak": {
+    "value": 6
+   },
+   "defense": {
+    "melee": {
+     "value": 1
+    },
+    "ranged": {
+     "value": 0
+    }
+   },
+   "groupSize": 1,
+   "description": "<p>«Демоны адского пламени» — классический образ беса: рогатые, крылатые, краснокожие, с копытами и хвостом с жалом. В бою окутаны нечестивым огнём и разят трезубцами.</p>",
+   "source": "Creature Catalogue, с. 5",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "monster",
+    "weirdwar"
+   ]
+  },
+  "items": [
+   {
+    "name": "Атлетика",
+    "type": "skill",
+    "system": {
+     "key": "athletics",
+     "characteristic": "brawn",
+     "category": "general",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Грубая сила",
+    "type": "skill",
+    "system": {
+     "key": "brawl",
+     "characteristic": "brawn",
+     "category": "combat",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Ближний бой (тяжёлое оружие)",
+    "type": "skill",
+    "system": {
+     "key": "meleeHeavy",
+     "characteristic": "brawn",
+     "category": "combat",
+     "rank": 3,
+     "career": false
+    }
+   },
+   {
+    "name": "Внимание",
+    "type": "skill",
+    "system": {
+     "key": "perception",
+     "characteristic": "cunning",
+     "category": "general",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Дальний бой",
+    "type": "skill",
+    "system": {
+     "key": "ranged",
+     "characteristic": "agility",
+     "category": "combat",
+     "rank": 3,
+     "career": false
+    }
+   },
+   {
+    "name": "Бдительность",
+    "type": "skill",
+    "system": {
+     "key": "vigilance",
+     "characteristic": "willpower",
+     "category": "general",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Летун",
+    "nameEn": "Flyer",
+    "type": "ability",
+    "system": {
+     "description": "<p>Умеет летать (Core Rulebook, с. 100).</p>",
+     "source": "Creature Catalogue, с. 5"
+    }
+   },
+   {
+    "name": "Демоническая природа",
+    "nameEn": "Demonic",
+    "type": "ability",
+    "system": {
+     "description": "<p>Невосприимчив к ядам и болезням. Против немагических атак его поглощение удваивается.</p>",
+     "source": "Creature Catalogue, с. 5"
+    }
+   },
+   {
+    "name": "Аура адского пламени",
+    "nameEn": "Hellfire Aura",
+    "type": "ability",
+    "system": {
+     "description": "<p>Существо, начинающее ход вплотную к демону, получает 2 ран от его пылающей ауры.</p>",
+     "source": "Creature Catalogue, с. 5"
+    }
+   },
+   {
+    "name": "Множественная атака",
+    "nameEn": "Multiattack",
+    "type": "ability",
+    "system": {
+     "description": "<p>Не увеличивает сложность комбинированных проверок атаки (трезубцем и хвостом); может потратить 2 преимущества или триумф, чтобы поразить каждым дополнительным оружием.</p>",
+     "source": "Creature Catalogue, с. 5"
+    }
+   },
+   {
+    "name": "Демонический трезубец",
+    "nameEn": "Demonic Trident",
+    "type": "weapon",
+    "system": {
+     "skill": "meleeHeavy",
+     "damage": 7,
+     "brawnDamage": false,
+     "crit": 3,
+     "range": "engaged",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Проникающее",
+       "rating": 2
+      },
+      {
+       "name": "Залповое",
+       "rating": 2
+      },
+      {
+       "name": "Высококритичное",
+       "rating": 2
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 5"
+    }
+   },
+   {
+    "name": "Удар хвостом",
+    "nameEn": "Tail Lash",
+    "type": "weapon",
+    "system": {
+     "skill": "brawl",
+     "damage": 6,
+     "brawnDamage": false,
+     "crit": 4,
+     "range": "engaged",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Нокдаун",
+       "rating": null
+      },
+      {
+       "name": "Проникающее",
+       "rating": 1
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 5"
+    }
+   },
+   {
+    "name": "Метание адского пламени",
+    "nameEn": "Hurl Hellfire",
+    "type": "weapon",
+    "system": {
+     "skill": "ranged",
+     "damage": 6,
+     "brawnDamage": false,
+     "crit": 3,
+     "range": "medium",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Жжение",
+       "rating": 2
+      },
+      {
+       "name": "Взрыв",
+       "rating": 6
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 5"
+    }
+   }
+  ]
+ },
+ {
+  "name": "Демон-антенорец",
+  "nameEn": "Antenoran Demon",
+  "type": "adversary",
+  "folder": "Каталог существ: Демоны",
+  "system": {
+   "adversaryType": "rival",
+   "characteristics": {
+    "brawn": {
+     "value": 4
+    },
+    "agility": {
+     "value": 3
+    },
+    "intellect": {
+     "value": 2
+    },
+    "cunning": {
+     "value": 2
+    },
+    "willpower": {
+     "value": 3
+    },
+    "presence": {
+     "value": 2
+    }
+   },
+   "wounds": {
+    "value": 0,
+    "max": 15
+   },
+   "strain": {
+    "value": 0,
+    "max": 0
+   },
+   "soak": {
+    "value": 6
+   },
+   "defense": {
+    "melee": {
+     "value": 1
+    },
+    "ranged": {
+     "value": 1
+    }
+   },
+   "groupSize": 1,
+   "description": "<p>Выходец из ледяных областей ада, жуткая помесь богомола и динозавра. Часто командует отрядами слабых демонов, гоня их в бой взмахами морозного древкового оружия.</p>",
+   "source": "Creature Catalogue, с. 5",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "monster",
+    "weirdwar"
+   ]
+  },
+  "items": [
+   {
+    "name": "Атлетика",
+    "type": "skill",
+    "system": {
+     "key": "athletics",
+     "characteristic": "brawn",
+     "category": "general",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Грубая сила",
+    "type": "skill",
+    "system": {
+     "key": "brawl",
+     "characteristic": "brawn",
+     "category": "combat",
+     "rank": 3,
+     "career": false
+    }
+   },
+   {
+    "name": "Хладнокровие",
+    "type": "skill",
+    "system": {
+     "key": "cool",
+     "characteristic": "presence",
+     "category": "general",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Лидерство",
+    "type": "skill",
+    "system": {
+     "key": "leadership",
+     "characteristic": "presence",
+     "category": "social",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Ближний бой (тяжёлое оружие)",
+    "type": "skill",
+    "system": {
+     "key": "meleeHeavy",
+     "characteristic": "brawn",
+     "category": "combat",
+     "rank": 3,
+     "career": false
+    }
+   },
+   {
+    "name": "Стойкость",
+    "type": "skill",
+    "system": {
+     "key": "resilience",
+     "characteristic": "brawn",
+     "category": "general",
+     "rank": 3,
+     "career": false
+    }
+   },
+   {
+    "name": "Противник",
+    "nameEn": "Adversary",
+    "type": "talent",
+    "system": {
+     "tier": 1,
+     "activation": "passive",
+     "ranked": true,
+     "rank": 1,
+     "description": "<p>Талант противников из блоков характеристик (персонажам игроков обычно недоступен). За каждый ранг таланта сложность всех боевых проверок, нацеленных на этого персонажа, усиливается один раз.</p>",
+     "source": "Creature Catalogue, с. 5"
+    }
+   },
+   {
+    "name": "Фигура 2",
+    "nameEn": "Silhouette 2",
+    "type": "ability",
+    "system": {
+     "description": "<p>Фигура (размер) существа равна 2.</p>",
+     "source": "Creature Catalogue, с. 5"
+    }
+   },
+   {
+    "name": "Демоническая природа",
+    "nameEn": "Demonic",
+    "type": "ability",
+    "system": {
+     "description": "<p>Невосприимчив к ядам и болезням. Против немагических атак его поглощение удваивается.</p>",
+     "source": "Creature Catalogue, с. 5"
+    }
+   },
+   {
+    "name": "Дитя льда",
+    "nameEn": "Iceborn",
+    "type": "ability",
+    "system": {
+     "description": "<p>Не получает урона от обычного холода и льда; против магического холода и льда его поглощение удваивается.</p>",
+     "source": "Creature Catalogue, с. 5"
+    }
+   },
+   {
+    "name": "Ледяная преграда",
+    "nameEn": "Icy Barrier",
+    "type": "ability",
+    "system": {
+     "description": "<p>Может потратить очко сюжета, чтобы создать в пределах короткой дистанции ледяную стену (до 18 м длиной, 3 м высотой) или купол высотой 6 м, разделяя или запирая врагов. Пробить преграду — пугающая (4 кости сложности) проверка Атлетики или 10+ урона одной атакой. Не-демоны вплотную к преграде или внутри неё получают 3 раны за ход от холода.</p>",
+     "source": "Creature Catalogue, с. 5"
+    }
+   },
+   {
+    "name": "Множественная атака",
+    "nameEn": "Multiattack",
+    "type": "ability",
+    "system": {
+     "description": "<p>Не увеличивает сложность комбинированных проверок атаки (древковым оружием и хвостом); может потратить 2 преимущества или триумф, чтобы поразить каждым дополнительным оружием.</p>",
+     "source": "Creature Catalogue, с. 5"
+    }
+   },
+   {
+    "name": "Морозное древковое оружие",
+    "nameEn": "Frigid Polearm",
+    "type": "weapon",
+    "system": {
+     "skill": "meleeHeavy",
+     "damage": 9,
+     "brawnDamage": false,
+     "crit": 3,
+     "range": "engaged",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Оборонительное",
+       "rating": 1
+      },
+      {
+       "name": "Сковывание",
+       "rating": 3
+      },
+      {
+       "name": "Проникающее",
+       "rating": 3
+      },
+      {
+       "name": "Повреждение",
+       "rating": null
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 5"
+    }
+   },
+   {
+    "name": "Шипастый хвост",
+    "nameEn": "Spiked Tail",
+    "type": "weapon",
+    "system": {
+     "skill": "brawl",
+     "damage": 8,
+     "brawnDamage": false,
+     "crit": 4,
+     "range": "engaged",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Проникающее",
+       "rating": 2
+      },
+      {
+       "name": "Высококритичное",
+       "rating": 2
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 5"
+    }
+   }
+  ]
+ },
+ {
+  "name": "Демон-брахиуру",
+  "nameEn": "Brachyuru Demon",
+  "type": "adversary",
+  "folder": "Каталог существ: Демоны",
+  "system": {
+   "adversaryType": "rival",
+   "characteristics": {
+    "brawn": {
+     "value": 5
+    },
+    "agility": {
+     "value": 1
+    },
+    "intellect": {
+     "value": 1
+    },
+    "cunning": {
+     "value": 2
+    },
+    "willpower": {
+     "value": 3
+    },
+    "presence": {
+     "value": 2
+    }
+   },
+   "wounds": {
+    "value": 0,
+    "max": 18
+   },
+   "strain": {
+    "value": 0,
+    "max": 0
+   },
+   "soak": {
+    "value": 7
+   },
+   "defense": {
+    "melee": {
+     "value": 1
+    },
+    "ranged": {
+     "value": 1
+    }
+   },
+   "groupSize": 1,
+   "description": "<p>Огромный чешуйчатый гуманоид с двумя парами рук (плечевые — с крабьими клешнями, грудные — с ловкими когтистыми пальцами) и головой помеси пса и козла. Обожает рукопашную и атакует всеми частями тела.</p>",
+   "source": "Creature Catalogue, с. 6",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "monster",
+    "weirdwar"
+   ]
+  },
+  "items": [
+   {
+    "name": "Атлетика",
+    "type": "skill",
+    "system": {
+     "key": "athletics",
+     "characteristic": "brawn",
+     "category": "general",
+     "rank": 3,
+     "career": false
+    }
+   },
+   {
+    "name": "Грубая сила",
+    "type": "skill",
+    "system": {
+     "key": "brawl",
+     "characteristic": "brawn",
+     "category": "combat",
+     "rank": 3,
+     "career": false
+    }
+   },
+   {
+    "name": "Хладнокровие",
+    "type": "skill",
+    "system": {
+     "key": "cool",
+     "characteristic": "presence",
+     "category": "general",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Стойкость",
+    "type": "skill",
+    "system": {
+     "key": "resilience",
+     "characteristic": "brawn",
+     "category": "general",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Противник",
+    "nameEn": "Adversary",
+    "type": "talent",
+    "system": {
+     "tier": 1,
+     "activation": "passive",
+     "ranked": true,
+     "rank": 1,
+     "description": "<p>Талант противников из блоков характеристик (персонажам игроков обычно недоступен). За каждый ранг таланта сложность всех боевых проверок, нацеленных на этого персонажа, усиливается один раз.</p>",
+     "source": "Creature Catalogue, с. 6"
+    }
+   },
+   {
+    "name": "Быстрое реагирование",
+    "nameEn": "Rapid Reaction",
+    "type": "talent",
+    "system": {
+     "tier": 1,
+     "activation": "incidentalOOT",
+     "ranked": true,
+     "rank": 1,
+     "description": "<p>При проверке Бдительности или Хладнокровия для определения инициативы персонаж может получить усталость (не больше ранга таланта), чтобы добавить к результату столько же успехов.</p>",
+     "source": "Creature Catalogue, с. 6"
+    }
+   },
+   {
+    "name": "Фигура 2",
+    "nameEn": "Silhouette 2",
+    "type": "ability",
+    "system": {
+     "description": "<p>Фигура (размер) существа равна 2.</p>",
+     "source": "Creature Catalogue, с. 6"
+    }
+   },
+   {
+    "name": "Демоническая природа",
+    "nameEn": "Demonic",
+    "type": "ability",
+    "system": {
+     "description": "<p>Невосприимчив к ядам и болезням. Против немагических атак его поглощение удваивается.</p>",
+     "source": "Creature Catalogue, с. 6"
+    }
+   },
+   {
+    "name": "Бесстрашный",
+    "nameEn": "Fearless",
+    "type": "ability",
+    "system": {
+     "description": "<p>Невосприимчив к Запугиванию и страху из любых источников.</p>",
+     "source": "Creature Catalogue, с. 6"
+    }
+   },
+   {
+    "name": "Сопротивление магии",
+    "nameEn": "Magic Resistance",
+    "type": "ability",
+    "system": {
+     "description": "<p>Сложность магических проверок, нацеленных на него, усиливается один раз.</p>",
+     "source": "Creature Catalogue, с. 6"
+    }
+   },
+   {
+    "name": "Слово силы: оглушение",
+    "nameEn": "Power Word: Stun",
+    "type": "ability",
+    "system": {
+     "description": "<p>Манёвром и за очко сюжета произносит богохульное слово силы против врага в пределах короткой дистанции. Цель делает сложную (3 кости сложности) проверку Выдержки: при провале она в замешательстве до конца своего следующего хода, при успехе — обездвижена. В любом случае цель получает 4 усталости.</p>",
+     "source": "Creature Catalogue, с. 6"
+    }
+   },
+   {
+    "name": "Улучшенная множественная атака",
+    "nameEn": "Improved Multiattack",
+    "type": "ability",
+    "system": {
+     "description": "<p>Не увеличивает сложность комбинированных проверок атаки (клешнями, руками и укусом); может потратить 1 преимущество или триумф, чтобы поразить каждым дополнительным оружием.</p>",
+     "source": "Creature Catalogue, с. 6"
+    }
+   },
+   {
+    "name": "Клешни",
+    "nameEn": "Claws",
+    "type": "weapon",
+    "system": {
+     "skill": "brawl",
+     "damage": 10,
+     "brawnDamage": false,
+     "crit": 3,
+     "range": "engaged",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Залповое",
+       "rating": 1
+      },
+      {
+       "name": "Проникающее",
+       "rating": 2
+      },
+      {
+       "name": "Повреждение",
+       "rating": null
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 6"
+    }
+   },
+   {
+    "name": "Руки",
+    "nameEn": "Hands",
+    "type": "weapon",
+    "system": {
+     "skill": "brawl",
+     "damage": 7,
+     "brawnDamage": false,
+     "crit": 2,
+     "range": "engaged",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Дезориентация",
+       "rating": 3
+      },
+      {
+       "name": "Залповое",
+       "rating": 1
+      },
+      {
+       "name": "Нокдаун",
+       "rating": null
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 6"
+    }
+   },
+   {
+    "name": "Укус",
+    "nameEn": "Bite",
+    "type": "weapon",
+    "system": {
+     "skill": "brawl",
+     "damage": 8,
+     "brawnDamage": false,
+     "crit": 3,
+     "range": "engaged",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Проникающее",
+       "rating": 2
+      },
+      {
+       "name": "Высококритичное",
+       "rating": 2
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 6"
+    }
+   }
+  ]
+ },
+ {
+  "name": "Демон-горгул",
+  "nameEn": "Gorgul Demon",
+  "type": "adversary",
+  "folder": "Каталог существ: Демоны",
+  "system": {
+   "adversaryType": "nemesis",
+   "characteristics": {
+    "brawn": {
+     "value": 4
+    },
+    "agility": {
+     "value": 1
+    },
+    "intellect": {
+     "value": 2
+    },
+    "cunning": {
+     "value": 2
+    },
+    "willpower": {
+     "value": 3
+    },
+    "presence": {
+     "value": 1
+    }
+   },
+   "wounds": {
+    "value": 0,
+    "max": 30
+   },
+   "strain": {
+    "value": 0,
+    "max": 20
+   },
+   "soak": {
+    "value": 6
+   },
+   "defense": {
+    "melee": {
+     "value": 0
+    },
+    "ranged": {
+     "value": 0
+    }
+   },
+   "groupSize": 1,
+   "description": "<p>Чудовищно тучный демон с выпученными глазами, огромными ушами и ртом и очень длинными тонкими руками. Хватает жертв и глотает целиком, наблюдая через прозрачный живот, как они перевариваются, и непрерывно визгливо хихикая.</p>",
+   "source": "Creature Catalogue, с. 6",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "monster",
+    "weirdwar"
+   ]
+  },
+  "items": [
+   {
+    "name": "Грубая сила",
+    "type": "skill",
+    "system": {
+     "key": "brawl",
+     "characteristic": "brawn",
+     "category": "combat",
+     "rank": 3,
+     "career": false
+    }
+   },
+   {
+    "name": "Хладнокровие",
+    "type": "skill",
+    "system": {
+     "key": "cool",
+     "characteristic": "presence",
+     "category": "general",
+     "rank": 3,
+     "career": false
+    }
+   },
+   {
+    "name": "Стойкость",
+    "type": "skill",
+    "system": {
+     "key": "resilience",
+     "characteristic": "brawn",
+     "category": "general",
+     "rank": 4,
+     "career": false
+    }
+   },
+   {
+    "name": "Бдительность",
+    "type": "skill",
+    "system": {
+     "key": "vigilance",
+     "characteristic": "willpower",
+     "category": "general",
+     "rank": 3,
+     "career": false
+    }
+   },
+   {
+    "name": "Противник",
+    "nameEn": "Adversary",
+    "type": "talent",
+    "system": {
+     "tier": 1,
+     "activation": "passive",
+     "ranked": true,
+     "rank": 1,
+     "description": "<p>Талант противников из блоков характеристик (персонажам игроков обычно недоступен). За каждый ранг таланта сложность всех боевых проверок, нацеленных на этого персонажа, усиливается один раз.</p>",
+     "source": "Creature Catalogue, с. 6"
+    }
+   },
+   {
+    "name": "Фигура 3",
+    "nameEn": "Silhouette 3",
+    "type": "ability",
+    "system": {
+     "description": "<p>Фигура (размер) существа равна 3.</p>",
+     "source": "Creature Catalogue, с. 6"
+    }
+   },
+   {
+    "name": "Демоническая природа",
+    "nameEn": "Demonic",
+    "type": "ability",
+    "system": {
+     "description": "<p>Невосприимчив к ядам и болезням. Против немагических атак его поглощение удваивается.</p>",
+     "source": "Creature Catalogue, с. 6"
+    }
+   },
+   {
+    "name": "Сопротивление магии",
+    "nameEn": "Magic Resistance",
+    "type": "ability",
+    "system": {
+     "description": "<p>Сложность магических проверок, нацеленных на него, усиливается один раз.</p>",
+     "source": "Creature Catalogue, с. 6"
+    }
+   },
+   {
+    "name": "Тучный",
+    "nameEn": "Corpulent",
+    "type": "ability",
+    "system": {
+     "description": "<p>Получая критическую травму, вычитает 30 из результата броска.</p>",
+     "source": "Creature Catalogue, с. 6"
+    }
+   },
+   {
+    "name": "Мелочь не помеха",
+    "nameEn": "Pest Control",
+    "type": "ability",
+    "system": {
+     "description": "<p>Не увеличивает сложность боевых проверок против целей меньшего размера.</p>",
+     "source": "Creature Catalogue, с. 6"
+    }
+   },
+   {
+    "name": "Проглотить целиком",
+    "nameEn": "Swallow Whole",
+    "type": "ability",
+    "system": {
+     "description": "<p>Сковав атакой когтями цель с фигурой не больше 2, может потратить 3 преимущества или триумф, чтобы проглотить её. Проглоченный обездвижен, задыхается и в начале своего хода получает 4 раны; выведенный из строя таким образом переварен без возможности спасения. Освободить можно, нанеся горгулу 5+ ран одной атакой рубящим или колющим оружием; в начале хода горгула брюхо зарастает. Вмещает двух существ фигуры 2, восемь фигуры 1 или любое число фигуры 0. Видящий союзника в брюхе делает обычную (2 кости сложности) проверку страха вне своего хода.</p>",
+     "source": "Creature Catalogue, с. 6"
+    }
+   },
+   {
+    "name": "Приступ хихиканья",
+    "nameEn": "Giggle Fit",
+    "type": "ability",
+    "system": {
+     "description": "<p>Пока внутри кто-то проглочен, горгул издаёт жуткое хихиканье: не-демоны в пределах средней дистанции в начале своего хода делают сложную (3 кости сложности) проверку Выдержки, при провале получая 2 усталости.</p>",
+     "source": "Creature Catalogue, с. 6"
+    }
+   },
+   {
+    "name": "Неповоротливый",
+    "nameEn": "Ponderous",
+    "type": "ability",
+    "system": {
+     "description": "<p>Может тратить на передвижение не больше одного манёвра за ход.</p>",
+     "source": "Creature Catalogue, с. 6"
+    }
+   },
+   {
+    "name": "Длинные когтистые руки",
+    "nameEn": "Claws",
+    "type": "weapon",
+    "system": {
+     "skill": "brawl",
+     "damage": 8,
+     "brawnDamage": false,
+     "crit": 3,
+     "range": "medium",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Точное",
+       "rating": 1
+      },
+      {
+       "name": "Сковывание",
+       "rating": 3
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 6"
+    }
+   }
+  ]
+ },
+ {
+  "name": "Демон-малитар",
+  "nameEn": "Malithar Demon",
+  "type": "adversary",
+  "folder": "Каталог существ: Демоны",
+  "system": {
+   "adversaryType": "nemesis",
+   "characteristics": {
+    "brawn": {
+     "value": 5
+    },
+    "agility": {
+     "value": 4
+    },
+    "intellect": {
+     "value": 3
+    },
+    "cunning": {
+     "value": 3
+    },
+    "willpower": {
+     "value": 3
+    },
+    "presence": {
+     "value": 4
+    }
+   },
+   "wounds": {
+    "value": 0,
+    "max": 26
+   },
+   "strain": {
+    "value": 0,
+    "max": 18
+   },
+   "soak": {
+    "value": 7
+   },
+   "defense": {
+    "melee": {
+     "value": 4
+    },
+    "ranged": {
+     "value": 2
+    }
+   },
+   "groupSize": 1,
+   "description": "<p>Прекрасная и смертоносная: торс прекрасной женщины с шестью руками на мощном змеином теле, по мечу в каждой руке. Чаще всего командует демоническими ордами — низшие демоны жаждут её одобрения.</p>",
+   "source": "Creature Catalogue, с. 7",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "monster",
+    "weirdwar"
+   ]
+  },
+  "items": [
+   {
+    "name": "Координация",
+    "type": "skill",
+    "system": {
+     "key": "coordination",
+     "characteristic": "agility",
+     "category": "general",
+     "rank": 3,
+     "career": false
+    }
+   },
+   {
+    "name": "Хладнокровие",
+    "type": "skill",
+    "system": {
+     "key": "cool",
+     "characteristic": "presence",
+     "category": "general",
+     "rank": 3,
+     "career": false
+    }
+   },
+   {
+    "name": "Лидерство",
+    "type": "skill",
+    "system": {
+     "key": "leadership",
+     "characteristic": "presence",
+     "category": "social",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Ближний бой (лёгкое оружие)",
+    "type": "skill",
+    "system": {
+     "key": "meleeLight",
+     "characteristic": "brawn",
+     "category": "combat",
+     "rank": 4,
+     "career": false
+    }
+   },
+   {
+    "name": "Бдительность",
+    "type": "skill",
+    "system": {
+     "key": "vigilance",
+     "characteristic": "willpower",
+     "category": "general",
+     "rank": 3,
+     "career": false
+    }
+   },
+   {
+    "name": "Противник",
+    "nameEn": "Adversary",
+    "type": "talent",
+    "system": {
+     "tier": 1,
+     "activation": "passive",
+     "ranked": true,
+     "rank": 1,
+     "description": "<p>Талант противников из блоков характеристик (персонажам игроков обычно недоступен). За каждый ранг таланта сложность всех боевых проверок, нацеленных на этого персонажа, усиливается один раз.</p>",
+     "source": "Creature Catalogue, с. 7"
+    }
+   },
+   {
+    "name": "Фигура 2",
+    "nameEn": "Silhouette 2",
+    "type": "ability",
+    "system": {
+     "description": "<p>Фигура (размер) существа равна 2.</p>",
+     "source": "Creature Catalogue, с. 7"
+    }
+   },
+   {
+    "name": "Демоническая природа",
+    "nameEn": "Demonic",
+    "type": "ability",
+    "system": {
+     "description": "<p>Невосприимчив к ядам и болезням. Против немагических атак его поглощение удваивается.</p>",
+     "source": "Creature Catalogue, с. 7"
+    }
+   },
+   {
+    "name": "Сопротивление магии",
+    "nameEn": "Magic Resistance",
+    "type": "ability",
+    "system": {
+     "description": "<p>Сложность магических проверок, нацеленных на него, усиливается один раз.</p>",
+     "source": "Creature Catalogue, с. 7"
+    }
+   },
+   {
+    "name": "Множественная атака",
+    "nameEn": "Multiattack",
+    "type": "ability",
+    "system": {
+     "description": "<p>Не увеличивает сложность комбинированных проверок атаки (мечами и хвостом); может потратить 2 преимущества или триумф, чтобы поразить каждым дополнительным оружием.</p>",
+     "source": "Creature Catalogue, с. 7"
+    }
+   },
+   {
+    "name": "Стальной дождь",
+    "nameEn": "Rain of Steel",
+    "type": "ability",
+    "system": {
+     "description": "<p>Шестирукая малитар не увеличивает сложность атак для активации свойства Автоматическое, активирует его 1 преимуществом, и её первой целью не обязана быть цель с наибольшей сложностью и защитой.</p>",
+     "source": "Creature Catalogue, с. 7"
+    }
+   },
+   {
+    "name": "Удушающие кольца",
+    "nameEn": "Constrict",
+    "type": "ability",
+    "system": {
+     "description": "<p>Сковав цель хвостом, может манёвром сдавить её: цель обездвижена и в начале своего хода получает 3 раны. Удержание требует манёвра каждый раунд, при этом малитар не может перемещаться манёврами и бить хвостом. Цель вырывается встречной проверкой Атлетики.</p>",
+     "source": "Creature Catalogue, с. 7"
+    }
+   },
+   {
+    "name": "Демонические мечи",
+    "nameEn": "Demonic Swords",
+    "type": "weapon",
+    "system": {
+     "skill": "meleeLight",
+     "damage": 8,
+     "brawnDamage": false,
+     "crit": 2,
+     "range": "engaged",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Оборонительное",
+       "rating": 1
+      },
+      {
+       "name": "Проникающее",
+       "rating": 2
+      },
+      {
+       "name": "Высококритичное",
+       "rating": 2
+      },
+      {
+       "name": "Автоматическое",
+       "rating": null
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 7"
+    }
+   },
+   {
+    "name": "Удар хвостом",
+    "nameEn": "Tail Lash",
+    "type": "weapon",
+    "system": {
+     "skill": "meleeLight",
+     "damage": 10,
+     "brawnDamage": false,
+     "crit": 3,
+     "range": "engaged",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Сковывание",
+       "rating": 3
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 7"
+    }
+   }
+  ]
+ },
+ {
+  "name": "Демон-вальрот",
+  "nameEn": "Valroth Demon",
+  "type": "adversary",
+  "folder": "Каталог существ: Демоны",
+  "system": {
+   "adversaryType": "nemesis",
+   "characteristics": {
+    "brawn": {
+     "value": 6
+    },
+    "agility": {
+     "value": 3
+    },
+    "intellect": {
+     "value": 3
+    },
+    "cunning": {
+     "value": 4
+    },
+    "willpower": {
+     "value": 5
+    },
+    "presence": {
+     "value": 4
+    }
+   },
+   "wounds": {
+    "value": 0,
+    "max": 45
+   },
+   "strain": {
+    "value": 0,
+    "max": 30
+   },
+   "soak": {
+    "value": 8
+   },
+   "defense": {
+    "melee": {
+     "value": 2
+    },
+    "ranged": {
+     "value": 1
+    }
+   },
+   "groupSize": 1,
+   "description": "<p>Вершинный главарь — крайне опасен. Величайшие из демонов: огромные рогатые фигуры в адском огне и извивающихся тенях с пылающим мечом и зазубренным кнутом. Служат поборниками и палачами своих повелителей; все прочие демоны им подчиняются.</p>",
+   "source": "Creature Catalogue, с. 8",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "monster",
+    "weirdwar"
+   ]
+  },
+  "items": [
+   {
+    "name": "Атлетика",
+    "type": "skill",
+    "system": {
+     "key": "athletics",
+     "characteristic": "brawn",
+     "category": "general",
+     "rank": 3,
+     "career": false
+    }
+   },
+   {
+    "name": "Хладнокровие",
+    "type": "skill",
+    "system": {
+     "key": "cool",
+     "characteristic": "presence",
+     "category": "general",
+     "rank": 3,
+     "career": false
+    }
+   },
+   {
+    "name": "Выдержка",
+    "type": "skill",
+    "system": {
+     "key": "discipline",
+     "characteristic": "willpower",
+     "category": "general",
+     "rank": 4,
+     "career": false
+    }
+   },
+   {
+    "name": "Лидерство",
+    "type": "skill",
+    "system": {
+     "key": "leadership",
+     "characteristic": "presence",
+     "category": "social",
+     "rank": 3,
+     "career": false
+    }
+   },
+   {
+    "name": "Ближний бой (лёгкое оружие)",
+    "type": "skill",
+    "system": {
+     "key": "meleeLight",
+     "characteristic": "brawn",
+     "category": "combat",
+     "rank": 4,
+     "career": false
+    }
+   },
+   {
+    "name": "Стойкость",
+    "type": "skill",
+    "system": {
+     "key": "resilience",
+     "characteristic": "brawn",
+     "category": "general",
+     "rank": 4,
+     "career": false
+    }
+   },
+   {
+    "name": "Бдительность",
+    "type": "skill",
+    "system": {
+     "key": "vigilance",
+     "characteristic": "willpower",
+     "category": "general",
+     "rank": 3,
+     "career": false
+    }
+   },
+   {
+    "name": "Противник",
+    "nameEn": "Adversary",
+    "type": "talent",
+    "system": {
+     "tier": 1,
+     "activation": "passive",
+     "ranked": true,
+     "rank": 2,
+     "description": "<p>Талант противников из блоков характеристик (персонажам игроков обычно недоступен). За каждый ранг таланта сложность всех боевых проверок, нацеленных на этого персонажа, усиливается один раз.</p>",
+     "source": "Creature Catalogue, с. 8"
+    }
+   },
+   {
+    "name": "Фигура 3",
+    "nameEn": "Silhouette 3",
+    "type": "ability",
+    "system": {
+     "description": "<p>Фигура (размер) существа равна 3.</p>",
+     "source": "Creature Catalogue, с. 8"
+    }
+   },
+   {
+    "name": "Демоническая природа",
+    "nameEn": "Demonic",
+    "type": "ability",
+    "system": {
+     "description": "<p>Невосприимчив к ядам и болезням. Против немагических атак его поглощение удваивается.</p>",
+     "source": "Creature Catalogue, с. 8"
+    }
+   },
+   {
+    "name": "Ужасающий",
+    "nameEn": "Terrifying",
+    "type": "ability",
+    "system": {
+     "description": "<p>В начале сцены все противники делают запредельную (5 костей сложности) проверку страха как побочное действие вне своего хода. При нескольких источниках страха проверка делается один раз — против самого ужасающего врага.</p>",
+     "source": "Creature Catalogue, с. 8"
+    }
+   },
+   {
+    "name": "Сокрушительный",
+    "nameEn": "Devastating",
+    "type": "ability",
+    "system": {
+     "description": "<p>К результату броска критической травмы, которую он наносит, прибавляется +40.</p>",
+     "source": "Creature Catalogue, с. 8"
+    }
+   },
+   {
+    "name": "Дитя огня",
+    "nameEn": "Fireborn",
+    "type": "ability",
+    "system": {
+     "description": "<p>Не получает урона от обычного жара и пламени; против магического огня его поглощение удваивается.</p>",
+     "source": "Creature Catalogue, с. 8"
+    }
+   },
+   {
+    "name": "Сопротивление магии",
+    "nameEn": "Magic Resistance",
+    "type": "ability",
+    "system": {
+     "description": "<p>Сложность магических проверок, нацеленных на него, усиливается один раз.</p>",
+     "source": "Creature Catalogue, с. 8"
+    }
+   },
+   {
+    "name": "Огонь и тень",
+    "nameEn": "Fire and Shadow",
+    "type": "ability",
+    "system": {
+     "description": "<p>Пламя и тени дают вальроту +1 к защите и ещё +1 за каждый диапазон дистанции дальше «вплотную» между ним и врагом.</p>",
+     "source": "Creature Catalogue, с. 8"
+    }
+   },
+   {
+    "name": "Аура адского пламени",
+    "nameEn": "Hellfire Aura",
+    "type": "ability",
+    "system": {
+     "description": "<p>Существо, начинающее ход вплотную к демону, получает 4 ран от его пылающей ауры.</p>",
+     "source": "Creature Catalogue, с. 8"
+    }
+   },
+   {
+    "name": "Множественная атака",
+    "nameEn": "Multiattack",
+    "type": "ability",
+    "system": {
+     "description": "<p>Не увеличивает сложность комбинированных проверок атаки (пылающим мечом и кнутом); может потратить 2 преимущества или триумф, чтобы поразить каждым дополнительным оружием.</p>",
+     "source": "Creature Catalogue, с. 8"
+    }
+   },
+   {
+    "name": "Подтянуть кнутом",
+    "nameEn": "Whip Drag",
+    "type": "ability",
+    "system": {
+     "description": "<p>Сковав цель кнутом, может получить 2 усталости, чтобы подтянуть её на один диапазон ближе (до «вплотную»). Пока цель скована, кнутом атаковать нельзя.</p>",
+     "source": "Creature Catalogue, с. 8"
+    }
+   },
+   {
+    "name": "Пылающий меч",
+    "nameEn": "Flaming Sword",
+    "type": "weapon",
+    "system": {
+     "skill": "meleeLight",
+     "damage": 16,
+     "brawnDamage": false,
+     "crit": 2,
+     "range": "short",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Жжение",
+       "rating": 2
+      },
+      {
+       "name": "Оборонительное",
+       "rating": 1
+      },
+      {
+       "name": "Проникающее",
+       "rating": 2
+      },
+      {
+       "name": "Высококритичное",
+       "rating": 2
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 8"
+    }
+   },
+   {
+    "name": "Зазубренный кнут",
+    "nameEn": "Barbed Whip",
+    "type": "weapon",
+    "system": {
+     "skill": "meleeLight",
+     "damage": 12,
+     "brawnDamage": false,
+     "crit": 3,
+     "range": "medium",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Сковывание",
+       "rating": 3
+      },
+      {
+       "name": "Проникающее",
+       "rating": 2
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 8"
+    }
+   }
+  ]
+ },
+ {
+  "name": "Циклоп",
+  "nameEn": "Cyclops",
+  "type": "adversary",
+  "folder": "Каталог существ: Великаны",
+  "system": {
+   "adversaryType": "nemesis",
+   "characteristics": {
+    "brawn": {
+     "value": 6
+    },
+    "agility": {
+     "value": 2
+    },
+    "intellect": {
+     "value": 2
+    },
+    "cunning": {
+     "value": 2
+    },
+    "willpower": {
+     "value": 3
+    },
+    "presence": {
+     "value": 2
+    }
+   },
+   "wounds": {
+    "value": 0,
+    "max": 33
+   },
+   "strain": {
+    "value": 0,
+    "max": 29
+   },
+   "soak": {
+    "value": 8
+   },
+   "defense": {
+    "melee": {
+     "value": 0
+    },
+    "ranged": {
+     "value": 0
+    }
+   },
+   "groupSize": 1,
+   "description": "<p>Колоссальный одноглазый великан с рогом на лбу. Живёт в одиночестве, пасёт стада туров или гигантских овец и яростно охраняет свои земли. Не умён, но один из сильнейших среди великанов.</p>",
+   "source": "Creature Catalogue, с. 8",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth"
+   ]
+  },
+  "items": [
+   {
+    "name": "Атлетика",
+    "type": "skill",
+    "system": {
+     "key": "athletics",
+     "characteristic": "brawn",
+     "category": "general",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Грубая сила",
+    "type": "skill",
+    "system": {
+     "key": "brawl",
+     "characteristic": "brawn",
+     "category": "combat",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Ближний бой (лёгкое оружие)",
+    "type": "skill",
+    "system": {
+     "key": "meleeLight",
+     "characteristic": "brawn",
+     "category": "combat",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Стойкость",
+    "type": "skill",
+    "system": {
+     "key": "resilience",
+     "characteristic": "brawn",
+     "category": "general",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Выживание",
+    "type": "skill",
+    "system": {
+     "key": "survival",
+     "characteristic": "cunning",
+     "category": "general",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Бдительность",
+    "type": "skill",
+    "system": {
+     "key": "vigilance",
+     "characteristic": "willpower",
+     "category": "general",
+     "rank": 3,
+     "career": false
+    }
+   },
+   {
+    "name": "Противник",
+    "nameEn": "Adversary",
+    "type": "talent",
+    "system": {
+     "tier": 1,
+     "activation": "passive",
+     "ranked": true,
+     "rank": 1,
+     "description": "<p>Талант противников из блоков характеристик (персонажам игроков обычно недоступен). За каждый ранг таланта сложность всех боевых проверок, нацеленных на этого персонажа, усиливается один раз.</p>",
+     "source": "Creature Catalogue, с. 8"
+    }
+   },
+   {
+    "name": "Фигура 3",
+    "nameEn": "Silhouette 3",
+    "type": "ability",
+    "system": {
+     "description": "<p>Фигура (размер) существа равна 3.</p>",
+     "source": "Creature Catalogue, с. 8"
+    }
+   },
+   {
+    "name": "Сокрушительный",
+    "nameEn": "Devastating",
+    "type": "ability",
+    "system": {
+     "description": "<p>К результату броска критической травмы, которую он наносит, прибавляется +40.</p>",
+     "source": "Creature Catalogue, с. 8"
+    }
+   },
+   {
+    "name": "Ужасающий",
+    "nameEn": "Terrifying",
+    "type": "ability",
+    "system": {
+     "description": "<p>В начале сцены все противники делают сложную (3 кости сложности) проверку страха как побочное действие вне своего хода. При нескольких источниках страха проверка делается один раз — против самого ужасающего врага.</p>",
+     "source": "Creature Catalogue, с. 8"
+    }
+   },
+   {
+    "name": "Огромная дубина",
+    "nameEn": "Huge club",
+    "type": "weapon",
+    "system": {
+     "skill": "meleeLight",
+     "damage": 12,
+     "brawnDamage": false,
+     "crit": 2,
+     "range": "short",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Неточное",
+       "rating": 1
+      },
+      {
+       "name": "Нокдаун",
+       "rating": null
+      },
+      {
+       "name": "Подготовка",
+       "rating": 1
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 8"
+    }
+   }
+  ]
+ },
+ {
+  "name": "Холмовой великан",
+  "nameEn": "Hill Giant",
+  "type": "adversary",
+  "folder": "Каталог существ: Великаны",
+  "system": {
+   "adversaryType": "nemesis",
+   "characteristics": {
+    "brawn": {
+     "value": 5
+    },
+    "agility": {
+     "value": 1
+    },
+    "intellect": {
+     "value": 1
+    },
+    "cunning": {
+     "value": 1
+    },
+    "willpower": {
+     "value": 2
+    },
+    "presence": {
+     "value": 1
+    }
+   },
+   "wounds": {
+    "value": 0,
+    "max": 28
+   },
+   "strain": {
+    "value": 0,
+    "max": 20
+   },
+   "soak": {
+    "value": 6
+   },
+   "defense": {
+    "melee": {
+     "value": 0
+    },
+    "ranged": {
+     "value": 0
+    }
+   },
+   "groupSize": 1,
+   "description": "<p>Самый грубый и глупый из истинных великанов: неуклюжий прожорливый увалень, поедающий всё на своём пути. Гроза фермеров и поселенцев.</p>",
+   "source": "Creature Catalogue, с. 9",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth"
+   ]
+  },
+  "items": [
+   {
+    "name": "Атлетика",
+    "type": "skill",
+    "system": {
+     "key": "athletics",
+     "characteristic": "brawn",
+     "category": "general",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Грубая сила",
+    "type": "skill",
+    "system": {
+     "key": "brawl",
+     "characteristic": "brawn",
+     "category": "combat",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Ближний бой (лёгкое оружие)",
+    "type": "skill",
+    "system": {
+     "key": "meleeLight",
+     "characteristic": "brawn",
+     "category": "combat",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Дальний бой",
+    "type": "skill",
+    "system": {
+     "key": "ranged",
+     "characteristic": "agility",
+     "category": "combat",
+     "rank": 1,
+     "career": false
+    }
+   },
+   {
+    "name": "Противник",
+    "nameEn": "Adversary",
+    "type": "talent",
+    "system": {
+     "tier": 1,
+     "activation": "passive",
+     "ranked": true,
+     "rank": 1,
+     "description": "<p>Талант противников из блоков характеристик (персонажам игроков обычно недоступен). За каждый ранг таланта сложность всех боевых проверок, нацеленных на этого персонажа, усиливается один раз.</p>",
+     "source": "Creature Catalogue, с. 9"
+    }
+   },
+   {
+    "name": "Фигура 3",
+    "nameEn": "Silhouette 3",
+    "type": "ability",
+    "system": {
+     "description": "<p>Фигура (размер) существа равна 3.</p>",
+     "source": "Creature Catalogue, с. 9"
+    }
+   },
+   {
+    "name": "Сокрушительный",
+    "nameEn": "Devastating",
+    "type": "ability",
+    "system": {
+     "description": "<p>К результату броска критической травмы, которую он наносит, прибавляется +20.</p>",
+     "source": "Creature Catalogue, с. 9"
+    }
+   },
+   {
+    "name": "Ужасающий",
+    "nameEn": "Terrifying",
+    "type": "ability",
+    "system": {
+     "description": "<p>В начале сцены все противники делают сложную (3 кости сложности) проверку страха как побочное действие вне своего хода. При нескольких источниках страха проверка делается один раз — против самого ужасающего врага.</p>",
+     "source": "Creature Catalogue, с. 9"
+    }
+   },
+   {
+    "name": "Огромная дубина",
+    "nameEn": "Huge club",
+    "type": "weapon",
+    "system": {
+     "skill": "meleeLight",
+     "damage": 10,
+     "brawnDamage": false,
+     "crit": 3,
+     "range": "short",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Неточное",
+       "rating": 1
+      },
+      {
+       "name": "Нокдаун",
+       "rating": null
+      },
+      {
+       "name": "Подготовка",
+       "rating": 1
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 9"
+    }
+   },
+   {
+    "name": "Мешок валунов",
+    "nameEn": "Sack of boulders",
+    "type": "weapon",
+    "system": {
+     "skill": "ranged",
+     "damage": 9,
+     "brawnDamage": false,
+     "crit": 4,
+     "range": "medium",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Неточное",
+       "rating": 1
+      },
+      {
+       "name": "Взрыв",
+       "rating": 6
+      },
+      {
+       "name": "Ошеломление",
+       "rating": 1
+      },
+      {
+       "name": "Нокдаун",
+       "rating": null
+      },
+      {
+       "name": "Медленное",
+       "rating": 2
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 9"
+    }
+   }
+  ]
+ },
+ {
+  "name": "Огненный великан",
+  "nameEn": "Fire Giant",
+  "type": "adversary",
+  "folder": "Каталог существ: Великаны",
+  "system": {
+   "adversaryType": "nemesis",
+   "characteristics": {
+    "brawn": {
+     "value": 5
+    },
+    "agility": {
+     "value": 2
+    },
+    "intellect": {
+     "value": 2
+    },
+    "cunning": {
+     "value": 2
+    },
+    "willpower": {
+     "value": 3
+    },
+    "presence": {
+     "value": 2
+    }
+   },
+   "wounds": {
+    "value": 0,
+    "max": 36
+   },
+   "strain": {
+    "value": 0,
+    "max": 24
+   },
+   "soak": {
+    "value": 8
+   },
+   "defense": {
+    "melee": {
+     "value": 3
+    },
+    "ranged": {
+     "value": 1
+    }
+   },
+   "groupSize": 1,
+   "description": "<p>Искусные мастера и жестокие тираны, самые воинственные и организованные из великанов. Живут в вулканических краях, часто с приручёнными адскими псами или саламандрами.</p>",
+   "source": "Creature Catalogue, с. 9",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth"
+   ]
+  },
+  "items": [
+   {
+    "name": "Атлетика",
+    "type": "skill",
+    "system": {
+     "key": "athletics",
+     "characteristic": "brawn",
+     "category": "general",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Грубая сила",
+    "type": "skill",
+    "system": {
+     "key": "brawl",
+     "characteristic": "brawn",
+     "category": "combat",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Ближний бой (лёгкое оружие)",
+    "type": "skill",
+    "system": {
+     "key": "meleeLight",
+     "characteristic": "brawn",
+     "category": "combat",
+     "rank": 3,
+     "career": false
+    }
+   },
+   {
+    "name": "Бдительность",
+    "type": "skill",
+    "system": {
+     "key": "vigilance",
+     "characteristic": "willpower",
+     "category": "general",
+     "rank": 3,
+     "career": false
+    }
+   },
+   {
+    "name": "Противник",
+    "nameEn": "Adversary",
+    "type": "talent",
+    "system": {
+     "tier": 1,
+     "activation": "passive",
+     "ranked": true,
+     "rank": 1,
+     "description": "<p>Талант противников из блоков характеристик (персонажам игроков обычно недоступен). За каждый ранг таланта сложность всех боевых проверок, нацеленных на этого персонажа, усиливается один раз.</p>",
+     "source": "Creature Catalogue, с. 9"
+    }
+   },
+   {
+    "name": "Фигура 3",
+    "nameEn": "Silhouette 3",
+    "type": "ability",
+    "system": {
+     "description": "<p>Фигура (размер) существа равна 3.</p>",
+     "source": "Creature Catalogue, с. 9"
+    }
+   },
+   {
+    "name": "Сокрушительный",
+    "nameEn": "Devastating",
+    "type": "ability",
+    "system": {
+     "description": "<p>К результату броска критической травмы, которую он наносит, прибавляется +20.</p>",
+     "source": "Creature Catalogue, с. 9"
+    }
+   },
+   {
+    "name": "Дитя огня",
+    "nameEn": "Fireborn",
+    "type": "ability",
+    "system": {
+     "description": "<p>Не получает урона от обычного жара и пламени; против магического огня его поглощение удваивается.</p>",
+     "source": "Creature Catalogue, с. 9"
+    }
+   },
+   {
+    "name": "Размах двуручным мечом",
+    "nameEn": "Greatsword Sweep",
+    "type": "ability",
+    "system": {
+     "description": "<p>При успешной проверке Ближнего боя может потратить 2 преимущества за каждую цель, чтобы поразить дополнительные цели в пределах короткой дистанции.</p>",
+     "source": "Creature Catalogue, с. 9"
+    }
+   },
+   {
+    "name": "Ужасающий",
+    "nameEn": "Terrifying",
+    "type": "ability",
+    "system": {
+     "description": "<p>В начале сцены все противники делают сложную (3 кости сложности) проверку страха как побочное действие вне своего хода. При нескольких источниках страха проверка делается один раз — против самого ужасающего врага.</p>",
+     "source": "Creature Catalogue, с. 9"
+    }
+   },
+   {
+    "name": "Огромный двуручный меч",
+    "nameEn": "Huge greatsword",
+    "type": "weapon",
+    "system": {
+     "skill": "meleeLight",
+     "damage": 12,
+     "brawnDamage": false,
+     "crit": 2,
+     "range": "short",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Оборонительное",
+       "rating": 2
+      },
+      {
+       "name": "Проникающее",
+       "rating": 2
+      },
+      {
+       "name": "Сноровка",
+       "rating": 5
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 9"
+    }
+   },
+   {
+    "name": "Латы из чёрного железа",
+    "nameEn": "Black iron plate",
+    "type": "armor",
+    "system": {
+     "soak": 2,
+     "defense": 1,
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [],
+     "description": "<p>Бонус уже учтён в поглощении и защите блока характеристик.</p>",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 9"
+    }
+   }
+  ]
+ },
+ {
+  "name": "Ледяной великан",
+  "nameEn": "Frost Giant",
+  "type": "adversary",
+  "folder": "Каталог существ: Великаны",
+  "system": {
+   "adversaryType": "nemesis",
+   "characteristics": {
+    "brawn": {
+     "value": 5
+    },
+    "agility": {
+     "value": 2
+    },
+    "intellect": {
+     "value": 2
+    },
+    "cunning": {
+     "value": 2
+    },
+    "willpower": {
+     "value": 2
+    },
+    "presence": {
+     "value": 2
+    }
+   },
+   "wounds": {
+    "value": 0,
+    "max": 30
+   },
+   "strain": {
+    "value": 0,
+    "max": 20
+   },
+   "soak": {
+    "value": 7
+   },
+   "defense": {
+    "melee": {
+     "value": 0
+    },
+    "ranged": {
+     "value": 0
+    }
+   },
+   "groupSize": 1,
+   "description": "<p>Свирепые налётчики и безжалостные убийцы, терроризирующие северные земли; часто ходят с обученными зимними волками.</p>",
+   "source": "Creature Catalogue, с. 9",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth"
+   ]
+  },
+  "items": [
+   {
+    "name": "Атлетика",
+    "type": "skill",
+    "system": {
+     "key": "athletics",
+     "characteristic": "brawn",
+     "category": "general",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Грубая сила",
+    "type": "skill",
+    "system": {
+     "key": "brawl",
+     "characteristic": "brawn",
+     "category": "combat",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Ближний бой (лёгкое оружие)",
+    "type": "skill",
+    "system": {
+     "key": "meleeLight",
+     "characteristic": "brawn",
+     "category": "combat",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Стойкость",
+    "type": "skill",
+    "system": {
+     "key": "resilience",
+     "characteristic": "brawn",
+     "category": "general",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Выживание",
+    "type": "skill",
+    "system": {
+     "key": "survival",
+     "characteristic": "cunning",
+     "category": "general",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Бдительность",
+    "type": "skill",
+    "system": {
+     "key": "vigilance",
+     "characteristic": "willpower",
+     "category": "general",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Противник",
+    "nameEn": "Adversary",
+    "type": "talent",
+    "system": {
+     "tier": 1,
+     "activation": "passive",
+     "ranked": true,
+     "rank": 1,
+     "description": "<p>Талант противников из блоков характеристик (персонажам игроков обычно недоступен). За каждый ранг таланта сложность всех боевых проверок, нацеленных на этого персонажа, усиливается один раз.</p>",
+     "source": "Creature Catalogue, с. 9"
+    }
+   },
+   {
+    "name": "Фигура 3",
+    "nameEn": "Silhouette 3",
+    "type": "ability",
+    "system": {
+     "description": "<p>Фигура (размер) существа равна 3.</p>",
+     "source": "Creature Catalogue, с. 9"
+    }
+   },
+   {
+    "name": "Сокрушительный",
+    "nameEn": "Devastating",
+    "type": "ability",
+    "system": {
+     "description": "<p>К результату броска критической травмы, которую он наносит, прибавляется +20.</p>",
+     "source": "Creature Catalogue, с. 9"
+    }
+   },
+   {
+    "name": "Дитя льда",
+    "nameEn": "Iceborn",
+    "type": "ability",
+    "system": {
+     "description": "<p>Не получает урона от обычного холода и льда; против магического холода и льда его поглощение удваивается.</p>",
+     "source": "Creature Catalogue, с. 9"
+    }
+   },
+   {
+    "name": "Берсерк",
+    "nameEn": "Berserk",
+    "type": "ability",
+    "system": {
+     "description": "<p>Получив 5 или больше ран, впадает в ярость и наносит +2 урона; после критической травмы бонус до конца боя растёт до +4.</p>",
+     "source": "Creature Catalogue, с. 9"
+    }
+   },
+   {
+    "name": "Ужасающий",
+    "nameEn": "Terrifying",
+    "type": "ability",
+    "system": {
+     "description": "<p>В начале сцены все противники делают сложную (3 кости сложности) проверку страха как побочное действие вне своего хода. При нескольких источниках страха проверка делается один раз — против самого ужасающего врага.</p>",
+     "source": "Creature Catalogue, с. 9"
+    }
+   },
+   {
+    "name": "Огромная секира",
+    "nameEn": "Huge greataxe",
+    "type": "weapon",
+    "system": {
+     "skill": "meleeLight",
+     "damage": 12,
+     "brawnDamage": false,
+     "crit": 3,
+     "range": "short",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Проникающее",
+       "rating": 3
+      },
+      {
+       "name": "Высококритичное",
+       "rating": 2
+      },
+      {
+       "name": "Громоздкое",
+       "rating": 5
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 9"
+    }
+   },
+   {
+    "name": "Тяжёлые меха",
+    "nameEn": "Heavy furs",
+    "type": "armor",
+    "system": {
+     "soak": 2,
+     "defense": 0,
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [],
+     "description": "<p>Бонус уже учтён в поглощении и защите блока характеристик.</p>",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 9"
+    }
+   }
+  ]
+ },
+ {
+  "name": "Каменный великан",
+  "nameEn": "Stone Giant",
+  "type": "adversary",
+  "folder": "Каталог существ: Великаны",
+  "system": {
+   "adversaryType": "nemesis",
+   "characteristics": {
+    "brawn": {
+     "value": 6
+    },
+    "agility": {
+     "value": 1
+    },
+    "intellect": {
+     "value": 2
+    },
+    "cunning": {
+     "value": 2
+    },
+    "willpower": {
+     "value": 2
+    },
+    "presence": {
+     "value": 1
+    }
+   },
+   "wounds": {
+    "value": 0,
+    "max": 32
+   },
+   "strain": {
+    "value": 0,
+    "max": 24
+   },
+   "soak": {
+    "value": 8
+   },
+   "defense": {
+    "melee": {
+     "value": 1
+    },
+    "ranged": {
+     "value": 1
+    }
+   },
+   "groupSize": 1,
+   "description": "<p>Живёт вдали от цивилизации — на высоких горах, в глубоких долинах и огромных пещерах. Ревниво охраняет свои земли, но без повода обычно не нападает. Мечет валуны с поразительной точностью.</p>",
+   "source": "Creature Catalogue, с. 10",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth"
+   ]
+  },
+  "items": [
+   {
+    "name": "Атлетика",
+    "type": "skill",
+    "system": {
+     "key": "athletics",
+     "characteristic": "brawn",
+     "category": "general",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Грубая сила",
+    "type": "skill",
+    "system": {
+     "key": "brawl",
+     "characteristic": "brawn",
+     "category": "combat",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Дальний бой",
+    "type": "skill",
+    "system": {
+     "key": "ranged",
+     "characteristic": "agility",
+     "category": "combat",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Бдительность",
+    "type": "skill",
+    "system": {
+     "key": "vigilance",
+     "characteristic": "willpower",
+     "category": "general",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Противник",
+    "nameEn": "Adversary",
+    "type": "talent",
+    "system": {
+     "tier": 1,
+     "activation": "passive",
+     "ranked": true,
+     "rank": 1,
+     "description": "<p>Талант противников из блоков характеристик (персонажам игроков обычно недоступен). За каждый ранг таланта сложность всех боевых проверок, нацеленных на этого персонажа, усиливается один раз.</p>",
+     "source": "Creature Catalogue, с. 10"
+    }
+   },
+   {
+    "name": "Фигура 3",
+    "nameEn": "Silhouette 3",
+    "type": "ability",
+    "system": {
+     "description": "<p>Фигура (размер) существа равна 3.</p>",
+     "source": "Creature Catalogue, с. 10"
+    }
+   },
+   {
+    "name": "Сокрушительный",
+    "nameEn": "Devastating",
+    "type": "ability",
+    "system": {
+     "description": "<p>К результату броска критической травмы, которую он наносит, прибавляется +40.</p>",
+     "source": "Creature Catalogue, с. 10"
+    }
+   },
+   {
+    "name": "Каменная кожа",
+    "nameEn": "Stony Skin",
+    "type": "ability",
+    "system": {
+     "description": "<p>Получая критическую травму, вычитает 20 из результата броска.</p>",
+     "source": "Creature Catalogue, с. 10"
+    }
+   },
+   {
+    "name": "Ужасающий",
+    "nameEn": "Terrifying",
+    "type": "ability",
+    "system": {
+     "description": "<p>В начале сцены все противники делают сложную (3 кости сложности) проверку страха как побочное действие вне своего хода. При нескольких источниках страха проверка делается один раз — против самого ужасающего врага.</p>",
+     "source": "Creature Catalogue, с. 10"
+    }
+   },
+   {
+    "name": "Каменные кулаки",
+    "nameEn": "Stony fists",
+    "type": "weapon",
+    "system": {
+     "skill": "brawl",
+     "damage": 10,
+     "brawnDamage": false,
+     "crit": 4,
+     "range": "short",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Ошеломление",
+       "rating": 1
+      },
+      {
+       "name": "Дезориентация",
+       "rating": 4
+      },
+      {
+       "name": "Нокдаун",
+       "rating": null
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 10"
+    }
+   },
+   {
+    "name": "Метание валунов",
+    "nameEn": "Hurled Boulders",
+    "type": "weapon",
+    "system": {
+     "skill": "ranged",
+     "damage": 12,
+     "brawnDamage": false,
+     "crit": 4,
+     "range": "long",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Взрыв",
+       "rating": 10
+      },
+      {
+       "name": "Ошеломление",
+       "rating": 1
+      },
+      {
+       "name": "Нокдаун",
+       "rating": null
+      },
+      {
+       "name": "Медленное",
+       "rating": 2
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 10"
+    }
+   }
+  ]
+ },
+ {
+  "name": "Костяной голем",
+  "nameEn": "Bone Golem",
+  "type": "adversary",
+  "folder": "Каталог существ: Големы",
+  "system": {
+   "adversaryType": "nemesis",
+   "characteristics": {
+    "brawn": {
+     "value": 4
+    },
+    "agility": {
+     "value": 1
+    },
+    "intellect": {
+     "value": 1
+    },
+    "cunning": {
+     "value": 1
+    },
+    "willpower": {
+     "value": 2
+    },
+    "presence": {
+     "value": 1
+    }
+   },
+   "wounds": {
+    "value": 0,
+    "max": 20
+   },
+   "strain": {
+    "value": 0,
+    "max": 15
+   },
+   "soak": {
+    "value": 6
+   },
+   "defense": {
+    "melee": {
+     "value": 0
+    },
+    "ranged": {
+     "value": 0
+    }
+   },
+   "groupSize": 1,
+   "description": "<p>Жуткое творение некромантов: кости десятков и сотен существ, сплавленные в гротескную человекоподобную фигуру. Не сильнейший из големов, но один из самых пугающих.</p>",
+   "source": "Creature Catalogue, с. 10",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "monster"
+   ]
+  },
+  "items": [
+   {
+    "name": "Грубая сила",
+    "type": "skill",
+    "system": {
+     "key": "brawl",
+     "characteristic": "brawn",
+     "category": "combat",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Дальний бой",
+    "type": "skill",
+    "system": {
+     "key": "ranged",
+     "characteristic": "agility",
+     "category": "combat",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Бдительность",
+    "type": "skill",
+    "system": {
+     "key": "vigilance",
+     "characteristic": "willpower",
+     "category": "general",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Противник",
+    "nameEn": "Adversary",
+    "type": "talent",
+    "system": {
+     "tier": 1,
+     "activation": "passive",
+     "ranked": true,
+     "rank": 1,
+     "description": "<p>Талант противников из блоков характеристик (персонажам игроков обычно недоступен). За каждый ранг таланта сложность всех боевых проверок, нацеленных на этого персонажа, усиливается один раз.</p>",
+     "source": "Creature Catalogue, с. 10"
+    }
+   },
+   {
+    "name": "Фигура 2",
+    "nameEn": "Silhouette 2",
+    "type": "ability",
+    "system": {
+     "description": "<p>Фигура (размер) существа равна 2.</p>",
+     "source": "Creature Catalogue, с. 10"
+    }
+   },
+   {
+    "name": "Конструкт",
+    "nameEn": "Construct",
+    "type": "ability",
+    "system": {
+     "description": "<p>Не нуждается в еде, питье, воздухе и сне. Невосприимчив к ядам, болезням, Запугиванию, страху, очарованию и любым воздействиям на разум.</p>",
+     "source": "Creature Catalogue, с. 10"
+    }
+   },
+   {
+    "name": "Сопротивление магии",
+    "nameEn": "Magic Resistance",
+    "type": "ability",
+    "system": {
+     "description": "<p>Сложность магических проверок, нацеленных на него, усиливается один раз.</p>",
+     "source": "Creature Catalogue, с. 10"
+    }
+   },
+   {
+    "name": "Ужасающий",
+    "nameEn": "Terrifying",
+    "type": "ability",
+    "system": {
+     "description": "<p>В начале сцены все противники делают сложную (3 кости сложности) проверку страха как побочное действие вне своего хода. При нескольких источниках страха проверка делается один раз — против самого ужасающего врага.</p>",
+     "source": "Creature Catalogue, с. 10"
+    }
+   },
+   {
+    "name": "Пронзание",
+    "nameEn": "Impalement",
+    "type": "ability",
+    "system": {
+     "description": "<p>Может потратить 3 осложнения или крах с проверки атаки ближнего боя против него, чтобы атакующий получил 6 ран от костяных шипов.</p>",
+     "source": "Creature Catalogue, с. 10"
+    }
+   },
+   {
+    "name": "Уязвимость к ударам",
+    "nameEn": "Impact Vulnerability",
+    "type": "ability",
+    "system": {
+     "description": "<p>Против рубящего и колющего оружия поглощение больше на 2, но молоты, булавы, цепы и секиры наносят ему +2 урона за попадание.</p>",
+     "source": "Creature Catalogue, с. 10"
+    }
+   },
+   {
+    "name": "Костяные когти",
+    "nameEn": "Bone claws",
+    "type": "weapon",
+    "system": {
+     "skill": "brawl",
+     "damage": 7,
+     "brawnDamage": false,
+     "crit": 3,
+     "range": "engaged",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Проникающее",
+       "rating": 1
+      },
+      {
+       "name": "Нокдаун",
+       "rating": null
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 10"
+    }
+   },
+   {
+    "name": "Метательные костяные шипы",
+    "nameEn": "Hurled bone spikes",
+    "type": "weapon",
+    "system": {
+     "skill": "ranged",
+     "damage": 5,
+     "brawnDamage": false,
+     "crit": 3,
+     "range": "short",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Проникающее",
+       "rating": 1
+      },
+      {
+       "name": "Высококритичное",
+       "rating": 2
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 10"
+    }
+   }
+  ]
+ },
+ {
+  "name": "Латунный голем",
+  "nameEn": "Brass Golem",
+  "type": "adversary",
+  "folder": "Каталог существ: Големы",
+  "system": {
+   "adversaryType": "nemesis",
+   "characteristics": {
+    "brawn": {
+     "value": 4
+    },
+    "agility": {
+     "value": 1
+    },
+    "intellect": {
+     "value": 1
+    },
+    "cunning": {
+     "value": 2
+    },
+    "willpower": {
+     "value": 2
+    },
+    "presence": {
+     "value": 1
+    }
+   },
+   "wounds": {
+    "value": 0,
+    "max": 22
+   },
+   "strain": {
+    "value": 0,
+    "max": 16
+   },
+   "soak": {
+    "value": 7
+   },
+   "defense": {
+    "melee": {
+     "value": 0
+    },
+    "ranged": {
+     "value": 0
+    }
+   },
+   "groupSize": 1,
+   "description": "<p>Выкован из зачарованной латуни и наполнен перегретой жидкостью; часто с головой животного, особенно быка. Обычно служит храмовым стражем.</p>",
+   "source": "Creature Catalogue, с. 11",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "steampunk"
+   ]
+  },
+  "items": [
+   {
+    "name": "Ближний бой (тяжёлое оружие)",
+    "type": "skill",
+    "system": {
+     "key": "meleeHeavy",
+     "characteristic": "brawn",
+     "category": "combat",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Бдительность",
+    "type": "skill",
+    "system": {
+     "key": "vigilance",
+     "characteristic": "willpower",
+     "category": "general",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Противник",
+    "nameEn": "Adversary",
+    "type": "talent",
+    "system": {
+     "tier": 1,
+     "activation": "passive",
+     "ranked": true,
+     "rank": 1,
+     "description": "<p>Талант противников из блоков характеристик (персонажам игроков обычно недоступен). За каждый ранг таланта сложность всех боевых проверок, нацеленных на этого персонажа, усиливается один раз.</p>",
+     "source": "Creature Catalogue, с. 11"
+    }
+   },
+   {
+    "name": "Фигура 2",
+    "nameEn": "Silhouette 2",
+    "type": "ability",
+    "system": {
+     "description": "<p>Фигура (размер) существа равна 2.</p>",
+     "source": "Creature Catalogue, с. 11"
+    }
+   },
+   {
+    "name": "Конструкт",
+    "nameEn": "Construct",
+    "type": "ability",
+    "system": {
+     "description": "<p>Не нуждается в еде, питье, воздухе и сне. Невосприимчив к ядам, болезням, Запугиванию, страху, очарованию и любым воздействиям на разум.</p>",
+     "source": "Creature Catalogue, с. 11"
+    }
+   },
+   {
+    "name": "Сопротивление магии",
+    "nameEn": "Magic Resistance",
+    "type": "ability",
+    "system": {
+     "description": "<p>Сложность магических проверок, нацеленных на него, усиливается один раз.</p>",
+     "source": "Creature Catalogue, с. 11"
+    }
+   },
+   {
+    "name": "Поглощение огня",
+    "nameEn": "Fire Absorption",
+    "type": "ability",
+    "system": {
+     "description": "<p>Не получает урона от магического и обычного огня: атака огнём разрешается как обычно, но голем восстанавливает столько ран, сколько урона она нанесла бы.</p>",
+     "source": "Creature Catalogue, с. 11"
+    }
+   },
+   {
+    "name": "Перегретые брызги",
+    "nameEn": "Super-heated Spray",
+    "type": "ability",
+    "system": {
+     "description": "<p>Может потратить 3 осложнения или крах с проверки атаки ближнего боя против него, чтобы атакующий получил 6 ран от перегретой жидкости.</p>",
+     "source": "Creature Catalogue, с. 11"
+    }
+   },
+   {
+    "name": "Ахиллесова пята",
+    "nameEn": "Achilles' Heel",
+    "type": "ability",
+    "system": {
+     "description": "<p>Где-то на теле есть клапан. Заметить его — сложная (3 кости сложности) проверка Внимания или пугающая (4 кости сложности) проверка Бдительности; открыть — пугающая проверка Жульничества вплотную к голему. Тогда в начале каждого хода голем получает 4 раны, пока клапан не закроют или голем не падёт; открывший получает 4 раны от жидкости.</p>",
+     "source": "Creature Catalogue, с. 11"
+    }
+   },
+   {
+    "name": "Большая секира",
+    "nameEn": "Large Greataxe",
+    "type": "weapon",
+    "system": {
+     "skill": "meleeHeavy",
+     "damage": 8,
+     "brawnDamage": false,
+     "crit": 3,
+     "range": "engaged",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Проникающее",
+       "rating": 2
+      },
+      {
+       "name": "Высококритичное",
+       "rating": 2
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 11"
+    }
+   }
+  ]
+ },
+ {
+  "name": "Голем из плоти",
+  "nameEn": "Flesh Golem",
+  "type": "adversary",
+  "folder": "Каталог существ: Големы",
+  "system": {
+   "adversaryType": "nemesis",
+   "characteristics": {
+    "brawn": {
+     "value": 4
+    },
+    "agility": {
+     "value": 1
+    },
+    "intellect": {
+     "value": 1
+    },
+    "cunning": {
+     "value": 2
+    },
+    "willpower": {
+     "value": 2
+    },
+    "presence": {
+     "value": 1
+    }
+   },
+   "wounds": {
+    "value": 0,
+    "max": 18
+   },
+   "strain": {
+    "value": 0,
+    "max": 14
+   },
+   "soak": {
+    "value": 5
+   },
+   "defense": {
+    "melee": {
+     "value": 0
+    },
+    "ranged": {
+     "value": 0
+    }
+   },
+   "groupSize": 1,
+   "description": "<p>Мерзкое сшитое из частей мертвецов создание некромантов и безумных алхимиков. Плохо поддаётся контролю и нередко впадает в буйство.</p>",
+   "source": "Creature Catalogue, с. 11",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth",
+    "monster"
+   ]
+  },
+  "items": [
+   {
+    "name": "Атлетика",
+    "type": "skill",
+    "system": {
+     "key": "athletics",
+     "characteristic": "brawn",
+     "category": "general",
+     "rank": 1,
+     "career": false
+    }
+   },
+   {
+    "name": "Грубая сила",
+    "type": "skill",
+    "system": {
+     "key": "brawl",
+     "characteristic": "brawn",
+     "category": "combat",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Бдительность",
+    "type": "skill",
+    "system": {
+     "key": "vigilance",
+     "characteristic": "willpower",
+     "category": "general",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Противник",
+    "nameEn": "Adversary",
+    "type": "talent",
+    "system": {
+     "tier": 1,
+     "activation": "passive",
+     "ranked": true,
+     "rank": 1,
+     "description": "<p>Талант противников из блоков характеристик (персонажам игроков обычно недоступен). За каждый ранг таланта сложность всех боевых проверок, нацеленных на этого персонажа, усиливается один раз.</p>",
+     "source": "Creature Catalogue, с. 11"
+    }
+   },
+   {
+    "name": "Фигура 2",
+    "nameEn": "Silhouette 2",
+    "type": "ability",
+    "system": {
+     "description": "<p>Фигура (размер) существа равна 2.</p>",
+     "source": "Creature Catalogue, с. 11"
+    }
+   },
+   {
+    "name": "Конструкт",
+    "nameEn": "Construct",
+    "type": "ability",
+    "system": {
+     "description": "<p>Не нуждается в еде, питье, воздухе и сне. Невосприимчив к ядам, болезням, Запугиванию, страху, очарованию и любым воздействиям на разум.</p>",
+     "source": "Creature Catalogue, с. 11"
+    }
+   },
+   {
+    "name": "Сопротивление магии",
+    "nameEn": "Magic Resistance",
+    "type": "ability",
+    "system": {
+     "description": "<p>Сложность магических проверок, нацеленных на него, усиливается один раз.</p>",
+     "source": "Creature Catalogue, с. 11"
+    }
+   },
+   {
+    "name": "Поглощение молний",
+    "nameEn": "Lightning Absorption",
+    "type": "ability",
+    "system": {
+     "description": "<p>Не получает урона от молний: атака разрешается как обычно, но голем восстанавливает столько ран, сколько урона она нанесла бы. (В книге в первой фразе ошибочно сказано «огня».)</p>",
+     "source": "Creature Catalogue, с. 11"
+    }
+   },
+   {
+    "name": "Боязнь огня",
+    "nameEn": "Aversion to Fire",
+    "type": "ability",
+    "system": {
+     "description": "<p>Получив урон от огня, добавляет 2 кости штрафа к следующей проверке навыка.</p>",
+     "source": "Creature Catalogue, с. 11"
+    }
+   },
+   {
+    "name": "Берсерк",
+    "nameEn": "Berserk",
+    "type": "ability",
+    "system": {
+     "description": "<p>Получив 5 или больше ран, впадает в ярость и наносит +2 урона; после критической травмы бонус до конца боя растёт до +4.</p>",
+     "source": "Creature Catalogue, с. 11"
+    }
+   },
+   {
+    "name": "Кулаки ярости",
+    "nameEn": "Fists of Fury",
+    "type": "ability",
+    "system": {
+     "description": "<p>Не увеличивает сложность комбинированных проверок атаки обоими кулаками.</p>",
+     "source": "Creature Catalogue, с. 11"
+    }
+   },
+   {
+    "name": "Огромные кулаки",
+    "nameEn": "Huge Fists",
+    "type": "weapon",
+    "system": {
+     "skill": "brawl",
+     "damage": 6,
+     "brawnDamage": false,
+     "crit": 4,
+     "range": "engaged",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Дезориентация",
+       "rating": 3
+      },
+      {
+       "name": "Нокдаун",
+       "rating": null
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 11"
+    }
+   }
+  ]
+ },
+ {
+  "name": "Железный голем",
+  "nameEn": "Iron Golem",
+  "type": "adversary",
+  "folder": "Каталог существ: Големы",
+  "system": {
+   "adversaryType": "nemesis",
+   "characteristics": {
+    "brawn": {
+     "value": 5
+    },
+    "agility": {
+     "value": 1
+    },
+    "intellect": {
+     "value": 1
+    },
+    "cunning": {
+     "value": 2
+    },
+    "willpower": {
+     "value": 3
+    },
+    "presence": {
+     "value": 1
+    }
+   },
+   "wounds": {
+    "value": 0,
+    "max": 30
+   },
+   "strain": {
+    "value": 0,
+    "max": 24
+   },
+   "soak": {
+    "value": 8
+   },
+   "defense": {
+    "melee": {
+     "value": 2
+    },
+    "ranged": {
+     "value": 2
+    }
+   },
+   "groupSize": 1,
+   "description": "<p>Один из сильнейших големов; архимаги создают их для охраны величайших сокровищ. Остановить такого неумолимого стража почти невозможно.</p>",
+   "source": "Creature Catalogue, с. 12",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth"
+   ]
+  },
+  "items": [
+   {
+    "name": "Атлетика",
+    "type": "skill",
+    "system": {
+     "key": "athletics",
+     "characteristic": "brawn",
+     "category": "general",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Ближний бой (лёгкое оружие)",
+    "type": "skill",
+    "system": {
+     "key": "meleeLight",
+     "characteristic": "brawn",
+     "category": "combat",
+     "rank": 3,
+     "career": false
+    }
+   },
+   {
+    "name": "Дальний бой",
+    "type": "skill",
+    "system": {
+     "key": "ranged",
+     "characteristic": "agility",
+     "category": "combat",
+     "rank": 3,
+     "career": false
+    }
+   },
+   {
+    "name": "Бдительность",
+    "type": "skill",
+    "system": {
+     "key": "vigilance",
+     "characteristic": "willpower",
+     "category": "general",
+     "rank": 3,
+     "career": false
+    }
+   },
+   {
+    "name": "Противник",
+    "nameEn": "Adversary",
+    "type": "talent",
+    "system": {
+     "tier": 1,
+     "activation": "passive",
+     "ranked": true,
+     "rank": 1,
+     "description": "<p>Талант противников из блоков характеристик (персонажам игроков обычно недоступен). За каждый ранг таланта сложность всех боевых проверок, нацеленных на этого персонажа, усиливается один раз.</p>",
+     "source": "Creature Catalogue, с. 12"
+    }
+   },
+   {
+    "name": "Фигура 2",
+    "nameEn": "Silhouette 2",
+    "type": "ability",
+    "system": {
+     "description": "<p>Фигура (размер) существа равна 2.</p>",
+     "source": "Creature Catalogue, с. 12"
+    }
+   },
+   {
+    "name": "Конструкт",
+    "nameEn": "Construct",
+    "type": "ability",
+    "system": {
+     "description": "<p>Не нуждается в еде, питье, воздухе и сне. Невосприимчив к ядам, болезням, Запугиванию, страху, очарованию и любым воздействиям на разум.</p>",
+     "source": "Creature Catalogue, с. 12"
+    }
+   },
+   {
+    "name": "Высшее сопротивление магии",
+    "nameEn": "Greater Magic Resistance",
+    "type": "ability",
+    "system": {
+     "description": "<p>Сложность магических проверок, нацеленных на него, усиливается дважды. Атакующее заклинание, давшее 3 осложнения или крах, отражается на заклинателя.</p>",
+     "source": "Creature Catalogue, с. 12"
+    }
+   },
+   {
+    "name": "Поглощение огня",
+    "nameEn": "Fire Absorption",
+    "type": "ability",
+    "system": {
+     "description": "<p>Не получает урона от магического и обычного огня: атака огнём разрешается как обычно, но голем восстанавливает столько ран, сколько урона она нанесла бы.</p>",
+     "source": "Creature Catalogue, с. 12"
+    }
+   },
+   {
+    "name": "Неудержимый",
+    "nameEn": "Juggernaut",
+    "type": "ability",
+    "system": {
+     "description": "<p>Невосприимчив к обездвиживанию, сбиванию с ног, принудительному перемещению и любым эффектам, мешающим передвигаться.</p>",
+     "source": "Creature Catalogue, с. 12"
+    }
+   },
+   {
+    "name": "Большой меч",
+    "nameEn": "Large Sword",
+    "type": "weapon",
+    "system": {
+     "skill": "meleeHeavy",
+     "damage": 9,
+     "brawnDamage": false,
+     "crit": 2,
+     "range": "engaged",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Оборонительное",
+       "rating": 1
+      },
+      {
+       "name": "Точное",
+       "rating": 1
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 12"
+    }
+   },
+   {
+    "name": "Большой щит",
+    "nameEn": "Large Shield",
+    "type": "weapon",
+    "system": {
+     "skill": "meleeLight",
+     "damage": 6,
+     "brawnDamage": false,
+     "crit": 6,
+     "range": "engaged",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Оборонительное",
+       "rating": 2
+      },
+      {
+       "name": "Отражающее",
+       "rating": 2
+      },
+      {
+       "name": "Нокдаун",
+       "rating": null
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 12"
+    }
+   },
+   {
+    "name": "Ядовитое дыхание",
+    "nameEn": "Poison Breath",
+    "type": "weapon",
+    "system": {
+     "skill": "ranged",
+     "damage": 6,
+     "brawnDamage": false,
+     "crit": 3,
+     "range": "short",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Взрыв",
+       "rating": 6
+      },
+      {
+       "name": "Жжение",
+       "rating": 2
+      },
+      {
+       "name": "Медленное",
+       "rating": 2
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 12"
+    }
+   }
+  ]
+ },
+ {
+  "name": "Каменный голем",
+  "nameEn": "Stone Golem",
+  "type": "adversary",
+  "folder": "Каталог существ: Големы",
+  "system": {
+   "adversaryType": "nemesis",
+   "characteristics": {
+    "brawn": {
+     "value": 5
+    },
+    "agility": {
+     "value": 2
+    },
+    "intellect": {
+     "value": 1
+    },
+    "cunning": {
+     "value": 2
+    },
+    "willpower": {
+     "value": 3
+    },
+    "presence": {
+     "value": 1
+    }
+   },
+   "wounds": {
+    "value": 0,
+    "max": 24
+   },
+   "strain": {
+    "value": 0,
+    "max": 18
+   },
+   "soak": {
+    "value": 7
+   },
+   "defense": {
+    "melee": {
+     "value": 4
+    },
+    "ranged": {
+     "value": 0
+    }
+   },
+   "groupSize": 1,
+   "description": "<p>Обычно выглядит как каменная статуя, и неподвижным его трудно распознать. Часто имеет несколько конечностей с оружием в каждой и неустанно бьёт всеми сразу.</p>",
+   "source": "Creature Catalogue, с. 12",
+   "worlds": [
+    "fantasy",
+    "mythic",
+    "terrinoth"
+   ]
+  },
+  "items": [
+   {
+    "name": "Ближний бой (лёгкое оружие)",
+    "type": "skill",
+    "system": {
+     "key": "meleeLight",
+     "characteristic": "brawn",
+     "category": "combat",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Бдительность",
+    "type": "skill",
+    "system": {
+     "key": "vigilance",
+     "characteristic": "willpower",
+     "category": "general",
+     "rank": 2,
+     "career": false
+    }
+   },
+   {
+    "name": "Противник",
+    "nameEn": "Adversary",
+    "type": "talent",
+    "system": {
+     "tier": 1,
+     "activation": "passive",
+     "ranked": true,
+     "rank": 1,
+     "description": "<p>Талант противников из блоков характеристик (персонажам игроков обычно недоступен). За каждый ранг таланта сложность всех боевых проверок, нацеленных на этого персонажа, усиливается один раз.</p>",
+     "source": "Creature Catalogue, с. 12"
+    }
+   },
+   {
+    "name": "Фигура 2",
+    "nameEn": "Silhouette 2",
+    "type": "ability",
+    "system": {
+     "description": "<p>Фигура (размер) существа равна 2.</p>",
+     "source": "Creature Catalogue, с. 12"
+    }
+   },
+   {
+    "name": "Конструкт",
+    "nameEn": "Construct",
+    "type": "ability",
+    "system": {
+     "description": "<p>Не нуждается в еде, питье, воздухе и сне. Невосприимчив к ядам, болезням, Запугиванию, страху, очарованию и любым воздействиям на разум.</p>",
+     "source": "Creature Catalogue, с. 12"
+    }
+   },
+   {
+    "name": "Сопротивление магии",
+    "nameEn": "Magic Resistance",
+    "type": "ability",
+    "system": {
+     "description": "<p>Сложность магических проверок, нацеленных на него, усиливается один раз.</p>",
+     "source": "Creature Catalogue, с. 12"
+    }
+   },
+   {
+    "name": "Уязвимость к ударам",
+    "nameEn": "Impact Vulnerability",
+    "type": "ability",
+    "system": {
+     "description": "<p>Против рубящего и колющего оружия поглощение больше на 2, но молоты, булавы, цепы и секиры наносят ему +2 урона за попадание.</p>",
+     "source": "Creature Catalogue, с. 12"
+    }
+   },
+   {
+    "name": "Много конечностей",
+    "nameEn": "Multiple Limbs",
+    "type": "ability",
+    "system": {
+     "description": "<p>Четыре–шесть рук с оружием: не увеличивает сложность атак для активации свойства Автоматическое, и его первой целью не обязана быть цель с наибольшей сложностью и защитой.</p>",
+     "source": "Creature Catalogue, с. 12"
+    }
+   },
+   {
+    "name": "Мечи",
+    "nameEn": "Swords",
+    "type": "weapon",
+    "system": {
+     "skill": "meleeLight",
+     "damage": 8,
+     "brawnDamage": false,
+     "crit": 2,
+     "range": "engaged",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Оборонительное",
+       "rating": 1
+      },
+      {
+       "name": "Проникающее",
+       "rating": 1
+      },
+      {
+       "name": "Автоматическое",
+       "rating": null
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Creature Catalogue, с. 12"
+    }
+   }
+  ]
+ }
+]

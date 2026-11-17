@@ -172,6 +172,16 @@ A.pick.call(free, null, { dataset: { kind: "career", uuid: [...free.html.matchAl
 await free.render();
 assert.ok(free.html.includes("Ближний бой (лёгкое оружие)"), "career skill substituted for fantasy");
 
+// Модули: без включения ведущим дополнительных талантов и пси в мастере нет; включили — есть, и только по смыслу миру.
+const hasSrc = (w, src) => w.view.talents.some(t => (t.system.source ?? "").startsWith(src));
+assert.ok(!hasSrc(free, "Talents Expanded") && !hasSrc(free, "PSI"), "modules off by default");
+settings["genesys-rpg.disabledSources"] = [];
+const modOn = new CreationWizard({ actor });
+await modOn.render();
+assert.ok(hasSrc(modOn, "Talents Expanded"), "Talents Expanded on when enabled");
+assert.ok(!modOn.view.talents.some(t => /взлом|хакер/i.test(t.name) && !(t.system.worlds ?? []).includes("fantasy")), "only fantasy-fitting extra talents");
+delete settings["genesys-rpg.disabledSources"];
+
 // Ведущий выбрал два приключения: расы обоих, карьеры — по миру выбранной расы.
 settings["genesys-rpg.adventures"] = ["terrinoth", "spaceopera"];
 const multi = new CreationWizard({ actor });
