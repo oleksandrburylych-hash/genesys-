@@ -1,0 +1,308 @@
+[
+  {
+    "name": "Кожаный доспех",
+    "nameEn": "",
+    "type": "armor",
+    "folder": "Фэнтези",
+    "system": {
+      "defense": 0,
+      "soak": 1,
+      "encumbrance": 2,
+      "hardPoints": 1,
+      "price": 50,
+      "rarity": 3,
+      "qualities": [],
+      "description": "<p>Мягкая или вываренная кожа: поглощает часть удара, но защиты не даёт.</p>",
+      "source": "Core Rulebook, с. 145"
+    }
+  },
+  {
+    "name": "Кольчуга",
+    "nameEn": "Chainmail",
+    "type": "armor",
+    "folder": "Фэнтези",
+    "system": {
+      "defense": 0,
+      "soak": 2,
+      "encumbrance": 3,
+      "hardPoints": 2,
+      "price": 550,
+      "rarity": 4,
+      "qualities": [],
+      "description": "<p>Рассеивает силу удара. Шумная: пока надета, добавляет кость штрафа к проверкам Скрытности.</p>",
+      "source": "Core Rulebook, с. 145"
+    }
+  },
+  {
+    "name": "Латы",
+    "nameEn": "Plate Armor",
+    "type": "armor",
+    "folder": "Фэнтези",
+    "system": {
+      "defense": 1,
+      "soak": 2,
+      "encumbrance": 4,
+      "hardPoints": 2,
+      "price": 1250,
+      "rarity": 6,
+      "qualities": [],
+      "description": "<p>Тяжёлый доспех, дающий и поглощение, и защиту. Пока надеты, добавляют 2 кости штрафа к проверкам Скрытности.</p>",
+      "source": "Core Rulebook, с. 145"
+    }
+  },
+  {
+    "name": "Магические латы",
+    "nameEn": "",
+    "type": "armor",
+    "folder": "Фэнтези",
+    "system": {
+      "defense": 2,
+      "soak": 2,
+      "encumbrance": 3,
+      "hardPoints": 2,
+      "price": 2400,
+      "rarity": 8,
+      "qualities": [],
+      "description": "<p>Латы с защитными чарами: лучше защищают, легче всех прочих доспехов и не стесняют движений, поэтому штрафов обычных лат не имеют.</p>",
+      "source": "Core Rulebook, с. 145"
+    }
+  },
+  {
+    "name": "Плотная мантия",
+    "nameEn": "Heavy Robes",
+    "type": "armor",
+    "folder": "Фэнтези",
+    "system": {
+      "defense": 1,
+      "soak": 0,
+      "encumbrance": 1,
+      "hardPoints": 1,
+      "price": 45,
+      "rarity": 0,
+      "qualities": [],
+      "description": "<p>Развевающаяся ткань сбивает удары врага: даёт защиту, но не поглощение.</p>",
+      "source": "Core Rulebook, с. 145"
+    }
+  },
+  {
+    "name": "Амплимативный доспех",
+    "nameEn": "",
+    "type": "armor",
+    "folder": "Стимпанк",
+    "system": {
+      "defense": 1,
+      "soak": 2,
+      "encumbrance": 3,
+      "hardPoints": 2,
+      "price": 1250,
+      "rarity": 9,
+      "qualities": [],
+      "description": "<p>Изумительный амплимативный доспех адмирала Артура — тяжёлый паровой экзоскелет из стальных пластин. Носитель увеличивает силуэт и Силу на 1 (что соответственно увеличивает и поглощение).</p>",
+      "source": "Core Rulebook, с. 155"
+    }
+  },
+  {
+    "name": "Изолирующее одеяние",
+    "nameEn": "",
+    "type": "armor",
+    "folder": "Стимпанк",
+    "system": {
+      "defense": 0,
+      "soak": 1,
+      "encumbrance": 3,
+      "hardPoints": 2,
+      "price": 175,
+      "rarity": 2,
+      "qualities": [],
+      "description": "<p>Одежда, защищающая от конкретной опасности среды. Помимо поглощения, даёт 2 кости бонуса ко всем проверкам Стойкости против соответствующих эффектов окружающей среды (против газов пригодится ещё и воздушная маска).</p>",
+      "source": "Core Rulebook, с. 155"
+    }
+  },
+  {
+    "name": "Шестерёнчатый костюм",
+    "nameEn": "",
+    "type": "armor",
+    "folder": "Стимпанк",
+    "system": {
+      "defense": 1,
+      "soak": 1,
+      "encumbrance": 3,
+      "hardPoints": 2,
+      "price": 275,
+      "rarity": 3,
+      "qualities": [],
+      "description": "<p>Самодельный доспех из пластин брони и деталей машин, популярный у пиратов и искателей приключений.</p>",
+      "source": "Core Rulebook, с. 155"
+    }
+  },
+  {
+    "name": "Иллириевый жилет BG-42",
+    "nameEn": "",
+    "type": "armor",
+    "folder": "Моровая война",
+    "system": {
+      "defense": 0,
+      "soak": 2,
+      "encumbrance": 4,
+      "hardPoints": 2,
+      "price": 600,
+      "rarity": 6,
+      "qualities": [],
+      "description": "<p>Бронежилет с иллириевой батареей. Раз за сцену носитель может свободным действием включить силовое поле: до конца его следующего хода он получает ближнюю защиту 2 и дальнюю защиту 2.</p>",
+      "source": "Core Rulebook, с. 162"
+    }
+  },
+  {
+    "name": "Катушка Теслы",
+    "nameEn": "",
+    "type": "armor",
+    "folder": "Моровая война",
+    "system": {
+      "defense": 2,
+      "soak": 0,
+      "encumbrance": 2,
+      "hardPoints": 1,
+      "price": 550,
+      "rarity": 8,
+      "qualities": [],
+      "description": "<p>Персональное силовое поле: катушка на поясе или перевязи создаёт потрескивающее поле, отражающее выстрелы (защита), но не поглощающее урон.</p>",
+      "source": "Core Rulebook, с. 162"
+    }
+  },
+  {
+    "name": "Бронежилет",
+    "nameEn": "",
+    "type": "armor",
+    "folder": "Современность",
+    "system": {
+      "defense": 0,
+      "soak": 2,
+      "encumbrance": 3,
+      "hardPoints": 2,
+      "price": 475,
+      "rarity": 5,
+      "qualities": [],
+      "description": "<p>Лёгкий бронежилет из полимерных тканей: поглощает пули мелкого калибра и осколки.</p>",
+      "source": "Core Rulebook, с. 168"
+    }
+  },
+  {
+    "name": "Броня для разгона бунтов",
+    "nameEn": "Riot Gear",
+    "type": "armor",
+    "folder": "Современность",
+    "system": {
+      "defense": 2,
+      "soak": 1,
+      "encumbrance": 5,
+      "hardPoints": 3,
+      "price": 675,
+      "rarity": 6,
+      "qualities": [],
+      "description": "<p>Полицейский комплект со шлемом и большим щитом: отклоняет удары лучше, чем останавливает пули. Персонаж должен держать щит в одной руке, иначе защита снижается до 1.</p>",
+      "source": "Core Rulebook, с. 168"
+    }
+  },
+  {
+    "name": "Маскировочный костюм",
+    "nameEn": "",
+    "type": "armor",
+    "folder": "Современность",
+    "system": {
+      "defense": 1,
+      "soak": 0,
+      "encumbrance": 1,
+      "hardPoints": 1,
+      "price": 95,
+      "rarity": 4,
+      "qualities": [],
+      "description": "<p>Камуфляж снайперов и разведчиков: даёт немного защиты, но не поглощение. Пытающиеся обнаружить носителя усиливают сложность проверки один раз.</p>",
+      "source": "Core Rulebook, с. 168"
+    }
+  },
+  {
+    "name": "Оптический камуфляж",
+    "nameEn": "",
+    "type": "armor",
+    "folder": "Научная фантастика",
+    "system": {
+      "defense": 2,
+      "soak": 0,
+      "encumbrance": 2,
+      "hardPoints": 1,
+      "price": 580,
+      "rarity": 7,
+      "qualities": [],
+      "description": "<p>Голопроекторы мешают точно определить местоположение носителя (защита), но от попаданий не защищают — поглощения нет.</p>",
+      "source": "Core Rulebook, с. 177"
+    }
+  },
+  {
+    "name": "Панцирь из пластали",
+    "nameEn": "",
+    "type": "armor",
+    "folder": "Научная фантастика",
+    "system": {
+      "defense": 1,
+      "soak": 2,
+      "encumbrance": 4,
+      "hardPoints": 2,
+      "price": 750,
+      "rarity": 5,
+      "qualities": [],
+      "description": "<p>Доспех из пластали с головы до пят; жёсткий корпус отражает попадания. С подходящими комплектующими может быть герметичным.</p>",
+      "source": "Core Rulebook, с. 177"
+    }
+  },
+  {
+    "name": "Персональное силовое поле",
+    "nameEn": "",
+    "type": "armor",
+    "folder": "Космоопера",
+    "system": {
+      "defense": 3,
+      "soak": 0,
+      "encumbrance": 1,
+      "hardPoints": 1,
+      "price": 2000,
+      "rarity": 8,
+      "qualities": [],
+      "description": "<p>Редкий и дорогой генератор персонального силового поля: высокая защита, но без поглощения.</p>",
+      "source": "Core Rulebook, с. 185"
+    }
+  },
+  {
+    "name": "Пехотная боевая броня",
+    "nameEn": "",
+    "type": "armor",
+    "folder": "Космоопера",
+    "system": {
+      "defense": 0,
+      "soak": 2,
+      "encumbrance": 2,
+      "hardPoints": 3,
+      "price": 700,
+      "rarity": 5,
+      "qualities": [],
+      "description": "<p>Стандартная броня пехотинцев межпланетных правительств: приличное поглощение при малой нагрузке. По правилам точек крепления (с. 206) имеет 3 точки крепления.</p>",
+      "source": "Core Rulebook, с. 186"
+    }
+  },
+  {
+    "name": "Элитная штурмовая броня",
+    "nameEn": "",
+    "type": "armor",
+    "folder": "Космоопера",
+    "system": {
+      "defense": 1,
+      "soak": 2,
+      "encumbrance": 5,
+      "hardPoints": 3,
+      "price": 4000,
+      "rarity": 6,
+      "qualities": [],
+      "description": "<p>Сверхдорогая броня элитных войск. Носитель увеличивает Силу на 1, максимум до 5 (это увеличивает и поглощение), а его порог нагрузки равен 10 + Сила. Защищает от окружающей среды и считается скафандром.</p>",
+      "source": "Core Rulebook, с. 186"
+    }
+  }
+]
