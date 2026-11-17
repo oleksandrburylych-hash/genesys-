@@ -324,7 +324,9 @@
       "knowledgeLore": "Knowledge (Lore)",
       "knowledgeForbidden": "Knowledge (Forbidden)",
       "knowledgeAdventuring": "Knowledge (Adventuring)",
-      "knowledgeGeography": "Knowledge (Geography)"
+      "knowledgeGeography": "Knowledge (Geography)",
+      "knowledgeSupernatural": "Knowledge (Supernatural)",
+      "knowledgeScience": "Knowledge (Science)"
     },
     "SkillCategory": {
       "general": "General skills",
@@ -582,7 +584,8 @@
         "xp": "Характеристики и навыки",
         "talents": "Таланты",
         "motivations": "Мотивации",
-        "details": "Описание и деньги"
+        "details": "Описание и деньги",
+        "adventure": "Adventure"
       },
       "SummaryHint": "Будут применены раса/архетип и карьера, бесплатные ранги и героическая способность. Ранги выше 2 при создании не ставятся.",
       "Title": "Мастер создания персонажа",
@@ -613,20 +616,24 @@
         "motivations": "Мотивации — что движет персонажем. Выберите из таблиц книги, бросьте случайно или впишите своё.",
         "heroic": "Терринот: одна героическая способность на персонажа. Активируется за очки сюжета, улучшается очками способностей.",
         "details": "Имя, внешность и стартовые деньги.",
-        "summary": "Проверьте выбор и нажмите «Создать». Всё можно будет поправить на листе — режим создания останется включённым."
-      }
+        "summary": "Проверьте выбор и нажмите «Создать». Всё можно будет поправить на листе — режим создания останется включённым.",
+        "adventure": "Pick the adventure type: it defines races, careers, talents and the sheet's skill list."
+      },
+      "PickAdventure": "Pick an adventure first.",
+      "AdventureLocked": "The GM set this list in the world setup.",
+      "AdventureFree": "The GM has not limited adventure types yet — all are available."
     },
     "InitiativeLabel": "Инициатива",
     "Setup": {
       "Title": "Мастер настройки мира Genesys",
       "Open": "Открыть мастер",
       "MenuHint": "Импорт книг в мир, таблицы, журнал-справочник, макросы и очки сюжета.",
-      "Intro": "Добро пожаловать! Мастер подготовит мир к игре: выберите игровой мир и книги — контент будет импортирован в мир по папкам, будут созданы таблицы бросков, журнал-справочник и макросы. Мастер можно запустить снова из настроек системы.",
+      "Intro": "Welcome! Pick the adventure type: only matching races, careers, talents, gear and adversaries are imported, and players choose from them in character creation. Want everything — pick “All books”.",
       "Setting": "Игровой мир",
       "SettingHint": "Определяет набор навыков новых персонажей и какие расы, снаряжение и противники попадут в мир (например, для Терринота — только разрешённые в нём таланты Core).",
       "Books": "Книги",
       "Import": "Импорт в мир",
-      "ImportHint": "Выбранное появится во вкладках «Предметы» и «Актёры» в папках «Genesys: …». Компендиумы остаются доступны целиком в любом случае.",
+      "ImportHint": "Imported into folders “Genesys: …”. Compendiums stay complete anyway.",
       "Replace": "Заменить ранее импортированное мастером",
       "Extras": "Дополнительно",
       "Tables": "Таблицы бросков критических травм и попаданий",
@@ -649,14 +656,26 @@
         "Setup": "Мастер настройки мира"
       },
       "Log": {
-        "Setting": "Игровой мир: {name}",
+        "Setting": "Adventure: {name}",
         "Imported": "{name}: импортировано {count}",
         "Tables": "Созданы таблицы бросков",
         "Journal": "Создан журнал-справочник",
         "Macros": "Макросы добавлены на панель",
         "StoryPoints": "Очки сюжета розданы",
         "Done": "Мир готов к игре!"
-      }
+      },
+      "Adventures": "Adventure type",
+      "AdventuresHint": "You may pick several; players then choose at character creation. Same-named items from different books are not duplicated.",
+      "CountRaces": "races",
+      "CountCareers": "careers",
+      "CountFoes": "foes",
+      "CountTotal": "total",
+      "Custom": "Custom mix of worlds",
+      "CustomHint": "Toggle world tags, e.g. Fantasy + Steampunk. The first one sets the skill list.",
+      "PickAdventure": "Pick at least one adventure type.",
+      "Chosen": "Chosen",
+      "Of": "of",
+      "WillImport": "Will import"
     },
     "Ref": {
       "HowTo": "Как пользоваться системой",
@@ -672,6 +691,12 @@
       "XPSkill": "Ранг навыка: 5 × новый ранг; +5, если навык не карьерный. При создании — не выше ранга 2.",
       "XPTalent": "Талант: 5 × уровень; правило пирамиды — на уровне ниже должно быть больше талантов.",
       "XPHeroic": "Героические способности (Терринот): 1 очко способностей за каждые 50 опыта, полученного в игре."
+    },
+    "Worlds": {
+      "Any": "Any world",
+      "Edit": "Worlds",
+      "Hint": "World tags: which adventures this fits. No tags — any.",
+      "Foreign": "“{name}” belongs to {worlds}, but the character plays in {adventure}. Added anyway — the GM decides."
     }
   },
   "TYPES": {

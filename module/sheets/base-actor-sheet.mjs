@@ -1,4 +1,6 @@
 import { GENESYS } from "../config.mjs";
+import { WORLDS, getAdventure, fitsAdventure } from "../worlds.mjs";
+import { worldLabels } from "../helpers/adventure.mjs";
 import { DicePool } from "../dice/pool.mjs";
 import { DicePoolDialog } from "../apps/dice-pool-dialog.mjs";
 
@@ -25,7 +27,8 @@ export class GenesysBaseActorSheet extends HandlebarsApplicationMixin(ActorSheet
       itemToggle: GenesysBaseActorSheet.#onItemToggle,
       itemChat: GenesysBaseActorSheet.#onItemChat,
       itemQuantity: GenesysBaseActorSheet.#onItemQuantity,
-      rollInjury: GenesysBaseActorSheet.#onRollInjury
+      rollInjury: GenesysBaseActorSheet.#onRollInjury,
+      toggleWorld: GenesysBaseActorSheet.#onToggleWorld
     }
   };
 
@@ -57,7 +60,9 @@ export class GenesysBaseActorSheet extends HandlebarsApplicationMixin(ActorSheet
       gear: actor.itemTypes.gear,
       talents: actor.itemTypes.talent,
       abilities: actor.itemTypes.ability,
-      injuries: actor.itemTypes.injury
+      injuries: actor.itemTypes.injury,
+      worldTags: system.worlds ? worldLabels(system.worlds) : [],
+      worldChoices: system.worlds ? Object.entries(WORLDS).map(([key, w]) => ({ key, label: w.label, color: w.color, on: system.worlds.includes(key) })) : []
     });
     return context;
   }
@@ -129,6 +134,14 @@ export class GenesysBaseActorSheet extends HandlebarsApplicationMixin(ActorSheet
     // Сортировка внутри листа — стандартное поведение.
     if (item.parent?.uuid === this.actor.uuid) return super._onDropItem(event, item);
 
+    // Подсказка, если предмет из другого мира, чем приключение персонажа (не запрет — решает ведущий).
+    const adventureKey = this.actor.system.adventure;
+    if (adventureKey && !fitsAdventure(item, getAdventure(adventureKey))) {
+      ui.notifications.info(game.i18n.format("GENESYS.Worlds.Foreign", {
+        name: item.name, worlds: worldLabels(item.system.worlds).map(w => w.label).join(", "), adventure: getAdventure(adventureKey).label
+      }));
+    }
+
     switch (item.type) {
       case "archetype":
         if (this.actor.type === "character") return this.actor.applyArchetype(item);
@@ -157,6 +170,14 @@ export class GenesysBaseActorSheet extends HandlebarsApplicationMixin(ActorSheet
   _getItem(target) {
     const id = target.closest("[data-item-id]")?.dataset.itemId;
     return this.actor.items.get(id);
+  }
+
+  /** Включить/выключить тег мира (противник, транспорт). */
+  static async #onToggleWorld(event, target) {
+    const key = target.dataset.key;
+    const worlds = new Set(this.actor.system.worlds ?? []);
+    if (worlds.has(key)) worlds.delete(key); else worlds.add(key);
+    await this.actor.update({ "system.worlds": Object.keys(WORLDS).filter(w => worlds.has(w)) });
   }
 
   static #onRollSkill(event, target) {

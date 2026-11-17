@@ -13,6 +13,14 @@ export function registerSettings() {
     default: "all"
   });
 
+  // Типы приключений, выбранные ведущим в мастере настройки мира (пусто — все).
+  game.settings.register(SYSTEM_ID, "adventures", {
+    scope: "world",
+    config: false,
+    type: Array,
+    default: []
+  });
+
   game.settings.register(SYSTEM_ID, "initiativeSkill", {
     name: "GENESYS.Settings.InitiativeSkill.name",
     hint: "GENESYS.Settings.InitiativeSkill.hint",

@@ -13,6 +13,8 @@ import crypto from "node:crypto";
 import { compilePack } from "@foundryvtt/foundryvtt-cli";
 import { pickIcon, DEFAULTS } from "./icon-rules.mjs";
 import { tilePath, TILE_DIR } from "./icon-tiles.mjs";
+import { worldsFor } from "./world-rules.mjs";
+import { ADVENTURES, WORLD_KEYS } from "../module/worlds.mjs";
 
 /** Картинка документа: явно заданная или плашка game-icons по названию. */
 function imageFor(doc) {
@@ -154,6 +156,8 @@ function linkArchetypes(docs) {
   }
 }
 
+const WORLD_STATS = {};
+
 function buildPack(pack) {
   const raw = readSources(pack.name);
   if (!raw.length) return null;
@@ -191,7 +195,7 @@ function buildPack(pack) {
       type: doc.type,
       img: imageFor(doc),
       folder: folderId(doc.folder),
-      system: doc.system ?? {},
+      system: { ...(doc.system ?? {}), worlds: worldsFor(doc, pack.name) },
       effects: [],
       flags: { [SYSTEM_ID]: { nameEn: doc.nameEn ?? "" } },
       sort: count * 100,
@@ -210,6 +214,8 @@ function buildPack(pack) {
       if (doc.type === "vehicle") out.prototypeToken.disposition = 0;
     }
     fs.writeFileSync(path.join(outDir, `${id}.json`), JSON.stringify(out, null, 2));
+    for (const w of out.system.worlds) WORLD_STATS[w] = (WORLD_STATS[w] ?? 0) + 1;
+    if (out.system.worlds.length === WORLD_KEYS.length) WORLD_STATS["(все)"] = (WORLD_STATS["(все)"] ?? 0) + 1;
     count++;
   }
 
@@ -229,6 +235,9 @@ async function main() {
   fs.mkdirSync(OUT, { recursive: true });
   // Плашки по умолчанию для новых документов каждого типа.
   for (const [type, icon] of Object.entries(DEFAULTS)) tilePath(type, icon);
+  // Плашки типов приключений (мастера настройки мира и создания персонажа).
+  for (const a of Object.values(ADVENTURES)) tilePath("adventure", a.icon);
+  tilePath("adventure", "scroll-unfurled");
   writeCredits();
   const built = [];
   for (const pack of PACKS) {
@@ -263,6 +272,7 @@ async function main() {
   fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + "\n");
   fs.rmSync(path.join(ROOT, ".build"), { recursive: true, force: true });
   console.log(`system.json: ${built.length} компендиумов`);
+  console.log("Теги миров:", Object.entries(WORLD_STATS).map(([k, v]) => `${k} ${v}`).join(", "));
 }
 
 /** Атрибуция иконок (CC BY 3.0). */

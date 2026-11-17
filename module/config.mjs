@@ -3,11 +3,17 @@
  * Всё, что видит игрок, задаётся ключами локализации (lang/*.json).
  */
 
+import { WORLDS, ADVENTURES } from "./worlds.mjs";
+
 export const SYSTEM_ID = "genesys-rpg";
 export const SYSTEM_PATH = `systems/${SYSTEM_ID}`;
 export const TEMPLATES = `${SYSTEM_PATH}/templates`;
 
 export const GENESYS = {};
+
+/** Теги миров и типы приключений (module/worlds.mjs). */
+GENESYS.worlds = WORLDS;
+GENESYS.adventures = ADVENTURES;
 
 /** Шесть характеристик. */
 GENESYS.characteristics = {
@@ -268,7 +274,9 @@ GENESYS.extraSkills = {
   knowledgeLore: { characteristic: "intellect", category: "knowledge" },
   runes: { characteristic: "intellect", category: "magic" },
   verse: { characteristic: "presence", category: "magic" },
-  psychic: { characteristic: "presence", category: "magic" }
+  psychic: { characteristic: "presence", category: "magic" },
+  knowledgeSupernatural: { characteristic: "intellect", category: "knowledge" },
+  knowledgeScience: { characteristic: "intellect", category: "knowledge" }
 };
 
 /** Источники (книги) по началу строки source. */
@@ -277,22 +285,6 @@ GENESYS.sources = {
   epg: { label: "Expanded Player's Guide", match: "Expanded Player's Guide" },
   rot: { label: "Realms of Terrinoth", match: "Realms of Terrinoth" },
   zgm: { label: "Zynnythryx's Guide to Magic", match: "Zynnythryx" }
-};
-
-/** Папки компендиумов, привязанные к игровым мирам (остальные папки — общие). */
-GENESYS.settingFolders = ["Фэнтези", "Стимпанк", "Моровая война", "Современность", "Научная фантастика", "Космоопера",
-  "Эпоха мифов", "Мир чудовищ", "Постапокалипсис", "Терринот"];
-
-/** Какие папки миров подходят выбранному набору (по началу имени папки). */
-GENESYS.settingContent = {
-  all: null,
-  fantasy: ["Фэнтези", "Эпоха мифов"],
-  steampunk: ["Стимпанк"],
-  weirdwar: ["Моровая война", "Стимпанк"],
-  modern: ["Современность", "Мир чудовищ"],
-  scifi: ["Научная фантастика", "Постапокалипсис"],
-  spaceopera: ["Космоопера", "Научная фантастика"],
-  terrinoth: ["Терринот", "Фэнтези"]
 };
 
 /** Таланты Core, разрешённые в Терриноте (Таблица 2–4 Realms of Terrinoth). */

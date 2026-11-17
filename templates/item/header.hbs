@@ -6,5 +6,17 @@
       <span class="item-type">{{typeLabel}}</span>
       <input class="item-source" type="text" name="system.source" value="{{system.source}}" placeholder="{{localize 'GENESYS.SourcePlaceholder'}}">
     </div>
+    <div class="gs-worlds" title="{{localize 'GENESYS.Worlds.Hint'}}">
+      <i class="fa-solid fa-earth-europe" style="margin-right:6px;color:var(--gs-muted)"></i>
+      {{#each worldTags}}<span class="gs-world" style="--world: {{color}}">{{label}}</span>{{/each}}
+    </div>
+    {{#if editable}}
+    <details class="gs-worlds-edit">
+      <summary>{{localize "GENESYS.Worlds.Edit"}}</summary>
+      <div class="gs-worlds">
+        {{#each worldChoices}}<button type="button" class="gs-world {{#if on}}on{{/if}}" style="--world: {{color}}" data-action="toggleWorld" data-key="{{key}}">{{label}}</button>{{/each}}
+      </div>
+    </details>
+    {{/if}}
   </div>
 </header>

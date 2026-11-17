@@ -11,6 +11,7 @@
       <span class="wz-budget-label">{{localize "GENESYS.Wizard.XPLeft"}}</span>
       <span class="wz-budget-sub">{{budget.spent}} / {{budget.total}}</span>
     </div>
+    {{#if adventureName}}<div class="wz-adv-badge"><img src="{{adventureImg}}" alt=""><span>{{adventureName}}</span></div>{{/if}}
     {{#if archetypeName}}<div class="wz-mini">{{archetypeName}}{{#if careerName}} · {{careerName}}{{/if}}</div>{{/if}}
   </nav>
 
@@ -20,6 +21,25 @@
       <h2>{{localize (concat "GENESYS.Wizard.Step." step)}}</h2>
       <p class="gs-help">{{localize (concat "GENESYS.Wizard.Help." step)}}</p>
     </header>
+
+    {{#if (eq step "adventure")}}
+    <div class="wz-body">
+      <div class="wz-adventures">
+        {{#each adventures}}
+        <a class="ws-adv {{#if selected}}selected{{/if}}" data-action="pick" data-kind="adventure" data-uuid="{{key}}">
+          <img src="{{img}}" alt="">
+          <span class="ws-adv-body">
+            <strong>{{label}}</strong>
+            <span class="ws-adv-hint">{{hint}}</span>
+            <span class="ws-adv-counts">{{localize "GENESYS.Setup.CountRaces"}} {{races}} · {{localize "GENESYS.Setup.CountCareers"}} {{careers}}</span>
+          </span>
+          <i class="ws-check fa-solid {{#if selected}}fa-circle-check{{else}}fa-circle{{/if}}"></i>
+        </a>
+        {{/each}}
+      </div>
+      <p class="wz-lock"><i class="fa-solid fa-circle-info"></i> {{#if adventureLocked}}{{localize "GENESYS.Wizard.AdventureLocked"}}{{else}}{{localize "GENESYS.Wizard.AdventureFree"}}{{/if}}</p>
+    </div>
+    {{/if}}
 
     {{#if (or (eq step "archetype") (eq step "career"))}}
     <div class="wz-split">
@@ -212,6 +232,7 @@
     {{#if (eq step "summary")}}
     <div class="wz-body wz-summary">
       <h3>{{summary.name}}</h3>
+      {{#if summary.adventure}}<p><b>{{localize "GENESYS.Wizard.Step.adventure"}}:</b> {{summary.adventure}}</p>{{/if}}
       <p><b>{{localize "TYPES.Item.archetype"}}:</b> {{summary.archetype}} · <b>{{localize "TYPES.Item.career"}}:</b> {{summary.career}}{{#if summary.heroic}} · <b>{{localize "GENESYS.Heroic.Title"}}:</b> {{summary.heroic}}{{/if}}</p>
       <div class="wz-chars">{{#each summary.chars}}<div class="wz-char"><span class="wz-char-v">{{value}}</span><span class="wz-char-l">{{localize label}}</span></div>{{/each}}</div>
       <p><b>{{localize "GENESYS.Wizard.FreeCareerRanks"}}:</b> {{summary.careerFree}}</p>

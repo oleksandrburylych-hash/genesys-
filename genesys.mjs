@@ -28,6 +28,7 @@ import { registerCombatSocket } from "./module/combat/combat.mjs";
 import { registerCombatHooks } from "./module/combat/initiative.mjs";
 import { WorldSetup, newSession } from "./module/apps/world-setup.mjs";
 import { openApp } from "./module/helpers/safe.mjs";
+import * as worlds from "./module/worlds.mjs";
 
 /* -------------------------------------------- */
 /*  Init                                        */
@@ -41,6 +42,7 @@ Hooks.once("init", () => {
   // Публичный API для макросов: game.genesys.roll({ability: 2, difficulty: 2})
   game.genesys = {
     config: GENESYS,
+    worlds,
     DicePool,
     GenesysRoll,
     DicePoolDialog,
@@ -66,6 +68,11 @@ Hooks.once("init", () => {
   // Модели данных
   CONFIG.Actor.dataModels = { character: CharacterData, adversary: AdversaryData, vehicle: VehicleData };
   CONFIG.Item.dataModels = ITEM_MODELS;
+
+  // Теги миров и книга — в индексе компендиумов (быстрый отбор без загрузки документов).
+  for (const cls of [CONFIG.Item, CONFIG.Actor]) {
+    cls.compendiumIndexFields = [...new Set([...(cls.compendiumIndexFields ?? []), "system.worlds", "system.source"])];
+  }
 
   // Отслеживаемые полоски токена
   CONFIG.Actor.trackableAttributes = {

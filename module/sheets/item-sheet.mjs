@@ -1,4 +1,6 @@
 import { GENESYS, TEMPLATES } from "../config.mjs";
+import { WORLDS } from "../worlds.mjs";
+import { worldLabels } from "../helpers/adventure.mjs";
 
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ItemSheetV2 } = foundry.applications.sheets;
@@ -21,7 +23,8 @@ export class GenesysItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
       removeRow: GenesysItemSheet.#onRemoveRow,
       castSpell: GenesysItemSheet.#onCastSpell,
       removeAttachment: GenesysItemSheet.#onRemoveAttachment,
-      buyUpgrade: GenesysItemSheet.#onBuyUpgrade
+      buyUpgrade: GenesysItemSheet.#onBuyUpgrade,
+      toggleWorld: GenesysItemSheet.#onToggleWorld
     }
   };
 
@@ -70,6 +73,8 @@ export class GenesysItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
         appliesTo: { weapon: "TYPES.Item.weapon", armor: "TYPES.Item.armor", any: "GENESYS.Attachment.Any" }
       },
       owned: !!item.actor,
+      worldTags: worldLabels(system.worlds ?? []),
+      worldChoices: Object.entries(WORLDS).map(([key, w]) => ({ key, label: w.label, color: w.color, on: (system.worlds ?? []).includes(key) })),
       heroicPoints: item.type === "heroic" ? item.actor?.system.heroicPoints : null,
       attachmentsInfo: system.attachments ? {
         used: system.installedHardPoints,
@@ -177,6 +182,14 @@ export class GenesysItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
   }
 
   /** Купить/вернуть улучшение героической способности за очки способностей. */
+  /** Включить/выключить тег мира. */
+  static async #onToggleWorld(event, target) {
+    const key = target.dataset.key;
+    const worlds = new Set(this.item.system.worlds ?? []);
+    if (worlds.has(key)) worlds.delete(key); else worlds.add(key);
+    await this.item.update({ "system.worlds": Object.keys(WORLDS).filter(w => worlds.has(w)) });
+  }
+
   static async #onBuyUpgrade(event, target) {
     const actor = this.item.actor;
     if (!actor) return;

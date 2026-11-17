@@ -18,6 +18,12 @@
           <label>{{localize "GENESYS.Sheet.Player"}}</label>
           <span>{{playerName}}</span>
         </div>
+        {{#if adventureLabel}}
+        <div class="gs-line">
+          <label>{{localize "GENESYS.Wizard.Step.adventure"}}</label>
+          <span>{{adventureLabel}}</span>
+        </div>
+        {{/if}}
       </div>
       <div class="gs-toolbar">
         {{#if system.creation}}

@@ -1,4 +1,6 @@
 import { GENESYS, SYSTEM_ID, TEMPLATES } from "../config.mjs";
+import { ADVENTURES, WORLDS, getAdventure, filterForAdventure } from "../worlds.mjs";
+import { adventureImg, enabledAdventureKeys } from "../helpers/adventure.mjs";
 
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
@@ -7,24 +9,27 @@ const IMPORTABLE = [
   ["archetypes", true], ["careers", true], ["skills", false], ["talents", true], ["abilities", true],
   ["heroic", true], ["spells", true], ["weapons", true], ["armor", true], ["gear", true],
   ["attachments", true], ["qualities", true], ["injuries", false], ["vehicle-crits", false],
-  ["adversaries", true], ["vehicles", false]
+  ["adversaries", true], ["vehicles", true]
 ];
 
 /**
- * Мастер настройки мира: игровой мир и книги, импорт контента в мир, таблицы бросков,
- * журнал-справочник, макросы, стартовые очки сюжета. Открывается ведущему при первом запуске мира.
+ * Мастер настройки мира: типы приключений (наборы миров), книги, импорт подходящего контента
+ * в мир, таблицы бросков, журнал-справочник, макросы, стартовые очки сюжета.
+ * Выбранные приключения сохраняются в настройке мира — из них игроки выбирают при создании персонажа.
  */
 export class WorldSetup extends HandlebarsApplicationMixin(ApplicationV2) {
   constructor(options = {}) {
     super(options);
-    let preset = "all";
-    try { preset = game.settings.get(SYSTEM_ID, "skillPreset"); } catch { /* ещё нет */ }
+    const saved = enabledAdventureKeys();
+    const custom = saved.find(k => k.startsWith("custom:"));
     this.setup = {
-      setting: preset,
+      adventures: new Set(saved.filter(k => ADVENTURES[k])),
+      customWorlds: new Set(custom ? custom.slice(7).split(",") : []),
       sources: Object.fromEntries(Object.keys(GENESYS.sources).map(k => [k, true])),
       packs: Object.fromEntries(IMPORTABLE.map(([k, on]) => [k, on])),
       tables: true, journal: true, macros: true, storyPoints: true, replace: true
     };
+    this.index = null;
     this.log = [];
     this.running = false;
   }
@@ -34,8 +39,8 @@ export class WorldSetup extends HandlebarsApplicationMixin(ApplicationV2) {
     classes: ["genesys", "world-setup"],
     tag: "form",
     window: { title: "GENESYS.Setup.Title", icon: "fa-solid fa-wand-magic-sparkles", resizable: true },
-    position: { width: 620, height: 720 },
-    actions: { install: WorldSetup.#onInstall, skip: WorldSetup.#onSkip },
+    position: { width: 860, height: 820 },
+    actions: { install: WorldSetup.#onInstall, skip: WorldSetup.#onSkip, adventure: WorldSetup.#onAdventure, world: WorldSetup.#onWorld },
     form: { handler: WorldSetup.#onChange, submitOnChange: true, closeOnSubmit: false }
   };
 
@@ -51,16 +56,71 @@ export class WorldSetup extends HandlebarsApplicationMixin(ApplicationV2) {
     }
   }
 
+  /** Индекс всех импортируемых компендиумов с тегами миров (для счётчиков). */
+  async #loadIndex() {
+    if (this.index) return this.index;
+    const entries = [];
+    for (const [key] of IMPORTABLE) {
+      const pack = game.packs.get(`${SYSTEM_ID}.${key}`);
+      if (!pack) continue;
+      const index = await pack.getIndex({ fields: ["system.worlds", "system.source"] });
+      for (const e of index) entries.push({ ...e, pack: key });
+    }
+    return (this.index = entries);
+  }
+
+  /** Выбранные приключения (объекты), включая своё сочетание миров. */
+  get chosen() {
+    const s = this.setup;
+    const list = [...s.adventures].map(k => getAdventure(k));
+    if (s.customWorlds.size) list.push(getAdventure(`custom:${[...s.customWorlds].join(",")}`));
+    return list;
+  }
+
+  /** Подходит ли книга документа выбранным книгам. */
+  #bookOk(doc) {
+    const source = doc.system?.source ?? "";
+    const book = Object.entries(GENESYS.sources).find(([, cfg]) => source.startsWith(cfg.match))?.[0];
+    return !book || this.setup.sources[book];
+  }
+
+  /** Документы (или записи индекса), подходящие хотя бы одному выбранному приключению, без дублей. */
+  select(docs) {
+    const pool = docs.filter(d => this.#bookOk(d));
+    const out = new Map();
+    for (const a of this.chosen) for (const d of filterForAdventure(pool, a)) out.set(d._id ?? d.id ?? d.uuid, d);
+    return [...out.values()];
+  }
+
   async #buildContext() {
     const s = this.setup;
+    const index = await this.#loadIndex();
+    const pool = index.filter(d => this.#bookOk(d));
+    const count = (a, pack) => filterForAdventure(pool.filter(d => d.pack === pack), a).length;
+    const adventures = Object.entries(ADVENTURES).map(([key, cfg]) => {
+      const a = getAdventure(key);
+      return {
+        key, label: cfg.label, hint: cfg.hint, img: adventureImg(cfg), selected: s.adventures.has(key),
+        archetypes: count(a, "archetypes"), careers: count(a, "careers"), adversaries: count(a, "adversaries"),
+        total: filterForAdventure(pool, a).length
+      };
+    });
+    const selected = this.select(index);
+    const byPack = new Map();
+    for (const d of selected) byPack.set(d.pack, (byPack.get(d.pack) ?? 0) + 1);
     return {
-      settings: Object.entries(GENESYS.skillPresets).filter(([k]) => k !== "none")
-        .map(([key, label]) => ({ key, label, selected: key === s.setting })),
+      adventures,
+      customImg: adventureImg({ icon: "scroll-unfurled" }),
+      customActive: s.customWorlds.size > 0,
+      worlds: Object.entries(WORLDS).map(([key, w]) => ({ key, label: w.label, color: w.color, on: s.customWorlds.has(key) })),
       sources: Object.entries(GENESYS.sources).map(([key, cfg]) => ({ key, label: cfg.label, checked: s.sources[key] })),
       packs: IMPORTABLE.map(([key]) => {
         const pack = game.packs.get(`${SYSTEM_ID}.${key}`);
-        return pack ? { key, label: pack.metadata.label, count: pack.index.size, checked: s.packs[key] } : null;
+        return pack ? { key, label: pack.metadata.label, count: byPack.get(key) ?? 0, total: pack.index.size, checked: s.packs[key] } : null;
       }).filter(Boolean),
+      chosenLabels: this.chosen.map(a => a.label).join(", "),
+      nothingChosen: !this.chosen.length,
+      selectedTotal: selected.filter(d => s.packs[d.pack]).length,
       state: s,
       log: this.log,
       running: this.running
@@ -70,10 +130,29 @@ export class WorldSetup extends HandlebarsApplicationMixin(ApplicationV2) {
   static #onChange(event, form, formData) {
     const d = foundry.utils.expandObject(formData.object);
     const s = this.setup;
-    if (d.setting) s.setting = d.setting;
     for (const k of Object.keys(s.sources)) s.sources[k] = !!d.sources?.[k];
     for (const k of Object.keys(s.packs)) s.packs[k] = !!d.packs?.[k];
     for (const k of ["tables", "journal", "macros", "storyPoints", "replace"]) s[k] = !!d[k];
+    if (event?.target?.name?.startsWith("sources.") || event?.target?.name?.startsWith("packs.")) this.render();
+  }
+
+  static #onAdventure(event, target) {
+    const key = target.dataset.key;
+    const s = this.setup;
+    if (key === "all") { s.adventures = new Set(s.adventures.has("all") ? [] : ["all"]); s.customWorlds.clear(); }
+    else {
+      s.adventures.delete("all");
+      if (s.adventures.has(key)) s.adventures.delete(key); else s.adventures.add(key);
+    }
+    this.render();
+  }
+
+  static #onWorld(event, target) {
+    const key = target.dataset.key;
+    const s = this.setup;
+    s.adventures.delete("all");
+    if (s.customWorlds.has(key)) s.customWorlds.delete(key); else s.customWorlds.add(key);
+    this.render();
   }
 
   static async #onSkip() {
@@ -86,29 +165,17 @@ export class WorldSetup extends HandlebarsApplicationMixin(ApplicationV2) {
     this.render();
   }
 
-  /** Подходит ли документ выбранным книгам и миру. */
-  #accept(doc) {
-    const s = this.setup;
-    const source = doc.system?.source ?? "";
-    const book = Object.entries(GENESYS.sources).find(([, cfg]) => source.startsWith(cfg.match))?.[0];
-    if (book && !s.sources[book]) return false;
-    const folder = doc.folder?.name ?? "";
-    const allowed = GENESYS.settingContent[s.setting];
-    if (allowed && GENESYS.settingFolders.some(f => folder.startsWith(f)) && !allowed.some(a => folder.startsWith(a))) return false;
-    // Терринот: из талантов Core — только разрешённые книгой.
-    if (s.setting === "terrinoth" && doc.type === "talent" && source.startsWith("Core Rulebook")
-      && !GENESYS.terrinothCoreTalents.includes(doc.name)) return false;
-    return true;
-  }
-
   static async #onInstall() {
     if (this.running) return;
+    const chosen = this.chosen;
+    if (!chosen.length) return ui.notifications.warn("GENESYS.Setup.PickAdventure", { localize: true });
     this.running = true;
     this.log = [];
     const s = this.setup;
     try {
-      await game.settings.set(SYSTEM_ID, "skillPreset", s.setting);
-      this.#step(game.i18n.format("GENESYS.Setup.Log.Setting", { name: game.i18n.localize(GENESYS.skillPresets[s.setting]) }));
+      await game.settings.set(SYSTEM_ID, "adventures", chosen.map(a => a.key));
+      await game.settings.set(SYSTEM_ID, "skillPreset", chosen.length === 1 ? chosen[0].skills : (chosen.find(a => a.key === "all") ? "all" : chosen[0].skills));
+      this.#step(game.i18n.format("GENESYS.Setup.Log.Setting", { name: chosen.map(a => a.label).join(", ") }));
 
       for (const [key] of IMPORTABLE) {
         if (!s.packs[key]) continue;
@@ -153,7 +220,7 @@ export class WorldSetup extends HandlebarsApplicationMixin(ApplicationV2) {
     if (oldRoot && this.setup.replace) await oldRoot.delete({ deleteSubfolders: true, deleteContents: true });
     else if (oldRoot) return 0;
 
-    const docs = (await pack.getDocuments()).filter(d => this.#accept(d));
+    const docs = this.select(await pack.getDocuments());
     if (!docs.length) return 0;
     const root = await this.#folder(rootName, type);
     const sub = new Map();

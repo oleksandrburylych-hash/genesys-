@@ -1,10 +1,20 @@
 import { GENESYS, SYSTEM_ID, TEMPLATES } from "../config.mjs";
+import { getAdventure, filterForAdventure } from "../worlds.mjs";
+import { availableAdventures, enabledAdventureKeys, adventureImg, adventureSkillKeys } from "../helpers/adventure.mjs";
 
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
-const STEPS = ["archetype", "career", "skills", "xp", "talents", "motivations", "heroic", "details", "summary"];
+const STEPS = ["adventure", "archetype", "career", "skills", "xp", "talents", "motivations", "heroic", "details", "summary"];
 const CHARS = Object.keys(GENESYS.characteristics);
 const MOTIVATIONS = ["strength", "flaw", "desire", "fear"];
+
+/** Замена карьерных навыков, которых нет в наборе приключения (правило Core: «Ближний бой» ↔ «Ближний бой (лёгкое оружие)» и т. п.). */
+const SKILL_SUBSTITUTES = {
+  melee: ["meleeLight", "meleeHeavy"], meleeLight: ["melee"], meleeHeavy: ["melee"],
+  ranged: ["rangedLight", "rangedHeavy"], rangedLight: ["ranged"], rangedHeavy: ["ranged"],
+  knowledge: ["knowledgeLore", "knowledgeAdventuring", "knowledgeSupernatural"],
+  knowledgeLore: ["knowledge"], knowledgeAdventuring: ["knowledge"], knowledgeForbidden: ["knowledge"], knowledgeGeography: ["knowledge"]
+};
 
 /** Книга по строке source. */
 function bookOf(source = "") {
@@ -27,8 +37,15 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
     this.actor = actor;
     this.stepIndex = 0;
     this.lib = null;
+    this.viewCache = null;
     this.filter = { archetype: "", career: "", talent: "", archetypeSearch: "", careerSearch: "", talentSearch: "", talentTier: 0 };
+    // Приключение: сохранённое у персонажа, единственное разрешённое ведущим — или выбор на первом шаге.
+    const avail = availableAdventures();
+    const own = avail.find(a => a.key === actor?.system?.adventure)?.key;
+    const adventure = own ?? (avail.length === 1 ? avail[0].key : null);
+    if (adventure) this.stepIndex = 1;
     this.pick = {
+      adventure,
       archetype: null, career: null, heroic: null,
       careerFree: [], startFree: [],
       chars: Object.fromEntries(CHARS.map(k => [k, 0])),
@@ -62,12 +79,25 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
   /*  Данные                                       */
   /* -------------------------------------------- */
 
+  /**
+   * Документы типа из компендиума и мира. Копии из компендиума, импортированные в мир мастером настройки,
+   * заменяют оригинал (ведущий мог их поправить), поэтому одна и та же карьера не появляется дважды.
+   */
   async #docs(packName, type) {
-    const out = [];
     const pack = game.packs.get(`${SYSTEM_ID}.${packName}`);
-    if (pack) for (const d of await pack.getDocuments()) if (d.type === type) out.push(d);
-    for (const d of game.items.filter(i => i.type === type)) out.push(d);
-    return out;
+    const packDocs = pack ? (await pack.getDocuments()).filter(d => d.type === type) : [];
+    const byUuid = new Map(packDocs.map(d => [d.uuid, d]));
+    const replaced = new Set();
+    const world = [];
+    for (const item of game.items.filter(i => i.type === type)) {
+      const src = item._stats?.compendiumSource ?? item.flags?.core?.sourceId;
+      const original = src ? byUuid.get(src) : null;
+      // Копии, импортированные до появления тегов (пустые теги), заменяются оригиналом с тегами.
+      if (original && !(item.system.worlds?.length) && original.system.worlds?.length) continue;
+      if (original) replaced.add(src);
+      world.push(item);
+    }
+    return [...packDocs.filter(d => !replaced.has(d.uuid)), ...world];
   }
 
   async #load() {
@@ -83,6 +113,23 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
   }
 
   #doc(uuid) { return uuid ? this.lib?.byUuid.get(uuid) ?? null : null; }
+
+  /** Выбранное приключение. */
+  get adventure() { return this.pick.adventure ? getAdventure(this.pick.adventure) : null; }
+
+  /** Контент, подходящий приключению (без дублей); кешируется до смены приключения. */
+  get view() {
+    const adv = this.adventure ?? getAdventure("all");
+    if (this.viewCache?.key !== adv.key) {
+      const f = list => filterForAdventure(list, adv);
+      this.viewCache = {
+        key: adv.key,
+        archetypes: f(this.lib.archetypes), careers: f(this.lib.careers), heroics: f(this.lib.heroics),
+        talents: f(this.lib.talents), skills: this.lib.skills
+      };
+    }
+    return this.viewCache;
+  }
   get archetype() { return this.#doc(this.pick.archetype); }
   get career() { return this.#doc(this.pick.career); }
 
@@ -95,36 +142,77 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
     return parts.join(" · ") || game.i18n.localize("GENESYS.Wizard.World");
   }
 
-  /** Набор игрового мира (для фильтра талантов). */
-  get setting() { try { return game.settings.get(SYSTEM_ID, "skillPreset"); } catch { return "all"; } }
-
-  /** Подходит ли талант миру (как в мастере настройки мира). */
-  #talentAllowed(doc) {
-    const setting = this.setting;
-    const folder = doc.folder?.name ?? "";
-    const allowed = GENESYS.settingContent?.[setting];
-    if (allowed && GENESYS.settingFolders.some(f => folder.startsWith(f)) && !allowed.some(a => folder.startsWith(a))) return false;
-    if (setting === "terrinoth" && (doc.system?.source ?? "").startsWith("Core") && !GENESYS.terrinothCoreTalents.includes(doc.name)) return false;
-    return true;
-  }
-
   /* -------------------------------------------- */
   /*  Навыки и опыт                                */
   /* -------------------------------------------- */
 
-  /** Все навыки, которые будут у персонажа: текущие + навыки карьеры из компендиума. */
+  /** Ключ навыка по имени (компендиум навыков или локализация). */
+  #skillKey(name) {
+    const n = name.trim().toLowerCase();
+    const doc = this.lib.skills.find(s => s.name.toLowerCase() === n);
+    if (doc?.system.key) return doc.system.key;
+    const all = [...GENESYS.defaultSkills.map(s => s.key), ...Object.keys(GENESYS.extraSkills)];
+    return all.find(k => game.i18n.localize(`GENESYS.Skill.${k}`).toLowerCase() === n) ?? null;
+  }
+
+  /** Ключи навыков приключения (null — без ограничений). */
+  get skillKeys() {
+    const adv = this.adventure;
+    return adv && adv.skills !== "all" ? adventureSkillKeys(adv) : null;
+  }
+
+  /** Карьерные навыки с заменой на навыки приключения («Ближний бой» → «Ближний бой (лёгкое оружие)» и т. п.). */
+  #careerSkillNames(career = this.career) {
+    const keys = this.skillKeys;
+    const out = [];
+    for (const name of career?.system.careerSkills ?? []) {
+      let result = name;
+      const key = this.#skillKey(name);
+      if (keys && key && !keys.includes(key)) {
+        const alt = SKILL_SUBSTITUTES[key]?.find(a => keys.includes(a) && !out.includes(game.i18n.localize(`GENESYS.Skill.${a}`)));
+        if (alt) result = game.i18n.localize(`GENESYS.Skill.${alt}`);
+      }
+      if (!out.some(n => n.toLowerCase() === result.toLowerCase())) out.push(result);
+    }
+    return out;
+  }
+
+  /** Описание навыка по ключу. */
+  static #skillDef(key) {
+    return GENESYS.defaultSkills.find(s => s.key === key) ?? GENESYS.extraSkills[key] ?? null;
+  }
+
+  /**
+   * Навыки будущего персонажа: набор навыков приключения + карьерные навыки
+   * + уже вложенные ранги персонажа (ничего не теряется).
+   */
   #skillRows() {
-    const career = this.career;
-    const careerNames = new Set((career?.system.careerSkills ?? []).map(n => n.toLowerCase()));
+    const careerNames = this.#careerSkillNames();
+    const careerSet = new Set(careerNames.map(n => n.toLowerCase()));
+    const keys = this.skillKeys;
+    const owned = this.actor.itemTypes.skill;
     const rows = new Map();
-    for (const s of this.actor.itemTypes.skill) rows.set(s.name.toLowerCase(), { name: s.name, characteristic: s.system.characteristic, base: s.system.rank, category: s.system.category });
-    for (const n of career?.system.careerSkills ?? []) {
+    const add = (name, characteristic, category, base) => {
+      if (!rows.has(name.toLowerCase())) rows.set(name.toLowerCase(), { name, characteristic, base, category });
+    };
+    if (keys) {
+      for (const k of keys) {
+        const def = CreationWizard.#skillDef(k);
+        const have = owned.find(s => s.system.key === k);
+        add(have?.name ?? game.i18n.localize(`GENESYS.Skill.${k}`), def?.characteristic ?? "intellect", def?.category ?? "general", have?.system.rank ?? 0);
+      }
+      for (const s of owned) if (s.system.rank > 0 || !s.system.key) add(s.name, s.system.characteristic, s.system.category, s.system.rank);
+    } else {
+      for (const s of owned) add(s.name, s.system.characteristic, s.system.category, s.system.rank);
+    }
+    for (const n of careerNames) {
       if (rows.has(n.toLowerCase())) continue;
-      const def = this.lib.skills.find(s => s.name.toLowerCase() === n.toLowerCase());
-      rows.set(n.toLowerCase(), { name: n, characteristic: def?.system.characteristic ?? "intellect", base: 0, category: def?.system.category ?? "general" });
+      const key = this.#skillKey(n);
+      const def = this.lib.skills.find(s => s.name.toLowerCase() === n.toLowerCase())?.system ?? CreationWizard.#skillDef(key);
+      add(n, def?.characteristic ?? "intellect", def?.category ?? "general", 0);
     }
     return [...rows.values()].map(r => {
-      const isCareer = careerNames.has(r.name.toLowerCase());
+      const isCareer = careerSet.has(r.name.toLowerCase());
       const free = (this.pick.careerFree.includes(r.name) ? 1 : 0) + (this.pick.startFree.includes(r.name) ? 1 : 0);
       const start = Math.min(GENESYS.xp.maxSkillCreation, r.base + free);
       const bought = this.pick.skills[r.name] ?? 0;
@@ -195,8 +283,17 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
     const ctx = {
       step: this.step, stepIndex: this.stepIndex, isFirst: this.stepIndex === 0, isLast: this.stepIndex === STEPS.length - 1,
       steps: STEPS.map((s, i) => ({ key: s, index: i, num: i + 1, label: `GENESYS.Wizard.Step.${s}`, active: i === this.stepIndex, done: this.#stepDone(s) })),
-      budget, archetypeName: arch?.name, careerName: career?.name
+      budget, archetypeName: arch?.name, careerName: career?.name,
+      adventureName: this.adventure?.label, adventureImg: this.adventure ? adventureImg(this.adventure) : null
     };
+    if (this.step === "adventure") {
+      const locked = enabledAdventureKeys().length > 0;
+      ctx.adventures = availableAdventures().map(a => ({
+        key: a.key, label: a.label, hint: a.hint, img: adventureImg(a), selected: a.key === this.pick.adventure,
+        races: filterForAdventure(this.lib.archetypes, a).length, careers: filterForAdventure(this.lib.careers, a).length
+      }));
+      ctx.adventureLocked = locked;
+    }
 
     const cards = (docs, kind) => {
       const groups = [...new Set(docs.map(d => this.#group(d)))].sort();
@@ -216,7 +313,7 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
     };
 
     if (this.step === "archetype") {
-      ctx.list = cards(this.lib.archetypes, "archetype");
+      ctx.list = cards(this.view.archetypes, "archetype");
       if (arch) ctx.detail = {
         name: arch.name, img: arch.img, group: this.#group(arch),
         chars: CHARS.map(k => ({ label: GENESYS.characteristics[k].label, value: arch.system.characteristics[k] })),
@@ -227,10 +324,10 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
       };
     }
     if (this.step === "career") {
-      ctx.list = cards(this.lib.careers, "career");
+      ctx.list = cards(this.view.careers, "career");
       if (career) ctx.detail = {
         name: career.name, img: career.img, group: this.#group(career),
-        careerSkills: career.system.careerSkills, description: career.system.description,
+        careerSkills: this.#careerSkillNames(career), description: career.system.description,
         gear: GENESYS.creation?.careerGear?.[career.name] ?? ""
       };
     }
@@ -262,7 +359,7 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
         return { index: i, name: d?.name, img: d?.img, rank: t.rank, tier: this.#talentTier(t), cost: GENESYS.xp.talent(this.#talentTier(t)) };
       });
       ctx.counts = [1, 2, 3, 4, 5].map(t => ({ t, n: counts[t] }));
-      ctx.talentCards = this.lib.talents.filter(d => this.#talentAllowed(d) && d.system.tier <= 3
+      ctx.talentCards = this.view.talents.filter(d => d.system.tier <= 3
           && (!tierF || d.system.tier === tierF) && (!q || d.name.toLowerCase().includes(q)))
         .sort((a, b) => a.system.tier - b.system.tier || a.name.localeCompare(b.name, game.i18n.lang))
         .slice(0, 160)
@@ -280,7 +377,7 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
       ctx.hasTables = Object.keys(tables).length > 0;
     }
     if (this.step === "heroic") {
-      ctx.heroics = this.lib.heroics.map(d => ({ uuid: d.uuid, name: d.name, img: d.img, description: d.system.description, selected: this.pick.heroic === d.uuid }));
+      ctx.heroics = this.view.heroics.map(d => ({ uuid: d.uuid, name: d.name, img: d.img, description: d.system.description, selected: this.pick.heroic === d.uuid }));
     }
     if (this.step === "details") {
       ctx.details = this.pick.details;
@@ -289,7 +386,7 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
     }
     if (this.step === "summary") {
       ctx.summary = {
-        archetype: arch?.name, career: career?.name, heroic: this.#doc(this.pick.heroic)?.name,
+        adventure: this.adventure?.label, archetype: arch?.name, career: career?.name, heroic: this.#doc(this.pick.heroic)?.name,
         careerFree: this.pick.careerFree.join(", "), startFree: this.pick.startFree.join(", "),
         chars: CHARS.map(k => ({ label: GENESYS.characteristics[k].label, value: (arch?.system.characteristics[k] ?? 2) + this.pick.chars[k] })),
         skills: this.#skillRows().filter(r => r.rank > 0).map(r => `${r.name} ${r.rank}`).join(", "),
@@ -303,6 +400,7 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
   }
 
   #stepDone(step) {
+    if (step === "adventure") return !!this.pick.adventure;
     if (step === "archetype") return !!this.pick.archetype;
     if (step === "career") return !!this.pick.career;
     if (step === "skills") return this.pick.careerFree.length === 4;
@@ -332,21 +430,31 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
 
   static #onGoto(event, target) { this.stepIndex = Number(target.dataset.index); this.render(); }
   static #onNext() {
+    if (this.step === "adventure" && !this.pick.adventure) return ui.notifications.warn("GENESYS.Wizard.PickAdventure", { localize: true });
     if (this.step === "archetype" && !this.pick.archetype) return ui.notifications.warn("GENESYS.Wizard.PickArchetype", { localize: true });
     if (this.step === "career" && !this.pick.career) return ui.notifications.warn("GENESYS.Wizard.PickCareer", { localize: true });
     this.stepIndex = Math.min(STEPS.length - 1, this.stepIndex + 1);
-    if (this.step === "heroic" && !this.lib.heroics.length) this.stepIndex++;
+    if (this.step === "heroic" && !this.view.heroics.length) this.stepIndex++;
     this.render();
   }
   static #onBack() {
     this.stepIndex = Math.max(0, this.stepIndex - 1);
-    if (this.step === "heroic" && !this.lib.heroics.length) this.stepIndex--;
+    if (this.step === "heroic" && !this.view.heroics.length) this.stepIndex--;
     this.render();
   }
 
   static #onPick(event, target) {
     const kind = target.dataset.kind;
     const uuid = target.dataset.uuid;
+    if (kind === "adventure") {
+      if (this.pick.adventure !== uuid) {
+        // Новый мир — прежний выбор расы, карьеры и талантов к нему может не подходить.
+        Object.assign(this.pick, { adventure: uuid, archetype: null, career: null, heroic: null, careerFree: [], startFree: [], skills: {}, talents: [] });
+        this.pick.chars = Object.fromEntries(CHARS.map(k => [k, 0]));
+        Object.assign(this.filter, { archetype: "", career: "" });
+      }
+      return this.render();
+    }
     this.pick[kind] = this.pick[kind] === uuid && kind === "heroic" ? null : uuid;
     if (kind === "career") { this.pick.careerFree = []; this.pick.skills = {}; }
     if (kind === "archetype") {
@@ -442,13 +550,29 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
   /*  Применение                                   */
   /* -------------------------------------------- */
 
+  /** Данные нового навыка по имени (из компендиума или по ключу). */
+  #skillData(name) {
+    const doc = this.lib.skills.find(s => s.name.toLowerCase() === name.toLowerCase());
+    if (doc) return doc.toObject();
+    const key = this.#skillKey(name);
+    const def = CreationWizard.#skillDef(key);
+    return {
+      name, type: "skill", img: GENESYS.icons?.skills?.[key] ?? GENESYS.icons?.defaults?.skill,
+      system: { key: key ?? "", characteristic: def?.characteristic ?? "intellect", category: def?.category ?? "general", rank: 0, career: false }
+    };
+  }
+
   async #ensureSkill(name) {
     let skill = this.actor.getSkill(name);
     if (skill) return skill;
-    const doc = this.lib.skills.find(s => s.name.toLowerCase() === name.toLowerCase());
-    const data = doc ? doc.toObject() : { name, type: "skill", system: { characteristic: "intellect", category: "general" } };
-    [skill] = await this.actor.createEmbeddedDocuments("Item", [data]);
+    [skill] = await this.actor.createEmbeddedDocuments("Item", [this.#skillData(name)]);
     return skill;
+  }
+
+  /** Создать недостающие навыки одним запросом. */
+  async #ensureSkills(names) {
+    const missing = names.filter(n => !this.actor.getSkill(n));
+    if (missing.length) await this.actor.createEmbeddedDocuments("Item", missing.map(n => this.#skillData(n)));
   }
 
   static async #onFinish() {
@@ -459,16 +583,27 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
     if (this.#budget().left < 0) return ui.notifications.warn("GENESYS.Wizard.NoXP", { localize: true });
     const L = (k, d) => game.i18n.format(k, d ?? {});
     try {
-      // Раса/архетип (характеристики, пороги, стартовый опыт, способности) и карьера.
+      // Лишние навыки (не из набора приключения, без рангов) убираются с листа.
+      const rows = this.#skillRows();
+      const keep = new Set(rows.map(r => r.name.toLowerCase()));
+      if (this.skillKeys) {
+        const extra = actor.itemTypes.skill.filter(s => s.system.rank === 0 && !keep.has(s.name.toLowerCase())).map(s => s.id);
+        if (extra.length) await actor.deleteEmbeddedDocuments("Item", extra);
+      }
+
+      // Раса/архетип (характеристики, пороги, стартовый опыт, способности) и карьера
+      // (карьерные навыки — с заменой на навыки приключения).
       await actor.applyArchetype(arch);
-      for (const n of career.system.careerSkills) await this.#ensureSkill(n);
-      await actor.applyCareer(career);
+      const careerData = career.toObject();
+      careerData.system.careerSkills = this.#careerSkillNames(career);
+      await this.#ensureSkills(rows.map(r => r.name));
+      await actor.applyCareer(careerData);
 
       // Навыки: бесплатные ранги и покупка за опыт.
       const log = foundry.utils.deepClone(actor.system.experience.log);
       const entry = (amount, label) => ({ id: foundry.utils.randomID(), type: "spend", kind: "", amount, label, timestamp: Date.now() });
       const skillUpdates = [];
-      for (const row of this.#skillRows()) {
+      for (const row of rows) {
         if (row.rank === row.base) continue;
         const skill = await this.#ensureSkill(row.name);
         skillUpdates.push({ _id: skill.id, "system.rank": row.rank });
@@ -511,6 +646,7 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
       if (det.name) update.name = det.name;
       update["system.experience.log"] = log;
       update["system.creation"] = true;
+      update["system.adventure"] = this.pick.adventure ?? "";
       await actor.update(update);
 
       ui.notifications.info("GENESYS.Wizard.Done", { localize: true });

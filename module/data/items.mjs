@@ -1,5 +1,5 @@
 import { GENESYS } from "../config.mjs";
-import { intField, choiceField, qualitiesField, physicalFields, formatQualities } from "./fields.mjs";
+import { intField, choiceField, qualitiesField, physicalFields, formatQualities, worldsField } from "./fields.mjs";
 
 const { StringField, BooleanField, SchemaField, ArrayField, HTMLField, NumberField } = foundry.data.fields;
 
@@ -49,7 +49,8 @@ class BaseItemData extends foundry.abstract.TypeDataModel {
   static defineSchema() {
     return {
       description: new HTMLField(),
-      source: new StringField({ required: true, blank: true, initial: "" })
+      source: new StringField({ required: true, blank: true, initial: "" }),
+      worlds: worldsField()
     };
   }
 }

@@ -1,4 +1,4 @@
-import { intField } from "./fields.mjs";
+import { intField, worldsField } from "./fields.mjs";
 
 const { NumberField, StringField, SchemaField, HTMLField } = foundry.data.fields;
 
@@ -27,7 +27,8 @@ export default class VehicleData extends foundry.abstract.TypeDataModel {
       hardPoints: intField(0),
       description: new HTMLField(),
       notes: new HTMLField(),
-      source: new StringField({ required: true, blank: true, initial: "" })
+      source: new StringField({ required: true, blank: true, initial: "" }),
+      worlds: worldsField()
     };
   }
 

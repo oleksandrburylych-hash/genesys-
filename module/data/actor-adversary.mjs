@@ -1,5 +1,5 @@
 import { GENESYS } from "../config.mjs";
-import { intField, characteristicsField, choiceField } from "./fields.mjs";
+import { intField, characteristicsField, choiceField, worldsField } from "./fields.mjs";
 
 const { SchemaField, HTMLField } = foundry.data.fields;
 
@@ -22,7 +22,9 @@ export default class AdversaryData extends foundry.abstract.TypeDataModel {
       /** Количество прислужников в группе. */
       groupSize: intField(3, { min: 1, max: 20 }),
       description: new HTMLField(),
-      notes: new HTMLField()
+      notes: new HTMLField(),
+      source: new foundry.data.fields.StringField({ required: true, blank: true, initial: "" }),
+      worlds: worldsField()
     };
   }
 

@@ -1,4 +1,5 @@
 import { GENESYS, TEMPLATES } from "../config.mjs";
+import { getAdventure } from "../worlds.mjs";
 import { GenesysBaseActorSheet } from "./base-actor-sheet.mjs";
 
 const { DialogV2 } = foundry.applications.api;
@@ -93,6 +94,7 @@ export class GenesysCharacterSheet extends GenesysBaseActorSheet {
     const byKey = Object.fromEntries(context.skillGroups.map(g => [g.key, g]));
     context.skillColumns = [["general", "magic"], ["combat", "social", "knowledge"]]
       .map(keys => keys.map(k => byKey[k]).filter(Boolean)).filter(c => c.length);
+    context.adventureLabel = actor.system.adventure ? getAdventure(actor.system.adventure).label : "";
     context.playerName = game.users.find(u => !u.isGM && u.character?.id === actor.id)?.name
       ?? game.users.find(u => !u.isGM && actor.testUserPermission(u, "OWNER"))?.name ?? "";
 

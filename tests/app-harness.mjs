@@ -46,17 +46,27 @@ globalThis.foundry = {
   utils: { expandObject: o => { const r = {}; for (const [k, v] of Object.entries(o)) { const p = k.split("."); let t = r; p.slice(0, -1).forEach(x => t = t[x] ??= {}); t[p.at(-1)] = v; } return r; }, escapeHTML: s => s, deepClone: o => structuredClone(o) }
 };
 globalThis.ui = { notifications: { info: m => notes.push(["info", m]), warn: m => notes.push(["warn", m]), error: m => notes.push(["error", m]) } };
-const settings = { "genesys-rpg.skillPreset": "all", "genesys-rpg.worldSetupDone": false, "genesys-rpg.storyPoints": { player: 0, gm: 0 } };
+const settings = { "genesys-rpg.adventures": [], "genesys-rpg.skillPreset": "all", "genesys-rpg.worldSetupDone": false, "genesys-rpg.storyPoints": { player: 0, gm: 0 } };
 
-// Compendia from packs-src
-const mkDoc = (d, packName) => ({ ...d, uuid: `Compendium.genesys-rpg.${packName}.${d.name}`, folder: d.folder ? { name: d.folder } : null, img: "x", system: d.system, toObject() { return structuredClone(d); } });
+// Compendia from packs-src (теги миров — как при сборке)
+const { worldsFor } = await import(`${R}/tools/world-rules.mjs`);
+const { pickIcon } = await import(`${R}/tools/icon-rules.mjs`);
+const imgOf = d => { try { return `systems/genesys-rpg/assets/icons/gi/${d.type}/${pickIcon(d)}.svg`; } catch { return "x"; } };
+let docSeq = 0;
+const mkDoc = (d, packName) => {
+  d.type ??= packName === "vehicles" ? "vehicle" : "adversary";
+  d.system = { ...(d.system ?? {}), worlds: worldsFor(d, packName) };
+  const uuid = `Compendium.genesys-rpg.${packName}.${d.name}#${++docSeq}`;
+  return { ...d, _id: uuid, id: uuid, uuid, folder: d.folder ? { name: d.folder } : null, img: imgOf(d), system: d.system, toObject() { return structuredClone(d); } };
+};
 const packs = new Map();
 for (const dir of fs.readdirSync(SRC, { withFileTypes: true }).filter(e => e.isDirectory())) {
   const docs = fs.readdirSync(path.join(SRC, dir.name)).filter(f => f.endsWith(".json")).flatMap(f => JSON.parse(fs.readFileSync(path.join(SRC, dir.name, f))));
   const md = docs.map(d => mkDoc(d, dir.name));
   // archetype abilities linked at build time; emulate
   if (dir.name === "archetypes") for (const a of md) a.system.abilities ??= [];
-  packs.set(`genesys-rpg.${dir.name}`, { metadata: { label: dir.name }, documentName: dir.name === "adversaries" || dir.name === "vehicles" ? "Actor" : "Item", index: { size: md.length }, getDocuments: async () => md });
+  packs.set(`genesys-rpg.${dir.name}`, { metadata: { label: dir.name }, documentName: dir.name === "adversaries" || dir.name === "vehicles" ? "Actor" : "Item", index: { size: md.length }, getDocuments: async () => md,
+    getIndex: async () => md.map(d => ({ _id: d._id, name: d.name, type: d.type, system: { worlds: d.system.worlds, source: d.system.source } })) });
 }
 const created = [];
 globalThis.game = {
@@ -90,27 +100,44 @@ GENESYS.spending = JSON.parse(fs.readFileSync(path.join(R, "module/data/spending
 const { WorldSetup } = await import(`${R}/module/apps/world-setup.mjs`);
 const ws = new WorldSetup();
 await ws.render();
-assert.ok(ws.html.includes("Терринот"), "setting select rendered");
+assert.ok(ws.html.includes('data-key="terrinoth"'), "adventure cards rendered");
+assert.ok(ws.html.includes('data-key="zombie"'), "zombie adventure card");
 assert.ok(ws.html.includes('name="packs.talents"'), "pack checkboxes rendered");
+const WA = WorldSetup.DEFAULT_OPTIONS.actions;
+// без выбора — предупреждение
+await WA.install.call(ws);
+assert.ok(notes.some(n => n[1] === "GENESYS.Setup.PickAdventure"), "warns without adventure");
 // choose Terrinoth, click install
-WorldSetup.DEFAULT_OPTIONS.form.handler.call(ws, null, null, { object: { setting: "terrinoth", "sources.core": true, "sources.epg": true, "sources.rot": true, "sources.zgm": true, "packs.talents": true, "packs.archetypes": true, "packs.adversaries": true, tables: true, journal: true, macros: true, storyPoints: true, replace: true } });
-await WorldSetup.DEFAULT_OPTIONS.actions.install.call(ws);
+WorldSetup.DEFAULT_OPTIONS.form.handler.call(ws, null, null, { object: { "sources.core": true, "sources.epg": true, "sources.rot": true, "sources.zgm": true, "packs.talents": true, "packs.archetypes": true, "packs.careers": true, "packs.weapons": true, "packs.adversaries": true, tables: true, journal: true, macros: true, storyPoints: true, replace: true } });
+WA.adventure.call(ws, null, { dataset: { key: "terrinoth" } });
+await ws.render();
+if (process.env.DUMP) fs.writeFileSync(path.join(process.env.DUMP, "ws.html"), ws.html);
+await WA.install.call(ws);
 console.log("setup log:", ws.log);
 assert.ok(!ws.log.some(l => l.startsWith("⚠")), "no errors in install log");
 const talents = created.filter(d => d.type === "talent");
 assert.ok(talents.length > 0 && talents.length < 155, `terrinoth talents filtered: ${talents.length}`);
 assert.ok(!talents.some(t => t.name === "Закалённый"), "non-RoT core talent filtered out");
 assert.equal(settings["genesys-rpg.skillPreset"], "terrinoth");
+assert.deepEqual(settings["genesys-rpg.adventures"], ["terrinoth"]);
+const careersImported = created.filter(d => d.type === "career").map(d => d.name);
+assert.equal(careersImported.length, 9, `only Terrinoth careers: ${careersImported}`);
+const weaponNames = created.filter(d => d.type === "weapon").map(d => d.name);
+assert.equal(new Set(weaponNames).size, weaponNames.length, "no duplicate weapons");
+assert.ok(!weaponNames.includes("Лазерный пистолет"), "no sci-fi guns in Terrinoth");
+const archImported = created.filter(d => d.type === "archetype").map(d => d.name);
+assert.equal(archImported.length, 14, "14 Terrinoth races");
 assert.equal(settings["genesys-rpg.worldSetupDone"], true);
 
 // ---- Creation wizard ----
 GENESYS.creation = JSON.parse(fs.readFileSync(path.join(R, "module/data/creation.json")));
 const { CreationWizard } = await import(`${R}/module/apps/creation-wizard.mjs`);
-const sk = (name, characteristic, category) => ({ name, system: { characteristic, category, rank: 0 }, id: name });
-const updates = []; let createdItems = []; let archetypeApplied = null; let careerApplied = null;
+const sk = (name, characteristic, category, key) => ({ name, type: "skill", system: { key, characteristic, category, rank: 0 }, id: name });
+const updates = []; const deleted = []; let createdItems = []; let archetypeApplied = null; let careerApplied = null;
 const actor = {
-  name: "Тест", itemTypes: { skill: [sk("Атлетика", "brawn", "general"), sk("Хладнокровие", "presence", "general"), sk("Внимание", "cunning", "general")] },
+  name: "Тест", itemTypes: { skill: [sk("Атлетика", "brawn", "general", "athletics"), sk("Хладнокровие", "presence", "general", "cool"), sk("Внимание", "cunning", "general", "perception"), sk("Компьютеры", "intellect", "general", "computers"), sk("Пилотирование", "agility", "general", "piloting")] },
   system: { experience: { log: [] } },
+  async deleteEmbeddedDocuments(t, ids) { deleted.push(...ids); this.itemTypes.skill = this.itemTypes.skill.filter(s => !ids.includes(s.id)); },
   getSkill(n) { return this.itemTypes.skill.find(s => s.name.toLowerCase() === String(n).toLowerCase()) ?? null; },
   async applyArchetype(a) { archetypeApplied = a.name; this.system.experience.log = [{ type: "earn", amount: a.system.startingXP, kind: "archetype" }]; },
   async applyCareer(c) { careerApplied = c.name; },
@@ -121,11 +148,41 @@ const actor = {
 };
 globalThis.foundry.utils.randomID = () => Math.random().toString(36).slice(2);
 const A = CreationWizard.DEFAULT_OPTIONS.actions;
+// Без ограничений ведущего: первый шаг — выбор приключения, в «Фэнтези» нет дублей.
+settings["genesys-rpg.adventures"] = [];
+// В мире уже лежат импортированные копии карьер (как после мастера настройки) — они не должны дублироваться.
+const careerDocs = await packs.get("genesys-rpg.careers").getDocuments();
+const worldCopies = careerDocs.map(d => ({ ...d, uuid: `Item.${d.name}`, _stats: { compendiumSource: d.uuid } }));
+game.items.filter = fn => worldCopies.filter(fn);
+const free = new CreationWizard({ actor });
+await free.render();
+if (process.env.DUMP) fs.writeFileSync(path.join(process.env.DUMP, "wz-adventure.html"), free.html);
+const advCards = [...free.html.matchAll(/data-kind="adventure" data-uuid="([^"]+)"/g)].map(m => m[1]);
+assert.ok(advCards.length >= 12, `adventure cards: ${advCards.length}`);
+A.pick.call(free, null, { dataset: { kind: "adventure", uuid: "fantasy" } });
+A.next.call(free); await free.render();
+const fantasyRaces = [...free.html.matchAll(/wz-card-name">([^<]+)/g)].map(m => m[1]);
+assert.ok(fantasyRaces.includes("Эльф") && !fantasyRaces.includes("Высокородный эльф") && !fantasyRaces.includes("Робот"), `fantasy races: ${fantasyRaces}`);
+A.next.call(free);
+A.pick.call(free, null, { dataset: { kind: "archetype", uuid: [...free.html.matchAll(/data-kind="archetype" data-uuid="([^"]+)"/g)][0][1] } });
+A.next.call(free); await free.render();
+const fantasyCareers = [...free.html.matchAll(/wz-card-name">([^<]+)/g)].map(m => m[1]);
+assert.equal(new Set(fantasyCareers).size, fantasyCareers.length, "no duplicate careers");
+assert.ok(free.html.includes('data-uuid="Item.Волшебник"'), "world copy used instead of compendium original");
+game.items.filter = () => [];
+assert.ok(fantasyCareers.includes("Волшебник") && !fantasyCareers.includes("Маг") && !fantasyCareers.includes("Хакер"), `fantasy careers: ${fantasyCareers}`);
+// Мошенник Core: «Дальний бой» остаётся (в фэнтези он есть), «Ближний бой» → «Ближний бой (лёгкое оружие)».
+A.pick.call(free, null, { dataset: { kind: "career", uuid: [...free.html.matchAll(/data-kind="career" data-uuid="([^"]+)"/g)].find(m => m[1].includes("Артист"))[1] } });
+await free.render();
+assert.ok(free.html.includes("Ближний бой (лёгкое оружие)"), "career skill substituted for fantasy");
+
+// Ведущий выбрал Терринот: мастер сразу начинает с расы и показывает только Терринот.
+settings["genesys-rpg.adventures"] = ["terrinoth"];
 const cw = new CreationWizard({ actor });
 await cw.render();
 assert.ok(cw.html.includes("wz-card"), "archetype cards rendered");
 const cards = [...cw.html.matchAll(/data-kind="archetype" data-uuid="([^"]+)"/g)].map(m => m[1]);
-assert.ok(cards.length >= 39, `all races/archetypes listed: ${cards.length}`);
+assert.equal(cards.length, 14, `Terrinoth races listed: ${cards.length}`);
 const dwarf = cards.find(u => u.includes("Дварф Данварра")) ?? cards[0];
 A.pick.call(cw, null, { dataset: { kind: "archetype", uuid: dwarf } }); await cw.render();
 assert.ok(cw.html.includes("wz-detail-head"), "archetype detail shown");
@@ -133,12 +190,13 @@ const dump = n => process.env.DUMP && fs.writeFileSync(path.join(process.env.DUM
 dump("archetype");
 A.next.call(cw); await cw.render();
 const careers = [...cw.html.matchAll(/data-kind="career" data-uuid="([^"]+)"/g)].map(m => m[1]);
-assert.ok(careers.length >= 25, `all careers listed: ${careers.length}`);
+assert.equal(careers.length, 9, `Terrinoth careers listed: ${careers.length}`);
 A.pick.call(cw, null, { dataset: { kind: "career", uuid: careers.find(u => u.includes("Воин")) ?? careers[0] } });
 A.next.call(cw); await cw.render(); // skills
 const careerSkillNames = [...cw.html.matchAll(/data-list="careerFree" data-name="([^"]+)"/g)].map(m => m[1]);
 assert.equal(careerSkillNames.length, 8, "8 career skills");
 for (const n of careerSkillNames.slice(0, 4)) A.toggle.call(cw, null, { dataset: { list: "careerFree", name: n } });
+await cw.render(); dump("skills");
 A.next.call(cw); await cw.render(); // xp
 const before = cw.html.match(/wz-budget-value">(-?\d+)/)[1];
 A.char.call(cw, null, { dataset: { key: "agility", delta: 1 } });
@@ -161,6 +219,9 @@ A.next.call(cw); await cw.render(); // summary
 assert.ok(!cw.html.includes('data-action="finish" disabled'), "finish enabled");
 await A.finish.call(cw);
 assert.ok(archetypeApplied && careerApplied, "archetype and career applied");
+assert.ok(deleted.includes("Компьютеры") && deleted.includes("Пилотирование"), `skills outside Terrinoth removed: ${deleted}`);
+assert.ok(createdItems.some(i => i.name === "Руны"), "Terrinoth skills added");
+assert.ok(updates.some(u => u["system.adventure"] === "terrinoth"), "adventure saved on actor");
 const final = updates.find(u => u["system.experience.log"]);
 assert.ok(final, "final actor update");
 const spent = final["system.experience.log"].filter(e => e.type === "spend").reduce((s, e) => s + e.amount, 0);

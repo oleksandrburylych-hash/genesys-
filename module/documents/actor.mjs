@@ -2,6 +2,8 @@ import { GENESYS, SYSTEM_ID } from "../config.mjs";
 import { DicePool } from "../dice/pool.mjs";
 import { DicePoolDialog } from "../apps/dice-pool-dialog.mjs";
 import { getTargets, attackModifiers, applyStateModifiers, actOnActor } from "../combat/combat.mjs";
+import { getAdventure } from "../worlds.mjs";
+import { enabledAdventureKeys, adventureSkillKeys } from "../helpers/adventure.mjs";
 
 /**
  * Актёр Genesys: персонаж или противник.
@@ -29,11 +31,32 @@ export class GenesysActor extends Actor {
     // Новым персонажам — базовый набор навыков, если навыков ещё нет.
     const hasSkills = this.items.some(i => i.type === "skill");
     if (this.type === "character" && !hasSkills) {
-      const preset = game.settings.get(SYSTEM_ID, "skillPreset");
-      const skills = GenesysActor.defaultSkillData(preset);
+      // Если ведущий разрешил один тип приключения — сразу его набор навыков, иначе — пресет мира.
+      const enabled = enabledAdventureKeys();
+      let skills;
+      if (enabled.length === 1 && !data.system?.adventure) {
+        const adventure = getAdventure(enabled[0]);
+        updates["system.adventure"] = adventure.key;
+        skills = adventure.skills === "all" ? GenesysActor.defaultSkillData("all") : GenesysActor.skillDataFromKeys(adventureSkillKeys(adventure));
+      } else {
+        skills = GenesysActor.defaultSkillData(game.settings.get(SYSTEM_ID, "skillPreset"));
+      }
       if (skills.length) updates.items = [...(data.items ?? []), ...skills];
     }
     this.updateSource(updates);
+  }
+
+  /** Данные навыков по списку ключей. */
+  static skillDataFromKeys(keys) {
+    return keys.map(key => {
+      const def = GENESYS.defaultSkills.find(s => s.key === key) ?? { key, ...GENESYS.extraSkills[key] };
+      return {
+        name: game.i18n.localize(`GENESYS.Skill.${key}`),
+        type: "skill",
+        img: GENESYS.icons?.skills?.[key] ?? "icons/svg/book.svg",
+        system: { key, characteristic: def.characteristic ?? "intellect", category: def.category ?? "general", rank: 0, career: false }
+      };
+    });
   }
 
   /** Данные навыков по пресету настройки мира. */
