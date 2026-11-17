@@ -103,7 +103,140 @@
       }
     }
   },
-  "packs": [],
+  "packs": [
+    {
+      "name": "archetypes",
+      "label": "Архетипы и виды",
+      "path": "packs/archetypes",
+      "type": "Item",
+      "system": "genesys-rpg",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "careers",
+      "label": "Карьеры",
+      "path": "packs/careers",
+      "type": "Item",
+      "system": "genesys-rpg",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "skills",
+      "label": "Навыки",
+      "path": "packs/skills",
+      "type": "Item",
+      "system": "genesys-rpg",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "talents",
+      "label": "Таланты",
+      "path": "packs/talents",
+      "type": "Item",
+      "system": "genesys-rpg",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "abilities",
+      "label": "Особые способности",
+      "path": "packs/abilities",
+      "type": "Item",
+      "system": "genesys-rpg",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "spells",
+      "label": "Магия",
+      "path": "packs/spells",
+      "type": "Item",
+      "system": "genesys-rpg",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "weapons",
+      "label": "Оружие",
+      "path": "packs/weapons",
+      "type": "Item",
+      "system": "genesys-rpg",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "armor",
+      "label": "Броня",
+      "path": "packs/armor",
+      "type": "Item",
+      "system": "genesys-rpg",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "gear",
+      "label": "Снаряжение",
+      "path": "packs/gear",
+      "type": "Item",
+      "system": "genesys-rpg",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "qualities",
+      "label": "Качества предметов",
+      "path": "packs/qualities",
+      "type": "Item",
+      "system": "genesys-rpg",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "adversaries",
+      "label": "Противники",
+      "path": "packs/adversaries",
+      "type": "Actor",
+      "system": "genesys-rpg",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    }
+  ],
   "socket": true,
   "grid": {
     "type": 1,
@@ -114,5 +247,33 @@
   "secondaryTokenAttribute": "strain",
   "url": "https://github.com/oleksandrburylych-hash/genesys-",
   "manifest": "https://raw.githubusercontent.com/oleksandrburylych-hash/genesys-/main/system.json",
-  "download": "https://github.com/oleksandrburylych-hash/genesys-/archive/refs/heads/main.zip"
+  "download": "https://github.com/oleksandrburylych-hash/genesys-/archive/refs/heads/main.zip",
+  "packFolders": [
+    {
+      "name": "Genesys",
+      "sorting": "m",
+      "color": "#2f6f8f",
+      "packs": [
+        "archetypes",
+        "careers",
+        "skills",
+        "talents",
+        "abilities",
+        "spells",
+        "weapons",
+        "armor",
+        "gear",
+        "qualities"
+      ],
+      "folders": [
+        {
+          "name": "Противники",
+          "sorting": "m",
+          "packs": [
+            "adversaries"
+          ]
+        }
+      ]
+    }
+  ]
 }
