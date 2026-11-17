@@ -3,13 +3,8 @@
    Бордовый · тёмно-синий · золотой · «бумага» · узкие заголовки заглавными
    ========================================================================== */
 
-.genesys.sheet,
-.genesys.dice-pool-dialog,
-.genesys.spell-cast-dialog,
-.genesys.creation-wizard,
-.genesys.gm-screen,
-.genesys.workshop,
-.genesys.world-setup {
+.genesys,
+.genesys-roll {
   --gs-maroon: #8e2229;
   --gs-maroon-d: #5c1217;
   --gs-navy: #1f3557;
@@ -643,10 +638,10 @@
 .genesys .ws-modules { display: grid; grid-template-columns: 1fr; gap: 6px; }
 .genesys .ws-module { display: flex; gap: 8px; align-items: flex-start; padding: 6px 8px; background: #fff; border: 1px solid #c9b48a; border-radius: 8px; }
 .genesys .ws-module.on { border-color: var(--gs-maroon); box-shadow: 0 0 0 2px var(--gs-gold); background: #fff8ea; }
-.genesys .fear-outcome { margin: 6px 0; padding: 6px 8px; border-radius: 6px; background: #2b1d33; color: #f1e7ff; display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: center; }
-.genesys .fear-outcome b { color: #f2a531; }
-.genesys .fear-outcome button { width: auto; flex: 0 0 auto; padding: 0 8px; }
-.genesys .fear-steady, .genesys .fear-rally, .genesys .fear-fearless { background: #1f3557; }
+.genesys-roll .fear-outcome { margin: 6px 0; padding: 6px 8px; border-radius: 6px; background: #2b1d33; color: #f1e7ff; display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: center; }
+.genesys-roll .fear-outcome b { color: #f2a531; }
+.genesys-roll .fear-outcome button { width: auto; flex: 0 0 auto; padding: 0 8px; }
+.genesys-roll .fear-steady, .genesys-roll .fear-rally, .genesys-roll .fear-fearless { background: #1f3557; }
 .genesys.fear-prompt label { display: flex; flex-direction: column; gap: 2px; margin-bottom: 6px; }
 /* Социальная сцена */
 .genesys .soc-target { display: flex; gap: 10px; align-items: center; margin-bottom: 6px; }
@@ -759,3 +754,156 @@
 .genesys .gs-xpl-log .amt { text-align: right; font-family: var(--gs-head); font-size: 14px; }
 .genesys .gs-xpl-log li.earn .amt { color: #3d7a3a; } .genesys .gs-xpl-log li.spend .amt { color: #8e2229; }
 .genesys .gs-xpl-log .bal { text-align: right; color: var(--gs-muted); font-size: 11px; }
+
+/* ---------- Очки сюжета ---------- */
+.genesys.story-points .window-header { background: linear-gradient(90deg, #1f3557, #3a0d16); color: #fff; border-bottom: 2px solid var(--gs-gold, #f2a531); }
+.genesys.story-points { font-family: var(--gs-body); }
+.genesys.story-points .window-header .window-title { font-family: var(--gs-head); text-transform: uppercase; letter-spacing: .05em; }
+.genesys.story-points .window-content { padding: 0; background: radial-gradient(circle at 25% 0%, #2b3f63 0%, #121a2a 60%, #0b0f18 100%); }
+.genesys .sp { display: grid; grid-template-columns: 1fr 28px 1fr; align-items: stretch; padding: 10px; gap: 4px; color: #fff; }
+.genesys .sp-side { display: flex; flex-direction: column; gap: 6px; padding: 8px; border-radius: 12px; min-height: 120px; }
+.genesys .sp-side.player { background: linear-gradient(180deg, rgba(242,165,49,.18), rgba(242,165,49,.04)); border: 1px solid rgba(242,165,49,.5); }
+.genesys .sp-side.gm { background: linear-gradient(180deg, rgba(184,50,63,.25), rgba(184,50,63,.05)); border: 1px solid rgba(184,50,63,.6); }
+.genesys .sp-head { display: flex; align-items: baseline; justify-content: space-between; font-family: var(--gs-head, sans-serif); text-transform: uppercase; letter-spacing: .06em; font-size: 12px; }
+.genesys .sp-num { font-size: 34px; line-height: 1; }
+.genesys .sp-side.player .sp-num { color: #ffd77a; text-shadow: 0 0 12px rgba(255,200,90,.6); }
+.genesys .sp-side.gm .sp-num { color: #ff8f86; text-shadow: 0 0 12px rgba(255,60,60,.6); }
+.genesys .sp-pile { display: flex; flex-wrap: wrap; align-items: center; gap: 0; padding-left: 14px; min-height: 56px; flex: 1; align-content: flex-start; }
+.genesys .sp-coin { width: 46px; height: 46px; margin-left: -14px; margin-bottom: -8px; transition: transform .15s ease, filter .15s ease; filter: drop-shadow(0 3px 4px rgba(0,0,0,.6)); }
+.genesys .sp-coin img { width: 100%; height: 100%; border: none; }
+.genesys .sp-coin[data-action]:hover { transform: translateY(-6px) scale(1.08); filter: drop-shadow(0 6px 10px rgba(255,210,120,.6)); z-index: 2; }
+.genesys .sp-side.gm .sp-coin[data-action]:hover { filter: drop-shadow(0 6px 10px rgba(255,60,60,.7)); }
+.genesys .sp-coin.arrive { animation: sp-flip .9s ease-out; }
+@keyframes sp-flip { 0% { transform: rotateY(180deg) scale(1.4); filter: brightness(2) drop-shadow(0 0 16px #fff); } 60% { transform: rotateY(-20deg) scale(1.1); } 100% { transform: none; } }
+.genesys .sp-more { font-family: var(--gs-head, sans-serif); font-size: 18px; margin-left: 6px; opacity: .8; }
+.genesys .sp-empty { font-size: 11px; opacity: .55; font-style: italic; }
+.genesys .sp-flow { display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.4); font-size: 16px; }
+.genesys .sp-adjust { display: flex; justify-content: center; gap: 14px; opacity: .6; }
+.genesys .sp-adjust a { color: #fff; }
+.genesys .sp-adjust a:hover { opacity: 1; color: var(--gs-gold, #f2a531); }
+.genesys.story-point-message { display: flex; align-items: center; gap: 8px; font-style: normal; }
+.genesys.story-point-message img { width: 34px; height: 34px; border: none; flex: 0 0 auto; }
+
+
+/* ==========================================================================
+   Карточки в чате: бросок, урон, реакции, страх, добыча
+   ========================================================================== */
+.genesys-roll { font-family: var(--gs-body); gap: 6px; }
+.genesys-roll .roll-label {
+  font-family: var(--gs-head); text-transform: uppercase; letter-spacing: .03em; font-weight: 500; font-size: 15px;
+  color: #fff; background: linear-gradient(90deg, var(--gs-navy), #2c4c7c); border: none; border-left: 5px solid var(--gs-maroon);
+  padding: 4px 8px; border-radius: 4px;
+}
+.genesys-roll .roll-target { font-size: 12px; color: var(--gs-maroon); font-weight: bold; }
+.genesys-roll .roll-dice { justify-content: center; gap: 5px; padding: 4px 0; }
+.genesys-die-result { width: 32px; height: 32px; font-size: 13px; box-shadow: inset 0 -3px 0 rgba(0,0,0,.25), 0 1px 2px rgba(0,0,0,.4); border: none; }
+.genesys-die-result.ability, .genesys-die-result.difficulty { border-radius: 4px; }
+.genesys-die-result.proficiency, .genesys-die-result.challenge { width: 36px; height: 34px; box-shadow: none; filter: drop-shadow(0 1px 2px rgba(0,0,0,.5)); }
+.genesys-die-result.boost, .genesys-die-result.setback { border-radius: 5px; }
+.genesys-roll .roll-summary { font-size: 22px; gap: 3px; padding: 6px; background: #fbf6ea; border: 1px solid #e3d3ad; border-radius: 8px; }
+.genesys-roll .roll-outcome { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 6px; }
+.genesys-roll .roll-outcome strong {
+  font-family: var(--gs-head); text-transform: uppercase; letter-spacing: .12em; font-weight: 500; font-size: 15px;
+  padding: 2px 18px; border-radius: 999px; color: #fff;
+}
+.genesys-roll .roll-outcome strong.success { background: linear-gradient(90deg, #2f6b2c, #3d8a39); color: #fff; }
+.genesys-roll .roll-outcome strong.failure { background: linear-gradient(90deg, #7a1b21, #a8322d); color: #fff; }
+.genesys-roll.success { border-left: 3px solid #3d8a39; padding-left: 6px; }
+.genesys-roll.failure { border-left: 3px solid #a8322d; padding-left: 6px; }
+.genesys-roll .roll-outcome .counts { width: 100%; text-align: center; font-size: 11px; color: #776d60; }
+.genesys-roll .roll-attack { border-top: none; background: #fff; border: 1px solid #e3d3ad; border-radius: 8px; padding: 6px 8px; gap: 4px; }
+.genesys-roll .roll-attack .attack-line:first-child { font-family: var(--gs-head); text-transform: uppercase; font-size: 13px; color: var(--gs-navy); }
+.genesys-roll .roll-attack .attack-line:first-child strong { display: inline-block; min-width: 34px; padding: 0 8px; margin-left: 4px; border-radius: 6px; text-align: center;
+  background: var(--gs-maroon); color: #fff; font-size: 20px; border: 2px solid var(--gs-gold); }
+.genesys-roll button, .genesys.reaction-card button, .genesys.fear-card button, .genesys.loot-card button, .genesys .social-buttons button, .genesys.slot-card button {
+  font-family: var(--gs-head); text-transform: uppercase; letter-spacing: .03em; font-size: 12px;
+  background: linear-gradient(180deg, #2c4c7c, var(--gs-navy)); color: #fff; border: 1px solid var(--gs-navy-d); border-radius: 6px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.15);
+}
+.genesys-roll button:hover, .genesys.reaction-card button:hover, .genesys.fear-card button:hover, .genesys.loot-card button:hover, .genesys .social-buttons button:hover {
+  background: linear-gradient(180deg, var(--gs-maroon), var(--gs-maroon-d)); box-shadow: 0 0 6px rgba(242,165,49,.6);
+}
+.genesys-roll button[data-genesys-action="applyCrit"] { background: linear-gradient(180deg, #a8322d, var(--gs-maroon-d)); }
+.genesys-roll .quality-buttons button { background: linear-gradient(180deg, #f6c35a, #d98d1c); color: #2b1d08; border-color: #b0700e; }
+.genesys-roll .roll-spending summary { font-family: var(--gs-head); text-transform: uppercase; font-size: 12px; color: var(--gs-navy); cursor: pointer; }
+.genesys-roll .spend-group { border-radius: 6px; padding: 4px; margin-top: 4px; }
+.genesys-roll .spend-group.positive { background: rgba(61,138,57,.08); }
+.genesys-roll .spend-group.negative { background: rgba(142,34,41,.08); }
+.genesys-roll .spend-title { font-family: var(--gs-head); text-transform: uppercase; font-size: 11px; color: var(--gs-muted); }
+.genesys-roll .spend-row { display: flex; gap: 6px; width: 100%; text-align: left; background: transparent !important; color: var(--gs-ink) !important; border: none !important;
+  border-bottom: 1px dotted rgba(0,0,0,.12) !important; box-shadow: none !important; text-transform: none; font-family: var(--gs-body); font-size: 12px; letter-spacing: 0; border-radius: 0; height: auto; line-height: 1.3; padding: 3px 2px; }
+.genesys-roll .spend-row:hover { background: rgba(242,165,49,.18) !important; }
+.genesys-roll .spend-cost { flex: 0 0 auto; font-weight: bold; color: var(--gs-maroon); }
+.genesys.damage-report, .genesys.status-report, .genesys.spend-report, .genesys.social-report {
+  font-family: var(--gs-body); padding: 4px 8px; border-left: 4px solid var(--gs-maroon); background: #fbf6ea; border-radius: 4px;
+}
+.genesys.status-report { border-left-color: var(--gs-navy); }
+.genesys.spend-report { border-left-color: var(--gs-gold); }
+.genesys.reaction-card, .genesys.fear-card, .genesys.loot-card, .genesys.slot-card, .genesys.xp-award {
+  font-family: var(--gs-body); padding: 6px 8px; border-radius: 8px; background: #fbf6ea; border: 1px solid #e3d3ad;
+}
+.genesys.fear-card { background: linear-gradient(180deg, #2b1d33, #1a1020); color: #f1e7ff; border-color: #4b2f5f; }
+.genesys.fear-card h4, .genesys.loot-card h4, .genesys.xp-award h4 { font-family: var(--gs-head); text-transform: uppercase; margin: 0 0 4px; border: none; }
+.genesys.fear-card .slot-buttons, .genesys.slot-card .slot-buttons { display: flex; flex-wrap: wrap; gap: 4px; }
+.genesys.fear-card .slot-buttons button img, .genesys.slot-card .slot-buttons button img { width: 20px; height: 20px; border: none; vertical-align: middle; }
+.genesys.xp-award { background: linear-gradient(180deg, #fff3cf, #f6dc93); border-color: #d9a54a; }
+.genesys.xp-award h4 { color: #7a5410; }
+
+/* ---------- Окно броска ---------- */
+.genesys.dice-pool-dialog .dice-pool-body { font-family: var(--gs-body); }
+.genesys.dice-pool-dialog .pool-preview { min-height: 58px; background: radial-gradient(circle at 50% 30%, #fff, #f3ead6); border: 2px solid var(--gs-gold); border-radius: 12px; box-shadow: inset 0 2px 6px rgba(0,0,0,.12); }
+.genesys.dice-pool-dialog .pool-preview .genesys-die-icon { width: 30px; height: 30px; filter: drop-shadow(0 2px 2px rgba(0,0,0,.35)); }
+.genesys.dice-pool-dialog .pool-notes { border-left: 4px solid var(--gs-maroon); background: #fbf6ea; border-radius: 4px; }
+.genesys.dice-pool-dialog .pool-row .die-count { font-family: var(--gs-head); font-size: 16px; color: var(--gs-navy); }
+.genesys.dice-pool-dialog .pool-row { padding: 2px 4px; border-radius: 6px; }
+.genesys.dice-pool-dialog .pool-row:hover { background: rgba(242,165,49,.15); }
+.genesys.dice-pool-dialog .pool-upgrades { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.genesys.dice-pool-dialog .upgrade-group { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; padding: 4px 6px; background: #fff; border: 1px solid #e3d3ad; border-radius: 8px; }
+.genesys.dice-pool-dialog .upgrade-group > span { flex: 0 0 100%; font-family: var(--gs-head); text-transform: uppercase; font-size: 11px; color: var(--gs-muted); }
+.genesys.dice-pool-dialog .upgrade-group button { flex: 1; font-size: 12px; }
+.genesys.dice-pool-dialog .pool-difficulty button.active { background: var(--gs-navy); border-color: var(--gs-gold); box-shadow: 0 0 0 2px var(--gs-gold); }
+.genesys.dice-pool-dialog .pool-story-point button { display: flex; align-items: center; justify-content: center; gap: 8px; height: 36px;
+  background: linear-gradient(180deg, #2b3f63, #121a2a); color: #ffd77a; border: 1px solid #f2a531; font-family: var(--gs-head); text-transform: uppercase; letter-spacing: .04em; }
+.genesys.dice-pool-dialog .pool-story-point button:disabled { opacity: .45; }
+.genesys.dice-pool-dialog .pool-sp-coin { width: 26px; height: 26px; border: none; filter: drop-shadow(0 1px 2px rgba(0,0,0,.6)); }
+.genesys.dice-pool-dialog .roll-button { width: 100%; height: 42px; font-size: 18px; font-family: var(--gs-head); text-transform: uppercase; letter-spacing: .12em;
+  background: linear-gradient(180deg, #b0353c, var(--gs-maroon-d)); color: #fff; border: 2px solid var(--gs-gold); border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,.35); }
+.genesys.dice-pool-dialog .roll-button:hover { filter: brightness(1.1); box-shadow: 0 0 10px rgba(242,165,49,.7); }
+.genesys.dice-pool-dialog .form-footer { display: flex; }
+
+/* ---------- Лист противника ---------- */
+.genesys .gs-adv { padding: 8px 12px; font-family: var(--gs-body); }
+.genesys .gs-adv-head { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 6px; }
+.genesys .gs-adv-portrait { width: 110px; height: 110px; object-fit: cover; border: 3px solid var(--gs-gold); border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,.35); background: #222; flex: 0 0 auto; }
+.genesys .gs-adv-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.genesys .gs-adv-title { display: flex; align-items: center; gap: 6px; }
+.genesys .gs-adv-title .gs-name { flex: 1; font-family: var(--gs-head); font-size: 26px; text-transform: uppercase; color: var(--gs-navy); border: none; border-bottom: 2px solid var(--gs-navy); background: transparent; height: auto; }
+.genesys .gs-adv-type { display: flex; align-items: center; gap: 8px; }
+.genesys .gs-adv-badge { width: auto; font-family: var(--gs-head); text-transform: uppercase; letter-spacing: .06em; color: #fff; border: 2px solid var(--gs-gold); border-radius: 999px; padding: 0 10px; height: 26px; }
+.genesys .gs-adv.type-minion .gs-adv-badge { background: #4b5a6b; }
+.genesys .gs-adv.type-rival .gs-adv-badge { background: var(--gs-navy); }
+.genesys .gs-adv.type-nemesis .gs-adv-badge { background: var(--gs-maroon); }
+.genesys .gs-adv-badge option { color: #000; background: #fff; }
+.genesys .gs-adv-threat { font-family: var(--gs-head); text-transform: uppercase; font-size: 12px; color: var(--gs-maroon); }
+.genesys .gs-adv .gs-statuses { margin-top: 2px; }
+.genesys .gs-big-input { width: 64px; height: 40px; border: none; background: transparent; text-align: center; font-family: var(--gs-head); font-size: 28px; color: var(--gs-navy); }
+.genesys .gs-big-input:focus { background: #fff8ea; }
+.genesys .gs-shield.minion .gs-shield-title { background: #4b5a6b; }
+.genesys input.gs-char-input { text-align: center; font-family: var(--gs-head); font-size: 26px; color: var(--gs-navy); padding: 0; }
+.genesys .gs-adv .gs-char-name { cursor: pointer; }
+.genesys .gs-adv .adversary-body { margin-top: 8px; }
+.genesys .gs-adv .list-header h3 { font-family: var(--gs-head); text-transform: uppercase; color: var(--gs-navy); border-bottom: 2px solid var(--gs-maroon); }
+.genesys .gs-adv-mot-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.genesys .gs-adv-mot-grid label { display: flex; flex-direction: column; gap: 2px; font-family: var(--gs-head); text-transform: uppercase; font-size: 11px; color: var(--gs-muted); }
+.genesys.sheet .gs-adv input.gs-char-circle { width: 58px; height: 58px; border-radius: 50%; background: #fff; border: 3px solid var(--gs-gold);
+  font-size: 30px; font-weight: 600; color: var(--gs-navy); box-shadow: inset 0 2px 4px rgba(0,0,0,.2); text-align: center; padding: 0; }
+.genesys.sheet .gs-adv a.gs-char-name { color: #fff !important; }
+.genesys.sheet .gs-adv a.gs-char-name:hover { color: var(--gs-gold) !important; }
+.genesys.sheet .gs-shield input.gs-big-input { width: 64px; height: 40px; border: none; background: transparent; box-shadow: none; text-align: center;
+  font-family: var(--gs-head); font-size: 28px; font-weight: 600; color: var(--gs-navy); padding: 0; }
+.genesys.sheet .gs-shield input.gs-big-input:focus { background: #fff8ea; outline: 1px solid var(--gs-gold); }
+.genesys.sheet select.gs-adv-badge { color: #fff; width: auto; }
+.genesys.sheet .gs-adv .list-header { border-bottom: 2px solid var(--gs-maroon); }
+.genesys.sheet .gs-adv .list-header h3 { border: none; margin: 0; }
+.genesys.sheet .gs-adv .compact-list li { background: #fff; border: 1px solid #e3d3ad; border-radius: 6px; margin: 3px 0; padding: 3px 6px; }
+.genesys.sheet .gs-adv .weapon .name { font-family: var(--gs-head); text-transform: uppercase; color: var(--gs-navy); }

@@ -13,7 +13,7 @@ export class StoryPointsTracker extends HandlebarsApplicationMixin(ApplicationV2
     id: "genesys-story-points",
     classes: ["genesys", "story-points"],
     window: { title: "GENESYS.StoryPoints.Title", icon: "fa-solid fa-book-open", minimizable: true },
-    position: { width: 260, height: "auto", top: 80, left: 120 },
+    position: { width: 380, height: "auto", top: 80, left: 120 },
     actions: {
       usePlayer: StoryPointsTracker.#onUsePlayer,
       useGM: StoryPointsTracker.#onUseGM,
@@ -29,14 +29,23 @@ export class StoryPointsTracker extends HandlebarsApplicationMixin(ApplicationV2
     return game.settings.get(SYSTEM_ID, "storyPoints");
   }
 
+  /** Прошлые значения — чтобы «перевернуть» только что пришедший жетон. */
+  static #last = null;
+
   /** @override */
   async _prepareContext() {
     const { player, gm } = StoryPointsTracker.points;
+    const last = StoryPointsTracker.#last;
+    const arrived = last ? { player: player > last.player, gm: gm > last.gm } : { player: false, gm: false };
+    StoryPointsTracker.#last = { player, gm };
+    const coins = (n, side) => Array.from({ length: Math.min(n, 12) }, (_, i) => ({ i, arrive: arrived[side] && i === n - 1 }));
     return {
       player, gm,
-      playerTokens: Array.from({ length: player }),
-      gmTokens: Array.from({ length: gm }),
-      isGM: game.user.isGM
+      playerCoins: coins(player, "player"), gmCoins: coins(gm, "gm"),
+      playerMore: player > 12 ? player - 12 : 0, gmMore: gm > 12 ? gm - 12 : 0,
+      isGM: game.user.isGM,
+      coinPlayer: "systems/genesys-rpg/assets/story/player.svg",
+      coinGM: "systems/genesys-rpg/assets/story/gm.svg"
     };
   }
 
@@ -81,7 +90,7 @@ export class StoryPointsTracker extends HandlebarsApplicationMixin(ApplicationV2
     await game.settings.set(SYSTEM_ID, "storyPoints", points);
     if (message) {
       await ChatMessage.implementation.create({
-        content: `<div class="genesys story-point-message"><i class="fa-solid fa-book-open"></i> ${message}</div>`,
+        content: `<div class="genesys story-point-message ${action === "useGM" ? "gm" : "player"}"><img src="systems/genesys-rpg/assets/story/${action === "useGM" ? "gm" : "player"}.svg" alt=""><span>${message}</span></div>`,
         speaker: { alias: game.i18n.localize("GENESYS.StoryPoints.Title") }
       });
     }

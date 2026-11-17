@@ -52,7 +52,7 @@
   {{#if storyPoints}}
   <div class="pool-story-point">
     <button type="button" data-action="storyPoint" {{#unless storyPoints.can}}disabled{{/unless}}>
-      <i class="fa-solid fa-book-open"></i>
+      <img class="pool-sp-coin" src="systems/genesys-rpg/assets/story/{{#if storyPoints.gm}}gm{{else}}player{{/if}}.svg" alt="">
       {{#if storyPoints.gm}}{{localize "GENESYS.StoryPoints.SpendGM"}}{{else}}{{localize "GENESYS.StoryPoints.SpendPlayer"}}{{/if}}
       ({{storyPoints.available}})
     </button>
