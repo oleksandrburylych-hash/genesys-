@@ -130,7 +130,9 @@ Hooks.once("diceSoNiceReady", dice3d => registerDiceSoNice(dice3d));
 /* -------------------------------------------- */
 
 Hooks.on("getSceneControlButtons", controls => {
-  const tools = controls.tokens?.tools;
+  // Группа токенов: в v13+ — controls.tokens; на всякий случай — первая доступная группа.
+  const group = controls.tokens ?? controls.token ?? Object.values(controls ?? {}).find(c => c?.tools);
+  const tools = group?.tools;
   if (!tools) return;
   const order = Object.keys(tools).length;
   tools.genesysDice = {
@@ -160,6 +162,32 @@ Hooks.on("getSceneControlButtons", controls => {
     button: true,
     onChange: () => StoryPointsTracker.toggle()
   };
+});
+
+/* -------------------------------------------- */
+/*  Вход в мастер настройки                     */
+/* -------------------------------------------- */
+
+/** Кнопка во вкладке «Настройки» боковой панели. */
+Hooks.on("renderSettings", (app, html) => {
+  if (!game.user.isGM) return;
+  const root = html instanceof HTMLElement ? html : html?.[0];
+  if (!root || root.querySelector(".genesys-setup-button")) return;
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = "genesys-setup-button";
+  button.innerHTML = `<i class="fa-solid fa-wand-magic-sparkles"></i> ${game.i18n.localize("GENESYS.Setup.Title")}`;
+  button.addEventListener("click", () => openApp(() => new WorldSetup(), "WorldSetup"));
+  const anchor = root.querySelector("section, .settings, .flexcol") ?? root;
+  anchor.prepend(button);
+});
+
+/** Команда в чате: /genesys — мастер настройки мира. */
+Hooks.on("chatMessage", (log, message) => {
+  if (!/^\/(genesys|генезис)\b/i.test(message.trim())) return;
+  if (!game.user.isGM) ui.notifications.warn("GENESYS.Setup.GMOnly", { localize: true });
+  else openApp(() => new WorldSetup(), "WorldSetup");
+  return false;
 });
 
 /* -------------------------------------------- */

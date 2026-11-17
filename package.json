@@ -1,13 +1,13 @@
 {
   "name": "genesys-rpg",
   "private": true,
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "Genesys RPG system for Foundry VTT v14",
   "type": "module",
   "scripts": {
     "build:packs": "node tools/build-packs.mjs",
     "build:release": "node tools/build-release.mjs",
-    "test": "node tests/logic-test.mjs && node tests/combat-test.mjs && node tests/app-harness.mjs"
+    "test": "node tests/logic-test.mjs && node tests/combat-test.mjs && node tests/app-harness.mjs && node tests/boot-test.mjs"
   },
   "devDependencies": {
     "@foundryvtt/foundryvtt-cli": "3.0.5",

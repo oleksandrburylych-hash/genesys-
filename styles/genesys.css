@@ -662,3 +662,4 @@
 .genesys .world-setup .setup-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.2rem 0.8rem; }
 .genesys .world-setup .setup-log { margin-top: 0.6rem; padding: 0.4rem 0.4rem 0.4rem 1.6rem; background: var(--g-accent-soft); border-radius: 6px; }
 .genesys .world-setup .form-footer { display: flex; gap: 0.5rem; }
+.genesys-setup-button { width: 100%; margin: 0 0 0.5rem; font-weight: bold; }
