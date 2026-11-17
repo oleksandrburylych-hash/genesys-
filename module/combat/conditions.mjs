@@ -24,7 +24,7 @@ function statusEffect(actor, status) {
  * @param {string} status
  * @param {{rounds?: number, burn?: number, source?: string}} opts
  */
-export async function applyTimedStatus(actor, status, { rounds = 0, burn = 0, source = "" } = {}) {
+export async function applyTimedStatus(actor, status, { rounds = 0, burn = 0, source = "", untilTurnOf = null } = {}) {
   let effect = statusEffect(actor, status);
   if (!effect) {
     await actor.toggleStatusEffect(status, { active: true });
@@ -36,6 +36,11 @@ export async function applyTimedStatus(actor, status, { rounds = 0, burn = 0, so
   if (rounds > 0) update[`flags.${F}.rounds`] = Math.max(prev, rounds);
   if (burn > 0) update[`flags.${F}.burn`] = Math.max(effect.getFlag(F, "burn") ?? 0, burn);
   if (source) update[`flags.${F}.source`] = source;
+  // «До начала следующего хода» указанного актёра (например, пилота для манёвров транспорта).
+  if (untilTurnOf) {
+    update[`flags.${F}.untilTurnOf`] = untilTurnOf;
+    update[`flags.${F}.setRound`] = game.combat?.started ? game.combat.round : -1;
+  }
   if (Object.keys(update).length) await effect.update(update);
 }
 
@@ -51,9 +56,23 @@ async function say(actor, html) {
   });
 }
 
-/** Начало хода: урон Жжения. */
+/** Эффекты, которые заканчиваются в начале хода актёра (на нём самом и на транспорте, которым он управляет). */
+function effectsUntilTurnOf(actor) {
+  const actors = new Set([actor, ...(canvas?.scene?.tokens?.map(t => t.actor).filter(Boolean) ?? []), ...game.actors.filter(a => a.type === "vehicle")]);
+  const out = [];
+  for (const a of actors) for (const e of a.effects ?? []) if (e.getFlag(F, "untilTurnOf") === actor.uuid) out.push(e);
+  return out;
+}
+
+/** Начало хода: окончание эффектов «до следующего хода», урон Жжения. */
 async function startOfTurn(combat, combatant) {
   const actor = combatant?.actor;
+  if (actor) {
+    for (const e of effectsUntilTurnOf(actor)) {
+      const set = e.getFlag(F, "setRound");
+      if (set === undefined || set < combat.round) await e.delete();
+    }
+  }
   if (!actor || combatant.getFlag(F, "burnRound") === combat.round) return;
   const burning = statusEffect(actor, "burning");
   if (!burning) return;
@@ -103,6 +122,7 @@ export function registerConditionHooks() {
     for (const c of combat.combatants) {
       const ids = c.actor?.effects.filter(e => e.getFlag(F, "rounds")).map(e => e.id) ?? [];
       if (ids.length) await c.actor.deleteEmbeddedDocuments("ActiveEffect", ids);
+      if (c.actor) for (const e of effectsUntilTurnOf(c.actor)) await e.delete();
     }
   });
 }

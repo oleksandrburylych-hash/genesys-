@@ -205,6 +205,7 @@ export class GenesysActor extends Actor {
     pool.setback += mods.setback;
     pool.boost += mods.boost;
     if (mods.upgrades) pool.upgradeDifficulty(mods.upgrades);
+    if (mods.abilityUpgrades) pool.upgradeAbility(mods.abilityUpgrades);
     const notes = [...mods.notes, ...applyStateModifiers(shooter, pool, { characteristic: skill?.system.characteristic })];
 
     const active = sys.allQualities
@@ -239,16 +240,20 @@ export class GenesysActor extends Actor {
   }
 
   /** Проверка управления транспортом (Вождение/Пилотирование/Управление) от лица экипажа. */
-  async rollPilot() {
+  async rollPilot({ difficulty = 2, label: title = "" } = {}) {
     if (this.type !== "vehicle") return null;
     const crew = GenesysActor.findCrewMember(this);
     const skill = crew?.getSkill(this.system.skill);
-    const pool = skill ? crew.getSkillPool(skill, 2) : new DicePool({ ability: 1, difficulty: 2 });
+    const pool = skill ? crew.getSkillPool(skill, difficulty) : new DicePool({ ability: 1, difficulty });
+    const notes = [];
     // Управляемость: положительная — кости бонуса, отрицательная — кости штрафа.
     const h = this.system.handling;
     if (h > 0) pool.boost += h; else if (h < 0) pool.setback += -h;
-    const label = `${game.i18n.localize(`GENESYS.Skill.${this.system.skill}`)} (${this.name})`;
-    return DicePoolDialog.prompt({ pool, label, actor: crew ?? this });
+    // Опасная местность (Core, табл. III.2-15).
+    const terrain = this.getFlag(SYSTEM_ID, "terrain") ?? 0;
+    if (terrain > 0) { pool.setback += terrain; notes.push(game.i18n.format("GENESYS.Vehicle.TerrainNote", { value: terrain })); }
+    const label = `${title || game.i18n.localize(`GENESYS.Skill.${this.system.skill}`)} (${this.name})`;
+    return DicePoolDialog.prompt({ pool, label, actor: crew ?? this, notes });
   }
 
   /* -------------------------------------------- */

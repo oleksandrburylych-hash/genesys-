@@ -10,12 +10,12 @@ const MELEE_SKILLS = ["melee", "meleeLight", "meleeHeavy", "brawl"];
  * @returns {number} на сколько снижается урон (0 — нельзя)
  */
 function parryValue(actor, melee) {
-  const parry = talentRank(actor, /^parry$/i);
+  const parry = talentRank(actor, /^parry$/i, /^Парирование$/i);
   if (!parry) return 0;
   const weapons = actor.itemTypes?.weapon ?? [];
   const held = w => w.system.equipped !== false;
   if (melee) return weapons.some(w => held(w) && MELEE_SKILLS.includes(w.system.skill)) ? 2 + parry : 0;
-  const block = talentRank(actor, /^block$/i);
+  const block = talentRank(actor, /^block$/i, /^Блок$/i);
   const shield = [...weapons, ...(actor.itemTypes?.armor ?? [])].some(i => held(i) && /щит|shield/i.test(i.name));
   return block && shield ? 2 + parry : 0;
 }

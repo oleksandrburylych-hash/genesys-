@@ -19,6 +19,17 @@
     </div>
   </header>
 
+  <section class="vehicle-maneuvers">
+    <div class="vm-row">
+      <span class="vm-title">{{localize "GENESYS.Vehicle.Maneuvers"}}</span>
+      {{#each maneuvers}}<button type="button" class="vm-btn {{#if action}}action{{/if}}" data-action="maneuver" data-key="{{key}}" data-tooltip="{{localize hint}}" {{#unless allowed}}disabled{{/unless}}>{{localize label}}</button>{{/each}}
+    </div>
+    <div class="vm-row">
+      <label>{{localize "GENESYS.Vehicle.Terrain"}} <select name="flags.genesys-rpg.terrain" data-dtype="Number">{{#each terrainChoices}}<option value="{{n}}" {{#if selected}}selected{{/if}}>{{localize label}}</option>{{/each}}</select></label>
+      {{#each vehicleStates}}<span class="gs-world on" style="--world: #8e2229">{{this}}</span>{{/each}}
+    </div>
+  </section>
+
   <section class="derived-stats vehicle-stats">
     <div class="stat defense">
       <span class="stat-label">{{localize "GENESYS.Defense"}}</span>

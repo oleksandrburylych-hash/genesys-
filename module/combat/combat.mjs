@@ -126,7 +126,7 @@ export function attackModifiers(attacker, weapon, target) {
     const guard = guardUpgrades(target.actor, melee);
     if (guard > 0) { res.upgrades += guard; res.notes.push(i18n(melee ? "GENESYS.Reaction.StanceActive" : "GENESYS.Reaction.SideStepActive", { value: guard })); }
     // Уклонение: цель может усилить сложность, получив усталость (решается в окне броска).
-    const dodge = talentRank(target.actor, /^dodge$/i);
+    const dodge = talentRank(target.actor, /^dodge$/i, /^Уклонение$/i);
     if (dodge > 0 && target.actor.system.strain) res.dodge = { rank: dodge, uuid: target.actor.uuid, name: target.actor.name };
     // Лежачая цель.
     if (target.actor.statuses?.has("prone")) {
@@ -148,6 +148,15 @@ export function attackModifiers(attacker, weapon, target) {
       res.difficulty += add;
       res.notes.push(i18n("GENESYS.Combat.ShootingEngaged", { value: add }));
     }
+  }
+  // Бой транспорта (Core Rulebook, с. 227–230): Уклонение и Получение преимущества.
+  const flag = (a, status, key) => a?.effects?.find(e => e.statuses?.has(status))?.getFlag(SYSTEM_ID, key);
+  const hasStatus = (a, status) => !!a?.effects?.some(e => e.statuses?.has(status));
+  if (target?.actor?.type === "vehicle" && hasStatus(target.actor, "evasive")) { res.upgrades += 1; res.notes.push(i18n("GENESYS.Vehicle.EvasiveTarget")); }
+  if (attacker?.type === "vehicle" && hasStatus(attacker, "evasive")) { res.upgrades += 1; res.notes.push(i18n("GENESYS.Vehicle.EvasiveSelf")); }
+  if (attacker?.type === "vehicle" && target?.actor) {
+    if (flag(attacker, "vehicleAdvantage", "over") === target.actor.uuid) { res.abilityUpgrades = (res.abilityUpgrades ?? 0) + 2; res.notes.push(i18n("GENESYS.Vehicle.AdvantageOurs")); }
+    if (flag(target.actor, "vehicleAdvantage", "over") === attacker.uuid) { res.upgrades += 2; res.notes.push(i18n("GENESYS.Vehicle.AdvantageTheirs")); }
   }
   // Атакующий лежит и бьёт в ближнем бою.
   if (melee && attacker?.statuses?.has("prone")) { res.setback += 1; res.notes.push(i18n("GENESYS.Combat.AttackerProne")); }

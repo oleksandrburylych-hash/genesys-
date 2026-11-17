@@ -101,7 +101,7 @@ function embeddedItem(actorId, item, index) {
     img: imageFor(item),
     system: item.system ?? {},
     effects: [],
-    flags: {},
+    flags: item.nameEn ? { [SYSTEM_ID]: { nameEn: item.nameEn } } : {},
     sort: index * 100
   };
 }

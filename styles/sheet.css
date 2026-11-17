@@ -608,3 +608,17 @@
 .genesys .ws-custom > div { flex: 1; min-width: 0; }
 .genesys .ws-custom-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 6px; }
 .genesys .ws-custom-fields label { display: flex; flex-direction: column; gap: 2px; font-size: 12px; }
+
+/* Манёвры транспорта */
+.genesys .vehicle-maneuvers { margin: 6px 0; padding: 6px 8px; background: #f3ead6; border-radius: 6px; }
+.genesys .vm-row { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; margin: 2px 0; }
+.genesys .vm-title { font-family: var(--gs-head, inherit); text-transform: uppercase; margin-right: 6px; color: var(--gs-navy, #1f3557); }
+.genesys .vm-btn { width: auto; flex: 0 0 auto; padding: 0 8px; height: 24px; line-height: 22px; font-size: 12px; }
+.genesys .vm-btn.action { border-color: var(--gs-maroon, #8e2229); color: var(--gs-maroon, #8e2229); }
+.genesys .vm-row label { display: flex; align-items: center; gap: 6px; }
+.genesys .vm-row select { width: auto; }
+.genesys .gs-mount-row { display: flex; align-items: center; gap: 8px; padding: 4px 0; }
+.genesys .gs-mount-row img { width: 40px; height: 40px; border: none; }
+.genesys .gs-mount-info { flex: 1; display: flex; flex-direction: column; }
+.genesys .gs-mount-actions { display: flex; flex-wrap: wrap; gap: 4px; }
+.genesys .gs-mount-actions button { width: auto; flex: 0 0 auto; padding: 0 8px; height: 26px; }

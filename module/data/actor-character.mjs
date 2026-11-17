@@ -18,6 +18,8 @@ export default class CharacterData extends foundry.abstract.TypeDataModel {
     return {
       /** Тип приключения, по которому создан персонаж (ключ module/worlds.mjs → ADVENTURES или "custom:…"). */
       adventure: new StringField({ required: true, blank: true, initial: "" }),
+      /** Скакун: UUID актёра-противника (лошадь, боевой скакун и т. п.). */
+      mount: new StringField({ required: true, blank: true, initial: "" }),
       characteristics: characteristicsField(2),
 
       // creationChar — Сила/Воля, зафиксированные при завершении создания персонажа

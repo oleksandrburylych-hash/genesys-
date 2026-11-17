@@ -36,6 +36,11 @@ export class GenesysCharacterSheet extends GenesysBaseActorSheet {
       addMagicActions: GenesysCharacterSheet.#onAddMagicActions,
       useGuard: GenesysCharacterSheet.#onUseGuard,
       exportChar: GenesysCharacterSheet.#onExportChar,
+      mountOpen: GenesysCharacterSheet.#onMountOpen,
+      mountRemove: GenesysCharacterSheet.#onMountRemove,
+      mountToggle: GenesysCharacterSheet.#onMountToggle,
+      mountControl: GenesysCharacterSheet.#onMountControl,
+      mountAttack: GenesysCharacterSheet.#onMountAttack,
       importChar: GenesysCharacterSheet.#onImportChar
     }
   };
@@ -103,6 +108,13 @@ export class GenesysCharacterSheet extends GenesysBaseActorSheet {
     context.skillColumns = [["general", "magic"], ["combat", "social", "knowledge"]]
       .map(keys => keys.map(k => byKey[k]).filter(Boolean)).filter(c => c.length);
     context.adventureLabel = actor.system.adventure ? getAdventure(actor.system.adventure).label : "";
+    const mount = this.mountActor;
+    context.mounted = actor.statuses?.has("mounted");
+    context.mount = mount ? {
+      name: mount.name, img: mount.img, wounds: mount.system.wounds?.value ?? 0, max: mount.system.wounds?.max ?? 0,
+      soak: mount.system.soak?.value ?? 0, defense: `${mount.system.defense?.melee?.value ?? 0}/${mount.system.defense?.ranged?.value ?? 0}`,
+      weapons: mount.itemTypes.weapon.map(w => ({ id: w.id, name: w.name }))
+    } : null;
     context.playerName = game.users.find(u => !u.isGM && u.character?.id === actor.id)?.name
       ?? game.users.find(u => !u.isGM && actor.testUserPermission(u, "OWNER"))?.name ?? "";
 
@@ -328,4 +340,64 @@ export class GenesysCharacterSheet extends GenesysBaseActorSheet {
 
   /** Загрузить персонажа из JSON-файла поверх текущего (стандартный диалог Foundry). */
   static #onImportChar() { return this.actor.importFromJSONDialog(); }
+
+  /* -------------------------------------------- */
+  /*  Скакун                                       */
+  /* -------------------------------------------- */
+
+  /** Актёр-скакун персонажа (если задан и существует). */
+  get mountActor() {
+    const uuid = this.actor.system.mount;
+    if (!uuid) return null;
+    try { return fromUuidSync(uuid) ?? null; } catch { return null; }
+  }
+
+  /** Перетащили актёра на лист — это скакун (противник-животное); из компендиума он импортируется в мир. */
+  async _onDropActor(event, actor) {
+    if (!this.isEditable || actor?.type !== "adversary") return null;
+    let mount = actor;
+    if (actor.pack) {
+      const data = game.actors.fromCompendium(actor);
+      mount = await Actor.implementation.create(data);
+    }
+    await this.actor.update({ "system.mount": mount.uuid });
+    ui.notifications.info(game.i18n.format("GENESYS.Mount.Set", { name: mount.name }));
+    return mount;
+  }
+
+  static #onMountOpen() { this.mountActor?.sheet.render({ force: true }); }
+  static #onMountRemove() {
+    if (this.actor.statuses?.has("mounted")) this.actor.toggleStatusEffect("mounted", { active: false });
+    return this.actor.update({ "system.mount": "" });
+  }
+
+  /** Сесть в седло / спешиться: манёвр, с талантом «Поехали!» — побочное действие раз в раунд. */
+  static async #onMountToggle() {
+    const mounted = this.actor.statuses?.has("mounted");
+    await this.actor.toggleStatusEffect("mounted", { active: !mounted });
+    const letsRide = this.actor.itemTypes.talent.some(t => t.flags?.[SYSTEM_ID]?.nameEn === "Let's Ride");
+    const key = mounted ? "GENESYS.Mount.DismountMsg" : "GENESYS.Mount.MountMsg";
+    await ChatMessage.implementation.create({
+      speaker: ChatMessage.implementation.getSpeaker({ actor: this.actor }),
+      content: `<div class="genesys status-report">${game.i18n.format(key, { name: foundry.utils.escapeHTML(this.actor.name), mount: foundry.utils.escapeHTML(this.mountActor?.name ?? "") })}
+        <span class="hint">${game.i18n.localize(letsRide ? "GENESYS.Mount.LetsRide" : "GENESYS.Mount.Maneuver")}</span></div>`
+    });
+  }
+
+  /** Совладать со скакуном: проверка Верховой езды (Обычная). */
+  static #onMountControl() {
+    const skill = this.actor.getSkill("riding") ?? this.actor.getSkill("survival");
+    if (!skill) return ui.notifications.warn(game.i18n.format("GENESYS.Warn.SkillNotFound", { name: game.i18n.localize("GENESYS.Skill.riding") }));
+    return this.actor.rollSkill(skill, { difficulty: 2, label: `${skill.name}: ${this.mountActor?.name ?? ""}` });
+  }
+
+  /** Атака скакуна его оружием (с талантом «Кавалерист» — по команде всадника манёвром). */
+  static async #onMountAttack(event, target) {
+    const mount = this.mountActor;
+    const weapon = mount?.items.get(target.dataset.weaponId);
+    if (!weapon) return;
+    const cavalier = this.actor.itemTypes.talent.some(t => t.flags?.[SYSTEM_ID]?.nameEn === "Cavalier");
+    if (cavalier) ui.notifications.info("GENESYS.Mount.Cavalier", { localize: true });
+    return mount.rollWeapon(weapon);
+  }
 }

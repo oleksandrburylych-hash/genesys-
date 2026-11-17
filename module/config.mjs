@@ -214,7 +214,11 @@ GENESYS.statusEffects = [
   { id: "concentrating", name: "GENESYS.Status.concentrating", img: "icons/svg/aura.svg" },
   { id: "invisible", name: "GENESYS.Status.invisible", img: "icons/svg/invisible.svg" },
   { id: "defensiveStance", name: "GENESYS.Status.defensiveStance", img: "icons/svg/shield.svg" },
-  { id: "sideStep", name: "GENESYS.Status.sideStep", img: "icons/svg/wingfoot.svg" }
+  { id: "sideStep", name: "GENESYS.Status.sideStep", img: "icons/svg/wingfoot.svg" },
+  { id: "evasive", name: "GENESYS.Status.evasive", img: "icons/svg/windmill.svg" },
+  { id: "braced", name: "GENESYS.Status.braced", img: "icons/svg/anchor.svg" },
+  { id: "vehicleAdvantage", name: "GENESYS.Status.vehicleAdvantage", img: "icons/svg/target.svg" },
+  { id: "mounted", name: "GENESYS.Status.mounted", img: "icons/svg/pawprint.svg" }
 ];
 
 /**

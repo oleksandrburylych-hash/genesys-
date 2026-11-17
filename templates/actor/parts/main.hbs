@@ -103,6 +103,27 @@
       </ol>
     </section>
 
+    <section class="gs-box gs-mount">
+      <div class="gs-box-head"><span>{{localize "GENESYS.Mount.Title"}}</span></div>
+      {{#if mount}}
+      <div class="gs-mount-row">
+        <img src="{{mount.img}}" alt="">
+        <div class="gs-mount-info">
+          <a data-action="mountOpen">{{mount.name}}</a>
+          <span class="gs-help">{{localize "GENESYS.Wounds"}} {{mount.wounds}}/{{mount.max}} · {{localize "GENESYS.Soak"}} {{mount.soak}} · {{localize "GENESYS.Defense"}} {{mount.defense}}</span>
+        </div>
+        {{#if mounted}}<span class="gs-world on" style="--world: #5b7a2e">{{localize "GENESYS.Status.mounted"}}</span>{{/if}}
+        {{#if @root.editable}}<a data-action="mountRemove" data-tooltip="GENESYS.Mount.Remove"><i class="fa-solid fa-xmark"></i></a>{{/if}}
+      </div>
+      <div class="gs-mount-actions">
+        <button type="button" data-action="mountToggle"><i class="fa-solid fa-horse"></i> {{#if mounted}}{{localize "GENESYS.Mount.Dismount"}}{{else}}{{localize "GENESYS.Mount.Mount"}}{{/if}}</button>
+        <button type="button" data-action="mountControl"><i class="fa-solid fa-dice-d20"></i> {{localize "GENESYS.Mount.Control"}}</button>
+        {{#each mount.weapons}}<button type="button" data-action="mountAttack" data-weapon-id="{{id}}"><i class="fa-solid fa-paw"></i> {{name}}</button>{{/each}}
+      </div>
+      {{else}}
+      <p class="gs-empty">{{localize "GENESYS.Mount.Empty"}}</p>
+      {{/if}}
+    </section>
     <section class="gs-box">
       <details>
         <summary class="gs-box-head"><span>{{localize "GENESYS.Bonuses"}}</span><i class="fa-solid fa-chevron-down"></i></summary>
