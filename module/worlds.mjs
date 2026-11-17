@@ -107,9 +107,12 @@ export function getAdventure(key) {
   if (key.startsWith("custom:")) {
     const worlds = key.slice(7).split(",").filter(w => WORLDS[w]);
     if (!worlds.length) return { key: "all", ...ADVENTURES.all };
+    // Имя и набор навыков своего приключения задаёт ведущий в мастере настройки мира.
+    let saved = {};
+    try { saved = globalThis.game?.settings?.get("genesys-rpg", "customAdventure") ?? {}; } catch { /* нет настройки */ }
     return {
-      key, custom: true, worlds, skills: WORLD_SKILLS[worlds[0]] ?? "all", icon: "scroll-unfurled",
-      label: worlds.map(w => WORLDS[w].label).join(" + "),
+      key, custom: true, worlds, skills: saved.skills || WORLD_SKILLS[worlds[0]] || "all", icon: "scroll-unfurled",
+      label: saved.name || worlds.map(w => WORLDS[w].label).join(" + "),
       hint: "Своё сочетание миров."
     };
   }

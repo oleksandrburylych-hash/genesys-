@@ -25,10 +25,15 @@ export class WorldSetup extends HandlebarsApplicationMixin(ApplicationV2) {
     this.setup = {
       adventures: new Set(saved.filter(k => ADVENTURES[k])),
       customWorlds: new Set(custom ? custom.slice(7).split(",") : []),
+      customName: "", customSkills: "",
       sources: Object.fromEntries(Object.keys(GENESYS.sources).map(k => [k, true])),
       packs: Object.fromEntries(IMPORTABLE.map(([k, on]) => [k, on])),
       tables: true, journal: true, macros: true, storyPoints: true, replace: true
     };
+    try {
+      const saved = game.settings.get(SYSTEM_ID, "customAdventure") ?? {};
+      this.setup.customName = saved.name ?? ""; this.setup.customSkills = saved.skills ?? "";
+    } catch { /* нет настройки */ }
     this.index = null;
     this.log = [];
     this.running = false;
@@ -73,7 +78,10 @@ export class WorldSetup extends HandlebarsApplicationMixin(ApplicationV2) {
   get chosen() {
     const s = this.setup;
     const list = [...s.adventures].map(k => getAdventure(k));
-    if (s.customWorlds.size) list.push(getAdventure(`custom:${[...s.customWorlds].join(",")}`));
+    if (s.customWorlds.size) {
+      const a = getAdventure(`custom:${[...s.customWorlds].join(",")}`);
+      list.push({ ...a, label: s.customName.trim() || [...s.customWorlds].map(w => WORLDS[w]?.label).join(" + "), skills: s.customSkills || a.skills });
+    }
     return list;
   }
 
@@ -113,6 +121,9 @@ export class WorldSetup extends HandlebarsApplicationMixin(ApplicationV2) {
       customImg: adventureImg({ icon: "scroll-unfurled" }),
       customActive: s.customWorlds.size > 0,
       worlds: Object.entries(WORLDS).map(([key, w]) => ({ key, label: w.label, color: w.color, on: s.customWorlds.has(key) })),
+      customName: s.customName,
+      skillSets: [{ key: "", label: "GENESYS.Setup.CustomSkillsAuto", selected: !s.customSkills },
+        ...Object.entries(GENESYS.skillPresets).filter(([k]) => k !== "none").map(([key, label]) => ({ key, label, selected: key === s.customSkills }))],
       sources: Object.entries(GENESYS.sources).map(([key, cfg]) => ({ key, label: cfg.label, checked: s.sources[key] })),
       packs: IMPORTABLE.map(([key]) => {
         const pack = game.packs.get(`${SYSTEM_ID}.${key}`);
@@ -133,6 +144,7 @@ export class WorldSetup extends HandlebarsApplicationMixin(ApplicationV2) {
     for (const k of Object.keys(s.sources)) s.sources[k] = !!d.sources?.[k];
     for (const k of Object.keys(s.packs)) s.packs[k] = !!d.packs?.[k];
     for (const k of ["tables", "journal", "macros", "storyPoints", "replace"]) s[k] = !!d[k];
+    if (d.custom) { s.customName = d.custom.name ?? s.customName; s.customSkills = d.custom.skills ?? s.customSkills; }
     if (event?.target?.name?.startsWith("sources.") || event?.target?.name?.startsWith("packs.")) this.render();
   }
 
@@ -173,6 +185,7 @@ export class WorldSetup extends HandlebarsApplicationMixin(ApplicationV2) {
     this.log = [];
     const s = this.setup;
     try {
+      await game.settings.set(SYSTEM_ID, "customAdventure", { name: s.customName.trim(), skills: s.customSkills });
       await game.settings.set(SYSTEM_ID, "adventures", chosen.map(a => a.key));
       await game.settings.set(SYSTEM_ID, "skillPreset", chosen.length === 1 ? chosen[0].skills : (chosen.find(a => a.key === "all") ? "all" : chosen[0].skills));
       this.#step(game.i18n.format("GENESYS.Setup.Log.Setting", { name: chosen.map(a => a.label).join(", ") }));

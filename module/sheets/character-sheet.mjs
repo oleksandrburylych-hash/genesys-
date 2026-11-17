@@ -34,7 +34,9 @@ export class GenesysCharacterSheet extends GenesysBaseActorSheet {
       healInjury: GenesysCharacterSheet.#onHealInjury,
       creationWizard: GenesysCharacterSheet.#onCreationWizard,
       addMagicActions: GenesysCharacterSheet.#onAddMagicActions,
-      useGuard: GenesysCharacterSheet.#onUseGuard
+      useGuard: GenesysCharacterSheet.#onUseGuard,
+      exportChar: GenesysCharacterSheet.#onExportChar,
+      importChar: GenesysCharacterSheet.#onImportChar
     }
   };
 
@@ -320,4 +322,10 @@ export class GenesysCharacterSheet extends GenesysBaseActorSheet {
       content: `<div class="genesys status-report">${game.i18n.format("GENESYS.Reaction.GuardUsed", { name: foundry.utils.escapeHTML(this.actor.name), talent: foundry.utils.escapeHTML(item.name), value: n })}</div>`
     });
   }
+
+  /** Сохранить персонажа в JSON-файл (для переноса между мирами и кампаниями). */
+  static #onExportChar() { return this.actor.exportToJSON(); }
+
+  /** Загрузить персонажа из JSON-файла поверх текущего (стандартный диалог Foundry). */
+  static #onImportChar() { return this.actor.importFromJSONDialog(); }
 }

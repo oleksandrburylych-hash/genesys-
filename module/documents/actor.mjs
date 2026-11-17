@@ -3,7 +3,7 @@ import { DicePool } from "../dice/pool.mjs";
 import { DicePoolDialog } from "../apps/dice-pool-dialog.mjs";
 import { getTargets, attackModifiers, applyStateModifiers, actOnActor } from "../combat/combat.mjs";
 import { getAdventure } from "../worlds.mjs";
-import { enabledAdventureKeys, adventureSkillKeys } from "../helpers/adventure.mjs";
+import { enabledAdventureKeys, adventureSkillKeys, magicCareerOnly } from "../helpers/adventure.mjs";
 
 /**
  * Актёр Genesys: персонаж или противник.
@@ -302,6 +302,10 @@ export class GenesysActor extends Actor {
     if (next < 0 || next > GENESYS.xp.maxSkill) return;
 
     if (this.isCharacter) {
+      if (delta > 0 && skill.system.category === "magic" && !skill.system.career && this.system.autoXP
+        && magicCareerOnly(this.system.adventure)) {
+        return ui.notifications.warn(game.i18n.format("GENESYS.Warn.MagicCareerOnly", { name: skill.name }));
+      }
       if (delta > 0 && this.system.creation && next > GENESYS.xp.maxSkillCreation && this.system.autoXP) {
         return ui.notifications.warn(game.i18n.format("GENESYS.Warn.SkillCreationMax", { max: GENESYS.xp.maxSkillCreation }));
       }

@@ -188,6 +188,15 @@ A.next.call(multi); await multi.render();
 const catCareers = [...multi.html.matchAll(/wz-card-name">([^<]+)/g)].map(m => m[1]);
 assert.ok(catCareers.includes("Маг") && !catCareers.includes("Капитан звездолёта"), `catfolk careers: ${catCareers}`);
 
+// Случайный персонаж: сразу итог, опыт не уходит в минус.
+const rndw = new CreationWizard({ actor });
+await rndw.render();
+await A.random.call(rndw); await rndw.render();
+assert.ok(rndw.html.includes("wz-summary"), "random character jumps to summary");
+assert.ok(!rndw.html.includes('data-action="finish" disabled'), "random character is valid");
+assert.ok(Number(rndw.html.match(/wz-budget-value">(-?\d+)/)[1]) >= 0, "random XP not negative");
+if (process.env.DUMP) fs.writeFileSync(path.join(process.env.DUMP, "wz-summary.html"), rndw.html);
+
 // Ведущий выбрал Терринот: мастер сразу начинает с расы и показывает только Терринот.
 settings["genesys-rpg.adventures"] = ["terrinoth"];
 const cw = new CreationWizard({ actor });
@@ -225,8 +234,16 @@ await A.rollMotivation.call(cw, null, { dataset: {} }); await cw.render();
 assert.ok(cw.html.includes('wz-tag small on'), "motivation picked from table");
 dump("motivations");
 A.next.call(cw); await cw.render(); // heroic (exists in RoT pack)
+A.next.call(cw); await cw.render(); // gear
+const shopItems = [...cw.html.matchAll(/data-action="buy" data-uuid="([^"]+)"/g)].map(m => m[1]);
+assert.ok(shopItems.length > 5, `shop lists weapons: ${shopItems.length}`);
+assert.ok(!shopItems.some(u => u.includes("Лазерный")), "no sci-fi in Terrinoth shop");
+A.buy.call(cw, null, { dataset: { uuid: shopItems[0] } }); await cw.render();
+dump("gear");
+assert.ok(cw.html.includes("wz-cart-row"), "bought item in cart");
 A.next.call(cw); await cw.render(); // details
 assert.ok(cw.html.includes('name="details.money" value="500"'), "starting money 500");
+dump("details");
 A.next.call(cw); await cw.render(); // summary
 assert.ok(!cw.html.includes('data-action="finish" disabled'), "finish enabled");
 await A.finish.call(cw);

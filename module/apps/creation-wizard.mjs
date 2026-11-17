@@ -1,10 +1,11 @@
 import { GENESYS, SYSTEM_ID, TEMPLATES } from "../config.mjs";
 import { getAdventure, filterForAdventure, fitsAdventure, worldsOf } from "../worlds.mjs";
-import { enabledAdventureKeys, adventureImg, adventureSkillKeys } from "../helpers/adventure.mjs";
+import { enabledAdventureKeys, adventureImg, adventureSkillKeys, magicCareerOnly } from "../helpers/adventure.mjs";
 
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
-const STEPS = ["archetype", "career", "skills", "xp", "talents", "motivations", "heroic", "details", "summary"];
+const STEPS = ["archetype", "career", "skills", "xp", "talents", "motivations", "heroic", "gear", "details", "summary"];
+const GEAR_TYPES = ["weapon", "armor", "gear"];
 const CHARS = Object.keys(GENESYS.characteristics);
 const MOTIVATIONS = ["strength", "flaw", "desire", "fear"];
 
@@ -38,7 +39,7 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
     this.stepIndex = 0;
     this.lib = null;
     this.viewCache = null;
-    this.filter = { archetype: "", career: "", talent: "", archetypeSearch: "", careerSearch: "", talentSearch: "", talentTier: 0 };
+    this.filter = { gearType: "weapon", gearSearch: "", archetype: "", career: "", talent: "", archetypeSearch: "", careerSearch: "", talentSearch: "", talentTier: 0 };
     this.pick = {
       archetype: null, career: null, heroic: null,
       careerFree: [], startFree: [],
@@ -46,7 +47,8 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
       skills: {},
       talents: [],
       motivations: Object.fromEntries(MOTIVATIONS.map(k => [k, { name: "", text: "" }])),
-      details: { name: actor.name, gender: "", age: "", height: "", build: "", hair: "", eyes: "", features: "", money: null }
+      details: { name: actor.name, gender: "", age: "", height: "", build: "", hair: "", eyes: "", features: "", money: null, pocket: 0 },
+      gear: []
     };
   }
 
@@ -60,7 +62,9 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
       pick: CreationWizard.#onPick, group: CreationWizard.#onGroup, toggle: CreationWizard.#onToggle,
       char: CreationWizard.#onChar, skill: CreationWizard.#onSkill, talent: CreationWizard.#onTalent,
       tier: CreationWizard.#onTier, rollMotivation: CreationWizard.#onRollMotivation,
-      pickMotivation: CreationWizard.#onPickMotivation, finish: CreationWizard.#onFinish
+      pickMotivation: CreationWizard.#onPickMotivation, finish: CreationWizard.#onFinish,
+      gearType: CreationWizard.#onGearType, buy: CreationWizard.#onBuy, cartQty: CreationWizard.#onCartQty,
+      rollPocket: CreationWizard.#onRollPocket, random: CreationWizard.#onRandom
     },
     form: { handler: CreationWizard.#onChange, submitOnChange: true, closeOnSubmit: false }
   };
@@ -96,17 +100,29 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
 
   async #load() {
     if (this.lib) return this.lib;
-    const [archetypes, careers, heroics, talents, skills] = await Promise.all([
+    const [archetypes, careers, heroics, talents, skills, weapons, armor, gear] = await Promise.all([
       this.#docs("archetypes", "archetype"), this.#docs("careers", "career"), this.#docs("heroic", "heroic"),
-      this.#docs("talents", "talent"), this.#docs("skills", "skill")
+      this.#docs("talents", "talent"), this.#docs("skills", "skill"),
+      this.#docs("weapons", "weapon"), this.#docs("armor", "armor"), this.#docs("gear", "gear")
     ]);
-    this.lib = { archetypes, careers, heroics, talents, skills, byUuid: new Map([...archetypes, ...careers, ...heroics, ...talents].map(d => [d.uuid, d])) };
+    // В лавке — только то, что можно купить: оружие персонального масштаба, броня и снаряжение с ценой.
+    const shop = [...weapons, ...armor, ...gear].filter(d => (d.system.price ?? 0) > 0 && !/транспорт/i.test(d.folder?.name ?? ""));
+    this.lib = { archetypes, careers, heroics, talents, skills, shop,
+      byUuid: new Map([...archetypes, ...careers, ...heroics, ...talents, ...shop].map(d => [d.uuid, d])) };
     // Стартовые деньги по правилам книги.
     if (this.pick.details.money === null) this.pick.details.money = GENESYS.creation?.rules?.startingMoney ?? 500;
     return this.lib;
   }
 
   #doc(uuid) { return uuid ? this.lib?.byUuid.get(uuid) ?? null : null; }
+
+  /** Деньги: стартовый бюджет, потрачено в лавке, остаток. */
+  #money() {
+    const budget = Number(this.pick.details.money) || 0;
+    const spent = this.pick.gear.reduce((sum, g) => sum + (this.#doc(g.uuid)?.system.price ?? 0) * g.qty, 0);
+    const pocket = Number(this.pick.details.pocket) || 0;
+    return { budget, spent, left: budget - spent, pocket, final: budget - spent + pocket };
+  }
 
   /** Типы приключений, выбранные ведущим в мастере настройки мира (пусто — без ограничений). */
   get worldAdventures() { return enabledAdventureKeys().map(k => getAdventure(k)); }
@@ -144,7 +160,7 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
       }
       this.viewCache = {
         key, archetypes, careers: f(this.lib.careers), heroics: f(this.lib.heroics),
-        talents: f(this.lib.talents), skills: this.lib.skills
+        talents: f(this.lib.talents), skills: this.lib.skills, shop: f(this.lib.shop)
       };
     }
     return this.viewCache;
@@ -196,6 +212,9 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
     return out;
   }
 
+  /** Действует ли правило «магия только карьерная» для этого персонажа. */
+  get magicLocked() { return magicCareerOnly(this.adventure?.key); }
+
   /** Описание навыка по ключу. */
   static #skillDef(key) {
     return GENESYS.defaultSkills.find(s => s.key === key) ?? GENESYS.extraSkills[key] ?? null;
@@ -235,7 +254,8 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
       const free = (this.pick.careerFree.includes(r.name) ? 1 : 0) + (this.pick.startFree.includes(r.name) ? 1 : 0);
       const start = Math.min(GENESYS.xp.maxSkillCreation, r.base + free);
       const bought = this.pick.skills[r.name] ?? 0;
-      return { ...r, career: isCareer, free, start, bought, rank: start + bought };
+      const locked = r.category === "magic" && !isCareer && this.magicLocked;
+      return { ...r, career: isCareer, free, start, bought, rank: start + bought, locked };
     }).sort((a, b) => (b.career - a.career) || a.name.localeCompare(b.name, game.i18n.lang));
   }
 
@@ -391,7 +411,32 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
     if (this.step === "heroic") {
       ctx.heroics = this.view.heroics.map(d => ({ uuid: d.uuid, name: d.name, img: d.img, description: d.system.description, selected: this.pick.heroic === d.uuid }));
     }
+    if (this.step === "gear") {
+      const money = this.#money();
+      const q = this.filter.gearSearch.toLowerCase();
+      const type = this.filter.gearType;
+      ctx.money = money;
+      ctx.gearTypes = GEAR_TYPES.map(t => ({ key: t, label: `TYPES.Item.${t}`, active: t === type }));
+      ctx.gearSearch = this.filter.gearSearch;
+      ctx.shop = this.view.shop.filter(d => d.type === type && (!q || d.name.toLowerCase().includes(q)))
+        .sort((a, b) => a.system.price - b.system.price || a.name.localeCompare(b.name, game.i18n.lang))
+        .slice(0, 150)
+        .map(d => {
+          const sys = d.system;
+          let line = "";
+          if (d.type === "weapon") line = `${L("GENESYS.DamageShort")} ${sys.brawnDamage ? "+" : ""}${sys.damage} · ${L("GENESYS.CritShort")} ${sys.crit} · ${L(GENESYS.ranges[sys.range]?.label ?? "")}`;
+          else if (d.type === "armor") line = `${L("GENESYS.Soak")} +${sys.soak ?? 0} · ${L("GENESYS.Defense")} ${sys.defense ?? 0}`;
+          return { uuid: d.uuid, name: d.name, img: d.img, price: sys.price, rarity: sys.rarity, enc: sys.encumbrance, line,
+            affordable: sys.price <= money.left, inCart: this.pick.gear.some(g => g.uuid === d.uuid) };
+        });
+      ctx.cart = this.pick.gear.map((g, i) => {
+        const d = this.#doc(g.uuid);
+        return { index: i, name: d?.name, img: d?.img, qty: g.qty, price: (d?.system.price ?? 0) * g.qty };
+      });
+      ctx.careerGear = GENESYS.creation?.careerGear?.[career?.name] ?? "";
+    }
     if (this.step === "details") {
+      ctx.money = this.#money();
       ctx.details = this.pick.details;
       ctx.moneyText = GENESYS.creation?.rules?.moneyText ?? "";
       ctx.careerGear = GENESYS.creation?.careerGear?.[career?.name] ?? "";
@@ -404,7 +449,8 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
         skills: this.#skillRows().filter(r => r.rank > 0).map(r => `${r.name} ${r.rank}`).join(", "),
         talents: this.pick.talents.map(t => `${this.#doc(t.uuid)?.name}${t.rank > 1 ? ` ${t.rank}` : ""}`).join(", "),
         motivations: MOTIVATIONS.map(k => ({ label: GENESYS.motivations[k], name: this.pick.motivations[k].name })).filter(m => m.name),
-        name: this.pick.details.name, money: this.pick.details.money
+        name: this.pick.details.name, money: this.#money().final,
+        gear: this.pick.gear.map(g => `${this.#doc(g.uuid)?.name}${g.qty > 1 ? ` ×${g.qty}` : ""}`).join(", ")
       };
       ctx.ready = !!arch && !!career && budget.left >= 0;
     }
@@ -427,7 +473,10 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
   static #onChange(event, form, formData) {
     const d = foundry.utils.expandObject(formData.object);
     if (d.search) for (const [k, v] of Object.entries(d.search)) this.filter[`${k}Search`] = v ?? "";
-    if (d.details) Object.assign(this.pick.details, d.details, { money: Number(d.details.money ?? this.pick.details.money) || 0 });
+    if (d.details) Object.assign(this.pick.details, d.details, {
+      money: Number(d.details.money ?? this.pick.details.money) || 0,
+      pocket: Number(d.details.pocket ?? this.pick.details.pocket) || 0
+    });
     if (d.mot) for (const k of MOTIVATIONS) if (d.mot[k]) Object.assign(this.pick.motivations[k], d.mot[k]);
     // Поиск — перерисовать списки, сохранив фокус ввода.
     if (d.search && event?.target?.name?.startsWith("search.")) {
@@ -465,12 +514,7 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
       if (this.pick.career && !v.careers.some(d => d.uuid === this.pick.career)) Object.assign(this.pick, { career: null, careerFree: [], skills: {} });
       this.pick.talents = this.pick.talents.filter(t => v.talents.some(d => d.uuid === t.uuid));
       if (this.pick.heroic && !v.heroics.some(d => d.uuid === this.pick.heroic)) this.pick.heroic = null;
-      // Стартовые навыки: заранее отметить навыки, названные в тексте расы.
-      const text = (this.archetype?.system.startingSkills ?? "").toLowerCase();
-      this.pick.startFree = this.#skillRows().filter(r => {
-        const stem = r.name.toLowerCase().slice(0, Math.max(5, r.name.length - 2));
-        return text.includes(stem);
-      }).map(r => r.name).slice(0, 3);
+      this.pick.startFree = this.#defaultStartFree();
     }
     this.render();
   }
@@ -485,6 +529,8 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
     const name = target.dataset.name;
     const max = target.dataset.list === "careerFree" ? 4 : 3;
     const i = list.indexOf(name);
+    const row = this.#skillRows().find(r => r.name === name);
+    if (i < 0 && row?.locked) return ui.notifications.warn(game.i18n.format("GENESYS.Warn.MagicCareerOnly", { name }));
     if (i >= 0) list.splice(i, 1);
     else if (list.length >= max) return ui.notifications.warn(game.i18n.format("GENESYS.Wizard.MaxSkills", { max }));
     else list.push(name);
@@ -507,6 +553,7 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
     const delta = Number(target.dataset.delta);
     const row = this.#skillRows().find(r => r.name === name);
     if (!row) return;
+    if (row.locked && Number(target.dataset.delta) > 0) return ui.notifications.warn(game.i18n.format("GENESYS.Warn.MagicCareerOnly", { name }));
     const next = (this.pick.skills[name] ?? 0) + delta;
     if (next < 0 || row.start + next > GENESYS.xp.maxSkillCreation) return;
     this.pick.skills[name] = next;
@@ -529,6 +576,103 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
     }
     this.pick.talents.push(entry);
     if (this.#budget().left < 0) { this.pick.talents.pop(); return ui.notifications.warn("GENESYS.Wizard.NoXP", { localize: true }); }
+    this.render();
+  }
+
+  /** Стартовые навыки расы: заранее отметить навыки, названные в её описании. */
+  #defaultStartFree() {
+    const text = (this.archetype?.system.startingSkills ?? "").toLowerCase();
+    return this.#skillRows().filter(r => {
+      const stem = r.name.toLowerCase().slice(0, Math.max(5, r.name.length - 2));
+      return text.includes(stem) && !r.locked;
+    }).map(r => r.name).slice(0, 3);
+  }
+
+  /**
+   * Случайный персонаж: раса, карьера, бесплатные ранги, разумная трата опыта
+   * (лучшая характеристика, карьерные навыки, таланты 1-го уровня), мотивации, героическая способность,
+   * оружие и броня по карману. Всё можно поправить на любом шаге перед созданием.
+   */
+  static async #onRandom() {
+    await this.#load();
+    const rnd = list => list[Math.floor(Math.random() * list.length)];
+    const shuffle = list => list.map(x => [Math.random(), x]).sort((a, b) => a[0] - b[0]).map(x => x[1]);
+    if (!this.view.archetypes.length) return;
+    Object.assign(this.pick, { archetype: rnd(this.view.archetypes).uuid, career: null, heroic: null, careerFree: [], skills: {}, talents: [], gear: [] });
+    this.pick.chars = Object.fromEntries(CHARS.map(k => [k, 0]));
+    const careers = this.view.careers;
+    if (careers.length) this.pick.career = rnd(careers).uuid;
+    this.pick.startFree = this.#defaultStartFree();
+    this.pick.careerFree = shuffle(this.#skillRows().filter(r => r.career && !r.locked).map(r => r.name)).slice(0, 4);
+
+    // Опыт: +1 к одной из двух лучших характеристик, если останется на навыки.
+    const arch = this.archetype;
+    const best = [...CHARS].sort((a, b) => (arch.system.characteristics[b] ?? 0) - (arch.system.characteristics[a] ?? 0)).slice(0, 2);
+    const k = rnd(best);
+    if ((arch.system.characteristics[k] ?? 2) < GENESYS.xp.maxCharacteristicCreation) {
+      this.pick.chars[k] = 1;
+      if (this.#budget().left < 25) this.pick.chars[k] = 0;
+    }
+    // Карьерные навыки до ранга 2, пока хватает (оставляя на таланты).
+    for (const row of shuffle(this.#skillRows().filter(r => r.career && !r.locked))) {
+      while (row.start + (this.pick.skills[row.name] ?? 0) < GENESYS.xp.maxSkillCreation) {
+        this.pick.skills[row.name] = (this.pick.skills[row.name] ?? 0) + 1;
+        if (this.#budget().left < 10) { this.pick.skills[row.name]--; break; }
+      }
+    }
+    // Таланты 1-го уровня на остаток.
+    // Магические таланты — только тем, у кого есть магический карьерный навык.
+    const caster = this.#skillRows().some(r => r.career && r.category === "magic");
+    const magical = d => /магическ|заклинан|колдовств|чародей/i.test(`${d.name} ${d.system.description ?? ""}`);
+    for (const t of shuffle(this.view.talents.filter(d => d.system.tier === 1 && (caster || !magical(d))))) {
+      if (this.#budget().left < GENESYS.xp.talent(1) || this.pick.talents.length >= 3) break;
+      this.pick.talents.push({ uuid: t.uuid, rank: 1 });
+    }
+    // Мотивации и героическая способность.
+    for (const key of MOTIVATIONS) {
+      const table = GENESYS.creation?.motivations?.[key] ?? [];
+      if (table.length) { const o = rnd(table); this.pick.motivations[key] = { name: o.name, text: o.text }; }
+    }
+    if (this.view.heroics.length) this.pick.heroic = rnd(this.view.heroics).uuid;
+    // Снаряжение: оружие карьерного боевого навыка и броня по карману.
+    if (this.pick.details.money === null) this.pick.details.money = GENESYS.creation?.rules?.startingMoney ?? 500;
+    const combat = new Set(this.#skillRows().filter(r => r.career && r.category === "combat").map(r => this.#skillKey(r.name)));
+    const weapons = this.view.shop.filter(d => d.type === "weapon" && combat.has(d.system.skill) && d.system.price <= this.#money().left * 0.6);
+    if (weapons.length) this.pick.gear.push({ uuid: rnd(weapons).uuid, qty: 1 });
+    const armor = this.view.shop.filter(d => d.type === "armor" && d.system.price <= this.#money().left);
+    if (armor.length) this.pick.gear.push({ uuid: rnd(armor).uuid, qty: 1 });
+
+    this.stepIndex = STEPS.indexOf("summary");
+    ui.notifications.info("GENESYS.Wizard.RandomDone", { localize: true });
+    this.render();
+  }
+
+  static #onGearType(event, target) { this.filter.gearType = target.dataset.type; this.render(); }
+
+  /** Купить предмет в лавке (повторная покупка — +1 к количеству). */
+  static #onBuy(event, target) {
+    const doc = this.#doc(target.dataset.uuid);
+    if (!doc) return;
+    if (doc.system.price > this.#money().left) return ui.notifications.warn("GENESYS.Wizard.NoMoney", { localize: true });
+    const g = this.pick.gear.find(x => x.uuid === doc.uuid);
+    if (g) g.qty++; else this.pick.gear.push({ uuid: doc.uuid, qty: 1 });
+    this.render();
+  }
+
+  static #onCartQty(event, target) {
+    const g = this.pick.gear[Number(target.dataset.index)];
+    if (!g) return;
+    const delta = Number(target.dataset.delta);
+    if (delta > 0 && (this.#doc(g.uuid)?.system.price ?? 0) > this.#money().left) return ui.notifications.warn("GENESYS.Wizard.NoMoney", { localize: true });
+    g.qty += delta;
+    if (g.qty <= 0) this.pick.gear.splice(Number(target.dataset.index), 1);
+    this.render();
+  }
+
+  /** Карманные деньги: d100 после стартовой закупки (Core Rulebook, с. 51). */
+  static async #onRollPocket() {
+    const roll = await new Roll(GENESYS.creation?.rules?.moneyRoll ?? "1d100").evaluate();
+    this.pick.details.pocket = roll.total;
     this.render();
   }
 
@@ -639,6 +783,13 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
       const extra = [...talentData.values()];
       const heroic = this.#doc(this.pick.heroic);
       if (heroic) extra.push(heroic.toObject());
+      for (const g of this.pick.gear) {
+        const doc = this.#doc(g.uuid);
+        if (!doc) continue;
+        const data = doc.toObject();
+        if (data.system && "quantity" in data.system) data.system.quantity = g.qty;
+        extra.push(data);
+      }
       if (extra.length) await actor.createEmbeddedDocuments("Item", extra);
 
       // Мотивации, описание, деньги.
@@ -648,7 +799,7 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
       }
       const det = this.pick.details;
       for (const k of ["gender", "age", "height", "build", "hair", "eyes", "features"]) update[`system.details.${k}`] = det[k] ?? "";
-      update["system.money"] = Number(det.money) || 0;
+      update["system.money"] = Math.max(0, this.#money().final);
       if (det.name) update.name = det.name;
       update["system.experience.log"] = log;
       update["system.creation"] = true;

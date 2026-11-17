@@ -21,6 +21,28 @@ export function registerSettings() {
     default: []
   });
 
+  // Своё приключение ведущего: имя и набор навыков (миры — в настройке adventures).
+  game.settings.register(SYSTEM_ID, "customAdventure", {
+    scope: "world",
+    config: false,
+    type: Object,
+    default: { name: "", skills: "" }
+  });
+
+  game.settings.register(SYSTEM_ID, "magicCareerOnly", {
+    name: "GENESYS.Settings.MagicCareerOnly.name",
+    hint: "GENESYS.Settings.MagicCareerOnly.hint",
+    scope: "world",
+    config: true,
+    type: String,
+    choices: {
+      auto: "GENESYS.Settings.MagicCareerOnly.auto",
+      always: "GENESYS.Settings.MagicCareerOnly.always",
+      never: "GENESYS.Settings.MagicCareerOnly.never"
+    },
+    default: "auto"
+  });
+
   game.settings.register(SYSTEM_ID, "initiativeSkill", {
     name: "GENESYS.Settings.InitiativeSkill.name",
     hint: "GENESYS.Settings.InitiativeSkill.hint",

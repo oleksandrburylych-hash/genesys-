@@ -39,3 +39,16 @@ export function adventureSkillKeys(adventure) {
   for (const k of adventure.extraSkills ?? []) if (!keys.includes(k)) keys.push(k);
   return keys;
 }
+
+/**
+ * Правило «магические навыки — только карьерные» (Realms of Terrinoth, с. 116; в Core — вариант из врезки на с. 212).
+ * Настройка мира: auto — только в Терриноте, always — всегда, never — никогда.
+ */
+export function magicCareerOnly(adventureKey) {
+  let mode = "auto";
+  try { mode = game.settings.get(SYSTEM_ID, "magicCareerOnly"); } catch { /* нет настройки */ }
+  if (mode === "always") return true;
+  if (mode === "never") return false;
+  const keys = adventureKey ? [adventureKey] : enabledAdventureKeys();
+  return keys.length > 0 && keys.every(k => getAdventure(k).worlds[0] === "terrinoth");
+}

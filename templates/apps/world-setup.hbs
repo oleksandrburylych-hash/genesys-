@@ -28,6 +28,10 @@
           <button type="button" class="gs-world {{#if on}}on{{/if}}" style="--world: {{color}}" data-action="world" data-key="{{key}}">{{label}}</button>
           {{/each}}
         </div>
+        <div class="ws-custom-fields">
+          <label>{{localize "GENESYS.Setup.CustomName"}} <input type="text" name="custom.name" value="{{customName}}" placeholder="{{localize 'GENESYS.Setup.CustomNamePh'}}"></label>
+          <label>{{localize "GENESYS.Setup.CustomSkills"}} <select name="custom.skills">{{#each skillSets}}<option value="{{key}}" {{#if selected}}selected{{/if}}>{{localize label}}</option>{{/each}}</select></label>
+        </div>
       </div>
     </div>
 

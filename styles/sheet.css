@@ -587,3 +587,24 @@
 .genesys .gm-status-img { width: 18px; height: 18px; border: none; vertical-align: middle; filter: invert(0.2); }
 .genesys.gs-world-filter { padding: 6px 8px 2px; background: #f7f1e3; border-bottom: 1px solid #c9b48a; }
 .gs-hidden { display: none !important; }
+.genesys .wz-skillrow.locked .wz-sname { color: var(--gs-muted); }
+.genesys .wz-skillrow.locked .fa-lock { color: var(--gs-muted); margin-left: 4px; }
+
+/* Лавка мастера персонажа */
+.genesys .wz-shop { grid-template-columns: 1fr; }
+.genesys .wz-shop-item { align-items: center; }
+.genesys .wz-shop-item.dim { opacity: 0.55; }
+.genesys .wz-price { margin-left: auto; font-family: var(--gs-head); font-size: 15px; color: var(--gs-maroon); white-space: nowrap; }
+.genesys .wz-wallet { display: flex; gap: 12px; padding: 8px 10px; border-radius: 8px; background: var(--gs-navy); color: #fff; margin-bottom: 8px; }
+.genesys .wz-wallet b { font-family: var(--gs-head); font-size: 18px; color: var(--gs-gold); }
+.genesys .wz-wallet .over b { color: #ff8a8a; }
+.genesys .wz-cart-row { display: flex; align-items: center; gap: 6px; padding: 3px 0; border-bottom: 1px solid #eadfc6; }
+.genesys .wz-cart-row img { width: 28px; height: 28px; border: none; }
+.genesys .wz-cart-name { flex: 1; min-width: 0; }
+.genesys .wz-inline { display: flex; gap: 6px; align-items: center; }
+.genesys .wz-roll { white-space: nowrap; color: var(--gs-maroon); }
+.genesys .wz-random { display: block; margin: 8px 0 4px; padding: 6px 8px; border-radius: 6px; text-align: center;
+  background: var(--gs-gold); color: var(--gs-navy); font-family: var(--gs-head); text-transform: uppercase; }
+.genesys .ws-custom > div { flex: 1; min-width: 0; }
+.genesys .ws-custom-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 6px; }
+.genesys .ws-custom-fields label { display: flex; flex-direction: column; gap: 2px; font-size: 12px; }
