@@ -49,7 +49,7 @@ export class GenesysBaseActorSheet extends HandlebarsApplicationMixin(ActorSheet
         key,
         label: cfg.label,
         abbr: cfg.abbr,
-        value: system.characteristics[key].value
+        value: system.characteristics?.[key]?.value ?? 0
       })),
       skillGroups: this._prepareSkills(),
       weapons: actor.itemTypes.weapon.map(i => this._weaponContext(i)),

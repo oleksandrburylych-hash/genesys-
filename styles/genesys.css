@@ -505,3 +505,84 @@
 .story-points-body .sp-count { margin-left: auto; font-weight: bold; font-size: 1.2em; }
 .story-points-body .sp-controls { display: flex; gap: 0.4rem; align-items: center; }
 .story-points-body .sp-controls button { flex: 1; }
+
+/* ==========================================================================
+   Магия: конструктор заклинаний, вкладка, редактор эффектов
+   ========================================================================== */
+.genesys .tag {
+  display: inline-block;
+  padding: 0 0.4rem;
+  margin: 0 0.2rem 0.2rem 0;
+  border: 1px solid var(--g-border);
+  border-radius: 999px;
+  font-size: 0.8em;
+  background: var(--g-panel);
+}
+.genesys.spell-cast-dialog .window-content { padding: 0.75rem; }
+.spell-cast-body { display: flex; flex-direction: column; gap: 0.5rem; }
+.spell-cast-body .spell-header { display: flex; gap: 0.6rem; align-items: center; }
+.spell-cast-body .spell-header img { width: 48px; height: 48px; border: none; }
+.spell-cast-body .spell-header h3 { margin: 0; border: none; }
+.spell-cast-body .spell-description { font-size: 0.9em; }
+.spell-cast-body .spell-effects { max-height: 340px; overflow-y: auto; }
+.spell-cast-body .spell-effect {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.25rem;
+  border-bottom: 1px solid var(--g-border);
+}
+.spell-cast-body .spell-effect.chosen { background: var(--g-accent-soft); }
+.spell-cast-body .spell-effect.disabled { opacity: 0.45; }
+.spell-cast-body .effect-control { flex: 0 0 4.2rem; display: flex; align-items: flex-start; gap: 0.3rem; font-size: 1.1em; }
+.spell-cast-body .effect-control .count { font-weight: bold; min-width: 1rem; text-align: center; }
+.spell-cast-body .effect-info { flex: 1; }
+.spell-cast-body .effect-diff { color: var(--g-accent); font-weight: bold; }
+.spell-cast-body .effect-only { color: var(--g-muted); font-size: 0.85em; }
+.spell-cast-body .effect-desc { font-size: 0.85em; color: var(--g-muted); }
+.spell-cast-body .spell-summary {
+  padding: 0.4rem;
+  border: 1px solid var(--g-accent);
+  border-radius: 6px;
+  background: var(--g-accent-soft);
+}
+.spell-cast-body .spell-summary.too-hard { border-color: var(--g-danger); }
+.spell-cast-body .spell-summary .warning { color: var(--g-danger); font-weight: bold; }
+.spell-cast-body .form-footer { display: flex; gap: 0.5rem; }
+
+.genesys .magic-skills { display: flex; flex-wrap: wrap; }
+.genesys .spell-list .sub { font-size: 0.8em; color: var(--g-muted); }
+
+.genesys.item .effect-editor .effect-row { border-bottom: 1px solid var(--g-border); padding: 0.25rem 0; }
+.genesys.item .effect-row-top { display: flex; gap: 0.3rem; align-items: center; }
+.genesys.item .effect-row-top input[type="text"] { flex: 1; }
+.genesys.item .effect-row-top input[type="number"] { flex: 0 0 3.5rem; text-align: center; }
+.genesys.item .effect-row-top select { flex: 0 0 8rem; }
+.genesys.item .effect-row textarea { width: 100%; margin-top: 0.2rem; }
+.genesys.item .spell-skills { flex-wrap: wrap; }
+
+.genesys-roll .roll-spell { font-size: 0.85em; border-top: 1px dashed #999; padding-top: 0.25rem; }
+.genesys-roll .spell-effects-list { margin: 0.2rem 0; padding-left: 1rem; }
+
+/* ==========================================================================
+   Транспорт
+   ========================================================================== */
+.genesys.vehicle .vehicle-profile { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.genesys.vehicle .vstat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.2rem 0.4rem;
+  border: 1px solid var(--g-border);
+  border-radius: 6px;
+  background: var(--g-panel);
+}
+.genesys.vehicle .vstat label { font-size: 0.7em; text-transform: uppercase; color: var(--g-muted); }
+.genesys.vehicle .vstat input { width: 3rem; text-align: center; font-weight: bold; }
+.genesys.vehicle .vstat select { width: auto; }
+.genesys.vehicle .defense-arcs { display: grid; grid-template-columns: repeat(4, auto); gap: 0.3rem; }
+.genesys.vehicle .defense-arcs label { display: flex; align-items: center; gap: 0.1rem; }
+.genesys.vehicle .defense-arcs input { width: 2.4rem; }
+.genesys.vehicle .vehicle-body { flex: 1; overflow-y: auto; margin-top: 0.4rem; }
+.genesys.vehicle .vehicle-misc { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.3rem 0.6rem; }
+.genesys.vehicle .vehicle-misc label { display: flex; flex-direction: column; font-size: 0.8em; }
+.genesys.vehicle .pool-button { font-size: 1.4em; padding: 0 0.3rem; }

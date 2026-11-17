@@ -46,7 +46,8 @@ const ICONS = {
   quality: "icons/svg/sun.svg",
   injury: "icons/svg/blood.svg",
   spell: "icons/svg/explosion.svg",
-  adversary: "icons/svg/skull.svg"
+  adversary: "icons/svg/skull.svg",
+  vehicle: "icons/svg/cog.svg"
 };
 
 const ALPHABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -87,9 +88,59 @@ function embeddedItem(actorId, item, index) {
   };
 }
 
+/* -------------------------------------------- */
+/*  Связи между документами                     */
+/* -------------------------------------------- */
+
+/** Готовые заклинания получают эффекты базового действия; сложность пересчитывается. */
+function linkSpells(docs) {
+  const actions = new Map(docs.filter(d => !d.system?.baseAction).map(d => [d.name, d]));
+  for (const d of docs) {
+    const sys = d.system ?? {};
+    if (!sys.baseAction) continue;
+    const base = actions.get(sys.baseAction);
+    if (!base) { console.warn(`  ! заклинание «${d.name}»: нет базового действия «${sys.baseAction}»`); continue; }
+    sys.effects = structuredClone(base.system.effects ?? []);
+    sys.concentration ??= base.system.concentration;
+    sys.attack = !!(sys.attack || base.system.attack);
+    if (!sys.skills?.length) sys.skills = [...base.system.skills];
+    const extra = (sys.selected ?? []).reduce((sum, n) => {
+      const e = sys.effects.find(x => x.name === n);
+      if (!e) console.warn(`  ! заклинание «${d.name}»: нет эффекта «${n}» у «${sys.baseAction}»`);
+      return sum + (e?.difficulty ?? 0);
+    }, 0);
+    const computed = Math.min(5, base.system.difficulty + extra);
+    if (sys.difficulty !== computed) {
+      sys.description = `${sys.description ?? ""}<p><em>В источнике указана сложность ${sys.difficulty}; по правилам сложения эффектов — ${computed}.</em></p>`;
+      sys.difficulty = computed;
+    }
+  }
+}
+
+/** Архетипы и расы получают свои особые способности (по упоминанию в описании). */
+function linkArchetypes(docs) {
+  const abilities = readSources("abilities");
+  for (const d of docs) {
+    const names = [...(d.system?.description ?? "").matchAll(/<strong>([^<:]+?):?<\/strong>/g)].map(m => m[1].trim());
+    const stem = d._file.replace(/\.json$/, "");
+    d.system.abilities = [];
+    for (const name of names) {
+      const candidates = abilities.filter(a => a.name === name);
+      if (!candidates.length) continue;
+      const best = candidates.find(a => a.folder === d.folder && a._file.replace(/\.json$/, "") === stem)
+        ?? candidates.find(a => a.folder === d.folder)
+        ?? candidates.find(a => a._file.replace(/\.json$/, "") === stem)
+        ?? candidates[0];
+      d.system.abilities.push({ name: best.name, description: best.system.description ?? "" });
+    }
+  }
+}
+
 function buildPack(pack) {
   const raw = readSources(pack.name);
   if (!raw.length) return null;
+  if (pack.name === "spells") linkSpells(raw);
+  if (pack.name === "archetypes") linkArchetypes(raw);
 
   const outDir = path.join(TMP, pack.name);
   fs.rmSync(outDir, { recursive: true, force: true });
@@ -135,9 +186,10 @@ function buildPack(pack) {
         actorLink: false,
         disposition: -1,
         displayBars: 20,
-        bar1: { attribute: "wounds" },
-        bar2: { attribute: doc.system?.adversaryType === "nemesis" ? "strain" : null }
+        bar1: { attribute: doc.type === "vehicle" ? "hullTrauma" : "wounds" },
+        bar2: { attribute: doc.type === "vehicle" ? "systemStrain" : (doc.system?.adversaryType === "nemesis" ? "strain" : null) }
       };
+      if (doc.type === "vehicle") out.prototypeToken.disposition = 0;
     }
     fs.writeFileSync(path.join(outDir, `${id}.json`), JSON.stringify(out, null, 2));
     count++;
@@ -185,7 +237,7 @@ async function main() {
     sorting: "m",
     color: "#2f6f8f",
     packs: built.filter(p => p.type === "Item").map(p => p.name),
-    folders: [{ name: "Противники", sorting: "m", packs: built.filter(p => p.type === "Actor").map(p => p.name) }]
+    folders: [{ name: "Противники и транспорт", sorting: "m", packs: built.filter(p => p.type === "Actor").map(p => p.name) }]
   }];
   fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + "\n");
   fs.rmSync(path.join(ROOT, ".build"), { recursive: true, force: true });

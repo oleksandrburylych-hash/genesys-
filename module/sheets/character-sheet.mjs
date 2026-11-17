@@ -18,7 +18,9 @@ export class GenesysCharacterSheet extends GenesysBaseActorSheet {
       xpAdd: GenesysCharacterSheet.#onXPAdd,
       xpDelete: GenesysCharacterSheet.#onXPDelete,
       finishCreation: GenesysCharacterSheet.#onFinishCreation,
-      adjust: GenesysCharacterSheet.#onAdjust
+      adjust: GenesysCharacterSheet.#onAdjust,
+      castSpell: GenesysCharacterSheet.#onCastSpell,
+      addMagicActions: GenesysCharacterSheet.#onAddMagicActions
     }
   };
 
@@ -27,6 +29,7 @@ export class GenesysCharacterSheet extends GenesysBaseActorSheet {
     tabs: { template: "templates/generic/tab-navigation.hbs" },
     main: { template: `${T}/parts/main.hbs`, scrollable: [""] },
     talents: { template: `${T}/parts/talents.hbs`, scrollable: [""] },
+    magic: { template: `${T}/parts/magic.hbs`, scrollable: [""] },
     inventory: { template: `${T}/parts/inventory.hbs`, scrollable: [""] },
     experience: { template: `${T}/parts/experience.hbs`, scrollable: [""] },
     biography: { template: `${T}/parts/biography.hbs`, scrollable: [""] }
@@ -37,6 +40,7 @@ export class GenesysCharacterSheet extends GenesysBaseActorSheet {
       tabs: [
         { id: "main", icon: "fa-solid fa-dice-d20", label: "GENESYS.Tab.main" },
         { id: "talents", icon: "fa-solid fa-star", label: "GENESYS.Tab.talents" },
+        { id: "magic", icon: "fa-solid fa-wand-sparkles", label: "GENESYS.Tab.magic" },
         { id: "inventory", icon: "fa-solid fa-sack", label: "GENESYS.Tab.inventory" },
         { id: "experience", icon: "fa-solid fa-graduation-cap", label: "GENESYS.Tab.experience" },
         { id: "biography", icon: "fa-solid fa-feather", label: "GENESYS.Tab.biography" }
@@ -80,6 +84,20 @@ export class GenesysCharacterSheet extends GenesysBaseActorSheet {
       .sort((a, b) => b.timestamp - a.timestamp)
       .map(e => ({ ...e, date: new Date(e.timestamp).toLocaleDateString(game.i18n.lang), isEarn: e.type === "earn" }));
 
+    // Магия: магические действия и готовые заклинания.
+    const spellRow = sp => ({
+      id: sp.id, name: sp.name, img: sp.img,
+      difficulty: sp.system.difficulty,
+      skills: sp.system.skills.map(k => game.i18n.localize(`GENESYS.Skill.${k}`)).join(", "),
+      concentration: sp.system.concentration,
+      effects: sp.system.isPreset ? sp.system.selected.join(", ") : sp.system.effects.length
+    });
+    const spells = actor.itemTypes.spell;
+    context.magicActions = spells.filter(sp => !sp.system.isPreset).map(spellRow);
+    context.presetSpells = spells.filter(sp => sp.system.isPreset).map(spellRow);
+    context.magicSkills = ["arcana", "divine", "primal", "psychic"].map(k => actor.getSkill(k)).filter(Boolean)
+      .map(sk => ({ name: sk.name, rank: sk.system.rank }));
+
     context.motivations = Object.entries(GENESYS.motivations).map(([key, label]) => ({
       key, label, ...system.motivations[key]
     }));
@@ -113,6 +131,30 @@ export class GenesysCharacterSheet extends GenesysBaseActorSheet {
     });
     await this.actor.refundXP(label);
     return item.update({ "system.rank": item.system.rank - 1 });
+  }
+
+  static #onCastSpell(event, target) {
+    const item = this._getItem(target);
+    if (item) return this.actor.castSpell(item);
+  }
+
+  /** Добавить на лист все магические действия из компендиумов системы (без дублей). */
+  static async #onAddMagicActions() {
+    const packs = game.packs.filter(p => p.metadata.packageName === game.system.id && p.documentName === "Item");
+    const owned = new Set(this.actor.itemTypes.spell.map(i => i.name));
+    const toCreate = [];
+    for (const pack of packs) {
+      const index = await pack.getIndex({ fields: ["type", "system.baseAction", "system.selected"] });
+      const ids = index.filter(e => e.type === "spell" && !e.system?.baseAction && !(e.system?.selected?.length) && !owned.has(e.name)).map(e => e._id);
+      for (const id of ids) {
+        const doc = await pack.getDocument(id);
+        toCreate.push(doc.toObject());
+        owned.add(doc.name);
+      }
+    }
+    if (!toCreate.length) return ui.notifications.info("GENESYS.Spell.NothingToAdd", { localize: true });
+    await this.actor.createEmbeddedDocuments("Item", toCreate);
+    ui.notifications.info(game.i18n.format("GENESYS.Spell.Added", { count: toCreate.length }));
   }
 
   /** Быстрое +/- для ран и напряжения. */

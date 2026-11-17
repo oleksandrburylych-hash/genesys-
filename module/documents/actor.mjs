@@ -105,6 +105,12 @@ export class GenesysActor extends Actor {
     return DicePoolDialog.prompt({ pool, label, actor: this, rollOptions });
   }
 
+  /** Открыть конструктор заклинания. */
+  async castSpell(spell) {
+    const { SpellCastDialog } = await import("../apps/spell-cast-dialog.mjs");
+    return new SpellCastDialog({ actor: this, spell }).render({ force: true });
+  }
+
   /** Проверка чистой характеристики. */
   async rollCharacteristic(key, { difficulty = 2 } = {}) {
     const pool = new DicePool({ ability: this.characteristic(key), difficulty });
@@ -115,9 +121,11 @@ export class GenesysActor extends Actor {
   /** Атака оружием. */
   async rollWeapon(weapon) {
     const sys = weapon.system;
-    const skill = this.getSkill(sys.skill);
+    // Оружие транспорта стреляет член экипажа: выделенный токен (не сам транспорт) или назначенный персонаж.
+    const shooter = this.type === "vehicle" ? GenesysActor.findCrewMember(this) : this;
+    const skill = shooter?.getSkill?.(sys.skill);
     const difficulty = sys.isMelee ? 2 : (GENESYS.ranges[sys.range]?.difficulty ?? 2);
-    const pool = skill ? this.getSkillPool(skill, difficulty) : new DicePool({ ability: 1, difficulty });
+    const pool = skill ? shooter.getSkillPool(skill, difficulty) : new DicePool({ ability: 1, difficulty });
     const rollOptions = {
       weapon: {
         name: weapon.name,
@@ -127,8 +135,28 @@ export class GenesysActor extends Actor {
         vicious: sys.qualities.find(q => /высококрит|vicious/i.test(q.name))?.rating ?? 0
       }
     };
-    const label = game.i18n.format("GENESYS.Roll.Attack", { name: weapon.name });
-    return DicePoolDialog.prompt({ pool, label, actor: this, rollOptions });
+    let label = game.i18n.format("GENESYS.Roll.Attack", { name: weapon.name });
+    if (this.type === "vehicle") label += ` (${this.name}${shooter && shooter !== this ? `, ${shooter.name}` : ""})`;
+    return DicePoolDialog.prompt({ pool, label, actor: shooter ?? this, rollOptions });
+  }
+
+  /** Член экипажа для транспорта: выделенный токен-персонаж или назначенный персонаж пользователя. */
+  static findCrewMember(vehicle) {
+    const controlled = canvas?.tokens?.controlled?.map(t => t.actor).find(a => a && a !== vehicle && a.type !== "vehicle");
+    return controlled ?? game.user.character ?? null;
+  }
+
+  /** Проверка управления транспортом (Вождение/Пилотирование/Управление) от лица экипажа. */
+  async rollPilot() {
+    if (this.type !== "vehicle") return null;
+    const crew = GenesysActor.findCrewMember(this);
+    const skill = crew?.getSkill(this.system.skill);
+    const pool = skill ? crew.getSkillPool(skill, 2) : new DicePool({ ability: 1, difficulty: 2 });
+    // Управляемость: положительная — кости бонуса, отрицательная — кости штрафа.
+    const h = this.system.handling;
+    if (h > 0) pool.boost += h; else if (h < 0) pool.setback += -h;
+    const label = `${game.i18n.localize(`GENESYS.Skill.${this.system.skill}`)} (${this.name})`;
+    return DicePoolDialog.prompt({ pool, label, actor: crew ?? this });
   }
 
   /* -------------------------------------------- */
@@ -240,6 +268,19 @@ export class GenesysActor extends Actor {
 
     await this.update(update);
     const [created] = await this.createEmbeddedDocuments("Item", [archetypeData.toObject?.() ?? archetypeData]);
+
+    // Способности архетипа/расы: убрать старые (выданные прошлым архетипом) и добавить новые.
+    const oldAbilities = this.itemTypes.ability.filter(i => i.getFlag(SYSTEM_ID, "fromArchetype"));
+    if (oldAbilities.length) await this.deleteEmbeddedDocuments("Item", oldAbilities.map(i => i.id));
+    const abilities = (sys.abilities ?? []).map(a => ({
+      name: a.name,
+      type: "ability",
+      img: "icons/svg/upgrade.svg",
+      system: { description: a.description, source: sys.source ?? "" },
+      flags: { [SYSTEM_ID]: { fromArchetype: true } }
+    }));
+    if (abilities.length) await this.createEmbeddedDocuments("Item", abilities);
+
     ui.notifications.info(game.i18n.format("GENESYS.Info.ArchetypeApplied", { name: archetypeData.name }));
     return created;
   }
@@ -324,9 +365,9 @@ export class GenesysActor extends Actor {
 
     // Таблица — из компендиума системы (или из предметов мира, если компендиума нет).
     let table = [];
-    const pack = game.packs.get(`${SYSTEM_ID}.injuries`);
+    const pack = game.packs.get(`${SYSTEM_ID}.${this.type === "vehicle" ? "vehicle-crits" : "injuries"}`);
     if (pack) table = await pack.getDocuments();
-    if (!table.length) table = game.items.filter(i => i.type === "injury");
+    if (!table.length) table = game.items.filter(i => i.type === "injury" && (this.type === "vehicle") === (i.folder?.name === "Транспорт"));
     const entry = table.find(i => {
       const r = GenesysActor.parseRollRange(i.system.rollRange);
       return r && total >= r[0] && total <= r[1];
@@ -337,7 +378,7 @@ export class GenesysActor extends Actor {
 
     const severity = entry ? "◆".repeat(entry.system.severity) || "—" : "";
     const content = `<div class="genesys item-card critical-injury">
-      <header><img src="${entry?.img ?? "icons/svg/blood.svg"}" alt=""><h3>${game.i18n.localize("GENESYS.Injury.Roll")}: ${total}</h3></header>
+      <header><img src="${entry?.img ?? "icons/svg/blood.svg"}" alt=""><h3>${game.i18n.localize(this.type === "vehicle" ? "GENESYS.Vehicle.CritRoll" : "GENESYS.Injury.Roll")}: ${total}</h3></header>
       ${entry ? `<p><strong>${foundry.utils.escapeHTML(entry.name)}</strong> <span class="severity-text">${severity}</span></p>${entry.system.description}`
         : `<p>${game.i18n.localize("GENESYS.Warn.InjuryTableMissing")}</p>`}
       <p class="hint">${game.i18n.format("GENESYS.Injury.RollFormula", { existing, modifier: Number(modifier) || 0 })}</p>

@@ -43,6 +43,12 @@
           "description",
           "notes"
         ]
+      },
+      "vehicle": {
+        "htmlFields": [
+          "description",
+          "notes"
+        ]
       }
     },
     "Item": {
@@ -280,7 +286,7 @@
       ],
       "folders": [
         {
-          "name": "Противники",
+          "name": "Противники и транспорт",
           "sorting": "m",
           "packs": [
             "adversaries"

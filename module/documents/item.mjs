@@ -30,6 +30,7 @@ export class GenesysItem extends Item {
     const actor = this.actor;
     if (actor && this.type === "skill") return actor.rollSkill(this);
     if (actor && this.type === "weapon") return actor.rollWeapon(this);
+    if (actor && this.type === "spell") return actor.castSpell(this);
     return this.toChat();
   }
 

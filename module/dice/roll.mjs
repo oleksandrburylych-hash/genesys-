@@ -90,13 +90,14 @@ export class GenesysRoll extends Roll {
     let attack = null;
     const w = this.options.weapon;
     if (w && r.isSuccess) {
-      const critReady = w.crit > 0 && (r.triumph > 0 || r.advantage >= w.crit);
+      // Триумф позволяет нанести крит всегда; преимуществами — если у атаки есть критическое значение.
+      const critReady = r.triumph > 0 || (w.crit > 0 && r.advantage >= w.crit);
       attack = {
         name: w.name,
         damage: w.damage + r.success,
         crit: w.crit,
         critReady,
-        critCount: w.crit > 0 ? Math.floor(r.advantage / w.crit) + r.triumph : 0,
+        critCount: (w.crit > 0 ? Math.floor(r.advantage / w.crit) : 0) + r.triumph,
         critModifier: (w.vicious ?? 0) * 10,
         qualities: w.qualities
       };
@@ -111,6 +112,7 @@ export class GenesysRoll extends Roll {
       results: r,
       outcome: r.isSuccess ? "success" : "failure",
       initiative: this.options.initiative ? this.total.toFixed(2) : null,
+      spell: isPrivate ? null : this.options.spell,
       attack,
       noSymbols: summary.length === 0
     };

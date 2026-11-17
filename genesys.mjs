@@ -5,6 +5,7 @@
 import { GENESYS, SYSTEM_ID, TEMPLATES } from "./module/config.mjs";
 import CharacterData from "./module/data/actor-character.mjs";
 import AdversaryData from "./module/data/actor-adversary.mjs";
+import VehicleData from "./module/data/actor-vehicle.mjs";
 import { ITEM_MODELS } from "./module/data/items.mjs";
 import { GenesysActor } from "./module/documents/actor.mjs";
 import { GenesysItem } from "./module/documents/item.mjs";
@@ -16,6 +17,9 @@ import { DicePoolDialog } from "./module/apps/dice-pool-dialog.mjs";
 import { StoryPointsTracker } from "./module/apps/story-points.mjs";
 import { GenesysCharacterSheet } from "./module/sheets/character-sheet.mjs";
 import { GenesysAdversarySheet } from "./module/sheets/adversary-sheet.mjs";
+import { GenesysVehicleSheet } from "./module/sheets/vehicle-sheet.mjs";
+import { registerDiceSoNice } from "./module/dice/dice-so-nice.mjs";
+import { SpellCastDialog } from "./module/apps/spell-cast-dialog.mjs";
 import { GenesysItemSheet } from "./module/sheets/item-sheet.mjs";
 import { registerSettings } from "./module/helpers/settings.mjs";
 import { registerHandlebarsHelpers, preloadTemplates } from "./module/helpers/handlebars.mjs";
@@ -35,6 +39,7 @@ Hooks.once("init", () => {
     DicePool,
     GenesysRoll,
     DicePoolDialog,
+    SpellCastDialog,
     StoryPointsTracker,
     /** Открыть окно броска с заданным пулом. */
     roll: (pool = {}, options = {}) => DicePoolDialog.prompt({ pool: new DicePool(pool), ...options }),
@@ -52,13 +57,14 @@ Hooks.once("init", () => {
   CONFIG.Combatant.documentClass = GenesysCombatant;
 
   // Модели данных
-  CONFIG.Actor.dataModels = { character: CharacterData, adversary: AdversaryData };
+  CONFIG.Actor.dataModels = { character: CharacterData, adversary: AdversaryData, vehicle: VehicleData };
   CONFIG.Item.dataModels = ITEM_MODELS;
 
   // Отслеживаемые полоски токена
   CONFIG.Actor.trackableAttributes = {
     character: { bar: ["wounds", "strain"], value: [] },
-    adversary: { bar: ["wounds", "strain"], value: [] }
+    adversary: { bar: ["wounds", "strain"], value: [] },
+    vehicle: { bar: ["hullTrauma", "systemStrain"], value: ["speed.value"] }
   };
 
   // Кубики
@@ -73,6 +79,9 @@ Hooks.once("init", () => {
   });
   DocumentSheetConfig.registerSheet(Actor, SYSTEM_ID, GenesysAdversarySheet, {
     types: ["adversary"], makeDefault: true, label: "GENESYS.Sheet.Adversary"
+  });
+  DocumentSheetConfig.registerSheet(Actor, SYSTEM_ID, GenesysVehicleSheet, {
+    types: ["vehicle"], makeDefault: true, label: "GENESYS.Sheet.Vehicle"
   });
   DocumentSheetConfig.registerSheet(Item, SYSTEM_ID, GenesysItemSheet, {
     makeDefault: true, label: "GENESYS.Sheet.Item"
@@ -91,6 +100,12 @@ Hooks.once("ready", () => {
   StoryPointsTracker.initialize();
   if (game.settings.get(SYSTEM_ID, "showStoryPoints")) new StoryPointsTracker().render({ force: true });
 });
+
+/* -------------------------------------------- */
+/*  Dice So Nice                                */
+/* -------------------------------------------- */
+
+Hooks.once("diceSoNiceReady", dice3d => registerDiceSoNice(dice3d));
 
 /* -------------------------------------------- */
 /*  Кнопки на панели сцены                      */

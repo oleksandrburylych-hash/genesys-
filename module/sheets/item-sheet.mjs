@@ -16,7 +16,10 @@ export class GenesysItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
     form: { submitOnChange: true },
     actions: {
       addQuality: GenesysItemSheet.#onAddQuality,
-      removeQuality: GenesysItemSheet.#onRemoveQuality
+      removeQuality: GenesysItemSheet.#onRemoveQuality,
+      addRow: GenesysItemSheet.#onAddRow,
+      removeRow: GenesysItemSheet.#onRemoveRow,
+      castSpell: GenesysItemSheet.#onCastSpell
     }
   };
 
@@ -67,6 +70,14 @@ export class GenesysItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
         key, label: cfg.label, value: system.characteristics?.[key]
       })),
       careerSkillsText: (system.careerSkills ?? []).join(", "),
+      magicSkills: ["arcana", "divine", "primal", "psychic"].map(k => ({
+        key: k, label: `GENESYS.Skill.${k}`, on: (system.skills ?? []).includes?.(k)
+      })),
+      spellEffects: (system.effects ?? []).map((e, i) => ({
+        ...e, index: i, only: e.skills?.[0] ?? ""
+      })),
+      skillChoices: { "": "—", arcana: "GENESYS.Skill.arcana", divine: "GENESYS.Skill.divine", primal: "GENESYS.Skill.primal", psychic: "GENESYS.Skill.psychic" },
+      canCast: item.type === "spell" && !!(item.actor ?? game.user.character),
       skillOptions,
       enrichedDescription: await foundry.applications.ux.TextEditor.implementation.enrichHTML(system.description ?? "", {
         relativeTo: item, secrets: item.isOwner
@@ -78,11 +89,47 @@ export class GenesysItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
   /** @override */
   _prepareSubmitData(event, form, formData, updateData) {
     const obj = formData.object;
+    // Заклинание: навыки — чекбоксы, ограничение эффекта — один навык из списка.
+    if (this.item.type === "spell") {
+      const keys = ["arcana", "divine", "primal", "psychic"];
+      if (keys.some(k => `spellSkill.${k}` in obj)) {
+        obj["system.skills"] = keys.filter(k => obj[`spellSkill.${k}`]);
+        for (const k of keys) delete obj[`spellSkill.${k}`];
+      }
+      for (const key of Object.keys(obj)) {
+        const m = key.match(/^effectSkill\.(\d+)$/);
+        if (!m) continue;
+        obj[`system.effects.${m[1]}.skills`] = obj[key] ? [obj[key]] : [];
+        delete obj[key];
+      }
+    }
     if ("careerSkillsText" in obj) {
       obj["system.careerSkills"] = String(obj.careerSkillsText).split(/[,;\n]/).map(s => s.trim()).filter(Boolean);
       delete obj.careerSkillsText;
     }
     return super._prepareSubmitData(event, form, formData, updateData);
+  }
+
+  /** Добавить строку в массив (эффекты заклинания, способности архетипа). */
+  static #onAddRow(event, target) {
+    const field = target.dataset.field;
+    const rows = foundry.utils.deepClone(foundry.utils.getProperty(this.item, field) ?? []);
+    rows.push(field === "system.effects"
+      ? { name: game.i18n.localize("GENESYS.Spell.NewEffect"), difficulty: 1, skills: [], repeatable: false, description: "" }
+      : { name: game.i18n.localize("GENESYS.NewAbility"), description: "" });
+    return this.item.update({ [field]: rows });
+  }
+
+  static #onRemoveRow(event, target) {
+    const field = target.dataset.field;
+    const rows = foundry.utils.deepClone(foundry.utils.getProperty(this.item, field) ?? []);
+    rows.splice(Number(target.dataset.index), 1);
+    return this.item.update({ [field]: rows });
+  }
+
+  static #onCastSpell() {
+    const actor = this.item.actor ?? game.user.character;
+    return actor?.castSpell(this.item);
   }
 
   static #onAddQuality() {

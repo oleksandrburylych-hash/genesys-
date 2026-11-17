@@ -1,8 +1,39 @@
-<section class="item-details grid-2">
-  <div class="form-group"><label>{{localize "GENESYS.Spell.Skills"}}</label>
-    <input type="text" name="system.skills" value="{{system.skills}}"></div>
-  <div class="form-group"><label>{{localize "GENESYS.Difficulty.label"}}</label>
-    <input type="number" name="system.difficulty" value="{{system.difficulty}}" min="0" max="5" data-dtype="Number"></div>
-  <div class="form-group"><label>{{localize "GENESYS.Spell.Concentration"}}</label>
-    <input type="checkbox" name="system.concentration" {{checked system.concentration}}></div>
+<section class="item-details spell-details">
+  <div class="grid-3">
+    <div class="form-group"><label>{{localize "GENESYS.Difficulty.label"}}</label>
+      <input type="number" name="system.difficulty" value="{{system.difficulty}}" min="0" max="5" data-dtype="Number"></div>
+    <div class="form-group"><label>{{localize "GENESYS.Spell.Concentration"}}</label>
+      <input type="checkbox" name="system.concentration" {{checked system.concentration}}></div>
+    <div class="form-group"><label>{{localize "GENESYS.Spell.AttackSpell"}}</label>
+      <input type="checkbox" name="system.attack" {{checked system.attack}} data-tooltip="GENESYS.Spell.AttackHint"></div>
+  </div>
+  <div class="form-group spell-skills">
+    <label>{{localize "GENESYS.Spell.Skills"}}</label>
+    {{#each magicSkills}}<label class="checkbox"><input type="checkbox" name="spellSkill.{{key}}" {{checked on}}> {{localize label}}</label>{{/each}}
+  </div>
+  {{#if system.baseAction}}
+  <p class="hint">{{localize "GENESYS.Spell.BaseAction"}}: <strong>{{system.baseAction}}</strong>{{#if system.selected.length}} · {{localize "GENESYS.Spell.Selected"}}: {{#each system.selected}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}{{/if}}</p>
+  {{/if}}
+
+  <header class="list-header">
+    <h4>{{localize "GENESYS.Spell.Effects"}}</h4>
+    {{#if editable}}<a class="item-control" data-action="addRow" data-field="system.effects"><i class="fa-solid fa-plus"></i></a>{{/if}}
+  </header>
+  <ol class="effect-editor">
+    {{#each spellEffects}}
+    <li class="effect-row">
+      <div class="effect-row-top">
+        <input type="text" name="system.effects.{{index}}.name" value="{{name}}">
+        <input type="number" name="system.effects.{{index}}.difficulty" value="{{difficulty}}" min="-5" max="5" data-dtype="Number" data-tooltip="GENESYS.Spell.EffectDifficulty">
+        <select name="effectSkill.{{index}}" data-tooltip="GENESYS.Spell.Only">{{selectOptions @root.skillChoices selected=only localize=true}}</select>
+        <label class="checkbox" data-tooltip="GENESYS.Spell.Repeatable"><input type="checkbox" name="system.effects.{{index}}.repeatable" {{checked repeatable}}> ×N</label>
+        {{#if @root.editable}}<a data-action="removeRow" data-field="system.effects" data-index="{{index}}"><i class="fa-solid fa-trash"></i></a>{{/if}}
+      </div>
+      <textarea name="system.effects.{{index}}.description" rows="2">{{description}}</textarea>
+    </li>
+    {{else}}
+    <li class="empty">{{localize "GENESYS.Spell.NoEffects"}}</li>
+    {{/each}}
+  </ol>
+  {{#if canCast}}<button type="button" data-action="castSpell"><i class="fa-solid fa-wand-sparkles"></i> {{localize "GENESYS.Spell.Cast"}}</button>{{/if}}
 </section>

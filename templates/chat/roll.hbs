@@ -35,6 +35,18 @@
     </span>
   </div>
 
+  {{#if spell}}
+  <div class="roll-spell">
+    {{#if spell.concentration}}<div class="spell-line"><i class="fa-solid fa-brain"></i> {{localize "GENESYS.Spell.Concentration"}}</div>{{/if}}
+    {{#if spell.effects.length}}
+    <ul class="spell-effects-list">
+      {{#each spell.effects}}<li><strong>{{name}}{{#if (gt count 1)}} ×{{count}}{{/if}}</strong>: {{description}}</li>{{/each}}
+    </ul>
+    {{/if}}
+    <div class="spell-line hint">{{localize "GENESYS.Spell.KnowledgeRank"}}: {{spell.knowledgeRank}}</div>
+  </div>
+  {{/if}}
+
   {{#if attack}}
   <div class="roll-attack">
     <div class="attack-line"><i class="fa-solid fa-burst"></i> {{localize "GENESYS.Damage"}}: <strong>{{attack.damage}}</strong></div>

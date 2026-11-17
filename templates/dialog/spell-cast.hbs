@@ -1,0 +1,77 @@
+<div class="spell-cast-body">
+  <div class="spell-header">
+    <img src="{{spell.img}}" alt="">
+    <div>
+      <h3>{{spell.name}}</h3>
+      <div class="spell-flags">
+        {{#if concentration}}<span class="tag"><i class="fa-solid fa-brain"></i> {{localize "GENESYS.Spell.Concentration"}}</span>{{/if}}
+        {{#if attack}}<span class="tag"><i class="fa-solid fa-burst"></i> {{localize "GENESYS.Spell.AttackSpell"}}</span>{{/if}}
+        <span class="tag">{{localize "GENESYS.Spell.KnowledgeRank"}}: {{knowledgeRank}}</span>
+      </div>
+    </div>
+  </div>
+
+  <details class="spell-description">
+    <summary>{{localize "GENESYS.Description"}}</summary>
+    {{{description}}}
+  </details>
+
+  <div class="form-group">
+    <label>{{localize "GENESYS.Spell.Skill"}}</label>
+    <select name="skillKey">
+      {{#each skillOptions}}<option value="{{key}}" {{#if selected}}selected{{/if}}>{{label}} ({{localize "GENESYS.Rank"}} {{rank}})</option>{{/each}}
+    </select>
+  </div>
+
+  <div class="spell-effects">
+    <header class="list-header"><h4>{{localize "GENESYS.Spell.Effects"}}</h4></header>
+    <ol>
+      {{#each effects}}
+      <li class="spell-effect {{#if isChosen}}chosen{{/if}} {{#unless allowed}}disabled{{/unless}}">
+        <div class="effect-control">
+          {{#if repeatable}}
+            <a data-action="effectCount" data-index="{{index}}" data-delta="-1"><i class="fa-solid fa-minus"></i></a>
+            <span class="count">{{count}}</span>
+            {{#if allowed}}<a data-action="effectCount" data-index="{{index}}" data-delta="1"><i class="fa-solid fa-plus"></i></a>{{/if}}
+          {{else}}
+            {{#if allowed}}<a data-action="toggleEffect" data-index="{{index}}"><i class="fa-{{#if isChosen}}solid fa-square-check{{else}}regular fa-square{{/if}}"></i></a>
+            {{else}}<i class="fa-solid fa-ban"></i>{{/if}}
+          {{/if}}
+        </div>
+        <div class="effect-info">
+          <strong>{{name}}</strong> <span class="effect-diff">{{signed difficulty}}</span>
+          {{#if only}}<span class="effect-only">({{localize "GENESYS.Spell.Only"}} {{only}})</span>{{/if}}
+          {{#if repeatable}}<span class="effect-only">({{localize "GENESYS.Spell.Repeatable"}})</span>{{/if}}
+          <div class="effect-desc">{{description}}</div>
+        </div>
+      </li>
+      {{else}}
+      <li class="empty">{{localize "GENESYS.Spell.NoEffects"}}</li>
+      {{/each}}
+    </ol>
+  </div>
+
+  {{#if implements.length}}
+  <div class="form-group">
+    <label>{{localize "GENESYS.Spell.Implement"}}</label>
+    <select name="implementId">
+      <option value="">—</option>
+      {{#each implements}}<option value="{{id}}" {{#if selected}}selected{{/if}}>{{name}}{{#if bonus}} (+{{bonus}} {{localize "GENESYS.DamageShort"}}){{/if}}</option>{{/each}}
+    </select>
+  </div>
+  {{/if}}
+
+  <div class="spell-summary {{#if tooHard}}too-hard{{/if}}">
+    <div>{{localize "GENESYS.Difficulty.label"}}: <strong>{{baseDifficulty}} → {{total}}</strong> {{#unless tooHard}}({{difficultyLabel}}){{/unless}}</div>
+    <div class="skill-pool">{{#each pool}}{{genesysDie key label}}{{/each}}</div>
+    {{#if tooHard}}<div class="warning">{{localize "GENESYS.Spell.TooHard"}}</div>{{/if}}
+    {{#if attack}}<div>{{localize "GENESYS.Damage"}}: <strong>{{attackDamage}}</strong> + {{localize "GENESYS.Spell.PerSuccess"}} · {{localize "GENESYS.Crit"}}: {{#if attackCrit}}{{attackCrit}}{{else}}{{localize "GENESYS.Spell.TriumphOnly"}}{{/if}}</div>{{/if}}
+  </div>
+
+  <label class="checkbox"><input type="checkbox" name="sufferStrain" {{checked sufferStrain}}> {{localize "GENESYS.Spell.SufferStrain"}} ({{strainCost}})</label>
+
+  <footer class="form-footer">
+    {{#if canSave}}<button type="button" data-action="save"><i class="fa-solid fa-floppy-disk"></i> {{localize "GENESYS.Spell.Save"}}</button>{{/if}}
+    <button type="button" data-action="cast" class="roll-button" {{#unless canCast}}disabled{{/unless}}><i class="fa-solid fa-wand-sparkles"></i> {{localize "GENESYS.Spell.CastButton"}}</button>
+  </footer>
+</div>

@@ -1,7 +1,7 @@
 import { GENESYS } from "../config.mjs";
 import { intField, choiceField, qualitiesField, physicalFields, formatQualities } from "./fields.mjs";
 
-const { StringField, BooleanField, SchemaField, ArrayField, HTMLField } = foundry.data.fields;
+const { StringField, BooleanField, SchemaField, ArrayField, HTMLField, NumberField } = foundry.data.fields;
 
 /** Базовый класс для всех предметов: есть описание и источник (книга, страница). */
 class BaseItemData extends foundry.abstract.TypeDataModel {
@@ -62,7 +62,12 @@ export class ArchetypeData extends BaseItemData {
       strain: intField(10),
       startingXP: intField(100),
       /** Стартовые навыки в свободной форме (часто это выбор игрока). */
-      startingSkills: new StringField({ required: true, blank: true, initial: "" })
+      startingSkills: new StringField({ required: true, blank: true, initial: "" }),
+      /** Особые способности, которые получает персонаж с этим архетипом/расой. */
+      abilities: new ArrayField(new SchemaField({
+        name: new StringField({ required: true, blank: false, initial: "?" }),
+        description: new HTMLField()
+      }))
     };
   }
 }
@@ -91,7 +96,9 @@ export class WeaponData extends BaseItemData {
       crit: intField(3),
       range: choiceField(Object.keys(GENESYS.ranges), "engaged"),
       hardPoints: intField(0),
-      qualities: qualitiesField()
+      qualities: qualitiesField(),
+      /** Сектор обстрела (для оружия транспорта): «носовой», «все» и т.п. */
+      firingArc: new StringField({ required: true, blank: true, initial: "" })
     };
   }
 
@@ -132,7 +139,9 @@ export class GearData extends BaseItemData {
   static defineSchema() {
     return {
       ...super.defineSchema(),
-      ...physicalFields()
+      ...physicalFields(),
+      /** Магический фокус: бонус к урону заклинания Атака (0 — не фокус или без бонуса). */
+      implementDamage: intField(0)
     };
   }
 }
@@ -162,16 +171,54 @@ export class InjuryData extends BaseItemData {
   }
 }
 
-/** Магическое действие (заклинание): навыки, сложность, концентрация, доп. эффекты в описании. */
+/** Ключи магических навыков. */
+export const MAGIC_SKILLS = ["arcana", "divine", "primal", "psychic"];
+const MAGIC_NAMES = { "Магия": "arcana", "Вера": "divine", "Природа": "primal", "Псионика": "psychic", "Psychic": "psychic", "Arcana": "arcana", "Divine": "divine", "Primal": "primal" };
+
+/**
+ * Магическое действие или готовое заклинание.
+ * Действие: базовая сложность + список дополнительных эффектов.
+ * Готовое заклинание: то же самое плюс baseAction и выбранные эффекты (selected).
+ */
 export class SpellData extends BaseItemData {
   static defineSchema() {
     return {
       ...super.defineSchema(),
-      /** Какими магическими навыками можно творить (через запятую). */
-      skills: new StringField({ required: true, blank: true, initial: "" }),
+      /** Магические навыки, которыми можно наложить заклинание. */
+      skills: new ArrayField(new StringField({ required: true, blank: false, choices: MAGIC_SKILLS })),
       difficulty: intField(1, { max: 5 }),
-      concentration: new BooleanField({ initial: false })
+      concentration: new BooleanField({ initial: false }),
+      /** Заклинание-атака: урон = связанная характеристика + успехи. */
+      attack: new BooleanField({ initial: false }),
+      effects: new ArrayField(new SchemaField({
+        name: new StringField({ required: true, blank: false, initial: "?" }),
+        difficulty: new NumberField({ required: true, nullable: false, integer: true, initial: 1, min: -5, max: 5 }),
+        /** Ограничение по навыкам (пусто — любой). */
+        skills: new ArrayField(new StringField({ required: true, blank: false, choices: MAGIC_SKILLS })),
+        repeatable: new BooleanField({ initial: false }),
+        description: new StringField({ required: true, blank: true, initial: "" })
+      })),
+      /** Для готового заклинания: базовое действие и выбранные эффекты (имена, повторы допустимы). */
+      baseAction: new StringField({ required: true, blank: true, initial: "" }),
+      selected: new ArrayField(new StringField({ required: true, blank: false }))
     };
+  }
+
+  /** @override — старый формат: навыки строкой «Вера, Магия». */
+  static migrateData(source) {
+    if (typeof source.skills === "string") {
+      source.skills = source.skills.split(/[,;]/).map(s => MAGIC_NAMES[s.trim()]).filter(Boolean);
+    }
+    return super.migrateData(source);
+  }
+
+  get isPreset() { return !!this.baseAction || this.selected.length > 0; }
+
+  /** Базовая сложность действия (для готового заклинания — без выбранных эффектов). */
+  get baseDifficulty() {
+    if (!this.isPreset) return this.difficulty;
+    const extra = this.selected.reduce((sum, n) => sum + (this.effects.find(e => e.name === n)?.difficulty ?? 0), 0);
+    return Math.max(0, this.difficulty - extra);
   }
 }
 

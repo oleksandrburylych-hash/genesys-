@@ -1,0 +1,57 @@
+<section class="tab magic {{tab.cssClass}}" data-tab="magic" data-group="primary">
+  <div class="magic-skills">
+    {{#each magicSkills}}<span class="tag">{{name}}: {{rank}}</span>{{else}}<span class="hint">{{localize "GENESYS.Spell.NoMagicSkills"}}</span>{{/each}}
+  </div>
+  <p class="hint">{{localize "GENESYS.Spell.Hint"}}</p>
+
+  <section class="block">
+    <header class="list-header">
+      <h3>{{localize "GENESYS.Spell.Actions"}}</h3>
+      {{#if editable}}
+      <a class="item-control" data-action="addMagicActions" data-tooltip="GENESYS.Spell.AddActions"><i class="fa-solid fa-book-medical"></i></a>
+      <a class="item-control" data-action="itemCreate" data-type="spell"><i class="fa-solid fa-plus"></i></a>
+      {{/if}}
+    </header>
+    <ol class="compact-list spell-list">
+      {{#each magicActions}}
+      <li data-item-id="{{id}}">
+        <img src="{{img}}" alt="">
+        <a class="name rollable" data-action="castSpell" data-tooltip="GENESYS.Spell.Cast">{{name}}</a>
+        <span class="sub">{{skills}}</span>
+        <span class="severity">{{#times difficulty}}{{genesysDie "difficulty"}}{{/times}}</span>
+        {{#if concentration}}<i class="fa-solid fa-brain" data-tooltip="GENESYS.Spell.Concentration"></i>{{/if}}
+        <span class="item-controls">
+          <a data-action="castSpell" data-tooltip="GENESYS.Spell.Cast"><i class="fa-solid fa-wand-sparkles"></i></a>
+          <a data-action="itemEdit"><i class="fa-solid fa-pen"></i></a>
+          {{#if @root.editable}}<a data-action="itemDelete"><i class="fa-solid fa-trash"></i></a>{{/if}}
+        </span>
+      </li>
+      {{else}}
+      <li class="empty">{{localize "GENESYS.Spell.NoActions"}}</li>
+      {{/each}}
+    </ol>
+  </section>
+
+  <section class="block">
+    <header class="list-header"><h3>{{localize "GENESYS.Spell.Presets"}}</h3></header>
+    <ol class="compact-list spell-list">
+      {{#each presetSpells}}
+      <li data-item-id="{{id}}">
+        <img src="{{img}}" alt="">
+        <div class="weapon-info">
+          <a class="name rollable" data-action="castSpell">{{name}}</a>
+          <span class="sub">{{skills}} · {{effects}}</span>
+        </div>
+        <span class="severity">{{#times difficulty}}{{genesysDie "difficulty"}}{{/times}}</span>
+        <span class="item-controls">
+          <a data-action="castSpell" data-tooltip="GENESYS.Spell.Cast"><i class="fa-solid fa-wand-sparkles"></i></a>
+          <a data-action="itemEdit"><i class="fa-solid fa-pen"></i></a>
+          {{#if @root.editable}}<a data-action="itemDelete"><i class="fa-solid fa-trash"></i></a>{{/if}}
+        </span>
+      </li>
+      {{else}}
+      <li class="empty">{{localize "GENESYS.Spell.NoPresets"}}</li>
+      {{/each}}
+    </ol>
+  </section>
+</section>

@@ -211,7 +211,8 @@
     "Sheet": {
       "Character": "Genesys character sheet",
       "Adversary": "Genesys adversary sheet",
-      "Item": "Genesys item sheet"
+      "Item": "Genesys item sheet",
+      "Vehicle": "Genesys vehicle sheet"
     },
     "Skill": {
       "alchemy": "Alchemy",
@@ -250,7 +251,8 @@
       "deception": "Deception",
       "leadership": "Leadership",
       "negotiation": "Negotiation",
-      "knowledge": "Knowledge"
+      "knowledge": "Knowledge",
+      "psychic": "Psychic"
     },
     "SkillCategory": {
       "general": "General skills",
@@ -290,7 +292,8 @@
       "talents": "Talents",
       "inventory": "Inventory",
       "experience": "Experience",
-      "biography": "Biography"
+      "biography": "Biography",
+      "magic": "Magic"
     },
     "Talent": {
       "Pyramid": "Talent pyramid",
@@ -339,13 +342,66 @@
     "Spell": {
       "Skills": "Magic skills",
       "Concentration": "Concentration",
-      "Spells": "Spells"
+      "Spells": "Spells",
+      "Cast": "Cast spell",
+      "CastButton": "Cast",
+      "Save": "Save as spell",
+      "Saved": "Spell \"{name}\" saved to the sheet.",
+      "AttackSpell": "Attack",
+      "AttackHint": "Damage = magic skill characteristic + successes.",
+      "KnowledgeRank": "Knowledge rank",
+      "Skill": "Skill",
+      "Effects": "Additional effects",
+      "Only": "only",
+      "Repeatable": "can be taken multiple times",
+      "NoEffects": "No additional effects",
+      "Implement": "Magic implement",
+      "PerSuccess": "successes",
+      "TriumphOnly": "triumph only",
+      "TooHard": "Difficulty above Formidable — remove some effects.",
+      "SufferStrain": "Suffer strain for casting",
+      "NewEffect": "New effect",
+      "EffectDifficulty": "Difficulty modifier",
+      "BaseAction": "Base action",
+      "Selected": "Effects",
+      "Hint": "Magic action + additional effects = spell. Click an action, tick effects — difficulty is calculated. Save good combinations as pre-built spells.",
+      "Actions": "Magic actions",
+      "Presets": "Pre-built spells",
+      "AddActions": "Add all magic actions from compendia",
+      "NothingToAdd": "All magic actions are already on the sheet.",
+      "Added": "Magic actions added: {count}.",
+      "NoActions": "Click the book icon to add magic actions.",
+      "NoPresets": "None yet — save one from the spell builder or drag from the Magic compendium.",
+      "NoMagicSkills": "No magic skills."
+    },
+    "NewAbility": "New ability",
+    "Vehicle": {
+      "Silhouette": "Silhouette",
+      "Speed": "Speed",
+      "Handling": "Handling",
+      "Armor": "Armor",
+      "Skill": "Control skill",
+      "HullTrauma": "Hull trauma",
+      "SystemStrain": "System strain",
+      "Fore": "Fore",
+      "Aft": "Aft",
+      "Port": "Port",
+      "Starboard": "Starboard",
+      "Crew": "Crew",
+      "Passengers": "Passengers",
+      "Capacity": "Encumbrance capacity",
+      "FiringArc": "Arc",
+      "Crits": "Critical hits",
+      "CritRoll": "Roll critical hit",
+      "PilotHint": "Control check by the selected character (handling adds boost/setback)",
+      "CrewHint": "Control and gunnery checks are made by a crew member: select their token or assign a character."
     }
   },
   "TYPES": {
     "Actor": {
       "character": "Character",
-      "adversary": "Adversary"
+      "adversary": "Adversary",
+      "vehicle": "Vehicle"
     },
     "Item": {
       "skill": "Skill",
