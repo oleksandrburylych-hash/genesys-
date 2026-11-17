@@ -532,3 +532,10 @@
 .genesys .wz-lock { margin-top: 10px; padding: 8px 10px; border-radius: 6px; background: #f3ead6; color: var(--gs-navy); font-size: 12px; }
 .genesys .wz-adv-badge { display: flex; align-items: center; gap: 6px; margin: 6px 0 0; font-size: 11px; color: #fff; }
 .genesys .wz-adv-badge img { width: 28px; height: 28px; border: none; }
+
+/* Реакции и окно броска */
+.genesys .pool-dodge { display: flex; align-items: center; gap: 6px; margin: 6px 0; padding: 6px 8px; border-radius: 6px; background: #f3ead6; }
+.genesys .pool-dodge span { flex: 1; }
+.genesys .pool-dodge button { flex: 0 0 auto; width: auto; padding: 0 10px; }
+.genesys.reaction-card .reaction-buttons, .genesys .reaction-card .reaction-buttons { display: flex; gap: 6px; }
+.genesys .gs-talent-use { margin-left: auto; color: var(--gs-maroon); }

@@ -23,9 +23,10 @@ import { SpellCastDialog } from "./module/apps/spell-cast-dialog.mjs";
 import { GenesysItemSheet } from "./module/sheets/item-sheet.mjs";
 import { registerSettings } from "./module/helpers/settings.mjs";
 import { registerHandlebarsHelpers, preloadTemplates } from "./module/helpers/handlebars.mjs";
-import { registerChatHandlers, loadSpendingTables, loadCreationData } from "./module/chat.mjs";
+import { registerChatHandlers, registerReactionSocket, loadSpendingTables, loadCreationData } from "./module/chat.mjs";
 import { registerCombatSocket } from "./module/combat/combat.mjs";
 import { registerCombatHooks } from "./module/combat/initiative.mjs";
+import { registerConditionHooks } from "./module/combat/conditions.mjs";
 import { WorldSetup, newSession } from "./module/apps/world-setup.mjs";
 import { openApp } from "./module/helpers/safe.mjs";
 import * as worlds from "./module/worlds.mjs";
@@ -120,6 +121,8 @@ Hooks.once("ready", () => {
   StoryPointsTracker.initialize();
   registerCombatSocket();
   registerCombatHooks();
+  registerConditionHooks();
+  registerReactionSocket();
   // Первый запуск мира: мастер настройки для ведущего.
   if (game.user.isGM && !game.settings.get(SYSTEM_ID, "worldSetupDone")) openApp(() => new WorldSetup(), "WorldSetup");
   console.log(`${SYSTEM_ID} | Genesys RPG ${game.system.version} готова`);

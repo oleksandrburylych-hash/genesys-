@@ -41,6 +41,14 @@
     {{/each}}
   </div>
 
+  {{#if dodge}}
+  <div class="pool-dodge">
+    <span><i class="fa-solid fa-person-running"></i> {{localize "GENESYS.Reaction.Dodge"}}: {{dodge.name}}</span>
+    {{#if dodge.used}}<b>+{{dodge.used}}</b>
+    {{else}}{{#each dodge.options}}<button type="button" data-action="dodge" data-n="{{n}}">+{{n}}</button>{{/each}}{{/if}}
+  </div>
+  {{/if}}
+
   {{#if storyPoints}}
   <div class="pool-story-point">
     <button type="button" data-action="storyPoint" {{#unless storyPoints.can}}disabled{{/unless}}>

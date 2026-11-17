@@ -212,7 +212,9 @@ GENESYS.statusEffects = [
   { id: "frightened", name: "GENESYS.Status.frightened", img: "icons/svg/terror.svg" },
   { id: "blind", name: "GENESYS.Status.blind", img: "icons/svg/blind.svg" },
   { id: "concentrating", name: "GENESYS.Status.concentrating", img: "icons/svg/aura.svg" },
-  { id: "invisible", name: "GENESYS.Status.invisible", img: "icons/svg/invisible.svg" }
+  { id: "invisible", name: "GENESYS.Status.invisible", img: "icons/svg/invisible.svg" },
+  { id: "defensiveStance", name: "GENESYS.Status.defensiveStance", img: "icons/svg/shield.svg" },
+  { id: "sideStep", name: "GENESYS.Status.sideStep", img: "icons/svg/wingfoot.svg" }
 ];
 
 /**
@@ -222,15 +224,15 @@ GENESYS.statusEffects = [
 GENESYS.activeQualities = {
   "Автоматическое": { cost: 2, note: "GENESYS.Quality.AutoFire" },
   "Взрыв": { cost: 2, note: "GENESYS.Quality.Blast" },
-  "Дезориентация": { cost: 2, status: "disoriented" },
-  "Жжение": { cost: 2, status: "burning" },
+  "Дезориентация": { cost: 2, status: "disoriented", timed: true },
+  "Жжение": { cost: 2, status: "burning", timed: true, burn: true },
   "Залповое": { cost: 2, note: "GENESYS.Quality.Linked" },
   "Наведение": { cost: 2, note: "GENESYS.Quality.Guided" },
   "Нокдаун": { cost: 2, status: "prone" },
   "Оглушение": { cost: 2, strain: true },
-  "Ошеломление": { cost: 2, status: "staggered" },
+  "Ошеломление": { cost: 2, status: "staggered", timed: true },
   "Повреждение": { cost: 1, note: "GENESYS.Quality.Sunder" },
-  "Сковывание": { cost: 2, status: "immobilized" }
+  "Сковывание": { cost: 2, status: "immobilized", timed: true }
 };
 
 /**

@@ -222,13 +222,14 @@ export class GenesysActor extends Actor {
         stun: sys.qualityRating(/оглушающий урон|stun damage/i) > 0,
         active
       },
-      target: target ? { uuid: target.actor.uuid, name: target.actor.name } : null
+      target: target ? { uuid: target.actor.uuid, name: target.actor.name } : null,
+      melee: sys.isMelee || ["melee", "meleeLight", "meleeHeavy", "brawl"].includes(sys.skill)
     };
     let label = game.i18n.format("GENESYS.Roll.Attack", { name: weapon.name });
     if (this.type === "vehicle") label += ` (${this.name}${shooter && shooter !== this ? `, ${shooter.name}` : ""})`;
     if (target) label += ` → ${target.actor.name}`;
     if (mods.blocked) ui.notifications.warn(mods.notes.at(-1));
-    return DicePoolDialog.prompt({ pool, label, actor: shooter ?? this, rollOptions, notes });
+    return DicePoolDialog.prompt({ pool, label, actor: shooter ?? this, rollOptions, notes, dodge: mods.dodge ?? null });
   }
 
   /** Член экипажа для транспорта: выделенный токен-персонаж или назначенный персонаж пользователя. */

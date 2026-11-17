@@ -39,6 +39,7 @@
           <div class="gs-talent-head">
             <img src="{{img}}" alt="">
             <a class="gs-talent-name" data-action="itemEdit" data-tooltip="{{activation}}">{{name}}</a>
+            {{#if guard}}<a class="gs-talent-use" data-action="useGuard" data-tooltip="GENESYS.Reaction.UseHint"><i class="fa-solid fa-shield-halved"></i></a>{{/if}}
           </div>
           <div class="gs-talent-foot">
             <span class="gs-tag {{#if passive}}passive{{else}}active{{/if}}">{{#if passive}}{{localize "GENESYS.Sheet.Passive"}}{{else}}{{localize "GENESYS.Sheet.Active"}}{{/if}}</span>

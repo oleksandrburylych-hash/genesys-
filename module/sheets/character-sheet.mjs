@@ -1,9 +1,13 @@
-import { GENESYS, TEMPLATES } from "../config.mjs";
+import { GENESYS, TEMPLATES, SYSTEM_ID } from "../config.mjs";
+import { actOnActor } from "../combat/combat.mjs";
 import { getAdventure } from "../worlds.mjs";
 import { GenesysBaseActorSheet } from "./base-actor-sheet.mjs";
 
 const { DialogV2 } = foundry.applications.api;
 const T = `${TEMPLATES}/actor`;
+
+/** Таланты-реакции с кнопкой на листе: статус и защищаемый тип атак. */
+const GUARD_TALENTS = { "Defensive Stance": "defensiveStance", "Side Step": "sideStep" };
 
 /**
  * Лист персонажа игрока.
@@ -29,7 +33,8 @@ export class GenesysCharacterSheet extends GenesysBaseActorSheet {
       restOvernight: GenesysCharacterSheet.#onRestOvernight,
       healInjury: GenesysCharacterSheet.#onHealInjury,
       creationWizard: GenesysCharacterSheet.#onCreationWizard,
-      addMagicActions: GenesysCharacterSheet.#onAddMagicActions
+      addMagicActions: GenesysCharacterSheet.#onAddMagicActions,
+      useGuard: GenesysCharacterSheet.#onUseGuard
     }
   };
 
@@ -84,7 +89,8 @@ export class GenesysCharacterSheet extends GenesysBaseActorSheet {
           ranked: t.system.ranked,
           rank: t.system.rank,
           activation: GENESYS.activations[t.system.activation],
-          passive: t.system.activation === "passive"
+          passive: t.system.activation === "passive",
+          guard: GUARD_TALENTS[t.flags?.[SYSTEM_ID]?.nameEn] ?? null
         })),
       cost: GENESYS.xp.talent(tier),
       canAdd: tier === 1 || tiers[tier - 1] > tiers[tier]
@@ -289,5 +295,29 @@ export class GenesysCharacterSheet extends GenesysBaseActorSheet {
       update["system.strain.creationChar"] = this.actor.characteristic("willpower");
     }
     return this.actor.update(update);
+  }
+
+  /** Оборонительная тактика / Шаг в сторону: выбрать число ступеней (не больше ранга), получить столько же усталости. */
+  static async #onUseGuard(event, target) {
+    const item = this.actor.items.get(target.closest("[data-item-id]")?.dataset.itemId);
+    const status = GUARD_TALENTS[item?.flags?.[SYSTEM_ID]?.nameEn];
+    if (!status) return;
+    const rank = Math.max(1, item.system.rank || 1);
+    let n = 1;
+    if (rank > 1) {
+      n = await foundry.applications.api.DialogV2.prompt({
+        window: { title: item.name },
+        content: `<p>${game.i18n.localize("GENESYS.Reaction.GuardPrompt")}</p><input type="number" name="n" value="${rank}" min="1" max="${rank}" autofocus>`,
+        ok: { label: game.i18n.localize("GENESYS.Reaction.Use"), callback: (ev, button) => Number(button.form.elements.n.value) || 1 },
+        rejectClose: false
+      });
+      if (!n) return;
+      n = Math.min(rank, Math.max(1, n));
+    }
+    await actOnActor(this.actor, "guard", { status, upgrades: n });
+    await ChatMessage.implementation.create({
+      speaker: ChatMessage.implementation.getSpeaker({ actor: this.actor }),
+      content: `<div class="genesys status-report">${game.i18n.format("GENESYS.Reaction.GuardUsed", { name: foundry.utils.escapeHTML(this.actor.name), talent: foundry.utils.escapeHTML(item.name), value: n })}</div>`
+    });
   }
 }

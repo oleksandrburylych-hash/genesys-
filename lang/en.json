@@ -557,7 +557,9 @@
       "invisible": "Невидим",
       "poisoned": "Отравлен",
       "prone": "Распластан",
-      "staggered": "В замешательстве"
+      "staggered": "В замешательстве",
+      "defensiveStance": "Defensive Stance",
+      "sideStep": "Side Step"
     },
     "Wizard": {
       "Back": "Назад",
@@ -693,6 +695,26 @@
       "Edit": "Worlds",
       "Hint": "World tags: which adventures this fits. No tags — any.",
       "Foreign": "“{name}” belongs to {worlds}, but the character plays in {adventure}. Added anyway — the GM decides."
+    },
+    "Conditions": {
+      "Expired": "{name}: {status} has ended.",
+      "BurnHint": "{name} is burning."
+    },
+    "Reaction": {
+      "Dodge": "Target dodges",
+      "DodgeUsed": "{name} dodges: +{value}",
+      "ParryOffer": "{name} may parry: 3 strain, −{value} damage.",
+      "ParryButton": "Parry (−{value})",
+      "Take": "Take the hit",
+      "Parried": "{name} parries.",
+      "Took": "{name} takes the hit.",
+      "NotYours": "Only the target's owner or the GM can choose.",
+      "StanceActive": "Defensive Stance: +{value}",
+      "SideStepActive": "Side Step: +{value}",
+      "GuardPrompt": "Upgrades (and strain)?",
+      "GuardUsed": "{name}: {talent} +{value}",
+      "Use": "Use",
+      "UseHint": "Use talent"
     }
   },
   "TYPES": {

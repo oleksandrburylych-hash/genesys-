@@ -1,4 +1,5 @@
 import { GENESYS, SYSTEM_ID } from "../config.mjs";
+import { applyTimedStatus } from "./conditions.mjs";
 
 /**
  * Боевая автоматика: цели, дистанция, защита, урон, состояния.
@@ -121,6 +122,12 @@ export function attackModifiers(attacker, weapon, target) {
     // Талант «Противник» → усиление сложности.
     const adv = adversaryRank(target.actor);
     if (adv > 0) { res.upgrades += adv; res.notes.push(i18n("GENESYS.Combat.Adversary", { rank: adv })); }
+    // Оборонительная тактика / Шаг в сторону: усиление на ранг, выбранный целью.
+    const guard = guardUpgrades(target.actor, melee);
+    if (guard > 0) { res.upgrades += guard; res.notes.push(i18n(melee ? "GENESYS.Reaction.StanceActive" : "GENESYS.Reaction.SideStepActive", { value: guard })); }
+    // Уклонение: цель может усилить сложность, получив усталость (решается в окне броска).
+    const dodge = talentRank(target.actor, /^dodge$/i);
+    if (dodge > 0 && target.actor.system.strain) res.dodge = { rank: dodge, uuid: target.actor.uuid, name: target.actor.name };
     // Лежачая цель.
     if (target.actor.statuses?.has("prone")) {
       if (melee) { res.boost += 1; res.notes.push(i18n("GENESYS.Combat.ProneMelee")); }
@@ -145,6 +152,22 @@ export function attackModifiers(attacker, weapon, target) {
   // Атакующий лежит и бьёт в ближнем бою.
   if (melee && attacker?.statuses?.has("prone")) { res.setback += 1; res.notes.push(i18n("GENESYS.Combat.AttackerProne")); }
   return res;
+}
+
+/** Ранг таланта по английскому названию (флаг nameEn) или русскому имени. */
+export function talentRank(actor, re, ruRe = null) {
+  let rank = 0;
+  for (const t of actor?.itemTypes?.talent ?? []) {
+    const en = t.flags?.[SYSTEM_ID]?.nameEn ?? "";
+    if (re.test(en) || (ruRe && ruRe.test(t.name))) rank += t.system.ranked ? (t.system.rank || 1) : 1;
+  }
+  return rank;
+}
+
+/** Активные «Оборонительная тактика» (ближний бой) или «Шаг в сторону» (дальний бой) у цели. */
+function guardUpgrades(actor, melee) {
+  const effect = actor?.effects?.find(e => e.statuses?.has(melee ? "defensiveStance" : "sideStep"));
+  return effect?.getFlag(SYSTEM_ID, "upgrades") ?? 0;
 }
 
 /* -------------------------------------------- */
@@ -208,9 +231,18 @@ const ACTIONS = {
     if (wounds > 0 || strain > 0) await checkThresholds(actor);
   },
 
-  /** Повесить состояние. data { status, active } */
-  async status(actor, { status, active = true } = {}) {
+  /** Повесить состояние. data { status, active, rounds, burn, source } */
+  async status(actor, { status, active = true, rounds = 0, burn = 0, source = "" } = {}) {
+    if (active && (rounds || burn)) return applyTimedStatus(actor, status, { rounds, burn, source });
     await actor.toggleStatusEffect(status, { active });
+  },
+
+  /** Оборонительная тактика / Шаг в сторону: data { status, upgrades } — усталость и состояние до конца следующего хода. */
+  async guard(actor, { status, upgrades = 1 } = {}) {
+    await ACTIONS.adjust(actor, { strain: upgrades });
+    await applyTimedStatus(actor, status, { rounds: 2 });
+    const effect = actor.effects.find(e => e.statuses?.has(status));
+    if (effect) await effect.setFlag(SYSTEM_ID, "upgrades", upgrades);
   },
 
   /** Бросок критической травмы. data { modifier } */

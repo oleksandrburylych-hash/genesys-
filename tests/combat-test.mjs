@@ -48,4 +48,29 @@ GENESYS.spending = { combatPositive:{ title:"P", rows:[{cost:"1",symbol:"advanta
 const { spendingOptions } = await import(`${R}/module/chat.mjs`);
 const sp = spendingOptions({ advantage:2, triumph:0, threat:0, despair:0 }, "combat");
 assert.equal(sp.length,1); assert.equal(sp[0].rows.length,1);
+// Таланты по nameEn: Уклонение → предложение в окне броска; Оборонительная тактика → усиление.
+const mkEffect = (status, flags = {}) => ({ name: status, statuses: new Set([status]), flags: { "genesys-rpg": { ...flags } },
+  getFlag(scope, k) { return this.flags[scope]?.[k]; }, async setFlag(scope, k, v) { this.flags[scope][k] = v; },
+  async update(u) { for (const [k, v] of Object.entries(u)) this.flags["genesys-rpg"][k.split(".").at(-1)] = v; }, async delete() { this.deleted = true; } });
+const dodger = mkActor({ defense:{ ranged:{value:0}, melee:{value:0} }, strain:{value:0,max:12}, wounds:{value:0,max:12}, soak:{value:2} },
+  [{ name:"Уклонение", flags:{ "genesys-rpg":{ nameEn:"Dodge" } }, getFlag(s,k){ return this.flags[s]?.[k]; }, system:{ ranked:true, rank:2 } }]);
+dodger.effects = [mkEffect("defensiveStance", { upgrades: 2 })];
+assert.equal(C.talentRank(dodger, /^dodge$/i), 2);
+const md = C.attackModifiers(attacker, { system:{ skill:"melee", range:"engaged", isMelee:true } }, { token: tokB, actor: dodger });
+assert.equal(md.dodge.rank, 2, "dodge offered");
+assert.equal(md.upgrades, 2, "defensive stance upgrades melee");
+const mr = C.attackModifiers(attacker, weapon, { token: tokB, actor: dodger });
+assert.equal(mr.upgrades, 0, "defensive stance does not affect ranged");
+
+// Состояния с длительностью: Дезориентация 2 хода, снятие по истечении.
+const { applyTimedStatus } = await import(`${R}/module/combat/conditions.mjs`);
+const dz = mkActor({});
+dz.effects = [];
+dz.toggleStatusEffect = async id => { dz.statuses.add(id); dz.effects.push(mkEffect(id)); };
+await applyTimedStatus(dz, "disoriented", { rounds: 2 });
+assert.equal(dz.effects[0].getFlag("genesys-rpg", "rounds"), 2);
+await applyTimedStatus(dz, "disoriented", { rounds: 1 });
+assert.equal(dz.effects[0].getFlag("genesys-rpg", "rounds"), 2, "reapply keeps longer duration");
+await applyTimedStatus(dz, "burning", { rounds: 3, burn: 6 });
+assert.equal(dz.effects[1].getFlag("genesys-rpg", "burn"), 6);
 console.log("combat tests passed");

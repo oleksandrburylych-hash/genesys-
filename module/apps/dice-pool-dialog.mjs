@@ -9,8 +9,11 @@ const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
  * Использование: await DicePoolDialog.prompt({ pool, label, actor, rollOptions })
  */
 export class DicePoolDialog extends HandlebarsApplicationMixin(ApplicationV2) {
-  constructor({ pool, label, actor, rollOptions = {}, notes = [], ...options } = {}) {
+  constructor({ pool, label, actor, rollOptions = {}, notes = [], dodge = null, ...options } = {}) {
     super(options);
+    /** Уклонение цели: { rank, uuid, name } — сколько ступеней усилить, решает цель (вслух за столом). */
+    this.dodge = dodge;
+    this.dodgeUsed = 0;
     this.notes = notes;
     this.storyPointUsed = false;
     this.pool = pool instanceof DicePool ? pool : new DicePool(pool);
@@ -32,7 +35,8 @@ export class DicePoolDialog extends HandlebarsApplicationMixin(ApplicationV2) {
       downgrade: DicePoolDialog.#onDowngrade,
       setDifficulty: DicePoolDialog.#onSetDifficulty,
       roll: DicePoolDialog.#onRoll,
-      storyPoint: DicePoolDialog.#onStoryPoint
+      storyPoint: DicePoolDialog.#onStoryPoint,
+      dodge: DicePoolDialog.#onDodge
     },
     form: { handler: DicePoolDialog.#onSubmit, submitOnChange: true, closeOnSubmit: false }
   };
@@ -62,7 +66,11 @@ export class DicePoolDialog extends HandlebarsApplicationMixin(ApplicationV2) {
       })),
       empty: this.pool.isEmpty,
       notes: this.notes,
-      storyPoints: this.#storyPointInfo()
+      storyPoints: this.#storyPointInfo(),
+      dodge: this.dodge ? {
+        name: this.dodge.name, used: this.dodgeUsed,
+        options: Array.from({ length: this.dodge.rank }, (_, i) => ({ n: i + 1 }))
+      } : null
     };
   }
 
@@ -87,6 +95,16 @@ export class DicePoolDialog extends HandlebarsApplicationMixin(ApplicationV2) {
     if (info.gm) this.pool.upgradeDifficulty(); else this.pool.upgradeAbility();
     this.storyPointUsed = true;
     this.notes = [...this.notes, game.i18n.localize(info.gm ? "GENESYS.StoryPoints.UpgradedDifficulty" : "GENESYS.StoryPoints.UpgradedAbility")];
+    this.render();
+  }
+
+  /** Цель уклоняется: усилить сложность на n, цель получит n усталости при броске. */
+  static #onDodge(event, target) {
+    if (!this.dodge || this.dodgeUsed) return;
+    const n = Math.min(Number(target.dataset.n) || 1, this.dodge.rank);
+    this.pool.upgradeDifficulty(n);
+    this.dodgeUsed = n;
+    this.notes = [...this.notes, game.i18n.format("GENESYS.Reaction.DodgeUsed", { name: this.dodge.name, value: n })];
     this.render();
   }
 
@@ -128,6 +146,11 @@ export class DicePoolDialog extends HandlebarsApplicationMixin(ApplicationV2) {
     const roll = await DicePoolDialog.rollPool(this.pool, {
       label: this.label, actor: this.actor, messageMode: this.messageMode, rollOptions: this.rollOptions
     });
+    if (this.dodgeUsed && this.dodge) {
+      const { actOnActor } = await import("../combat/combat.mjs");
+      const target = await fromUuid(this.dodge.uuid);
+      if (target) await actOnActor(target, "adjust", { strain: this.dodgeUsed });
+    }
     this._resolve?.(roll);
     this._resolve = null;
     await this.close();
