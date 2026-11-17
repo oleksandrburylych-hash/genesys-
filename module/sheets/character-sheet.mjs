@@ -36,6 +36,7 @@ export class GenesysCharacterSheet extends GenesysBaseActorSheet {
       addMagicActions: GenesysCharacterSheet.#onAddMagicActions,
       useGuard: GenesysCharacterSheet.#onUseGuard,
       exportChar: GenesysCharacterSheet.#onExportChar,
+      workshop: GenesysCharacterSheet.#onWorkshop,
       mountOpen: GenesysCharacterSheet.#onMountOpen,
       mountRemove: GenesysCharacterSheet.#onMountRemove,
       mountToggle: GenesysCharacterSheet.#onMountToggle,
@@ -333,6 +334,12 @@ export class GenesysCharacterSheet extends GenesysBaseActorSheet {
       speaker: ChatMessage.implementation.getSpeaker({ actor: this.actor }),
       content: `<div class="genesys status-report">${game.i18n.format("GENESYS.Reaction.GuardUsed", { name: foundry.utils.escapeHTML(this.actor.name), talent: foundry.utils.escapeHTML(item.name), value: n })}</div>`
     });
+  }
+
+  /** Мастерская: ремесло и алхимия. */
+  static async #onWorkshop() {
+    const { Workshop } = await import("../apps/workshop.mjs");
+    return new Workshop({ actor: this.actor }).render({ force: true });
   }
 
   /** Сохранить персонажа в JSON-файл (для переноса между мирами и кампаниями). */

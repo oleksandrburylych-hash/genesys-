@@ -285,5 +285,21 @@ G.tab.call(gm, null, { dataset: { tab: "reference" } }); await gm.render();
 assert.ok(gm.html.includes("gm-cost"), "spending table in reference");
 if (process.env.DUMP) fs.writeFileSync(path.join(process.env.DUMP, "gm-ref.html"), gm.html);
 
+// ---- Мастерская ----
+const { Workshop } = await import(`${R}/module/apps/workshop.mjs`);
+const smith = { name: "Кузнец", system: { adventure: "terrinoth", money: 300 }, getSkill: () => ({ name: "Механика" }) };
+const wsp = new Workshop({ actor: smith });
+await wsp.render();
+const craftItems = [...wsp.html.matchAll(/data-action="select" data-uuid="([^"]+)"/g)].map(m => m[1]);
+assert.ok(craftItems.length > 10, `workshop lists items: ${craftItems.length}`);
+const sword = craftItems.find(u => u.includes("Меч")) ?? craftItems[0];
+Workshop.DEFAULT_OPTIONS.actions.select.call(wsp, null, { dataset: { uuid: sword } }); await wsp.render();
+assert.ok(wsp.html.includes("Механика"), "craft check uses Mechanics");
+assert.deepEqual(Workshop.plan({ system: { rarity: 2, price: 200 } }, "craft").difficulty, 1, "rarity 2 → Easy");
+assert.equal(Workshop.plan({ system: { rarity: 5, price: 100 } }, "alchemy").cost, 50, "ingredients half price");
+Workshop.DEFAULT_OPTIONS.actions.mode.call(wsp, null, { dataset: { mode: "alchemy" } }); await wsp.render();
+assert.ok([...wsp.html.matchAll(/data-action="select"/g)].length > 0, "alchemy lists potions");
+assert.ok(GENESYS.spending.craftingPositive && GENESYS.spending.alchemyNegative, "crafting spending tables");
+
 console.log("notifications:", notes);
 console.log("APP HARNESS PASSED");

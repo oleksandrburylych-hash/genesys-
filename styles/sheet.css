@@ -8,6 +8,7 @@
 .genesys.spell-cast-dialog,
 .genesys.creation-wizard,
 .genesys.gm-screen,
+.genesys.workshop,
 .genesys.world-setup {
   --gs-maroon: #8e2229;
   --gs-maroon-d: #5c1217;
@@ -37,6 +38,7 @@
 .genesys.spell-cast-dialog .window-header,
 .genesys.creation-wizard .window-header,
 .genesys.gm-screen .window-header,
+.genesys.workshop .window-header,
 .genesys.world-setup .window-header {
   background: linear-gradient(180deg, var(--gs-navy) 0%, var(--gs-navy-d) 100%);
   color: #fff;
@@ -51,6 +53,7 @@
 .genesys.spell-cast-dialog .window-content,
 .genesys.creation-wizard .window-content,
 .genesys.gm-screen .window-content,
+.genesys.workshop .window-content,
 .genesys.world-setup .window-content {
   color: var(--gs-ink);
   font-family: var(--gs-body);
@@ -71,7 +74,8 @@
 .genesys.creation-wizard textarea,
 .genesys.gm-screen input[type="text"],
 .genesys.gm-screen input[type="number"],
-.genesys.gm-screen select {
+.genesys.gm-screen select,
+.genesys.workshop input[type="text"] {
   background: rgba(255, 255, 255, 0.8);
   border: 1px solid var(--gs-line);
   border-radius: 3px;
@@ -622,3 +626,7 @@
 .genesys .gs-mount-info { flex: 1; display: flex; flex-direction: column; }
 .genesys .gs-mount-actions { display: flex; flex-wrap: wrap; gap: 4px; }
 .genesys .gs-mount-actions button { width: auto; flex: 0 0 auto; padding: 0 8px; height: 26px; }
+
+.genesys.workshop .window-content { padding: 0; }
+.genesys .ws { height: 100%; display: flex; flex-direction: column; }
+.genesys .gm-row.selected { border-color: var(--gs-maroon); box-shadow: 0 0 0 2px var(--gs-gold); background: #fff8ea; }

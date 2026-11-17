@@ -29,6 +29,7 @@ import { registerCombatHooks } from "./module/combat/initiative.mjs";
 import { registerConditionHooks } from "./module/combat/conditions.mjs";
 import { WorldSetup, newSession } from "./module/apps/world-setup.mjs";
 import { GMScreen } from "./module/apps/gm-screen.mjs";
+import { Workshop } from "./module/apps/workshop.mjs";
 import { registerCompendiumFilter } from "./module/helpers/compendium-filter.mjs";
 import { openApp } from "./module/helpers/safe.mjs";
 import * as worlds from "./module/worlds.mjs";
@@ -52,6 +53,7 @@ Hooks.once("init", () => {
     SpellCastDialog,
     WorldSetup,
     GMScreen,
+    Workshop,
     newSession,
     StoryPointsTracker,
     /** Открыть окно броска с заданным пулом. */
