@@ -1,0 +1,41 @@
+<div class="world-setup">
+  <div class="setup-body">
+    <p class="hint">{{localize "GENESYS.Setup.Intro"}}</p>
+
+    <h3>{{localize "GENESYS.Setup.Setting"}}</h3>
+    <select name="setting">
+      {{#each settings}}<option value="{{key}}" {{#if selected}}selected{{/if}}>{{localize label}}</option>{{/each}}
+    </select>
+    <p class="hint">{{localize "GENESYS.Setup.SettingHint"}}</p>
+
+    <h3>{{localize "GENESYS.Setup.Books"}}</h3>
+    <div class="setup-grid">
+      {{#each sources}}<label class="checkbox"><input type="checkbox" name="sources.{{key}}" {{checked checked}}> {{label}}</label>{{/each}}
+    </div>
+
+    <h3>{{localize "GENESYS.Setup.Import"}}</h3>
+    <p class="hint">{{localize "GENESYS.Setup.ImportHint"}}</p>
+    <div class="setup-grid">
+      {{#each packs}}<label class="checkbox"><input type="checkbox" name="packs.{{key}}" {{checked checked}}> {{label}} <span class="hint">({{count}})</span></label>{{/each}}
+    </div>
+    <label class="checkbox"><input type="checkbox" name="replace" {{checked state.replace}}> {{localize "GENESYS.Setup.Replace"}}</label>
+
+    <h3>{{localize "GENESYS.Setup.Extras"}}</h3>
+    <div class="setup-grid">
+      <label class="checkbox"><input type="checkbox" name="tables" {{checked state.tables}}> {{localize "GENESYS.Setup.Tables"}}</label>
+      <label class="checkbox"><input type="checkbox" name="journal" {{checked state.journal}}> {{localize "GENESYS.Setup.Journal"}}</label>
+      <label class="checkbox"><input type="checkbox" name="macros" {{checked state.macros}}> {{localize "GENESYS.Setup.Macros"}}</label>
+      <label class="checkbox"><input type="checkbox" name="storyPoints" {{checked state.storyPoints}}> {{localize "GENESYS.Setup.StoryPoints"}}</label>
+    </div>
+
+    {{#if log.length}}
+    <ol class="setup-log">{{#each log}}<li>{{this}}</li>{{/each}}</ol>
+    {{/if}}
+  </div>
+  <footer class="form-footer">
+    <button type="button" data-action="skip" {{#if running}}disabled{{/if}}>{{localize "GENESYS.Setup.Skip"}}</button>
+    <button type="button" data-action="install" class="roll-button" {{#if running}}disabled{{/if}}>
+      <i class="fa-solid {{#if running}}fa-spinner fa-spin{{else}}fa-wand-magic-sparkles{{/if}}"></i> {{localize "GENESYS.Setup.Install"}}
+    </button>
+  </footer>
+</div>

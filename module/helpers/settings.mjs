@@ -1,5 +1,6 @@
 import { GENESYS, SYSTEM_ID } from "../config.mjs";
 import { StoryPointsTracker } from "../apps/story-points.mjs";
+import { WorldSetup } from "../apps/world-setup.mjs";
 
 export function registerSettings() {
   game.settings.register(SYSTEM_ID, "skillPreset", {
@@ -62,6 +63,22 @@ export function registerSettings() {
     config: true,
     type: Boolean,
     default: true
+  });
+
+  game.settings.register(SYSTEM_ID, "worldSetupDone", {
+    scope: "world",
+    config: false,
+    type: Boolean,
+    default: false
+  });
+
+  game.settings.registerMenu(SYSTEM_ID, "worldSetup", {
+    name: "GENESYS.Setup.Title",
+    label: "GENESYS.Setup.Open",
+    hint: "GENESYS.Setup.MenuHint",
+    icon: "fa-solid fa-wand-magic-sparkles",
+    type: WorldSetup,
+    restricted: true
   });
 
   game.settings.register(SYSTEM_ID, "storyPoints", {

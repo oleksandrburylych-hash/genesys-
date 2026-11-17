@@ -26,6 +26,7 @@ import { registerHandlebarsHelpers, preloadTemplates } from "./module/helpers/ha
 import { registerChatHandlers, loadSpendingTables } from "./module/chat.mjs";
 import { registerCombatSocket } from "./module/combat/combat.mjs";
 import { registerCombatHooks } from "./module/combat/initiative.mjs";
+import { WorldSetup, newSession } from "./module/apps/world-setup.mjs";
 
 /* -------------------------------------------- */
 /*  Init                                        */
@@ -43,6 +44,8 @@ Hooks.once("init", () => {
     GenesysRoll,
     DicePoolDialog,
     SpellCastDialog,
+    WorldSetup,
+    newSession,
     StoryPointsTracker,
     /** Открыть окно броска с заданным пулом. */
     roll: (pool = {}, options = {}) => DicePoolDialog.prompt({ pool: new DicePool(pool), ...options }),
@@ -109,6 +112,8 @@ Hooks.once("ready", () => {
   StoryPointsTracker.initialize();
   registerCombatSocket();
   registerCombatHooks();
+  // Первый запуск мира: мастер настройки для ведущего.
+  if (game.user.isActiveGM && !game.settings.get(SYSTEM_ID, "worldSetupDone")) new WorldSetup().render({ force: true });
   if (game.settings.get(SYSTEM_ID, "showStoryPoints")) new StoryPointsTracker().render({ force: true });
 });
 

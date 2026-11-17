@@ -653,3 +653,12 @@
 .genesys .wizard-options button.active { border-color: var(--g-accent); background: var(--g-accent-soft); font-weight: bold; }
 .genesys .wizard-summary { margin-top: 0.5rem; padding: 0.4rem; border-radius: 6px; background: var(--g-panel); border: 1px solid var(--g-border); }
 .genesys .wizard .form-footer { display: flex; gap: 0.5rem; }
+
+/* Мастер настройки мира */
+.genesys.world-setup .window-content { padding: 0.75rem; }
+.genesys .world-setup { display: flex; flex-direction: column; height: 100%; gap: 0.5rem; }
+.genesys .world-setup .setup-body { flex: 1; overflow-y: auto; }
+.genesys .world-setup h3 { margin: 0.6rem 0 0.2rem; border-bottom: 2px solid var(--g-accent); }
+.genesys .world-setup .setup-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.2rem 0.8rem; }
+.genesys .world-setup .setup-log { margin-top: 0.6rem; padding: 0.4rem 0.4rem 0.4rem 1.6rem; background: var(--g-accent-soft); border-radius: 6px; }
+.genesys .world-setup .form-footer { display: flex; gap: 0.5rem; }

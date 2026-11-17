@@ -39,6 +39,7 @@ export function preloadTemplates() {
     "item/qualities.hbs",
     "item/attachments.hbs",
     "apps/creation-wizard.hbs",
+    "apps/world-setup.hbs",
     ...["skill", "talent", "ability", "archetype", "career", "weapon", "armor", "gear", "quality", "injury", "spell", "heroic", "attachment"]
       .map(t => `item/details-${t}.hbs`),
     "chat/roll.hbs",
