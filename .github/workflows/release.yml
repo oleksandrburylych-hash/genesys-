@@ -1,9 +1,11 @@
 # Публикация релиза для установки в Foundry по ссылке на манифест:
 #   https://github.com/oleksandrburylych-hash/genesys-/releases/latest/download/system.json
-# Запускается при отправке тега вида v1.2.3.
+# Запуск: вручную (Actions → Release → Run workflow) или отправкой тега vX.Y.Z.
+# Версия берётся из system.json (или из тега), тег и релиз создаются автоматически.
 name: Release
 
 on:
+  workflow_dispatch:
   push:
     tags:
       - "v*"
@@ -17,17 +19,28 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build system archive
+      - name: Determine version
+        id: ver
         run: |
-          VERSION="${GITHUB_REF_NAME#v}"
-          node -e "const f='system.json';const d=JSON.parse(require('fs').readFileSync(f));d.version='${VERSION}';require('fs').writeFileSync(f,JSON.stringify(d,null,2)+'\n')"
-          TAG="${GITHUB_REF_NAME}" node tools/build-release.mjs
+          if [[ "${GITHUB_REF_TYPE}" == "tag" ]]; then
+            VERSION="${GITHUB_REF_NAME#v}"
+            node -e "const f='system.json';const d=JSON.parse(require('fs').readFileSync(f));d.version='${VERSION}';require('fs').writeFileSync(f,JSON.stringify(d,null,2)+'\n')"
+          else
+            VERSION=$(node -p "require('./system.json').version")
+          fi
+          echo "tag=v${VERSION}" >> "$GITHUB_OUTPUT"
+
+      - name: Build system archive
+        run: TAG="${{ steps.ver.outputs.tag }}" node tools/build-release.mjs
 
       - name: Publish release
         uses: softprops/action-gh-release@v2
         with:
-          name: Genesys RPG ${{ github.ref_name }}
+          tag_name: ${{ steps.ver.outputs.tag }}
+          target_commitish: ${{ github.sha }}
+          name: Genesys RPG ${{ steps.ver.outputs.tag }}
           generate_release_notes: true
+          make_latest: true
           files: |
             dist/system.json
             dist/genesys-rpg.zip

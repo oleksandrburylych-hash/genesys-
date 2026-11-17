@@ -111,7 +111,7 @@ https://github.com/oleksandrburylych-hash/genesys-/releases/latest/download/syst
 
 Ссылка всегда ведёт на последний релиз; обновления Foundry предложит сам.
 
-**Выпуск новой версии:** поднять `version` в `system.json`, закоммитить и отправить тег `vX.Y.Z` —
+**Выпуск новой версии:** поднять `version` в `system.json`, закоммитить и запустить Actions → Release → Run workflow (или отправить тег `vX.Y.Z`) —
 GitHub Actions (`.github/workflows/release.yml`) соберёт архив и опубликует релиз.
 
 ## Макросы
