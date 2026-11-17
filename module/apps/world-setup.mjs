@@ -42,7 +42,16 @@ export class WorldSetup extends HandlebarsApplicationMixin(ApplicationV2) {
   static PARTS = { main: { template: `${TEMPLATES}/apps/world-setup.hbs`, scrollable: [".setup-body"] } };
 
   /** @override */
-  async _prepareContext() {
+  async _prepareContext(options) {
+    try { return await this.#buildContext(); }
+    catch (err) {
+      console.error("genesys-rpg |", err);
+      ui.notifications.error(`Genesys: ${err.message}`, { permanent: true });
+      throw err;
+    }
+  }
+
+  async #buildContext() {
     const s = this.state;
     return {
       settings: Object.entries(GENESYS.skillPresets).filter(([k]) => k !== "none")
@@ -172,7 +181,7 @@ export class WorldSetup extends HandlebarsApplicationMixin(ApplicationV2) {
       const nums = String(d.system.rollRange ?? "").match(/\d+/g)?.map(Number) ?? [];
       const lo = nums[0] ?? 1;
       const hi = String(d.system.rollRange).includes("+") || nums.length < 2 ? 1000 : nums[1];
-      return { type: "document", name: d.name, documentUuid: d.uuid, img: d.img, range: [lo, hi], weight: hi - lo + 1, description: "" };
+      return { type: "document", name: d.name, documentUuid: d.uuid, img: d.img, range: [lo, Math.max(lo, hi)], weight: Math.max(1, hi - lo + 1), description: "" };
     }).sort((a, b) => a.range[0] - b.range[0]);
     const folder = await this.#folder("Genesys", "RollTable");
     await RollTable.implementation.create({ name, formula: "1d100", replacement: true, displayRoll: true, folder: folder.id, results });

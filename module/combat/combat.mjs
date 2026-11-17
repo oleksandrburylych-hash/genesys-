@@ -28,7 +28,8 @@ export function getActorToken(actor) {
 function thresholds() {
   const out = { ...GENESYS.rangeThresholds };
   for (const band of Object.keys(out)) {
-    try { out[band] = Number(game.settings.get(SYSTEM_ID, `range.${band}`)) || out[band]; } catch { /* настройка ещё не зарегистрирована */ }
+    const key = `range${band[0].toUpperCase()}${band.slice(1)}`;
+    try { out[band] = Number(game.settings.get(SYSTEM_ID, key)) || out[band]; } catch { /* настройка ещё не зарегистрирована */ }
   }
   return out;
 }

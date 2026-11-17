@@ -37,7 +37,7 @@ export function registerSettings() {
 
   // Пороги диапазонов дистанции (в единицах сетки сцены).
   for (const band of ["engaged", "short", "medium", "long"]) {
-    game.settings.register(SYSTEM_ID, `range.${band}`, {
+    game.settings.register(SYSTEM_ID, `range${band[0].toUpperCase()}${band.slice(1)}`, {
       name: `GENESYS.Settings.Range.${band}`,
       hint: "GENESYS.Settings.Range.hint",
       scope: "world",

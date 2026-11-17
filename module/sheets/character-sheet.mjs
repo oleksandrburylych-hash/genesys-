@@ -190,8 +190,11 @@ export class GenesysCharacterSheet extends GenesysBaseActorSheet {
   }
 
   static async #onCreationWizard() {
-    const { CreationWizard } = await import("../apps/creation-wizard.mjs");
-    return new CreationWizard({ actor: this.actor }).render({ force: true });
+    const { openApp } = await import("../helpers/safe.mjs");
+    return openApp(async () => {
+      const { CreationWizard } = await import("../apps/creation-wizard.mjs");
+      return new CreationWizard({ actor: this.actor });
+    }, "CreationWizard");
   }
 
   /** Быстрое +/- для ран и напряжения. */

@@ -3,7 +3,7 @@
 Система для игры по **Genesys** (Narrative Dice System) в Foundry Virtual Tabletop **v14**.
 Написана с нуля на современном API: `TypeDataModel`, `ApplicationV2`, `ActorSheetV2`/`ItemSheetV2`.
 
-> Статус: **0.6.0.** Компендиумы: Core Rulebook (по официальному русскому переводу Hobby World),
+> Статус: **0.6.1.** Компендиумы: Core Rulebook (по официальному русскому переводу Hobby World),
 > Expanded Player's Guide, Realms of Terrinoth и Zynnythryx's Guide to Magic. Большая часть рутины автоматизирована.
 
 ## Компендиумы (16)

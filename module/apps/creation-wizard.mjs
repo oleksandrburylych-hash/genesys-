@@ -61,7 +61,16 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
   #find(kind) { return this.options_?.[kind]?.find(o => o.uuid === this.choice[kind]) ?? null; }
 
   /** @override */
-  async _prepareContext() {
+  async _prepareContext(options) {
+    try { return await this.#buildContext(); }
+    catch (err) {
+      console.error("genesys-rpg |", err);
+      ui.notifications.error(`Genesys: ${err.message}`, { permanent: true });
+      throw err;
+    }
+  }
+
+  async #buildContext() {
     const opts = await this.#ensureOptions();
     const archetype = this.#find("archetype")?.doc;
     const career = this.#find("career")?.doc;

@@ -27,6 +27,7 @@ import { registerChatHandlers, loadSpendingTables } from "./module/chat.mjs";
 import { registerCombatSocket } from "./module/combat/combat.mjs";
 import { registerCombatHooks } from "./module/combat/initiative.mjs";
 import { WorldSetup, newSession } from "./module/apps/world-setup.mjs";
+import { openApp } from "./module/helpers/safe.mjs";
 
 /* -------------------------------------------- */
 /*  Init                                        */
@@ -113,7 +114,8 @@ Hooks.once("ready", () => {
   registerCombatSocket();
   registerCombatHooks();
   // Первый запуск мира: мастер настройки для ведущего.
-  if (game.user.isActiveGM && !game.settings.get(SYSTEM_ID, "worldSetupDone")) new WorldSetup().render({ force: true });
+  if (game.user.isGM && !game.settings.get(SYSTEM_ID, "worldSetupDone")) openApp(() => new WorldSetup(), "WorldSetup");
+  console.log(`${SYSTEM_ID} | Genesys RPG ${game.system.version} готова`);
   if (game.settings.get(SYSTEM_ID, "showStoryPoints")) new StoryPointsTracker().render({ force: true });
 });
 
@@ -141,6 +143,14 @@ Hooks.on("getSceneControlButtons", controls => {
       const actor = canvas?.tokens?.controlled[0]?.actor ?? game.user.character ?? null;
       DicePoolDialog.prompt({ pool: new DicePool({ difficulty: 2 }), actor });
     }
+  };
+  if (game.user.isGM) tools.genesysSetup = {
+    name: "genesysSetup",
+    title: "GENESYS.Setup.Title",
+    icon: "fa-solid fa-wand-magic-sparkles",
+    order: order + 3,
+    button: true,
+    onChange: () => openApp(() => new WorldSetup(), "WorldSetup")
   };
   tools.genesysStoryPoints = {
     name: "genesysStoryPoints",
