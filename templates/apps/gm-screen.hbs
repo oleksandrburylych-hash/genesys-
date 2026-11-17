@@ -1,0 +1,97 @@
+<div class="gm">
+  <nav class="gm-tabs">
+    {{#each tabs}}<a class="gm-tab {{#if active}}active{{/if}}" data-action="tab" data-tab="{{key}}">{{localize label}}</a>{{/each}}
+  </nav>
+
+  {{#if (eq tab "encounter")}}
+  <div class="gm-split">
+    <div class="gm-browser">
+      <div class="gm-filters">
+        <select name="filter.adventure">{{#each adventures}}<option value="{{key}}" {{#if selected}}selected{{/if}}>{{label}}</option>{{/each}}</select>
+        <select name="filter.type"><option value="">{{localize "GENESYS.Wizard.All"}}</option>{{#each types}}<option value="{{key}}" {{#if selected}}selected{{/if}}>{{localize label}}</option>{{/each}}</select>
+        <input type="text" name="filter.search" value="{{filter.search}}" placeholder="{{localize 'GENESYS.Wizard.Search'}}">
+      </div>
+      <div class="gm-list">
+        {{#each list}}
+        <div class="gm-row">
+          <img src="{{img}}" alt="">
+          <div class="gm-row-text">
+            <a class="gm-row-name" data-action="open" data-uuid="{{uuid}}">{{name}}</a>
+            <span class="gm-row-sub">{{type}} · {{localize "GENESYS.Wounds"}} {{wounds}} · {{localize "GENESYS.Soak"}} {{soak}}{{#if power}} · {{localize "GENESYS.GM.Power"}} {{power}}{{/if}}{{#if folder}} · {{folder}}{{/if}}</span>
+          </div>
+          <button type="button" class="gm-add" data-action="add" data-uuid="{{uuid}}"><i class="fa-solid fa-plus"></i></button>
+        </div>
+        {{else}}<p class="gs-empty">{{localize "GENESYS.Wizard.Nothing"}}</p>{{/each}}
+      </div>
+    </div>
+    <div class="gm-encounter">
+      <div class="gs-ribbon"><span>{{localize "GENESYS.GM.Encounter"}}</span></div>
+      {{#each encounter}}
+      <div class="gm-enc-row">
+        <img src="{{img}}" alt="">
+        <div class="gm-row-text">
+          <span class="gm-row-name">{{name}}</span>
+          {{#if minion}}
+          <span class="gm-row-sub">{{localize "GENESYS.GM.GroupOf"}} <input type="number" name="enc.{{index}}.count" value="{{count}}" min="1" max="20"> · {{localize "GENESYS.GM.Groups"}}: {{groups}}</span>
+          {{else}}<span class="gm-row-sub">× {{count}}</span>{{/if}}
+        </div>
+        <a data-action="count" data-index="{{index}}" data-delta="-1"><i class="fa-solid fa-minus"></i></a>
+        <a data-action="count" data-index="{{index}}" data-delta="1"><i class="fa-solid fa-plus"></i></a>
+        <a data-action="remove" data-index="{{index}}"><i class="fa-solid fa-trash"></i></a>
+      </div>
+      {{else}}<p class="gs-empty">{{localize "GENESYS.GM.EncounterEmpty"}}</p>{{/each}}
+      {{#if totalPower}}<p class="hint">{{localize "GENESYS.GM.TotalPower"}}: <b>{{totalPower}}</b></p>{{/if}}
+      {{#if encounter.length}}
+      <div class="gm-actions">
+        <button type="button" data-action="place" data-combat="1" {{#unless hasScene}}disabled{{/unless}}><i class="fa-solid fa-swords"></i> {{localize "GENESYS.GM.PlaceCombat"}}</button>
+        <button type="button" data-action="place" data-hidden="1" {{#unless hasScene}}disabled{{/unless}}><i class="fa-solid fa-eye-slash"></i> {{localize "GENESYS.GM.PlaceHidden"}}</button>
+        <button type="button" data-action="clear"><i class="fa-solid fa-broom"></i> {{localize "GENESYS.GM.Clear"}}</button>
+      </div>
+      {{/if}}
+      <p class="hint">{{localize "GENESYS.GM.EncounterHint"}}</p>
+    </div>
+  </div>
+  {{/if}}
+
+  {{#if (eq tab "xp")}}
+  <div class="gm-body">
+    <div class="gm-chars">
+      {{#each characters}}
+      <a class="gm-char {{#if on}}on{{/if}}" data-action="toggleChar" data-id="{{id}}">
+        <img src="{{img}}" alt=""><span><b>{{name}}</b><small>{{localize "GENESYS.GM.XPAvailable"}} {{available}} / {{total}}</small></span>
+        <i class="fa-solid {{#if on}}fa-circle-check{{else}}fa-circle{{/if}}"></i>
+      </a>
+      {{else}}<p class="gs-empty">{{localize "GENESYS.GM.NoCharacters"}}</p>{{/each}}
+    </div>
+    <div class="gm-xp-form">
+      <label>{{localize "GENESYS.GM.XPAmount"}} <input type="number" name="xp.amount" value="{{xp.amount}}" min="0"></label>
+      <label class="wide">{{localize "GENESYS.GM.XPReason"}} <input type="text" name="xp.reason" value="{{xp.reason}}" placeholder="{{localize 'GENESYS.GM.XPDefault'}}"></label>
+    </div>
+    <div class="gm-actions">
+      {{#each presets}}<button type="button" data-action="award" data-amount="{{this}}">+{{this}}</button>{{/each}}
+      <button type="button" class="gm-primary" data-action="award"><i class="fa-solid fa-star"></i> {{localize "GENESYS.GM.Award"}}</button>
+    </div>
+    <p class="hint">{{localize "GENESYS.GM.XPHint"}}</p>
+  </div>
+  {{/if}}
+
+  {{#if (eq tab "reference")}}
+  <div class="gm-body gm-ref">
+    <div class="gm-ref-cols">
+      <div>
+        <div class="gs-ribbon"><span>{{localize "GENESYS.Difficulty.label"}}</span></div>
+        <table class="gm-table">{{#each difficulties}}<tr><td>{{localize label}}</td><td>{{#times n}}<span class="gm-die difficulty"></span>{{/times}}</td></tr>{{/each}}</table>
+        <div class="gs-ribbon"><span>{{localize "GENESYS.Range.label"}}</span></div>
+        <table class="gm-table">{{#each ranges}}<tr><td>{{localize label}}</td><td class="hint">{{localize hint}}</td></tr>{{/each}}</table>
+      </div>
+      <div>
+        <div class="gs-ribbon"><span>{{localize "GENESYS.GM.Statuses"}}</span></div>
+        <table class="gm-table">{{#each statuses}}<tr><td><img src="{{img}}" alt="" class="gm-status-img"> {{localize name}}</td><td class="hint">{{localize hint}}</td></tr>{{/each}}</table>
+      </div>
+    </div>
+    <div class="gs-ribbon"><span>{{localize "GENESYS.GM.Spending"}}</span></div>
+    <div class="gm-filters">{{#each refTables}}<a class="wz-chip {{#if active}}active{{/if}}" data-action="refTable" data-table="{{key}}">{{title}}</a>{{/each}}</div>
+    <table class="gm-table">{{#each refRows}}<tr><td class="gm-cost">{{cost}}</td><td>{{text}}</td></tr>{{/each}}</table>
+  </div>
+  {{/if}}
+</div>

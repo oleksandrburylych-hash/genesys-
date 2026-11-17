@@ -240,5 +240,33 @@ const spent = final["system.experience.log"].filter(e => e.type === "spend").red
 assert.equal(Number(before) - Number(after) + 5, spent, "XP log matches wizard spending (incl. tier-1 talent 5)");
 assert.ok(final["system.motivations.strength.name"], "motivations saved");
 assert.ok(createdItems.some(i => i.type === "talent"), "talent created");
+// ---- Ширма ведущего ----
+const { GMScreen } = await import(`${R}/module/apps/gm-screen.mjs`);
+const pcLog = [];
+const pc = { id: "pc1", name: "Герой", img: "x", type: "character", hasPlayerOwner: true,
+  system: { experience: { log: [], available: 0, total: 0 } }, async update(u) { pcLog.push(u); } };
+game.actors.filter = fn => [pc].filter(fn);
+settings["genesys-rpg.adventures"] = ["zombie"];
+const gm = new GMScreen();
+await gm.render();
+const G = GMScreen.DEFAULT_OPTIONS.actions;
+const foes = [...gm.html.matchAll(/data-action="add" data-uuid="([^"]+)"/g)].map(m => m[1]);
+assert.ok(foes.some(u => u.includes("Ходячий мертвец")), "zombies in encounter builder");
+assert.ok(!foes.some(u => u.includes("Дракон")), "no Terrinoth dragons in zombie apocalypse");
+G.add.call(gm, null, { dataset: { uuid: foes.find(u => u.includes("Ходячий мертвец")) } });
+G.add.call(gm, null, { dataset: { uuid: foes.find(u => u.includes("Ходячий мертвец")) } });
+G.add.call(gm, null, { dataset: { uuid: foes.find(u => u.includes("Громила")) } });
+await gm.render();
+assert.equal(gm.encounter.length, 2, "minion groups stacked");
+assert.equal(gm.encounter[0].groups, 2, "two zombie groups");
+if (process.env.DUMP) fs.writeFileSync(path.join(process.env.DUMP, "gm.html"), gm.html);
+G.tab.call(gm, null, { dataset: { tab: "xp" } }); await gm.render();
+assert.ok(gm.html.includes("Герой"), "characters listed for XP");
+await G.award.call(gm, null, { dataset: { amount: "15" } });
+assert.equal(pcLog[0]["system.experience.log"].at(-1).amount, 15, "XP awarded into log");
+G.tab.call(gm, null, { dataset: { tab: "reference" } }); await gm.render();
+assert.ok(gm.html.includes("gm-cost"), "spending table in reference");
+if (process.env.DUMP) fs.writeFileSync(path.join(process.env.DUMP, "gm-ref.html"), gm.html);
+
 console.log("notifications:", notes);
 console.log("APP HARNESS PASSED");

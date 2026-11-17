@@ -28,6 +28,8 @@ import { registerCombatSocket } from "./module/combat/combat.mjs";
 import { registerCombatHooks } from "./module/combat/initiative.mjs";
 import { registerConditionHooks } from "./module/combat/conditions.mjs";
 import { WorldSetup, newSession } from "./module/apps/world-setup.mjs";
+import { GMScreen } from "./module/apps/gm-screen.mjs";
+import { registerCompendiumFilter } from "./module/helpers/compendium-filter.mjs";
 import { openApp } from "./module/helpers/safe.mjs";
 import * as worlds from "./module/worlds.mjs";
 
@@ -49,6 +51,7 @@ Hooks.once("init", () => {
     DicePoolDialog,
     SpellCastDialog,
     WorldSetup,
+    GMScreen,
     newSession,
     StoryPointsTracker,
     /** Открыть окно броска с заданным пулом. */
@@ -69,6 +72,8 @@ Hooks.once("init", () => {
   // Модели данных
   CONFIG.Actor.dataModels = { character: CharacterData, adversary: AdversaryData, vehicle: VehicleData };
   CONFIG.Item.dataModels = ITEM_MODELS;
+
+  registerCompendiumFilter();
 
   // Теги миров и книга — в индексе компендиумов (быстрый отбор без загрузки документов).
   for (const cls of [CONFIG.Item, CONFIG.Actor]) {
@@ -163,6 +168,17 @@ Hooks.on("getSceneControlButtons", controls => {
     order: order + 3,
     button: true,
     onChange: () => openApp(() => new WorldSetup(), "WorldSetup")
+  };
+  if (game.user.isGM) tools.genesysGMScreen = {
+    name: "genesysGMScreen",
+    title: "GENESYS.GM.Title",
+    icon: "fa-solid fa-book-skull",
+    order: order + 4,
+    button: true,
+    onChange: () => {
+      const open = foundry.applications.instances?.get("genesys-gm-screen");
+      if (open) open.close(); else openApp(() => new GMScreen(), "GMScreen");
+    }
   };
   tools.genesysStoryPoints = {
     name: "genesysStoryPoints",

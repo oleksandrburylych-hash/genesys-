@@ -277,7 +277,8 @@ export class WorldSetup extends HandlebarsApplicationMixin(ApplicationV2) {
       ["GENESYS.Setup.Macro.NewSession", "", "game.genesys.newSession();", "icons/svg/clockwork.svg"],
       ["GENESYS.Setup.Macro.Crit", "", "for (const t of canvas.tokens.controlled) await t.actor?.promptCriticalInjury();", "icons/svg/blood.svg"],
       ["GENESYS.Setup.Macro.Recover", "", "for (const t of canvas.tokens.controlled) if (t.actor?.recoverStrain) await t.actor.recoverStrain();", "icons/svg/regen.svg"],
-      ["GENESYS.Setup.Macro.Setup", "", "new game.genesys.WorldSetup().render({ force: true });", "icons/svg/cog.svg"]
+      ["GENESYS.Setup.Macro.Setup", "", "new game.genesys.WorldSetup().render({ force: true });", "icons/svg/cog.svg"],
+      ["GENESYS.GM.Title", "", "game.genesys.GMScreen.toggle();", "icons/svg/book.svg"]
     ];
     let slot = 1;
     for (const [key, , command, img] of defs) {
