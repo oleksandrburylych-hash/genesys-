@@ -11,7 +11,7 @@
       "crit": 4,
       "range": "engaged",
       "encumbrance": 2,
-      "hardPoints": 0,
+      "hardPoints": 1,
       "price": 0,
       "rarity": 10,
       "qualities": [
@@ -32,7 +32,7 @@
           "rating": null
         }
       ],
-      "description": "<p>Священный щит Рима (римская мифология). Пока персонаж держит его, все союзники, находящиеся с ним вплотную, повышают свою защиту в ближнем и дальнем бою на 3. Бесценный артефакт: цены не имеет.</p>",
+      "description": "<p>Священный щит Рима (римская мифология). Пока персонаж держит его, все союзники, находящиеся с ним вплотную, повышают свою ближнюю и дальнюю защиту на 3. Бесценный артефакт: цены не имеет.</p>",
       "source": "Expanded Player's Guide, с. 12"
     }
   },
@@ -48,7 +48,7 @@
       "crit": 2,
       "range": "engaged",
       "encumbrance": 2,
-      "hardPoints": 0,
+      "hardPoints": 1,
       "price": 0,
       "rarity": 10,
       "qualities": [
@@ -81,7 +81,7 @@
       "crit": 1,
       "range": "short",
       "encumbrance": 1,
-      "hardPoints": 0,
+      "hardPoints": 1,
       "price": 0,
       "rarity": 9,
       "qualities": [
@@ -98,7 +98,7 @@
           "rating": null
         }
       ],
-      "description": "<p>Живая петля из индуистских мифов. Позволяет атаковать цели на короткой дистанции; сложность проверки остаётся обычной (2 кости сложности). При успешной атаке можно активировать свойство Сковывание, не тратя преимущества. Чтобы освободиться, опутанный персонаж должен пройти запредельную (5 костей сложности) проверку Атлетики вместо обычной сложной. Бесценный артефакт: цены не имеет.</p>",
+      "description": "<p>Живая петля из индуистских мифов. Позволяет атаковать цели на короткой дистанции; сложность проверки остаётся обычной (2 кости сложности). При успешной атаке можно активировать свойство Сковывание, не тратя преимущества. Чтобы освободиться, скованный персонаж должен пройти запредельную (5 костей сложности) проверку Атлетики вместо обычной сложной. Бесценный артефакт: цены не имеет.</p>",
       "source": "Expanded Player's Guide, с. 12"
     }
   },
@@ -114,7 +114,7 @@
       "crit": 4,
       "range": "engaged",
       "encumbrance": 10,
-      "hardPoints": 0,
+      "hardPoints": 5,
       "price": 0,
       "rarity": 10,
       "qualities": [
@@ -151,7 +151,7 @@
       "crit": 4,
       "range": "medium",
       "encumbrance": 10,
-      "hardPoints": 0,
+      "hardPoints": 5,
       "price": 0,
       "rarity": 10,
       "qualities": [
@@ -237,7 +237,7 @@
       "crit": 2,
       "range": "engaged",
       "encumbrance": 2,
-      "hardPoints": 0,
+      "hardPoints": 1,
       "price": 0,
       "rarity": 10,
       "qualities": [
@@ -274,7 +274,7 @@
       "crit": 4,
       "range": "engaged",
       "encumbrance": 2,
-      "hardPoints": 0,
+      "hardPoints": 1,
       "price": 0,
       "rarity": 7,
       "qualities": [
@@ -303,7 +303,7 @@
       "crit": 2,
       "range": "extreme",
       "encumbrance": 4,
-      "hardPoints": 0,
+      "hardPoints": 2,
       "price": 0,
       "rarity": 10,
       "qualities": [
@@ -332,7 +332,7 @@
       "crit": 2,
       "range": "engaged",
       "encumbrance": 1,
-      "hardPoints": 0,
+      "hardPoints": 1,
       "price": 50,
       "rarity": 6,
       "qualities": [
@@ -369,7 +369,7 @@
       "crit": 3,
       "range": "engaged",
       "encumbrance": 1,
-      "hardPoints": 0,
+      "hardPoints": 1,
       "price": 90,
       "rarity": 2,
       "qualities": [
@@ -394,7 +394,7 @@
       "crit": 2,
       "range": "engaged",
       "encumbrance": 1,
-      "hardPoints": 0,
+      "hardPoints": 1,
       "price": 90,
       "rarity": 2,
       "qualities": [
@@ -419,7 +419,7 @@
       "crit": 5,
       "range": "engaged",
       "encumbrance": 1,
-      "hardPoints": 0,
+      "hardPoints": 1,
       "price": 5,
       "rarity": 0,
       "qualities": [
@@ -444,7 +444,7 @@
       "crit": 2,
       "range": "medium",
       "encumbrance": 3,
-      "hardPoints": 0,
+      "hardPoints": 2,
       "price": 600,
       "rarity": 2,
       "qualities": [
@@ -477,7 +477,7 @@
       "crit": 3,
       "range": "long",
       "encumbrance": 3,
-      "hardPoints": 0,
+      "hardPoints": 2,
       "price": 300,
       "rarity": 3,
       "qualities": [
@@ -506,7 +506,7 @@
       "crit": 4,
       "range": "medium",
       "encumbrance": 2,
-      "hardPoints": 0,
+      "hardPoints": 1,
       "price": 350,
       "rarity": 4,
       "qualities": [
@@ -531,7 +531,7 @@
       "crit": 0,
       "range": "short",
       "encumbrance": 1,
-      "hardPoints": 0,
+      "hardPoints": 1,
       "price": 800,
       "rarity": 4,
       "qualities": [
@@ -556,7 +556,7 @@
       "crit": 2,
       "range": "engaged",
       "encumbrance": 2,
-      "hardPoints": 0,
+      "hardPoints": 1,
       "price": 150,
       "rarity": 3,
       "qualities": [
@@ -585,7 +585,7 @@
       "crit": 3,
       "range": "engaged",
       "encumbrance": 2,
-      "hardPoints": 0,
+      "hardPoints": 1,
       "price": 100,
       "rarity": 2,
       "qualities": [
@@ -610,7 +610,7 @@
       "crit": 4,
       "range": "engaged",
       "encumbrance": 1,
-      "hardPoints": 0,
+      "hardPoints": 1,
       "price": 50,
       "rarity": 3,
       "qualities": [
@@ -635,7 +635,7 @@
       "crit": 3,
       "range": "engaged",
       "encumbrance": 3,
-      "hardPoints": 0,
+      "hardPoints": 2,
       "price": 250,
       "rarity": 5,
       "qualities": [
@@ -672,7 +672,7 @@
       "crit": 4,
       "range": "medium",
       "encumbrance": 4,
-      "hardPoints": 0,
+      "hardPoints": 2,
       "price": 100,
       "rarity": 3,
       "qualities": [
@@ -701,7 +701,7 @@
       "crit": 3,
       "range": "short",
       "encumbrance": 2,
-      "hardPoints": 0,
+      "hardPoints": 1,
       "price": 200,
       "rarity": 4,
       "qualities": [
@@ -738,7 +738,7 @@
       "crit": 3,
       "range": "short",
       "encumbrance": 3,
-      "hardPoints": 0,
+      "hardPoints": 2,
       "price": 250,
       "rarity": 5,
       "qualities": [
@@ -771,7 +771,7 @@
       "crit": 4,
       "range": "short",
       "encumbrance": 1,
-      "hardPoints": 0,
+      "hardPoints": 1,
       "price": 20,
       "rarity": 2,
       "qualities": [

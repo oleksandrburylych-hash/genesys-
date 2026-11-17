@@ -2,7 +2,7 @@
   "id": "genesys-rpg",
   "title": "Genesys RPG",
   "description": "Система Genesys (Narrative Dice System) для Foundry VTT v14: нарративные кубики, автоматический расчёт персонажа, трата опыта, таланты-пирамида, снаряжение, противники и очки истории.",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "compatibility": {
     "minimum": "14",
     "verified": "14.370"
@@ -225,6 +225,18 @@
       "flags": {}
     },
     {
+      "name": "injuries",
+      "label": "Критические ранения",
+      "path": "packs/injuries",
+      "type": "Item",
+      "system": "genesys-rpg",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
       "name": "adversaries",
       "label": "Противники",
       "path": "packs/adversaries",
@@ -263,7 +275,8 @@
         "weapons",
         "armor",
         "gear",
-        "qualities"
+        "qualities",
+        "injuries"
       ],
       "folders": [
         {
