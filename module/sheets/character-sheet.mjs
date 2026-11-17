@@ -155,6 +155,12 @@ export class GenesysCharacterSheet extends GenesysBaseActorSheet {
       });
       if (!ok) return;
     }
-    return this.actor.update({ "system.creation": !finishing });
+    const update = { "system.creation": !finishing };
+    if (finishing) {
+      // Фиксируем Силу и Волю для порогов ран и усталости.
+      update["system.wounds.creationChar"] = this.actor.characteristic("brawn");
+      update["system.strain.creationChar"] = this.actor.characteristic("willpower");
+    }
+    return this.actor.update(update);
   }
 }

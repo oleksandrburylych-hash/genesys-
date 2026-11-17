@@ -18,17 +18,21 @@ export default class CharacterData extends foundry.abstract.TypeDataModel {
     return {
       characteristics: characteristicsField(2),
 
+      // creationChar — Сила/Воля, зафиксированные при завершении создания персонажа
+      // (по правилам рост характеристики после создания не меняет порог). 0 — не зафиксировано.
       wounds: new SchemaField({
         value: intField(0),
         max: intField(0),
         base: intField(10),
-        bonus: bonusField()
+        bonus: bonusField(),
+        creationChar: intField(0)
       }),
       strain: new SchemaField({
         value: intField(0),
         max: intField(0),
         base: intField(10),
-        bonus: bonusField()
+        bonus: bonusField(),
+        creationChar: intField(0)
       }),
       soak: new SchemaField({ bonus: bonusField() }),
       defense: new SchemaField({
@@ -94,8 +98,11 @@ export default class CharacterData extends foundry.abstract.TypeDataModel {
       }
     }
 
-    this.wounds.max = this.wounds.base + c.brawn + this.wounds.bonus;
-    this.strain.max = this.strain.base + c.willpower + this.strain.bonus;
+    // Порог ран/усталости: при создании — от текущих Силы/Воли, после — от зафиксированных.
+    const woundChar = (!this.creation && this.wounds.creationChar) ? this.wounds.creationChar : c.brawn;
+    const strainChar = (!this.creation && this.strain.creationChar) ? this.strain.creationChar : c.willpower;
+    this.wounds.max = this.wounds.base + woundChar + this.wounds.bonus;
+    this.strain.max = this.strain.base + strainChar + this.strain.bonus;
     this.soak.value = c.brawn + armorSoak + this.soak.bonus;
     this.defense.melee.value = armorMelee + this.defense.melee.bonus;
     this.defense.ranged.value = armorRanged + this.defense.ranged.bonus;
