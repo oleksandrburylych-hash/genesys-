@@ -1,0 +1,281 @@
+[
+  {
+    "name": "Трёхмачтовый фрегат",
+    "nameEn": "Three-Masted Frigate",
+    "type": "vehicle",
+    "folder": "Общие",
+    "system": {
+      "silhouette": 5,
+      "speed": {
+        "value": 0,
+        "max": 3
+      },
+      "handling": -3,
+      "defense": {
+        "fore": 0,
+        "aft": 0,
+        "port": 0,
+        "starboard": 0
+      },
+      "armor": 3,
+      "hullTrauma": {
+        "value": 0,
+        "max": 60
+      },
+      "systemStrain": {
+        "value": 0,
+        "max": 45
+      },
+      "skill": "operating",
+      "crew": "225 человек",
+      "passengers": 60,
+      "encumbrance": 200,
+      "price": 300000,
+      "rarity": 8,
+      "hardPoints": 0,
+      "description": "<p>Крупный парусный военный корабль с батареями пушек вдоль бортов: годится для охоты на пиратов, исследования новых земель и боёв с морскими чудовищами; может стать центром целой кампании. Цена указана в ценах 1790 года.</p><p>Припасы: 3 месяца.</p>",
+      "source": "Core Rulebook, с. 231"
+    },
+    "items": [
+      {
+        "name": "24-фунтовая пушка (левый борт) ×15",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 6,
+          "brawnDamage": false,
+          "crit": 3,
+          "range": "long",
+          "qualities": [],
+          "firingArc": "по левому борту",
+          "description": "<p>Количество: 15. Тяжёлое корабельное дульнозарядное орудие парусных кораблей, ставится батареями вдоль бортов.</p>",
+          "source": "Core Rulebook, с. 231",
+          "equipped": true
+        }
+      },
+      {
+        "name": "24-фунтовая пушка (правый борт) ×15",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 6,
+          "brawnDamage": false,
+          "crit": 3,
+          "range": "long",
+          "qualities": [],
+          "firingArc": "по правому борту",
+          "description": "<p>Количество: 15. Тяжёлое корабельное дульнозарядное орудие парусных кораблей, ставится батареями вдоль бортов.</p>",
+          "source": "Core Rulebook, с. 231",
+          "equipped": true
+        }
+      },
+      {
+        "name": "9-фунтовая пушка (левый борт) ×4",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 4,
+          "brawnDamage": false,
+          "crit": 5,
+          "range": "medium",
+          "qualities": [],
+          "firingArc": "по левому борту",
+          "description": "<p>Количество: 4. Лёгкое корабельное орудие парусных кораблей, ставится вдоль бортов.</p>",
+          "source": "Core Rulebook, с. 231",
+          "equipped": true
+        }
+      },
+      {
+        "name": "9-фунтовая пушка (правый борт) ×4",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 4,
+          "brawnDamage": false,
+          "crit": 5,
+          "range": "medium",
+          "qualities": [],
+          "firingArc": "по правому борту",
+          "description": "<p>Количество: 4. Лёгкое корабельное орудие парусных кораблей, ставится вдоль бортов.</p>",
+          "source": "Core Rulebook, с. 231",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Длинная девятка ×2",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 4,
+          "brawnDamage": false,
+          "crit": 5,
+          "range": "long",
+          "qualities": [
+            {
+              "name": "Точное",
+              "rating": 1
+            }
+          ],
+          "firingArc": "впереди",
+          "description": "<p>Количество: 2. Длинноствольная 9-фунтовая погонная пушка, стреляющая по курсу корабля; дальнобойнее и точнее обычной 9-фунтовой.</p>",
+          "source": "Core Rulebook, с. 231",
+          "equipped": true
+        }
+      }
+    ]
+  },
+  {
+    "name": "Четырёхдверный автомобиль",
+    "nameEn": "Four-Door Sedan",
+    "type": "vehicle",
+    "folder": "Общие",
+    "system": {
+      "silhouette": 2,
+      "speed": {
+        "value": 0,
+        "max": 4
+      },
+      "handling": 0,
+      "defense": {
+        "fore": 0,
+        "aft": 0,
+        "port": 0,
+        "starboard": 0
+      },
+      "armor": 0,
+      "hullTrauma": {
+        "value": 0,
+        "max": 4
+      },
+      "systemStrain": {
+        "value": 0,
+        "max": 5
+      },
+      "skill": "driving",
+      "crew": "1 водитель",
+      "passengers": 3,
+      "encumbrance": 20,
+      "price": 2000,
+      "rarity": 3,
+      "hardPoints": 0,
+      "description": "<p>Типичный современный седан. Профиль можно доработать до внедорожника, пикапа или другого автомобиля. Пассажиров: 3 (5, если потесниться). Цена по книге — от 2 000 до 50 000 в зависимости от модели (в поле указан минимум). Оружия нет.</p><p>Припасы: нет.</p>",
+      "source": "Core Rulebook, с. 232"
+    },
+    "items": []
+  },
+  {
+    "name": "Истребитель аэрокосмического превосходства",
+    "nameEn": "Air Superiority Fighter",
+    "type": "vehicle",
+    "folder": "Общие",
+    "system": {
+      "silhouette": 3,
+      "speed": {
+        "value": 0,
+        "max": 5
+      },
+      "handling": 2,
+      "defense": {
+        "fore": 0,
+        "aft": 0,
+        "port": 0,
+        "starboard": 0
+      },
+      "armor": 2,
+      "hullTrauma": {
+        "value": 0,
+        "max": 10
+      },
+      "systemStrain": {
+        "value": 0,
+        "max": 10
+      },
+      "skill": "piloting",
+      "crew": "1 пилот, 1 второй пилот",
+      "passengers": 0,
+      "encumbrance": 5,
+      "price": 100000000,
+      "rarity": 9,
+      "hardPoints": 0,
+      "description": "<p>Реактивный истребитель для завоевания господства в воздухе — вершина военной авиации современности и ближайшего будущего. Профиль подходит и для космического истребителя: в НФ-мирах переименуйте оружие (лучевое, импульсное, плазменное и т.п.).</p><p>Припасы: 1 день.</p>",
+      "source": "Core Rulebook, с. 232"
+    },
+    "items": [
+      {
+        "name": "Многоствольная пушка",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 2,
+          "brawnDamage": false,
+          "crit": 5,
+          "range": "long",
+          "qualities": [
+            {
+              "name": "Автоматическое",
+              "rating": null
+            }
+          ],
+          "firingArc": "впереди",
+          "description": "<p>Скорострельная авиационная пушка истребителя. В НФ-мирах может называться лучевой, импульсной или плазменной.</p>",
+          "source": "Core Rulebook, с. 232",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Ракеты «воздух — воздух»",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 5,
+          "brawnDamage": false,
+          "crit": 3,
+          "range": "extreme",
+          "qualities": [
+            {
+              "name": "Наведение",
+              "rating": 3
+            },
+            {
+              "name": "Ограниченный боезапас",
+              "rating": 6
+            }
+          ],
+          "firingArc": "впереди",
+          "description": "<p>Самонаводящиеся ракеты для поражения воздушных целей.</p>",
+          "source": "Core Rulebook, с. 232",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Противокорабельная ракета",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 8,
+          "brawnDamage": false,
+          "crit": 1,
+          "range": "strategic",
+          "qualities": [
+            {
+              "name": "Бронебойное",
+              "rating": 2
+            },
+            {
+              "name": "Взрыв",
+              "rating": 5
+            },
+            {
+              "name": "Ограниченный боезапас",
+              "rating": 1
+            }
+          ],
+          "firingArc": "впереди",
+          "description": "<p>Тяжёлая ракета для ударов по кораблям и крупным целям. Дистанция по книге — стратегическая (в поле указана экстремальная, т.к. стратегической нет в списке).</p>",
+          "source": "Core Rulebook, с. 232",
+          "equipped": true
+        }
+      }
+    ]
+  }
+]

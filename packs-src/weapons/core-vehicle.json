@@ -1,0 +1,160 @@
+[
+  {
+    "name": "24-фунтовая пушка",
+    "nameEn": "24-Pounder Cannon",
+    "type": "weapon",
+    "folder": "Транспорт",
+    "system": {
+      "skill": "gunnery",
+      "damage": 6,
+      "brawnDamage": false,
+      "crit": 3,
+      "range": "long",
+      "encumbrance": 0,
+      "hardPoints": 0,
+      "price": 0,
+      "rarity": 0,
+      "qualities": [],
+      "firingArc": "",
+      "description": "<p>Тяжёлое корабельное дульнозарядное орудие парусных кораблей, ставится батареями вдоль бортов.</p>",
+      "source": "Core Rulebook, с. 231"
+    }
+  },
+  {
+    "name": "9-фунтовая пушка",
+    "nameEn": "9-Pounder Cannon",
+    "type": "weapon",
+    "folder": "Транспорт",
+    "system": {
+      "skill": "gunnery",
+      "damage": 4,
+      "brawnDamage": false,
+      "crit": 5,
+      "range": "medium",
+      "encumbrance": 0,
+      "hardPoints": 0,
+      "price": 0,
+      "rarity": 0,
+      "qualities": [],
+      "firingArc": "",
+      "description": "<p>Лёгкое корабельное орудие парусных кораблей, ставится вдоль бортов.</p>",
+      "source": "Core Rulebook, с. 231"
+    }
+  },
+  {
+    "name": "Длинная девятка",
+    "nameEn": "Long Nine",
+    "type": "weapon",
+    "folder": "Транспорт",
+    "system": {
+      "skill": "gunnery",
+      "damage": 4,
+      "brawnDamage": false,
+      "crit": 5,
+      "range": "long",
+      "encumbrance": 0,
+      "hardPoints": 0,
+      "price": 0,
+      "rarity": 0,
+      "qualities": [
+        {
+          "name": "Точное",
+          "rating": 1
+        }
+      ],
+      "firingArc": "",
+      "description": "<p>Длинноствольная 9-фунтовая погонная пушка, стреляющая по курсу корабля; дальнобойнее и точнее обычной 9-фунтовой.</p>",
+      "source": "Core Rulebook, с. 231"
+    }
+  },
+  {
+    "name": "Многоствольная пушка",
+    "nameEn": "",
+    "type": "weapon",
+    "folder": "Транспорт",
+    "system": {
+      "skill": "gunnery",
+      "damage": 2,
+      "brawnDamage": false,
+      "crit": 5,
+      "range": "long",
+      "encumbrance": 0,
+      "hardPoints": 0,
+      "price": 0,
+      "rarity": 0,
+      "qualities": [
+        {
+          "name": "Автоматическое",
+          "rating": null
+        }
+      ],
+      "firingArc": "",
+      "description": "<p>Скорострельная авиационная пушка истребителя. В НФ-мирах может называться лучевой, импульсной или плазменной.</p>",
+      "source": "Core Rulebook, с. 232"
+    }
+  },
+  {
+    "name": "Ракеты «воздух — воздух»",
+    "nameEn": "Air-to-Air Missiles",
+    "type": "weapon",
+    "folder": "Транспорт",
+    "system": {
+      "skill": "gunnery",
+      "damage": 5,
+      "brawnDamage": false,
+      "crit": 3,
+      "range": "extreme",
+      "encumbrance": 0,
+      "hardPoints": 0,
+      "price": 0,
+      "rarity": 0,
+      "qualities": [
+        {
+          "name": "Наведение",
+          "rating": 3
+        },
+        {
+          "name": "Ограниченный боезапас",
+          "rating": 6
+        }
+      ],
+      "firingArc": "",
+      "description": "<p>Самонаводящиеся ракеты для поражения воздушных целей.</p>",
+      "source": "Core Rulebook, с. 232"
+    }
+  },
+  {
+    "name": "Противокорабельная ракета",
+    "nameEn": "Anti-Ship Missile",
+    "type": "weapon",
+    "folder": "Транспорт",
+    "system": {
+      "skill": "gunnery",
+      "damage": 8,
+      "brawnDamage": false,
+      "crit": 1,
+      "range": "strategic",
+      "encumbrance": 0,
+      "hardPoints": 0,
+      "price": 0,
+      "rarity": 0,
+      "qualities": [
+        {
+          "name": "Бронебойное",
+          "rating": 2
+        },
+        {
+          "name": "Взрыв",
+          "rating": 5
+        },
+        {
+          "name": "Ограниченный боезапас",
+          "rating": 1
+        }
+      ],
+      "firingArc": "",
+      "description": "<p>Тяжёлая ракета для ударов по кораблям и крупным целям. Дистанция по книге — стратегическая (в поле указана экстремальная, т.к. стратегической нет в списке).</p>",
+      "source": "Core Rulebook, с. 232"
+    }
+  }
+]

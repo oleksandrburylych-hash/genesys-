@@ -18,7 +18,7 @@ export default class VehicleData extends foundry.abstract.TypeDataModel {
       hullTrauma: new SchemaField({ value: intField(0), max: intField(10) }),
       systemStrain: new SchemaField({ value: intField(0), max: intField(10) }),
       /** Навык управления: driving | piloting | operating. */
-      skill: new StringField({ required: true, blank: false, initial: "driving", choices: ["driving", "piloting", "operating"] }),
+      skill: new StringField({ required: true, blank: false, initial: "driving", choices: ["driving", "piloting", "operating", "riding"] }),
       crew: new StringField({ required: true, blank: true, initial: "" }),
       passengers: intField(0),
       encumbrance: intField(0),

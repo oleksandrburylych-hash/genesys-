@@ -107,7 +107,8 @@ GENESYS.ranges = {
   short: { label: "GENESYS.Range.short", difficulty: 1 },
   medium: { label: "GENESYS.Range.medium", difficulty: 2 },
   long: { label: "GENESYS.Range.long", difficulty: 3 },
-  extreme: { label: "GENESYS.Range.extreme", difficulty: 4 }
+  extreme: { label: "GENESYS.Range.extreme", difficulty: 4 },
+  strategic: { label: "GENESYS.Range.strategic", difficulty: 4 }
 };
 
 /** Типы активации талантов. */

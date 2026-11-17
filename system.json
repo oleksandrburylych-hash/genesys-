@@ -2,7 +2,7 @@
   "id": "genesys-rpg",
   "title": "Genesys RPG",
   "description": "Система Genesys (Narrative Dice System) для Foundry VTT v14: нарративные кубики, автоматический расчёт персонажа, трата опыта, таланты-пирамида, снаряжение, противники и очки истории.",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "compatibility": {
     "minimum": "14",
     "verified": "14.370"
@@ -112,7 +112,7 @@
   "packs": [
     {
       "name": "archetypes",
-      "label": "Архетипы и виды",
+      "label": "Архетипы и расы",
       "path": "packs/archetypes",
       "type": "Item",
       "system": "genesys-rpg",
@@ -220,7 +220,7 @@
     },
     {
       "name": "qualities",
-      "label": "Качества предметов",
+      "label": "Свойства предметов",
       "path": "packs/qualities",
       "type": "Item",
       "system": "genesys-rpg",
@@ -232,8 +232,20 @@
     },
     {
       "name": "injuries",
-      "label": "Критические ранения",
+      "label": "Критические травмы",
       "path": "packs/injuries",
+      "type": "Item",
+      "system": "genesys-rpg",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "vehicle-crits",
+      "label": "Критические попадания (транспорт)",
+      "path": "packs/vehicle-crits",
       "type": "Item",
       "system": "genesys-rpg",
       "ownership": {
@@ -246,6 +258,18 @@
       "name": "adversaries",
       "label": "Противники",
       "path": "packs/adversaries",
+      "type": "Actor",
+      "system": "genesys-rpg",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "vehicles",
+      "label": "Транспорт",
+      "path": "packs/vehicles",
       "type": "Actor",
       "system": "genesys-rpg",
       "ownership": {
@@ -282,14 +306,16 @@
         "armor",
         "gear",
         "qualities",
-        "injuries"
+        "injuries",
+        "vehicle-crits"
       ],
       "folders": [
         {
           "name": "Противники и транспорт",
           "sorting": "m",
           "packs": [
-            "adversaries"
+            "adversaries",
+            "vehicles"
           ]
         }
       ]

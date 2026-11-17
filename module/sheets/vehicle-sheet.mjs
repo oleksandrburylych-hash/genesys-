@@ -25,7 +25,8 @@ export class GenesysVehicleSheet extends GenesysBaseActorSheet {
     context.skillChoices = {
       driving: "GENESYS.Skill.driving",
       piloting: "GENESYS.Skill.piloting",
-      operating: "GENESYS.Skill.operating"
+      operating: "GENESYS.Skill.operating",
+      riding: "GENESYS.Skill.riding"
     };
     context.weapons = this.actor.itemTypes.weapon.map(i => ({
       ...this._weaponContext(i),

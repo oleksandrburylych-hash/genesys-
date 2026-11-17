@@ -20,7 +20,7 @@ const SYSTEM_ID = "genesys-rpg";
 
 /** Компендиумы: порядок = порядок в боковой панели. */
 const PACKS = [
-  { name: "archetypes", label: "Архетипы и виды", type: "Item" },
+  { name: "archetypes", label: "Архетипы и расы", type: "Item" },
   { name: "careers", label: "Карьеры", type: "Item" },
   { name: "skills", label: "Навыки", type: "Item" },
   { name: "talents", label: "Таланты", type: "Item" },
@@ -29,9 +29,11 @@ const PACKS = [
   { name: "weapons", label: "Оружие", type: "Item" },
   { name: "armor", label: "Броня", type: "Item" },
   { name: "gear", label: "Снаряжение", type: "Item" },
-  { name: "qualities", label: "Качества предметов", type: "Item" },
-  { name: "injuries", label: "Критические ранения", type: "Item" },
-  { name: "adversaries", label: "Противники", type: "Actor" }
+  { name: "qualities", label: "Свойства предметов", type: "Item" },
+  { name: "injuries", label: "Критические травмы", type: "Item" },
+  { name: "vehicle-crits", label: "Критические попадания (транспорт)", type: "Item" },
+  { name: "adversaries", label: "Противники", type: "Actor" },
+  { name: "vehicles", label: "Транспорт", type: "Actor" }
 ];
 
 const ICONS = {

@@ -164,7 +164,8 @@
       "short": "Short",
       "medium": "Medium",
       "long": "Long",
-      "extreme": "Extreme"
+      "extreme": "Extreme",
+      "strategic": "Strategic"
     },
     "RangeShort": "Range",
     "Rank": "Rank",
