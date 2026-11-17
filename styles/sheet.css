@@ -907,3 +907,17 @@
 .genesys.sheet .gs-adv .list-header h3 { border: none; margin: 0; }
 .genesys.sheet .gs-adv .compact-list li { background: #fff; border: 1px solid #e3d3ad; border-radius: 6px; margin: 3px 0; padding: 3px 6px; }
 .genesys.sheet .gs-adv .weapon .name { font-family: var(--gs-head); text-transform: uppercase; color: var(--gs-navy); }
+
+/* ---------- Лист предмета: поля столбиком, крупные значения ---------- */
+.genesys.sheet.item .item-details .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px 10px; }
+.genesys.sheet.item .item-details .form-group { display: flex; flex-direction: column; align-items: stretch; gap: 2px; margin: 0; padding: 4px 6px;
+  background: #fff; border: 1px solid #e3d3ad; border-radius: 8px; }
+.genesys.sheet.item .item-details .form-group > label { flex: none; font-family: var(--gs-head); text-transform: uppercase; letter-spacing: .04em; font-size: 10.5px; color: var(--gs-muted); line-height: 1.2; }
+.genesys.sheet.item .item-details .form-group > input[type="number"] { font-family: var(--gs-head); font-size: 20px; color: var(--gs-navy); text-align: center; height: 30px; border: none; background: transparent; }
+.genesys.sheet.item .item-details .form-group > input[type="number"]:focus { background: #fff8ea; }
+.genesys.sheet.item .item-details .form-group > input[type="checkbox"] { align-self: center; width: 20px; height: 20px; margin: 4px; }
+.genesys.sheet.item .item-details .form-group > select, .genesys.sheet.item .item-details .form-group > input[type="text"] { width: 100%; }
+.genesys.sheet.item .quality-row { display: grid; grid-template-columns: 1fr 70px 20px; gap: 6px; align-items: center; }
+.genesys.sheet.item .item-details .form-group { height: auto; min-height: 0; min-width: 0; }
+.genesys.sheet.item .item-details .form-group > * { flex: none; min-width: 0; }
+.genesys.sheet.item .item-details .form-group > input, .genesys.sheet.item .item-details .form-group > select { height: 28px; }
