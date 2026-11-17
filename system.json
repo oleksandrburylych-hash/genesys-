@@ -2,7 +2,7 @@
   "id": "genesys-rpg",
   "title": "Genesys RPG",
   "description": "Система Genesys (Narrative Dice System) для Foundry VTT v14: нарративные кубики, автоматический расчёт персонажа, трата опыта, таланты-пирамида, снаряжение, противники и очки истории.",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "compatibility": {
     "minimum": "14",
     "verified": "14.370"

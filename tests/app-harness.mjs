@@ -13,6 +13,11 @@ const loc = k => k.split(".").reduce((o, p) => o?.[p], lang) ?? k;
 H.registerHelper("localize", k => typeof k === "string" ? loc(k) : k);
 H.registerHelper("checked", v => v ? "checked" : "");
 H.registerHelper("eq", (a, b) => a === b);
+H.registerHelper("or", (...a) => a.slice(0, -1).some(Boolean));
+H.registerHelper("concat", (...a) => a.slice(0, -1).join(""));
+H.registerHelper("add", (a, b) => a + b);
+H.registerHelper("times", function (n, o) { let s = ""; for (let i = 0; i < n; i++) s += o.fn(this); return s; });
+H.registerHelper("genesysDie", k => new H.SafeString(`<span class="${k}"></span>`));
 H.registerHelper("gt", (a, b) => a > b);
 H.registerHelper("lt", (a, b) => a < b);
 H.registerHelper("selectOptions", (choices, opts) => new H.SafeString(Object.entries(choices).map(([k, v]) => `<option value="${k}">${loc(v)}</option>`).join("")));
@@ -99,15 +104,68 @@ assert.equal(settings["genesys-rpg.skillPreset"], "terrinoth");
 assert.equal(settings["genesys-rpg.worldSetupDone"], true);
 
 // ---- Creation wizard ----
+GENESYS.creation = JSON.parse(fs.readFileSync(path.join(R, "module/data/creation.json")));
 const { CreationWizard } = await import(`${R}/module/apps/creation-wizard.mjs`);
-const actor = { itemTypes: { skill: [{ name: "Атлетика" }] }, getSkill: () => null };
+const sk = (name, characteristic, category) => ({ name, system: { characteristic, category, rank: 0 }, id: name });
+const updates = []; let createdItems = []; let archetypeApplied = null; let careerApplied = null;
+const actor = {
+  name: "Тест", itemTypes: { skill: [sk("Атлетика", "brawn", "general"), sk("Хладнокровие", "presence", "general"), sk("Внимание", "cunning", "general")] },
+  system: { experience: { log: [] } },
+  getSkill(n) { return this.itemTypes.skill.find(s => s.name.toLowerCase() === String(n).toLowerCase()) ?? null; },
+  async applyArchetype(a) { archetypeApplied = a.name; this.system.experience.log = [{ type: "earn", amount: a.system.startingXP, kind: "archetype" }]; },
+  async applyCareer(c) { careerApplied = c.name; },
+  async createEmbeddedDocuments(t, d) { createdItems.push(...d); const made = d.map(x => ({ ...x, id: x.name, system: { rank: 0, ...(x.system ?? {}) } })); this.itemTypes.skill.push(...made.filter(m => m.type === "skill")); return made; },
+  async updateEmbeddedDocuments(t, u) { updates.push(...u); },
+  async update(u) { updates.push(u); },
+  sheet: { render() {} }
+};
+globalThis.foundry.utils.randomID = () => Math.random().toString(36).slice(2);
+const A = CreationWizard.DEFAULT_OPTIONS.actions;
 const cw = new CreationWizard({ actor });
 await cw.render();
-assert.ok(cw.html.includes("data-kind=\"archetype\""), "archetype options rendered");
-const firstUuid = cw.html.match(/data-kind="archetype" data-uuid="([^"]+)"/)[1];
-CreationWizard.DEFAULT_OPTIONS.actions.pick.call(cw, null, { dataset: { kind: "archetype", uuid: firstUuid } });
-CreationWizard.DEFAULT_OPTIONS.actions.next.call(cw);
+assert.ok(cw.html.includes("wz-card"), "archetype cards rendered");
+const cards = [...cw.html.matchAll(/data-kind="archetype" data-uuid="([^"]+)"/g)].map(m => m[1]);
+assert.ok(cards.length >= 39, `all races/archetypes listed: ${cards.length}`);
+const dwarf = cards.find(u => u.includes("Дварф Данварра")) ?? cards[0];
+A.pick.call(cw, null, { dataset: { kind: "archetype", uuid: dwarf } }); await cw.render();
+assert.ok(cw.html.includes("wz-detail-head"), "archetype detail shown");
+const dump = n => process.env.DUMP && fs.writeFileSync(path.join(process.env.DUMP, `wz-${n}.html`), cw.html);
+dump("archetype");
+A.next.call(cw); await cw.render();
+const careers = [...cw.html.matchAll(/data-kind="career" data-uuid="([^"]+)"/g)].map(m => m[1]);
+assert.ok(careers.length >= 25, `all careers listed: ${careers.length}`);
+A.pick.call(cw, null, { dataset: { kind: "career", uuid: careers.find(u => u.includes("Воин")) ?? careers[0] } });
+A.next.call(cw); await cw.render(); // skills
+const careerSkillNames = [...cw.html.matchAll(/data-list="careerFree" data-name="([^"]+)"/g)].map(m => m[1]);
+assert.equal(careerSkillNames.length, 8, "8 career skills");
+for (const n of careerSkillNames.slice(0, 4)) A.toggle.call(cw, null, { dataset: { list: "careerFree", name: n } });
+A.next.call(cw); await cw.render(); // xp
+const before = cw.html.match(/wz-budget-value">(-?\d+)/)[1];
+A.char.call(cw, null, { dataset: { key: "agility", delta: 1 } });
+A.skill.call(cw, null, { dataset: { name: careerSkillNames[5], delta: 1 } });
 await cw.render();
-assert.ok(cw.html.includes("data-kind=\"career\""), "career step rendered");
+const after = cw.html.match(/wz-budget-value">(-?\d+)/)[1];
+dump("xp");
+assert.ok(Number(after) < Number(before), `XP spent: ${before} → ${after}`);
+A.next.call(cw); await cw.render(); // talents
+const tal = cw.html.match(/data-action="talent" data-uuid="([^"]+)"/)[1];
+A.talent.call(cw, null, { dataset: { uuid: tal } });
+A.next.call(cw); await cw.render(); // motivations
+await A.rollMotivation.call(cw, null, { dataset: {} }); await cw.render();
+assert.ok(cw.html.includes('wz-tag small on'), "motivation picked from table");
+dump("motivations");
+A.next.call(cw); await cw.render(); // heroic (exists in RoT pack)
+A.next.call(cw); await cw.render(); // details
+assert.ok(cw.html.includes('name="details.money" value="500"'), "starting money 500");
+A.next.call(cw); await cw.render(); // summary
+assert.ok(!cw.html.includes('data-action="finish" disabled'), "finish enabled");
+await A.finish.call(cw);
+assert.ok(archetypeApplied && careerApplied, "archetype and career applied");
+const final = updates.find(u => u["system.experience.log"]);
+assert.ok(final, "final actor update");
+const spent = final["system.experience.log"].filter(e => e.type === "spend").reduce((s, e) => s + e.amount, 0);
+assert.equal(Number(before) - Number(after) + 5, spent, "XP log matches wizard spending (incl. tier-1 talent 5)");
+assert.ok(final["system.motivations.strength.name"], "motivations saved");
+assert.ok(createdItems.some(i => i.type === "talent"), "talent created");
 console.log("notifications:", notes);
 console.log("APP HARNESS PASSED");

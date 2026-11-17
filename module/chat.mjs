@@ -13,6 +13,14 @@ export async function loadSpendingTables() {
   } catch { GENESYS.spending = {}; }
 }
 
+/** Данные мастера создания: таблицы мотиваций, стартовые деньги (module/data/creation.json). */
+export async function loadCreationData() {
+  try {
+    const res = await fetch(`${SYSTEM_PATH}/module/data/creation.json`);
+    GENESYS.creation = res.ok ? await res.json() : {};
+  } catch { GENESYS.creation = {}; }
+}
+
 /** Цели для применения эффекта: цель из броска, иначе наведённые, иначе выделенные. */
 async function resolveTargets(roll) {
   const uuid = roll?.options?.target?.uuid;
