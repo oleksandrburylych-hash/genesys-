@@ -5,7 +5,8 @@
   "description": "Genesys RPG system for Foundry VTT v14",
   "type": "module",
   "scripts": {
-    "build:packs": "node tools/build-packs.mjs"
+    "build:packs": "node tools/build-packs.mjs",
+    "build:release": "node tools/build-release.mjs"
   },
   "devDependencies": {
     "@foundryvtt/foundryvtt-cli": "3.0.5"
