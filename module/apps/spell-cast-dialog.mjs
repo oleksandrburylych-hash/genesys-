@@ -26,7 +26,8 @@ export class SpellCastDialog extends HandlebarsApplicationMixin(ApplicationV2) {
     const usable = this.usableSkills;
     this.skillKey = usable.find(k => this.actor?.getSkill(k)?.system.rank > 0) ?? usable[0] ?? "arcana";
     this.implementId = this.implements[0]?.id ?? "";
-    this.sufferStrain = true;
+    // Пси-силы (PSI) по правилам дополнения не стоят усталости; обычная магия — 2 усталости.
+    this.sufferStrain = !(sys.skills.length && sys.skills.every(k => k.startsWith("psi")));
   }
 
   static DEFAULT_OPTIONS = {
