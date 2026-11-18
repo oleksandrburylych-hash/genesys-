@@ -26,6 +26,7 @@ export class GMScreen extends HandlebarsApplicationMixin(ApplicationV2) {
     this.refTable = "combatPositive";
     this.gen = { encKind: "combat", mode: "budget", difficulty: 1, count: 4, party: null, creatures: new Set(), kinds: new Set(["minion", "rival", "nemesis"]) };
     this.loot = { source: "encounter", level: 3, result: null };
+    this.shop = { name: "", type: "general", size: "medium", locs: new Set(["town"]), result: null };
     this.shopPool = null;
   }
 
@@ -42,7 +43,9 @@ export class GMScreen extends HandlebarsApplicationMixin(ApplicationV2) {
       genMode: GMScreen.#onGenMode, genKindEnc: GMScreen.#onGenEncKind, genDifficulty: GMScreen.#onGenDifficulty, genCreature: GMScreen.#onGenCreature,
       genKind: GMScreen.#onGenKind, generate: GMScreen.#onGenerate,
       lootSource: GMScreen.#onLootSource, lootLevel: GMScreen.#onLootLevel, lootGenerate: GMScreen.#onLootGenerate,
-      lootRemove: GMScreen.#onLootRemove, lootToChat: GMScreen.#onLootToChat, npcGenerate: GMScreen.#onNpcGenerate,
+      lootRemove: GMScreen.#onLootRemove, lootToChat: GMScreen.#onLootToChat,
+      shopType: GMScreen.#onShopType, shopSize: GMScreen.#onShopSize, shopLoc: GMScreen.#onShopLoc,
+      shopGenerate: GMScreen.#onShopGenerate, shopRemove: GMScreen.#onShopRemove, shopToChat: GMScreen.#onShopToChat, npcGenerate: GMScreen.#onNpcGenerate,
       fear: async () => (await import("./fear.mjs")).promptFearCheck(),
       social: () => game.genesys.SocialEncounter.open()
     },
@@ -90,7 +93,7 @@ export class GMScreen extends HandlebarsApplicationMixin(ApplicationV2) {
     const L = k => game.i18n.localize(k);
     const ctx = {
       tab: this.tab,
-      tabs: ["encounter", "loot", "npc", "xp", "reference"].map(t => ({ key: t, label: `GENESYS.GM.Tab.${t}`, active: t === this.tab }))
+      tabs: ["encounter", "loot", "shop", "npc", "xp", "reference"].map(t => ({ key: t, label: `GENESYS.GM.Tab.${t}`, active: t === this.tab }))
     };
 
     if (this.tab === "encounter") {
@@ -141,6 +144,23 @@ export class GMScreen extends HandlebarsApplicationMixin(ApplicationV2) {
           img: `systems/genesys-rpg/assets/icons/gi/loot/${["cobweb", "coins", "two-coins", "open-treasure-chest", "crown-coin"][l.level - 1]}.svg` })),
         result: r ? { coins: r.coins, items: r.items.map((it, i) => ({ ...it, index: i, total: it.price * it.qty })), value: r.coins + r.items.reduce((s2, it) => s2 + it.price * it.qty, 0) } : null,
         sourceCount: (await this.#lootSources()).length
+      };
+    }
+    if (this.tab === "shop") {
+      const { LOCATION_MODS, SHOP_TYPES, SHOP_SIZES, rarityCheck, isRestricted } = await import("../merchant.mjs");
+      const locMod = LOCATION_MODS.filter(l => this.shop.locs.has(l.key)).reduce((s2, l) => s2 + l.value, 0);
+      this.shop.locMod = locMod;
+      ctx.shop = {
+        name: this.shop.name,
+        types: Object.entries(SHOP_TYPES).map(([k, t]) => ({ key: k, label: `GENESYS.Shop.Type.${k}`, img: `systems/genesys-rpg/assets/icons/gi/loot/${t.icon}.svg`, active: k === this.shop.type })),
+        sizes: Object.keys(SHOP_SIZES).map(k => ({ key: k, label: `GENESYS.Shop.Size.${k}`, active: k === this.shop.size })),
+        locs: LOCATION_MODS.map(l => ({ key: l.key, label: `GENESYS.Shop.Loc.${l.key}`, value: l.value > 0 ? `+${l.value}` : `${l.value}`, on: this.shop.locs.has(l.key) })),
+        locMod: locMod > 0 ? `+${locMod}` : `${locMod}`,
+        items: this.shop.result?.map((it, i) => {
+          const c = rarityCheck(it.rarity);
+          return { index: i, name: it.data.name, img: it.data.img, price: it.data.system?.price ?? 0, rarity: it.rarity, stock: it.stock,
+            check: c.difficulty ? `${L(GENESYS.difficulties[c.difficulty])}${c.upgrades ? ` +${c.upgrades}↑` : ""}` : L("GENESYS.Shop.NoCheck"), restricted: isRestricted(it.data) };
+        }) ?? null
       };
     }
     if (this.tab === "npc") {
@@ -271,6 +291,27 @@ export class GMScreen extends HandlebarsApplicationMixin(ApplicationV2) {
     this.render();
   }
 
+  static #onShopType(event, target) { this.shop.type = target.dataset.key; this.render(); }
+  static #onShopSize(event, target) { this.shop.size = target.dataset.key; this.render(); }
+  static #onShopLoc(event, target) {
+    const k = target.dataset.key;
+    if (this.shop.locs.has(k)) this.shop.locs.delete(k); else this.shop.locs.add(k);
+    this.render();
+  }
+  static async #onShopGenerate() {
+    const { generateShop } = await import("../merchant.mjs");
+    this.shop.result = generateShop(await this.#shop(), { type: this.shop.type, size: this.shop.size, locMod: this.shop.locMod ?? 0 });
+    this.render();
+  }
+  static #onShopRemove(event, target) { this.shop.result?.splice(Number(target.dataset.index), 1); this.render(); }
+  static async #onShopToChat() {
+    if (!this.shop.result?.length) return;
+    const { postShop, LOCATION_MODS } = await import("../merchant.mjs");
+    const where = LOCATION_MODS.filter(l => this.shop.locs.has(l.key)).map(l => game.i18n.localize(`GENESYS.Shop.Loc.${l.key}`)).join(", ");
+    await postShop({ name: this.shop.name || game.i18n.localize(`GENESYS.Shop.Type.${this.shop.type}`), where, locMod: this.shop.locMod ?? 0, items: this.shop.result });
+    ui.notifications.info("GENESYS.Shop.Posted", { localize: true });
+  }
+
   static #onChange(event, form, formData) {
     const d = foundry.utils.expandObject(formData.object);
     if (d.filter) {
@@ -284,6 +325,7 @@ export class GMScreen extends HandlebarsApplicationMixin(ApplicationV2) {
       if (d.gen.count !== undefined) this.gen.count = Math.max(1, Number(d.gen.count) || 1);
       if (d.gen.party !== undefined) this.gen.party = Math.max(1, Number(d.gen.party) || 1);
     }
+    if (d.shop?.name !== undefined) this.shop.name = d.shop.name;
     if (d.npc) this.npc = { ...(this.npc ?? {}), ...d.npc, power: Number(d.npc.power ?? this.npc?.power ?? 2) };
     if (d.filter?.adventure && d.filter.adventure !== this.filter.adventure) this.shopPool = null;
     if (d.enc) for (const [i, v] of Object.entries(d.enc)) {

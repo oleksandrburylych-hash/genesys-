@@ -322,6 +322,15 @@ if (process.env.DUMP) fs.writeFileSync(path.join(process.env.DUMP, "gm-loot.html
 GA.lootLevel.call(gm, null, { dataset: { level: "1" } });
 await GA.lootGenerate.call(gm);
 assert.ok(gm.loot.result.coins < 200, "poor loot is poor");
+// Лавка: сложность по редкости (Core, табл. I.5-1) и сборка ассортимента.
+const { rarityCheck, generateShop } = await import(`${R}/module/merchant.mjs`);
+assert.deepEqual(rarityCheck(1), { difficulty: 0, upgrades: 0 }, "rarity 1 → simple");
+assert.deepEqual(rarityCheck(5), { difficulty: 2, upgrades: 0 }, "rarity 5 → average");
+assert.deepEqual(rarityCheck(12), { difficulty: 5, upgrades: 2 }, "rarity 12 → formidable +2 upgrades");
+await new Promise(r => setTimeout(r, 50)); gm.tab = "shop"; await gm.render();
+await GMScreen.DEFAULT_OPTIONS.actions.shopGenerate.call(gm); await gm.render();
+assert.ok(gm.shop.result.length > 3 && gm.shop.result.every(i => i.data.type === "gear"), `shop items: ${gm.shop.result.length}`);
+if (process.env.DUMP) fs.writeFileSync(path.join(process.env.DUMP, "gm-shop.html"), gm.html);
 // NPC
 await new Promise(r => setTimeout(r, 50)); gm.tab = "npc"; await gm.render();
 assert.ok(gm.html.includes('name="npc.role"'), "npc form");

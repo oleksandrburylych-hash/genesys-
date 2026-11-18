@@ -117,6 +117,26 @@
   </div>
   {{/if}}
 
+  {{#if (eq tab "shop")}}
+  <div class="gm-body">
+    <div class="gm-gen-row"><label>{{localize "GENESYS.Shop.Name"}} <input type="text" name="shop.name" value="{{shop.name}}" placeholder="{{localize 'GENESYS.Shop.NamePh'}}"></label></div>
+    <div class="gm-shop-types">{{#each shop.types}}<a class="gm-creature {{#if active}}on{{/if}}" data-action="shopType" data-key="{{key}}"><img src="{{img}}" alt=""><span>{{localize label}}</span></a>{{/each}}</div>
+    <div class="gm-gen-row"><div class="gm-seg">{{#each shop.sizes}}<a class="{{#if active}}active{{/if}}" data-action="shopSize" data-key="{{key}}">{{localize label}}</a>{{/each}}</div></div>
+    <div class="gs-ribbon"><span>{{localize "GENESYS.Shop.Where"}} ({{localize "GENESYS.Rarity"}} {{shop.locMod}})</span></div>
+    <div class="gm-locs">{{#each shop.locs}}<a class="wz-chip {{#if on}}active{{/if}}" data-action="shopLoc" data-key="{{key}}">{{localize label}} {{value}}</a>{{/each}}</div>
+    <div class="gm-actions"><button type="button" class="gm-primary" data-action="shopGenerate"><i class="fa-solid fa-store"></i> {{#if shop.items}}{{localize "GENESYS.Loot.Reroll"}}{{else}}{{localize "GENESYS.Shop.Generate"}}{{/if}}</button></div>
+    {{#if shop.items}}
+    {{#each shop.items}}
+    <div class="gm-enc-row"><img src="{{img}}" alt=""><div class="gm-row-text"><span class="gm-row-name">{{name}}</span>
+      <span class="gm-row-sub">{{price}} · {{localize "GENESYS.Rarity"}} {{rarity}} · {{check}}{{#if restricted}} · (R){{/if}} · {{localize "GENESYS.Shop.Stock"}} {{stock}}</span></div>
+      <a data-action="shopRemove" data-index="{{index}}"><i class="fa-solid fa-xmark"></i></a></div>
+    {{/each}}
+    <div class="gm-actions"><button type="button" class="gm-primary" data-action="shopToChat"><i class="fa-solid fa-comment-dollar"></i> {{localize "GENESYS.Shop.ToChat"}}</button></div>
+    {{/if}}
+    <p class="hint">{{localize "GENESYS.Shop.Hint"}}</p>
+  </div>
+  {{/if}}
+
   {{#if (eq tab "npc")}}
   <div class="gm-body gm-npc">
     <div class="gm-npc-form">
