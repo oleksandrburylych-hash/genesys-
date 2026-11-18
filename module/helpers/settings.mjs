@@ -21,6 +21,12 @@ export function registerSettings() {
     default: []
   });
 
+  // Своё изделие из мастерской лавки скупают не дороже половины цены (против «фарма» денег ремеслом).
+  game.settings.register(SYSTEM_ID, "craftedSaleCap", {
+    name: "GENESYS.Settings.CraftedSaleCap.name", hint: "GENESYS.Settings.CraftedSaleCap.hint",
+    scope: "world", config: true, type: Boolean, default: true
+  });
+
   // Эпоха для толкований символов (ширма ведущего → «Толкования»).
   game.settings.register(SYSTEM_ID, "interpEra", { scope: "world", config: false, type: String, default: "" });
 

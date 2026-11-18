@@ -104,6 +104,14 @@ async function takeStock(message, index) {
   await message.update({ content: cardHTML(state), [`flags.${SYSTEM_ID}.shop`]: state });
 }
 
+/** Ведущий отмечает проданную в лавку вещь (насыщение рынка). */
+async function markSold(message, name) {
+  const state = foundry.utils.deepClone(message.getFlag(SYSTEM_ID, "shop"));
+  if (!state) return;
+  state.sold = { ...(state.sold ?? {}), [name]: (state.sold?.[name] ?? 0) + 1 };
+  await message.update({ [`flags.${SYSTEM_ID}.shop`]: state });
+}
+
 /** Покупка: проверка редкости (если нужна), деньги, предмет. */
 async function buy(message, index) {
   const state = message.getFlag(SYSTEM_ID, "shop");
@@ -153,20 +161,32 @@ async function sell(message) {
   const roll = skill ? await actor.rollSkill(skill, { difficulty: chk.difficulty, upgrades: chk.upgrades, label: game.i18n.format("GENESYS.Shop.SellLabel", { name: item.name }) }) : null;
   const s = roll?.results?.success ?? 0;
   if (!roll?.results?.isSuccess) return ui.notifications.info(game.i18n.format("GENESYS.Shop.NoBuyer", { name: item.name }));
-  const share = s >= 3 ? 0.75 : s === 2 ? 0.5 : 0.25;
+  // Ступени цены по успехам (Core): ¼, ½, ¾. Насыщение рынка: каждая уже проданная сюда такая же вещь — на ступень ниже.
+  const sold = state?.sold?.[item.name] ?? 0;
+  let step = Math.min(3, s) - sold;
+  // Своё изделие (мастерская) — не дороже ½ цены, иначе ремесло «печатает» деньги.
+  let craftedCap = false;
+  try { craftedCap = game.settings.get(SYSTEM_ID, "craftedSaleCap") && !!item.getFlag(SYSTEM_ID, "crafted"); } catch { /* нет настройки */ }
+  if (craftedCap && step > 2) step = 2;
+  if (step <= 0) return ui.notifications.info(game.i18n.format("GENESYS.Shop.Saturated", { name: item.name }));
+  const share = [0, 0.25, 0.5, 0.75][step];
   const money = Math.floor((item.system.price ?? 0) * share);
   const qty = item.system.quantity ?? 1;
   if (qty > 1) await item.update({ "system.quantity": qty - 1 }); else await item.delete();
   await actor.update({ "system.money": (actor.system.money ?? 0) + money });
+  if (game.user.isGM) await markSold(message, item.name);
+  else game.socket.emit(SOCKET, { type: "shopSold", messageId: message.id, name: item.name });
   await ChatMessage.implementation.create({ speaker: ChatMessage.implementation.getSpeaker({ actor }),
     content: `<div class="genesys spend-report">${game.i18n.format("GENESYS.Shop.Sold", { name: esc(actor.name), item: esc(item.name), money, share: Math.round(share * 100) })}</div>` });
 }
 
 export function registerMerchant() {
   game.socket.on(SOCKET, async payload => {
-    if (payload?.type !== "shopStock" || !game.user.isActiveGM) return;
-    const message = game.messages.get(payload.messageId);
-    if (message) await takeStock(message, payload.index);
+    if (!game.user.isActiveGM) return;
+    const message = game.messages.get(payload?.messageId);
+    if (!message) return;
+    if (payload.type === "shopStock") await takeStock(message, payload.index);
+    else if (payload.type === "shopSold") await markSold(message, payload.name);
   });
   Hooks.on("renderChatMessageHTML", (message, html) => {
     html.querySelectorAll("[data-genesys-shop]").forEach(btn => btn.addEventListener("click", ev => {

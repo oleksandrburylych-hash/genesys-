@@ -22,10 +22,12 @@
       <table class="gm-table">
         <tr><td>{{localize "GENESYS.Workshop.Check"}}</td><td><b>{{skillName}}</b>, {{localize difficultyLabel}}</td></tr>
         <tr><td>{{localize "GENESYS.Workshop.Time"}}</td><td>{{plan.time}}</td></tr>
-        <tr><td>{{localize "GENESYS.Workshop.Materials"}}</td><td>{{plan.cost}} ({{localize "GENESYS.Workshop.HalfPrice"}})</td></tr>
+        <tr class="ws-cost"><td>{{localize "GENESYS.Workshop.Materials"}}</td><td><b>{{plan.cost}}</b> {{localize "GENESYS.Loot.Coins"}} <span class="hint">({{localize "GENESYS.Workshop.HalfPrice"}} {{item.price}})</span></td></tr>
+        <tr><td>{{localize "GENESYS.Workshop.Wallet"}}</td><td>{{money}}</td></tr>
         {{#if alchemy}}<tr><td>{{localize "GENESYS.Workshop.Ingredients"}}</td><td>{{localize "GENESYS.Rarity"}} {{plan.ingredientRarity}}</td></tr>{{/if}}
       </table>
-      <label class="checkbox"><input type="checkbox" name="payMaterials" {{checked payMaterials}}> {{localize "GENESYS.Workshop.Pay"}} ({{localize "GENESYS.Money"}}: {{money}})</label>
+      {{#if isGM}}<label class="checkbox"><input type="checkbox" name="payMaterials" {{checked payMaterials}}> {{localize "GENESYS.Workshop.Pay"}} <span class="hint">({{localize "GENESYS.Workshop.PayGM"}})</span></label>{{/if}}
+      <p class="hint">{{localize "GENESYS.Workshop.SaleNote"}}</p>
       <div class="gm-actions">
         <button type="button" class="gm-primary" data-action="craft"><i class="fa-solid fa-hammer"></i> {{localize "GENESYS.Workshop.Craft"}}</button>
         {{#if alchemy}}<button type="button" data-action="gather"><i class="fa-solid fa-leaf"></i> {{localize "GENESYS.Workshop.Gather"}}</button>{{/if}}

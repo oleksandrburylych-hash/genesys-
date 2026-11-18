@@ -79,14 +79,15 @@ export class Workshop extends HandlebarsApplicationMixin(ApplicationV2) {
       item: doc ? { name: doc.name, img: doc.img, rarity: doc.system.rarity, price: doc.system.price } : null,
       plan, skillName: skill?.name ?? game.i18n.localize(`GENESYS.Skill.${plan?.skill ?? "mechanics"}`),
       difficultyLabel: plan ? GENESYS.difficulties[plan.difficulty] : "",
-      money: this.actor.system.money ?? 0, payMaterials: this.payMaterials
+      money: this.actor.system.money ?? 0, payMaterials: this.payMaterials || !game.user.isGM, isGM: game.user.isGM
     };
   }
 
   static #onChange(event, form, formData) {
     const d = formData.object;
     if ("search" in d) this.search = d.search ?? "";
-    if ("payMaterials" in d) this.payMaterials = !!d.payMaterials;
+    // Платить ли за материалы, решает только ведущий: игрок платит всегда.
+    if ("payMaterials" in d && game.user.isGM) this.payMaterials = !!d.payMaterials;
     if (event?.target?.name === "search") {
       this.render().then(() => {
         const el = this.element.querySelector('[name="search"]');
@@ -112,6 +113,7 @@ export class Workshop extends HandlebarsApplicationMixin(ApplicationV2) {
     if (!doc) return;
     const plan = Workshop.plan(doc, this.mode);
     const actor = this.actor;
+    if (!game.user.isGM) this.payMaterials = true;
     if (!actor.getSkill(plan.skill)) {
       return ui.notifications.warn(game.i18n.format("GENESYS.Warn.SkillNotFound", { name: game.i18n.localize(`GENESYS.Skill.${plan.skill}`) }));
     }
@@ -127,7 +129,9 @@ export class Workshop extends HandlebarsApplicationMixin(ApplicationV2) {
     if (roll.results?.isSuccess) {
       const data = doc.toObject();
       if (data.system && "quantity" in data.system) data.system.quantity = 1;
-      await actor.createEmbeddedDocuments("Item", [data]);
+      // Своё изделие: лавки скупают его не дороже половины цены (см. настройку «craftedSaleCap»).
+      foundry.utils.setProperty(data, `flags.${SYSTEM_ID}.crafted`, { by: actor.name });
+      await actor.createEmbeddedDocuments("Item", [data], { genesysNoStack: true });
     }
     await ChatMessage.implementation.create({
       speaker: ChatMessage.implementation.getSpeaker({ actor }),

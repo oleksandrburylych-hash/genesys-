@@ -149,7 +149,7 @@ export function isStackable(data) {
 export function findStack(actor, data) {
   if (!isStackable(data)) return null;
   return actor.items.find(i => i.type === data.type && i.name === data.name && (i.system.quantity ?? 0) >= 0
-    && !(i.type === "gear" && i.system.equipped));
+    && !(i.type === "gear" && i.system.equipped) && !i.flags?.["genesys-rpg"]?.crafted && !data.flags?.["genesys-rpg"]?.crafted);
 }
 
 /* -------------------------------------------- */

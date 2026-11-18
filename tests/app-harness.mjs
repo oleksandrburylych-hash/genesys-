@@ -423,6 +423,16 @@ assert.ok(craftItems.length > 10, `workshop lists items: ${craftItems.length}`);
 const sword = craftItems.find(u => u.includes("Меч")) ?? craftItems[0];
 Workshop.DEFAULT_OPTIONS.actions.select.call(wsp, null, { dataset: { uuid: sword } }); await wsp.render();
 assert.ok(wsp.html.includes("Механика"), "craft check uses Mechanics");
+{
+  // Стоимость материалов зависит от предмета (½ цены), а не одна на всё.
+  const costs = new Set();
+  for (const u of craftItems.slice(0, 15)) {
+    Workshop.DEFAULT_OPTIONS.actions.select.call(wsp, null, { dataset: { uuid: u } }); await wsp.render();
+    costs.add(wsp.html.match(/ws-cost"><td>[^<]*<\/td><td><b>(\d+)/)?.[1]);
+  }
+  assert.ok(costs.size > 3, `разные предметы — разная стоимость материалов: ${[...costs]}`);
+  Workshop.DEFAULT_OPTIONS.actions.select.call(wsp, null, { dataset: { uuid: sword } }); await wsp.render();
+}
 assert.deepEqual(Workshop.plan({ system: { rarity: 2, price: 200 } }, "craft").difficulty, 1, "rarity 2 → Easy");
 assert.equal(Workshop.plan({ system: { rarity: 5, price: 100 } }, "alchemy").cost, 50, "ingredients half price");
 Workshop.DEFAULT_OPTIONS.actions.mode.call(wsp, null, { dataset: { mode: "alchemy" } }); await wsp.render();

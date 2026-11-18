@@ -1248,3 +1248,4 @@
   font-family: var(--gs-head); text-transform: uppercase; color: var(--gs-navy); box-shadow: 0 1px 3px rgba(0,0,0,.12); }
 .genesys .gs-arch-card:hover { background: #fff1d0; }
 .genesys .gs-arch-card img { width: 36px; height: 36px; border: none; }
+.genesys .ws-cost b { font-family: var(--gs-head); font-size: 20px; color: var(--gs-maroon); }
