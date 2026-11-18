@@ -391,6 +391,20 @@ assert.ok(npcData.items.some(i => i.type === "skill" && /ranged/.test(i.system.k
 assert.ok(npcData.items.some(i => i.name === "Противник" && i.system.rank === 3), "nemesis Adversary 3");
 assert.ok(npcData.system.strain.max > 0 && npcData.system.wounds.max > 15, "nemesis thresholds");
 if (process.env.DUMP) fs.writeFileSync(path.join(process.env.DUMP, "gm-npc.html"), gm.html);
+{
+  const { NPC_ROLES } = await import(`${R}/module/npc.mjs`);
+  assert.ok(Object.keys(NPC_ROLES).length >= 25, `ролей NPC: ${Object.keys(NPC_ROLES).length}`);
+  for (const [k, r] of Object.entries(NPC_ROLES)) assert.ok(fs.existsSync(path.join(R, `assets/icons/gi/adversary/${r.icon}.svg`)), `иконка роли ${k}: ${r.icon}`);
+  await generateNPC({ role: "peasant", kind: "rival", power: 2, adventure: "fantasy" });
+  assert.ok(!npcData.items.some(i => i.type === "armor"), "крестьянин без брони");
+  assert.ok(!npcData.items.some(i => i.name === "Противник"), "мирный без «Противника»");
+  assert.ok(/Крестьянин|Пастух|Мельник/.test(npcData.system.description), `средневековый титул: ${npcData.system.description.slice(0, 80)}`);
+  await generateNPC({ role: "scholar", kind: "rival", power: 2, adventure: "fantasy" });
+  assert.ok(!npcData.items.some(i => i.system?.key === "computers"), "у средневекового учёного нет Компьютеров");
+  await generateNPC({ role: "hacker", kind: "rival", power: 2, adventure: "scifi" });
+  assert.ok(npcData.items.some(i => i.system?.key === "computers"), "у хакера будущего есть Компьютеры");
+  assert.ok(gm.html.includes("<optgroup"), "роли сгруппированы");
+}
 G.gmTab.call(gm, null, { dataset: { tab: "xp" } }); await gm.render();
 assert.ok(gm.html.includes("Герой"), "characters listed for XP");
 await G.award.call(gm, null, { dataset: { amount: "15" } });

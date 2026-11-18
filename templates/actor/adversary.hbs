@@ -111,6 +111,28 @@
       </ol>
     </section>
 
+    {{#unless isMinion}}
+    <section class="block">
+      <header class="list-header">
+        <h3>{{localize "GENESYS.Injuries"}}</h3>
+        {{#if editable}}<a class="item-control" data-action="rollInjury" data-tooltip="GENESYS.Injury.Roll"><i class="fa-solid fa-dice"></i></a>{{/if}}
+      </header>
+      <ol class="compact-list">
+        {{#each injuries}}
+        <li data-item-id="{{id}}">
+          <span class="severity">{{#times system.severity}}{{genesysDie "difficulty"}}{{/times}}</span>
+          <a class="name" data-action="itemEdit">{{name}}</a>
+          <span class="item-controls">
+            <a data-action="itemChat"><i class="fa-solid fa-comment"></i></a>
+            {{#if @root.editable}}<a data-action="healInjury" data-tooltip="GENESYS.Rest.HealInjuryHint"><i class="fa-solid fa-kit-medical"></i></a>
+            <a data-action="itemDelete"><i class="fa-solid fa-trash"></i></a>{{/if}}
+          </span>
+        </li>
+        {{else}}<li class="gs-empty">{{localize "GENESYS.Injury.None"}}</li>{{/each}}
+      </ol>
+    </section>
+    {{/unless}}
+
     <section class="block">
       <header class="list-header">
         <h3>{{localize "GENESYS.TalentsAndAbilities"}}</h3>

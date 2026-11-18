@@ -127,7 +127,7 @@ export class GenesysBaseActorSheet extends HandlebarsApplicationMixin(ActorSheet
       range: GENESYS.ranges[s.range]?.label,
       qualities: s.qualitiesText,
       equipped: s.equipped,
-      pool: skill ? this.actor.getSkillPool(skill, 0).display : []
+      pool: skill ? this.actor.getSkillPool(skill, 0).display : (this.actor.untrainedPool?.(s.skill, 0).display ?? [])
     };
   }
 

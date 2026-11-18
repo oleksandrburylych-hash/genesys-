@@ -1229,3 +1229,10 @@
 .genesys .gm-stepper { display: inline-flex; align-items: center; gap: 2px; }
 .genesys .gm-stepper a { width: 24px; text-align: center; color: var(--gs-navy); }
 .genesys.gm-screen .gm-stepper input { width: 48px; text-align: center; font-family: var(--gs-head); font-size: 16px; }
+
+/* ---------- Лист противника и транспорта: прокрутка, групповые навыки ---------- */
+.genesys.sheet.adversary .window-content, .genesys.sheet.vehicle .window-content { display: flex; flex-direction: column; overflow: hidden; }
+.genesys.sheet.adversary .gs-adv, .genesys.sheet.vehicle .gs-veh { flex: 1; min-height: 0; overflow-y: auto; }
+.genesys .skill .career-mark.toggle { cursor: pointer; }
+.genesys .skill .career-mark.toggle:hover { color: var(--gs-maroon); }
+.genesys .gs-adv .severity .genesys-die-icon { width: 13px; height: 13px; }

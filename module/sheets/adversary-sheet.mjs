@@ -12,12 +12,14 @@ export class GenesysAdversarySheet extends GenesysBaseActorSheet {
     actions: {
       skillRankAdv: GenesysAdversarySheet.#onSkillRank,
       toggleLoot: GenesysAdversarySheet.#onToggleLoot,
-      advAdjust: GenesysAdversarySheet.#onAdjust
+      advAdjust: GenesysAdversarySheet.#onAdjust,
+      toggleCareer: GenesysAdversarySheet.#onToggleCareer,
+      healInjury: GenesysAdversarySheet.#onHealInjury
     }
   };
 
   static PARTS = {
-    main: { template: `${TEMPLATES}/actor/adversary.hbs`, scrollable: [".adversary-body"] }
+    main: { template: `${TEMPLATES}/actor/adversary.hbs`, scrollable: [""] }
   };
 
   /** @override */
@@ -55,6 +57,18 @@ export class GenesysAdversarySheet extends GenesysBaseActorSheet {
     const k = target.dataset.key;
     if (set.has(k)) set.delete(k); else set.add(k);
     await this.actor.update({ "system.loot": Object.keys(LOOT_TAGS).filter(x => set.has(x)) });
+  }
+
+  /** Групповой навык прислужников / отметка навыка. */
+  static #onToggleCareer(event, target) {
+    const item = this._getItem(target);
+    if (item) return item.update({ "system.career": !item.system.career });
+  }
+
+  /** Лечить критическую травму противника проверкой Медицины. */
+  static #onHealInjury(event, target) {
+    const item = this._getItem(target);
+    if (item) return this.actor.healInjury(item);
   }
 
   static #onAdjust(event, target) {

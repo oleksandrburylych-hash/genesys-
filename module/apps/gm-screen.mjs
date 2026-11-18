@@ -174,11 +174,12 @@ export class GMScreen extends HandlebarsApplicationMixin(ApplicationV2) {
       };
     }
     if (this.tab === "npc") {
-      const { NPC_ROLES } = await import("../npc.mjs");
+      const { NPC_ROLES, NPC_GROUPS } = await import("../npc.mjs");
       const keys = enabledAdventureKeys();
       ctx.npc = {
         adventures: [...new Set(keys.length ? [...keys] : Object.keys(ADVENTURES))].map(k => ({ key: k, label: getAdventure(k).label, selected: k === (this.npc?.adventure ?? this.filter.adventure) })),
-        roles: Object.entries(NPC_ROLES).map(([k, r]) => ({ key: k, label: r.label, selected: k === (this.npc?.role ?? "fighter") })),
+        roleGroups: Object.entries(NPC_GROUPS).map(([g, label]) => ({ label, roles: Object.entries(NPC_ROLES).filter(([, r]) => r.group === g)
+          .map(([k, r]) => ({ key: k, label: r.label, selected: k === (this.npc?.role ?? "fighter") })) })),
         kinds: ["minion", "rival", "nemesis"].map(k => ({ key: k, label: GENESYS.adversaryTypes[k], selected: k === (this.npc?.kind ?? "rival") })),
         power: this.npc?.power ?? 2,
         last: this.npc?.last ?? null

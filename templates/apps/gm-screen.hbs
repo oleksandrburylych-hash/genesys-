@@ -155,7 +155,7 @@
   <div class="gm-body gm-npc">
     <div class="gm-npc-form">
       <label>{{localize "GENESYS.Wizard.Adventure"}}<select name="npc.adventure">{{#each npc.adventures}}<option value="{{key}}" {{#if selected}}selected{{/if}}>{{label}}</option>{{/each}}</select></label>
-      <label>{{localize "GENESYS.NPC.Role"}}<select name="npc.role">{{#each npc.roles}}<option value="{{key}}" {{#if selected}}selected{{/if}}>{{label}}</option>{{/each}}</select></label>
+      <label>{{localize "GENESYS.NPC.Role"}}<select name="npc.role">{{#each npc.roleGroups}}<optgroup label="{{label}}">{{#each roles}}<option value="{{key}}" {{#if selected}}selected{{/if}}>{{label}}</option>{{/each}}</optgroup>{{/each}}</select></label>
       <label>{{localize "GENESYS.AdversaryType.label"}}<select name="npc.kind">{{#each npc.kinds}}<option value="{{key}}" {{#if selected}}selected{{/if}}>{{localize label}}</option>{{/each}}</select></label>
       <label>{{localize "GENESYS.NPC.PowerLabel"}}<select name="npc.power">
         <option value="1" {{#if (eq npc.power 1)}}selected{{/if}}>{{localize "GENESYS.NPC.Power.1"}}</option>

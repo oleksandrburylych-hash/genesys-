@@ -166,7 +166,8 @@
       "ModifierHint": "E.g. +10 per rank of Vicious. +10 per existing injury is added automatically.",
       "RollFormula": "d100 + 10 × {existing} (existing injuries) + {modifier}",
       "Setback": "Штраф к проверкам",
-      "SetbackHint": "Сколько костей штрафа травма добавляет ко всем проверкам, пока не вылечена"
+      "SetbackHint": "Сколько костей штрафа травма добавляет ко всем проверкам, пока не вылечена",
+      "None": "Критических травм нет."
     },
     "Key": "Key",
     "Money": "Money",
@@ -1325,7 +1326,8 @@
       "WoundsShort": "ран",
       "StrainShort": "усталости",
       "SurgeonShort": "хирург"
-    }
+    },
+    "Injuries": "Критические травмы"
   },
   "TYPES": {
     "Actor": {

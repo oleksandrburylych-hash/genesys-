@@ -101,6 +101,21 @@ export class GenesysActor extends Actor {
       ?? null;
   }
 
+  /** Характеристика навыка по ключу или названию, даже если у актёра этого навыка нет (ранг 0). */
+  skillCharacteristic(keyOrName) {
+    const own = this.getSkill(keyOrName);
+    if (own) return own.system.characteristic;
+    const needle = String(keyOrName ?? "").trim().toLowerCase();
+    const def = GENESYS.defaultSkills.find(s => s.key.toLowerCase() === needle || game.i18n.localize(`GENESYS.Skill.${s.key}`).toLowerCase() === needle)
+      ?? Object.entries(GENESYS.extraSkills ?? {}).map(([k, v]) => ({ key: k, ...v })).find(s => s.key.toLowerCase() === needle);
+    return def?.characteristic ?? (/дальн|стрел|ranged|gunnery|артилл/i.test(needle) ? "agility" : "brawn");
+  }
+
+  /** Пул навыка без навыка: кости способности по характеристике (Core: «навыка нет — бросаете характеристику»). */
+  untrainedPool(keyOrName, difficulty = 2) {
+    return DicePool.fromSkill(this.characteristic(this.skillCharacteristic(keyOrName)), 0, difficulty);
+  }
+
   characteristic(key) {
     // Импланты (кибернетическая рука и т. п.) дают +1, не больше.
     const v = (this.system.characteristics?.[key]?.value ?? 0) + (this.system.gear?.mods?.[`char.${key}`] ?? 0);
@@ -200,12 +215,13 @@ export class GenesysActor extends Actor {
     const skill = shooter?.getSkill?.(sys.skill);
     const target = getTargets()[0] ?? null;
     const mods = attackModifiers(this.type === "vehicle" ? this : shooter, weapon, target);
-    const pool = skill ? shooter.getSkillPool(skill, mods.difficulty) : new DicePool({ ability: 1, difficulty: mods.difficulty });
+    const pool = skill ? shooter.getSkillPool(skill, mods.difficulty)
+      : (shooter?.untrainedPool ? shooter.untrainedPool(sys.skill, mods.difficulty) : new DicePool({ ability: 1, difficulty: mods.difficulty }));
     pool.setback += mods.setback;
     pool.boost += mods.boost;
     if (mods.upgrades) pool.upgradeDifficulty(mods.upgrades);
     if (mods.abilityUpgrades) pool.upgradeAbility(mods.abilityUpgrades);
-    const notes = [...mods.notes, ...applyStateModifiers(shooter, pool, { characteristic: skill?.system.characteristic })];
+    const notes = [...mods.notes, ...applyStateModifiers(shooter, pool, { characteristic: skill?.system.characteristic ?? shooter?.skillCharacteristic?.(sys.skill) })];
 
     const active = sys.allQualities
       .filter(q => GENESYS.activeQualities[q.name])
@@ -244,7 +260,7 @@ export class GenesysActor extends Actor {
     if (this.type !== "vehicle") return null;
     const crew = GenesysActor.findCrewMember(this);
     const skill = crew?.getSkill(this.system.skill);
-    const pool = skill ? crew.getSkillPool(skill, difficulty) : new DicePool({ ability: 1, difficulty });
+    const pool = skill ? crew.getSkillPool(skill, difficulty) : (crew?.untrainedPool ? crew.untrainedPool(this.system.skill, difficulty) : new DicePool({ ability: 1, difficulty }));
     const notes = [];
     // Управляемость: положительная — кости бонуса, отрицательная — кости штрафа.
     const h = this.system.handling;

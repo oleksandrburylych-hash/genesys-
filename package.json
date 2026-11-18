@@ -1,7 +1,7 @@
 {
   "name": "genesys-rpg",
   "private": true,
-  "version": "0.14.3",
+  "version": "0.14.4",
   "description": "Genesys RPG system for Foundry VTT v14",
   "type": "module",
   "scripts": {

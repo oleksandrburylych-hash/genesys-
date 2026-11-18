@@ -33,7 +33,7 @@ export class GenesysVehicleSheet extends GenesysBaseActorSheet {
   };
 
   static PARTS = {
-    main: { template: `${TEMPLATES}/actor/vehicle.hbs`, scrollable: [".vehicle-body"] }
+    main: { template: `${TEMPLATES}/actor/vehicle.hbs`, scrollable: [""] }
   };
 
   /** @override */
