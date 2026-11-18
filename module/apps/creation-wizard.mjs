@@ -27,6 +27,29 @@ function bookOf(source = "") {
 }
 
 /**
+ * Правило стартовых навыков расы/архетипа по тексту из книги:
+ *   max       — сколько навыков можно отметить (варианты через «или» — один выбор);
+ *   nonCareer — только некарьерные («по 1 рангу в двух разных некарьерных навыках»);
+ *   careerMax — сколько карьерных навыков бесплатно (обычно 4, у некоторых — 6);
+ *   double    — основы названий, где даётся сразу 2 ранга («2 ранга в Выдержке»).
+ */
+export function startingRule(text) {
+  const t = String(text ?? "").toLowerCase();
+  const rule = { max: 3, nonCareer: /некарьерн/.test(t), careerMax: 4, double: [] };
+  const six = t.match(/(шести|6)\s+из\s+(восьми|8)\s+карьерн/);
+  if (six) { rule.careerMax = 6; rule.max = 0; return rule; }
+  if (!t.trim() || /^нет(\s|\(|$)/.test(t.trim())) { rule.max = 0; return rule; }
+  const NUM = { "двух": 2, "трёх": 3, "трех": 3 };
+  const pick = t.match(/по\s+1\s+рангу\s+в\s+(двух|трёх|трех|\d)/);
+  if (pick) { rule.max = NUM[pick[1]] ?? Number(pick[1]) ?? 2; return rule; }
+  const plain = t.replace(/\([^)]*\)/g, " ");
+  const clauses = plain.split(/;|\sи\s|также/).filter(c => /ранг/.test(c));
+  if (clauses.length) rule.max = clauses.length;
+  for (const m of plain.matchAll(/2\s+ранга\s+в[о]?\s+([а-яё]+)/g)) rule.double.push(m[1].slice(0, Math.max(5, m[1].length - 2)));
+  return rule;
+}
+
+/**
  * Мастер создания персонажа по шагам книги правил:
  * раса → карьера → бесплатные ранги → опыт (характеристики, навыки) → таланты →
  * мотивации → героическая способность → описание и деньги → итог.
@@ -256,9 +279,12 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
       const def = this.lib.skills.find(s => s.name.toLowerCase() === n.toLowerCase())?.system ?? CreationWizard.#skillDef(key);
       add(n, def?.characteristic ?? "intellect", def?.category ?? "general", 0);
     }
+    const rule = this.startRule;
     return [...rows.values()].map(r => {
       const isCareer = careerSet.has(r.name.toLowerCase());
-      const free = (this.pick.careerFree.includes(r.name) ? 1 : 0) + (this.pick.startFree.includes(r.name) ? 1 : 0);
+      const startRank = this.pick.startFree.includes(r.name) && !(rule.nonCareer && isCareer)
+        ? (rule.double.some(st => r.name.toLowerCase().startsWith(st)) ? 2 : 1) : 0;
+      const free = (this.pick.careerFree.includes(r.name) ? 1 : 0) + startRank;
       const start = Math.min(GENESYS.xp.maxSkillCreation, r.base + free);
       const bought = this.pick.skills[r.name] ?? 0;
       const locked = r.category === "magic" && !isCareer && this.magicLocked;
@@ -374,8 +400,11 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
       const rows = this.#skillRows();
       ctx.careerSkills = rows.filter(r => r.career).map(r => ({ ...r, checked: this.pick.careerFree.includes(r.name) }));
       ctx.careerFreeCount = this.pick.careerFree.length;
+      ctx.careerMax = this.startRule.careerMax;
+      ctx.startMax = this.startRule.max;
+      ctx.startCount = this.pick.startFree.length;
       ctx.startingText = arch?.system.startingSkills ?? "";
-      ctx.allSkills = rows.map(r => ({ ...r, checked: this.pick.startFree.includes(r.name) }));
+      ctx.allSkills = rows.filter(r => !(this.startRule.nonCareer && r.career)).map(r => ({ ...r, checked: this.pick.startFree.includes(r.name) }));
     }
     if (this.step === "xp") {
       ctx.chars = CHARS.map(k => {
@@ -467,7 +496,7 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
   #stepDone(step) {
     if (step === "archetype") return !!this.pick.archetype;
     if (step === "career") return !!this.pick.career;
-    if (step === "skills") return this.pick.careerFree.length === 4;
+    if (step === "skills") return this.pick.careerFree.length === this.startRule.careerMax;
     if (step === "motivations") return MOTIVATIONS.some(k => this.pick.motivations[k].name);
     if (step === "heroic") return !!this.pick.heroic;
     return false;
@@ -534,9 +563,11 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
   static #onToggle(event, target) {
     const list = this.pick[target.dataset.list];
     const name = target.dataset.name;
-    const max = target.dataset.list === "careerFree" ? 4 : 3;
+    const rule = this.startRule;
+    const max = target.dataset.list === "careerFree" ? rule.careerMax : rule.max;
     const i = list.indexOf(name);
     const row = this.#skillRows().find(r => r.name === name);
+    if (i < 0 && target.dataset.list === "startFree" && rule.nonCareer && row?.career) return ui.notifications.warn("GENESYS.Wizard.NonCareerOnly", { localize: true });
     if (i < 0 && row?.locked) return ui.notifications.warn(game.i18n.format("GENESYS.Warn.MagicCareerOnly", { name }));
     if (i >= 0) list.splice(i, 1);
     else if (list.length >= max) return ui.notifications.warn(game.i18n.format("GENESYS.Wizard.MaxSkills", { max }));
@@ -586,13 +617,16 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
     this.render();
   }
 
+  /** Правило стартовых навыков выбранной расы/архетипа. */
+  get startRule() { return startingRule(this.archetype?.system.startingSkills); }
+
   /** Стартовые навыки расы: заранее отметить навыки, названные в её описании. */
   #defaultStartFree() {
     const text = (this.archetype?.system.startingSkills ?? "").toLowerCase();
     return this.#skillRows().filter(r => {
       const stem = r.name.toLowerCase().slice(0, Math.max(5, r.name.length - 2));
       return text.includes(stem) && !r.locked;
-    }).map(r => r.name).slice(0, 3);
+    }).map(r => r.name).slice(0, this.startRule.max);
   }
 
   /**
@@ -610,7 +644,11 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
     const careers = this.view.careers;
     if (careers.length) this.pick.career = rnd(careers).uuid;
     this.pick.startFree = this.#defaultStartFree();
-    this.pick.careerFree = shuffle(this.#skillRows().filter(r => r.career && !r.locked).map(r => r.name)).slice(0, 4);
+    this.pick.careerFree = shuffle(this.#skillRows().filter(r => r.career && !r.locked).map(r => r.name)).slice(0, this.startRule.careerMax);
+    if (this.startRule.nonCareer && this.pick.startFree.length < this.startRule.max) {
+      const extra = shuffle(this.#skillRows().filter(r => !r.career && !r.locked && !this.pick.startFree.includes(r.name)).map(r => r.name));
+      this.pick.startFree.push(...extra.slice(0, this.startRule.max - this.pick.startFree.length));
+    }
 
     // Опыт: +1 к одной из двух лучших характеристик, если останется на навыки.
     const arch = this.archetype;

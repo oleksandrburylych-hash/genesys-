@@ -37,7 +37,7 @@ export class GMScreen extends HandlebarsApplicationMixin(ApplicationV2) {
     window: { title: "GENESYS.GM.Title", icon: "fa-solid fa-book-skull", resizable: true },
     position: { width: 900, height: 720 },
     actions: {
-      tab: GMScreen.#onTab, add: GMScreen.#onAdd, remove: GMScreen.#onRemove, count: GMScreen.#onCount,
+      gmTab: GMScreen.#onTab, add: GMScreen.#onAdd, remove: GMScreen.#onRemove, count: GMScreen.#onCount,
       place: GMScreen.#onPlace, clear: GMScreen.#onClear, award: GMScreen.#onAward, refTable: GMScreen.#onRefTable,
       toggleChar: GMScreen.#onToggleChar, open: GMScreen.#onOpen,
       genMode: GMScreen.#onGenMode, genKindEnc: GMScreen.#onGenEncKind, genDifficulty: GMScreen.#onGenDifficulty, genCreature: GMScreen.#onGenCreature,

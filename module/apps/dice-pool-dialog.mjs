@@ -78,7 +78,9 @@ export class DicePoolDialog extends HandlebarsApplicationMixin(ApplicationV2) {
   #storyPointInfo() {
     let points;
     try { points = game.settings.get("genesys-rpg", "storyPoints"); } catch { return null; }
-    const gm = game.user.isGM;
+    // Сторона определяется тем, кто бросает: персонаж игрока — очки игроков (даже если бросает ведущий за него),
+    // противник/NPC — очки ведущего.
+    const gm = this.actor ? !this.actor.hasPlayerOwner : game.user.isGM;
     const available = gm ? points.gm : points.player;
     return { gm, available, used: this.storyPointUsed, can: !this.storyPointUsed && available > 0 };
   }
@@ -91,7 +93,7 @@ export class DicePoolDialog extends HandlebarsApplicationMixin(ApplicationV2) {
     const info = this.#storyPointInfo();
     if (!info?.can) return;
     const { StoryPointsTracker } = await import("./story-points.mjs");
-    StoryPointsTracker.request(info.gm ? "useGM" : "usePlayer");
+    StoryPointsTracker.request(info.gm ? "useGM" : "usePlayer", { actor: this.actor?.name });
     if (info.gm) this.pool.upgradeDifficulty(); else this.pool.upgradeAbility();
     this.storyPointUsed = true;
     this.notes = [...this.notes, game.i18n.localize(info.gm ? "GENESYS.StoryPoints.UpgradedDifficulty" : "GENESYS.StoryPoints.UpgradedAbility")];

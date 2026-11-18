@@ -1004,3 +1004,37 @@
 .genesys .gs-veh .vm-btn[disabled] { opacity: .35; }
 .genesys .gs-veh .vehicle-misc { display: grid; grid-template-columns: repeat(6, minmax(0,1fr)); gap: 6px; }
 .genesys .gs-veh .vehicle-misc label { display: flex; flex-direction: column; font-family: var(--gs-head); text-transform: uppercase; font-size: 10.5px; color: var(--gs-muted); }
+
+/* ---------- Компактная шапка листа персонажа (≈ на треть ниже) ---------- */
+.genesys.sheet.character .gs-top { grid-template-columns: 1fr 104px 112px; gap: 10px; }
+.genesys.sheet.character .gs-kicker { display: none; }
+.genesys.sheet.character .gs-name { font-size: 22px; margin: 0 0 3px; padding: 0; }
+.genesys.sheet.character .gs-lines { display: grid; grid-template-columns: 1fr 1fr; gap: 0 14px; }
+.genesys.sheet.character .gs-line { padding: 0; gap: 6px; }
+.genesys.sheet.character .gs-line label { flex: 0 0 auto; font-size: 10px; }
+.genesys.sheet.character .gs-line a, .genesys.sheet.character .gs-line span { font-size: 13.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.genesys.sheet.character .gs-toolbar { margin-top: 4px; gap: 4px; }
+.genesys.sheet.character .gs-toolbar .gs-btn { padding: 1px 8px; font-size: 12px; min-height: 0; line-height: 20px; }
+.genesys.sheet.character .gs-icon-btn { font-size: 15px; }
+.genesys.sheet.character .gs-portrait { padding: 2px; }
+.genesys.sheet.character .gs-portrait img { max-height: 104px; height: 104px; }
+.genesys.sheet.character .gs-portrait .gs-statuses img { height: auto; }
+.genesys.sheet.character .gs-xp-col { gap: 6px; }
+.genesys.sheet.character .gs-xp-banner { border-radius: 16px 16px 5px 5px; }
+.genesys.sheet.character .gs-xp-value { font-size: 20px; line-height: 1.2; }
+.genesys.sheet.character .gs-xp-label { font-size: 9.5px; padding: 1px 0; }
+.genesys.sheet.character .gs-derived { gap: 10px; margin-top: 8px; }
+.genesys.sheet.character .gs-shield-title { font-size: 12.5px; padding: 2px 0 1px; }
+.genesys.sheet.character .gs-shield-body { min-height: 36px; border-radius: 12px 12px 0 0; }
+.genesys.sheet.character .gs-big { font-size: 22px; }
+.genesys.sheet.character .gs-current input { height: 26px; font-size: 18px; width: 38px !important; }
+.genesys.sheet.character .gs-shield-foot { padding: 0; border-radius: 0 0 10px 10px; }
+.genesys.sheet.character .gs-shield-foot span { font-size: 9px; }
+.genesys.sheet.character .gs-top-wrap .gs-ribbon { margin: 6px 0 4px; min-height: 18px; }
+.genesys.sheet.character .gs-top-wrap .gs-ribbon span { font-size: 11px; padding: 1px 28px; }
+.genesys.sheet.character .gs-chars { gap: 8px; padding: 0 4px 2px; }
+.genesys.sheet.character .gs-chars::before { height: 18px; top: 52%; }
+.genesys.sheet.character .gs-char { padding: 4px 4px 3px; border-radius: 34px 34px 6px 6px; flex-direction: row; justify-content: center; gap: 8px; flex-wrap: wrap; }
+.genesys.sheet.character .gs-char-circle { width: 40px; height: 40px; font-size: 22px; border-width: 2px; }
+.genesys.sheet.character .gs-char-name { margin-top: 0; font-size: 12px; }
+.genesys.sheet.character .gs-char-ctrl { flex-basis: 100%; justify-content: center; }

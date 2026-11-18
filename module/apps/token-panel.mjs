@@ -16,7 +16,7 @@ export class TokenPanel extends HandlebarsApplicationMixin(ApplicationV2) {
     window: { frame: false, positioned: false },
     actions: {
       adjust: TokenPanel.#onAdjust, attack: TokenPanel.#onAttack, status: TokenPanel.#onStatus,
-      sheet: TokenPanel.#onSheet, rest: TokenPanel.#onRest, pilot: TokenPanel.#onPilot, close: TokenPanel.#onClose
+      sheet: TokenPanel.#onSheet, rest: TokenPanel.#onRest, pilot: TokenPanel.#onPilot, hidePanel: TokenPanel.#onClose
     }
   };
 

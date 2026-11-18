@@ -41,4 +41,13 @@ roll.options.initiative = true; assert.equal(roll._evaluateTotal(), 0.99);
 
 // Стоимость опыта
 assert.equal(GENESYS.xp.skill(2, true), 10); assert.equal(GENESYS.xp.skill(1, false), 10); assert.equal(GENESYS.xp.characteristic(4), 40); assert.equal(GENESYS.xp.talent(3), 15);
+// Зарезервированные действия ApplicationV2 (ядро перехватывает их раньше наших обработчиков).
+{
+  const fs = await import("node:fs");
+  const walk = d => fs.readdirSync(d, { withFileTypes: true }).flatMap(e => e.isDirectory() ? walk(`${d}/${e.name}`) : [`${d}/${e.name}`]);
+  for (const f of walk(`${R}/templates`).filter(f => f.endsWith(".hbs"))) {
+    const bad = fs.readFileSync(f, "utf8").match(/data-action="(tab|close|toggleControls)"/);
+    assert.ok(!bad || /data-group=/.test(fs.readFileSync(f, "utf8")), `${f}: зарезервированное действие ${bad?.[1]}`);
+  }
+}
 console.log("logic tests passed");

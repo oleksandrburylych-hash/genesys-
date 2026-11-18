@@ -133,7 +133,16 @@ assert.equal(settings["genesys-rpg.worldSetupDone"], true);
 
 // ---- Creation wizard ----
 GENESYS.creation = JSON.parse(fs.readFileSync(path.join(R, "module/data/creation.json")));
-const { CreationWizard } = await import(`${R}/module/apps/creation-wizard.mjs`);
+const { CreationWizard, startingRule } = await import(`${R}/module/apps/creation-wizard.mjs`);
+{
+  const r1 = startingRule("По 1 рангу в двух разных некарьерных навыках (при создании персонажа нельзя поднять выше 2)");
+  assert.equal(r1.max, 2); assert.equal(r1.nonCareer, true);
+  assert.equal(startingRule("1 ранг в Атлетике, Координации или Стойкости").max, 1);
+  assert.equal(startingRule("1 ранг в Обаянии и 1 ранг в Стойкости").max, 2);
+  assert.equal(startingRule("нет").max, 0);
+  assert.equal(startingRule("После выбора карьеры — по 1 рангу в шести из восьми карьерных навыков").careerMax, 6);
+  assert.deepEqual(startingRule("2 ранга в Выдержке и 1 ранг в боевом навыке на выбор").double, ["выдерж"]);
+}
 const sk = (name, characteristic, category, key) => ({ name, type: "skill", system: { key, characteristic, category, rank: 0 }, id: name });
 const updates = []; const deleted = []; let createdItems = []; let archetypeApplied = null; let careerApplied = null;
 const actor = {
@@ -343,11 +352,11 @@ assert.ok(npcData.items.some(i => i.type === "skill" && /ranged/.test(i.system.k
 assert.ok(npcData.items.some(i => i.name === "Противник" && i.system.rank === 3), "nemesis Adversary 3");
 assert.ok(npcData.system.strain.max > 0 && npcData.system.wounds.max > 15, "nemesis thresholds");
 if (process.env.DUMP) fs.writeFileSync(path.join(process.env.DUMP, "gm-npc.html"), gm.html);
-G.tab.call(gm, null, { dataset: { tab: "xp" } }); await gm.render();
+G.gmTab.call(gm, null, { dataset: { tab: "xp" } }); await gm.render();
 assert.ok(gm.html.includes("Герой"), "characters listed for XP");
 await G.award.call(gm, null, { dataset: { amount: "15" } });
 assert.equal(pcLog[0]["system.experience.log"].at(-1).amount, 15, "XP awarded into log");
-G.tab.call(gm, null, { dataset: { tab: "reference" } }); await gm.render();
+G.gmTab.call(gm, null, { dataset: { tab: "reference" } }); await gm.render();
 assert.ok(gm.html.includes("gm-cost"), "spending table in reference");
 if (process.env.DUMP) fs.writeFileSync(path.join(process.env.DUMP, "gm-ref.html"), gm.html);
 

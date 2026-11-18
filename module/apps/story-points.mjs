@@ -49,7 +49,11 @@ export class StoryPointsTracker extends HandlebarsApplicationMixin(ApplicationV2
     };
   }
 
-  static #onUsePlayer() { StoryPointsTracker.request("usePlayer"); }
+  static #onUsePlayer() {
+    // Кто тратит: выделенный персонаж игрока, иначе свой персонаж; ведущий без выделения — от имени игроков.
+    const actor = canvas?.tokens?.controlled?.map(t => t.actor).find(a => a?.hasPlayerOwner) ?? game.user.character;
+    StoryPointsTracker.request("usePlayer", { actor: actor?.name });
+  }
   static #onUseGM() { StoryPointsTracker.request("useGM"); }
   static #onAdjust(event, target) {
     StoryPointsTracker.request("adjust", { pool: target.dataset.pool, delta: Number(target.dataset.delta) });
@@ -73,7 +77,9 @@ export class StoryPointsTracker extends HandlebarsApplicationMixin(ApplicationV2
     if (action === "usePlayer") {
       if (points.player <= 0) return;
       points.player -= 1; points.gm += 1;
-      message = game.i18n.format("GENESYS.StoryPoints.PlayerUsed", { name: user?.name ?? "?" });
+      const name = data?.actor || (user?.isGM ? null : (user?.character?.name ?? user?.name ?? "?"));
+      message = name ? game.i18n.format("GENESYS.StoryPoints.PlayerUsed", { name: foundry.utils.escapeHTML(name) })
+        : game.i18n.localize("GENESYS.StoryPoints.GMSpentPlayer");
     }
     else if (action === "useGM") {
       if (!user?.isGM || points.gm <= 0) return;

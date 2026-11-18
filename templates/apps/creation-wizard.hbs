@@ -78,15 +78,16 @@
 
     {{#if (eq step "skills")}}
     <div class="wz-body">
-      <div class="gs-ribbon"><span>{{localize "GENESYS.Wizard.CareerFree"}} ({{careerFreeCount}}/4)</span></div>
+      <div class="gs-ribbon"><span>{{localize "GENESYS.Wizard.CareerFree"}} ({{careerFreeCount}}/{{careerMax}})</span></div>
       <div class="wz-tags big">
         {{#each careerSkills}}<a class="wz-tag {{#if checked}}on{{/if}}" data-action="toggle" data-list="careerFree" data-name="{{name}}">{{name}}</a>{{/each}}
       </div>
-      <div class="gs-ribbon"><span>{{localize "GENESYS.Wizard.StartFree"}}</span></div>
+      {{#if startMax}}<div class="gs-ribbon"><span>{{localize "GENESYS.Wizard.StartFree"}} ({{startCount}}/{{startMax}})</span></div>
       {{#if startingText}}<p class="wz-note"><i class="fa-solid fa-circle-info"></i> {{startingText}}</p>{{/if}}
       <div class="wz-tags">
         {{#each allSkills}}<a class="wz-tag small {{#if checked}}on{{/if}} {{#if career}}career{{/if}}" data-action="toggle" data-list="startFree" data-name="{{name}}">{{name}}</a>{{/each}}
       </div>
+      {{else}}{{#if startingText}}<p class="wz-note"><i class="fa-solid fa-circle-info"></i> {{startingText}}</p>{{/if}}{{/if}}
     </div>
     {{/if}}
 

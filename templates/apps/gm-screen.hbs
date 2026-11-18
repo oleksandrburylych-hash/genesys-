@@ -1,6 +1,6 @@
 <div class="gm">
   <nav class="gm-tabs">
-    {{#each tabs}}<a class="gm-tab {{#if active}}active{{/if}}" data-action="tab" data-tab="{{key}}">{{localize label}}</a>{{/each}}
+    {{#each tabs}}<a class="gm-tab {{#if active}}active{{/if}}" data-action="gmTab" data-tab="{{key}}">{{localize label}}</a>{{/each}}
   </nav>
 
   {{#if (eq tab "encounter")}}

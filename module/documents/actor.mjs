@@ -508,7 +508,7 @@ export class GenesysActor extends Actor {
       return ui.notifications.warn(game.i18n.format("GENESYS.Heroic.NoStoryPoints", { cost: sys.storyCost }));
     }
     const { StoryPointsTracker } = await import("../apps/story-points.mjs");
-    for (let i = 0; i < sys.storyCost; i++) StoryPointsTracker.request("usePlayer");
+    for (let i = 0; i < sys.storyCost; i++) StoryPointsTracker.request("usePlayer", { actor: this.name });
     await heroic.update({ "system.uses": sys.uses + 1 });
     const upgrades = sys.upgrades.filter(u => u.count > 0).map(u => `<li>${foundry.utils.escapeHTML(u.name)}${u.count > 1 ? ` ×${u.count}` : ""}</li>`).join("");
     return ChatMessage.implementation.create({
