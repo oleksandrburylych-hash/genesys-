@@ -73,4 +73,17 @@ await applyTimedStatus(dz, "disoriented", { rounds: 1 });
 assert.equal(dz.effects[0].getFlag("genesys-rpg", "rounds"), 2, "reapply keeps longer duration");
 await applyTimedStatus(dz, "burning", { rounds: 3, burn: 6 });
 assert.equal(dz.effects[1].getFlag("genesys-rpg", "burn"), 6);
+// Критические травмы: сложность по характеристикам, слепота, «к следующей проверке».
+const hurt = mkActor({});
+hurt.itemTypes.injury = [{ name: "Мучительная рана", flags: {}, system: {} }, { name: "Слепота", flags: {}, system: {} }];
+hurt.getFlag = () => ({ setback: 1 });
+const ip = { difficulty: 2, setback: 0, boost: 1, ups: 0, upgradeDifficulty(n) { this.ups += n; } };
+C.applyStateModifiers(hurt, ip, { characteristic: "brawn", skillKey: "perception" });
+assert.equal(ip.difficulty, 3, "Agonizing Wound +1 difficulty on Brawn");
+assert.equal(ip.ups, 3, "Blinded: 2 upgrades + 1 for Perception");
+assert.equal(ip.setback, 1, "Off-Balance next check setback");
+const ip2 = { difficulty: 2, setback: 0, boost: 0, ups: 0, upgradeDifficulty(n) { this.ups += n; } };
+hurt.getFlag = () => null;
+C.applyStateModifiers(hurt, ip2, { characteristic: "presence" });
+assert.equal(ip2.difficulty, 2, "Agonizing Wound does not affect Presence");
 console.log("combat tests passed");

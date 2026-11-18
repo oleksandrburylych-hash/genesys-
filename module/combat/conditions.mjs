@@ -74,6 +74,12 @@ async function startOfTurn(combat, combatant) {
     }
   }
   if (!actor || combatant.getFlag(F, "burnRound") === combat.round) return;
+  // Критическая травма «Кровотечение»: раны и усталость в начале хода.
+  if (actor.itemTypes?.injury?.length) {
+    const { bleedAtTurnStart } = await import("../injuries.mjs");
+    await combatant.setFlag(F, "burnRound", combat.round);
+    await bleedAtTurnStart(actor);
+  }
   const burning = statusEffect(actor, "burning");
   if (!burning) return;
   await combatant.setFlag(F, "burnRound", combat.round);

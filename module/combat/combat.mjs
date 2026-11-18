@@ -1,5 +1,6 @@
 import { GENESYS, SYSTEM_ID } from "../config.mjs";
 import { applyTimedStatus } from "./conditions.mjs";
+import { injuryPoolModifiers } from "../injuries.mjs";
 
 /**
  * Боевая автоматика: цели, дистанция, защита, урон, состояния.
@@ -298,7 +299,7 @@ async function announce(actor, key) {
  * Применить к пулу модификаторы от состояний актёра (дезориентация, перегруз, критические травмы).
  * @returns {string[]} пояснения
  */
-export function applyStateModifiers(actor, pool, { characteristic } = {}) {
+export function applyStateModifiers(actor, pool, { characteristic, skillKey } = {}) {
   const notes = [];
   if (!actor) return notes;
   if (actor.statuses?.has("disoriented")) { pool.setback += 1; notes.push(game.i18n.localize("GENESYS.Combat.Disoriented")); }
@@ -313,5 +314,7 @@ export function applyStateModifiers(actor, pool, { characteristic } = {}) {
     const sb = inj.system.setback ?? 0;
     if (sb > 0) { pool.setback += sb; notes.push(game.i18n.format("GENESYS.Combat.InjuryPenalty", { name: inj.name, value: sb })); }
   }
+  // Механика критических травм Core (сложность, усиление, без бонуса, «к следующей проверке»).
+  notes.push(...injuryPoolModifiers(actor, pool, { characteristic, skillKey }));
   return notes;
 }

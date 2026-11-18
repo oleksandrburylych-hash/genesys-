@@ -3,6 +3,7 @@ import { DicePool } from "../dice/pool.mjs";
 import { DicePoolDialog } from "../apps/dice-pool-dialog.mjs";
 import { getTargets, attackModifiers, applyStateModifiers, actOnActor } from "../combat/combat.mjs";
 import { getAdventure } from "../worlds.mjs";
+import { injuryCharacteristicPenalty } from "../injuries.mjs";
 import { enabledAdventureKeys, adventureSkillKeys, magicCareerOnly } from "../helpers/adventure.mjs";
 
 /**
@@ -101,7 +102,9 @@ export class GenesysActor extends Actor {
   }
 
   characteristic(key) {
-    return this.system.characteristics?.[key]?.value ?? 0;
+    const v = this.system.characteristics?.[key]?.value ?? 0;
+    // «Ужасная травма»: характеристика считается на 1 меньше, пока травма не вылечена.
+    return Math.max(1, v - injuryCharacteristicPenalty(this, key));
   }
 
   /** Эффективный ранг навыка (у прислужников — по размеру группы). */
@@ -165,7 +168,7 @@ export class GenesysActor extends Actor {
       healTarget = target.actor;
     }
 
-    notes.push(...applyStateModifiers(this, pool, { characteristic: skill.system.characteristic }));
+    notes.push(...applyStateModifiers(this, pool, { characteristic: skill.system.characteristic, skillKey: skill.system.key }));
     const charLabel = game.i18n.localize(GENESYS.characteristics[skill.system.characteristic].abbr);
     label ??= `${skill.name} (${charLabel})`;
     const roll = skipDialog

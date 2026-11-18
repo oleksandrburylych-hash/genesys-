@@ -217,7 +217,9 @@ export class InjuryData extends BaseItemData {
       /** Диапазон на d100, например «01–05». */
       rollRange: new StringField({ required: true, blank: true, initial: "" }),
       /** Постоянный штраф к проверкам, пока травма не вылечена (кости штрафа). */
-      setback: intField(0, { max: 5 })
+      setback: intField(0, { max: 5 }),
+      /** Характеристика, выпавшая на d10 («Ужасная/Чудовищная травма»). */
+      characteristic: new StringField({ required: true, blank: true, initial: "" })
     };
   }
 }

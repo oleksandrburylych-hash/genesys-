@@ -136,14 +136,29 @@
       "label": "Initiative"
     },
     "Injury": {
-      "Range": "d100 range",
-      "Severity": "Severity",
-      "Roll": "Roll Critical Injury",
-      "Modifier": "Roll modifier",
-      "ModifierHint": "E.g. +10 per rank of Vicious. +10 per existing injury is added automatically.",
-      "RollFormula": "d100 + 10 × {existing} (existing injuries) + {modifier}",
-      "Setback": "Штраф к проверкам",
-      "SetbackHint": "Сколько костей штрафа травма добавляет ко всем проверкам, пока не вылечена"
+      "NoteDifficulty": "Травма «{name}»: +{value} к. сложности",
+      "NoteUpgrade": "Травма «{name}»: сложность усилена ×{value}",
+      "NoteNoBoost": "Травма «{name}»: кости бонуса убраны",
+      "NoteStrainPerAction": "Травма «{name}»: каждое действие — 2 усталости",
+      "NoteNextSetback": "Потеря равновесия: +{value} к. штрафа к этой проверке",
+      "NoteNextDifficulty": "Резкий удар: +{value} к. сложности к этой проверке",
+      "CharPerm": "{name}: «{char}» навсегда уменьшается на 1 (Чудовищная травма).",
+      "CharTemp": "{name}: «{char}» считается на 1 меньше, пока травма не вылечена.",
+      "Bleed": "{name} истекает кровью: +{wounds} рана, +{strain} усталость.",
+      "SPToGM": "Удручающая рана: очко сюжета переходит к ведущему.",
+      "SPToPlayers": "Удручающая рана: очко сюжета переходит к игрокам.",
+      "Note": {
+        "slowed": "{name} ({injury}): в следующий ход действует только в последней ячейке инициативы своей стороны.",
+        "drop": "{name} ({injury}): роняет предмет из рук.",
+        "noFreeManeuver": "{name} ({injury}): в следующий ход нет свободного манёвра.",
+        "noFreeManeuverLasting": "{name} ({injury}): пока травма не вылечена, нет свободного манёвра.",
+        "extraAttack": "{name} ({injury}): атакующий может сразу провести ещё одну атаку тем же пулом.",
+        "noVoluntaryStrain": "{name} ({injury}): не может добровольно получать усталость.",
+        "strainPerAction": "{name} ({injury}): каждое действие стоит 2 усталости, пока травма не вылечена.",
+        "limb": "{name} ({injury}): одна конечность повреждена — проверки с ней сложнее на 1 (ведущий выбирает конечность).",
+        "limbLost": "{name} ({injury}): конечность потеряна навсегда (нужен протез); пока травма не вылечена — +1 сложность ко всем проверкам.",
+        "endNigh": "{name} ({injury}): если не вылечить, умрёт после последней ячейки инициативы следующего раунда!"
+      }
     },
     "Key": "Key",
     "Money": "Money",

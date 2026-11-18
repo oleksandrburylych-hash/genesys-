@@ -178,6 +178,8 @@ export class DicePoolDialog extends HandlebarsApplicationMixin(ApplicationV2) {
   static async rollPool(pool, { label = "", actor = null, messageMode, rollOptions = {}, flavor } = {}) {
     const roll = GenesysRoll.fromPool(pool, { label, ...rollOptions });
     await roll.evaluate();
+    // Разовый штраф «к следующей проверке» (критические травмы) израсходован.
+    if (pool._consumeNext?.isOwner) await pool._consumeNext.unsetFlag("genesys-rpg", "nextCheck");
     const speaker = ChatMessage.implementation.getSpeaker({ actor });
     const options = messageMode ? { messageMode } : {};
     await roll.toMessage({ speaker, flavor }, options);

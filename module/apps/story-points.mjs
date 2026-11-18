@@ -80,6 +80,14 @@ export class StoryPointsTracker extends HandlebarsApplicationMixin(ApplicationV2
       points.gm -= 1; points.player += 1;
       message = game.i18n.localize("GENESYS.StoryPoints.GMUsed");
     }
+    else if (action === "transferToGM" || action === "transferToPlayers") {
+      // Критическая травма «Удручающая рана»: очко сюжета переходит к другой стороне.
+      const from = action === "transferToGM" ? "player" : "gm";
+      const to = from === "player" ? "gm" : "player";
+      if (points[from] <= 0) return;
+      points[from] -= 1; points[to] += 1;
+      message = game.i18n.localize(action === "transferToGM" ? "GENESYS.Injury.SPToGM" : "GENESYS.Injury.SPToPlayers");
+    }
     else if (action === "adjust") {
       if (!user?.isGM) return;
       const key = data.pool === "gm" ? "gm" : "player";
