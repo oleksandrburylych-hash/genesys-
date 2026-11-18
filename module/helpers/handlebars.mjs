@@ -1,6 +1,25 @@
 import { TEMPLATES } from "../config.mjs";
 
+/**
+ * Безопасный localize: Foundry v14 падает, если в {{localize x}} попала не строка (undefined, объект),
+ * и вместе с ним не открывается всё окно. Строки обрабатываются как обычно, остальное — выводится как есть.
+ */
+export function guardLocalizeHelper() {
+  const core = Handlebars.helpers?.localize;
+  if (core?._genesysSafe) return;
+  const safe = function (value, options) {
+    if (value instanceof Handlebars.SafeString) value = value.toString();
+    if (typeof value !== "string") return value == null ? "" : String(value.label ?? value);
+    if (core) return core.call(this, value, options);
+    const hash = options?.hash ?? {};
+    return Object.keys(hash).length ? game.i18n.format(value, hash) : game.i18n.localize(value);
+  };
+  safe._genesysSafe = true;
+  Handlebars.registerHelper("localize", safe);
+}
+
 export function registerHandlebarsHelpers() {
+  guardLocalizeHelper();
   /** Повторить блок n раз: {{#times 3}}…{{/times}} */
   Handlebars.registerHelper("times", function (n, options) {
     let out = "";
@@ -10,6 +29,8 @@ export function registerHandlebarsHelpers() {
 
   /** Иконка кубика пула. */
   Handlebars.registerHelper("genesysDie", function (key, title) {
+    // Без подписи Handlebars передаёт вторым аргументом свой объект options — его не переводим.
+    if (typeof title !== "string") title = "";
     const t = title ? ` data-tooltip="${Handlebars.escapeExpression(game.i18n.localize(title))}"` : "";
     return new Handlebars.SafeString(`<span class="genesys-die-icon ${Handlebars.escapeExpression(key)}"${t}></span>`);
   });

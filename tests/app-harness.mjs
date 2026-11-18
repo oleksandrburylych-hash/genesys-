@@ -10,7 +10,9 @@ const SRC = path.join(R, "packs-src");
 // ---- Foundry-like environment ----
 const lang = JSON.parse(fs.readFileSync(path.join(R, "lang/ru.json"), "utf8"));
 const loc = k => k.split(".").reduce((o, p) => o?.[p], lang) ?? k;
-H.registerHelper("localize", k => typeof k === "string" ? loc(k) : k);
+// Строго, как в Foundry v14: перевод не строки — ошибка (так ловятся подписи-объекты в шаблонах).
+const strictLoc = k => { if (typeof k !== "string") throw new Error(`localize: не строка (${typeof k})`); return loc(k); };
+H.registerHelper("localize", k => strictLoc(k?.toString && k instanceof H.SafeString ? k.toString() : k));
 H.registerHelper("checked", v => v ? "checked" : "");
 H.registerHelper("eq", (a, b) => a === b);
 H.registerHelper("or", (...a) => a.slice(0, -1).some(Boolean));
@@ -72,7 +74,7 @@ for (const dir of fs.readdirSync(SRC, { withFileTypes: true }).filter(e => e.isD
 }
 const created = [];
 globalThis.game = {
-  i18n: { localize: loc, format: (k, d) => loc(k) + JSON.stringify(d ?? {}), lang: "ru" },
+  i18n: { localize: strictLoc, format: (k, d) => loc(k) + JSON.stringify(d ?? {}), lang: "ru" },
   settings: { get: (n, k) => { if (!(`${n}.${k}` in settings)) throw new Error(`not registered ${n}.${k}`); return settings[`${n}.${k}`]; }, set: async (n, k, v) => { settings[`${n}.${k}`] = v; } },
   packs: { get: k => packs.get(k) },
   items: { filter: () => [], fromCompendium: d => ({ ...d.toObject() }) },
@@ -85,6 +87,11 @@ globalThis.game = {
   user: { isGM: true, hotbar: {}, assignHotbarMacro: async () => {} },
   system: { id: "genesys-rpg" }
 };
+// Настоящие помощники шаблонов системы (genesysDie, times, …) поверх упрощённых.
+globalThis.Handlebars = H;
+(await import(`${R}/module/helpers/handlebars.mjs`)).registerHandlebarsHelpers();
+// …но localize в тестах оставляем строгим, чтобы ловить подписи-не-строки в шаблонах.
+H.registerHelper("localize", k => strictLoc(k instanceof H.SafeString ? k.toString() : k));
 let fid = 0;
 globalThis.Folder = { implementation: { create: async d => ({ id: `f${++fid}`, ...d }) } };
 globalThis.Item = { implementation: { createDocuments: async d => created.push(...d) } };

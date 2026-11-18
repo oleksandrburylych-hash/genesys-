@@ -22,7 +22,7 @@ import { registerDiceSoNice } from "./module/dice/dice-so-nice.mjs";
 import { SpellCastDialog } from "./module/apps/spell-cast-dialog.mjs";
 import { GenesysItemSheet } from "./module/sheets/item-sheet.mjs";
 import { registerSettings } from "./module/helpers/settings.mjs";
-import { registerHandlebarsHelpers, preloadTemplates } from "./module/helpers/handlebars.mjs";
+import { registerHandlebarsHelpers, preloadTemplates, guardLocalizeHelper } from "./module/helpers/handlebars.mjs";
 import { registerChatHandlers, registerReactionSocket, loadSpendingTables, loadCreationData } from "./module/chat.mjs";
 import { registerCombatSocket } from "./module/combat/combat.mjs";
 import { registerCombatHooks } from "./module/combat/initiative.mjs";
@@ -130,7 +130,7 @@ Hooks.once("init", () => {
 /*  Ready                                       */
 /* -------------------------------------------- */
 
-Hooks.once("setup", () => { loadSpendingTables(); loadCreationData(); });
+Hooks.once("setup", () => { guardLocalizeHelper(); loadSpendingTables(); loadCreationData(); });
 
 Hooks.once("ready", () => {
   StoryPointsTracker.initialize();
