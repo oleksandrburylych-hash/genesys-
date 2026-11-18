@@ -3,7 +3,8 @@
     <div class="encumbrance {{#if system.encumbrance.over}}over{{/if}}">
       <span class="label">{{localize "GENESYS.Encumbrance"}}</span>
       <span class="value">{{system.encumbrance.value}} / {{system.encumbrance.threshold}}</span>
-      {{#if system.encumbrance.over}}<span class="warning" data-tooltip="GENESYS.Hint.Overencumbered"><i class="fa-solid fa-weight-hanging"></i></span>{{/if}}
+      {{#if system.encumbrance.over}}<span class="warning" data-tooltip="{{#if system.encumbrance.noFreeManeuver}}GENESYS.Equip.NoFreeManeuver{{else}}GENESYS.Hint.Overencumbered{{/if}}"><i class="fa-solid fa-weight-hanging"></i> +{{system.encumbrance.excess}}</span>{{/if}}
+      {{#if system.encumbrance.container}}<span class="enc-container" data-tooltip="GENESYS.Equip.ContainerHint"><i class="fa-solid fa-sack-xmark"></i> {{system.encumbrance.container}} +{{system.encumbrance.containerBonus}}</span>{{/if}}
     </div>
     <div class="money">
       <label>{{localize "GENESYS.Money"}}</label>
@@ -54,13 +55,14 @@
       <span>{{localize "GENESYS.EncShort"}}</span>
       <span>{{#if editable}}<a class="item-control" data-action="itemCreate" data-type="armor"><i class="fa-solid fa-plus"></i></a>{{/if}}</span>
     </header>
+    {{#if armorWarning}}<p class="gs-warning"><i class="fa-solid fa-triangle-exclamation"></i> {{armorWarning}}</p>{{/if}}
     <ol class="table-list">
       {{#each armor}}
-      <li class="table-row armor-cols {{#unless system.equipped}}unequipped{{/unless}}" data-item-id="{{id}}">
-        <span class="name-cell"><img src="{{img}}" alt=""><a data-action="itemEdit">{{name}}</a></span>
+      <li class="table-row armor-cols {{#unless system.equipped}}unequipped{{/unless}} {{#if extra}}extra{{/if}}" data-item-id="{{id}}">
+        <span class="name-cell"><img src="{{img}}" alt=""><a data-action="itemEdit">{{name}}</a>{{#if suit}} <span class="gs-tag-mini">{{localize "GENESYS.Worn"}}</span>{{/if}}</span>
         <span>{{system.defense}}</span>
         <span>{{system.soak}}</span>
-        <span>{{system.encumbrance}}</span>
+        <span data-tooltip="{{#if suit}}GENESYS.Equip.ArmorWornHint{{/if}}">{{enc}}{{#if suit}} <s>{{system.encumbrance}}</s>{{/if}}</span>
         <span class="item-controls">
           <a data-action="itemToggle" data-field="system.equipped" data-tooltip="GENESYS.Worn" class="{{#if system.equipped}}active{{/if}}"><i class="fa-solid fa-shirt"></i></a>
           {{#if @root.editable}}<a data-action="itemDelete"><i class="fa-solid fa-trash"></i></a>{{/if}}
@@ -81,14 +83,15 @@
     <ol class="table-list">
       {{#each gear}}
       <li class="table-row gear-cols {{#unless system.carried}}unequipped{{/unless}}" data-item-id="{{id}}">
-        <span class="name-cell"><img src="{{img}}" alt=""><a data-action="itemEdit">{{name}}</a></span>
+        <span class="name-cell"><img src="{{img}}" alt=""><a data-action="itemEdit">{{name}}</a>{{#if tags}}<small class="gs-gear-tags">{{tags}}</small>{{/if}}</span>
         <span class="quantity">
           <a data-action="itemQuantity" data-delta="-1"><i class="fa-solid fa-minus"></i></a>
           {{system.quantity}}
           <a data-action="itemQuantity" data-delta="1"><i class="fa-solid fa-plus"></i></a>
         </span>
-        <span>{{system.encumbrance}}</span>
+        <span>{{enc}}</span>
         <span class="item-controls">
+          {{#if wearable}}<a data-action="itemToggle" data-field="system.equipped" data-tooltip="GENESYS.Worn" class="{{#if system.equipped}}active{{/if}}"><i class="fa-solid fa-shirt"></i></a>{{/if}}
           <a data-action="itemToggle" data-field="system.carried" data-tooltip="GENESYS.Carried" class="{{#if system.carried}}active{{/if}}"><i class="fa-solid fa-sack"></i></a>
           <a data-action="itemChat" data-tooltip="GENESYS.ToChat"><i class="fa-solid fa-comment"></i></a>
           {{#if @root.editable}}<a data-action="itemDelete"><i class="fa-solid fa-trash"></i></a>{{/if}}

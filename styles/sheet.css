@@ -1038,3 +1038,22 @@
 .genesys.sheet.character .gs-char-circle { width: 40px; height: 40px; font-size: 22px; border-width: 2px; }
 .genesys.sheet.character .gs-char-name { margin-top: 0; font-size: 12px; }
 .genesys.sheet.character .gs-char-ctrl { flex-basis: 100%; justify-content: center; }
+
+/* ---------- Снаряжение и болеутоляющее ---------- */
+.genesys .gs-pk-btn { position: relative; color: #3d7a3a; }
+.genesys .gs-pk-btn.empty { color: var(--gs-muted); opacity: .6; }
+.genesys .gs-pk-count { position: absolute; right: -6px; bottom: -4px; min-width: 14px; height: 14px; padding: 0 2px; border-radius: 7px; background: #3d7a3a; color: #fff;
+  font: 10px/14px var(--gs-head); text-align: center; }
+.genesys .gs-gear-tags { display: block; color: var(--gs-muted); font-size: 10.5px; font-style: italic; line-height: 1.1; }
+.genesys .inventory .name-cell { flex-wrap: wrap; }
+.genesys .enc-container { margin-left: 8px; font-size: 12px; color: #3d7a3a; }
+.genesys .gs-warning { margin: 4px 0; padding: 4px 8px; border-radius: 6px; background: #fbe9d0; border: 1px solid #e2952a; color: #6b3c06; font-size: 12px; }
+.genesys .table-row.extra { opacity: .55; text-decoration: line-through; }
+.genesys .gs-tag-mini { font-size: 10px; padding: 0 5px; border-radius: 8px; background: var(--gs-navy); color: #fff; font-family: var(--gs-head); text-transform: uppercase; }
+.genesys .gs-gear-mech { margin-top: 8px; border: 1px solid var(--gs-line); border-radius: 8px; padding: 4px 10px 8px; }
+.genesys .gs-gear-mech legend { font-family: var(--gs-head); text-transform: uppercase; color: var(--gs-navy); padding: 0 6px; }
+.genesys .gs-mods > label { display: flex; gap: 6px; align-items: center; font-family: var(--gs-head); text-transform: uppercase; font-size: 12px; color: var(--gs-muted); }
+.genesys .gs-mod-row { display: flex; gap: 6px; align-items: center; margin: 3px 0; }
+.genesys .gs-mod-row select { flex: 1; } .genesys .gs-mod-row input { width: 60px; }
+.genesys .gs-pk-dialog { display: flex; flex-direction: column; gap: 6px; }
+.genesys .painkiller-report i { color: #3d7a3a; }

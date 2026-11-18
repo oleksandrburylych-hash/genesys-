@@ -35,6 +35,7 @@ import { registerLoot } from "./module/loot.mjs";
 import { registerInjuryHooks } from "./module/injuries.mjs";
 import { registerMerchant } from "./module/merchant.mjs";
 import { registerTokenPanel } from "./module/apps/token-panel.mjs";
+import { registerGearHooks } from "./module/gear.mjs";
 import { registerCompendiumFilter } from "./module/helpers/compendium-filter.mjs";
 import { openApp } from "./module/helpers/safe.mjs";
 import * as worlds from "./module/worlds.mjs";
@@ -140,6 +141,7 @@ Hooks.once("ready", () => {
   registerSocial();
   registerLoot();
   registerInjuryHooks();
+  registerGearHooks();
   registerMerchant();
   registerTokenPanel();
   // Первый запуск мира: мастер настройки для ведущего.

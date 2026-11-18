@@ -1,3 +1,4 @@
+import { gearSummary } from "../gear.mjs";
 import { GENESYS } from "../config.mjs";
 import { intField, bonusField, characteristicsField } from "./fields.mjs";
 
@@ -85,23 +86,14 @@ export default class CharacterData extends foundry.abstract.TypeDataModel {
     const actor = this.parent;
     const c = Object.fromEntries(Object.entries(this.characteristics).map(([k, v]) => [k, v.value]));
 
-    // Броня: суммируем надетую.
-    let armorSoak = 0, armorMelee = 0, armorRanged = 0, encumbrance = 0;
-    for (const item of actor.items) {
-      const s = item.system;
-      if (item.type === "armor" && s.equipped) {
-        armorSoak += s.totalSoak ?? s.soak;
-        armorMelee += s.totalDefense ?? s.defense;
-        armorRanged += s.totalDefense ?? s.defense;
-      }
-      // Нагрузка: учитываются носимые предметы. Надетая броня весит на 3 меньше.
-      if (["weapon", "armor", "gear"].includes(item.type) && s.carried !== false) {
-        const baseEnc = s.totalEncumbrance ?? s.encumbrance;
-        let enc = baseEnc * (s.quantity ?? 1);
-        if (item.type === "armor" && s.equipped) enc = Math.max(0, baseEnc - 3) * Math.max(1, s.quantity);
-        encumbrance += enc;
-      }
-    }
+    // Снаряжение: один надетый комплект брони (поглощение и защита), «Оборонительное»/«Отражающее» у оружия в руках,
+    // нагрузка (надетая броня −3, надетая одежда, связки), лучший рюкзак, импланты (module/gear.mjs).
+    const gear = gearSummary(actor);
+    this.gear = gear;
+    const armorSoak = gear.soak;
+    const encumbrance = gear.encumbrance;
+    const mod = k => gear.mods[k] ?? 0;
+    for (const k of Object.keys(c)) c[k] += mod(`char.${k}`);
 
     // Числовые эффекты талантов (Закалённый, Упорство, Оборона, Выносливость, Крепость…).
     const tb = { wounds: 0, strain: 0, soak: 0, meleeDefense: 0, rangedDefense: 0, critical: 0 };
@@ -117,15 +109,20 @@ export default class CharacterData extends foundry.abstract.TypeDataModel {
     // Порог ран/усталости: при создании — от текущих Силы/Воли, после — от зафиксированных.
     const woundChar = (!this.creation && this.wounds.creationChar) ? this.wounds.creationChar : c.brawn;
     const strainChar = (!this.creation && this.strain.creationChar) ? this.strain.creationChar : c.willpower;
-    this.wounds.max = this.wounds.base + woundChar + this.wounds.bonus + tb.wounds;
-    this.strain.max = this.strain.base + strainChar + this.strain.bonus + tb.strain;
-    this.soak.value = c.brawn + armorSoak + this.soak.bonus + tb.soak;
-    this.defense.melee.value = armorMelee + this.defense.melee.bonus + tb.meleeDefense;
-    this.defense.ranged.value = armorRanged + this.defense.ranged.bonus + tb.rangedDefense;
+    this.wounds.max = this.wounds.base + woundChar + this.wounds.bonus + tb.wounds + mod("wounds");
+    this.strain.max = Math.max(1, this.strain.base + strainChar + this.strain.bonus + tb.strain + mod("strain") - gear.strainPenalty);
+    this.soak.value = c.brawn + armorSoak + this.soak.bonus + tb.soak + mod("soak");
+    // Защита: броня «даёт» защиту (не складывается), «+N» складываются; итог не выше 4 (Core, «Ближняя и дальняя защиты»).
+    this.defense.melee.value = Math.min(4, gear.defense + gear.meleePlus + this.defense.melee.bonus + tb.meleeDefense);
+    this.defense.ranged.value = Math.min(4, gear.defense + gear.rangedPlus + this.defense.ranged.bonus + tb.rangedDefense);
     this.encumbrance.value = encumbrance;
-    this.encumbrance.threshold = 5 + c.brawn + this.encumbrance.bonus;
+    this.encumbrance.container = gear.container;
+    this.encumbrance.containerBonus = gear.thresholdBonus;
+    this.encumbrance.threshold = 5 + c.brawn + this.encumbrance.bonus + gear.thresholdBonus;
     this.encumbrance.over = encumbrance > this.encumbrance.threshold;
     this.encumbrance.excess = Math.max(0, encumbrance - this.encumbrance.threshold);
+    // Перегрузка на величину Силы и больше — нет свободного манёвра.
+    this.encumbrance.noFreeManeuver = this.encumbrance.excess > 0 && this.encumbrance.excess >= c.brawn;
 
     // Состояния
     this.wounds.critical = this.wounds.value > this.wounds.max;

@@ -3,6 +3,7 @@ import { xpLedger } from "../helpers/xp-ledger.mjs";
 import { actOnActor } from "../combat/combat.mjs";
 import { getAdventure } from "../worlds.mjs";
 import { GenesysBaseActorSheet } from "./base-actor-sheet.mjs";
+import { gearMechanics, itemEncumbrance, painkillersOf, painkillersUsed, painkillerHeal, painkillerTalentRanks } from "../gear.mjs";
 
 const { DialogV2 } = foundry.applications.api;
 const T = `${TEMPLATES}/actor`;
@@ -32,6 +33,7 @@ export class GenesysCharacterSheet extends GenesysBaseActorSheet {
       resetHeroic: GenesysCharacterSheet.#onResetHeroic,
       recoverStrain: GenesysCharacterSheet.#onRecoverStrain,
       restOvernight: GenesysCharacterSheet.#onRestOvernight,
+      painkiller: GenesysCharacterSheet.#onPainkiller,
       healInjury: GenesysCharacterSheet.#onHealInjury,
       creationWizard: GenesysCharacterSheet.#onCreationWizard,
       addMagicActions: GenesysCharacterSheet.#onAddMagicActions,
@@ -77,6 +79,28 @@ export class GenesysCharacterSheet extends GenesysBaseActorSheet {
     const context = await super._prepareContext(options);
     const actor = this.actor;
     const system = actor.system;
+
+    // Болеутоляющие: сколько есть и сколько принято за день.
+    const pk = painkillersOf(actor);
+    const pkCount = pk.reduce((s, i) => s + (i.system.quantity ?? 0), 0);
+    const pkUsed = painkillersUsed(actor, "wounds");
+    context.painkillers = { count: pkCount, tooltip: game.i18n.format("GENESYS.Painkiller.Tooltip", { count: pkCount, used: pkUsed, next: painkillerHeal(pkUsed, painkillerTalentRanks(actor)) }) };
+    // Снаряжение: свойства, надетость, нагрузка позиции.
+    const suit = system.gear?.suit ?? null;
+    context.gear = actor.itemTypes.gear.map(i => {
+      const m = gearMechanics(i);
+      const tags = [];
+      if (m.thresholdBonus) tags.push(game.i18n.format("GENESYS.Equip.TagThreshold", { value: m.thresholdBonus }));
+      if (m.wornEncumbrance !== null) tags.push(game.i18n.format("GENESYS.Equip.TagWorn", { value: m.wornEncumbrance }));
+      if (m.bundle > 1) tags.push(game.i18n.format("GENESYS.Equip.TagBundle", { value: m.bundle }));
+      if (m.painkiller) tags.push(game.i18n.localize(m.painkiller === "strain" ? "GENESYS.Equip.TagStim" : "GENESYS.Equip.TagPainkiller"));
+      if (m.implant) tags.push(game.i18n.localize("GENESYS.Equip.TagImplant"));
+      return { id: i.id, name: i.name, img: i.img, system: i.system, tags: tags.join(" · "), wearable: m.wornEncumbrance !== null,
+        enc: itemEncumbrance(i, { worn: !!i.system.equipped }), container: m.thresholdBonus > 0 && system.encumbrance?.container === i.name };
+    });
+    context.armor = actor.itemTypes.armor.map(i => ({ id: i.id, name: i.name, img: i.img, system: i.system,
+      suit: i === suit, extra: i.system.equipped && i !== suit, enc: itemEncumbrance(i, { worn: i === suit }) }));
+    context.armorWarning = system.gear?.extraArmor?.length ? game.i18n.format("GENESYS.Equip.ExtraArmor", { suit: suit?.name ?? "", names: system.gear.extraArmor.join(", ") }) : "";
 
     context.rankAction = "skillRank";
     context.careerLabel = "GENESYS.CareerSkill";
@@ -249,6 +273,7 @@ export class GenesysCharacterSheet extends GenesysBaseActorSheet {
 
   static #onRecoverStrain() { return this.actor.recoverStrain(); }
   static #onRestOvernight() { return this.actor.restOvernight(); }
+  static #onPainkiller() { return this.actor.usePainkiller(); }
 
   static #onHealInjury(event, target) {
     const item = this._getItem(target);

@@ -102,7 +102,8 @@ export class GenesysActor extends Actor {
   }
 
   characteristic(key) {
-    const v = this.system.characteristics?.[key]?.value ?? 0;
+    // Импланты (кибернетическая рука и т. п.) дают +1, не больше.
+    const v = (this.system.characteristics?.[key]?.value ?? 0) + (this.system.gear?.mods?.[`char.${key}`] ?? 0);
     // «Ужасная травма»: характеристика считается на 1 меньше, пока травма не вылечена.
     return Math.max(1, v - injuryCharacteristicPenalty(this, key));
   }
@@ -115,7 +116,8 @@ export class GenesysActor extends Actor {
       const alive = this.system.aliveMinions ?? this.system.groupSize;
       return Math.clamp(alive - 1, 0, 5);
     }
-    return skill.system.rank;
+    // Импланты (киберглаза: +1 к Бдительности и Вниманию).
+    return Math.min(5, skill.system.rank + (this.system.gear?.mods?.[`skill.${skill.system.key}`] ?? 0));
   }
 
   /** Пул для навыка. */
@@ -331,7 +333,8 @@ export class GenesysActor extends Actor {
 
   /** Изменить характеристику. В режиме создания — за опыт. */
   async changeCharacteristic(key, delta) {
-    const current = this.characteristic(key);
+    // Покупается сама характеристика — без травм и имплантов.
+    const current = this.system.characteristics?.[key]?.value ?? 0;
     const next = current + delta;
     const creation = this.isCharacter && this.system.creation;
     const max = creation ? GENESYS.xp.maxCharacteristicCreation : GENESYS.xp.maxCharacteristic;
@@ -470,7 +473,7 @@ export class GenesysActor extends Actor {
 
   /** Ночной отдых: вся усталость снимается, лечится 1 рана. */
   async restOvernight() {
-    const upd = { "system.strain.value": 0 };
+    const upd = { "system.strain.value": 0, [`flags.${SYSTEM_ID}.painkillers`]: { wounds: 0, strain: 0 } };
     if (this.system.wounds) upd["system.wounds.value"] = Math.max(0, this.system.wounds.value - 1);
     await this.update(upd);
     if (this.statuses?.has("incapacitated") && this.system.wounds.value - 1 <= this.system.wounds.max) {
@@ -480,6 +483,45 @@ export class GenesysActor extends Actor {
       speaker: ChatMessage.implementation.getSpeaker({ actor: this }),
       content: `<div class="genesys">${game.i18n.format("GENESYS.Rest.Overnight", { name: foundry.utils.escapeHTML(this.name) })}</div>`
     });
+  }
+
+  /**
+   * Болеутоляющее (Core, «Описание экипировки»): манёвр, на себя или на персонажа вплотную.
+   * Первое за день лечит 5 ран, каждое следующее — на 1 меньше, шестое и далее — без эффекта;
+   * «Знаток болеутоляющих» применяющего: +1 рана за ранг. Предмет расходуется. Счётчик сбрасывает ночной отдых.
+   */
+  async usePainkiller() {
+    const { painkillersOf, painkillersUsed, painkillerHeal, painkillerTalentRanks, gearMechanics } = await import("../gear.mjs");
+    const esc = foundry.utils.escapeHTML;
+    const stock = painkillersOf(this);
+    if (!stock.length) return ui.notifications.warn(game.i18n.format("GENESYS.Painkiller.None", { name: this.name }));
+    const targetActor = [...(game.user.targets ?? [])].map(t => t.actor).find(a => a && a !== this && a.system?.wounds);
+    let item = stock[0], patient = this;
+    if (stock.length > 1 || targetActor) {
+      const items = stock.map((i, n) => `<option value="${i.id}" ${n ? "" : "selected"}>${esc(i.name)} (${i.system.quantity})</option>`).join("");
+      const who = targetActor ? `<label class="gs-pk-who"><input type="radio" name="who" value="self" checked> ${esc(this.name)}</label>
+        <label class="gs-pk-who"><input type="radio" name="who" value="target"> ${esc(targetActor.name)}</label>` : "";
+      const res = await foundry.applications.api.DialogV2.prompt({
+        window: { title: game.i18n.localize("GENESYS.Painkiller.Title"), icon: "fa-solid fa-pills" },
+        content: `<div class="genesys gs-pk-dialog"><p>${game.i18n.localize("GENESYS.Painkiller.Hint")}</p>
+          ${stock.length > 1 ? `<select name="item">${items}</select>` : ""}${who}</div>`,
+        ok: { label: game.i18n.localize("GENESYS.Painkiller.Use"), callback: (ev, button) => ({ item: button.form.elements.item?.value, who: button.form.elements.who?.value }) },
+        rejectClose: false
+      });
+      if (!res) return null;
+      item = stock.find(i => i.id === res.item) ?? item;
+      if (res.who === "target") patient = targetActor;
+    }
+    const kind = gearMechanics(item).painkiller;
+    const used = painkillersUsed(patient, kind);
+    const track = kind === "strain" ? patient.system.strain : patient.system.wounds;
+    if (used >= 5) return ui.notifications.warn(game.i18n.format("GENESYS.Painkiller.Limit", { name: patient.name }));
+    if (!track?.value) return ui.notifications.info(game.i18n.format(kind === "strain" ? "GENESYS.Painkiller.NoStrain" : "GENESYS.Painkiller.NoWounds", { name: patient.name }));
+    const bonus = kind === "wounds" ? painkillerTalentRanks(this) : 0;
+    const qty = item.system.quantity ?? 1;
+    if (qty > 1) await item.update({ "system.quantity": qty - 1 }); else await item.delete();
+    const { actOnActor } = await import("../combat/combat.mjs");
+    return actOnActor(patient, "painkiller", { kind, bonus, item: item.name, by: this.name, heal: painkillerHeal(used, bonus) });
   }
 
   /** Попытка излечения критической травмы: проверка Стойкости со сложностью по тяжести. */

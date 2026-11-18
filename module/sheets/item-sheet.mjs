@@ -57,6 +57,22 @@ export class GenesysItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
     if (item.actor) skillOptions = item.actor.itemTypes.skill.filter(s => s.system.category === "combat").map(s => s.name);
     else skillOptions = GENESYS.defaultSkills.filter(s => s.category === "combat").map(s => game.i18n.localize(`GENESYS.Skill.${s.key}`));
 
+    if (item.type === "gear") {
+      const { inferGear } = await import("../gear.mjs");
+      const inf = inferGear(item.name, system.description);
+      const L = k => game.i18n.localize(k);
+      context.gearAuto = {
+        threshold: inf.thresholdBonus, worn: inf.wornEncumbrance ?? "—", bundle: inf.bundle,
+        painkiller: inf.painkiller ? L(`GENESYS.Equip.Pk.${inf.painkiller}`) : L("GENESYS.Equip.Pk.none"), implant: inf.implant,
+        mods: inf.mods.map(m => `${m.target} +${m.value}`).join(", ")
+      };
+      context.painkillerChoices = { "": "GENESYS.Equip.Pk.auto", wounds: "GENESYS.Equip.Pk.wounds", strain: "GENESYS.Equip.Pk.strain", none: "GENESYS.Equip.Pk.none" };
+      context.modTargets = {
+        soak: "GENESYS.Soak", wounds: "GENESYS.Equip.ModWounds", strain: "GENESYS.Equip.ModStrain",
+        ...Object.fromEntries(Object.entries(GENESYS.characteristics).map(([k, v]) => [`char.${k}`, v.label ?? v])),
+        ...Object.fromEntries(GENESYS.defaultSkills.map(s => [`skill.${s.key}`, `GENESYS.Skill.${s.key}`]))
+      };
+    }
     Object.assign(context, {
       item,
       system,
@@ -128,7 +144,8 @@ export class GenesysItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
   static #onAddRow(event, target) {
     const field = target.dataset.field;
     const rows = foundry.utils.deepClone(foundry.utils.getProperty(this.item, field) ?? []);
-    rows.push(field === "system.effects"
+    if (field === "system.mods") rows.push({ target: "soak", value: 1 });
+    else rows.push(field === "system.effects"
       ? { name: game.i18n.localize("GENESYS.Spell.NewEffect"), difficulty: 1, skills: [], repeatable: false, description: "" }
       : { name: game.i18n.localize("GENESYS.NewAbility"), description: "" });
     return this.item.update({ [field]: rows });

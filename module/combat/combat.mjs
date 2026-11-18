@@ -255,6 +255,24 @@ const ACTIONS = {
     if (effect) await effect.setFlag(SYSTEM_ID, "upgrades", upgrades);
   },
 
+  /** Болеутоляющее: data { kind: wounds|strain, bonus, item, by }. Считает принятые за день, лечит 5/4/3/2/1 (+ранги таланта). */
+  async painkiller(actor, { kind = "wounds", bonus = 0, item = "", by = "" } = {}) {
+    const { painkillersUsed, painkillerHeal } = await import("../gear.mjs");
+    const used = painkillersUsed(actor, kind);
+    const track = kind === "strain" ? actor.system.strain : actor.system.wounds;
+    if (!track) return;
+    const healed = Math.min(painkillerHeal(used, bonus), track.value);
+    const path = kind === "strain" ? "system.strain.value" : "system.wounds.value";
+    await actor.update({ [path]: track.value - healed, [`flags.${SYSTEM_ID}.painkillers.${kind}`]: used + 1 });
+    if (kind === "wounds" && actor.statuses?.has("incapacitated") && track.value - healed <= track.max) await actor.toggleStatusEffect("incapacitated", { active: false });
+    const esc = foundry.utils.escapeHTML;
+    await ChatMessage.implementation.create({
+      speaker: ChatMessage.implementation.getSpeaker({ actor }),
+      content: `<div class="genesys status-report painkiller-report"><i class="fa-solid fa-pills"></i> ${game.i18n.format(kind === "strain" ? "GENESYS.Painkiller.ReportStrain" : "GENESYS.Painkiller.Report", {
+        by: esc(by || actor.name), name: esc(actor.name), item: esc(item), value: healed, n: used + 1, left: Math.max(0, 4 - used) })}${bonus ? ` <small>(${game.i18n.format("GENESYS.Painkiller.Talent", { value: bonus })})</small>` : ""}</div>`
+    });
+  },
+
   /** Бросок критической травмы. data { modifier } */
   async critical(actor, { modifier = 0 } = {}) {
     await actor.rollCriticalInjury({ modifier });

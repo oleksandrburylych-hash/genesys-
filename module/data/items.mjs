@@ -190,7 +190,17 @@ export class GearData extends BaseItemData {
       ...super.defineSchema(),
       ...physicalFields(),
       /** Магический фокус: бонус к урону заклинания Атака (0 — не фокус или без бонуса). */
-      implementDamage: intField(0)
+      implementDamage: intField(0),
+      /** Свойства снаряжения (пусто — определяются по тексту предмета, см. module/gear.mjs). */
+      thresholdBonus: new NumberField({ required: false, nullable: true, integer: true, initial: null }),
+      wornEncumbrance: new NumberField({ required: false, nullable: true, integer: true, min: 0, initial: null }),
+      bundle: new NumberField({ required: true, nullable: false, integer: true, min: 1, initial: 1 }),
+      painkiller: new StringField({ required: true, blank: true, initial: "", choices: ["", "wounds", "strain", "none"] }),
+      implant: new BooleanField({ initial: false }),
+      mods: new ArrayField(new SchemaField({
+        target: new StringField({ required: true, blank: false, initial: "soak" }),
+        value: new NumberField({ required: true, nullable: false, integer: true, initial: 1 })
+      }))
     };
   }
 }

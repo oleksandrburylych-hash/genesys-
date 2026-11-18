@@ -50,4 +50,68 @@ assert.equal(GENESYS.xp.skill(2, true), 10); assert.equal(GENESYS.xp.skill(1, fa
     assert.ok(!bad || /data-group=/.test(fs.readFileSync(f, "utf8")), `${f}: зарезервированное действие ${bad?.[1]}`);
   }
 }
+// Все ключи перевода GENESYS.Xxx… из кода и шаблонов есть в ru.json.
+{
+  const fs = await import("node:fs");
+  const ru = JSON.parse(fs.readFileSync(`${R}/lang/ru.json`, "utf8"));
+  const has = k => k.split(".").reduce((o, p) => (o && typeof o === "object" ? o[p] : undefined), ru) !== undefined;
+  const walk = d => fs.readdirSync(d, { withFileTypes: true }).flatMap(e => e.isDirectory() ? walk(`${d}/${e.name}`) : [`${d}/${e.name}`]);
+  const missing = new Set();
+  for (const f of [...walk(`${R}/module`), ...walk(`${R}/templates`), `${R}/genesys.mjs`].filter(f => /\.(mjs|hbs)$/.test(f))) {
+    for (const k of fs.readFileSync(f, "utf8").match(/GENESYS\.[A-Z][A-Za-z0-9_]*(?:\.[A-Za-z0-9_]+)*/g) ?? []) {
+      if (/\.$/.test(k) || has(k)) continue;
+      // Ключи, собираемые по частям (`GENESYS.Skill.${key}`), проверяются только целиком.
+      missing.add(`${k} (${f.replace(R + "/", "")})`);
+    }
+  }
+  assert.deepEqual([...missing].filter(m => !/\$\{/.test(m)), [], "нет ключей перевода");
+}
+
+// Снаряжение: рюкзак, надетая одежда, связки, броня, импланты, болеутоляющее.
+{
+  globalThis.Hooks ??= { on() {} };
+  const G = await import(`${R}/module/gear.mjs`);
+  const pack = G.inferGear("Рюкзак", "Пока персонаж носит рюкзак, его порог нагрузки увеличивается на 4.");
+  assert.equal(pack.thresholdBonus, 4);
+  assert.equal(G.inferGear("Седельные сумки", "Увеличивают порог нагрузки скакуна на 4").thresholdBonus, 0);
+  assert.equal(G.inferGear("Бездонный рюкзак", "вмещает предметы с суммарной нагрузкой до 12, а сам всегда имеет нагрузку 2").thresholdBonus, 12);
+  assert.equal(G.inferGear("Зимняя одежда", "Надетая имеет нагрузку 1.").wornEncumbrance, 1);
+  assert.equal(G.inferGear("Эльфийские сапоги", "Нагрузка надетых сапог — 0.").wornEncumbrance, 0);
+  assert.equal(G.inferGear("Сухой паёк", "Нагрузка указана за 5 пайков.").bundle, 5);
+  assert.equal(G.inferGear("Болеутоляющее", "").painkiller, "wounds");
+  assert.equal(G.inferGear("Эликсир бодрости", "Персонаж сразу восстанавливает 5 усталости. Каждый следующий эликсир за тот же день восстанавливает на 1 меньше.").painkiller, "strain");
+  const arm = G.inferGear("Имплантированная броня", "+1 к поглощению. Киберимплант: устанавливается…");
+  assert.ok(arm.implant); assert.deepEqual(arm.mods, [{ target: "soak", value: 1 }]); assert.equal(arm.strainPenalty, 1);
+  assert.deepEqual([0, 1, 2, 3, 4, 5, 6].map(n => G.painkillerHeal(n)), [5, 4, 3, 2, 1, 0, 0]);
+  assert.equal(G.painkillerHeal(0, 2), 7); assert.equal(G.painkillerHeal(5, 2), 0);
+
+  const it = (type, name, system) => ({ type, name, system: { quantity: 1, carried: true, equipped: false, description: "", ...system } });
+  const items = [
+    it("armor", "Кольчуга", { soak: 2, defense: 0, encumbrance: 3, equipped: true }),
+    it("armor", "Плотная куртка", { soak: 1, defense: 0, encumbrance: 1, equipped: true }),
+    it("armor", "Латы (запасные)", { soak: 2, defense: 1, encumbrance: 4 }),
+    it("gear", "Рюкзак", { encumbrance: 0, description: "порог нагрузки увеличивается на 4" }),
+    it("gear", "Рюкзак", { encumbrance: 0, description: "порог нагрузки увеличивается на 4", quantity: 1 }),
+    it("gear", "Зимняя одежда", { encumbrance: 4, equipped: true, description: "Надетая имеет нагрузку 1." }),
+    it("gear", "Сухой паёк", { encumbrance: 1, quantity: 7, description: "Нагрузка указана за 5 пайков." }),
+    it("gear", "Верёвка", { encumbrance: 1, quantity: 2 }),
+    it("gear", "Имплантированная броня", { encumbrance: 0, description: "Киберимплант" }),
+    { type: "weapon", name: "Щит", system: { quantity: 1, carried: true, equipped: true, encumbrance: 1, qualityRating: re => re.test("Оборонительное") ? 1 : 0 } }
+  ];
+  const sum = G.gearSummary({ items });
+  // Кольчуга (лучшая) надета: 3−3 = 0; куртка надета вторым комплектом — считается полностью (1); латы 4;
+  // зимняя одежда надета: 1; паёк 7 шт. по 5 → 2; верёвка 2; щит 1. Итого 11.
+  assert.equal(sum.suit.name, "Кольчуга"); assert.deepEqual(sum.extraArmor, ["Плотная куртка"]);
+  assert.equal(sum.soak, 2); assert.equal(sum.meleePlus, 1); assert.equal(sum.rangedPlus, 0);
+  assert.equal(sum.encumbrance, 11);
+  assert.equal(sum.thresholdBonus, 4, "два рюкзака не складываются");
+  assert.equal(sum.mods.soak, 1); assert.equal(sum.strainPenalty, 1);
+  // Две брони одной позицией (количество 2): одна надета (−3), вторая в руках.
+  assert.equal(G.itemEncumbrance(it("armor", "Кольчуга", { encumbrance: 3, quantity: 2 }), { worn: true }), 3);
+
+  assert.ok(G.isStackable({ type: "gear", system: {} }));
+  assert.ok(!G.isStackable({ type: "armor", system: {} }));
+  assert.ok(G.isStackable({ type: "weapon", system: { qualities: [{ name: "Ограниченный боезапас", rating: 1 }] } }));
+  assert.ok(!G.isStackable({ type: "weapon", system: { qualities: [{ name: "Точное" }] } }));
+}
 console.log("logic tests passed");
