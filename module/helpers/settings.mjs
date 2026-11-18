@@ -21,6 +21,15 @@ export function registerSettings() {
     default: []
   });
 
+  game.settings.register(SYSTEM_ID, "tokenPanel", {
+    name: "GENESYS.TokenPanel.Setting",
+    hint: "GENESYS.TokenPanel.SettingHint",
+    scope: "client",
+    config: true,
+    type: Boolean,
+    default: true
+  });
+
   // Текущая социальная сцена (давление на цель), общая для всех клиентов.
   game.settings.register(SYSTEM_ID, "socialEncounter", {
     scope: "world",

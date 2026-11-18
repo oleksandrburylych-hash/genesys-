@@ -941,3 +941,33 @@
 .genesys .gm-locs { display: flex; flex-wrap: wrap; gap: 4px; margin: 4px 0; }
 .genesys .shop-card .loot-name small { display: block; color: var(--gs-muted); font-size: 10.5px; }
 .genesys .shop-actions { margin-top: 6px; display: flex; justify-content: flex-end; }
+
+/* ---------- Панель на токене ---------- */
+#genesys-token-panel { position: fixed; left: 12px; bottom: 150px; width: 300px; z-index: 70; }
+.genesys.token-panel .tp { position: relative; padding: 8px; border-radius: 12px; font-family: var(--gs-body); color: #fff;
+  background: linear-gradient(180deg, rgba(31,53,87,.96), rgba(18,26,42,.96)); border: 2px solid var(--gs-gold); box-shadow: 0 6px 18px rgba(0,0,0,.5); }
+.genesys .tp-close { position: absolute; top: 4px; right: 8px; color: rgba(255,255,255,.6); }
+.genesys .tp-head { display: flex; gap: 8px; align-items: center; margin-bottom: 6px; }
+.genesys .tp-head img { width: 44px; height: 44px; border-radius: 8px; border: 2px solid var(--gs-gold); object-fit: cover; cursor: pointer; background: #222; }
+.genesys .tp-id b { display: block; font-family: var(--gs-head); text-transform: uppercase; font-size: 15px; letter-spacing: .03em; }
+.genesys .tp-stats { display: flex; gap: 10px; font-size: 12px; color: #ffd77a; }
+.genesys .tp-bar { display: flex; align-items: center; gap: 4px; margin: 3px 0; }
+.genesys .tp-bar > a { width: 20px; text-align: center; color: rgba(255,255,255,.7); }
+.genesys .tp-bar > a:hover { color: var(--gs-gold); }
+.genesys .tp-track { position: relative; flex: 1; height: 18px; background: rgba(255,255,255,.12); border-radius: 9px; overflow: hidden; }
+.genesys .tp-fill { height: 100%; }
+.genesys .tp-bar.wounds .tp-fill { background: linear-gradient(90deg, #a8322d, #8e2229); }
+.genesys .tp-bar.strain .tp-fill { background: linear-gradient(90deg, #4f7bb3, #2c4c7c); }
+.genesys .tp-bar.over .tp-track { box-shadow: 0 0 0 2px #ff6b5e; }
+.genesys .tp-track span { position: absolute; inset: 0; text-align: center; font: 11px/18px var(--gs-head); text-transform: uppercase; letter-spacing: .04em; }
+.genesys .tp-statuses { display: flex; flex-wrap: wrap; gap: 3px; margin: 4px 0; }
+.genesys .tp-weapons { display: flex; flex-direction: column; gap: 3px; margin: 6px 0; }
+.genesys .tp-weapon { display: flex; align-items: center; gap: 6px; padding: 3px 6px; border-radius: 6px; background: rgba(255,255,255,.08); color: #fff; }
+.genesys .tp-weapon:hover { background: rgba(142,34,41,.8); box-shadow: 0 0 6px rgba(242,165,49,.6); }
+.genesys .tp-weapon img { width: 24px; height: 24px; border: none; }
+.genesys .tp-weapon span { flex: 1; font-size: 12.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.genesys .tp-weapon b { font-family: var(--gs-head); color: #ffd77a; }
+.genesys .tp-tools { display: flex; gap: 6px; align-items: center; }
+.genesys .tp-tools select { flex: 1; height: 26px; background: rgba(255,255,255,.92); color: #1d1d1f; border-radius: 6px; }
+.genesys .tp-btn { width: 28px; height: 26px; display: grid; place-items: center; border-radius: 6px; background: rgba(255,255,255,.12); color: #fff; }
+.genesys .tp-btn:hover { background: var(--gs-maroon); }
