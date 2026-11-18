@@ -114,4 +114,19 @@ assert.equal(GENESYS.xp.skill(2, true), 10); assert.equal(GENESYS.xp.skill(1, fa
   assert.ok(G.isStackable({ type: "weapon", system: { qualities: [{ name: "Ограниченный боезапас", rating: 1 }] } }));
   assert.ok(!G.isStackable({ type: "weapon", system: { qualities: [{ name: "Точное" }] } }));
 }
+// Медицина (Core, табл. I.3–3): сложность по ранам, исцеление успехами (+Хирург), усталость преимуществами.
+{
+  const M = await import(`${R}/module/medicine.mjs`);
+  assert.equal(M.woundDifficulty(3, 12), 1); assert.equal(M.woundDifficulty(6, 12), 1); assert.equal(M.woundDifficulty(7, 12), 2);
+  assert.equal(M.woundDifficulty(12, 12), 2); assert.equal(M.woundDifficulty(13, 12), 3);
+  const mk = (opts, res) => ({ options: { medicine: opts }, results: res });
+  assert.deepEqual(M.medicineOutcome(mk({ mode: "wounds", patientName: "А", surgeon: 1 }, { isSuccess: true, success: 2, advantage: 1 })),
+    { injury: false, patient: "А", success: true, wounds: 3, strain: 1, surgeon: 1 });
+  assert.equal(M.medicineOutcome(mk({ mode: "wounds", patientName: "А" }, { isSuccess: false, success: 0, advantage: 2 })).strain, 0);
+  assert.equal(M.medicineOutcome(mk({ mode: "injury", injuryName: "Х", patientName: "А" }, { isSuccess: true })).healed, true);
+  const talent = (name, nameEn, rank) => ({ name, flags: { "genesys-rpg": { nameEn } }, system: { ranked: true, rank } });
+  assert.equal(M.surgeonRanks({ itemTypes: { talent: [talent("Хирург", "Surgeon", 2)] } }), 2);
+  assert.ok(M.hasMedkit({ itemTypes: { gear: [{ name: "Аптечка первой помощи", system: { quantity: 1, carried: true } }] } }));
+  assert.ok(!M.hasMedkit({ itemTypes: { gear: [{ name: "Верёвка", system: { quantity: 1 } }] } }));
+}
 console.log("logic tests passed");

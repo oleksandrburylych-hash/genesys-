@@ -34,6 +34,7 @@ export class GenesysCharacterSheet extends GenesysBaseActorSheet {
       recoverStrain: GenesysCharacterSheet.#onRecoverStrain,
       restOvernight: GenesysCharacterSheet.#onRestOvernight,
       painkiller: GenesysCharacterSheet.#onPainkiller,
+      medicine: GenesysCharacterSheet.#onMedicine,
       healInjury: GenesysCharacterSheet.#onHealInjury,
       creationWizard: GenesysCharacterSheet.#onCreationWizard,
       addMagicActions: GenesysCharacterSheet.#onAddMagicActions,
@@ -274,6 +275,7 @@ export class GenesysCharacterSheet extends GenesysBaseActorSheet {
   static #onRecoverStrain() { return this.actor.recoverStrain(); }
   static #onRestOvernight() { return this.actor.restOvernight(); }
   static #onPainkiller() { return this.actor.usePainkiller(); }
+  static #onMedicine() { return this.actor.useMedicine(); }
 
   static #onHealInjury(event, target) {
     const item = this._getItem(target);

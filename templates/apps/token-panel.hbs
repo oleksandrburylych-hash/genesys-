@@ -41,6 +41,7 @@
     <select name="skill"><option value="">{{localize "GENESYS.TokenPanel.Skill"}}</option>{{#each skills}}<option value="{{id}}">{{name}} ({{rank}})</option>{{/each}}</select>
     {{/if}}
     {{#if vehicle}}<a class="tp-btn" data-action="pilot" data-tooltip="GENESYS.Vehicle.PilotHint"><i class="fa-solid fa-car"></i></a>{{/if}}
+    {{#if character}}<a class="tp-btn" data-action="medicine" data-tooltip="GENESYS.Medicine.ButtonHint"><i class="fa-solid fa-stethoscope"></i></a>{{/if}}
     {{#if character}}<a class="tp-btn" data-action="painkiller" data-tooltip="GENESYS.Painkiller.Title"><i class="fa-solid fa-pills"></i></a>{{/if}}
     {{#if character}}<a class="tp-btn" data-action="rest" data-tooltip="GENESYS.Rest.RecoverHint"><i class="fa-solid fa-mug-hot"></i></a>{{/if}}
     <a class="tp-btn" data-action="sheet" data-tooltip="GENESYS.TokenPanel.Sheet"><i class="fa-solid fa-id-card"></i></a>

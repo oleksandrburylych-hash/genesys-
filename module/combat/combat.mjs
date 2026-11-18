@@ -273,6 +273,25 @@ const ACTIONS = {
     });
   },
 
+  /** Медицина: data { mode: wounds|injury, wounds, strain, encounter, injuryId, healed, healerId, now }. */
+  async medicine(actor, { mode = "wounds", wounds = 0, strain = 0, encounter = "", injuryId = null, healed = false, healerId = "", now = 0 } = {}) {
+    if (mode === "wounds") {
+      const sys = actor.system;
+      const upd = { [`flags.${SYSTEM_ID}.medicineEncounter`]: encounter };
+      if (wounds && sys.wounds) upd["system.wounds.value"] = Math.max(0, sys.wounds.value - wounds);
+      if (strain && sys.strain) upd["system.strain.value"] = Math.max(0, sys.strain.value - strain);
+      await actor.update(upd);
+      if (actor.statuses?.has("incapacitated") && actor.system.wounds.value <= actor.system.wounds.max && actor.system.strain?.value <= actor.system.strain?.max) {
+        await actor.toggleStatusEffect("incapacitated", { active: false });
+      }
+      return;
+    }
+    const inj = actor.items.get(injuryId);
+    if (!inj) return;
+    if (healed) await inj.delete();
+    else await inj.setFlag(SYSTEM_ID, `healAttempts.${healerId}`, now);
+  },
+
   /** Бросок критической травмы. data { modifier } */
   async critical(actor, { modifier = 0 } = {}) {
     await actor.rollCriticalInjury({ modifier });

@@ -16,7 +16,7 @@ export class TokenPanel extends HandlebarsApplicationMixin(ApplicationV2) {
     window: { frame: false, positioned: false },
     actions: {
       adjust: TokenPanel.#onAdjust, attack: TokenPanel.#onAttack, status: TokenPanel.#onStatus,
-      sheet: TokenPanel.#onSheet, rest: TokenPanel.#onRest, pilot: TokenPanel.#onPilot, painkiller: TokenPanel.#onPainkiller, hidePanel: TokenPanel.#onClose
+      sheet: TokenPanel.#onSheet, rest: TokenPanel.#onRest, pilot: TokenPanel.#onPilot, painkiller: TokenPanel.#onPainkiller, medicine: TokenPanel.#onMedicine, hidePanel: TokenPanel.#onClose
     }
   };
 
@@ -96,6 +96,7 @@ export class TokenPanel extends HandlebarsApplicationMixin(ApplicationV2) {
   static #onRest() { return this.actor.recoverStrain?.(); }
   static #onPilot() { return this.actor.rollPilot?.(); }
   static #onPainkiller() { return this.actor.usePainkiller?.(); }
+  static #onMedicine() { return this.actor.useMedicine?.(); }
   static #onClose() { TokenPanel.hide(); }
 }
 

@@ -1176,3 +1176,10 @@
 .genesys .gm-interp-col.mixed li { break-inside: avoid; }
 .genesys.interp-card.mixed { border-left: 4px solid; border-image: linear-gradient(#e0a516, #8e2229) 1; padding-left: 6px; }
 .genesys .gm-ref .gs-ribbon span { color: #fff; }
+
+/* ---------- Медицина ---------- */
+.genesys-roll .roll-medicine { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; padding: 6px 10px; border-radius: 10px; font-size: 13px;
+  background: #eef7ec; border: 1px solid #9cc79a; color: #1f4d1d; }
+.genesys-roll .roll-medicine.fail { background: #f6ecec; border-color: #d4a3a3; color: #6a1b1b; }
+.genesys-roll .roll-medicine i { font-size: 16px; }
+.genesys .gs-med-dialog select { width: 100%; }

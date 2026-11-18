@@ -162,14 +162,10 @@ export class GenesysActor extends Actor {
       notes.push(game.i18n.format("GENESYS.Combat.Opposed", { name: target.actor.name, skill: oppSkill?.name ?? game.i18n.localize(`GENESYS.Skill.${opposedKey}`) }));
     }
 
-    // Медицина по цели: сложность по ранам цели, после броска — лечение.
-    let healTarget = null;
-    if (key === "medicine" && target?.actor.system.wounds) {
-      const w = target.actor.system.wounds;
-      pool.setDifficulty(w.value > w.max ? 3 : (w.value > w.max / 2 ? 2 : 1));
-      if (target.actor === this) { pool.upgradeDifficulty(2); notes.push(game.i18n.localize("GENESYS.Combat.HealSelf")); }
-      notes.push(game.i18n.format("GENESYS.Combat.HealTarget", { name: target.actor.name, wounds: w.value, max: w.max }));
-      healTarget = target.actor;
+    // Медицина по выбранной цели — лечение по правилам (module/medicine.mjs).
+    if (key === "medicine" && !rollOptions.medicine && target?.actor.system?.wounds) {
+      const { rollMedicine } = await import("../medicine.mjs");
+      return rollMedicine(this, { patient: target.actor });
     }
 
     notes.push(...applyStateModifiers(this, pool, { characteristic: skill.system.characteristic, skillKey: skill.system.key }));
@@ -179,10 +175,6 @@ export class GenesysActor extends Actor {
       ? await DicePoolDialog.rollPool(pool, { label, actor: this, rollOptions })
       : await DicePoolDialog.prompt({ pool, label, actor: this, rollOptions, notes });
 
-    if (roll && healTarget) {
-      const r = roll.results;
-      if (r.isSuccess) await actOnActor(healTarget, "adjust", { wounds: -r.success, strain: -r.advantage });
-    }
     return roll;
   }
 
@@ -526,8 +518,24 @@ export class GenesysActor extends Actor {
     return actOnActor(patient, "painkiller", { kind, bonus, item: item.name, by: this.name, heal: painkillerHeal(used, bonus) });
   }
 
-  /** Попытка излечения критической травмы: проверка Стойкости со сложностью по тяжести. */
+  /** Медицина: лечить выбранную цель или себя (раны или критическую травму). */
+  async useMedicine(opts = {}) {
+    const { rollMedicine } = await import("../medicine.mjs");
+    return rollMedicine(this, opts);
+  }
+
+  /**
+   * Лечить критическую травму проверкой Медицины (Core: сложность = тяжесть). Лечит выделенный токен другого персонажа,
+   * иначе сам пострадавший (сложность +2).
+   */
   async healInjury(injury) {
+    const healer = canvas?.tokens?.controlled?.map(t => t.actor).find(a => a && a !== this && a.getSkill?.("medicine")) ?? this;
+    const { rollMedicine } = await import("../medicine.mjs");
+    return rollMedicine(healer, { patient: this, injury });
+  }
+
+  /** (Старое) Излечение травмы проверкой Стойкости — оставлено для макросов. */
+  async healInjuryResilience(injury) {
     const skill = this.getSkill("resilience");
     const severity = Math.max(1, injury.system.severity || 1);
     const pool = skill ? this.getSkillPool(skill, severity) : new DicePool({ ability: this.characteristic("brawn"), difficulty: severity });

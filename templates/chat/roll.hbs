@@ -23,6 +23,19 @@
     </div>
   </div>
 
+  {{#if medicine}}
+  <div class="roll-medicine {{#if medicine.injury}}{{#if medicine.healed}}ok{{else}}fail{{/if}}{{else}}{{#if medicine.success}}ok{{else}}fail{{/if}}{{/if}}">
+    <i class="fa-solid fa-staff-snake"></i>
+    {{#if medicine.injury}}
+      {{#if medicine.healed}}{{localize "GENESYS.Medicine.InjuryHealed"}} <b>{{medicine.name}}</b> — {{medicine.patient}}
+      {{else}}{{localize "GENESYS.Medicine.InjuryNotHealed"}} <b>{{medicine.name}}</b>{{/if}}
+    {{else}}
+      {{#if medicine.success}}<b>{{medicine.patient}}</b>: −{{medicine.wounds}} {{localize "GENESYS.Medicine.WoundsShort"}}{{#if medicine.strain}}, −{{medicine.strain}} {{localize "GENESYS.Medicine.StrainShort"}}{{/if}}{{#if medicine.surgeon}} <small>({{localize "GENESYS.Medicine.SurgeonShort"}} +{{medicine.surgeon}})</small>{{/if}}
+      {{else}}{{localize "GENESYS.Medicine.NoEffect"}}{{/if}}
+    {{/if}}
+  </div>
+  {{/if}}
+
   {{#if spell}}
   <div class="roll-spell">
     {{#if spell.concentration}}<div class="spell-line"><i class="fa-solid fa-brain"></i> {{localize "GENESYS.Spell.Concentration"}}</div>{{/if}}

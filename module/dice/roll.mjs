@@ -127,7 +127,11 @@ export class GenesysRoll extends Roll {
     const raw = r.raw ?? {};
     const rawText = ["success", "failure", "advantage", "threat", "triumph", "despair"].filter(k => raw[k]).map(k => `${L(`GENESYS.Symbol.${k}`)}: ${raw[k]}`).join(" · ");
 
+    const { medicineOutcome } = await import("../medicine.mjs");
+    const medicine = isPrivate ? null : medicineOutcome(this);
+
     return {
+      medicine,
       net, rawText,
       fear,
       isPrivate,
