@@ -8,7 +8,12 @@
       </div>
       <div class="gs-adv-type">
         <select name="system.adversaryType" class="gs-adv-badge">{{selectOptions adversaryTypes selected=system.adversaryType localize=true}}</select>
-        {{#if threat}}<span class="gs-adv-threat" data-tooltip="GENESYS.GM.ThreatHint"><i class="fa-solid fa-skull"></i> {{localize "GENESYS.GM.Threat"}} {{threat}}</span>{{/if}}
+        <span class="gs-adv-pl" data-tooltip="GENESYS.GM.PLHint">
+          <label class="c">⚔<input type="number" name="system.power.combat" value="{{pl.combat}}" min="0" data-dtype="Number"></label>
+          <label class="s">✦<input type="number" name="system.power.social" value="{{pl.social}}" min="0" data-dtype="Number"></label>
+          <label class="g">⚙<input type="number" name="system.power.general" value="{{pl.general}}" min="0" data-dtype="Number"></label>
+          {{#unless pl.listed}}<i>≈</i>{{/unless}}
+        </span>
       </div>
       {{> "systems/genesys-rpg/templates/parts/creature.hbs"}}
       {{> "systems/genesys-rpg/templates/parts/worlds.hbs"}}

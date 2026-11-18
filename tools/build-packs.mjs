@@ -14,7 +14,7 @@ import { compilePack } from "@foundryvtt/foundryvtt-cli";
 import { pickIcon, DEFAULTS } from "./icon-rules.mjs";
 import { tilePath, TILE_DIR } from "./icon-tiles.mjs";
 import { worldsFor } from "./world-rules.mjs";
-import { creatureTypeFor, lootTagsFor } from "../module/creatures.mjs";
+import { creatureTypeFor, lootTagsFor, listedPower, estimatePower } from "../module/creatures.mjs";
 import { ADVENTURES, WORLD_KEYS } from "../module/worlds.mjs";
 
 /** Картинка документа: явно заданная или плашка game-icons по названию. */
@@ -205,6 +205,11 @@ function buildPack(pack) {
     if (doc.type === "adversary") {
       out.system.creatureType ||= creatureTypeFor(doc);
       if (!out.system.loot?.length) out.system.loot = lootTagsFor({ ...doc, system: out.system }, out.system.creatureType);
+      // Уровни силы: указанные в книге (EPG) или оценка по правилам быстрого создания EPG.
+      if (!out.system.power?.combat) {
+        const p = listedPower({ system: out.system }) ?? estimatePower({ ...doc, system: out.system });
+        out.system.power = { combat: p.combat, social: p.social, general: p.general, listed: !!p.listed };
+      }
     }
     if (isActor) {
       out.items = (doc.items ?? []).map((it, i) => embeddedItem(id, it, i));

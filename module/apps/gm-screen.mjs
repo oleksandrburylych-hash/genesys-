@@ -1,8 +1,8 @@
 import { GENESYS, SYSTEM_ID, TEMPLATES } from "../config.mjs";
 import { ADVENTURES, getAdventure, filterForAdventure } from "../worlds.mjs";
 import { enabledAdventureKeys, docAllowed } from "../helpers/adventure.mjs";
-import { CREATURE_TYPES, LOOT_TAGS, threatOf } from "../creatures.mjs";
-import { ENCOUNTER_DIFFICULTY, LOOT_LEVELS, heroPower, generateEncounter, encounterThreat, generateLoot } from "../encounters.mjs";
+import { CREATURE_TYPES, LOOT_TAGS, threatOf, powerOf, minionGroupPower } from "../creatures.mjs";
+import { ENCOUNTER_DIFFICULTY, LOOT_LEVELS, partyChallenge, generateEncounter, encounterPower, encounterSize, generateLoot } from "../encounters.mjs";
 
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
@@ -24,7 +24,7 @@ export class GMScreen extends HandlebarsApplicationMixin(ApplicationV2) {
     this.encounter = [];
     this.xp = { amount: 10, reason: "", selected: null };
     this.refTable = "combatPositive";
-    this.gen = { mode: "budget", difficulty: 1, count: 4, party: null, creatures: new Set(), kinds: new Set(["minion", "rival", "nemesis"]) };
+    this.gen = { encKind: "combat", mode: "budget", difficulty: 1, count: 4, party: null, creatures: new Set(), kinds: new Set(["minion", "rival", "nemesis"]) };
     this.loot = { source: "encounter", level: 3, result: null };
     this.shopPool = null;
   }
@@ -39,7 +39,7 @@ export class GMScreen extends HandlebarsApplicationMixin(ApplicationV2) {
       tab: GMScreen.#onTab, add: GMScreen.#onAdd, remove: GMScreen.#onRemove, count: GMScreen.#onCount,
       place: GMScreen.#onPlace, clear: GMScreen.#onClear, award: GMScreen.#onAward, refTable: GMScreen.#onRefTable,
       toggleChar: GMScreen.#onToggleChar, open: GMScreen.#onOpen,
-      genMode: GMScreen.#onGenMode, genDifficulty: GMScreen.#onGenDifficulty, genCreature: GMScreen.#onGenCreature,
+      genMode: GMScreen.#onGenMode, genKindEnc: GMScreen.#onGenEncKind, genDifficulty: GMScreen.#onGenDifficulty, genCreature: GMScreen.#onGenCreature,
       genKind: GMScreen.#onGenKind, generate: GMScreen.#onGenerate,
       lootSource: GMScreen.#onLootSource, lootLevel: GMScreen.#onLootLevel, lootGenerate: GMScreen.#onLootGenerate,
       lootRemove: GMScreen.#onLootRemove, lootToChat: GMScreen.#onLootToChat, npcGenerate: GMScreen.#onNpcGenerate,
@@ -107,23 +107,25 @@ export class GMScreen extends HandlebarsApplicationMixin(ApplicationV2) {
         .sort((a, b) => a.name.localeCompare(b.name, game.i18n.lang))
         .slice(0, 200)
         .map(d => ({ uuid: d.uuid, name: d.name, img: d.img, type: L(GENESYS.adversaryTypes[d.system.adversaryType] ?? ""),
-          folder: d.folder?.name ?? "", power: combatPower(d), wounds: d.system.wounds?.max, soak: d.system.soak?.value }));
+          folder: d.folder?.name ?? "", power: powerOf(d), wounds: d.system.wounds?.max, soak: d.system.soak?.value }));
       ctx.encounter = this.encounter.map((e, i) => ({ ...e, index: i }));
-      const powers = this.encounter.map(e => e.power).filter(p => p !== null);
-      ctx.totalPower = powers.length ? powers.reduce((s, p) => s + p, 0) : null;
       ctx.hasScene = !!globalThis.canvas?.scene;
-      // Генератор
+      // Генератор по правилам EPG: рейтинг испытания группы (табл. II.2–6).
       const party = this.partyActors;
-      const power = Math.round(party.reduce((s2, a) => s2 + heroPower(a), 0) * 10) / 10 || 8;
-      const partySize = this.gen.party ?? party.length ?? 0;
-      const partyPower = this.gen.party ? Math.round(this.gen.party * (power / Math.max(1, party.length || this.gen.party)) * 10) / 10 : power;
+      const ch = partyChallenge(party, this.gen.party);
+      const kind = this.gen.encKind;
+      const single = encounterSize(this.encounter) === 1 && ch.size >= 3 ? 1 : 0;
       const diff = ENCOUNTER_DIFFICULTY[this.gen.difficulty];
-      this.budget = Math.round(partyPower * diff.mult * 10) / 10;
-      const threat = encounterThreat(this.encounter);
+      this.budget = Math.max(1, Math.round((ch.cr + single) * diff.mult));
+      this.partySize = ch.size;
+      const threat = encounterPower(this.encounter, kind);
+      const count = encounterSize(this.encounter);
       ctx.gen = {
-        mode: this.gen.mode, budgetMode: this.gen.mode === "budget", count: this.gen.count, partySize: partySize || 4, partyPower,
+        mode: this.gen.mode, budgetMode: this.gen.mode === "budget", count: this.gen.count, partySize: ch.size, avgXP: ch.avgXP,
+        crBase: ch.base, cr: ch.cr + single, mods: [...ch.mods, ...(single ? [{ key: "single", value: 1 }] : [])].map(m => ({ label: `GENESYS.GM.CRMod.${m.key}`, value: m.value })),
+        encKind: kind, combat: kind === "combat",
         budget: this.budget, threat, pct: Math.min(100, Math.round(100 * threat / Math.max(1, this.budget))),
-        over: threat > this.budget * 1.15,
+        over: threat > this.budget, tooMany: count > ch.size, count,
         difficulties: ENCOUNTER_DIFFICULTY.map((d, i) => ({ index: i, label: `GENESYS.GM.Diff.${d.key}`, active: i === this.gen.difficulty })),
         creatures: Object.entries(CREATURE_TYPES).map(([k, c]) => ({ key: k, label: c.label, img: `systems/genesys-rpg/assets/icons/gi/creature/${c.icon}.svg`, on: this.gen.creatures.has(k) })),
         kinds: ["minion", "rival", "nemesis"].map(k => ({ key: k, label: GENESYS.adversaryTypes[k], on: this.gen.kinds.has(k) }))
@@ -206,6 +208,7 @@ export class GMScreen extends HandlebarsApplicationMixin(ApplicationV2) {
   }
 
   static #onGenMode(event, target) { this.gen.mode = target.dataset.mode; this.render(); }
+  static #onGenEncKind(event, target) { this.gen.encKind = target.dataset.kind; this.render(); }
   static #onGenDifficulty(event, target) { this.gen.difficulty = Number(target.dataset.index); this.render(); }
   static #onGenCreature(event, target) {
     const k = target.dataset.key;
@@ -225,7 +228,8 @@ export class GMScreen extends HandlebarsApplicationMixin(ApplicationV2) {
     const types = this.gen.creatures;
     const candidates = filterForAdventure(lib, adv).filter(d => (!types.size || types.has(d.system.creatureType))
       && !/скакун|вьючное|ездовое/i.test(d.name));
-    const list = generateEncounter(candidates, { mode: this.gen.mode, budget: this.budget ?? 8, count: this.gen.count, kinds: this.gen.kinds });
+    const list = generateEncounter(candidates, { mode: this.gen.mode, budget: this.budget ?? 8, count: this.gen.count, kinds: this.gen.kinds,
+      kind: this.gen.encKind, maxEntries: this.partySize ?? 4 });
     if (!list.length) return ui.notifications.warn("GENESYS.GM.GenNothing", { localize: true });
     this.encounter = list;
     this.render();
@@ -282,7 +286,15 @@ export class GMScreen extends HandlebarsApplicationMixin(ApplicationV2) {
     }
     if (d.npc) this.npc = { ...(this.npc ?? {}), ...d.npc, power: Number(d.npc.power ?? this.npc?.power ?? 2) };
     if (d.filter?.adventure && d.filter.adventure !== this.filter.adventure) this.shopPool = null;
-    if (d.enc) for (const [i, v] of Object.entries(d.enc)) if (this.encounter[i]) this.encounter[i].count = Math.max(1, Number(v.count) || 1);
+    if (d.enc) for (const [i, v] of Object.entries(d.enc)) {
+      const e = this.encounter[i];
+      if (!e) continue;
+      e.count = Math.max(1, Number(v.count) || 1);
+      if (e.minion) {
+        const doc = this.lib?.find(x => x.uuid === e.uuid);
+        if (doc) e.power = minionGroupPower(powerOf(doc), e.count);
+      }
+    }
     const name = event?.target?.name ?? "";
     if (name.startsWith("filter.")) {
       this.render().then(() => {
@@ -308,7 +320,9 @@ export class GMScreen extends HandlebarsApplicationMixin(ApplicationV2) {
     const existing = this.encounter.find(e => e.uuid === doc.uuid);
     if (existing) existing.count += minion ? 0 : 1;
     if (!existing || minion) {
-      if (!existing) this.encounter.push({ uuid: doc.uuid, name: doc.name, img: doc.img, minion, count: minion ? (doc.system.groupSize || 3) : 1, groups: 1, power: combatPower(doc), threat: threatOf(doc) });
+      const size = minion ? (doc.system.groupSize || 3) : 1;
+      if (!existing) this.encounter.push({ uuid: doc.uuid, name: doc.name, img: doc.img, minion, count: size, groups: 1,
+        power: minion ? minionGroupPower(powerOf(doc), size) : powerOf(doc), threat: threatOf(doc) });
       else existing.groups = (existing.groups ?? 1) + 1;
     }
     this.render();

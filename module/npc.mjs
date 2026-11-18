@@ -1,6 +1,7 @@
 import { GENESYS, SYSTEM_ID } from "./config.mjs";
 import { getAdventure, filterForAdventure } from "./worlds.mjs";
 import { adventureSkillKeys, docAllowed } from "./helpers/adventure.mjs";
+import { estimatePower } from "./creatures.mjs";
 
 /**
  * Генератор NPC: роль × тип противника × сила (1 — слабый, 2 — опытный, 3 — грозный) × приключение.
@@ -126,16 +127,19 @@ export async function generateNPC({ role = "fighter", kind = "rival", power = 2,
 
   const folder = game.folders.find(f => f.type === "Actor" && f.name === L("GENESYS.NPC.Folder"))
     ?? await Folder.implementation.create({ name: L("GENESYS.NPC.Folder"), type: "Actor", color: "#1f3557" });
+  const system = {
+    adversaryType: kind, characteristics: Object.fromEntries(Object.entries(ch).map(([k, v]) => [k, { value: v }])),
+    wounds: { value: 0, max: wounds }, strain: { value: 0, max: strain }, soak: { value: soak },
+    defense: { melee: { value: defense }, ranged: { value: defense } }, groupSize: kind === "minion" ? 3 : 1,
+    description, worlds: adv.key === "all" ? [] : adv.worlds, creatureType: "humanoid",
+    loot: ["coins", "gear", ...(weapon ? ["weapons"] : []), ...(R.armor ? ["armor"] : [])], motivations: mot
+  };
+  const pw = estimatePower({ system, items });
+  system.power = { combat: pw.combat, social: pw.social, general: pw.general, listed: false };
   return Actor.implementation.create({
     name, type: "adversary", folder: folder.id,
     img: `systems/genesys-rpg/assets/icons/gi/adversary/${R.icon}.svg`,
-    system: {
-      adversaryType: kind, characteristics: Object.fromEntries(Object.entries(ch).map(([k, v]) => [k, { value: v }])),
-      wounds: { value: 0, max: wounds }, strain: { value: 0, max: strain }, soak: { value: soak },
-      defense: { melee: { value: defense }, ranged: { value: defense } }, groupSize: kind === "minion" ? 3 : 1,
-      description, worlds: adv.key === "all" ? [] : adv.worlds, creatureType: "humanoid",
-      loot: ["coins", "gear", ...(weapon ? ["weapons"] : []), ...(R.armor ? ["armor"] : [])], motivations: mot
-    },
+    system,
     items
   });
 }

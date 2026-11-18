@@ -1,5 +1,5 @@
 import { GENESYS, TEMPLATES } from "../config.mjs";
-import { CREATURE_TYPES, LOOT_TAGS, threatOf } from "../creatures.mjs";
+import { CREATURE_TYPES, LOOT_TAGS, powerOf } from "../creatures.mjs";
 import { GenesysBaseActorSheet } from "./base-actor-sheet.mjs";
 
 /**
@@ -26,7 +26,7 @@ export class GenesysAdversarySheet extends GenesysBaseActorSheet {
     const sys = this.actor.system;
     context.creatureTypes = Object.entries(CREATURE_TYPES).map(([key, t]) => ({ key, label: t.label, selected: key === sys.creatureType }));
     context.lootChoices = Object.entries(LOOT_TAGS).map(([key, t]) => ({ key, label: t.label, on: (sys.loot ?? []).includes(key) }));
-    context.threat = threatOf(this.actor);
+    context.pl = powerOf(this.actor);
     context.woundsOver = sys.wounds.value > (sys.isMinion ? sys.groupWounds : sys.wounds.max);
     context.motivations = ["strength", "flaw", "desire", "fear"].map(k => ({ key: k, label: GENESYS.motivations[k], name: sys.motivations?.[k]?.name ?? "" }));
     const system = this.actor.system;

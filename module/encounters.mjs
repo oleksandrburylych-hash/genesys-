@@ -1,18 +1,28 @@
 /**
- * Генерация встреч и добычи (оценки системы — в книгах Genesys нет формулы баланса боя).
+ * Генерация встреч и добычи по Expanded Player's Guide (гл. II.2, «Уровни силы противников»).
  *
- * Угроза противника — creatures.mjs#threatOf (приспешник ≈ 1, соперник ≈ 3–8, главарь ≈ 8–30).
- * Сила героя ≈ 4 при создании и растёт с опытом. Бюджет встречи = сила группы × множитель сложности.
+ * У противника три уровня силы: боевой, социальный, общий (creatures.mjs#powerOf). У группы —
+ * рейтинг испытания (табл. II.2–6) по среднему опыту, полученному в игре (без стартового), и числу героев,
+ * с поправками за мощное оружие, броню и атаки по нескольким целям. Сумма боевых (или социальных) уровней
+ * противников встречи не должна превышать рейтинг. Противников (группа приспешников — один) не больше, чем героев.
  */
-import { threatOf, NATURAL_WEAPON } from "./creatures.mjs";
+import { threatOf, NATURAL_WEAPON, powerOf, minionGroupPower } from "./creatures.mjs";
 
-/** Сложность встречи: множитель силы группы. */
+/** Сложность встречи: «обычная» — рейтинг по таблице книги, остальные — множитель системы. */
 export const ENCOUNTER_DIFFICULTY = [
-  { key: "easy", mult: 0.5 },
-  { key: "average", mult: 0.8 },
-  { key: "hard", mult: 1.1 },
+  { key: "easy", mult: 0.6 },
+  { key: "average", mult: 1 },
+  { key: "hard", mult: 1.25 },
   { key: "daunting", mult: 1.5 },
   { key: "deadly", mult: 2.0 }
+];
+
+/** Табл. II.2–6: рейтинг испытания по опыту героя (верхняя граница) и числу героев (1–6). */
+export const CR_TABLE = [
+  [25, [2, 2, 3, 5, 6, 6]], [50, [2, 3, 5, 7, 8, 8]], [75, [3, 3, 6, 8, 9, 10]], [100, [3, 4, 7, 10, 11, 12]],
+  [150, [4, 5, 8, 11, 12, 13]], [200, [4, 6, 9, 12, 13, 14]], [250, [4, 7, 10, 14, 15, 16]], [300, [5, 8, 11, 15, 16, 18]],
+  [400, [5, 9, 12, 16, 17, 19]], [500, [6, 9, 14, 18, 18, 20]], [600, [6, 10, 15, 18, 19, 21]], [750, [7, 10, 16, 19, 20, 21]],
+  [1000, [7, 11, 16, 20, 20, 22]], [Infinity, [8, 12, 17, 20, 21, 22]]
 ];
 
 /** Щедрость добычи: 1 — почти ничего … 5 — сокровищница. */
@@ -27,70 +37,114 @@ export const LOOT_LEVELS = [
 const rand = (a, b) => a + Math.random() * (b - a);
 const pick = list => list[Math.floor(Math.random() * list.length)];
 
-/** Сила одного героя: 4 при создании, +1 за каждые ~150 опыта, полученных в игре. */
-export function heroPower(actor) {
+/** Опыт, полученный героем в игре (без стартового опыта архетипа). */
+export function earnedXP(actor) {
   const log = actor?.system?.experience?.log ?? [];
-  const start = log.filter(e => e.type === "earn" && e.kind === "archetype").reduce((s, e) => s + e.amount, 0);
-  const earned = log.filter(e => e.type === "earn").reduce((s, e) => s + e.amount, 0) - start;
-  return Math.round((4 * (1 + Math.max(0, earned) / 150)) * 10) / 10;
+  return log.filter(e => e.type === "earn" && e.kind !== "archetype").reduce((s, e) => s + e.amount, 0);
+}
+
+/** Сила героя для старых оценок (оставлено для совместимости). */
+export function heroPower(actor) { return Math.round(4 * (1 + Math.max(0, earnedXP(actor)) / 150) * 10) / 10; }
+
+/**
+ * Рейтинг испытания группы (табл. II.2–6) и поправки EPG.
+ * @param {Actor[]} actors  персонажи игроков
+ * @param {number} [sizeOverride]  число героев вручную
+ */
+export function partyChallenge(actors, sizeOverride = null) {
+  const size = Math.max(1, sizeOverride ?? actors.length ?? 1);
+  const avg = actors.length ? Math.round(actors.reduce((s, a) => s + earnedXP(a), 0) / actors.length) : 0;
+  const row = CR_TABLE.find(([max]) => avg <= max)[1];
+  const base = size <= 6 ? row[size - 1] : row[5] + (size - 6);
+  const mods = [];
+  const majority = n => actors.length && n > actors.length / 2;
+  const items = (a, t) => a.itemTypes?.[t] ?? [];
+  const weaponDmg = a => Math.max(0, ...items(a, "weapon").map(w => w.system.totalDamage ?? w.system.damage ?? 0));
+  if (majority(actors.filter(a => weaponDmg(a) >= 8).length)) mods.push({ key: "weapons", value: 1 });
+  if (majority(actors.filter(a => items(a, "armor").some(x => (x.system.soak ?? 0) >= 2 || (x.system.defense ?? 0) >= 2)).length)) mods.push({ key: "armor", value: 1 });
+  const multi = a => items(a, "weapon").some(w => (w.system.qualities ?? []).some(q => /автоматическ|залпов|взрыв|auto|linked|blast/i.test(q.name)))
+    || items(a, "talent").some(t => /обоерук|dual wield/i.test(t.name));
+  if (actors.filter(multi).length >= 2) mods.push({ key: "multi", value: 1 });
+  return { size, avgXP: avg, base, mods, cr: base + mods.reduce((s, m) => s + m.value, 0) };
+}
+
+/** Элемент встречи с уровнями силы (для приспешников — с поправкой за размер группы). */
+function entry(doc, size = 1) {
+  const minion = doc.system.adversaryType === "minion";
+  const base = powerOf(doc);
+  const power = minion ? minionGroupPower(base, size) : base;
+  return { uuid: doc.uuid, name: doc.name, img: doc.img, minion, count: size, groups: 1, power, threat: threatOf(doc) };
+}
+
+/** Сумма уровней силы встречи (группа приспешников — один противник). */
+export function encounterPower(entries, kind = "combat") {
+  return entries.reduce((s, e) => s + (e.power?.[kind] ?? 1) * (e.minion ? (e.groups ?? 1) : e.count), 0);
+}
+
+/** Число противников в смысле EPG (группа приспешников — один). */
+export function encounterSize(entries) {
+  return entries.reduce((s, e) => s + (e.minion ? (e.groups ?? 1) : e.count), 0);
 }
 
 /**
  * Собрать встречу.
  * @param {object[]} candidates  противники (документы)
- * @param {{mode: "budget"|"count", budget?: number, count?: number, kinds: Set<string>}} opts
- * @returns {object[]} элементы встречи {uuid, name, img, minion, count, groups, threat, power}
+ * @param {{mode: "budget"|"count", budget?: number, count?: number, kinds: Set<string>, kind?: "combat"|"social", maxEntries?: number}} opts
  */
-export function generateEncounter(candidates, { mode = "budget", budget = 8, count = 4, kinds = new Set(["minion", "rival", "nemesis"]) } = {}) {
-  const pool = candidates.filter(d => kinds.has(d.system.adversaryType)).map(d => ({ doc: d, t: threatOf(d) }));
+export function generateEncounter(candidates, { mode = "budget", budget = 8, count = 4, kinds = new Set(["minion", "rival", "nemesis"]), kind = "combat", maxEntries = 4 } = {}) {
+  const pool = candidates.filter(d => kinds.has(d.system.adversaryType));
   if (!pool.length) return [];
   const out = [];
-  const add = (c, size = 1) => {
-    const minion = c.doc.system.adversaryType === "minion";
-    const prev = out.find(e => e.uuid === c.doc.uuid);
-    if (prev && !minion) { prev.count += 1; return; }
-    if (prev && minion && prev.count === size) { prev.groups += 1; return; }
-    out.push({ uuid: c.doc.uuid, name: c.doc.name, img: c.doc.img, minion, count: size, groups: 1, threat: c.t, power: null });
+  const pushEntry = e => {
+    const prev = out.find(x => x.uuid === e.uuid && (!x.minion || x.count === e.count));
+    if (prev) { if (prev.minion) prev.groups += 1; else prev.count += 1; return; }
+    out.push(e);
   };
   if (mode === "count") {
     let left = Math.max(1, count);
     let guard = 0;
     while (left > 0 && guard++ < 100) {
-      const nemesisUsed = out.some(e => !e.minion && candidates.find(d => d.uuid === e.uuid)?.system.adversaryType === "nemesis");
-      const options = pool.filter(c => !(c.doc.system.adversaryType === "nemesis" && (nemesisUsed || left < 2 && out.length === 0 && count > 1)));
-      const c = pick(options.length ? options : pool);
-      if (c.doc.system.adversaryType === "minion") {
+      const nemesisUsed = out.some(e => pool.find(d => d.uuid === e.uuid)?.system.adversaryType === "nemesis");
+      const options = pool.filter(d => !(d.system.adversaryType === "nemesis" && nemesisUsed));
+      const d = pick(options.length ? options : pool);
+      if (d.system.adversaryType === "minion") {
         const size = Math.min(left, Math.max(1, Math.round(rand(2, 4))));
-        add(c, size); left -= size;
-      } else { add(c); left -= 1; }
+        pushEntry(entry(d, size)); left -= size;
+      } else { pushEntry(entry(d)); left -= 1; }
     }
     return out;
   }
   let remaining = budget;
   let guard = 0;
   let nemesis = false;
-  while (remaining > 0.4 && guard++ < 200) {
-    const options = pool.filter(c => {
-      const type = c.doc.system.adversaryType;
-      if (type === "nemesis") return !nemesis && c.t <= remaining * 1.1;
-      if (type === "minion") return c.t * 2 <= remaining * 1.1;
-      return c.t <= remaining * 1.15;
-    });
+  while (remaining >= 1 && encounterSize(out) < maxEntries && guard++ < 200) {
+    const options = [];
+    for (const d of pool) {
+      const type = d.system.adversaryType;
+      if (type === "nemesis" && nemesis) continue;
+      if (type === "minion") {
+        // Группа 2–5: подобрать размер, при котором уровень помещается в остаток.
+        for (const size of [3, 4, 2, 5]) {
+          const e = entry(d, size);
+          if (e.power[kind] <= remaining) { options.push(e); break; }
+        }
+      } else {
+        const e = entry(d);
+        if (e.power[kind] <= remaining) options.push(e);
+      }
+    }
     if (!options.length) break;
-    // Чуть чаще — противники, заметные на фоне остатка бюджета (меньше «мелочи»).
-    const weighted = options.flatMap(c => c.t >= remaining * 0.25 ? [c, c] : [c]);
-    const c = pick(weighted);
-    const type = c.doc.system.adversaryType;
-    if (type === "minion") {
-      const max = Math.min(5, Math.floor(remaining / c.t));
-      const size = Math.max(2, Math.min(max, Math.round(rand(2, max))));
-      add(c, size); remaining -= c.t * size;
-    } else { add(c); remaining -= c.t; if (type === "nemesis") nemesis = true; }
+    // Предпочтение — тем, кто заметен на фоне остатка (меньше мелочи и больше «живых» встреч).
+    const weighted = options.flatMap(e => e.power[kind] >= remaining * 0.3 ? [e, e, e] : [e]);
+    const e = pick(weighted);
+    pushEntry(e);
+    remaining -= e.power[kind];
+    if (pool.find(d => d.uuid === e.uuid)?.system.adversaryType === "nemesis") nemesis = true;
   }
   return out;
 }
 
-/** Угроза собранной встречи. */
+/** Угроза собранной встречи по старой оценке системы (для справки). */
 export function encounterThreat(entries) {
   return Math.round(entries.reduce((s, e) => s + (e.threat ?? 0) * e.count * (e.minion ? (e.groups ?? 1) : 1), 0) * 10) / 10;
 }
@@ -154,7 +208,7 @@ export function generateLoot(sources, level, pool, tileRoot = "systems/genesys-r
     const s = doc.system ?? {};
     const loot = s.loot ?? [];
     loot.forEach(t => tags.add(t));
-    const t = threatOf(doc);
+    const t = powerOf(doc).combat * 1.5;
     const n = Math.max(1, count);
     if (loot.includes("coins")) coins += Math.round(t * 12 * L.coins * rand(0.5, 1.5) * n);
     const own = doc.items?.contents ?? doc.items ?? [];

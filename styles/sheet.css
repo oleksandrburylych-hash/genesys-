@@ -921,3 +921,18 @@
 .genesys.sheet.item .item-details .form-group { height: auto; min-height: 0; min-width: 0; }
 .genesys.sheet.item .item-details .form-group > * { flex: none; min-width: 0; }
 .genesys.sheet.item .item-details .form-group > input, .genesys.sheet.item .item-details .form-group > select { height: 28px; }
+.genesys .gm-pl { display: inline-flex; gap: 4px; font-size: 11px; margin-top: 1px; }
+.genesys .gm-pl b { padding: 0 5px; border-radius: 4px; color: #fff; font-weight: 600; }
+.genesys .gm-pl b.c { background: var(--gs-maroon); } .genesys .gm-pl b.s { background: #2f5f8a; } .genesys .gm-pl b.g { background: #6b5a3a; }
+.genesys .gm-pl i { color: var(--gs-muted); }
+.genesys .gm-cr { margin: 4px 0; padding: 4px 6px; background: #f3ead6; border-radius: 6px; font-size: 12px; }
+.genesys .gm-cr b { font-family: var(--gs-head); font-size: 15px; color: var(--gs-navy); }
+.genesys .gm-cr-total { color: var(--gs-maroon) !important; }
+.genesys .gm-cr-mod { padding: 0 4px; margin-left: 2px; background: #fff; border: 1px solid #e3d3ad; border-radius: 4px; font-size: 10.5px; }
+.genesys .gm-warn { color: var(--gs-maroon); font-size: 12px; }
+.genesys .gm-gen .gm-seg { margin-right: 6px; }
+.genesys .gs-adv-pl { display: inline-flex; align-items: center; gap: 4px; }
+.genesys .gs-adv-pl label { display: inline-flex; align-items: center; gap: 2px; padding: 0 0 0 6px; border-radius: 6px; color: #fff; font-size: 12px; }
+.genesys .gs-adv-pl label.c { background: var(--gs-maroon); } .genesys .gs-adv-pl label.s { background: #2f5f8a; } .genesys .gs-adv-pl label.g { background: #6b5a3a; }
+.genesys.sheet .gs-adv-pl input { width: 34px; height: 22px; border: none; background: rgba(255,255,255,.9); text-align: center; font-family: var(--gs-head); font-size: 14px; border-radius: 0 6px 6px 0; }
+.genesys .gs-adv-pl i { color: var(--gs-muted); }

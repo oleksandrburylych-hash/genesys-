@@ -17,7 +17,8 @@
           <img src="{{img}}" alt="">
           <div class="gm-row-text">
             <a class="gm-row-name" data-action="open" data-uuid="{{uuid}}">{{name}}</a>
-            <span class="gm-row-sub">{{type}} · {{localize "GENESYS.Wounds"}} {{wounds}} · {{localize "GENESYS.Soak"}} {{soak}}{{#if power}} · {{localize "GENESYS.GM.Power"}} {{power}}{{/if}}{{#if folder}} · {{folder}}{{/if}}</span>
+            <span class="gm-row-sub">{{type}} · {{localize "GENESYS.Wounds"}} {{wounds}} · {{localize "GENESYS.Soak"}} {{soak}}{{#if folder}} · {{folder}}{{/if}}</span>
+            <span class="gm-pl" data-tooltip="GENESYS.GM.PLHint"><b class="c">⚔ {{power.combat}}</b><b class="s">✦ {{power.social}}</b><b class="g">⚙ {{power.general}}</b>{{#unless power.listed}}<i>≈</i>{{/unless}}</span>
           </div>
           <button type="button" class="gm-add" data-action="add" data-uuid="{{uuid}}"><i class="fa-solid fa-plus"></i></button>
         </div>
@@ -28,13 +29,22 @@
       <div class="gm-gen">
         <div class="gm-gen-head"><i class="fa-solid fa-dice"></i> {{localize "GENESYS.GM.Generator"}}</div>
         <div class="gm-seg">
+          <a class="{{#if gen.combat}}active{{/if}}" data-action="genKindEnc" data-kind="combat">⚔ {{localize "GENESYS.GM.EncCombat"}}</a>
+          <a class="{{#unless gen.combat}}active{{/unless}}" data-action="genKindEnc" data-kind="social">✦ {{localize "GENESYS.GM.EncSocial"}}</a>
+        </div>
+        <div class="gm-seg">
           <a class="{{#if gen.budgetMode}}active{{/if}}" data-action="genMode" data-mode="budget">{{localize "GENESYS.GM.ByDifficulty"}}</a>
           <a class="{{#unless gen.budgetMode}}active{{/unless}}" data-action="genMode" data-mode="count">{{localize "GENESYS.GM.ByCount"}}</a>
         </div>
         {{#if gen.budgetMode}}
         <div class="gm-diff">{{#each gen.difficulties}}<a class="gm-diff-btn d{{index}} {{#if active}}active{{/if}}" data-action="genDifficulty" data-index="{{index}}">{{localize label}}</a>{{/each}}</div>
         <div class="gm-gen-row"><label>{{localize "GENESYS.GM.Party"}} <input type="number" name="gen.party" value="{{gen.partySize}}" min="1" max="12"></label>
-          <span class="hint">{{localize "GENESYS.GM.PartyPower"}} {{gen.partyPower}} · {{localize "GENESYS.GM.Budget"}} <b>{{gen.budget}}</b></span></div>
+          <span class="hint">{{localize "GENESYS.GM.AvgXP"}} {{gen.avgXP}}</span></div>
+        <div class="gm-cr" data-tooltip="GENESYS.GM.CRHint">
+          <span>{{localize "GENESYS.GM.CR"}}</span> <b>{{gen.crBase}}</b>
+          {{#each gen.mods}}<span class="gm-cr-mod">+{{value}} {{localize label}}</span>{{/each}}
+          = <b class="gm-cr-total">{{gen.cr}}</b> → {{localize "GENESYS.GM.Budget"}} <b>{{gen.budget}}</b>
+        </div>
         {{else}}
         <div class="gm-gen-row"><label>{{localize "GENESYS.GM.HowMany"}} <input type="number" name="gen.count" value="{{gen.count}}" min="1" max="30"></label></div>
         {{/if}}
@@ -45,7 +55,8 @@
       <div class="gs-ribbon"><span>{{localize "GENESYS.GM.Encounter"}}</span></div>
       {{#if encounter.length}}
       <div class="gm-threat {{#if gen.over}}over{{/if}}" data-tooltip="GENESYS.GM.ThreatHint"><div class="gm-threat-fill" style="width: {{gen.pct}}%"></div>
-        <span>{{localize "GENESYS.GM.Threat"}} {{gen.threat}}{{#if gen.budgetMode}} / {{gen.budget}}{{/if}}</span></div>
+        <span>{{#if gen.combat}}⚔{{else}}✦{{/if}} {{localize "GENESYS.GM.PowerSum"}} {{gen.threat}} / {{gen.budget}} · {{localize "GENESYS.GM.Foes"}} {{gen.count}} / {{gen.partySize}}</span></div>
+      {{#if gen.tooMany}}<p class="gm-warn"><i class="fa-solid fa-triangle-exclamation"></i> {{localize "GENESYS.GM.TooMany"}}</p>{{/if}}
       {{/if}}
       {{#each encounter}}
       <div class="gm-enc-row">
@@ -55,13 +66,13 @@
           {{#if minion}}
           <span class="gm-row-sub">{{localize "GENESYS.GM.GroupOf"}} <input type="number" name="enc.{{index}}.count" value="{{count}}" min="1" max="20"> · {{localize "GENESYS.GM.Groups"}}: {{groups}}</span>
           {{else}}<span class="gm-row-sub">× {{count}}</span>{{/if}}
+          <span class="gm-pl"><b class="c">⚔ {{power.combat}}</b><b class="s">✦ {{power.social}}</b><b class="g">⚙ {{power.general}}</b></span>
         </div>
         <a data-action="count" data-index="{{index}}" data-delta="-1"><i class="fa-solid fa-minus"></i></a>
         <a data-action="count" data-index="{{index}}" data-delta="1"><i class="fa-solid fa-plus"></i></a>
         <a data-action="remove" data-index="{{index}}"><i class="fa-solid fa-trash"></i></a>
       </div>
       {{else}}<p class="gs-empty">{{localize "GENESYS.GM.EncounterEmpty"}}</p>{{/each}}
-      {{#if totalPower}}<p class="hint">{{localize "GENESYS.GM.TotalPower"}}: <b>{{totalPower}}</b></p>{{/if}}
       {{#if encounter.length}}
       <div class="gm-actions">
         <button type="button" data-action="place" data-combat="1" {{#unless hasScene}}disabled{{/unless}}><i class="fa-solid fa-swords"></i> {{localize "GENESYS.GM.PlaceCombat"}}</button>
