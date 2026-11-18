@@ -48,7 +48,8 @@ const PACKS = [
   { name: "injuries", label: "Критические травмы", type: "Item" },
   { name: "vehicle-crits", label: "Критические попадания (транспорт)", type: "Item" },
   { name: "adversaries", label: "Противники", type: "Actor" },
-  { name: "vehicles", label: "Транспорт", type: "Actor" }
+  { name: "vehicles", label: "Транспорт", type: "Actor" },
+  { name: "scenes", label: "Боевые зоны", type: "Scene" }
 ];
 
 const ICONS = {
@@ -188,6 +189,15 @@ function buildPack(pack) {
     seen.set(ident, doc._file);
 
     const id = stableId(`${pack.name}:${ident}`);
+    // Сцены (боевые карты зонами, tools/zone-maps.mjs): данные сцены лежат в doc.scene.
+    if (pack.type === "Scene") {
+      const sc = doc.scene ?? {};
+      const out = { _id: id, _key: `!scenes!${id}`, name: doc.name, folder: folderId(doc.folder), sort: count * 100, ownership: { default: 0 },
+        ...sc, flags: { ...(sc.flags ?? {}), [SYSTEM_ID]: { ...(sc.flags?.[SYSTEM_ID] ?? {}), worlds: doc.worlds ?? [] } } };
+      fs.writeFileSync(path.join(outDir, `${id}.json`), JSON.stringify(out, null, 2));
+      count++;
+      continue;
+    }
     const isActor = pack.type === "Actor";
     const out = {
       _id: id,
@@ -290,7 +300,8 @@ async function main() {
     sorting: "m",
     color: "#2f6f8f",
     packs: built.filter(p => p.type === "Item").map(p => p.name),
-    folders: [{ name: "Противники и транспорт", sorting: "m", packs: built.filter(p => p.type === "Actor").map(p => p.name) }]
+    folders: [{ name: "Противники и транспорт", sorting: "m", packs: built.filter(p => p.type === "Actor").map(p => p.name) },
+      { name: "Карты", sorting: "m", packs: built.filter(p => p.type === "Scene").map(p => p.name) }]
   }];
   fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + "\n");
   fs.rmSync(path.join(ROOT, ".build"), { recursive: true, force: true });

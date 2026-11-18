@@ -144,6 +144,8 @@ Hooks.once("ready", () => {
   registerGearHooks();
   registerMerchant();
   registerTokenPanel();
+  // Боевые карты: в Foundry v14 фон сцены живёт в её уровне — если перенос не случился, дописать.
+  if (game.user.isActiveGM) repairZoneMaps().catch(err => console.warn(`${SYSTEM_ID} |`, err));
   // Архетипы, импортированные в мир без особых способностей (старые версии), — дополнить из компендиума.
   if (game.user.isActiveGM) repairWorldArchetypes().catch(err => console.warn(`${SYSTEM_ID} |`, err));
   // Первый запуск мира: мастер настройки для ведущего.
@@ -151,6 +153,18 @@ Hooks.once("ready", () => {
   console.log(`${SYSTEM_ID} | Genesys RPG ${game.system.version} готова`);
   if (game.settings.get(SYSTEM_ID, "showStoryPoints")) new StoryPointsTracker().render({ force: true });
 });
+
+/** Фон боевых карт (сцены компендиума «Боевые зоны») в уровне сцены v14. */
+async function repairZoneMaps() {
+  for (const scene of game.scenes ?? []) {
+    const f = scene.getFlag?.(SYSTEM_ID, "zoneMap") ? scene.flags[SYSTEM_ID] : null;
+    if (!f?.bg) continue;
+    const level = scene.levels?.contents?.[0] ?? scene.firstLevel;
+    if (level && !level.background?.src) await level.update({ "background.src": f.bg, "background.color": f.bgColor ?? "#000000" });
+    else if (!level && !scene.background?.src) await scene.update({ "background.src": f.bg });
+  }
+}
+Hooks.on("createScene", scene => { if (game.user.isActiveGM && scene.getFlag?.(SYSTEM_ID, "zoneMap")) repairZoneMaps().catch(() => {}); });
 
 /** Дополнить способности у архетипов мира по одноимённым архетипам компендиума. */
 async function repairWorldArchetypes() {

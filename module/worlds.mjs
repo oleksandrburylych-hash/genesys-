@@ -121,7 +121,8 @@ export function getAdventure(key) {
 
 /** Теги документа (данные или документ Foundry). */
 export function worldsOf(doc) {
-  const w = doc?.system?.worlds;
+  // Сцены (боевые карты) хранят миры во флаге.
+  const w = doc?.system?.worlds ?? doc?.flags?.["genesys-rpg"]?.worlds;
   if (!w) return [];
   return Array.isArray(w) ? w : [...w];
 }

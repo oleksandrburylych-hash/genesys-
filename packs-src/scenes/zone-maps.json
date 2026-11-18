@@ -1,0 +1,1459 @@
+[
+  {
+    "name": "Таверна «Сломанный рог»",
+    "type": "scene",
+    "folder": "Фэнтези · пергамент",
+    "worlds": [
+      "fantasy",
+      "terrinoth",
+      "mythic"
+    ],
+    "scene": {
+      "background": {
+        "src": "systems/genesys-rpg/assets/maps/tavern.jpg"
+      },
+      "thumb": "systems/genesys-rpg/assets/maps/thumbs/tavern.jpg",
+      "width": 3000,
+      "height": 2000,
+      "padding": 0.05,
+      "backgroundColor": "#c49f62",
+      "grid": {
+        "type": 0,
+        "size": 100
+      },
+      "tokenVision": false,
+      "fog": {
+        "exploration": false
+      },
+      "initial": {
+        "x": 1500,
+        "y": 1000,
+        "scale": 0.45
+      },
+      "flags": {
+        "genesys-rpg": {
+          "zoneMap": true,
+          "bg": "systems/genesys-rpg/assets/maps/tavern.jpg",
+          "bgColor": "#c49f62",
+          "zones": [
+            {
+              "name": "Общий зал",
+              "tags": [
+                "cover"
+              ]
+            },
+            {
+              "name": "Стойка",
+              "tags": [
+                "cover"
+              ]
+            },
+            {
+              "name": "Очаг",
+              "tags": [
+                "hazard"
+              ]
+            },
+            {
+              "name": "Галерея второго этажа",
+              "tags": [
+                "elevated",
+                "cover"
+              ]
+            },
+            {
+              "name": "Кухня и кладовая",
+              "tags": [
+                "difficult"
+              ]
+            },
+            {
+              "name": "Улица у входа",
+              "tags": [
+                "dark"
+              ]
+            }
+          ],
+          "links": [
+            [
+              "hall",
+              "bar",
+              "short"
+            ],
+            [
+              "hall",
+              "hearth",
+              "short"
+            ],
+            [
+              "hall",
+              "gallery",
+              "short"
+            ],
+            [
+              "bar",
+              "kitchen",
+              "engaged"
+            ],
+            [
+              "hall",
+              "street",
+              "short"
+            ],
+            [
+              "hall",
+              "kitchen",
+              "short"
+            ],
+            [
+              "hearth",
+              "gallery",
+              "medium"
+            ]
+          ]
+        }
+      }
+    }
+  },
+  {
+    "name": "Засада на лесной дороге",
+    "type": "scene",
+    "folder": "Фэнтези · пергамент",
+    "worlds": [
+      "fantasy",
+      "terrinoth",
+      "mythic"
+    ],
+    "scene": {
+      "background": {
+        "src": "systems/genesys-rpg/assets/maps/forest-road.jpg"
+      },
+      "thumb": "systems/genesys-rpg/assets/maps/thumbs/forest-road.jpg",
+      "width": 3000,
+      "height": 2000,
+      "padding": 0.05,
+      "backgroundColor": "#c49f62",
+      "grid": {
+        "type": 0,
+        "size": 100
+      },
+      "tokenVision": false,
+      "fog": {
+        "exploration": false
+      },
+      "initial": {
+        "x": 1500,
+        "y": 1000,
+        "scale": 0.45
+      },
+      "flags": {
+        "genesys-rpg": {
+          "zoneMap": true,
+          "bg": "systems/genesys-rpg/assets/maps/forest-road.jpg",
+          "bgColor": "#c49f62",
+          "zones": [
+            {
+              "name": "Тракт",
+              "tags": []
+            },
+            {
+              "name": "Чаща",
+              "tags": [
+                "cover",
+                "difficult",
+                "dark"
+              ]
+            },
+            {
+              "name": "Скалистый гребень",
+              "tags": [
+                "elevated",
+                "cover"
+              ]
+            },
+            {
+              "name": "Овраг",
+              "tags": [
+                "difficult",
+                "hazard"
+              ]
+            },
+            {
+              "name": "Поваленное дерево",
+              "tags": [
+                "cover"
+              ]
+            },
+            {
+              "name": "Лагерь разбойников",
+              "tags": [
+                "cover"
+              ]
+            }
+          ],
+          "links": [
+            [
+              "road",
+              "thicket",
+              "short"
+            ],
+            [
+              "road",
+              "ridge",
+              "medium"
+            ],
+            [
+              "road",
+              "fallen",
+              "engaged"
+            ],
+            [
+              "road",
+              "ravine",
+              "short"
+            ],
+            [
+              "road",
+              "camp",
+              "short"
+            ],
+            [
+              "thicket",
+              "fallen",
+              "short"
+            ],
+            [
+              "fallen",
+              "ridge",
+              "short"
+            ],
+            [
+              "camp",
+              "thicket",
+              "medium"
+            ]
+          ]
+        }
+      }
+    }
+  },
+  {
+    "name": "Переправа у старой мельницы",
+    "type": "scene",
+    "folder": "Фэнтези · пергамент",
+    "worlds": [
+      "fantasy",
+      "terrinoth",
+      "mythic"
+    ],
+    "scene": {
+      "background": {
+        "src": "systems/genesys-rpg/assets/maps/river-crossing.jpg"
+      },
+      "thumb": "systems/genesys-rpg/assets/maps/thumbs/river-crossing.jpg",
+      "width": 3000,
+      "height": 2000,
+      "padding": 0.05,
+      "backgroundColor": "#c49f62",
+      "grid": {
+        "type": 0,
+        "size": 100
+      },
+      "tokenVision": false,
+      "fog": {
+        "exploration": false
+      },
+      "initial": {
+        "x": 1500,
+        "y": 1000,
+        "scale": 0.45
+      },
+      "flags": {
+        "genesys-rpg": {
+          "zoneMap": true,
+          "bg": "systems/genesys-rpg/assets/maps/river-crossing.jpg",
+          "bgColor": "#c49f62",
+          "zones": [
+            {
+              "name": "Мост",
+              "tags": [
+                "difficult"
+              ]
+            },
+            {
+              "name": "Западный берег",
+              "tags": [
+                "cover"
+              ]
+            },
+            {
+              "name": "Мельница",
+              "tags": [
+                "cover",
+                "elevated"
+              ]
+            },
+            {
+              "name": "Река",
+              "tags": [
+                "hazard",
+                "difficult"
+              ]
+            },
+            {
+              "name": "Брод",
+              "tags": [
+                "difficult"
+              ]
+            },
+            {
+              "name": "Мельничный двор",
+              "tags": []
+            }
+          ],
+          "links": [
+            [
+              "west",
+              "bridge",
+              "short"
+            ],
+            [
+              "bridge",
+              "east",
+              "short"
+            ],
+            [
+              "bridge",
+              "mill",
+              "short"
+            ],
+            [
+              "west",
+              "ford",
+              "short"
+            ],
+            [
+              "ford",
+              "east",
+              "short"
+            ],
+            [
+              "mill",
+              "east",
+              "engaged"
+            ],
+            [
+              "river",
+              "bridge",
+              "engaged"
+            ]
+          ]
+        }
+      }
+    }
+  },
+  {
+    "name": "Склеп под часовней",
+    "type": "scene",
+    "folder": "Подземелье · факелы",
+    "worlds": [
+      "fantasy",
+      "terrinoth",
+      "mythic",
+      "monster"
+    ],
+    "scene": {
+      "background": {
+        "src": "systems/genesys-rpg/assets/maps/crypt.jpg"
+      },
+      "thumb": "systems/genesys-rpg/assets/maps/thumbs/crypt.jpg",
+      "width": 3000,
+      "height": 2000,
+      "padding": 0.05,
+      "backgroundColor": "#0b0a09",
+      "grid": {
+        "type": 0,
+        "size": 100
+      },
+      "tokenVision": false,
+      "fog": {
+        "exploration": false
+      },
+      "initial": {
+        "x": 1500,
+        "y": 1000,
+        "scale": 0.45
+      },
+      "flags": {
+        "genesys-rpg": {
+          "zoneMap": true,
+          "bg": "systems/genesys-rpg/assets/maps/crypt.jpg",
+          "bgColor": "#0b0a09",
+          "zones": [
+            {
+              "name": "Лестница вниз",
+              "tags": [
+                "difficult",
+                "elevated"
+              ]
+            },
+            {
+              "name": "Костница",
+              "tags": [
+                "cover",
+                "dark"
+              ]
+            },
+            {
+              "name": "Алтарь",
+              "tags": [
+                "hazard"
+              ]
+            },
+            {
+              "name": "Узкий коридор",
+              "tags": [
+                "difficult"
+              ]
+            },
+            {
+              "name": "Гробница основателя",
+              "tags": [
+                "cover",
+                "dark"
+              ]
+            },
+            {
+              "name": "Колодец во тьму",
+              "tags": [
+                "hazard",
+                "dark"
+              ]
+            }
+          ],
+          "links": [
+            [
+              "stairs",
+              "ossuary",
+              "short"
+            ],
+            [
+              "ossuary",
+              "altar",
+              "short"
+            ],
+            [
+              "ossuary",
+              "corridor",
+              "engaged"
+            ],
+            [
+              "corridor",
+              "tomb",
+              "short"
+            ],
+            [
+              "corridor",
+              "well",
+              "short"
+            ],
+            [
+              "altar",
+              "tomb",
+              "medium"
+            ]
+          ]
+        }
+      }
+    }
+  },
+  {
+    "name": "Логово в пещере",
+    "type": "scene",
+    "folder": "Подземелье · факелы",
+    "worlds": [
+      "fantasy",
+      "terrinoth",
+      "mythic",
+      "monster"
+    ],
+    "scene": {
+      "background": {
+        "src": "systems/genesys-rpg/assets/maps/cave-lair.jpg"
+      },
+      "thumb": "systems/genesys-rpg/assets/maps/thumbs/cave-lair.jpg",
+      "width": 3000,
+      "height": 2000,
+      "padding": 0.05,
+      "backgroundColor": "#0b0a09",
+      "grid": {
+        "type": 0,
+        "size": 100
+      },
+      "tokenVision": false,
+      "fog": {
+        "exploration": false
+      },
+      "initial": {
+        "x": 1500,
+        "y": 1000,
+        "scale": 0.45
+      },
+      "flags": {
+        "genesys-rpg": {
+          "zoneMap": true,
+          "bg": "systems/genesys-rpg/assets/maps/cave-lair.jpg",
+          "bgColor": "#0b0a09",
+          "zones": [
+            {
+              "name": "Вход в пещеру",
+              "tags": []
+            },
+            {
+              "name": "Извилистый проход",
+              "tags": [
+                "difficult",
+                "dark"
+              ]
+            },
+            {
+              "name": "Подземное озеро",
+              "tags": [
+                "hazard",
+                "difficult"
+              ]
+            },
+            {
+              "name": "Карниз",
+              "tags": [
+                "elevated",
+                "cover"
+              ]
+            },
+            {
+              "name": "Логово",
+              "tags": [
+                "cover"
+              ]
+            }
+          ],
+          "links": [
+            [
+              "mouth",
+              "tunnel",
+              "short"
+            ],
+            [
+              "tunnel",
+              "lair",
+              "short"
+            ],
+            [
+              "tunnel",
+              "pool",
+              "short"
+            ],
+            [
+              "pool",
+              "ledge",
+              "medium"
+            ],
+            [
+              "ledge",
+              "lair",
+              "short"
+            ],
+            [
+              "mouth",
+              "pool",
+              "medium"
+            ]
+          ]
+        }
+      }
+    }
+  },
+  {
+    "name": "Причальная мачта дирижаблей",
+    "type": "scene",
+    "folder": "Стимпанк · латунь",
+    "worlds": [
+      "steampunk",
+      "weirdwar"
+    ],
+    "scene": {
+      "background": {
+        "src": "systems/genesys-rpg/assets/maps/airship-dock.jpg"
+      },
+      "thumb": "systems/genesys-rpg/assets/maps/thumbs/airship-dock.jpg",
+      "width": 3000,
+      "height": 2000,
+      "padding": 0.05,
+      "backgroundColor": "#0d1e1d",
+      "grid": {
+        "type": 0,
+        "size": 100
+      },
+      "tokenVision": false,
+      "fog": {
+        "exploration": false
+      },
+      "initial": {
+        "x": 1500,
+        "y": 1000,
+        "scale": 0.45
+      },
+      "flags": {
+        "genesys-rpg": {
+          "zoneMap": true,
+          "bg": "systems/genesys-rpg/assets/maps/airship-dock.jpg",
+          "bgColor": "#0d1e1d",
+          "zones": [
+            {
+              "name": "Палуба дирижабля",
+              "tags": [
+                "elevated"
+              ]
+            },
+            {
+              "name": "Трап",
+              "tags": [
+                "difficult",
+                "hazard"
+              ]
+            },
+            {
+              "name": "Платформа мачты",
+              "tags": [
+                "elevated",
+                "cover"
+              ]
+            },
+            {
+              "name": "Паровая лебёдка",
+              "tags": [
+                "hazard",
+                "cover"
+              ]
+            },
+            {
+              "name": "Склад грузов",
+              "tags": [
+                "cover"
+              ]
+            }
+          ],
+          "links": [
+            [
+              "deck",
+              "gangway",
+              "engaged"
+            ],
+            [
+              "gangway",
+              "platform",
+              "engaged"
+            ],
+            [
+              "platform",
+              "engine",
+              "short"
+            ],
+            [
+              "engine",
+              "warehouse",
+              "short"
+            ],
+            [
+              "platform",
+              "warehouse",
+              "medium"
+            ],
+            [
+              "deck",
+              "warehouse",
+              "medium"
+            ]
+          ]
+        }
+      }
+    }
+  },
+  {
+    "name": "Склад в порту",
+    "type": "scene",
+    "folder": "Современность · тактическая карта",
+    "worlds": [
+      "modern",
+      "weirdwar",
+      "monster",
+      "zombie"
+    ],
+    "scene": {
+      "background": {
+        "src": "systems/genesys-rpg/assets/maps/harbor-warehouse.jpg"
+      },
+      "thumb": "systems/genesys-rpg/assets/maps/thumbs/harbor-warehouse.jpg",
+      "width": 3000,
+      "height": 2000,
+      "padding": 0.05,
+      "backgroundColor": "#1c2229",
+      "grid": {
+        "type": 0,
+        "size": 100
+      },
+      "tokenVision": false,
+      "fog": {
+        "exploration": false
+      },
+      "initial": {
+        "x": 1500,
+        "y": 1000,
+        "scale": 0.45
+      },
+      "flags": {
+        "genesys-rpg": {
+          "zoneMap": true,
+          "bg": "systems/genesys-rpg/assets/maps/harbor-warehouse.jpg",
+          "bgColor": "#1c2229",
+          "zones": [
+            {
+              "name": "Погрузочный двор",
+              "tags": []
+            },
+            {
+              "name": "Склад: стеллажи",
+              "tags": [
+                "cover",
+                "dark"
+              ]
+            },
+            {
+              "name": "Контора на антресоли",
+              "tags": [
+                "elevated",
+                "cover"
+              ]
+            },
+            {
+              "name": "Причал",
+              "tags": [
+                "hazard"
+              ]
+            },
+            {
+              "name": "Контейнерный лабиринт",
+              "tags": [
+                "cover",
+                "difficult"
+              ]
+            }
+          ],
+          "links": [
+            [
+              "yard",
+              "floor",
+              "short"
+            ],
+            [
+              "floor",
+              "office",
+              "short"
+            ],
+            [
+              "floor",
+              "pier",
+              "short"
+            ],
+            [
+              "yard",
+              "containers",
+              "short"
+            ],
+            [
+              "containers",
+              "pier",
+              "medium"
+            ],
+            [
+              "containers",
+              "floor",
+              "short"
+            ]
+          ]
+        }
+      }
+    }
+  },
+  {
+    "name": "Ночная улица и переулок",
+    "type": "scene",
+    "folder": "Современность · тактическая карта",
+    "worlds": [
+      "modern",
+      "monster",
+      "zombie",
+      "weirdwar"
+    ],
+    "scene": {
+      "background": {
+        "src": "systems/genesys-rpg/assets/maps/night-street.jpg"
+      },
+      "thumb": "systems/genesys-rpg/assets/maps/thumbs/night-street.jpg",
+      "width": 3000,
+      "height": 2000,
+      "padding": 0.05,
+      "backgroundColor": "#1c2229",
+      "grid": {
+        "type": 0,
+        "size": 100
+      },
+      "tokenVision": false,
+      "fog": {
+        "exploration": false
+      },
+      "initial": {
+        "x": 1500,
+        "y": 1000,
+        "scale": 0.45
+      },
+      "flags": {
+        "genesys-rpg": {
+          "zoneMap": true,
+          "bg": "systems/genesys-rpg/assets/maps/night-street.jpg",
+          "bgColor": "#1c2229",
+          "zones": [
+            {
+              "name": "Проезжая часть",
+              "tags": []
+            },
+            {
+              "name": "Закусочная",
+              "tags": [
+                "cover"
+              ]
+            },
+            {
+              "name": "Крыша",
+              "tags": [
+                "elevated",
+                "cover"
+              ]
+            },
+            {
+              "name": "Тёмный переулок",
+              "tags": [
+                "dark",
+                "cover"
+              ]
+            },
+            {
+              "name": "Парковка",
+              "tags": [
+                "cover"
+              ]
+            }
+          ],
+          "links": [
+            [
+              "street",
+              "diner",
+              "short"
+            ],
+            [
+              "street",
+              "roof",
+              "medium"
+            ],
+            [
+              "street",
+              "alley",
+              "short"
+            ],
+            [
+              "street",
+              "parking",
+              "short"
+            ],
+            [
+              "diner",
+              "alley",
+              "medium"
+            ],
+            [
+              "roof",
+              "parking",
+              "short"
+            ]
+          ]
+        }
+      }
+    }
+  },
+  {
+    "name": "Заправка в пустоши",
+    "type": "scene",
+    "folder": "Пустошь · ржавчина",
+    "worlds": [
+      "postapoc",
+      "zombie"
+    ],
+    "scene": {
+      "background": {
+        "src": "systems/genesys-rpg/assets/maps/gas-station.jpg"
+      },
+      "thumb": "systems/genesys-rpg/assets/maps/thumbs/gas-station.jpg",
+      "width": 3000,
+      "height": 2000,
+      "padding": 0.05,
+      "backgroundColor": "#7d4f24",
+      "grid": {
+        "type": 0,
+        "size": 100
+      },
+      "tokenVision": false,
+      "fog": {
+        "exploration": false
+      },
+      "initial": {
+        "x": 1500,
+        "y": 1000,
+        "scale": 0.45
+      },
+      "flags": {
+        "genesys-rpg": {
+          "zoneMap": true,
+          "bg": "systems/genesys-rpg/assets/maps/gas-station.jpg",
+          "bgColor": "#7d4f24",
+          "zones": [
+            {
+              "name": "Колонки",
+              "tags": [
+                "cover",
+                "hazard"
+              ]
+            },
+            {
+              "name": "Магазинчик",
+              "tags": [
+                "cover"
+              ]
+            },
+            {
+              "name": "Кладбище машин",
+              "tags": [
+                "cover",
+                "difficult"
+              ]
+            },
+            {
+              "name": "Баррикада",
+              "tags": [
+                "cover",
+                "elevated"
+              ]
+            },
+            {
+              "name": "Барханы",
+              "tags": [
+                "difficult"
+              ]
+            },
+            {
+              "name": "Водонапорная башня",
+              "tags": [
+                "elevated"
+              ]
+            }
+          ],
+          "links": [
+            [
+              "pumps",
+              "store",
+              "short"
+            ],
+            [
+              "pumps",
+              "wrecks",
+              "short"
+            ],
+            [
+              "pumps",
+              "barricade",
+              "short"
+            ],
+            [
+              "pumps",
+              "dunes",
+              "medium"
+            ],
+            [
+              "store",
+              "tower",
+              "short"
+            ],
+            [
+              "tower",
+              "wrecks",
+              "medium"
+            ],
+            [
+              "barricade",
+              "dunes",
+              "long"
+            ]
+          ]
+        }
+      }
+    }
+  },
+  {
+    "name": "Заброшенная усадьба",
+    "type": "scene",
+    "folder": "Хоррор · туман",
+    "worlds": [
+      "monster",
+      "modern",
+      "weirdwar",
+      "fantasy"
+    ],
+    "scene": {
+      "background": {
+        "src": "systems/genesys-rpg/assets/maps/manor.jpg"
+      },
+      "thumb": "systems/genesys-rpg/assets/maps/thumbs/manor.jpg",
+      "width": 3000,
+      "height": 2000,
+      "padding": 0.05,
+      "backgroundColor": "#141218",
+      "grid": {
+        "type": 0,
+        "size": 100
+      },
+      "tokenVision": false,
+      "fog": {
+        "exploration": false
+      },
+      "initial": {
+        "x": 1500,
+        "y": 1000,
+        "scale": 0.45
+      },
+      "flags": {
+        "genesys-rpg": {
+          "zoneMap": true,
+          "bg": "systems/genesys-rpg/assets/maps/manor.jpg",
+          "bgColor": "#141218",
+          "zones": [
+            {
+              "name": "Холл",
+              "tags": [
+                "dark"
+              ]
+            },
+            {
+              "name": "Библиотека",
+              "tags": [
+                "cover",
+                "dark"
+              ]
+            },
+            {
+              "name": "Парадная лестница",
+              "tags": [
+                "elevated",
+                "difficult"
+              ]
+            },
+            {
+              "name": "Столовая",
+              "tags": [
+                "cover"
+              ]
+            },
+            {
+              "name": "Погреб",
+              "tags": [
+                "dark",
+                "hazard"
+              ]
+            },
+            {
+              "name": "Мёртвый сад",
+              "tags": [
+                "difficult",
+                "dark"
+              ]
+            }
+          ],
+          "links": [
+            [
+              "foyer",
+              "library",
+              "short"
+            ],
+            [
+              "foyer",
+              "stair",
+              "short"
+            ],
+            [
+              "foyer",
+              "dining",
+              "short"
+            ],
+            [
+              "dining",
+              "cellar",
+              "short"
+            ],
+            [
+              "foyer",
+              "garden",
+              "short"
+            ],
+            [
+              "library",
+              "garden",
+              "medium"
+            ],
+            [
+              "foyer",
+              "cellar",
+              "medium"
+            ]
+          ]
+        }
+      }
+    }
+  },
+  {
+    "name": "Мостик звездолёта",
+    "type": "scene",
+    "folder": "Будущее · голограмма",
+    "worlds": [
+      "scifi",
+      "spaceopera"
+    ],
+    "scene": {
+      "background": {
+        "src": "systems/genesys-rpg/assets/maps/starship-bridge.jpg"
+      },
+      "thumb": "systems/genesys-rpg/assets/maps/thumbs/starship-bridge.jpg",
+      "width": 3000,
+      "height": 2000,
+      "padding": 0.05,
+      "backgroundColor": "#02060c",
+      "grid": {
+        "type": 0,
+        "size": 100
+      },
+      "tokenVision": false,
+      "fog": {
+        "exploration": false
+      },
+      "initial": {
+        "x": 1500,
+        "y": 1000,
+        "scale": 0.45
+      },
+      "flags": {
+        "genesys-rpg": {
+          "zoneMap": true,
+          "bg": "systems/genesys-rpg/assets/maps/starship-bridge.jpg",
+          "bgColor": "#02060c",
+          "zones": [
+            {
+              "name": "Командная палуба",
+              "tags": [
+                "cover"
+              ]
+            },
+            {
+              "name": "Штурвал и навигация",
+              "tags": [
+                "elevated"
+              ]
+            },
+            {
+              "name": "Центральный коридор",
+              "tags": []
+            },
+            {
+              "name": "Реакторный отсек",
+              "tags": [
+                "hazard"
+              ]
+            },
+            {
+              "name": "Оружейная",
+              "tags": [
+                "cover"
+              ]
+            },
+            {
+              "name": "Шлюз",
+              "tags": [
+                "hazard",
+                "difficult"
+              ]
+            }
+          ],
+          "links": [
+            [
+              "bridge",
+              "helm",
+              "engaged"
+            ],
+            [
+              "bridge",
+              "corridor",
+              "short"
+            ],
+            [
+              "corridor",
+              "reactor",
+              "short"
+            ],
+            [
+              "corridor",
+              "armory",
+              "short"
+            ],
+            [
+              "bridge",
+              "airlock",
+              "short"
+            ]
+          ]
+        }
+      }
+    }
+  },
+  {
+    "name": "Грузовой ангар станции",
+    "type": "scene",
+    "folder": "Будущее · голограмма",
+    "worlds": [
+      "scifi",
+      "spaceopera"
+    ],
+    "scene": {
+      "background": {
+        "src": "systems/genesys-rpg/assets/maps/station-hangar.jpg"
+      },
+      "thumb": "systems/genesys-rpg/assets/maps/thumbs/station-hangar.jpg",
+      "width": 3000,
+      "height": 2000,
+      "padding": 0.05,
+      "backgroundColor": "#02060c",
+      "grid": {
+        "type": 0,
+        "size": 100
+      },
+      "tokenVision": false,
+      "fog": {
+        "exploration": false
+      },
+      "initial": {
+        "x": 1500,
+        "y": 1000,
+        "scale": 0.45
+      },
+      "flags": {
+        "genesys-rpg": {
+          "zoneMap": true,
+          "bg": "systems/genesys-rpg/assets/maps/station-hangar.jpg",
+          "bgColor": "#02060c",
+          "zones": [
+            {
+              "name": "Посадочная площадка",
+              "tags": []
+            },
+            {
+              "name": "Грузовой терминал",
+              "tags": [
+                "cover"
+              ]
+            },
+            {
+              "name": "Диспетчерская",
+              "tags": [
+                "elevated",
+                "cover"
+              ]
+            },
+            {
+              "name": "Топливные магистрали",
+              "tags": [
+                "hazard",
+                "difficult"
+              ]
+            },
+            {
+              "name": "Подвесные мостки",
+              "tags": [
+                "elevated",
+                "difficult"
+              ]
+            },
+            {
+              "name": "Энергетический барьер",
+              "tags": [
+                "hazard"
+              ]
+            }
+          ],
+          "links": [
+            [
+              "pad",
+              "cargo",
+              "short"
+            ],
+            [
+              "pad",
+              "control",
+              "medium"
+            ],
+            [
+              "pad",
+              "fuel",
+              "short"
+            ],
+            [
+              "pad",
+              "catwalk",
+              "short"
+            ],
+            [
+              "pad",
+              "bay",
+              "short"
+            ],
+            [
+              "catwalk",
+              "control",
+              "short"
+            ]
+          ]
+        }
+      }
+    }
+  },
+  {
+    "name": "Джунгли чужой планеты",
+    "type": "scene",
+    "folder": "Чужая планета · биолюминесценция",
+    "worlds": [
+      "scifi",
+      "spaceopera"
+    ],
+    "scene": {
+      "background": {
+        "src": "systems/genesys-rpg/assets/maps/alien-jungle.jpg"
+      },
+      "thumb": "systems/genesys-rpg/assets/maps/thumbs/alien-jungle.jpg",
+      "width": 3000,
+      "height": 2000,
+      "padding": 0.05,
+      "backgroundColor": "#03100b",
+      "grid": {
+        "type": 0,
+        "size": 100
+      },
+      "tokenVision": false,
+      "fog": {
+        "exploration": false
+      },
+      "initial": {
+        "x": 1500,
+        "y": 1000,
+        "scale": 0.45
+      },
+      "flags": {
+        "genesys-rpg": {
+          "zoneMap": true,
+          "bg": "systems/genesys-rpg/assets/maps/alien-jungle.jpg",
+          "bgColor": "#03100b",
+          "zones": [
+            {
+              "name": "Место крушения",
+              "tags": [
+                "cover",
+                "hazard"
+              ]
+            },
+            {
+              "name": "Светящаяся чаща",
+              "tags": [
+                "cover",
+                "difficult",
+                "dark"
+              ]
+            },
+            {
+              "name": "Кристаллические шпили",
+              "tags": [
+                "elevated",
+                "cover"
+              ]
+            },
+            {
+              "name": "Гнездо",
+              "tags": [
+                "hazard",
+                "dark"
+              ]
+            },
+            {
+              "name": "Кислотное болото",
+              "tags": [
+                "hazard",
+                "difficult"
+              ]
+            },
+            {
+              "name": "Древние руины",
+              "tags": [
+                "cover",
+                "elevated"
+              ]
+            }
+          ],
+          "links": [
+            [
+              "crash",
+              "canopy",
+              "short"
+            ],
+            [
+              "crash",
+              "spires",
+              "medium"
+            ],
+            [
+              "crash",
+              "hive",
+              "short"
+            ],
+            [
+              "crash",
+              "swamp",
+              "short"
+            ],
+            [
+              "canopy",
+              "ruins",
+              "medium"
+            ],
+            [
+              "ruins",
+              "spires",
+              "short"
+            ]
+          ]
+        }
+      }
+    }
+  }
+]

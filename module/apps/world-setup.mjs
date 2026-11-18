@@ -9,7 +9,7 @@ const IMPORTABLE = [
   ["archetypes", true], ["careers", true], ["skills", false], ["talents", true], ["abilities", true],
   ["heroic", true], ["spells", true], ["weapons", true], ["armor", true], ["gear", true],
   ["attachments", true], ["qualities", true], ["injuries", false], ["vehicle-crits", false],
-  ["adversaries", true], ["vehicles", true]
+  ["adversaries", true], ["vehicles", true], ["scenes", true]
 ];
 
 /**
@@ -68,7 +68,7 @@ export class WorldSetup extends HandlebarsApplicationMixin(ApplicationV2) {
     for (const [key] of IMPORTABLE) {
       const pack = game.packs.get(`${SYSTEM_ID}.${key}`);
       if (!pack) continue;
-      const index = await pack.getIndex({ fields: ["system.worlds", "system.source"] });
+      const index = await pack.getIndex({ fields: ["system.worlds", "system.source", "flags.genesys-rpg.worlds"] });
       for (const e of index) entries.push({ ...e, pack: key });
     }
     return (this.index = entries);
@@ -232,7 +232,7 @@ export class WorldSetup extends HandlebarsApplicationMixin(ApplicationV2) {
     const pack = game.packs.get(`${SYSTEM_ID}.${key}`);
     if (!pack) return null;
     const type = pack.documentName;
-    const collection = type === "Actor" ? game.actors : game.items;
+    const collection = type === "Actor" ? game.actors : type === "Scene" ? game.scenes : game.items;
     const rootName = `Genesys: ${pack.metadata.label}`;
     const oldRoot = game.folders.find(f => f.type === type && f.name === rootName && !f.folder);
     if (oldRoot && this.setup.replace) await oldRoot.delete({ deleteSubfolders: true, deleteContents: true });
@@ -250,7 +250,7 @@ export class WorldSetup extends HandlebarsApplicationMixin(ApplicationV2) {
       d.folder = (fname ? sub.get(fname) : root).id;
       data.push(d);
     }
-    const cls = type === "Actor" ? Actor.implementation : Item.implementation;
+    const cls = type === "Actor" ? Actor.implementation : type === "Scene" ? Scene.implementation : Item.implementation;
     for (let i = 0; i < data.length; i += 100) await cls.createDocuments(data.slice(i, i + 100));
     return data.length;
   }
