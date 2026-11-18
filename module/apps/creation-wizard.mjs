@@ -76,7 +76,7 @@ export class CreationWizard extends HandlebarsApplicationMixin(ApplicationV2) {
   }
 
   static DEFAULT_OPTIONS = {
-    classes: ["genesys", "creation-wizard"],
+    classes: ["genesys", "themed", "theme-light", "creation-wizard"],
     tag: "form",
     window: { title: "GENESYS.Wizard.Title", icon: "fa-solid fa-hat-wizard", resizable: true },
     position: { width: 1040, height: 800 },

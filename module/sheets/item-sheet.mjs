@@ -12,7 +12,7 @@ const T = `${TEMPLATES}/item`;
  */
 export class GenesysItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
   static DEFAULT_OPTIONS = {
-    classes: ["genesys", "sheet", "item"],
+    classes: ["genesys", "themed", "theme-light", "sheet", "item"],
     position: { width: 560, height: 640 },
     window: { resizable: true },
     form: { submitOnChange: true },

@@ -6,7 +6,7 @@ import { getAdventure } from "./worlds.mjs";
  * По 10 вариантов на каждый вид исхода, для трёх эпох. Тексты — module/data/interpretations/<навык>.json.
  */
 
-export const OUTCOMES = ["advantage", "threat", "triumph", "despair"];
+export const OUTCOMES = ["advantage", "threat", "triumph", "despair", "mixed"];
 
 export const ERAS = {
   medieval: { label: "GENESYS.Interp.Era.medieval", icon: "fa-solid fa-chess-rook" },
@@ -61,13 +61,22 @@ export function pickRandom(list, n = 1) {
   return out;
 }
 
+/** Подпись и значки вида исхода («mixed» — триумф и крах в одном броске). */
+export function outcomeLabel(outcome) {
+  return game.i18n.localize(outcome === "mixed" ? "GENESYS.Interp.Mixed" : `GENESYS.Symbol.${outcome}`);
+}
+export function outcomeIcons(outcome) {
+  const keys = outcome === "mixed" ? ["triumph", "despair"] : [outcome];
+  return keys.map(k => `<span class="genesys-symbol ${k}"></span>`).join("");
+}
+
 /** Сообщение в чат с вариантами толкования. */
 export async function postInterpretation({ skillKey, era, outcome, texts, whisper = true }) {
   const L = k => game.i18n.localize(k);
   const esc = foundry.utils.escapeHTML;
   const skill = L(`GENESYS.Skill.${interpKey(skillKey)}`);
   const content = `<div class="genesys interp-card ${outcome}">
-    <h4><span class="genesys-symbol ${outcome}"></span> ${esc(L(`GENESYS.Symbol.${outcome}`))} · ${esc(skill)} <small>${esc(L(ERAS[era]?.label ?? ""))}</small></h4>
+    <h4>${outcomeIcons(outcome)} ${esc(outcomeLabel(outcome))} · ${esc(skill)} <small>${esc(L(ERAS[era]?.label ?? ""))}</small></h4>
     <ul>${texts.map(t => `<li>${esc(t)}</li>`).join("")}</ul></div>`;
   return ChatMessage.implementation.create({
     content, speaker: { alias: L("GENESYS.Interp.Title") },

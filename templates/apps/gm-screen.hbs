@@ -178,7 +178,7 @@
   {{/if}}
 
   {{#if (eq tab "interp")}}
-  <div class="gm-interp">
+  <div class="gm-body gm-interp">
     <div class="gm-interp-top">
       <div class="gm-seg gm-interp-eras">{{#each interp.eras}}<a class="{{#if active}}active{{/if}}" data-action="interpEra" data-key="{{key}}"><i class="{{icon}}"></i> {{localize label}}</a>{{/each}}</div>
       <a class="gm-interp-whisper {{#if interp.whisper}}on{{/if}}" data-action="interpWhisper" data-tooltip="GENESYS.Interp.WhisperHint">
@@ -196,7 +196,7 @@
     <div class="gm-interp-cols">
       {{#each interp.columns}}
       <section class="gm-interp-col {{key}}">
-        <header><span class="genesys-symbol {{key}}"></span> {{localize label}}
+        <header>{{#if mixed}}<span class="genesys-symbol triumph"></span><span class="genesys-symbol despair"></span>{{else}}<span class="genesys-symbol {{key}}"></span>{{/if}} {{localize label}}{{#if mixed}} <small>{{localize "GENESYS.Interp.MixedHint"}}</small>{{/if}}
           <a class="gm-interp-dice" data-action="interpRandom" data-outcome="{{key}}" data-tooltip="GENESYS.Interp.Random"><i class="fa-solid fa-dice"></i></a></header>
         <ol>{{#each items}}<li class="{{#if hl}}hl{{/if}}" data-action="interpPick" data-outcome="{{../key}}" data-index="{{i}}">{{text}}</li>{{/each}}</ol>
       </section>

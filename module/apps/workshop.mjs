@@ -24,7 +24,7 @@ export class Workshop extends HandlebarsApplicationMixin(ApplicationV2) {
   }
 
   static DEFAULT_OPTIONS = {
-    classes: ["genesys", "workshop"],
+    classes: ["genesys", "themed", "theme-light", "workshop"],
     tag: "form",
     window: { title: "GENESYS.Workshop.Title", icon: "fa-solid fa-hammer", resizable: true },
     position: { width: 820, height: 640 },

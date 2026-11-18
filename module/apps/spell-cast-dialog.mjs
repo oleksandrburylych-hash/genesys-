@@ -31,7 +31,7 @@ export class SpellCastDialog extends HandlebarsApplicationMixin(ApplicationV2) {
   }
 
   static DEFAULT_OPTIONS = {
-    classes: ["genesys", "spell-cast-dialog"],
+    classes: ["genesys", "themed", "theme-light", "spell-cast-dialog"],
     tag: "form",
     window: { title: "GENESYS.Spell.Cast", icon: "fa-solid fa-wand-sparkles", resizable: true },
     position: { width: 560, height: "auto" },

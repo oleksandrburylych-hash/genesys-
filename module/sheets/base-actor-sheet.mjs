@@ -13,7 +13,7 @@ const TextEditor = () => foundry.applications.ux.TextEditor.implementation;
  */
 export class GenesysBaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
   static DEFAULT_OPTIONS = {
-    classes: ["genesys", "sheet", "actor"],
+    classes: ["genesys", "themed", "theme-light", "sheet", "actor"],
     window: { resizable: true },
     form: { submitOnChange: true },
     actions: {

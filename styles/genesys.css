@@ -21,14 +21,7 @@
   --die-setback: #1c1c1c;
 }
 
-.theme-dark .genesys,
-.genesys.theme-dark {
-  --g-border: rgba(255, 255, 255, 0.18);
-  --g-muted: #a5a5a5;
-  --g-panel: rgba(255, 255, 255, 0.05);
-  --g-ink: #e8e6e3;
-  --g-accent-soft: rgba(90, 160, 200, 0.18);
-}
+/* Окна системы всегда светлые («бумага»): классы themed theme-light задаются в самих окнах. */
 
 /* ---------- Символы ---------- */
 .genesys-symbol {

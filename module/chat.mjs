@@ -172,9 +172,14 @@ export function registerChatHandlers() {
           const skill = roll?.options?.skill || (roll?.options?.weapon ? "melee" : null);
           if (!skill) return ui.notifications.info("GENESYS.Interp.NoSkill", { localize: true });
           const era = I.currentEra();
-          const list = (await I.loadInterpretations(skill))?.eras?.[era]?.[btn.dataset.outcome] ?? [];
+          // Триумф и крах в одном броске — особые варианты, где обе части связаны.
+          let outcome = btn.dataset.outcome;
+          const res = roll?.results ?? {};
+          if (["triumph", "despair"].includes(outcome) && res.triumph > 0 && res.despair > 0) outcome = "mixed";
+          const data = (await I.loadInterpretations(skill))?.eras?.[era] ?? {};
+          const list = data[outcome]?.length ? data[outcome] : (data[btn.dataset.outcome] ?? []);
           if (!list.length) return ui.notifications.info("GENESYS.Interp.Missing", { localize: true });
-          return I.postInterpretation({ skillKey: skill, era, outcome: btn.dataset.outcome, texts: I.pickRandom(list, 3), whisper: true });
+          return I.postInterpretation({ skillKey: skill, era, outcome: data[outcome]?.length ? outcome : btn.dataset.outcome, texts: I.pickRandom(list, 3), whisper: true });
         }
 
         if (action === "applyDamage") {

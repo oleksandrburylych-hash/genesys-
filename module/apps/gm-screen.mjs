@@ -33,7 +33,7 @@ export class GMScreen extends HandlebarsApplicationMixin(ApplicationV2) {
 
   static DEFAULT_OPTIONS = {
     id: "genesys-gm-screen",
-    classes: ["genesys", "gm-screen"],
+    classes: ["genesys", "themed", "theme-light", "gm-screen"],
     tag: "form",
     window: { title: "GENESYS.GM.Title", icon: "fa-solid fa-book-skull", resizable: true },
     position: { width: 900, height: 720 },
@@ -202,7 +202,7 @@ export class GMScreen extends HandlebarsApplicationMixin(ApplicationV2) {
         })),
         missing: !eraData,
         otherEras: data ? Object.keys(data.eras ?? {}).map(k => L(I.ERAS[k]?.label ?? k)).join(", ") : "",
-        columns: I.OUTCOMES.map(o => ({ key: o, label: `GENESYS.Symbol.${o}`,
+        columns: I.OUTCOMES.map(o => ({ key: o, label: o === "mixed" ? "GENESYS.Interp.Mixed" : `GENESYS.Symbol.${o}`, mixed: o === "mixed",
           items: (eraData?.[o] ?? []).map((text, i) => ({ i, text, hl: st.hl[o] === i })) }))
       };
     }

@@ -40,7 +40,7 @@ export class DicePoolDialog extends HandlebarsApplicationMixin(ApplicationV2) {
   }
 
   static DEFAULT_OPTIONS = {
-    classes: ["genesys", "dice-pool-dialog"],
+    classes: ["genesys", "themed", "theme-light", "dice-pool-dialog"],
     tag: "form",
     window: { title: "GENESYS.Roll.Title", icon: "fa-solid fa-dice-d20", resizable: false },
     position: { width: 460 },

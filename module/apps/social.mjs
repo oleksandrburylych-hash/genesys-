@@ -75,7 +75,7 @@ export class SocialEncounter extends HandlebarsApplicationMixin(ApplicationV2) {
 
   static DEFAULT_OPTIONS = {
     id: "genesys-social",
-    classes: ["genesys", "gm-screen", "social-encounter"],
+    classes: ["genesys", "themed", "theme-light", "gm-screen", "social-encounter"],
     tag: "form",
     window: { title: "GENESYS.Social.Title", icon: "fa-solid fa-comments", resizable: true },
     position: { width: 560, height: 620 },

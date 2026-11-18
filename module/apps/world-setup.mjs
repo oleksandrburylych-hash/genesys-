@@ -41,7 +41,7 @@ export class WorldSetup extends HandlebarsApplicationMixin(ApplicationV2) {
 
   static DEFAULT_OPTIONS = {
     id: "genesys-world-setup",
-    classes: ["genesys", "world-setup"],
+    classes: ["genesys", "themed", "theme-light", "world-setup"],
     tag: "form",
     window: { title: "GENESYS.Setup.Title", icon: "fa-solid fa-wand-magic-sparkles", resizable: true },
     position: { width: 860, height: 820 },

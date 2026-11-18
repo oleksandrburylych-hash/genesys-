@@ -1155,3 +1155,24 @@
 .genesys.interp-card.despair { border-left: 4px solid #8e2229; padding-left: 6px; }
 .genesys-roll .gr-chip.interp { cursor: help; }
 .genesys-roll .gr-chip.interp:hover { filter: brightness(1.12); box-shadow: 0 0 0 2px rgba(255,255,255,.7), 0 0 6px rgba(242,165,49,.8); }
+
+/* ---------- Ширма: читаемые таблицы в любой теме Foundry, прокрутка ---------- */
+.genesys .gm { min-height: 0; }
+.genesys .gm-body { min-height: 0; }
+.genesys.gm-screen .gm-body { background: transparent; color: var(--gs-ink); }
+.genesys table.gm-table, .genesys .gm-table tbody, .genesys .gm-table tr, .genesys .gm-table td {
+  background: transparent; color: var(--gs-ink); text-shadow: none; border-color: #eadfc6;
+}
+.genesys table.gm-table { background: #fffdf7; border: 1px solid #e0d2b4; border-radius: 8px; overflow: hidden; }
+.genesys .gm-table tr:nth-child(even) { background: #f8f1e1; }
+.genesys .gm-table tr:hover { background: #f3e6c8; }
+.genesys .gm-table td.hint, .genesys .gm-table .hint { color: #5d5446; font-style: normal; }
+.genesys .gm-ref .gm-cost { color: var(--gs-maroon); }
+.genesys .gm-ref .gm-die.difficulty { width: 14px; height: 14px; transform: none; background: url("../assets/dice/shape/difficulty.svg") center / contain no-repeat; }
+.genesys .gm-interp-col.mixed { grid-column: 1 / -1; }
+.genesys .gm-interp-col.mixed header { background: linear-gradient(90deg, #c48f00, #e0a516 35%, #8e2229 65%, #2a0a0c); }
+.genesys .gm-interp-col.mixed header small { text-transform: none; letter-spacing: 0; font-family: var(--gs-body); opacity: .85; }
+.genesys .gm-interp-col.mixed ol { columns: 2; column-gap: 18px; }
+.genesys .gm-interp-col.mixed li { break-inside: avoid; }
+.genesys.interp-card.mixed { border-left: 4px solid; border-image: linear-gradient(#e0a516, #8e2229) 1; padding-left: 6px; }
+.genesys .gm-ref .gs-ribbon span { color: #fff; }
