@@ -24,6 +24,12 @@
           <span>{{adventureLabel}}</span>
         </div>
         {{/if}}
+        {{#if archAbilities.length}}
+        <div class="gs-line gs-line-wide gs-arch-abilities">
+          <label>{{localize "GENESYS.Sheet.ArchAbilities"}}</label>
+          <span>{{#each archAbilities}}<a class="gs-ability-chip" data-action="itemEdit" data-item-id="{{id}}" data-tooltip="GENESYS.Sheet.ArchAbilityHint"><img src="{{img}}" alt="">{{name}}</a>{{/each}}</span>
+        </div>
+        {{/if}}
       </div>
       <div class="gs-toolbar">
         {{#if system.creation}}

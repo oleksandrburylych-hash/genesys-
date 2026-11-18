@@ -1236,3 +1236,15 @@
 .genesys .skill .career-mark.toggle { cursor: pointer; }
 .genesys .skill .career-mark.toggle:hover { color: var(--gs-maroon); }
 .genesys .gs-adv .severity .genesys-die-icon { width: 13px; height: 13px; }
+
+/* ---------- Способности расы/архетипа ---------- */
+.genesys.sheet.character .gs-line-wide { grid-column: 1 / -1; }
+.genesys .gs-arch-abilities > span { display: flex; flex-wrap: wrap; gap: 4px; white-space: normal !important; overflow: visible !important; }
+.genesys .gs-ability-chip { display: inline-flex; align-items: center; gap: 4px; padding: 0 8px 0 2px; border-radius: 999px; background: linear-gradient(180deg, #f6bb55, var(--gs-gold-d));
+  color: var(--gs-navy-d) !important; font-family: var(--gs-head); font-size: 12.5px !important; text-transform: uppercase; letter-spacing: .02em; }
+.genesys .gs-ability-chip img { width: 18px; height: 18px; border: none; border-radius: 50%; }
+.genesys .gs-arch-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 8px; margin-bottom: 10px; }
+.genesys .gs-arch-card { display: flex; align-items: center; gap: 8px; padding: 6px 10px; border-radius: 10px; background: #fffaf0; border: 2px solid var(--gs-gold);
+  font-family: var(--gs-head); text-transform: uppercase; color: var(--gs-navy); box-shadow: 0 1px 3px rgba(0,0,0,.12); }
+.genesys .gs-arch-card:hover { background: #fff1d0; }
+.genesys .gs-arch-card img { width: 36px; height: 36px; border: none; }

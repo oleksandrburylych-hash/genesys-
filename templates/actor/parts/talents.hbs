@@ -1,4 +1,12 @@
 <section class="tab talents {{tab.cssClass}}" data-tab="talents" data-group="primary">
+  {{#if archAbilities.length}}
+  <div class="gs-ribbon gs-ribbon-gold"><span>{{localize "GENESYS.Sheet.ArchAbilities"}}</span></div>
+  <div class="gs-arch-cards">
+    {{#each archAbilities}}
+    <a class="gs-arch-card" data-item-id="{{id}}" data-action="itemEdit"><img src="{{img}}" alt=""><span>{{name}}</span></a>
+    {{/each}}
+  </div>
+  {{/if}}
   {{#if showHeroic}}
   <div class="gs-ribbon gs-ribbon-gold"><span>{{localize "GENESYS.Heroic.Title"}}</span></div>
   <div class="gs-heroic-row">
@@ -74,7 +82,7 @@
 
   <div class="gs-ribbon"><span>{{localize "GENESYS.Abilities"}}</span></div>
   <ol class="gs-list gs-abilities">
-    {{#each abilities}}
+    {{#each otherAbilities}}
     <li data-item-id="{{id}}">
       <img src="{{img}}" alt="">
       <a class="gs-list-name" data-action="itemEdit">{{name}}</a>

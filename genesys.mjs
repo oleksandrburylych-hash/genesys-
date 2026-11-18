@@ -144,11 +144,25 @@ Hooks.once("ready", () => {
   registerGearHooks();
   registerMerchant();
   registerTokenPanel();
+  // Архетипы, импортированные в мир без особых способностей (старые версии), — дополнить из компендиума.
+  if (game.user.isActiveGM) repairWorldArchetypes().catch(err => console.warn(`${SYSTEM_ID} |`, err));
   // Первый запуск мира: мастер настройки для ведущего.
   if (game.user.isGM && !game.settings.get(SYSTEM_ID, "worldSetupDone")) openApp(() => new WorldSetup(), "WorldSetup");
   console.log(`${SYSTEM_ID} | Genesys RPG ${game.system.version} готова`);
   if (game.settings.get(SYSTEM_ID, "showStoryPoints")) new StoryPointsTracker().render({ force: true });
 });
+
+/** Дополнить способности у архетипов мира по одноимённым архетипам компендиума. */
+async function repairWorldArchetypes() {
+  const broken = game.items?.filter?.(i => i.type === "archetype" && !(i.system.abilities?.length)) ?? [];
+  if (!broken.length) return;
+  const pack = game.packs.get(`${SYSTEM_ID}.archetypes`);
+  if (!pack) return;
+  const docs = await pack.getDocuments();
+  const updates = broken.map(i => ({ _id: i.id, abilities: docs.find(d => d.name === i.name)?.system.abilities ?? [] }))
+    .filter(u => u.abilities.length).map(u => ({ _id: u._id, "system.abilities": u.abilities }));
+  if (updates.length) await Item.implementation.updateDocuments(updates);
+}
 
 /* -------------------------------------------- */
 /*  Dice So Nice                                */

@@ -390,17 +390,39 @@ export class GenesysActor extends Actor {
     // Способности архетипа/расы: убрать старые (выданные прошлым архетипом) и добавить новые.
     const oldAbilities = this.itemTypes.ability.filter(i => i.getFlag(SYSTEM_ID, "fromArchetype"));
     if (oldAbilities.length) await this.deleteEmbeddedDocuments("Item", oldAbilities.map(i => i.id));
-    const abilities = (sys.abilities ?? []).map(a => ({
-      name: a.name,
-      type: "ability",
-      img: "icons/svg/upgrade.svg",
-      system: { description: a.description, source: sys.source ?? "" },
-      flags: { [SYSTEM_ID]: { fromArchetype: true } }
-    }));
-    if (abilities.length) await this.createEmbeddedDocuments("Item", abilities);
+    await this.syncArchetypeAbilities(archetypeData);
 
     ui.notifications.info(game.i18n.format("GENESYS.Info.ArchetypeApplied", { name: archetypeData.name }));
     return created;
+  }
+
+  /**
+   * Способности архетипа: досоздать недостающие (старые персонажи, архетипы, импортированные в мир без способностей).
+   * Способности берутся из архетипа, а если их там нет — из архетипа с тем же именем в компендиуме; иконки — из компендиума способностей.
+   */
+  async syncArchetypeAbilities(archetype = this.itemTypes?.archetype?.[0]) {
+    if (!archetype || !this.isOwner) return;
+    let list = archetype.system?.abilities ?? [];
+    if (!list.length) {
+      const pack = game.packs.get(`${SYSTEM_ID}.archetypes`);
+      const src = pack ? (await pack.getDocuments()).find(d => d.name === archetype.name) : null;
+      list = src?.system.abilities ?? [];
+    }
+    if (!list.length) return;
+    const abPack = game.packs.get(`${SYSTEM_ID}.abilities`);
+    const index = abPack ? await abPack.getIndex({ fields: ["img"] }) : [];
+    const have = new Set(this.itemTypes.ability.map(i => i.name));
+    const create = list.filter(a => !have.has(a.name)).map(a => ({
+      name: a.name, type: "ability",
+      img: [...index].find(e => e.name === a.name)?.img ?? GENESYS.icons?.defaults?.ability,
+      system: { description: a.description, source: archetype.system?.source ?? "" },
+      flags: { [SYSTEM_ID]: { fromArchetype: true } }
+    }));
+    if (create.length) await this.createEmbeddedDocuments("Item", create);
+    // Старые способности с белой иконкой ядра — на цветную.
+    const fix = this.itemTypes.ability.filter(i => i.img === "icons/svg/upgrade.svg")
+      .map(i => ({ _id: i.id, img: [...index].find(e => e.name === i.name)?.img ?? GENESYS.icons?.defaults?.ability }));
+    if (fix.length) await this.updateEmbeddedDocuments("Item", fix);
   }
 
   /** Применить карьеру: отметить карьерные навыки (создать недостающие). */

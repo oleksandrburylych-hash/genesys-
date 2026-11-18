@@ -76,6 +76,13 @@ export class GenesysCharacterSheet extends GenesysBaseActorSheet {
   };
 
   /** @override */
+  async _onFirstRender(context, options) {
+    await super._onFirstRender?.(context, options);
+    // Досоздать способности архетипа у старых персонажей (раз при открытии листа).
+    if (this.actor.isOwner && this.actor.itemTypes.archetype.length) this.actor.syncArchetypeAbilities().catch(err => console.warn("genesys-rpg |", err));
+  }
+
+  /** @override */
   async _prepareContext(options) {
     const context = await super._prepareContext(options);
     const actor = this.actor;
@@ -102,6 +109,11 @@ export class GenesysCharacterSheet extends GenesysBaseActorSheet {
     context.armor = actor.itemTypes.armor.map(i => ({ id: i.id, name: i.name, img: i.img, system: i.system,
       suit: i === suit, extra: i.system.equipped && i !== suit, enc: itemEncumbrance(i, { worn: i === suit }) }));
     context.armorWarning = system.gear?.extraArmor?.length ? game.i18n.format("GENESYS.Equip.ExtraArmor", { suit: suit?.name ?? "", names: system.gear.extraArmor.join(", ") }) : "";
+
+    // Способности расы/архетипа — в шапку.
+    context.archAbilities = actor.itemTypes.ability.filter(i => i.getFlag(SYSTEM_ID, "fromArchetype") || (context.archetype?.system.abilities ?? []).some(a => a.name === i.name))
+      .map(i => ({ id: i.id, name: i.name, img: i.img }));
+    context.otherAbilities = actor.itemTypes.ability.filter(i => !context.archAbilities.some(a => a.id === i.id));
 
     context.rankAction = "skillRank";
     context.careerLabel = "GENESYS.CareerSkill";
