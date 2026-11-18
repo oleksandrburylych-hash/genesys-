@@ -1,65 +1,85 @@
-<div class="vehicle-sheet">
-  <header class="genesys-header">
-    <img class="profile" src="{{actor.img}}" alt="{{actor.name}}" data-edit="img" data-action="editImage">
-    <div class="header-main">
-      <div class="name-row">
-        <input class="actor-name" type="text" name="name" value="{{actor.name}}" placeholder="{{localize 'GENESYS.Name'}}">
-        <a class="pool-button" data-action="rollPilot" data-tooltip="GENESYS.Vehicle.PilotHint"><i class="fa-solid fa-car"></i></a>
+<div class="vehicle-sheet gs-adv gs-veh">
+  <header class="gs-adv-head">
+    <img class="gs-adv-portrait" src="{{actor.img}}" alt="{{actor.name}}" data-edit="img" data-action="editImage">
+    <div class="gs-adv-main">
+      <div class="gs-adv-title">
+        <input class="gs-name" type="text" name="name" value="{{actor.name}}" placeholder="{{localize 'GENESYS.Name'}}">
+        <a class="gs-icon-btn" data-action="rollPilot" data-tooltip="GENESYS.Vehicle.PilotHint"><i class="fa-solid fa-car"></i></a>
       </div>
-      <div class="vehicle-profile">
-        <div class="vstat"><label>{{localize "GENESYS.Vehicle.Silhouette"}}</label><input type="number" name="system.silhouette" value="{{system.silhouette}}" data-dtype="Number"></div>
-        <div class="vstat"><label>{{localize "GENESYS.Vehicle.Speed"}}</label>
-          <span><input type="number" name="system.speed.value" value="{{system.speed.value}}" data-dtype="Number"> / <input type="number" name="system.speed.max" value="{{system.speed.max}}" data-dtype="Number"></span></div>
-        <div class="vstat"><label>{{localize "GENESYS.Vehicle.Handling"}}</label><input type="number" name="system.handling" value="{{system.handling}}" data-dtype="Number"></div>
-        <div class="vstat"><label>{{localize "GENESYS.Vehicle.Armor"}}</label><input type="number" name="system.armor" value="{{system.armor}}" data-dtype="Number"></div>
-        <div class="vstat"><label>{{localize "GENESYS.Vehicle.Skill"}}</label>
-          <select name="system.skill">{{selectOptions skillChoices selected=system.skill localize=true}}</select></div>
+      <div class="gs-adv-type">
+        <label class="gs-veh-sil" data-tooltip="GENESYS.Vehicle.Silhouette"><span>{{localize "GENESYS.Vehicle.Silhouette"}}</span><input type="number" name="system.silhouette" value="{{system.silhouette}}" min="0" data-dtype="Number"></label>
+        <select name="system.skill" class="gs-adv-badge gs-veh-skill">{{selectOptions skillChoices selected=system.skill localize=true}}</select>
+        {{#each vehicleStates}}<span class="gs-world on" style="--world: #8e2229">{{this}}</span>{{/each}}
       </div>
       {{> "systems/genesys-rpg/templates/parts/worlds.hbs"}}
       {{> "systems/genesys-rpg/templates/parts/statuses.hbs"}}
     </div>
   </header>
 
+  <div class="gs-derived gs-veh-derived">
+    <div class="gs-shield">
+      <div class="gs-shield-title">{{localize "GENESYS.Vehicle.SpeedTitle"}}</div>
+      <div class="gs-shield-body split">
+        <span class="gs-current">
+          <a data-action="adjustVehicle" data-path="system.speed.value" data-delta="-1"><i class="fa-solid fa-minus"></i></a>
+          <input type="number" name="system.speed.value" value="{{system.speed.value}}" min="0" data-dtype="Number">
+          <a data-action="adjustVehicle" data-path="system.speed.value" data-delta="1"><i class="fa-solid fa-plus"></i></a>
+        </span>
+        <input class="gs-big-input" type="number" name="system.speed.max" value="{{system.speed.max}}" data-dtype="Number">
+      </div>
+      <div class="gs-shield-foot split"><span>{{localize "GENESYS.Sheet.Current"}}</span><span>{{localize "GENESYS.Vehicle.Max"}}</span></div>
+    </div>
+    <div class="gs-shield">
+      <div class="gs-shield-title">{{localize "GENESYS.Vehicle.Handling"}}</div>
+      <div class="gs-shield-body"><input class="gs-big-input" type="number" name="system.handling" value="{{system.handling}}" data-dtype="Number"></div>
+      <div class="gs-shield-foot"><span class="gs-veh-dice">{{#times handlingBoost}}{{genesysDie "boost"}}{{/times}}{{#times handlingSetback}}{{genesysDie "setback"}}{{/times}}{{#unless handling}}—{{/unless}}</span></div>
+    </div>
+    <div class="gs-shield">
+      <div class="gs-shield-title">{{localize "GENESYS.Vehicle.Armor"}}</div>
+      <div class="gs-shield-body"><input class="gs-big-input" type="number" name="system.armor" value="{{system.armor}}" data-dtype="Number"></div>
+      <div class="gs-shield-foot"><span>{{localize "GENESYS.Vehicle.VsPersonal"}}</span></div>
+    </div>
+    <div class="gs-shield">
+      <div class="gs-shield-title">{{localize "GENESYS.Defense"}}</div>
+      <div class="gs-shield-body gs-arcs">
+        <input class="fore" type="number" name="system.defense.fore" value="{{system.defense.fore}}" data-dtype="Number" data-tooltip="GENESYS.Vehicle.Fore">
+        <input class="port" type="number" name="system.defense.port" value="{{system.defense.port}}" data-dtype="Number" data-tooltip="GENESYS.Vehicle.Port">
+        <i class="fa-solid fa-car-side"></i>
+        <input class="starboard" type="number" name="system.defense.starboard" value="{{system.defense.starboard}}" data-dtype="Number" data-tooltip="GENESYS.Vehicle.Starboard">
+        <input class="aft" type="number" name="system.defense.aft" value="{{system.defense.aft}}" data-dtype="Number" data-tooltip="GENESYS.Vehicle.Aft">
+      </div>
+      <div class="gs-shield-foot"><span>{{localize "GENESYS.Vehicle.Arcs"}}</span></div>
+    </div>
+  </div>
+
+  <div class="gs-veh-tracks">
+    {{#with hull}}
+    <div class="gs-veh-track {{#if over}}critical{{/if}}">
+      <div class="gs-veh-track-label"><i class="fa-solid fa-car-burst"></i> {{localize "GENESYS.Vehicle.HullTrauma"}}</div>
+      <a data-action="adjustVehicle" data-path="system.hullTrauma.value" data-delta="-1"><i class="fa-solid fa-minus"></i></a>
+      <div class="gs-veh-bar"><div style="width: {{pct}}%"></div>
+        <span><input type="number" name="system.hullTrauma.value" value="{{value}}" min="0" data-dtype="Number"> / <input type="number" name="system.hullTrauma.max" value="{{max}}" data-dtype="Number"></span></div>
+      <a data-action="adjustVehicle" data-path="system.hullTrauma.value" data-delta="1"><i class="fa-solid fa-plus"></i></a>
+    </div>
+    {{/with}}
+    {{#with sysStrain}}
+    <div class="gs-veh-track strain {{#if over}}critical{{/if}}">
+      <div class="gs-veh-track-label"><i class="fa-solid fa-gears"></i> {{localize "GENESYS.Vehicle.SystemStrain"}}</div>
+      <a data-action="adjustVehicle" data-path="system.systemStrain.value" data-delta="-1"><i class="fa-solid fa-minus"></i></a>
+      <div class="gs-veh-bar"><div style="width: {{pct}}%"></div>
+        <span><input type="number" name="system.systemStrain.value" value="{{value}}" min="0" data-dtype="Number"> / <input type="number" name="system.systemStrain.max" value="{{max}}" data-dtype="Number"></span></div>
+      <a data-action="adjustVehicle" data-path="system.systemStrain.value" data-delta="1"><i class="fa-solid fa-plus"></i></a>
+    </div>
+    {{/with}}
+  </div>
+
+  <div class="gs-ribbon"><span>{{localize "GENESYS.Vehicle.Maneuvers"}}</span></div>
   <section class="vehicle-maneuvers">
     <div class="vm-row">
-      <span class="vm-title">{{localize "GENESYS.Vehicle.Maneuvers"}}</span>
       {{#each maneuvers}}<button type="button" class="vm-btn {{#if action}}action{{/if}}" data-action="maneuver" data-key="{{key}}" data-tooltip="{{localize hint}}" {{#unless allowed}}disabled{{/unless}}>{{localize label}}</button>{{/each}}
     </div>
     <div class="vm-row">
       <label>{{localize "GENESYS.Vehicle.Terrain"}} <select name="flags.genesys-rpg.terrain" data-dtype="Number">{{#each terrainChoices}}<option value="{{n}}" {{#if selected}}selected{{/if}}>{{localize label}}</option>{{/each}}</select></label>
-      {{#each vehicleStates}}<span class="gs-world on" style="--world: #8e2229">{{this}}</span>{{/each}}
-    </div>
-  </section>
-
-  <section class="derived-stats vehicle-stats">
-    <div class="stat defense">
-      <span class="stat-label">{{localize "GENESYS.Defense"}}</span>
-      <div class="defense-arcs">
-        <label data-tooltip="GENESYS.Vehicle.Fore">↑<input type="number" name="system.defense.fore" value="{{system.defense.fore}}" data-dtype="Number"></label>
-        <label data-tooltip="GENESYS.Vehicle.Port">←<input type="number" name="system.defense.port" value="{{system.defense.port}}" data-dtype="Number"></label>
-        <label data-tooltip="GENESYS.Vehicle.Starboard">→<input type="number" name="system.defense.starboard" value="{{system.defense.starboard}}" data-dtype="Number"></label>
-        <label data-tooltip="GENESYS.Vehicle.Aft">↓<input type="number" name="system.defense.aft" value="{{system.defense.aft}}" data-dtype="Number"></label>
-      </div>
-    </div>
-    <div class="stat track {{#if system.hullTrauma.critical}}critical{{/if}}">
-      <span class="stat-label">{{localize "GENESYS.Vehicle.HullTrauma"}}</span>
-      <div class="track-values">
-        <a data-action="adjustVehicle" data-path="system.hullTrauma.value" data-delta="-1"><i class="fa-solid fa-minus"></i></a>
-        <input type="number" name="system.hullTrauma.value" value="{{system.hullTrauma.value}}" data-dtype="Number">
-        <span class="sep">/</span>
-        <input type="number" name="system.hullTrauma.max" value="{{system.hullTrauma.max}}" data-dtype="Number">
-        <a data-action="adjustVehicle" data-path="system.hullTrauma.value" data-delta="1"><i class="fa-solid fa-plus"></i></a>
-      </div>
-    </div>
-    <div class="stat track {{#if system.systemStrain.critical}}critical{{/if}}">
-      <span class="stat-label">{{localize "GENESYS.Vehicle.SystemStrain"}}</span>
-      <div class="track-values">
-        <a data-action="adjustVehicle" data-path="system.systemStrain.value" data-delta="-1"><i class="fa-solid fa-minus"></i></a>
-        <input type="number" name="system.systemStrain.value" value="{{system.systemStrain.value}}" data-dtype="Number">
-        <span class="sep">/</span>
-        <input type="number" name="system.systemStrain.max" value="{{system.systemStrain.max}}" data-dtype="Number">
-        <a data-action="adjustVehicle" data-path="system.systemStrain.value" data-delta="1"><i class="fa-solid fa-plus"></i></a>
-      </div>
     </div>
   </section>
 

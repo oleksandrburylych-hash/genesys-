@@ -53,6 +53,11 @@ export class GenesysVehicleSheet extends GenesysBaseActorSheet {
         ? game.i18n.localize(`GENESYS.Skill.${i.system.skill}`) : i.system.skill
     }));
     context.crits = this.actor.itemTypes.injury;
+    const bar = (value, max) => ({ value, max, pct: max ? Math.min(100, Math.round(100 * value / max)) : 0, over: value > max });
+    context.hull = bar(system.hullTrauma.value, system.hullTrauma.max);
+    context.sysStrain = bar(system.systemStrain.value, system.systemStrain.max);
+    const h = system.handling ?? 0;
+    context.handlingBoost = Math.max(0, h); context.handlingSetback = Math.max(0, -h); context.handling = h !== 0;
     const speed = system.speed.value;
     context.maneuvers = Object.entries(MANEUVERS).map(([key, m]) => ({
       key, label: `GENESYS.Vehicle.M.${key}`, hint: `GENESYS.Vehicle.MHint.${key}`, action: !!m.action,

@@ -971,3 +971,36 @@
 .genesys .tp-tools select { flex: 1; height: 26px; background: rgba(255,255,255,.92); color: #1d1d1f; border-radius: 6px; }
 .genesys .tp-btn { width: 28px; height: 26px; display: grid; place-items: center; border-radius: 6px; background: rgba(255,255,255,.12); color: #fff; }
 .genesys .tp-btn:hover { background: var(--gs-maroon); }
+
+/* ---------- Лист транспорта в книжном стиле ---------- */
+.genesys .gs-veh .gs-veh-sil { display: inline-flex; align-items: center; gap: 4px; padding-left: 10px; border-radius: 999px; background: var(--gs-navy); color: #fff;
+  font-family: var(--gs-head); text-transform: uppercase; font-size: 11px; letter-spacing: .06em; border: 2px solid var(--gs-gold); }
+.genesys.sheet .gs-veh .gs-veh-sil input { width: 34px; height: 22px; border: none; border-radius: 0 999px 999px 0; text-align: center; font-family: var(--gs-head); font-size: 15px; background: #fff; }
+.genesys.sheet .gs-veh select.gs-veh-skill { background: var(--gs-maroon); }
+.genesys .gs-veh .gs-current { display: flex; align-items: center; gap: 2px; }
+.genesys.sheet .gs-veh .gs-current input { width: 38px; height: 34px; border: none; background: transparent; text-align: center; font-family: var(--gs-head); font-size: 22px; color: var(--gs-maroon); }
+.genesys .gs-veh .gs-current a { color: var(--gs-muted); font-size: 11px; }
+.genesys .gs-veh .gs-veh-dice img, .genesys .gs-veh .gs-veh-dice .genesys-die { width: 14px; height: 14px; vertical-align: middle; }
+.genesys .gs-arcs { display: grid; grid-template: "a f b" 1fr "p c s" 1fr "d t e" 1fr / 1fr 1fr 1fr; place-items: center; padding: 2px; min-height: 76px; }
+.genesys.sheet .gs-arcs input { width: 30px; height: 22px; border: 1px solid var(--gs-line); border-radius: 50%; background: #fff; text-align: center; font-family: var(--gs-head); font-size: 15px; color: var(--gs-navy); padding: 0; }
+.genesys .gs-arcs .fore { grid-area: f; } .genesys .gs-arcs .port { grid-area: p; } .genesys .gs-arcs .starboard { grid-area: s; } .genesys .gs-arcs .aft { grid-area: t; }
+.genesys .gs-arcs i { grid-area: c; font-size: 22px; color: var(--gs-navy); transform: rotate(-90deg); }
+.genesys .gs-veh-tracks { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 12px 0 4px; }
+.genesys .gs-veh-track { display: grid; grid-template-columns: 22px 1fr 22px; grid-template-rows: auto 30px; align-items: center; gap: 2px 4px; }
+.genesys .gs-veh-track-label { grid-column: 1 / -1; font-family: var(--gs-head); text-transform: uppercase; letter-spacing: .08em; font-size: 12px; color: var(--gs-navy); }
+.genesys .gs-veh-track > a { text-align: center; color: var(--gs-muted); }
+.genesys .gs-veh-track > a:hover { color: var(--gs-maroon); }
+.genesys .gs-veh-bar { position: relative; height: 30px; border-radius: 15px; background: #efe5cd; border: 2px solid var(--gs-gold); overflow: hidden; }
+.genesys .gs-veh-bar > div { height: 100%; background: linear-gradient(90deg, #b8423a, #8e2229); transition: width .3s; }
+.genesys .gs-veh-track.strain .gs-veh-bar > div { background: linear-gradient(90deg, #5a86bd, #2c4c7c); }
+.genesys .gs-veh-track.critical .gs-veh-bar { box-shadow: 0 0 0 2px #ff6b5e, 0 0 10px rgba(255,80,60,.6); }
+.genesys .gs-veh-bar > span { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 2px; font-family: var(--gs-head); font-size: 16px; color: #1d1d1f; }
+.genesys.sheet .gs-veh-bar input { width: 40px; height: 24px; border: none; background: rgba(255,255,255,.75); border-radius: 6px; text-align: center; font-family: var(--gs-head); font-size: 16px; padding: 0; }
+.genesys .gs-veh .vehicle-maneuvers { background: transparent; padding: 4px 0; }
+.genesys .gs-veh .vm-btn { font-family: var(--gs-head); text-transform: uppercase; letter-spacing: .04em; border: 2px solid var(--gs-navy); border-radius: 999px; background: #fff; color: var(--gs-navy); }
+.genesys .gs-veh .vm-btn.action { border-color: var(--gs-maroon); color: var(--gs-maroon); }
+.genesys .gs-veh .vm-btn:hover:not([disabled]) { background: var(--gs-navy); color: #fff; }
+.genesys .gs-veh .vm-btn.action:hover:not([disabled]) { background: var(--gs-maroon); }
+.genesys .gs-veh .vm-btn[disabled] { opacity: .35; }
+.genesys .gs-veh .vehicle-misc { display: grid; grid-template-columns: repeat(6, minmax(0,1fr)); gap: 6px; }
+.genesys .gs-veh .vehicle-misc label { display: flex; flex-direction: column; font-family: var(--gs-head); text-transform: uppercase; font-size: 10.5px; color: var(--gs-muted); }
