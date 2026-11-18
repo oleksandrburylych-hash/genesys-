@@ -122,7 +122,8 @@ export class GenesysRoll extends Roll {
     // Итог после взаимного сокращения: крупные плашки.
     const L = k => game.i18n.localize(k);
     const net = [["triumph", r.triumph], ["success", r.success], ["advantage", r.advantage], ["despair", r.despair], ["failure", r.failure], ["threat", r.threat]]
-      .filter(([, v]) => v > 0).map(([key, value]) => ({ key, value, label: L(`GENESYS.Symbol.${key}`) }));
+      .filter(([, v]) => v > 0).map(([key, value]) => ({ key, value, label: L(`GENESYS.Symbol.${key}`),
+        interp: ["advantage", "threat", "triumph", "despair"].includes(key) && !!(this.options.skill || this.options.weapon) }));
     const raw = r.raw ?? {};
     const rawText = ["success", "failure", "advantage", "threat", "triumph", "despair"].filter(k => raw[k]).map(k => `${L(`GENESYS.Symbol.${k}`)}: ${raw[k]}`).join(" · ");
 

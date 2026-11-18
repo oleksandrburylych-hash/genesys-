@@ -177,6 +177,35 @@
   </div>
   {{/if}}
 
+  {{#if (eq tab "interp")}}
+  <div class="gm-interp">
+    <div class="gm-interp-top">
+      <div class="gm-seg gm-interp-eras">{{#each interp.eras}}<a class="{{#if active}}active{{/if}}" data-action="interpEra" data-key="{{key}}"><i class="{{icon}}"></i> {{localize label}}</a>{{/each}}</div>
+      <a class="gm-interp-whisper {{#if interp.whisper}}on{{/if}}" data-action="interpWhisper" data-tooltip="GENESYS.Interp.WhisperHint">
+        <i class="fa-solid {{#if interp.whisper}}fa-user-secret{{else}}fa-users{{/if}}"></i> {{#if interp.whisper}}{{localize "GENESYS.Interp.ToGM"}}{{else}}{{localize "GENESYS.Interp.ToAll"}}{{/if}}</a>
+    </div>
+    <div class="gm-interp-skills">
+      {{#each interp.groups}}
+      <div class="gm-interp-group"><b>{{localize label}}</b>{{#each skills}}<a class="wz-chip {{#if active}}active{{/if}}" data-action="interpSkill" data-key="{{key}}">{{label}}</a>{{/each}}</div>
+      {{/each}}
+    </div>
+    <p class="hint">{{localize "GENESYS.Interp.Hint"}}</p>
+    {{#if interp.missing}}
+    <p class="gs-warning"><i class="fa-solid fa-circle-info"></i> {{localize "GENESYS.Interp.Missing"}} {{#if interp.otherEras}}({{interp.otherEras}}){{/if}}</p>
+    {{else}}
+    <div class="gm-interp-cols">
+      {{#each interp.columns}}
+      <section class="gm-interp-col {{key}}">
+        <header><span class="genesys-symbol {{key}}"></span> {{localize label}}
+          <a class="gm-interp-dice" data-action="interpRandom" data-outcome="{{key}}" data-tooltip="GENESYS.Interp.Random"><i class="fa-solid fa-dice"></i></a></header>
+        <ol>{{#each items}}<li class="{{#if hl}}hl{{/if}}" data-action="interpPick" data-outcome="{{../key}}" data-index="{{i}}">{{text}}</li>{{/each}}</ol>
+      </section>
+      {{/each}}
+    </div>
+    {{/if}}
+  </div>
+  {{/if}}
+
   {{#if (eq tab "reference")}}
   <div class="gm-body gm-ref">
     <div class="gm-ref-cols">

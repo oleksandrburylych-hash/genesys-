@@ -165,6 +165,18 @@ export function registerChatHandlers() {
         const w = roll?.options?.weapon ?? {};
         const actor = rollActor(message);
 
+        if (action === "interpret") {
+          // Ведущему: 3 идеи, что значит этот символ в проверке этого навыка (шёпотом).
+          if (!game.user.isGM) return;
+          const I = await import("./interpretations.mjs");
+          const skill = roll?.options?.skill || (roll?.options?.weapon ? "melee" : null);
+          if (!skill) return ui.notifications.info("GENESYS.Interp.NoSkill", { localize: true });
+          const era = I.currentEra();
+          const list = (await I.loadInterpretations(skill))?.eras?.[era]?.[btn.dataset.outcome] ?? [];
+          if (!list.length) return ui.notifications.info("GENESYS.Interp.Missing", { localize: true });
+          return I.postInterpretation({ skillKey: skill, era, outcome: btn.dataset.outcome, texts: I.pickRandom(list, 3), whisper: true });
+        }
+
         if (action === "applyDamage") {
           const targets = await resolveTargets(roll);
           if (!targets.length) return ui.notifications.warn("GENESYS.Warn.NoTokenSelected", { localize: true });

@@ -28,6 +28,7 @@ export class GMScreen extends HandlebarsApplicationMixin(ApplicationV2) {
     this.loot = { source: "encounter", level: 3, result: null };
     this.shop = { name: "", type: "general", size: "medium", locs: new Set(["town"]), result: null };
     this.shopPool = null;
+    this.interp = { era: null, skill: "athletics", whisper: true, hl: {} };
   }
 
   static DEFAULT_OPTIONS = {
@@ -45,6 +46,8 @@ export class GMScreen extends HandlebarsApplicationMixin(ApplicationV2) {
       lootSource: GMScreen.#onLootSource, lootLevel: GMScreen.#onLootLevel, lootGenerate: GMScreen.#onLootGenerate,
       lootRemove: GMScreen.#onLootRemove, lootToChat: GMScreen.#onLootToChat,
       shopType: GMScreen.#onShopType, shopSize: GMScreen.#onShopSize, shopLoc: GMScreen.#onShopLoc,
+      interpEra: GMScreen.#onInterpEra, interpSkill: GMScreen.#onInterpSkill, interpPick: GMScreen.#onInterpPick,
+      interpRandom: GMScreen.#onInterpRandom, interpWhisper: GMScreen.#onInterpWhisper,
       shopGenerate: GMScreen.#onShopGenerate, shopRemove: GMScreen.#onShopRemove, shopToChat: GMScreen.#onShopToChat, npcGenerate: GMScreen.#onNpcGenerate,
       fear: async () => (await import("./fear.mjs")).promptFearCheck(),
       social: () => game.genesys.SocialEncounter.open()
@@ -93,7 +96,7 @@ export class GMScreen extends HandlebarsApplicationMixin(ApplicationV2) {
     const L = k => game.i18n.localize(k);
     const ctx = {
       tab: this.tab,
-      tabs: ["encounter", "loot", "shop", "npc", "xp", "reference"].map(t => ({ key: t, label: `GENESYS.GM.Tab.${t}`, active: t === this.tab }))
+      tabs: ["encounter", "loot", "shop", "npc", "xp", "interp", "reference"].map(t => ({ key: t, label: `GENESYS.GM.Tab.${t}`, active: t === this.tab }))
     };
 
     if (this.tab === "encounter") {
@@ -181,6 +184,27 @@ export class GMScreen extends HandlebarsApplicationMixin(ApplicationV2) {
         available: a.system.experience?.available ?? 0, total: a.system.experience?.total ?? 0 }));
       ctx.xp = this.xp;
       ctx.presets = [5, 10, 15, 20, 25];
+    }
+
+    if (this.tab === "interp") {
+      const I = await import("../interpretations.mjs");
+      const st = this.interp;
+      st.era ??= I.currentEra();
+      const data = await I.loadInterpretations(st.skill);
+      const eraData = data?.eras?.[st.era] ?? null;
+      const skillName = k => L(`GENESYS.Skill.${k}`);
+      ctx.interp = {
+        era: st.era, whisper: st.whisper, skill: skillName(st.skill),
+        eras: Object.entries(I.ERAS).map(([k, e]) => ({ key: k, label: e.label, icon: e.icon, active: k === st.era })),
+        groups: Object.entries(I.INTERP_SKILLS).map(([cat, keys]) => ({
+          label: `GENESYS.SkillCategory.${cat}`,
+          skills: keys.map(k => ({ key: k, label: skillName(k), active: k === st.skill })).sort((a, b) => a.label.localeCompare(b.label, game.i18n.lang))
+        })),
+        missing: !eraData,
+        otherEras: data ? Object.keys(data.eras ?? {}).map(k => L(I.ERAS[k]?.label ?? k)).join(", ") : "",
+        columns: I.OUTCOMES.map(o => ({ key: o, label: `GENESYS.Symbol.${o}`,
+          items: (eraData?.[o] ?? []).map((text, i) => ({ i, text, hl: st.hl[o] === i })) }))
+      };
     }
 
     if (this.tab === "reference") {
@@ -296,6 +320,35 @@ export class GMScreen extends HandlebarsApplicationMixin(ApplicationV2) {
     if (!actor) return;
     this.npc = { ...opts, last: { name: actor.name, uuid: actor.uuid, img: actor.img } };
     actor.sheet.render({ force: true });
+    this.render();
+  }
+
+  static #onInterpEra(event, target) {
+    this.interp.era = target.dataset.key; this.interp.hl = {};
+    if (game.user.isGM) game.settings.set(SYSTEM_ID, "interpEra", this.interp.era).catch(() => {});
+    this.render();
+  }
+  static #onInterpSkill(event, target) { this.interp.skill = target.dataset.key; this.interp.hl = {}; this.render(); }
+  static #onInterpWhisper() { this.interp.whisper = !this.interp.whisper; this.render(); }
+  /** Щелчок по варианту — в чат. */
+  static async #onInterpPick(event, target) {
+    const I = await import("../interpretations.mjs");
+    const o = target.dataset.outcome, i = Number(target.dataset.index);
+    const text = (await I.loadInterpretations(this.interp.skill))?.eras?.[this.interp.era]?.[o]?.[i];
+    if (!text) return;
+    this.interp.hl = { ...this.interp.hl, [o]: i };
+    await I.postInterpretation({ skillKey: this.interp.skill, era: this.interp.era, outcome: o, texts: [text], whisper: this.interp.whisper });
+    this.render();
+  }
+  /** Кубик над колонкой — случайный вариант: подсветить и отправить в чат. */
+  static async #onInterpRandom(event, target) {
+    const I = await import("../interpretations.mjs");
+    const o = target.dataset.outcome;
+    const list = (await I.loadInterpretations(this.interp.skill))?.eras?.[this.interp.era]?.[o] ?? [];
+    if (!list.length) return;
+    const i = Math.floor(Math.random() * list.length);
+    this.interp.hl = { ...this.interp.hl, [o]: i };
+    await I.postInterpretation({ skillKey: this.interp.skill, era: this.interp.era, outcome: o, texts: [list[i]], whisper: this.interp.whisper });
     this.render();
   }
 

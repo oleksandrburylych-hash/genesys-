@@ -18,7 +18,7 @@
       {{else}}{{#if results.isSuccess}}<i class="fa-solid fa-check"></i> {{localize "GENESYS.Roll.Success"}}{{else}}<i class="fa-solid fa-xmark"></i> {{localize "GENESYS.Roll.Failure"}}{{/if}}{{/if}}
     </div>
     <div class="gr-net">
-      {{#each net}}<span class="gr-chip {{key}}"><span class="genesys-symbol {{key}}"></span><b>{{value}}</b><small>{{label}}</small></span>
+      {{#each net}}<span class="gr-chip {{key}} {{#if interp}}interp{{/if}}" {{#if interp}}data-genesys-action="interpret" data-outcome="{{key}}" data-tooltip="GENESYS.Interp.ChipHint"{{/if}}><span class="genesys-symbol {{key}}"></span><b>{{value}}</b><small>{{label}}</small></span>
       {{else}}<span class="gr-blank">{{localize "GENESYS.Roll.Blank"}}</span>{{/each}}
     </div>
   </div>

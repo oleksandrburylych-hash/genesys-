@@ -396,6 +396,35 @@ Workshop.DEFAULT_OPTIONS.actions.mode.call(wsp, null, { dataset: { mode: "alchem
 assert.ok([...wsp.html.matchAll(/data-action="select"/g)].length > 0, "alchemy lists potions");
 assert.ok(GENESYS.spending.craftingPositive && GENESYS.spending.alchemyNegative, "crafting spending tables");
 
+// Толкования символов: у каждого навыка справочника — файл, в каждой эпохе по 10 вариантов на каждый исход; вкладка рисуется.
+{
+  const I = await import(`${R}/module/interpretations.mjs`);
+  globalThis.fetch = async url => {
+    const f = path.join(R, String(url).replace(/^systems\/genesys-rpg\//, ""));
+    return fs.existsSync(f) ? { ok: true, json: async () => JSON.parse(fs.readFileSync(f, "utf8")) } : { ok: false };
+  };
+  const keys = Object.values(I.INTERP_SKILLS).flat();
+  for (const key of keys) {
+    const d = await I.loadInterpretations(key);
+    assert.ok(d?.eras, `толкования: нет файла ${key}`);
+    assert.ok(Object.keys(d.eras).length >= 1, `толкования ${key}: нет эпох`);
+    for (const [era, o] of Object.entries(d.eras)) {
+      assert.ok(I.ERAS[era], `толкования ${key}: неизвестная эпоха ${era}`);
+      for (const k of I.OUTCOMES) {
+        assert.equal(o[k]?.length, 10, `толкования ${key}/${era}/${k}: ${o[k]?.length}`);
+        assert.ok(o[k].every(t => typeof t === "string" && t.length > 20 && t.length < 400), `толкования ${key}/${era}/${k}: текст`);
+        assert.equal(new Set(o[k]).size, 10, `толкования ${key}/${era}/${k}: повторы`);
+      }
+    }
+  }
+  for (const k of ["computers", "piloting"]) assert.ok(!(await I.loadInterpretations(k)).eras.medieval, `${k} нет в средневековье`);
+  assert.ok(!(await I.loadInterpretations("astrocartography")).eras.modern, "астронавигация только в будущем");
+  assert.equal(I.interpKey("meleeHeavy"), "melee");
+  gm.tab = "interp"; gm.interp.era = "modern"; gm.interp.skill = "athletics"; await gm.render();
+  assert.equal([...gm.html.matchAll(/data-action="interpPick"/g)].length, 40, "40 вариантов на вкладке");
+  gm.interp.skill = "alchemy"; await gm.render();
+  assert.ok(gm.html.includes("gs-warning"), "алхимии нет в нашем времени — подсказка");
+}
 console.log("notifications:", notes);
 // Окно броска: собирается и рисуется (раньше падало на настройке видимости в некоторых сборках).
 {

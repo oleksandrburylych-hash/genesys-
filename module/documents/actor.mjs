@@ -146,6 +146,7 @@ export class GenesysActor extends Actor {
     const key = skill.system.key;
     const target = getTargets()[0] ?? null;
     if (skill.system.category === "social") rollOptions = { ...rollOptions, social: true };
+    rollOptions = { skill: key, ...rollOptions };
     const notes = [...extraNotes];
     let pool = this.getSkillPool(skill, difficulty);
     if (upgrades > 0) pool.upgradeDifficulty(upgrades);
@@ -230,6 +231,7 @@ export class GenesysActor extends Actor {
         active
       },
       target: target ? { uuid: target.actor.uuid, name: target.actor.name } : null,
+      skill: skill?.system.key || sys.skill,
       melee: sys.isMelee || ["melee", "meleeLight", "meleeHeavy", "brawl"].includes(sys.skill)
     };
     let label = game.i18n.format("GENESYS.Roll.Attack", { name: weapon.name });

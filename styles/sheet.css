@@ -1121,3 +1121,37 @@
 .genesys.dice-pool-dialog .pool-preview .genesys-die-icon { width: 34px; height: 34px; filter: drop-shadow(0 3px 2px rgba(0,0,0,.55)); }
 .genesys.dice-pool-dialog .pool-preview .hint { color: #cfe3d6; }
 .genesys.dice-pool-dialog .pool-row .genesys-die-icon { width: 22px; height: 22px; }
+
+/* ---------- Ширма: толкования символов ---------- */
+.genesys .gm-interp-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
+.genesys .gm-interp-eras a { display: inline-flex; gap: 6px; align-items: center; }
+.genesys .gm-interp-whisper { padding: 3px 10px; border-radius: 999px; border: 1px solid var(--gs-line); color: var(--gs-muted); font-size: 12px; }
+.genesys .gm-interp-whisper.on { background: var(--gs-navy); color: #fff; border-color: var(--gs-navy); }
+.genesys .gm-interp-skills { display: flex; flex-direction: column; gap: 3px; }
+.genesys .gm-interp-group { display: flex; flex-wrap: wrap; gap: 3px; align-items: center; }
+.genesys .gm-interp-group > b { min-width: 130px; font-family: var(--gs-head); text-transform: uppercase; font-size: 11px; color: var(--gs-muted); letter-spacing: .05em; }
+.genesys .gm-interp-group .wz-chip { padding: 1px 8px; font-size: 12px; }
+.genesys .gm-interp-cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.genesys .gm-interp-col { border-radius: 10px; overflow: hidden; background: #fffaf0; border: 1px solid #d9c7a0; }
+.genesys .gm-interp-col header { display: flex; align-items: center; gap: 6px; padding: 4px 10px; color: #fff; font-family: var(--gs-head); text-transform: uppercase; letter-spacing: .08em; }
+.genesys .gm-interp-col header .genesys-symbol { width: 18px; height: 18px; }
+.genesys .gm-interp-col.advantage header { background: linear-gradient(90deg, #285f96, #3f86c9); }
+.genesys .gm-interp-col.threat header { background: linear-gradient(90deg, #4f2a78, #7b48b0); }
+.genesys .gm-interp-col.triumph header { background: linear-gradient(90deg, #c48f00, #ffd65a); color: #3b2600; }
+.genesys .gm-interp-col.despair header { background: linear-gradient(90deg, #2a0a0c, #8e2229); }
+.genesys .gm-interp-dice { margin-left: auto; color: inherit; font-size: 16px; }
+.genesys .gm-interp-dice:hover { transform: rotate(20deg) scale(1.15); }
+.genesys .gm-interp-col ol { margin: 0; padding: 4px 8px 6px 28px; font-size: 12.5px; line-height: 1.3; }
+.genesys .gm-interp-col li { padding: 3px 4px; border-radius: 6px; cursor: pointer; }
+.genesys .gm-interp-col li:hover { background: #f3e6c8; }
+.genesys .gm-interp-col li.hl { background: #ffe9a8; box-shadow: inset 3px 0 0 var(--gs-gold); }
+.genesys.interp-card h4 { display: flex; align-items: center; gap: 6px; margin: 0 0 4px; font-family: var(--gs-head); text-transform: uppercase; font-size: 13px; color: var(--gs-navy); }
+.genesys.interp-card h4 small { margin-left: auto; color: var(--gs-muted); font-size: 10px; }
+.genesys.interp-card ul { margin: 0; padding-left: 18px; }
+.genesys.interp-card li { margin: 2px 0; }
+.genesys.interp-card.advantage { border-left: 4px solid #3f86c9; padding-left: 6px; }
+.genesys.interp-card.threat { border-left: 4px solid #7b48b0; padding-left: 6px; }
+.genesys.interp-card.triumph { border-left: 4px solid #e0a516; padding-left: 6px; }
+.genesys.interp-card.despair { border-left: 4px solid #8e2229; padding-left: 6px; }
+.genesys-roll .gr-chip.interp { cursor: help; }
+.genesys-roll .gr-chip.interp:hover { filter: brightness(1.12); box-shadow: 0 0 0 2px rgba(255,255,255,.7), 0 0 6px rgba(242,165,49,.8); }

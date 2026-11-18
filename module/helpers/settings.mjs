@@ -21,6 +21,9 @@ export function registerSettings() {
     default: []
   });
 
+  // Эпоха для толкований символов (ширма ведущего → «Толкования»).
+  game.settings.register(SYSTEM_ID, "interpEra", { scope: "world", config: false, type: String, default: "" });
+
   game.settings.register(SYSTEM_ID, "tokenPanel", {
     name: "GENESYS.TokenPanel.Setting",
     hint: "GENESYS.TokenPanel.SettingHint",
