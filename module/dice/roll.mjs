@@ -73,7 +73,9 @@ export class GenesysRoll extends Roll {
       if (!(term instanceof GenesysDie)) continue;
       for (const result of term.results) {
         if (!result.active) continue;
-        dice.push({ key: term.constructor.DIE_KEY, label: term.getResultLabel(result) });
+        const code = term.constructor.symbolsFor(result.result);
+        dice.push({ key: term.constructor.DIE_KEY, label: term.getResultLabel(result), n: [...code].length, i: dice.length,
+          name: game.i18n.localize(`GENESYS.Dice.${term.constructor.DIE_KEY}`) });
       }
     }
 
@@ -117,7 +119,15 @@ export class GenesysRoll extends Roll {
       fear = { key, source: this.options.fear.source, apply: ["aversion", "freeze", "adrenaline"].includes(key) };
     }
 
+    // Итог после взаимного сокращения: крупные плашки.
+    const L = k => game.i18n.localize(k);
+    const net = [["triumph", r.triumph], ["success", r.success], ["advantage", r.advantage], ["despair", r.despair], ["failure", r.failure], ["threat", r.threat]]
+      .filter(([, v]) => v > 0).map(([key, value]) => ({ key, value, label: L(`GENESYS.Symbol.${key}`) }));
+    const raw = r.raw ?? {};
+    const rawText = ["success", "failure", "advantage", "threat", "triumph", "despair"].filter(k => raw[k]).map(k => `${L(`GENESYS.Symbol.${k}`)}: ${raw[k]}`).join(" · ");
+
     return {
+      net, rawText,
       fear,
       isPrivate,
       flavor: isPrivate ? null : (flavor ?? this.options.flavor),

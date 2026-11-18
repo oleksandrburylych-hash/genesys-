@@ -47,31 +47,6 @@
 .genesys-symbol.triumph   { --icon: url("../assets/icons/triumph.svg"); }
 .genesys-symbol.despair   { --icon: url("../assets/icons/despair.svg"); }
 
-/* ---------- Иконки кубиков в пуле ---------- */
-.genesys-die-icon {
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  margin: 0 1px;
-  vertical-align: middle;
-  border: 1px solid rgba(0, 0, 0, 0.5);
-}
-.genesys-die-icon.boost,
-.genesys-die-icon.setback { border-radius: 2px; }
-.genesys-die-icon.ability,
-.genesys-die-icon.difficulty { transform: rotate(45deg) scale(0.82); }
-.genesys-die-icon.proficiency,
-.genesys-die-icon.challenge {
-  clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%);
-  border: none;
-}
-.genesys-die-icon.proficiency { background: var(--die-proficiency); }
-.genesys-die-icon.ability     { background: var(--die-ability); }
-.genesys-die-icon.boost       { background: var(--die-boost); }
-.genesys-die-icon.challenge   { background: var(--die-challenge); }
-.genesys-die-icon.difficulty  { background: var(--die-difficulty); }
-.genesys-die-icon.setback     { background: var(--die-setback); }
-
 /* ==========================================================================
    Листы
    ========================================================================== */
@@ -424,36 +399,6 @@
 .genesys-roll { display: flex; flex-direction: column; gap: 0.35rem; }
 .genesys-roll .roll-label { margin: 0; font-size: 1.05em; border-bottom: 1px solid var(--color-border, #999); }
 .genesys-roll .roll-dice { display: flex; flex-wrap: wrap; gap: 3px; }
-.genesys-die-result {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 30px;
-  height: 30px;
-  font-size: 11px;
-  color: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.5);
-}
-.genesys-die-result .face { display: flex; flex-wrap: wrap; justify-content: center; line-height: 1; }
-.genesys-die-result.boost,
-.genesys-die-result.setback { border-radius: 3px; }
-.genesys-die-result.ability,
-.genesys-die-result.difficulty { transform: rotate(45deg) scale(0.85); }
-.genesys-die-result.ability .face,
-.genesys-die-result.difficulty .face { transform: rotate(-45deg); }
-.genesys-die-result.proficiency,
-.genesys-die-result.challenge {
-  clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%);
-  border: none;
-  width: 34px;
-}
-.genesys-die-result.proficiency { background: var(--die-proficiency, #f2c516); color: #111; }
-.genesys-die-result.ability     { background: var(--die-ability, #3aa845); color: #111; }
-.genesys-die-result.boost       { background: var(--die-boost, #8fd3f2); color: #111; }
-.genesys-die-result.challenge   { background: var(--die-challenge, #c9282d); }
-.genesys-die-result.difficulty  { background: var(--die-difficulty, #5b2d86); }
-.genesys-die-result.setback     { background: var(--die-setback, #1c1c1c); }
-
 .genesys-roll .roll-summary {
   display: flex;
   flex-wrap: wrap;

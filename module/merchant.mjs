@@ -47,10 +47,12 @@ export function generateShop(pool, { type = "general", size = "medium", locMod =
   const candidates = pool.filter(d => T.types.includes(d.type) && (!T.match || T.match.test(`${d.name} ${d.folder?.name ?? ""}`)));
   const want = SHOP_SIZES[size] ?? 16;
   // Чем реже вещь в этом месте, тем реже она на прилавке.
+  // Вес: обычные вещи (редкость 0–3) — почти всегда, 4–7 — заметно реже, 8–10 — изредка, выше 10 — только в «Всё подряд».
   const weighted = candidates.flatMap(d => {
-    const eff = (d.system.rarity ?? 0) + locMod;
-    const w = Math.max(0, 11 - eff);
-    return Array(Math.max(eff > 12 ? 0 : 1, Math.round(w / 2))).fill(d);
+    const eff = Math.max(0, (d.system.rarity ?? 0) + locMod);
+    if (eff > 10 && type !== "all") return [];
+    const w = eff <= 3 ? 8 : eff <= 5 ? 5 : eff <= 7 ? 3 : eff <= 9 ? 2 : 1;
+    return Array(w).fill(d);
   });
   const chosen = new Map();
   for (let i = 0; i < want * 6 && chosen.size < want && weighted.length; i++) {
@@ -106,8 +108,9 @@ async function buy(message, index) {
   if ((actor.system.money ?? 0) < price) return ui.notifications.warn("GENESYS.Wizard.NoMoney", { localize: true });
   const chk = rarityCheck(it.rarity);
   if (chk.difficulty > 0) {
-    const skill = actor.getSkill(isRestricted(it.data) ? "streetwise" : "negotiation");
-    if (!skill) return ui.notifications.warn(game.i18n.format("GENESYS.Warn.SkillNotFound", { name: game.i18n.localize("GENESYS.Skill.negotiation") }));
+    const skillKey = isRestricted(it.data) ? "streetwise" : "negotiation";
+    const skill = actor.getSkill(skillKey);
+    if (!skill) return ui.notifications.warn(game.i18n.format("GENESYS.Warn.SkillNotFound", { name: game.i18n.localize(`GENESYS.Skill.${skillKey}`) }));
     const roll = await actor.rollSkill(skill, { difficulty: chk.difficulty, upgrades: chk.upgrades, label: game.i18n.format("GENESYS.Shop.FindLabel", { name: it.data.name }) });
     if (!roll?.results?.isSuccess) return ui.notifications.info(game.i18n.format("GENESYS.Shop.NotFound", { name: it.data.name }));
   }

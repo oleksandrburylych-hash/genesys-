@@ -150,8 +150,10 @@ export class GMScreen extends HandlebarsApplicationMixin(ApplicationV2) {
       const { LOCATION_MODS, SHOP_TYPES, SHOP_SIZES, rarityCheck, isRestricted } = await import("../merchant.mjs");
       const locMod = LOCATION_MODS.filter(l => this.shop.locs.has(l.key)).reduce((s2, l) => s2 + l.value, 0);
       this.shop.locMod = locMod;
+      const keys = enabledAdventureKeys();
       ctx.shop = {
         name: this.shop.name,
+        adventures: [...new Set(keys.length ? [...keys, "all"] : Object.keys(ADVENTURES))].map(k => ({ key: k, label: getAdventure(k).label, selected: k === (this.shop.adventure ?? this.filter.adventure) })),
         types: Object.entries(SHOP_TYPES).map(([k, t]) => ({ key: k, label: `GENESYS.Shop.Type.${k}`, img: `systems/genesys-rpg/assets/icons/gi/loot/${t.icon}.svg`, active: k === this.shop.type })),
         sizes: Object.keys(SHOP_SIZES).map(k => ({ key: k, label: `GENESYS.Shop.Size.${k}`, active: k === this.shop.size })),
         locs: LOCATION_MODS.map(l => ({ key: l.key, label: `GENESYS.Shop.Loc.${l.key}`, value: l.value > 0 ? `+${l.value}` : `${l.value}`, on: this.shop.locs.has(l.key) })),
@@ -215,16 +217,22 @@ export class GMScreen extends HandlebarsApplicationMixin(ApplicationV2) {
   }
 
   /** Предметы компендиумов для «находок» (по приключению фильтра и включённым книгам). */
-  async #shop() {
-    if (this.shopPool) return this.shopPool;
+  /** Товары для лавки и добычи: компендиумы + предметы мира (копия из компендиума заменяет оригинал), по типу приключения. */
+  async #shop(adventureKey = this.filter.adventure) {
+    this.shopPools ??= new Map();
+    if (this.shopPools.has(adventureKey)) return this.shopPools.get(adventureKey);
     const docs = [];
     for (const key of ["weapons", "armor", "gear"]) {
       const pack = game.packs.get(`${SYSTEM_ID}.${key}`);
       if (pack) docs.push(...(await pack.getDocuments()));
     }
-    const adv = getAdventure(this.filter.adventure);
-    this.shopPool = filterForAdventure(docs.filter(d => docAllowed(d) && (d.system.price ?? 0) > 0 && !/транспорт|правила/i.test(`${d.folder?.name ?? ""} ${d.name}`)), adv);
-    return this.shopPool;
+    const world = (game.items?.filter?.(i => ["weapon", "armor", "gear"].includes(i.type)) ?? []);
+    const copied = new Set(world.map(i => i._stats?.compendiumSource).filter(Boolean));
+    const all = [...docs.filter(d => !copied.has(d.uuid)), ...world];
+    const pool = filterForAdventure(all.filter(d => docAllowed(d) && (d.system.price ?? 0) > 0
+      && !/транспорт|правила|создание/i.test(`${d.folder?.name ?? ""} ${d.name}`)), getAdventure(adventureKey));
+    this.shopPools.set(adventureKey, pool);
+    return pool;
   }
 
   static #onGenMode(event, target) { this.gen.mode = target.dataset.mode; this.render(); }
@@ -300,7 +308,7 @@ export class GMScreen extends HandlebarsApplicationMixin(ApplicationV2) {
   }
   static async #onShopGenerate() {
     const { generateShop } = await import("../merchant.mjs");
-    this.shop.result = generateShop(await this.#shop(), { type: this.shop.type, size: this.shop.size, locMod: this.shop.locMod ?? 0 });
+    this.shop.result = generateShop(await this.#shop(this.shop.adventure ?? this.filter.adventure), { type: this.shop.type, size: this.shop.size, locMod: this.shop.locMod ?? 0 });
     this.render();
   }
   static #onShopRemove(event, target) { this.shop.result?.splice(Number(target.dataset.index), 1); this.render(); }
@@ -314,6 +322,8 @@ export class GMScreen extends HandlebarsApplicationMixin(ApplicationV2) {
 
   static #onChange(event, form, formData) {
     const d = foundry.utils.expandObject(formData.object);
+    if (d.filter?.adventure && d.filter.adventure !== this.filter.adventure) this.shopPools?.delete(d.filter.adventure);
+    if (d.shop?.adventure) this.shop.adventure = d.shop.adventure;
     if (d.filter) {
       Object.assign(this.filter, { adventure: d.filter.adventure ?? this.filter.adventure, type: d.filter.type ?? "", search: d.filter.search ?? "" });
     }
@@ -327,7 +337,6 @@ export class GMScreen extends HandlebarsApplicationMixin(ApplicationV2) {
     }
     if (d.shop?.name !== undefined) this.shop.name = d.shop.name;
     if (d.npc) this.npc = { ...(this.npc ?? {}), ...d.npc, power: Number(d.npc.power ?? this.npc?.power ?? 2) };
-    if (d.filter?.adventure && d.filter.adventure !== this.filter.adventure) this.shopPool = null;
     if (d.enc) for (const [i, v] of Object.entries(d.enc)) {
       const e = this.encounter[i];
       if (!e) continue;

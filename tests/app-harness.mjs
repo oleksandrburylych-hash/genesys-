@@ -340,6 +340,19 @@ await new Promise(r => setTimeout(r, 50)); gm.tab = "shop"; await gm.render();
 await GMScreen.DEFAULT_OPTIONS.actions.shopGenerate.call(gm); await gm.render();
 assert.ok(gm.shop.result.length > 3 && gm.shop.result.every(i => i.data.type === "gear"), `shop items: ${gm.shop.result.length}`);
 if (process.env.DUMP) fs.writeFileSync(path.join(process.env.DUMP, "gm-shop.html"), gm.html);
+// Оружейная в фэнтези: только оружие, без бластеров; в зоне войны (+3) редкие вещи встречаются реже обычных.
+{
+  gm.shop.adventure = "fantasy"; gm.shop.type = "weapons";
+  await GMScreen.DEFAULT_OPTIONS.actions.shopGenerate.call(gm);
+  const names = gm.shop.result.map(i => i.data.name);
+  assert.ok(gm.shop.result.length > 3 && gm.shop.result.every(i => i.data.type === "weapon"), `weapon shop: ${names}`);
+  assert.ok(!names.some(n => /бластер|лазер|винтовк|пистолет/i.test(n)), `no guns in a fantasy shop: ${names}`);
+  const pool = gm.shopPools.get("fantasy");
+  let common = 0, rare = 0;
+  for (let k = 0; k < 40; k++) for (const it of generateShop(pool, { type: "weapons", size: "small", locMod: 0 })) (it.rarity <= 3 ? common++ : it.rarity >= 8 ? rare++ : 0);
+  assert.ok(common > rare, `common ${common} > rare ${rare}`);
+  assert.ok(generateShop(pool, { type: "weapons", locMod: 0 }).every(it => it.rarity <= 10), "rarity > 10 only in 'all'");
+}
 // NPC
 await new Promise(r => setTimeout(r, 50)); gm.tab = "npc"; await gm.render();
 assert.ok(gm.html.includes('name="npc.role"'), "npc form");
@@ -377,4 +390,16 @@ assert.ok([...wsp.html.matchAll(/data-action="select"/g)].length > 0, "alchemy l
 assert.ok(GENESYS.spending.craftingPositive && GENESYS.spending.alchemyNegative, "crafting spending tables");
 
 console.log("notifications:", notes);
+// Окно броска: собирается и рисуется (раньше падало на настройке видимости в некоторых сборках).
+{
+  globalThis.Roll ??= class { constructor() { this.terms = []; } };
+  globalThis.CONFIG ??= {}; CONFIG.ChatMessage ??= { modes: { public: { label: "Всем" }, gm: { label: "Ведущему" } } };
+  const { DicePoolDialog } = await import(`${R}/module/apps/dice-pool-dialog.mjs`);
+  const { DicePool } = await import(`${R}/module/dice/pool.mjs`);
+  const pool = new DicePool({ ability: 2, proficiency: 1, difficulty: 2 });
+  const dlg = new DicePoolDialog({ pool, label: "Атлетика", actor: null, notes: ["заметка"] });
+  await dlg.render();
+  assert.ok(dlg.html.includes("pool-row"), "окно броска рисуется");
+  assert.ok(["public", "roll", "publicroll"].includes(dlg.messageMode) || dlg.messageMode);
+}
 console.log("APP HARNESS PASSED");

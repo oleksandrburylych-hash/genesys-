@@ -4,6 +4,22 @@ import { GenesysRoll } from "../dice/roll.mjs";
 
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
+/** Режимы видимости сообщения: v14 — CONFIG.ChatMessage.modes / core.messageMode, раньше — CONFIG.Dice.rollModes / core.rollMode. */
+export function messageModeChoices() {
+  return CONFIG.ChatMessage?.modes ?? CONFIG.Dice?.rollModes ?? {};
+}
+export function currentMessageMode() {
+  for (const key of ["messageMode", "rollMode"]) {
+    try { const v = game.settings.get("core", key); if (v) return v; } catch { /* нет такой настройки в этой версии */ }
+  }
+  return Object.keys(messageModeChoices())[0] ?? "public";
+}
+/** Опции toMessage для выбранного режима. */
+export function messageModeOptions(mode) {
+  if (!mode) return {};
+  return CONFIG.ChatMessage?.modes ? { messageMode: mode } : { rollMode: mode };
+}
+
 /**
  * Окно сборки пула кубиков перед броском.
  * Использование: await DicePoolDialog.prompt({ pool, label, actor, rollOptions })
@@ -20,7 +36,7 @@ export class DicePoolDialog extends HandlebarsApplicationMixin(ApplicationV2) {
     this.label = label ?? "";
     this.actor = actor ?? null;
     this.rollOptions = rollOptions;
-    this.messageMode = game.settings.get("core", "messageMode");
+    this.messageMode = currentMessageMode();
   }
 
   static DEFAULT_OPTIONS = {
@@ -53,7 +69,7 @@ export class DicePoolDialog extends HandlebarsApplicationMixin(ApplicationV2) {
 
   /** @override */
   async _prepareContext(options) {
-    const modes = CONFIG.ChatMessage?.modes ?? {};
+    const modes = messageModeChoices();
     return {
       label: this.label,
       pool: this.pool.display,
@@ -170,9 +186,18 @@ export class DicePoolDialog extends HandlebarsApplicationMixin(ApplicationV2) {
    */
   static prompt(config = {}) {
     return new Promise(resolve => {
-      const app = new this(config);
-      app._resolve = resolve;
-      app.render({ force: true });
+      const fallback = err => {
+        // Окно не открылось — не оставляем игрока без броска: бросаем пул как есть и сообщаем причину.
+        console.error("genesys-rpg | окно броска", err);
+        ui.notifications.error(game.i18n.format("GENESYS.Roll.DialogError", { error: err?.message ?? err }));
+        const pool = config.pool instanceof DicePool ? config.pool : new DicePool(config.pool);
+        DicePoolDialog.rollPool(pool, { label: config.label, actor: config.actor, rollOptions: config.rollOptions }).then(resolve, () => resolve(null));
+      };
+      try {
+        const app = new this(config);
+        app._resolve = resolve;
+        Promise.resolve(app.render({ force: true })).catch(err => { app._resolve = null; fallback(err); });
+      } catch (err) { fallback(err); }
     });
   }
 
@@ -183,8 +208,7 @@ export class DicePoolDialog extends HandlebarsApplicationMixin(ApplicationV2) {
     // Разовый штраф «к следующей проверке» (критические травмы) израсходован.
     if (pool._consumeNext?.isOwner) await pool._consumeNext.unsetFlag("genesys-rpg", "nextCheck");
     const speaker = ChatMessage.implementation.getSpeaker({ actor });
-    const options = messageMode ? { messageMode } : {};
-    await roll.toMessage({ speaker, flavor }, options);
+    await roll.toMessage({ speaker, flavor }, messageModeOptions(messageMode));
     return roll;
   }
 }

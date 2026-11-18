@@ -222,7 +222,8 @@
       "Success": "Success",
       "Upgrade": "Upgrade",
       "Visibility": "Visibility",
-      "ApplyCrit": "Apply Critical Injury to selected"
+      "ApplyCrit": "Apply Critical Injury to selected",
+      "DialogError": "Окно броска не открылось ({error}) — бросок выполнен без него. Сообщите эту строку Кире."
     },
     "Settings": {
       "SkillPreset": {

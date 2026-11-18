@@ -119,7 +119,8 @@
 
   {{#if (eq tab "shop")}}
   <div class="gm-body">
-    <div class="gm-gen-row"><label>{{localize "GENESYS.Shop.Name"}} <input type="text" name="shop.name" value="{{shop.name}}" placeholder="{{localize 'GENESYS.Shop.NamePh'}}"></label></div>
+    <div class="gm-gen-row"><label>{{localize "GENESYS.Shop.Name"}} <input type="text" name="shop.name" value="{{shop.name}}" placeholder="{{localize 'GENESYS.Shop.NamePh'}}"></label>
+      <label>{{localize "GENESYS.Wizard.Adventure"}} <select name="shop.adventure">{{#each shop.adventures}}<option value="{{key}}" {{#if selected}}selected{{/if}}>{{label}}</option>{{/each}}</select></label></div>
     <div class="gm-shop-types">{{#each shop.types}}<a class="gm-creature {{#if active}}on{{/if}}" data-action="shopType" data-key="{{key}}"><img src="{{img}}" alt=""><span>{{localize label}}</span></a>{{/each}}</div>
     <div class="gm-gen-row"><div class="gm-seg">{{#each shop.sizes}}<a class="{{#if active}}active{{/if}}" data-action="shopSize" data-key="{{key}}">{{localize label}}</a>{{/each}}</div></div>
     <div class="gs-ribbon"><span>{{localize "GENESYS.Shop.Where"}} ({{localize "GENESYS.Rarity"}} {{shop.locMod}})</span></div>

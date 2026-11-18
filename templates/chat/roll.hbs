@@ -1,39 +1,26 @@
 <div class="genesys-roll {{outcome}}">
-  {{#if label}}<h4 class="roll-label">{{label}}</h4>{{/if}}
-  {{#if target}}<div class="roll-target"><i class="fa-solid fa-crosshairs"></i> {{target.name}}</div>{{/if}}
+  <header class="gr-head">
+    {{#if label}}<h4 class="roll-label">{{label}}</h4>{{/if}}
+    {{#if target}}<div class="roll-target"><i class="fa-solid fa-crosshairs"></i> {{target.name}}</div>{{/if}}
+  </header>
   {{#if flavor}}<div class="roll-flavor">{{flavor}}</div>{{/if}}
 
   {{#if isPrivate}}
-  <div class="roll-private">???</div>
+  <div class="roll-private"><i class="fa-solid fa-eye-slash"></i> ???</div>
   {{else}}
   <div class="roll-dice">
-    {{#each dice}}
-    <span class="genesys-die-result {{key}}"><span class="face">{{{label}}}</span></span>
-    {{/each}}
+    {{#each dice}}<span class="gd {{key}}" style="--i: {{i}}" data-tooltip="{{name}}"><span class="gd-face n{{n}}">{{{label}}}</span></span>{{/each}}
   </div>
 
-  <div class="roll-summary">
-    {{#if noSymbols}}<span class="blank">{{localize "GENESYS.Roll.Blank"}}</span>{{else}}{{{summary}}}{{/if}}
-  </div>
-
-  <div class="roll-outcome">
-    {{#if initiative}}
-      <strong>{{localize "GENESYS.Initiative.label"}}: {{initiative}}</strong>
-    {{else}}
-      {{#if results.isSuccess}}
-        <strong class="success">{{localize "GENESYS.Roll.Success"}}</strong>
-      {{else}}
-        <strong class="failure">{{localize "GENESYS.Roll.Failure"}}</strong>
-      {{/if}}
-    {{/if}}
-    <span class="counts">
-      {{#if results.success}}{{localize "GENESYS.Symbol.success"}}: {{results.success}}{{/if}}
-      {{#if results.failure}}{{localize "GENESYS.Symbol.failure"}}: {{results.failure}}{{/if}}
-      {{#if results.advantage}} · {{localize "GENESYS.Symbol.advantage"}}: {{results.advantage}}{{/if}}
-      {{#if results.threat}} · {{localize "GENESYS.Symbol.threat"}}: {{results.threat}}{{/if}}
-      {{#if results.triumph}} · {{localize "GENESYS.Symbol.triumph"}}: {{results.triumph}}{{/if}}
-      {{#if results.despair}} · {{localize "GENESYS.Symbol.despair"}}: {{results.despair}}{{/if}}
-    </span>
+  <div class="gr-result {{#if initiative}}initiative{{else}}{{outcome}}{{/if}}" data-tooltip="{{rawText}}">
+    <div class="gr-verdict">
+      {{#if initiative}}<i class="fa-solid fa-flag-checkered"></i> {{localize "GENESYS.Initiative.label"}}: {{initiative}}
+      {{else}}{{#if results.isSuccess}}<i class="fa-solid fa-check"></i> {{localize "GENESYS.Roll.Success"}}{{else}}<i class="fa-solid fa-xmark"></i> {{localize "GENESYS.Roll.Failure"}}{{/if}}{{/if}}
+    </div>
+    <div class="gr-net">
+      {{#each net}}<span class="gr-chip {{key}}"><span class="genesys-symbol {{key}}"></span><b>{{value}}</b><small>{{label}}</small></span>
+      {{else}}<span class="gr-blank">{{localize "GENESYS.Roll.Blank"}}</span>{{/each}}
+    </div>
   </div>
 
   {{#if spell}}

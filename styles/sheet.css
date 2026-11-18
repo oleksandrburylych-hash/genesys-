@@ -796,11 +796,6 @@
 }
 .genesys-roll .roll-target { font-size: 12px; color: var(--gs-maroon); font-weight: bold; }
 .genesys-roll .roll-dice { justify-content: center; gap: 5px; padding: 4px 0; }
-.genesys-die-result { width: 32px; height: 32px; font-size: 13px; box-shadow: inset 0 -3px 0 rgba(0,0,0,.25), 0 1px 2px rgba(0,0,0,.4); border: none; }
-.genesys-die-result.ability, .genesys-die-result.difficulty { border-radius: 4px; }
-.genesys-die-result.proficiency, .genesys-die-result.challenge { width: 36px; height: 34px; box-shadow: none; filter: drop-shadow(0 1px 2px rgba(0,0,0,.5)); }
-.genesys-die-result.boost, .genesys-die-result.setback { border-radius: 5px; }
-.genesys-roll .roll-summary { font-size: 22px; gap: 3px; padding: 6px; background: #fbf6ea; border: 1px solid #e3d3ad; border-radius: 8px; }
 .genesys-roll .roll-outcome { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 6px; }
 .genesys-roll .roll-outcome strong {
   font-family: var(--gs-head); text-transform: uppercase; letter-spacing: .12em; font-weight: 500; font-size: 15px;
@@ -810,7 +805,6 @@
 .genesys-roll .roll-outcome strong.failure { background: linear-gradient(90deg, #7a1b21, #a8322d); color: #fff; }
 .genesys-roll.success { border-left: 3px solid #3d8a39; padding-left: 6px; }
 .genesys-roll.failure { border-left: 3px solid #a8322d; padding-left: 6px; }
-.genesys-roll .roll-outcome .counts { width: 100%; text-align: center; font-size: 11px; color: #776d60; }
 .genesys-roll .roll-attack { border-top: none; background: #fff; border: 1px solid #e3d3ad; border-radius: 8px; padding: 6px 8px; gap: 4px; }
 .genesys-roll .roll-attack .attack-line:first-child { font-family: var(--gs-head); text-transform: uppercase; font-size: 13px; color: var(--gs-navy); }
 .genesys-roll .roll-attack .attack-line:first-child strong { display: inline-block; min-width: 34px; padding: 0 8px; margin-left: 4px; border-radius: 6px; text-align: center;
@@ -1057,3 +1051,73 @@
 .genesys .gs-mod-row select { flex: 1; } .genesys .gs-mod-row input { width: 60px; }
 .genesys .gs-pk-dialog { display: flex; flex-direction: column; gap: 6px; }
 .genesys .painkiller-report i { color: #3d7a3a; }
+
+/* ==========================================================================
+   Кубики: гранёные силуэты (assets/dice/shape), карточка броска
+   ========================================================================== */
+.genesys-die-icon { display: inline-block; width: 16px; height: 16px; margin: 0 1px; vertical-align: middle; border: none !important;
+  background: center / contain no-repeat !important; transform: none !important; clip-path: none !important; filter: drop-shadow(0 1px 1px rgba(0,0,0,.35)); }
+.genesys-die-icon.boost, .gd.boost { background-image: url("../assets/dice/shape/boost.svg") !important; }
+.genesys-die-icon.setback, .gd.setback { background-image: url("../assets/dice/shape/setback.svg") !important; }
+.genesys-die-icon.ability, .gd.ability { background-image: url("../assets/dice/shape/ability.svg") !important; }
+.genesys-die-icon.difficulty, .gd.difficulty { background-image: url("../assets/dice/shape/difficulty.svg") !important; }
+.genesys-die-icon.proficiency, .gd.proficiency { background-image: url("../assets/dice/shape/proficiency.svg") !important; }
+.genesys-die-icon.challenge, .gd.challenge { background-image: url("../assets/dice/shape/challenge.svg") !important; }
+
+.genesys-roll .gr-head { display: flex; flex-direction: column; gap: 2px; }
+.genesys-roll .roll-dice {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; padding: 10px 8px;
+  background: radial-gradient(ellipse at 50% 35%, #2f5a45 0%, #1c3a2c 60%, #142a20 100%);
+  border: 2px solid #6b4b22; border-radius: 12px;
+  box-shadow: inset 0 2px 10px rgba(0,0,0,.55), 0 1px 0 rgba(255,255,255,.4);
+}
+.gd {
+  position: relative; display: inline-grid; place-items: center; width: 42px; height: 42px;
+  background: center / contain no-repeat; filter: drop-shadow(0 3px 2px rgba(0,0,0,.55));
+  animation: gd-roll .45s cubic-bezier(.2,.9,.3,1.3) backwards; animation-delay: calc(var(--i, 0) * 60ms);
+}
+@keyframes gd-roll { from { transform: translateY(-14px) rotate(-120deg) scale(.4); opacity: 0; } to { transform: none; opacity: 1; } }
+.gd-face { display: flex; align-items: center; justify-content: center; gap: 1px; }
+.gd-face .genesys-symbol { width: 19px; height: 19px; vertical-align: 0; }
+.gd-face.n2 .genesys-symbol { width: 13px; height: 13px; }
+.gd.boost, .gd.ability, .gd.proficiency { color: #121212; }
+.gd.boost .genesys-symbol, .gd.ability .genesys-symbol, .gd.proficiency .genesys-symbol { filter: drop-shadow(0 0 1px rgba(255,255,255,.9)); }
+.gd.setback, .gd.difficulty, .gd.challenge { color: #fff; }
+.gd.setback .genesys-symbol, .gd.difficulty .genesys-symbol, .gd.challenge .genesys-symbol { filter: drop-shadow(0 0 1px rgba(0,0,0,.9)); }
+.gd.ability .gd-face.n2, .gd.difficulty .gd-face.n2 { flex-direction: column; gap: 0; }
+.gd.ability .gd-face.n2 .genesys-symbol, .gd.difficulty .gd-face.n2 .genesys-symbol { width: 11px; height: 11px; }
+.gd.proficiency .genesys-symbol.triumph { color: #7a0f0f; }
+.gd.challenge .genesys-symbol.despair { color: #fff3c4; }
+
+.genesys-roll .gr-result { border-radius: 12px; overflow: hidden; border: 1px solid #d9c7a0; background: #fffaf0; box-shadow: 0 1px 3px rgba(0,0,0,.15); }
+.genesys-roll .gr-verdict {
+  padding: 4px 10px; text-align: center; color: #fff;
+  font-family: var(--gs-head); text-transform: uppercase; letter-spacing: .16em; font-size: 17px; font-weight: 500;
+  text-shadow: 0 1px 2px rgba(0,0,0,.4);
+}
+.genesys-roll .gr-result.success .gr-verdict { background: linear-gradient(90deg, #255f23, #3d8a39 50%, #255f23); }
+.genesys-roll .gr-result.failure .gr-verdict { background: linear-gradient(90deg, #6a151b, #a8322d 50%, #6a151b); }
+.genesys-roll .gr-result.initiative .gr-verdict { background: linear-gradient(90deg, #1f3557, #2c4c7c 50%, #1f3557); }
+.genesys-roll .gr-net { display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; padding: 7px 6px; }
+.genesys-roll .gr-chip {
+  display: inline-flex; align-items: center; gap: 4px; padding: 2px 9px 2px 5px; border-radius: 999px; color: #fff;
+  font-family: var(--gs-head); box-shadow: inset 0 -2px 0 rgba(0,0,0,.2);
+}
+.genesys-roll .gr-chip .genesys-symbol { width: 18px; height: 18px; }
+.genesys-roll .gr-chip b { font-size: 17px; line-height: 1; }
+.genesys-roll .gr-chip small { font-size: 11px; text-transform: uppercase; letter-spacing: .05em; opacity: .9; }
+.genesys-roll .gr-chip.success { background: linear-gradient(180deg, #46a043, #2f7a2c); }
+.genesys-roll .gr-chip.advantage { background: linear-gradient(180deg, #3f86c9, #285f96); }
+.genesys-roll .gr-chip.triumph { background: linear-gradient(180deg, #ffd65a, #e0a516); color: #3b2600; }
+.genesys-roll .gr-chip.failure { background: linear-gradient(180deg, #c03c40, #8e2229); }
+.genesys-roll .gr-chip.threat { background: linear-gradient(180deg, #7b48b0, #4f2a78); }
+.genesys-roll .gr-chip.despair { background: linear-gradient(180deg, #2a0a0c, #5c1015); color: #ffcdc6; box-shadow: 0 0 0 1px #c9282d inset; }
+.genesys-roll .gr-blank { color: #8a7d68; font-style: italic; font-size: 12px; }
+.genesys-roll .roll-private { text-align: center; padding: 8px; color: #776d60; }
+.genesys-roll.success, .genesys-roll.failure { border-left: none; padding-left: 0; }
+/* Пул в окне броска и на листе */
+.genesys.dice-pool-dialog .pool-preview { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; padding: 10px; border-radius: 12px;
+  background: radial-gradient(ellipse at 50% 35%, #2f5a45 0%, #1c3a2c 60%, #142a20 100%); border: 2px solid #6b4b22; box-shadow: inset 0 2px 10px rgba(0,0,0,.55); min-height: 54px; align-items: center; }
+.genesys.dice-pool-dialog .pool-preview .genesys-die-icon { width: 34px; height: 34px; filter: drop-shadow(0 3px 2px rgba(0,0,0,.55)); }
+.genesys.dice-pool-dialog .pool-preview .hint { color: #cfe3d6; }
+.genesys.dice-pool-dialog .pool-row .genesys-die-icon { width: 22px; height: 22px; }

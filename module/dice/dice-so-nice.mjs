@@ -3,12 +3,12 @@ import { DICE_CLASSES } from "./terms.mjs";
 
 /** Цвета и форма кубиков для Dice So Nice. */
 const STYLE = {
-  boost: { background: "#8fd3f2", edge: "#5fa9cc", variant: "light", shape: "d6" },
-  setback: { background: "#1c1c1c", edge: "#000000", variant: "dark", shape: "d6" },
-  ability: { background: "#3aa845", edge: "#2b7d33", variant: "light", shape: "d8" },
-  difficulty: { background: "#5b2d86", edge: "#3f1d5f", variant: "dark", shape: "d8" },
-  proficiency: { background: "#f2c516", edge: "#c9a210", variant: "light", shape: "d12" },
-  challenge: { background: "#c9282d", edge: "#951c20", variant: "dark", shape: "d12" }
+  boost: { background: "#8ad6f6", edge: "#4aa5d3", variant: "light", shape: "d6", material: "glass" },
+  setback: { background: "#2c2c2e", edge: "#0b0b0c", variant: "dark", shape: "d6", material: "plastic" },
+  ability: { background: "#3db34c", edge: "#23792f", variant: "light", shape: "d8", material: "plastic" },
+  difficulty: { background: "#6b37a2", edge: "#3f1e62", variant: "dark", shape: "d8", material: "plastic" },
+  proficiency: { background: "#f6c41a", edge: "#c48f00", variant: "light", shape: "d12", material: "metal" },
+  challenge: { background: "#d3303a", edge: "#8c1a20", variant: "dark", shape: "d12", material: "metal" }
 };
 
 /** Код грани → файл картинки (assets/dice). Пустая грань — пробел. */
@@ -36,7 +36,7 @@ export function registerDiceSoNice(dice3d) {
       background: style.background,
       outline: "none",
       edge: style.edge,
-      material: "plastic",
+      material: style.material,
       visibility: "visible"
     }, "default");
     dice3d.addDicePreset({
