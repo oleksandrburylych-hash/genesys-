@@ -421,7 +421,7 @@ assert.ok(GENESYS.spending.craftingPositive && GENESYS.spending.alchemyNegative,
   assert.ok(!(await I.loadInterpretations("astrocartography")).eras.modern, "астронавигация только в будущем");
   assert.equal(I.interpKey("meleeHeavy"), "melee");
   gm.tab = "interp"; gm.interp.era = "modern"; gm.interp.skill = "athletics"; await gm.render();
-  assert.equal([...gm.html.matchAll(/data-action="interpPick"/g)].length, 40, "40 вариантов на вкладке");
+  assert.equal([...gm.html.matchAll(/data-action="interpPick"/g)].length, 50, "50 вариантов на вкладке (с «триумф и крах»)");
   gm.interp.skill = "alchemy"; await gm.render();
   assert.ok(gm.html.includes("gs-warning"), "алхимии нет в нашем времени — подсказка");
 }
