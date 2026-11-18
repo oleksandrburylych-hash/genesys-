@@ -25,7 +25,7 @@ export class GMScreen extends HandlebarsApplicationMixin(ApplicationV2) {
     this.xp = { amount: 10, reason: "", selected: null };
     this.refTable = "combatPositive";
     this.gen = { encKind: "combat", mode: "budget", difficulty: 1, count: 4, party: null, creatures: new Set(), kinds: new Set(["minion", "rival", "nemesis"]) };
-    this.loot = { source: "encounter", level: 3, result: null };
+    this.loot = { level: 3, result: null, off: new Set(), quick: { count: 0, kind: "minion", creature: "humanoid" } };
     this.shop = { name: "", type: "general", size: "medium", locs: new Set(["town"]), result: null };
     this.shopPool = null;
     this.interp = { era: null, skill: "athletics", whisper: true, hl: {} };
@@ -43,7 +43,7 @@ export class GMScreen extends HandlebarsApplicationMixin(ApplicationV2) {
       toggleChar: GMScreen.#onToggleChar, open: GMScreen.#onOpen,
       genMode: GMScreen.#onGenMode, genKindEnc: GMScreen.#onGenEncKind, genDifficulty: GMScreen.#onGenDifficulty, genCreature: GMScreen.#onGenCreature,
       genKind: GMScreen.#onGenKind, generate: GMScreen.#onGenerate,
-      lootSource: GMScreen.#onLootSource, lootLevel: GMScreen.#onLootLevel, lootGenerate: GMScreen.#onLootGenerate,
+      lootToggle: GMScreen.#onLootToggle, lootKind: GMScreen.#onLootKind, lootQuick: GMScreen.#onLootQuick, lootLevel: GMScreen.#onLootLevel, lootGenerate: GMScreen.#onLootGenerate,
       lootRemove: GMScreen.#onLootRemove, lootToChat: GMScreen.#onLootToChat,
       shopType: GMScreen.#onShopType, shopSize: GMScreen.#onShopSize, shopLoc: GMScreen.#onShopLoc,
       interpEra: GMScreen.#onInterpEra, interpSkill: GMScreen.#onInterpSkill, interpPick: GMScreen.#onInterpPick,
@@ -140,13 +140,17 @@ export class GMScreen extends HandlebarsApplicationMixin(ApplicationV2) {
 
     if (this.tab === "loot") {
       const r = this.loot.result;
+      const cands = await this.#lootCandidates();
+      const q = this.loot.quick;
       ctx.loot = {
-        source: this.loot.source,
-        sources: ["encounter", "defeated"].map(k => ({ key: k, label: `GENESYS.Loot.Source.${k}`, active: k === this.loot.source })),
+        enemies: cands.map(c => ({ key: c.key, name: c.name, img: c.img, count: c.count, dead: c.dead, fromEncounter: c.fromEncounter, on: !this.loot.off.has(c.key) })),
+        quick: { count: q.count,
+          kinds: ["minion", "rival", "nemesis"].map(k => ({ key: k, label: GENESYS.adversaryTypes[k], active: k === q.kind })),
+          creatures: Object.entries(CREATURE_TYPES).map(([k, c]) => ({ key: k, label: c.label, selected: k === q.creature })) },
         levels: LOOT_LEVELS.map(l => ({ level: l.level, label: `GENESYS.Loot.Level.${l.level}`, hint: `GENESYS.Loot.LevelHint.${l.level}`, active: l.level === this.loot.level,
           img: `systems/genesys-rpg/assets/icons/gi/loot/${["cobweb", "coins", "two-coins", "open-treasure-chest", "crown-coin"][l.level - 1]}.svg` })),
         result: r ? { coins: r.coins, items: r.items.map((it, i) => ({ ...it, index: i, total: it.price * it.qty })), value: r.coins + r.items.reduce((s2, it) => s2 + it.price * it.qty, 0) } : null,
-        sourceCount: (await this.#lootSources()).length
+        total: cands.filter(c => !this.loot.off.has(c.key)).reduce((s2, c) => s2 + c.count, 0) + q.count
       };
     }
     if (this.tab === "shop") {
@@ -155,6 +159,7 @@ export class GMScreen extends HandlebarsApplicationMixin(ApplicationV2) {
       this.shop.locMod = locMod;
       const keys = enabledAdventureKeys();
       ctx.shop = {
+        available: this.shop.result?.available ?? null,
         name: this.shop.name,
         adventures: [...new Set(keys.length ? [...keys, "all"] : Object.keys(ADVENTURES))].map(k => ({ key: k, label: getAdventure(k).label, selected: k === (this.shop.adventure ?? this.filter.adventure) })),
         types: Object.entries(SHOP_TYPES).map(([k, t]) => ({ key: k, label: `GENESYS.Shop.Type.${k}`, img: `systems/genesys-rpg/assets/icons/gi/loot/${t.icon}.svg`, active: k === this.shop.type })),
@@ -213,6 +218,8 @@ export class GMScreen extends HandlebarsApplicationMixin(ApplicationV2) {
       const tables = GENESYS.spending ?? {};
       ctx.refTables = Object.entries(tables).map(([k, t]) => ({ key: k, title: t.title, active: k === this.refTable }));
       ctx.refRows = tables[this.refTable]?.rows ?? [];
+      ctx.healing = ["medWounds1", "medWounds2", "medWounds3", "medInjury", "medResult", "medSurgeon", "medSelf", "medOnce", "medWeek", "medKit",
+        "painkiller", "painkillerLimit", "strainScene", "rest", "incap"].map(k => ({ label: `GENESYS.GM.Heal.${k}.label`, text: `GENESYS.GM.Heal.${k}.text` }));
       ctx.statuses = GENESYS.statusEffects.map(s => ({ name: s.name, img: s.img, hint: `GENESYS.GM.StatusHint.${s.id}` }));
     }
     return ctx;
@@ -226,16 +233,49 @@ export class GMScreen extends HandlebarsApplicationMixin(ApplicationV2) {
   }
 
   /** Источники добычи: встреча из списка или побеждённые противники на сцене. */
-  async #lootSources() {
-    if (this.loot.source === "defeated") {
-      const tokens = (globalThis.canvas?.tokens?.placeables ?? []).filter(t => t.actor?.type === "adversary"
-        && (t.actor.statuses?.has("dead") || t.actor.statuses?.has("incapacitated") || t.document?.hidden === false && t.combatant?.defeated));
-      return tokens.map(t => ({ doc: t.actor, count: t.actor.system.isMinion ? (t.actor.system.groupSize ?? 1) : 1 }));
-    }
+  /**
+   * Кого обыскивают: все враждебные противники на сцене (живые и выбывшие — кого победили, того и обыскивают)
+   * и противники из списка встречи. Дружественных и нейтральных не трогаем. Каждого можно выключить щелчком.
+   */
+  async #lootCandidates() {
     const out = [];
+    const seen = new Set();
+    for (const t of globalThis.canvas?.tokens?.placeables ?? []) {
+      const a = t.actor;
+      if (!a || a.type !== "adversary") continue;
+      const disp = t.document?.disposition ?? -1;
+      if (disp !== -1) continue; // CONST.TOKEN_DISPOSITIONS.HOSTILE
+      const key = `token:${t.id}`;
+      seen.add(a.uuid);
+      out.push({ key, doc: a, count: a.system.isMinion ? (a.system.aliveMinions || a.system.groupSize || 1) : 1, name: t.name ?? a.name, img: a.img,
+        dead: a.statuses?.has("dead") || a.statuses?.has("incapacitated") || !!t.combatant?.defeated });
+    }
     for (const e of this.encounter) {
       const doc = await fromUuid(e.uuid);
-      if (doc) out.push({ doc, count: e.minion ? e.count * (e.groups ?? 1) : e.count });
+      if (!doc || seen.has(doc.uuid)) continue;
+      out.push({ key: `enc:${e.uuid}`, doc, count: e.minion ? e.count * (e.groups ?? 1) : e.count, name: doc.name, img: doc.img, fromEncounter: true });
+    }
+    return out;
+  }
+
+  /** Источники добычи: включённые враги + «быстрые» (число × тип × вид существа). */
+  async #lootSources() {
+    const out = (await this.#lootCandidates()).filter(c => !this.loot.off.has(c.key)).map(c => ({ doc: c.doc, count: c.count }));
+    const q = this.loot.quick;
+    if (q.count > 0) {
+      const lib = await this.#load();
+      const fit = lib.filter(d => (d.system.creatureType || "humanoid") === q.creature && d.system.adversaryType === q.kind);
+      const any = fit.length ? fit : lib.filter(d => (d.system.creatureType || "humanoid") === q.creature);
+      for (let i = 0; i < q.count; i++) {
+        const doc = any.length ? any[Math.floor(Math.random() * any.length)] : null;
+        if (doc) out.push({ doc, count: 1 });
+        else {
+          const { lootTagsFor } = await import("../creatures.mjs");
+          const fake = { name: game.i18n.localize(`GENESYS.AdversaryType.${q.kind}`), items: [], system: { creatureType: q.creature, adversaryType: q.kind, power: { combat: q.kind === "nemesis" ? 4 : q.kind === "rival" ? 2 : 1 } } };
+          fake.system.loot = lootTagsFor(fake, q.creature);
+          out.push({ doc: fake, count: 1 });
+        }
+      }
     }
     return out;
   }
@@ -287,7 +327,16 @@ export class GMScreen extends HandlebarsApplicationMixin(ApplicationV2) {
     this.render();
   }
 
-  static #onLootSource(event, target) { this.loot.source = target.dataset.key; this.loot.result = null; this.render(); }
+  static #onLootToggle(event, target) {
+    const k = target.dataset.key;
+    if (this.loot.off.has(k)) this.loot.off.delete(k); else this.loot.off.add(k);
+    this.render();
+  }
+  static #onLootKind(event, target) { this.loot.quick.kind = target.dataset.key; this.render(); }
+  static #onLootQuick(event, target) {
+    this.loot.quick.count = Math.max(0, Math.min(30, this.loot.quick.count + Number(target.dataset.delta)));
+    this.render();
+  }
   static #onLootLevel(event, target) { this.loot.level = Number(target.dataset.level); this.render(); }
 
   static async #onLootGenerate() {
@@ -389,6 +438,8 @@ export class GMScreen extends HandlebarsApplicationMixin(ApplicationV2) {
       if (d.gen.party !== undefined) this.gen.party = Math.max(1, Number(d.gen.party) || 1);
     }
     if (d.shop?.name !== undefined) this.shop.name = d.shop.name;
+    if (d.loot?.creature) this.loot.quick.creature = d.loot.creature;
+    if (d.loot?.count !== undefined) this.loot.quick.count = Math.max(0, Math.min(30, Number(d.loot.count) || 0));
     if (d.npc) this.npc = { ...(this.npc ?? {}), ...d.npc, power: Number(d.npc.power ?? this.npc?.power ?? 2) };
     if (d.enc) for (const [i, v] of Object.entries(d.enc)) {
       const e = this.encounter[i];
@@ -400,6 +451,7 @@ export class GMScreen extends HandlebarsApplicationMixin(ApplicationV2) {
       }
     }
     const name = event?.target?.name ?? "";
+    if (name.startsWith("loot.")) this.render();
     if (name.startsWith("filter.")) {
       this.render().then(() => {
         if (name !== "filter.search") return;

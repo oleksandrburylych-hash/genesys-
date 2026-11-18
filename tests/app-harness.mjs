@@ -338,6 +338,25 @@ if (process.env.DUMP) fs.writeFileSync(path.join(process.env.DUMP, "gm-loot.html
 GA.lootLevel.call(gm, null, { dataset: { level: "1" } });
 await GA.lootGenerate.call(gm);
 assert.ok(gm.loot.result.coins < 200, "poor loot is poor");
+// Быстрая добыча: без врагов на сцене — «3 зверя» дают трофеи; источники со сцены/встречи можно выключить.
+{
+  const saved = gm.encounter; gm.encounter = [];
+  gm.loot.quick = { count: 3, kind: "rival", creature: "beast" }; gm.loot.level = 5;
+  await GA.lootGenerate.call(gm); await gm.render();
+  assert.ok(gm.loot.result.items.some(i => /:/.test(i.name)), `beast trophies: ${gm.loot.result.items.map(i => i.name)}`);
+  assert.ok(gm.html.includes('data-action="lootQuick"'), "quick loot controls");
+  gm.loot.quick.count = 0; gm.encounter = saved;
+}
+// Лавка: размер — доля ассортимента, даже если товаров мало.
+{
+  const { generateShop } = await import(`${R}/module/merchant.mjs`);
+  const small = Array.from({ length: 10 }, (_, i) => ({ uuid: `x${i}`, name: `Товар ${i}`, type: "gear", system: { price: 10 + i, rarity: 1 }, toObject() { return { name: this.name, type: "gear", system: this.system }; } }));
+  const s1 = generateShop(small, { type: "general", size: "small" }), s3 = generateShop(small, { type: "general", size: "large" });
+  assert.ok(s1.length < s3.length && s1.length >= 3, `small ${s1.length} < large ${s3.length}`);
+  assert.equal(s1.available, 10);
+  const seen = new Set(); for (let k = 0; k < 10; k++) generateShop(small, { type: "general", size: "small" }).forEach(i => seen.add(i.data.name));
+  assert.ok(seen.size > 6, `маленькая лавка каждый раз разная: ${seen.size}`);
+}
 // Лавка: сложность по редкости (Core, табл. I.5-1) и сборка ассортимента.
 const { rarityCheck, generateShop } = await import(`${R}/module/merchant.mjs`);
 assert.deepEqual(rarityCheck(1), { difficulty: 0, upgrades: 0 }, "rarity 1 → simple");

@@ -1183,3 +1183,49 @@
 .genesys-roll .roll-medicine.fail { background: #f6ecec; border-color: #d4a3a3; color: #6a1b1b; }
 .genesys-roll .roll-medicine i { font-size: 16px; }
 .genesys .gs-med-dialog select { width: 100%; }
+
+/* ==========================================================================
+   Крупнее текст там, где его много (на ступень)
+   ========================================================================== */
+.genesys.sheet .window-content, .genesys.dice-pool-dialog .window-content, .genesys.spell-cast-dialog .window-content,
+.genesys.creation-wizard .window-content, .genesys.gm-screen .window-content, .genesys.workshop .window-content,
+.genesys.world-setup .window-content { font-size: 14px; }
+.genesys .hint { font-size: 0.95em; }
+.genesys .gs-help { font-size: 13.5px; }
+/* Ширма: справка, толкования, списки */
+.genesys .gm-table { font-size: 14px; }
+.genesys .gm-table td { padding: 5px 8px; line-height: 1.35; }
+.genesys .gm-interp-col ol { font-size: 14.5px; line-height: 1.4; }
+.genesys .gm-interp-col li { padding: 4px 6px; }
+.genesys .gm-row-sub { font-size: 12.5px; }
+.genesys .gm-seg a { font-size: 13px; }
+.genesys .gm-interp-group .wz-chip { font-size: 13px; padding: 2px 9px; }
+/* Мастер создания */
+.genesys .wz-desc, .genesys .wz-ability, .genesys .wz-stats { font-size: 13.5px; line-height: 1.4; }
+.genesys .wz-talent-desc { font-size: 12.5px; }
+.genesys .wz-card-line { font-size: 12.5px; }
+.genesys .ws-adv-hint { font-size: 13px; }
+.genesys .wz-lock, .genesys .wz-note { font-size: 13.5px; }
+/* Описания предметов, талантов, заклинаний */
+.genesys.sheet .editor-content, .genesys.sheet .editor, .genesys.sheet prose-mirror { font-size: 14.5px; line-height: 1.45; }
+.genesys .gs-talent-desc, .genesys .talent-desc, .genesys .gs-gear-tags { font-size: 12.5px; }
+/* Чат */
+.genesys-roll, .genesys.interp-card, .genesys.loot-card, .genesys.status-report, .genesys.spend-report { font-size: 14px; line-height: 1.4; }
+.genesys-roll .spend-row .spend-text { font-size: 13.5px; }
+.genesys-roll .attack-line { font-size: 14px; }
+.genesys.interp-card li { font-size: 14px; }
+.genesys .gm-heal .gm-heal-k { width: 34%; font-family: var(--gs-head); text-transform: uppercase; font-size: 12.5px; letter-spacing: .03em; color: var(--gs-navy); }
+
+/* ---------- Добыча: кого обыскиваем, быстрые враги ---------- */
+.genesys .gm-loot-enemies { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+.genesys .gm-loot-enemy { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px 3px 3px; border-radius: 999px; background: #fff;
+  border: 2px solid #d9c7a0; color: var(--gs-muted); opacity: .55; text-decoration: line-through; }
+.genesys .gm-loot-enemy img { width: 28px; height: 28px; border: none; border-radius: 50%; object-fit: cover; background: var(--gs-navy); }
+.genesys .gm-loot-enemy.on { opacity: 1; text-decoration: none; color: var(--gs-ink); border-color: var(--gs-maroon); box-shadow: 0 1px 3px rgba(0,0,0,.15); }
+.genesys .gm-loot-enemy.dead i { color: var(--gs-maroon); }
+.genesys .gm-loot-quick { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 8px 10px; border-radius: 10px; background: #fff; border: 1px dashed #c9b48a; }
+.genesys .gm-loot-quick-label { font-family: var(--gs-head); text-transform: uppercase; color: var(--gs-navy); font-size: 13px; }
+.genesys .gm-loot-quick select { width: auto; min-width: 180px; }
+.genesys .gm-stepper { display: inline-flex; align-items: center; gap: 2px; }
+.genesys .gm-stepper a { width: 24px; text-align: center; color: var(--gs-navy); }
+.genesys.gm-screen .gm-stepper input { width: 48px; text-align: center; font-family: var(--gs-head); font-size: 16px; }

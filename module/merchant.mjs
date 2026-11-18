@@ -27,7 +27,9 @@ export const SHOP_TYPES = {
   all: { types: ["gear", "weapon", "armor"], icon: "open-treasure-chest" }
 };
 
+/** Размер лавки: не больше N позиций и не больше доли всего, что в этом мире подходит лавке такого типа. */
 export const SHOP_SIZES = { small: 8, medium: 16, large: 30 };
+const SHOP_SHARE = { small: 0.3, medium: 0.55, large: 0.85 };
 
 /** Табл. I.5-1: сложность проверки по итоговой редкости (выше 10 — Запредельная и усиление за каждую единицу). */
 export function rarityCheck(rarity) {
@@ -45,7 +47,8 @@ export function isRestricted(data) {
 export function generateShop(pool, { type = "general", size = "medium", locMod = 0 } = {}) {
   const T = SHOP_TYPES[type] ?? SHOP_TYPES.general;
   const candidates = pool.filter(d => T.types.includes(d.type) && (!T.match || T.match.test(`${d.name} ${d.folder?.name ?? ""}`)));
-  const want = SHOP_SIZES[size] ?? 16;
+  // Если подходящих товаров мало, размер — это доля ассортимента: маленькая лавка берёт треть, большая — почти всё.
+  const want = Math.max(Math.min(3, candidates.length), Math.min(SHOP_SIZES[size] ?? 16, Math.round(candidates.length * (SHOP_SHARE[size] ?? 0.55))));
   // Чем реже вещь в этом месте, тем реже она на прилавке.
   // Вес: обычные вещи (редкость 0–3) — почти всегда, 4–7 — заметно реже, 8–10 — изредка, выше 10 — только в «Всё подряд».
   const weighted = candidates.flatMap(d => {
@@ -59,12 +62,16 @@ export function generateShop(pool, { type = "general", size = "medium", locMod =
     const d = weighted[Math.floor(Math.random() * weighted.length)];
     if (!chosen.has(d.uuid)) chosen.set(d.uuid, d);
   }
-  return [...chosen.values()].sort((a, b) => (a.system.price ?? 0) - (b.system.price ?? 0)).map(d => {
+  const result = [...chosen.values()].sort((a, b) => (a.system.price ?? 0) - (b.system.price ?? 0)).map(d => {
     const data = d.toObject ? d.toObject() : structuredClone(d);
     delete data._id;
     const eff = (d.system.rarity ?? 0) + locMod;
-    return { data, rarity: eff, stock: Math.max(1, Math.round(Math.random() * (eff <= 3 ? 4 : 1)) + (eff <= 3 ? 1 : 0)) };
+    // Запас: обычного — несколько штук, редкого — одна-две.
+    const stock = eff <= 3 ? 1 + Math.floor(Math.random() * (size === "large" ? 6 : size === "medium" ? 4 : 3)) : eff <= 6 ? 1 + Math.floor(Math.random() * 2) : 1;
+    return { data, rarity: eff, stock };
   });
+  result.available = candidates.length;
+  return result;
 }
 
 function cardHTML(state) {
