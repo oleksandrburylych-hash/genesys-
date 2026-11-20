@@ -55,7 +55,7 @@ function extraDefs() {
 /* ---------- Источники света (маска темноты + цветные пятна) ---------- */
 const LIGHTS = [ // x, y, радиус, тип
   [470, 640, 520, "sodium"], [420, 1500, 520, "sodium"], [1580, 1600, 480, "sodium"], [2440, 330, 520, "sodium"], [2440, 1520, 540, "sodium"],
-  [1080, 330, 230, "led"], [1600, 900, 250, "led"], [2160, 820, 220, "led"], [1960, 220, 330, "led"]
+  [1080, 330, 190, "led"], [1600, 900, 200, "led"], [2160, 820, 180, "led"], [1960, 220, 330, "led"]
 ];
 function darkMask() {
   return `<mask id="${K}-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="${W}" height="${H}"><rect width="${W}" height="${H}" fill="#fff"/>${LIGHTS.map(([x, y, rr, t]) => `<circle cx="${x}" cy="${y}" r="${rr}" fill="url(#${K}-hole)" opacity="${t === "led" ? 0.75 : 1}"/>`).join("")}</mask>`;
@@ -166,6 +166,14 @@ function rollDoor(x, y, len, vertical) {
     : `<rect x="${x}" y="${y - 22}" width="${len}" height="44" fill="#202226"/><path d="M${x},${y - 22} H${x + len} M${x},${y + 22} H${x + len}" stroke="#e0b22c" stroke-width="6"/><rect x="${x - 8}" y="${y - 26}" width="8" height="52" fill="#888"/><rect x="${x + len}" y="${y - 26}" width="8" height="52" fill="#888"/>`;
 }
 
+function car(x, y, rot, col) { // легковой седан, (x,y) — центр, капот вправо
+  return `<g ${S} transform="rotate(${rot} ${x} ${y})"><rect x="${x - 120}" y="${y - 52}" width="240" height="104" rx="34" fill="${col}" stroke="#0c0e12" stroke-width="4"/>
+    <rect x="${x - 60}" y="${y - 44}" width="120" height="88" rx="18" fill="rgba(0,0,0,0.25)"/><path d="M${x + 30},${y - 42} q22,42 0,84 l26,0 q18,-42 0,-84 Z" fill="#16202c"/><path d="M${x - 64},${y - 40} q-14,40 0,80 l-22,0 q-12,-40 0,-80 Z" fill="#16202c"/>
+    <rect x="${x - 34}" y="${y - 40}" width="62" height="80" rx="10" fill="${col}"/><path d="M${x + 36},${y - 30} l10,24" stroke="rgba(255,255,255,0.25)" stroke-width="4"/>
+    <rect x="${x + 108}" y="${y - 40}" width="10" height="20" rx="3" fill="#fff6d8"/><rect x="${x + 108}" y="${y + 20}" width="10" height="20" rx="3" fill="#fff6d8"/><rect x="${x - 120}" y="${y - 40}" width="8" height="18" rx="3" fill="#b0201a"/><rect x="${x - 120}" y="${y + 22}" width="8" height="18" rx="3" fill="#b0201a"/>
+    <rect x="${x + 22}" y="${y - 62}" width="14" height="10" rx="3" fill="${col}"/><rect x="${x + 22}" y="${y + 52}" width="14" height="10" rx="3" fill="${col}"/></g>`;
+}
+
 /* ---------- Слои ---------- */
 function ground() {
   const L = [];
@@ -188,7 +196,7 @@ function yard() {
   // Забор-сетка по левому краю с воротами.
   L.push(`<path d="M40,0 V1380 M40,1880 V2000" stroke="rgba(180,190,200,0.55)" stroke-width="5" stroke-dasharray="3 4"/>`);
   for (let y = 20; y < 2000; y += 120) if (y < 1380 || y > 1880) L.push(`<circle cx="40" cy="${y}" r="7" fill="#6a7078" stroke="#111" stroke-width="2"/>`);
-  L.push(`<g ${S}><rect x="34" y="1390" width="16" height="16" fill="#333"/><rect x="40" y="1394" width="430" height="10" fill="#e8e8e8"/>${Array.from({ length: 6 }, (_, i) => `<rect x="${60 + i * 70}" y="1394" width="35" height="10" fill="#c42a24"/>`).join("")}</g>`);
+  L.push(`<g ${S}><rect x="52" y="1388" width="22" height="22" fill="#333"/><rect x="58" y="1400" width="10" height="440" fill="#e8e8e8"/>${Array.from({ length: 6 }, (_, i) => `<rect x="58" y="${1420 + i * 70}" width="10" height="35" fill="#c42a24"/>`).join("")}</g>`);
   L.push(`<g ${S}><rect x="90" y="1220" width="120" height="120" fill="#c8c4b8" stroke="#2a2a2a" stroke-width="5"/><rect x="100" y="1230" width="100" height="100" fill="#4a5058"/><rect x="104" y="1234" width="92" height="20" fill="#9fd0ff" opacity="0.6"/></g>`);
   // Фура у дока №1 и пустой полуприцеп.
   L.push(semiTruck(WH.x - 18, 262));
@@ -199,6 +207,11 @@ function yard() {
   L.push(pallet(140, 650, 100, 100, "sacks", r, 0), `<g ${S}>${[0, 1, 2, 3, 4].map(i => `<rect x="130" y="${520 - i * 6}" width="110" height="100" fill="#b8955e" stroke="#5a4020" stroke-width="2"/>`).join("")}</g>`);
   // Мусорный контейнер, бочки.
   L.push(`<g ${S}><rect x="760" y="1760" width="150" height="96" rx="6" fill="#1f5a3a" stroke="#0a1a10" stroke-width="5"/><path d="M770,1808 H900" stroke="#0a1a10" stroke-width="4"/></g>`, drum(820, 1180, 28, "#8a2f2a"), drum(870, 1210, 28, "#2f5d8a"), drum(845, 1255, 28, "#8a2f2a"));
+  // Легковушка охраны, следы шин, масляные пятна, лужи.
+  L.push(car(330, 1200, 0, "#2b3c55"));
+  L.push(`<path d="M120,1560 C400,1560 600,1700 900,1700 M120,1620 C400,1620 600,1760 900,1760" stroke="rgba(10,10,10,0.35)" stroke-width="22" fill="none" stroke-dasharray="6 5"/>`);
+  for (let i = 0; i < 8; i++) L.push(`<ellipse cx="${f1(150 + r() * 700)}" cy="${f1(150 + r() * 1700)}" rx="${f1(20 + r() * 50)}" ry="${f1(14 + r() * 26)}" fill="rgba(5,5,8,${f1(0.25 + r() * 0.2)})"/>`);
+  for (const [x, y, rx, ry] of [[640, 420, 110, 34], [300, 1440, 80, 26], [520, 1880, 120, 30]]) L.push(`<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}" fill="rgba(20,40,60,0.55)"/><ellipse cx="${x - rx * 0.2}" cy="${y - ry * 0.2}" rx="${rx * 0.5}" ry="${ry * 0.3}" fill="rgba(255,190,120,0.2)"/>`);
   // Фонарные мачты.
   L.push(lightPole(140, 960, -40), lightPole(130, 1700, 10));
   return L.join("\n");
@@ -284,7 +297,8 @@ function pier() {
   L.push(`<g filter="url(#${K}-high)"><path d="M${sx + 60},-40 Q${sx},200 ${sx},500 V1700 Q${sx},1900 ${sx + 60},2040 H3100 V-40 Z" fill="#2a2f36" stroke="#0b0d10" stroke-width="8"/></g>`);
   L.push(`<path d="M${sx + 22},40 Q${sx + 14},200 ${sx + 14},500 V1700 Q${sx + 14},1880 ${sx + 40},1980" stroke="#8a2a24" stroke-width="16" fill="none"/>`);
   const cols = ["#9a3a2a", "#2c5a8a", "#3a6a3a", "#c46a1e", "#5a5e66", "#2a7a7a", "#c49a2a"];
-  for (let y = 120; y < 1880; y += 132) for (let x = sx + 50; x < W; x += 126) L.push(container(x, y, 118, 124, cols[Math.floor(r() * cols.length)], { stack: r() < 0.4 }).replace(/filter="url\(#[^)]+\)"/, ""));
+  for (let y = 150; y < 1800; y += 300) { L.push(`<rect x="${sx + 40}" y="${y - 8}" width="${W - sx}" height="296" fill="#1e2228"/>`); for (let x = sx + 50; x < W; x += 124) { const lng = r() < 0.3; L.push(container(x, y, 118, lng ? 280 : 136, cols[Math.floor(r() * cols.length)], { stack: r() < 0.4 }).replace(/filter="url\(#[^)]+\)"/, "")); if (!lng) L.push(container(x, y + 144, 118, 136, cols[Math.floor(r() * cols.length)], {}).replace(/filter="url\(#[^)]+\)"/, "")); } }
+  L.push(`<g filter="url(#${K}-blur)">${Array.from({ length: 10 }, () => `<ellipse cx="${f1(QUAY + r() * 400)}" cy="${f1(r() * H)}" rx="${f1(80 + r() * 120)}" ry="${f1(40 + r() * 60)}" fill="rgba(180,200,215,0.08)"/>`).join("")}</g>`);
   // Кромка причала: отбойники, жёлто-чёрная полоса, тумбы.
   L.push(`<rect x="${QUAY - 6}" y="0" width="22" height="${H}" fill="#1a1c1f"/><rect x="${QUAY - 40}" y="0" width="34" height="${H}" fill="url(#${K}-stripes)" opacity="0.85"/>`);
   for (let y = 80; y < H; y += 240) L.push(`<g ${S}><rect x="${QUAY + 4}" y="${y}" width="34" height="90" rx="14" fill="#161616" stroke="#000" stroke-width="3"/></g>`);
@@ -319,7 +333,7 @@ function gantry() { // козловой кран над причалом и су
 function lighting() {
   const L = [];
   L.push(`<rect width="${W}" height="${H}" fill="rgba(4,9,24,0.62)" mask="url(#${K}-mask)"/>`);
-  L.push(`<rect x="${WH.x}" y="${WH.y}" width="${WH.x2 - WH.x}" height="${WH.y2 - WH.y}" fill="rgba(2,4,14,0.28)" mask="url(#${K}-mask)"/>`);
+  L.push(`<rect x="${WH.x}" y="${WH.y}" width="${WH.x2 - WH.x}" height="${WH.y2 - WH.y}" fill="rgba(2,4,14,0.42)" mask="url(#${K}-mask)"/>`);
   for (const [x, y, rr, t] of LIGHTS) L.push(`<circle cx="${x}" cy="${y}" r="${rr}" fill="url(#${K}-${t})"/>`);
   L.push(`<circle cx="1940" cy="200" r="180" fill="url(#${K}-screen)"/>`);
   L.push(`<rect width="${W}" height="${H}" fill="url(#${K}-vig)"/>`);
