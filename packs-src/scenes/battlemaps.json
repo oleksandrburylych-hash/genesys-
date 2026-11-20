@@ -1,5 +1,3706 @@
 [
   {
+    "name": "Причальная мачта дирижаблей",
+    "type": "scene",
+    "folder": "Стимпанк",
+    "worlds": [
+      "steampunk",
+      "weirdwar"
+    ],
+    "scene": {
+      "background": {
+        "src": "systems/genesys-rpg/assets/maps/airship-dock.jpg"
+      },
+      "thumb": "systems/genesys-rpg/assets/maps/thumbs/airship-dock.jpg",
+      "width": 3000,
+      "height": 2000,
+      "padding": 0.05,
+      "backgroundColor": "#3b3340",
+      "grid": {
+        "type": 0,
+        "size": 100
+      },
+      "tokenVision": false,
+      "fog": {
+        "exploration": false
+      },
+      "initial": {
+        "x": 1500,
+        "y": 1000,
+        "scale": 0.45
+      },
+      "flags": {
+        "genesys-rpg": {
+          "zoneMap": true,
+          "bg": "systems/genesys-rpg/assets/maps/airship-dock.jpg",
+          "bgColor": "#3b3340",
+          "zones": [
+            {
+              "id": "platform",
+              "name": "Платформа мачты",
+              "tags": [
+                "elevated",
+                "cover"
+              ],
+              "poly": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1400,
+                  0
+                ],
+                [
+                  1400,
+                  1060
+                ],
+                [
+                  1146.4101615137754,
+                  1060
+                ],
+                [
+                  1063.5898384862246,
+                  1114.0854147278646
+                ],
+                [
+                  1000,
+                  1143.0678732248807
+                ],
+                [
+                  973.5898384862246,
+                  1152.415784865857
+                ],
+                [
+                  883.5898384862246,
+                  1173.7262310039564
+                ],
+                [
+                  793.5898384862246,
+                  1179.9633111457993
+                ],
+                [
+                  703.5898384862246,
+                  1171.6385417616211
+                ],
+                [
+                  613.5898384862246,
+                  1148.0636814669308
+                ],
+                [
+                  523.5898384862246,
+                  1107.0291804521867
+                ],
+                [
+                  453.58983848622455,
+                  1060
+                ],
+                [
+                  0,
+                  1060
+                ]
+              ]
+            },
+            {
+              "id": "gangway",
+              "name": "Трап",
+              "tags": [
+                "difficult",
+                "hazard"
+              ],
+              "poly": [
+                [
+                  1400,
+                  0
+                ],
+                [
+                  1960,
+                  0
+                ],
+                [
+                  1960,
+                  1060
+                ],
+                [
+                  1400,
+                  1060
+                ]
+              ]
+            },
+            {
+              "id": "deck",
+              "name": "Палуба дирижабля",
+              "tags": [
+                "elevated"
+              ],
+              "poly": [
+                [
+                  1960,
+                  0
+                ],
+                [
+                  3000,
+                  0
+                ],
+                [
+                  3000,
+                  2000
+                ],
+                [
+                  1960,
+                  2000
+                ]
+              ]
+            },
+            {
+              "id": "winch",
+              "name": "Паровая лебёдка",
+              "tags": [
+                "hazard",
+                "cover"
+              ],
+              "poly": [
+                [
+                  0,
+                  1060
+                ],
+                [
+                  453.58983848622455,
+                  1060
+                ],
+                [
+                  523.5898384862246,
+                  1107.0291804521867
+                ],
+                [
+                  613.5898384862246,
+                  1148.0636814669308
+                ],
+                [
+                  703.5898384862246,
+                  1171.6385417616211
+                ],
+                [
+                  793.5898384862246,
+                  1179.9633111457993
+                ],
+                [
+                  883.5898384862246,
+                  1173.7262310039564
+                ],
+                [
+                  973.5898384862246,
+                  1152.415784865857
+                ],
+                [
+                  1000,
+                  1143.0678732248807
+                ],
+                [
+                  1000,
+                  2000
+                ],
+                [
+                  0,
+                  2000
+                ]
+              ]
+            },
+            {
+              "id": "cargo",
+              "name": "Склад грузов",
+              "tags": [
+                "cover"
+              ],
+              "poly": [
+                [
+                  1000,
+                  1143.0678732248807
+                ],
+                [
+                  1063.5898384862246,
+                  1114.0854147278646
+                ],
+                [
+                  1146.4101615137754,
+                  1060
+                ],
+                [
+                  1960,
+                  1060
+                ],
+                [
+                  1960,
+                  2000
+                ],
+                [
+                  1000,
+                  2000
+                ]
+              ]
+            }
+          ],
+          "links": [
+            [
+              "platform",
+              "gangway",
+              "short"
+            ],
+            [
+              "gangway",
+              "deck",
+              "engaged"
+            ],
+            [
+              "platform",
+              "winch",
+              "short"
+            ],
+            [
+              "platform",
+              "cargo",
+              "short"
+            ],
+            [
+              "winch",
+              "cargo",
+              "short"
+            ],
+            [
+              "gangway",
+              "cargo",
+              "short"
+            ],
+            [
+              "cargo",
+              "deck",
+              "medium"
+            ]
+          ]
+        }
+      }
+    }
+  },
+  {
+    "name": "Джунгли чужой планеты",
+    "type": "scene",
+    "folder": "Чужие миры",
+    "worlds": [
+      "scifi",
+      "spaceopera"
+    ],
+    "scene": {
+      "background": {
+        "src": "systems/genesys-rpg/assets/maps/alien-jungle.jpg"
+      },
+      "thumb": "systems/genesys-rpg/assets/maps/thumbs/alien-jungle.jpg",
+      "width": 3000,
+      "height": 2000,
+      "padding": 0.05,
+      "backgroundColor": "#0a1012",
+      "grid": {
+        "type": 0,
+        "size": 100
+      },
+      "tokenVision": false,
+      "fog": {
+        "exploration": false
+      },
+      "initial": {
+        "x": 1500,
+        "y": 1000,
+        "scale": 0.45
+      },
+      "flags": {
+        "genesys-rpg": {
+          "zoneMap": true,
+          "bg": "systems/genesys-rpg/assets/maps/alien-jungle.jpg",
+          "bgColor": "#0a1012",
+          "zones": [
+            {
+              "id": "thicket",
+              "name": "Светящаяся чаща",
+              "tags": [
+                "cover",
+                "difficult",
+                "dark"
+              ],
+              "poly": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1050,
+                  0
+                ],
+                [
+                  980,
+                  250
+                ],
+                [
+                  1060,
+                  520
+                ],
+                [
+                  940,
+                  800
+                ],
+                [
+                  980,
+                  1020
+                ],
+                [
+                  650,
+                  1150
+                ],
+                [
+                  300,
+                  1080
+                ],
+                [
+                  0,
+                  1150
+                ]
+              ]
+            },
+            {
+              "id": "crash",
+              "name": "Место крушения",
+              "tags": [
+                "cover",
+                "hazard"
+              ],
+              "poly": [
+                [
+                  2050,
+                  0
+                ],
+                [
+                  2000,
+                  300
+                ],
+                [
+                  2120,
+                  600
+                ],
+                [
+                  2100,
+                  950
+                ],
+                [
+                  2020,
+                  1150
+                ],
+                [
+                  1950,
+                  1350
+                ],
+                [
+                  1700,
+                  1300
+                ],
+                [
+                  1450,
+                  1380
+                ],
+                [
+                  1180,
+                  1300
+                ],
+                [
+                  1100,
+                  1180
+                ],
+                [
+                  980,
+                  1020
+                ],
+                [
+                  940,
+                  800
+                ],
+                [
+                  1060,
+                  520
+                ],
+                [
+                  980,
+                  250
+                ],
+                [
+                  1050,
+                  0
+                ]
+              ]
+            },
+            {
+              "id": "spires",
+              "name": "Кристаллические шпили",
+              "tags": [
+                "elevated",
+                "cover"
+              ],
+              "poly": [
+                [
+                  2050,
+                  0
+                ],
+                [
+                  3000,
+                  0
+                ],
+                [
+                  3000,
+                  1000
+                ],
+                [
+                  2700,
+                  960
+                ],
+                [
+                  2400,
+                  1050
+                ],
+                [
+                  2100,
+                  950
+                ],
+                [
+                  2120,
+                  600
+                ],
+                [
+                  2000,
+                  300
+                ]
+              ]
+            },
+            {
+              "id": "nest",
+              "name": "Гнездо",
+              "tags": [
+                "hazard",
+                "dark"
+              ],
+              "poly": [
+                [
+                  2100,
+                  950
+                ],
+                [
+                  2400,
+                  1050
+                ],
+                [
+                  2700,
+                  960
+                ],
+                [
+                  3000,
+                  1000
+                ],
+                [
+                  3000,
+                  2000
+                ],
+                [
+                  2150,
+                  2000
+                ],
+                [
+                  2080,
+                  1820
+                ],
+                [
+                  2100,
+                  1600
+                ],
+                [
+                  1950,
+                  1350
+                ],
+                [
+                  2020,
+                  1150
+                ]
+              ]
+            },
+            {
+              "id": "swamp",
+              "name": "Кислотное болото",
+              "tags": [
+                "hazard",
+                "difficult"
+              ],
+              "poly": [
+                [
+                  1180,
+                  1300
+                ],
+                [
+                  1450,
+                  1380
+                ],
+                [
+                  1700,
+                  1300
+                ],
+                [
+                  1950,
+                  1350
+                ],
+                [
+                  2100,
+                  1600
+                ],
+                [
+                  2080,
+                  1820
+                ],
+                [
+                  2150,
+                  2000
+                ],
+                [
+                  1000,
+                  2000
+                ],
+                [
+                  1050,
+                  1800
+                ],
+                [
+                  1100,
+                  1550
+                ]
+              ]
+            },
+            {
+              "id": "ruins",
+              "name": "Древние руины",
+              "tags": [
+                "cover",
+                "elevated"
+              ],
+              "poly": [
+                [
+                  0,
+                  1150
+                ],
+                [
+                  300,
+                  1080
+                ],
+                [
+                  650,
+                  1150
+                ],
+                [
+                  980,
+                  1020
+                ],
+                [
+                  1100,
+                  1180
+                ],
+                [
+                  1180,
+                  1300
+                ],
+                [
+                  1100,
+                  1550
+                ],
+                [
+                  1050,
+                  1800
+                ],
+                [
+                  1000,
+                  2000
+                ],
+                [
+                  0,
+                  2000
+                ]
+              ]
+            }
+          ],
+          "links": [
+            [
+              "thicket",
+              "crash",
+              "short"
+            ],
+            [
+              "thicket",
+              "ruins",
+              "short"
+            ],
+            [
+              "crash",
+              "spires",
+              "short"
+            ],
+            [
+              "crash",
+              "nest",
+              "short"
+            ],
+            [
+              "crash",
+              "ruins",
+              "short"
+            ],
+            [
+              "crash",
+              "swamp",
+              "short"
+            ],
+            [
+              "spires",
+              "nest",
+              "short"
+            ],
+            [
+              "ruins",
+              "swamp",
+              "short"
+            ],
+            [
+              "swamp",
+              "nest",
+              "short"
+            ]
+          ]
+        }
+      }
+    }
+  },
+  {
+    "name": "Логово в пещере",
+    "type": "scene",
+    "folder": "Подземелья",
+    "worlds": [
+      "fantasy",
+      "terrinoth",
+      "mythic",
+      "monster"
+    ],
+    "scene": {
+      "background": {
+        "src": "systems/genesys-rpg/assets/maps/cave-lair.jpg"
+      },
+      "thumb": "systems/genesys-rpg/assets/maps/thumbs/cave-lair.jpg",
+      "width": 3000,
+      "height": 2000,
+      "padding": 0.05,
+      "backgroundColor": "#120e0b",
+      "grid": {
+        "type": 0,
+        "size": 100
+      },
+      "tokenVision": false,
+      "fog": {
+        "exploration": false
+      },
+      "initial": {
+        "x": 1500,
+        "y": 1000,
+        "scale": 0.45
+      },
+      "flags": {
+        "genesys-rpg": {
+          "zoneMap": true,
+          "bg": "systems/genesys-rpg/assets/maps/cave-lair.jpg",
+          "bgColor": "#120e0b",
+          "zones": [
+            {
+              "id": "entrance",
+              "name": "Вход в пещеру",
+              "tags": [],
+              "poly": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  780,
+                  0
+                ],
+                [
+                  820,
+                  620
+                ],
+                [
+                  760,
+                  1150
+                ],
+                [
+                  660,
+                  2000
+                ],
+                [
+                  0,
+                  2000
+                ]
+              ]
+            },
+            {
+              "id": "lake",
+              "name": "Подземное озеро",
+              "tags": [
+                "hazard",
+                "difficult"
+              ],
+              "poly": [
+                [
+                  780,
+                  0
+                ],
+                [
+                  2060,
+                  0
+                ],
+                [
+                  2050,
+                  400
+                ],
+                [
+                  2120,
+                  640
+                ],
+                [
+                  2000,
+                  860
+                ],
+                [
+                  1760,
+                  1150
+                ],
+                [
+                  760,
+                  1150
+                ],
+                [
+                  820,
+                  620
+                ]
+              ]
+            },
+            {
+              "id": "ledge",
+              "name": "Карниз",
+              "tags": [
+                "elevated",
+                "cover"
+              ],
+              "poly": [
+                [
+                  2060,
+                  0
+                ],
+                [
+                  3000,
+                  0
+                ],
+                [
+                  3000,
+                  940
+                ],
+                [
+                  2700,
+                  940
+                ],
+                [
+                  2700,
+                  720
+                ],
+                [
+                  2120,
+                  640
+                ],
+                [
+                  2050,
+                  400
+                ]
+              ]
+            },
+            {
+              "id": "passage",
+              "name": "Извилистый проход",
+              "tags": [
+                "difficult",
+                "dark"
+              ],
+              "poly": [
+                [
+                  760,
+                  1150
+                ],
+                [
+                  1760,
+                  1150
+                ],
+                [
+                  1720,
+                  2000
+                ],
+                [
+                  660,
+                  2000
+                ]
+              ]
+            },
+            {
+              "id": "lair",
+              "name": "Логово",
+              "tags": [
+                "cover"
+              ],
+              "poly": [
+                [
+                  1760,
+                  1150
+                ],
+                [
+                  2000,
+                  860
+                ],
+                [
+                  2120,
+                  640
+                ],
+                [
+                  2700,
+                  720
+                ],
+                [
+                  2700,
+                  940
+                ],
+                [
+                  3000,
+                  940
+                ],
+                [
+                  3000,
+                  2000
+                ],
+                [
+                  1720,
+                  2000
+                ]
+              ]
+            }
+          ],
+          "links": [
+            [
+              "entrance",
+              "lake",
+              "short"
+            ],
+            [
+              "entrance",
+              "passage",
+              "short"
+            ],
+            [
+              "passage",
+              "lair",
+              "short"
+            ],
+            [
+              "lake",
+              "lair",
+              "short"
+            ],
+            [
+              "lake",
+              "ledge",
+              "medium"
+            ],
+            [
+              "ledge",
+              "lair",
+              "short"
+            ]
+          ]
+        }
+      }
+    }
+  },
+  {
+    "name": "Склеп под часовней",
+    "type": "scene",
+    "folder": "Подземелья",
+    "worlds": [
+      "fantasy",
+      "terrinoth",
+      "mythic",
+      "monster"
+    ],
+    "scene": {
+      "background": {
+        "src": "systems/genesys-rpg/assets/maps/crypt.jpg"
+      },
+      "thumb": "systems/genesys-rpg/assets/maps/thumbs/crypt.jpg",
+      "width": 3000,
+      "height": 2000,
+      "padding": 0.05,
+      "backgroundColor": "#0d0b0a",
+      "grid": {
+        "type": 0,
+        "size": 100
+      },
+      "tokenVision": false,
+      "fog": {
+        "exploration": false
+      },
+      "initial": {
+        "x": 1500,
+        "y": 1000,
+        "scale": 0.45
+      },
+      "flags": {
+        "genesys-rpg": {
+          "zoneMap": true,
+          "bg": "systems/genesys-rpg/assets/maps/crypt.jpg",
+          "bgColor": "#0d0b0a",
+          "zones": [
+            {
+              "id": "stairs",
+              "name": "Лестница вниз",
+              "tags": [
+                "difficult",
+                "elevated"
+              ],
+              "poly": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  700,
+                  0
+                ],
+                [
+                  700,
+                  850
+                ],
+                [
+                  0,
+                  850
+                ]
+              ]
+            },
+            {
+              "id": "ossuary",
+              "name": "Костница",
+              "tags": [
+                "cover",
+                "dark"
+              ],
+              "poly": [
+                [
+                  700,
+                  0
+                ],
+                [
+                  1850,
+                  0
+                ],
+                [
+                  1850,
+                  1000
+                ],
+                [
+                  700,
+                  1000
+                ]
+              ]
+            },
+            {
+              "id": "altar",
+              "name": "Алтарь",
+              "tags": [
+                "hazard"
+              ],
+              "poly": [
+                [
+                  1850,
+                  0
+                ],
+                [
+                  3000,
+                  0
+                ],
+                [
+                  3000,
+                  1040
+                ],
+                [
+                  1850,
+                  1040
+                ]
+              ]
+            },
+            {
+              "id": "corridor",
+              "name": "Узкий коридор",
+              "tags": [
+                "difficult"
+              ],
+              "poly": [
+                [
+                  0,
+                  850
+                ],
+                [
+                  700,
+                  850
+                ],
+                [
+                  700,
+                  1000
+                ],
+                [
+                  1850,
+                  1000
+                ],
+                [
+                  1850,
+                  1380
+                ],
+                [
+                  0,
+                  1380
+                ]
+              ]
+            },
+            {
+              "id": "well",
+              "name": "Колодец во тьму",
+              "tags": [
+                "hazard",
+                "dark"
+              ],
+              "poly": [
+                [
+                  0,
+                  1380
+                ],
+                [
+                  1100,
+                  1380
+                ],
+                [
+                  1100,
+                  2000
+                ],
+                [
+                  0,
+                  2000
+                ]
+              ]
+            },
+            {
+              "id": "tomb",
+              "name": "Гробница основателя",
+              "tags": [
+                "cover",
+                "dark"
+              ],
+              "poly": [
+                [
+                  1850,
+                  1040
+                ],
+                [
+                  3000,
+                  1040
+                ],
+                [
+                  3000,
+                  2000
+                ],
+                [
+                  1100,
+                  2000
+                ],
+                [
+                  1100,
+                  1380
+                ],
+                [
+                  1850,
+                  1380
+                ]
+              ]
+            }
+          ],
+          "links": [
+            [
+              "stairs",
+              "ossuary",
+              "short"
+            ],
+            [
+              "stairs",
+              "corridor",
+              "short"
+            ],
+            [
+              "ossuary",
+              "altar",
+              "short"
+            ],
+            [
+              "ossuary",
+              "corridor",
+              "short"
+            ],
+            [
+              "altar",
+              "tomb",
+              "short"
+            ],
+            [
+              "corridor",
+              "tomb",
+              "short"
+            ],
+            [
+              "corridor",
+              "well",
+              "short"
+            ],
+            [
+              "well",
+              "tomb",
+              "short"
+            ]
+          ]
+        }
+      }
+    }
+  },
+  {
+    "name": "Засада на лесной дороге",
+    "type": "scene",
+    "folder": "Фэнтези",
+    "worlds": [
+      "fantasy",
+      "terrinoth",
+      "mythic"
+    ],
+    "scene": {
+      "background": {
+        "src": "systems/genesys-rpg/assets/maps/forest-road.jpg"
+      },
+      "thumb": "systems/genesys-rpg/assets/maps/thumbs/forest-road.jpg",
+      "width": 3000,
+      "height": 2000,
+      "padding": 0.05,
+      "backgroundColor": "#1d2a12",
+      "grid": {
+        "type": 0,
+        "size": 100
+      },
+      "tokenVision": false,
+      "fog": {
+        "exploration": false
+      },
+      "initial": {
+        "x": 1500,
+        "y": 1000,
+        "scale": 0.45
+      },
+      "flags": {
+        "genesys-rpg": {
+          "zoneMap": true,
+          "bg": "systems/genesys-rpg/assets/maps/forest-road.jpg",
+          "bgColor": "#1d2a12",
+          "zones": [
+            {
+              "id": "road",
+              "name": "Тракт",
+              "tags": [],
+              "poly": [
+                [
+                  0,
+                  918
+                ],
+                [
+                  250,
+                  958
+                ],
+                [
+                  500,
+                  970
+                ],
+                [
+                  750,
+                  949
+                ],
+                [
+                  1000,
+                  902
+                ],
+                [
+                  1100,
+                  878
+                ],
+                [
+                  1250,
+                  841
+                ],
+                [
+                  1500,
+                  782
+                ],
+                [
+                  1800,
+                  737
+                ],
+                [
+                  2000,
+                  730
+                ],
+                [
+                  2250,
+                  751
+                ],
+                [
+                  2500,
+                  798
+                ],
+                [
+                  2750,
+                  859
+                ],
+                [
+                  3000,
+                  918
+                ],
+                [
+                  3000,
+                  1318
+                ],
+                [
+                  2750,
+                  1259
+                ],
+                [
+                  2500,
+                  1198
+                ],
+                [
+                  2250,
+                  1151
+                ],
+                [
+                  2000,
+                  1130
+                ],
+                [
+                  1800,
+                  1137
+                ],
+                [
+                  1500,
+                  1182
+                ],
+                [
+                  1250,
+                  1241
+                ],
+                [
+                  1100,
+                  1278
+                ],
+                [
+                  1000,
+                  1302
+                ],
+                [
+                  750,
+                  1349
+                ],
+                [
+                  500,
+                  1370
+                ],
+                [
+                  250,
+                  1358
+                ],
+                [
+                  0,
+                  1318
+                ]
+              ]
+            },
+            {
+              "id": "thicket",
+              "name": "Чаща",
+              "tags": [
+                "cover",
+                "difficult",
+                "dark"
+              ],
+              "poly": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1820,
+                  0
+                ],
+                [
+                  1820,
+                  260
+                ],
+                [
+                  1500,
+                  270
+                ],
+                [
+                  1100,
+                  300
+                ],
+                [
+                  1100,
+                  878
+                ],
+                [
+                  1000,
+                  902
+                ],
+                [
+                  750,
+                  949
+                ],
+                [
+                  500,
+                  970
+                ],
+                [
+                  250,
+                  958
+                ],
+                [
+                  0,
+                  918
+                ]
+              ]
+            },
+            {
+              "id": "fallen",
+              "name": "Поваленное дерево",
+              "tags": [
+                "cover"
+              ],
+              "poly": [
+                [
+                  1100,
+                  300
+                ],
+                [
+                  1500,
+                  270
+                ],
+                [
+                  1820,
+                  260
+                ],
+                [
+                  1800,
+                  737
+                ],
+                [
+                  1800,
+                  737
+                ],
+                [
+                  1500,
+                  782
+                ],
+                [
+                  1250,
+                  841
+                ],
+                [
+                  1100,
+                  878
+                ]
+              ]
+            },
+            {
+              "id": "ridge",
+              "name": "Скалистый гребень",
+              "tags": [
+                "elevated",
+                "cover"
+              ],
+              "poly": [
+                [
+                  1820,
+                  0
+                ],
+                [
+                  3000,
+                  0
+                ],
+                [
+                  3000,
+                  918
+                ],
+                [
+                  2750,
+                  859
+                ],
+                [
+                  2500,
+                  798
+                ],
+                [
+                  2250,
+                  751
+                ],
+                [
+                  2000,
+                  730
+                ],
+                [
+                  1800,
+                  737
+                ],
+                [
+                  1820,
+                  260
+                ]
+              ]
+            },
+            {
+              "id": "camp",
+              "name": "Лагерь разбойников",
+              "tags": [
+                "cover"
+              ],
+              "poly": [
+                [
+                  0,
+                  1318
+                ],
+                [
+                  250,
+                  1358
+                ],
+                [
+                  500,
+                  1370
+                ],
+                [
+                  750,
+                  1349
+                ],
+                [
+                  1000,
+                  1302
+                ],
+                [
+                  1100,
+                  1278
+                ],
+                [
+                  1250,
+                  1241
+                ],
+                [
+                  1250,
+                  2000
+                ],
+                [
+                  0,
+                  2000
+                ]
+              ]
+            },
+            {
+              "id": "ravine",
+              "name": "Овраг",
+              "tags": [
+                "difficult",
+                "hazard"
+              ],
+              "poly": [
+                [
+                  1250,
+                  1241
+                ],
+                [
+                  1500,
+                  1182
+                ],
+                [
+                  1800,
+                  1137
+                ],
+                [
+                  2000,
+                  1130
+                ],
+                [
+                  2250,
+                  1151
+                ],
+                [
+                  2500,
+                  1198
+                ],
+                [
+                  2750,
+                  1259
+                ],
+                [
+                  3000,
+                  1318
+                ],
+                [
+                  3000,
+                  2000
+                ],
+                [
+                  1250,
+                  2000
+                ]
+              ]
+            }
+          ],
+          "links": [
+            [
+              "road",
+              "thicket",
+              "short"
+            ],
+            [
+              "road",
+              "fallen",
+              "short"
+            ],
+            [
+              "road",
+              "ridge",
+              "short"
+            ],
+            [
+              "road",
+              "camp",
+              "short"
+            ],
+            [
+              "road",
+              "ravine",
+              "short"
+            ],
+            [
+              "thicket",
+              "fallen",
+              "short"
+            ],
+            [
+              "fallen",
+              "ridge",
+              "short"
+            ],
+            [
+              "thicket",
+              "ridge",
+              "medium"
+            ],
+            [
+              "camp",
+              "ravine",
+              "short"
+            ]
+          ]
+        }
+      }
+    }
+  },
+  {
+    "name": "Склад в порту",
+    "type": "scene",
+    "folder": "Современность",
+    "worlds": [
+      "modern",
+      "weirdwar",
+      "monster",
+      "zombie"
+    ],
+    "scene": {
+      "background": {
+        "src": "systems/genesys-rpg/assets/maps/harbor-warehouse.jpg"
+      },
+      "thumb": "systems/genesys-rpg/assets/maps/thumbs/harbor-warehouse.jpg",
+      "width": 3000,
+      "height": 2000,
+      "padding": 0.05,
+      "backgroundColor": "#0d1118",
+      "grid": {
+        "type": 0,
+        "size": 100
+      },
+      "tokenVision": false,
+      "fog": {
+        "exploration": false
+      },
+      "initial": {
+        "x": 1500,
+        "y": 1000,
+        "scale": 0.45
+      },
+      "flags": {
+        "genesys-rpg": {
+          "zoneMap": true,
+          "bg": "systems/genesys-rpg/assets/maps/harbor-warehouse.jpg",
+          "bgColor": "#0d1118",
+          "zones": [
+            {
+              "id": "yard",
+              "name": "Погрузочный двор",
+              "tags": [],
+              "poly": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  930,
+                  0
+                ],
+                [
+                  930,
+                  2000
+                ],
+                [
+                  0,
+                  2000
+                ]
+              ]
+            },
+            {
+              "id": "racks",
+              "name": "Склад: стеллажи",
+              "tags": [
+                "cover",
+                "dark"
+              ],
+              "poly": [
+                [
+                  930,
+                  0
+                ],
+                [
+                  1560,
+                  0
+                ],
+                [
+                  1560,
+                  560
+                ],
+                [
+                  2230,
+                  560
+                ],
+                [
+                  2230,
+                  1130
+                ],
+                [
+                  930,
+                  1130
+                ]
+              ]
+            },
+            {
+              "id": "office",
+              "name": "Контора на антресоли",
+              "tags": [
+                "elevated",
+                "cover"
+              ],
+              "poly": [
+                [
+                  1560,
+                  0
+                ],
+                [
+                  2230,
+                  0
+                ],
+                [
+                  2230,
+                  560
+                ],
+                [
+                  1560,
+                  560
+                ]
+              ]
+            },
+            {
+              "id": "containers",
+              "name": "Контейнерный лабиринт",
+              "tags": [
+                "cover",
+                "difficult"
+              ],
+              "poly": [
+                [
+                  930,
+                  1130
+                ],
+                [
+                  2230,
+                  1130
+                ],
+                [
+                  2230,
+                  2000
+                ],
+                [
+                  930,
+                  2000
+                ]
+              ]
+            },
+            {
+              "id": "pier",
+              "name": "Причал",
+              "tags": [
+                "hazard"
+              ],
+              "poly": [
+                [
+                  2230,
+                  0
+                ],
+                [
+                  3000,
+                  0
+                ],
+                [
+                  3000,
+                  2000
+                ],
+                [
+                  2230,
+                  2000
+                ]
+              ]
+            }
+          ],
+          "links": [
+            [
+              "yard",
+              "racks",
+              "short"
+            ],
+            [
+              "yard",
+              "containers",
+              "short"
+            ],
+            [
+              "racks",
+              "office",
+              "short"
+            ],
+            [
+              "racks",
+              "containers",
+              "short"
+            ],
+            [
+              "racks",
+              "pier",
+              "short"
+            ],
+            [
+              "office",
+              "pier",
+              "short"
+            ],
+            [
+              "containers",
+              "pier",
+              "short"
+            ]
+          ]
+        }
+      }
+    }
+  },
+  {
+    "name": "Заброшенная усадьба",
+    "type": "scene",
+    "folder": "Хоррор",
+    "worlds": [
+      "monster",
+      "modern",
+      "weirdwar",
+      "fantasy"
+    ],
+    "scene": {
+      "background": {
+        "src": "systems/genesys-rpg/assets/maps/manor.jpg"
+      },
+      "thumb": "systems/genesys-rpg/assets/maps/thumbs/manor.jpg",
+      "width": 3000,
+      "height": 2000,
+      "padding": 0.05,
+      "backgroundColor": "#0b0e14",
+      "grid": {
+        "type": 0,
+        "size": 100
+      },
+      "tokenVision": false,
+      "fog": {
+        "exploration": false
+      },
+      "initial": {
+        "x": 1500,
+        "y": 1000,
+        "scale": 0.45
+      },
+      "flags": {
+        "genesys-rpg": {
+          "zoneMap": true,
+          "bg": "systems/genesys-rpg/assets/maps/manor.jpg",
+          "bgColor": "#0b0e14",
+          "zones": [
+            {
+              "id": "library",
+              "name": "Библиотека",
+              "tags": [
+                "cover",
+                "dark"
+              ],
+              "poly": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  760,
+                  0
+                ],
+                [
+                  760,
+                  900
+                ],
+                [
+                  0,
+                  900
+                ]
+              ]
+            },
+            {
+              "id": "cellar",
+              "name": "Погреб",
+              "tags": [
+                "dark",
+                "hazard"
+              ],
+              "poly": [
+                [
+                  0,
+                  900
+                ],
+                [
+                  760,
+                  900
+                ],
+                [
+                  760,
+                  1420
+                ],
+                [
+                  0,
+                  1420
+                ]
+              ]
+            },
+            {
+              "id": "stairs",
+              "name": "Парадная лестница",
+              "tags": [
+                "elevated",
+                "difficult"
+              ],
+              "poly": [
+                [
+                  760,
+                  0
+                ],
+                [
+                  1520,
+                  0
+                ],
+                [
+                  1520,
+                  620
+                ],
+                [
+                  760,
+                  620
+                ]
+              ]
+            },
+            {
+              "id": "hall",
+              "name": "Холл",
+              "tags": [
+                "dark"
+              ],
+              "poly": [
+                [
+                  760,
+                  620
+                ],
+                [
+                  1520,
+                  620
+                ],
+                [
+                  1520,
+                  1420
+                ],
+                [
+                  760,
+                  1420
+                ]
+              ]
+            },
+            {
+              "id": "dining",
+              "name": "Столовая",
+              "tags": [
+                "cover"
+              ],
+              "poly": [
+                [
+                  1520,
+                  0
+                ],
+                [
+                  2280,
+                  0
+                ],
+                [
+                  2280,
+                  1420
+                ],
+                [
+                  1520,
+                  1420
+                ]
+              ]
+            },
+            {
+              "id": "garden",
+              "name": "Мёртвый сад",
+              "tags": [
+                "difficult",
+                "dark"
+              ],
+              "poly": [
+                [
+                  2280,
+                  0
+                ],
+                [
+                  3000,
+                  0
+                ],
+                [
+                  3000,
+                  2000
+                ],
+                [
+                  0,
+                  2000
+                ],
+                [
+                  0,
+                  1420
+                ],
+                [
+                  2280,
+                  1420
+                ]
+              ]
+            }
+          ],
+          "links": [
+            [
+              "hall",
+              "stairs",
+              "short"
+            ],
+            [
+              "hall",
+              "library",
+              "short"
+            ],
+            [
+              "hall",
+              "dining",
+              "short"
+            ],
+            [
+              "hall",
+              "cellar",
+              "short"
+            ],
+            [
+              "hall",
+              "garden",
+              "short"
+            ],
+            [
+              "dining",
+              "garden",
+              "short"
+            ]
+          ]
+        }
+      }
+    }
+  },
+  {
+    "name": "Переправа у старой мельницы",
+    "type": "scene",
+    "folder": "Фэнтези",
+    "worlds": [
+      "fantasy",
+      "terrinoth",
+      "mythic"
+    ],
+    "scene": {
+      "background": {
+        "src": "systems/genesys-rpg/assets/maps/river-crossing.jpg"
+      },
+      "thumb": "systems/genesys-rpg/assets/maps/thumbs/river-crossing.jpg",
+      "width": 3000,
+      "height": 2000,
+      "padding": 0.05,
+      "backgroundColor": "#1f2c16",
+      "grid": {
+        "type": 0,
+        "size": 100
+      },
+      "tokenVision": false,
+      "fog": {
+        "exploration": false
+      },
+      "initial": {
+        "x": 1500,
+        "y": 1000,
+        "scale": 0.45
+      },
+      "flags": {
+        "genesys-rpg": {
+          "zoneMap": true,
+          "bg": "systems/genesys-rpg/assets/maps/river-crossing.jpg",
+          "bgColor": "#1f2c16",
+          "zones": [
+            {
+              "id": "west",
+              "name": "Западный берег",
+              "tags": [],
+              "poly": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1286,
+                  0
+                ],
+                [
+                  1293,
+                  40
+                ],
+                [
+                  1298,
+                  80
+                ],
+                [
+                  1299,
+                  120
+                ],
+                [
+                  1297,
+                  160
+                ],
+                [
+                  1292,
+                  200
+                ],
+                [
+                  1287,
+                  240
+                ],
+                [
+                  1281,
+                  280
+                ],
+                [
+                  1276,
+                  320
+                ],
+                [
+                  1273,
+                  360
+                ],
+                [
+                  1273,
+                  400
+                ],
+                [
+                  1275,
+                  440
+                ],
+                [
+                  1280,
+                  480
+                ],
+                [
+                  1287,
+                  520
+                ],
+                [
+                  1295,
+                  560
+                ],
+                [
+                  1304,
+                  600
+                ],
+                [
+                  1312,
+                  640
+                ],
+                [
+                  1318,
+                  680
+                ],
+                [
+                  1321,
+                  720
+                ],
+                [
+                  1320,
+                  760
+                ],
+                [
+                  1316,
+                  800
+                ],
+                [
+                  1308,
+                  840
+                ],
+                [
+                  1296,
+                  880
+                ],
+                [
+                  1282,
+                  920
+                ],
+                [
+                  1265,
+                  960
+                ],
+                [
+                  1247,
+                  1000
+                ],
+                [
+                  1229,
+                  1040
+                ],
+                [
+                  1212,
+                  1080
+                ],
+                [
+                  1196,
+                  1120
+                ],
+                [
+                  1183,
+                  1160
+                ],
+                [
+                  1173,
+                  1200
+                ],
+                [
+                  1167,
+                  1240
+                ],
+                [
+                  1166,
+                  1280
+                ],
+                [
+                  1169,
+                  1320
+                ],
+                [
+                  1175,
+                  1360
+                ],
+                [
+                  1183,
+                  1400
+                ],
+                [
+                  1191,
+                  1440
+                ],
+                [
+                  1198,
+                  1480
+                ],
+                [
+                  1204,
+                  1520
+                ],
+                [
+                  1206,
+                  1560
+                ],
+                [
+                  1206,
+                  1600
+                ],
+                [
+                  1205,
+                  1640
+                ],
+                [
+                  1202,
+                  1680
+                ],
+                [
+                  1199,
+                  1720
+                ],
+                [
+                  1198,
+                  1760
+                ],
+                [
+                  1200,
+                  1800
+                ],
+                [
+                  1205,
+                  1840
+                ],
+                [
+                  1213,
+                  1880
+                ],
+                [
+                  1225,
+                  1920
+                ],
+                [
+                  1238,
+                  1960
+                ],
+                [
+                  1253,
+                  2000
+                ],
+                [
+                  0,
+                  2000
+                ]
+              ]
+            },
+            {
+              "id": "bridge",
+              "name": "Мост",
+              "tags": [],
+              "poly": [
+                [
+                  1286,
+                  0
+                ],
+                [
+                  1293,
+                  40
+                ],
+                [
+                  1298,
+                  80
+                ],
+                [
+                  1299,
+                  120
+                ],
+                [
+                  1297,
+                  160
+                ],
+                [
+                  1292,
+                  200
+                ],
+                [
+                  1287,
+                  240
+                ],
+                [
+                  1281,
+                  280
+                ],
+                [
+                  1276,
+                  320
+                ],
+                [
+                  1273,
+                  360
+                ],
+                [
+                  1273,
+                  400
+                ],
+                [
+                  1275,
+                  440
+                ],
+                [
+                  1280,
+                  480
+                ],
+                [
+                  1287,
+                  520
+                ],
+                [
+                  1295,
+                  560
+                ],
+                [
+                  1670,
+                  560
+                ],
+                [
+                  1664,
+                  520
+                ],
+                [
+                  1659,
+                  480
+                ],
+                [
+                  1655,
+                  440
+                ],
+                [
+                  1653,
+                  400
+                ],
+                [
+                  1653,
+                  360
+                ],
+                [
+                  1655,
+                  320
+                ],
+                [
+                  1658,
+                  280
+                ],
+                [
+                  1661,
+                  240
+                ],
+                [
+                  1663,
+                  200
+                ],
+                [
+                  1664,
+                  160
+                ],
+                [
+                  1662,
+                  120
+                ],
+                [
+                  1657,
+                  80
+                ],
+                [
+                  1648,
+                  40
+                ],
+                [
+                  1636,
+                  0
+                ]
+              ]
+            },
+            {
+              "id": "river",
+              "name": "Река",
+              "tags": [
+                "hazard",
+                "difficult"
+              ],
+              "poly": [
+                [
+                  1295,
+                  560
+                ],
+                [
+                  1304,
+                  600
+                ],
+                [
+                  1312,
+                  640
+                ],
+                [
+                  1318,
+                  680
+                ],
+                [
+                  1321,
+                  720
+                ],
+                [
+                  1320,
+                  760
+                ],
+                [
+                  1316,
+                  800
+                ],
+                [
+                  1308,
+                  840
+                ],
+                [
+                  1296,
+                  880
+                ],
+                [
+                  1282,
+                  920
+                ],
+                [
+                  1265,
+                  960
+                ],
+                [
+                  1247,
+                  1000
+                ],
+                [
+                  1229,
+                  1040
+                ],
+                [
+                  1212,
+                  1080
+                ],
+                [
+                  1196,
+                  1120
+                ],
+                [
+                  1183,
+                  1160
+                ],
+                [
+                  1173,
+                  1200
+                ],
+                [
+                  1167,
+                  1240
+                ],
+                [
+                  1166,
+                  1280
+                ],
+                [
+                  1169,
+                  1320
+                ],
+                [
+                  1175,
+                  1360
+                ],
+                [
+                  1183,
+                  1400
+                ],
+                [
+                  1191,
+                  1440
+                ],
+                [
+                  1198,
+                  1480
+                ],
+                [
+                  1631,
+                  1480
+                ],
+                [
+                  1640,
+                  1440
+                ],
+                [
+                  1644,
+                  1400
+                ],
+                [
+                  1645,
+                  1360
+                ],
+                [
+                  1641,
+                  1320
+                ],
+                [
+                  1633,
+                  1280
+                ],
+                [
+                  1623,
+                  1240
+                ],
+                [
+                  1612,
+                  1200
+                ],
+                [
+                  1603,
+                  1160
+                ],
+                [
+                  1597,
+                  1120
+                ],
+                [
+                  1596,
+                  1080
+                ],
+                [
+                  1599,
+                  1040
+                ],
+                [
+                  1607,
+                  1000
+                ],
+                [
+                  1618,
+                  960
+                ],
+                [
+                  1632,
+                  920
+                ],
+                [
+                  1646,
+                  880
+                ],
+                [
+                  1659,
+                  840
+                ],
+                [
+                  1670,
+                  800
+                ],
+                [
+                  1678,
+                  760
+                ],
+                [
+                  1682,
+                  720
+                ],
+                [
+                  1683,
+                  680
+                ],
+                [
+                  1681,
+                  640
+                ],
+                [
+                  1676,
+                  600
+                ],
+                [
+                  1670,
+                  560
+                ]
+              ]
+            },
+            {
+              "id": "ford",
+              "name": "Брод",
+              "tags": [
+                "difficult"
+              ],
+              "poly": [
+                [
+                  1198,
+                  1480
+                ],
+                [
+                  1204,
+                  1520
+                ],
+                [
+                  1206,
+                  1560
+                ],
+                [
+                  1206,
+                  1600
+                ],
+                [
+                  1205,
+                  1640
+                ],
+                [
+                  1202,
+                  1680
+                ],
+                [
+                  1199,
+                  1720
+                ],
+                [
+                  1198,
+                  1760
+                ],
+                [
+                  1200,
+                  1800
+                ],
+                [
+                  1205,
+                  1840
+                ],
+                [
+                  1213,
+                  1880
+                ],
+                [
+                  1225,
+                  1920
+                ],
+                [
+                  1238,
+                  1960
+                ],
+                [
+                  1253,
+                  2000
+                ],
+                [
+                  1632,
+                  2000
+                ],
+                [
+                  1617,
+                  1960
+                ],
+                [
+                  1602,
+                  1920
+                ],
+                [
+                  1589,
+                  1880
+                ],
+                [
+                  1578,
+                  1840
+                ],
+                [
+                  1572,
+                  1800
+                ],
+                [
+                  1569,
+                  1760
+                ],
+                [
+                  1570,
+                  1720
+                ],
+                [
+                  1576,
+                  1680
+                ],
+                [
+                  1584,
+                  1640
+                ],
+                [
+                  1595,
+                  1600
+                ],
+                [
+                  1608,
+                  1560
+                ],
+                [
+                  1620,
+                  1520
+                ],
+                [
+                  1631,
+                  1480
+                ]
+              ]
+            },
+            {
+              "id": "mill",
+              "name": "Мельница",
+              "tags": [
+                "cover",
+                "elevated"
+              ],
+              "poly": [
+                [
+                  1676,
+                  600
+                ],
+                [
+                  1681,
+                  640
+                ],
+                [
+                  1683,
+                  680
+                ],
+                [
+                  1682,
+                  720
+                ],
+                [
+                  1678,
+                  760
+                ],
+                [
+                  1670,
+                  800
+                ],
+                [
+                  1659,
+                  840
+                ],
+                [
+                  1646,
+                  880
+                ],
+                [
+                  1632,
+                  920
+                ],
+                [
+                  1618,
+                  960
+                ],
+                [
+                  1607,
+                  1000
+                ],
+                [
+                  1599,
+                  1040
+                ],
+                [
+                  1596,
+                  1080
+                ],
+                [
+                  1597,
+                  1120
+                ],
+                [
+                  1603,
+                  1160
+                ],
+                [
+                  2290,
+                  1160
+                ],
+                [
+                  2290,
+                  600
+                ]
+              ]
+            },
+            {
+              "id": "yard",
+              "name": "Мельничный двор",
+              "tags": [],
+              "poly": [
+                [
+                  1636,
+                  0
+                ],
+                [
+                  1648,
+                  40
+                ],
+                [
+                  1657,
+                  80
+                ],
+                [
+                  1662,
+                  120
+                ],
+                [
+                  1664,
+                  160
+                ],
+                [
+                  1663,
+                  200
+                ],
+                [
+                  1661,
+                  240
+                ],
+                [
+                  1658,
+                  280
+                ],
+                [
+                  1655,
+                  320
+                ],
+                [
+                  1653,
+                  360
+                ],
+                [
+                  1653,
+                  400
+                ],
+                [
+                  1655,
+                  440
+                ],
+                [
+                  1659,
+                  480
+                ],
+                [
+                  1664,
+                  520
+                ],
+                [
+                  1670,
+                  560
+                ],
+                [
+                  1676,
+                  600
+                ],
+                [
+                  2290,
+                  600
+                ],
+                [
+                  2290,
+                  1160
+                ],
+                [
+                  1603,
+                  1160
+                ],
+                [
+                  1612,
+                  1200
+                ],
+                [
+                  1623,
+                  1240
+                ],
+                [
+                  1633,
+                  1280
+                ],
+                [
+                  1641,
+                  1320
+                ],
+                [
+                  1645,
+                  1360
+                ],
+                [
+                  1644,
+                  1400
+                ],
+                [
+                  1640,
+                  1440
+                ],
+                [
+                  1631,
+                  1480
+                ],
+                [
+                  1620,
+                  1520
+                ],
+                [
+                  1608,
+                  1560
+                ],
+                [
+                  1595,
+                  1600
+                ],
+                [
+                  1584,
+                  1640
+                ],
+                [
+                  1576,
+                  1680
+                ],
+                [
+                  1570,
+                  1720
+                ],
+                [
+                  1569,
+                  1760
+                ],
+                [
+                  1572,
+                  1800
+                ],
+                [
+                  1578,
+                  1840
+                ],
+                [
+                  1589,
+                  1880
+                ],
+                [
+                  1602,
+                  1920
+                ],
+                [
+                  1617,
+                  1960
+                ],
+                [
+                  1632,
+                  2000
+                ],
+                [
+                  3000,
+                  2000
+                ],
+                [
+                  3000,
+                  0
+                ]
+              ]
+            }
+          ],
+          "links": [
+            [
+              "west",
+              "bridge",
+              "short"
+            ],
+            [
+              "bridge",
+              "yard",
+              "short"
+            ],
+            [
+              "west",
+              "river",
+              "short"
+            ],
+            [
+              "river",
+              "mill",
+              "short"
+            ],
+            [
+              "river",
+              "yard",
+              "short"
+            ],
+            [
+              "bridge",
+              "river",
+              "short"
+            ],
+            [
+              "river",
+              "ford",
+              "short"
+            ],
+            [
+              "west",
+              "ford",
+              "short"
+            ],
+            [
+              "ford",
+              "yard",
+              "short"
+            ],
+            [
+              "mill",
+              "yard",
+              "short"
+            ]
+          ]
+        }
+      }
+    }
+  },
+  {
+    "name": "Мостик звездолёта",
+    "type": "scene",
+    "folder": "Будущее",
+    "worlds": [
+      "scifi",
+      "spaceopera"
+    ],
+    "scene": {
+      "background": {
+        "src": "systems/genesys-rpg/assets/maps/starship-bridge.jpg"
+      },
+      "thumb": "systems/genesys-rpg/assets/maps/thumbs/starship-bridge.jpg",
+      "width": 3000,
+      "height": 2000,
+      "padding": 0.05,
+      "backgroundColor": "#04060d",
+      "grid": {
+        "type": 0,
+        "size": 100
+      },
+      "tokenVision": false,
+      "fog": {
+        "exploration": false
+      },
+      "initial": {
+        "x": 1500,
+        "y": 1000,
+        "scale": 0.45
+      },
+      "flags": {
+        "genesys-rpg": {
+          "zoneMap": true,
+          "bg": "systems/genesys-rpg/assets/maps/starship-bridge.jpg",
+          "bgColor": "#04060d",
+          "zones": [
+            {
+              "id": "reactor",
+              "name": "Реакторный отсек",
+              "tags": [
+                "hazard"
+              ],
+              "poly": [
+                [
+                  40,
+                  50
+                ],
+                [
+                  700,
+                  50
+                ],
+                [
+                  700,
+                  1950
+                ],
+                [
+                  40,
+                  1950
+                ]
+              ]
+            },
+            {
+              "id": "armory",
+              "name": "Оружейная",
+              "tags": [
+                "cover"
+              ],
+              "poly": [
+                [
+                  700,
+                  50
+                ],
+                [
+                  1550,
+                  50
+                ],
+                [
+                  1550,
+                  820
+                ],
+                [
+                  700,
+                  820
+                ]
+              ]
+            },
+            {
+              "id": "corridor",
+              "name": "Центральный коридор",
+              "tags": [],
+              "poly": [
+                [
+                  700,
+                  820
+                ],
+                [
+                  1550,
+                  820
+                ],
+                [
+                  1550,
+                  1180
+                ],
+                [
+                  700,
+                  1180
+                ]
+              ]
+            },
+            {
+              "id": "airlock",
+              "name": "Шлюз",
+              "tags": [
+                "hazard",
+                "difficult"
+              ],
+              "poly": [
+                [
+                  700,
+                  1180
+                ],
+                [
+                  1550,
+                  1180
+                ],
+                [
+                  1550,
+                  1950
+                ],
+                [
+                  700,
+                  1950
+                ]
+              ]
+            },
+            {
+              "id": "command",
+              "name": "Командная палуба",
+              "tags": [
+                "cover"
+              ],
+              "poly": [
+                [
+                  1550,
+                  50
+                ],
+                [
+                  2150,
+                  50
+                ],
+                [
+                  2479,
+                  342
+                ],
+                [
+                  2439,
+                  411
+                ],
+                [
+                  2403,
+                  485
+                ],
+                [
+                  2372,
+                  564
+                ],
+                [
+                  2346,
+                  646
+                ],
+                [
+                  2326,
+                  732
+                ],
+                [
+                  2312,
+                  820
+                ],
+                [
+                  2303,
+                  910
+                ],
+                [
+                  2300,
+                  1000
+                ],
+                [
+                  2303,
+                  1090
+                ],
+                [
+                  2312,
+                  1180
+                ],
+                [
+                  2326,
+                  1268
+                ],
+                [
+                  2346,
+                  1354
+                ],
+                [
+                  2372,
+                  1436
+                ],
+                [
+                  2403,
+                  1515
+                ],
+                [
+                  2439,
+                  1589
+                ],
+                [
+                  2479,
+                  1658
+                ],
+                [
+                  2150,
+                  1950
+                ],
+                [
+                  1550,
+                  1950
+                ]
+              ]
+            },
+            {
+              "id": "helm",
+              "name": "Штурвал и навигация",
+              "tags": [
+                "elevated"
+              ],
+              "poly": [
+                [
+                  2479,
+                  342
+                ],
+                [
+                  2950,
+                  760
+                ],
+                [
+                  2950,
+                  1240
+                ],
+                [
+                  2479,
+                  1658
+                ],
+                [
+                  2439,
+                  1589
+                ],
+                [
+                  2403,
+                  1515
+                ],
+                [
+                  2372,
+                  1436
+                ],
+                [
+                  2346,
+                  1354
+                ],
+                [
+                  2326,
+                  1268
+                ],
+                [
+                  2312,
+                  1180
+                ],
+                [
+                  2303,
+                  1090
+                ],
+                [
+                  2300,
+                  1000
+                ],
+                [
+                  2303,
+                  910
+                ],
+                [
+                  2312,
+                  820
+                ],
+                [
+                  2326,
+                  732
+                ],
+                [
+                  2346,
+                  646
+                ],
+                [
+                  2372,
+                  564
+                ],
+                [
+                  2403,
+                  485
+                ],
+                [
+                  2439,
+                  411
+                ]
+              ]
+            }
+          ],
+          "links": [
+            [
+              "reactor",
+              "corridor",
+              "short"
+            ],
+            [
+              "armory",
+              "corridor",
+              "short"
+            ],
+            [
+              "airlock",
+              "corridor",
+              "short"
+            ],
+            [
+              "corridor",
+              "command",
+              "short"
+            ],
+            [
+              "command",
+              "helm",
+              "engaged"
+            ],
+            [
+              "armory",
+              "command",
+              "medium"
+            ],
+            [
+              "airlock",
+              "command",
+              "medium"
+            ]
+          ]
+        }
+      }
+    }
+  },
+  {
+    "name": "Грузовой ангар станции",
+    "type": "scene",
+    "folder": "Будущее",
+    "worlds": [
+      "scifi",
+      "spaceopera"
+    ],
+    "scene": {
+      "background": {
+        "src": "systems/genesys-rpg/assets/maps/station-hangar.jpg"
+      },
+      "thumb": "systems/genesys-rpg/assets/maps/thumbs/station-hangar.jpg",
+      "width": 3000,
+      "height": 2000,
+      "padding": 0.05,
+      "backgroundColor": "#05070c",
+      "grid": {
+        "type": 0,
+        "size": 100
+      },
+      "tokenVision": false,
+      "fog": {
+        "exploration": false
+      },
+      "initial": {
+        "x": 1500,
+        "y": 1000,
+        "scale": 0.45
+      },
+      "flags": {
+        "genesys-rpg": {
+          "zoneMap": true,
+          "bg": "systems/genesys-rpg/assets/maps/station-hangar.jpg",
+          "bgColor": "#05070c",
+          "zones": [
+            {
+              "id": "control",
+              "name": "Диспетчерская",
+              "tags": [
+                "elevated",
+                "cover"
+              ],
+              "poly": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  800,
+                  0
+                ],
+                [
+                  800,
+                  700
+                ],
+                [
+                  0,
+                  700
+                ]
+              ]
+            },
+            {
+              "id": "fuel",
+              "name": "Топливные магистрали",
+              "tags": [
+                "hazard",
+                "difficult"
+              ],
+              "poly": [
+                [
+                  800,
+                  0
+                ],
+                [
+                  2450,
+                  0
+                ],
+                [
+                  2450,
+                  400
+                ],
+                [
+                  800,
+                  400
+                ]
+              ]
+            },
+            {
+              "id": "catwalks",
+              "name": "Подвесные мостки",
+              "tags": [
+                "elevated",
+                "difficult"
+              ],
+              "poly": [
+                [
+                  0,
+                  700
+                ],
+                [
+                  800,
+                  700
+                ],
+                [
+                  800,
+                  1500
+                ],
+                [
+                  0,
+                  1500
+                ]
+              ]
+            },
+            {
+              "id": "pad",
+              "name": "Посадочная площадка",
+              "tags": [],
+              "poly": [
+                [
+                  800,
+                  400
+                ],
+                [
+                  2450,
+                  400
+                ],
+                [
+                  2450,
+                  2000
+                ],
+                [
+                  1600,
+                  2000
+                ],
+                [
+                  1600,
+                  1500
+                ],
+                [
+                  800,
+                  1500
+                ]
+              ]
+            },
+            {
+              "id": "cargo",
+              "name": "Грузовой терминал",
+              "tags": [
+                "cover"
+              ],
+              "poly": [
+                [
+                  0,
+                  1500
+                ],
+                [
+                  1600,
+                  1500
+                ],
+                [
+                  1600,
+                  2000
+                ],
+                [
+                  0,
+                  2000
+                ]
+              ]
+            },
+            {
+              "id": "barrier",
+              "name": "Энергетический барьер",
+              "tags": [
+                "hazard"
+              ],
+              "poly": [
+                [
+                  2450,
+                  0
+                ],
+                [
+                  3000,
+                  0
+                ],
+                [
+                  3000,
+                  2000
+                ],
+                [
+                  2450,
+                  2000
+                ]
+              ]
+            }
+          ],
+          "links": [
+            [
+              "control",
+              "fuel",
+              "short"
+            ],
+            [
+              "control",
+              "catwalks",
+              "short"
+            ],
+            [
+              "control",
+              "pad",
+              "short"
+            ],
+            [
+              "fuel",
+              "pad",
+              "short"
+            ],
+            [
+              "catwalks",
+              "pad",
+              "short"
+            ],
+            [
+              "catwalks",
+              "cargo",
+              "short"
+            ],
+            [
+              "cargo",
+              "pad",
+              "short"
+            ],
+            [
+              "pad",
+              "barrier",
+              "medium"
+            ],
+            [
+              "fuel",
+              "barrier",
+              "short"
+            ]
+          ]
+        }
+      }
+    }
+  },
+  {
     "name": "Таверна «Сломанный рог»",
     "type": "scene",
     "folder": "Фэнтези",
