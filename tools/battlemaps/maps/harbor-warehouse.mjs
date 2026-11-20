@@ -39,7 +39,7 @@ function extraDefs() {
     <pattern id="${K}-diamond" width="24" height="24" patternUnits="userSpaceOnUse"><rect width="24" height="24" fill="#5d6166"/><path d="M4,8 l6,-4 M14,20 l6,-4 M14,4 l6,4 M4,16 l6,4" stroke="#81868c" stroke-width="3" stroke-linecap="round"/></pattern>
     <pattern id="${K}-hatch" width="36" height="36" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="36" height="36" fill="rgba(0,0,0,0)"/><rect width="14" height="36" fill="rgba(230,180,40,0.75)"/></pattern>
     <pattern id="${K}-stripes" width="40" height="40" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="40" height="40" fill="#1c1c1c"/><rect width="20" height="40" fill="#e0b22c"/></pattern>
-    <pattern id="${K}-wall" width="24" height="24" patternUnits="userSpaceOnUse"><rect width="24" height="24" fill="#6c727a"/><rect width="12" height="24" fill="#5a6068"/></pattern>
+    <pattern id="${K}-wall" width="60" height="30" patternUnits="userSpaceOnUse"><rect width="60" height="30" fill="#8d9298"/><path d="M0,15 H60 M30,0 V15 M0,15 V30 M60,15 V30" stroke="#4a4f55" stroke-width="3"/></pattern>
     <radialGradient id="${K}-hole"><stop offset="0" stop-color="#000" stop-opacity="1"/><stop offset="0.55" stop-color="#000" stop-opacity="0.6"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
     <radialGradient id="${K}-sodium"><stop offset="0" stop-color="rgba(255,190,110,0.42)"/><stop offset="0.5" stop-color="rgba(255,160,80,0.14)"/><stop offset="1" stop-color="rgba(255,140,60,0)"/></radialGradient>
     <radialGradient id="${K}-led"><stop offset="0" stop-color="rgba(190,220,255,0.36)"/><stop offset="0.5" stop-color="rgba(160,200,255,0.12)"/><stop offset="1" stop-color="rgba(150,190,255,0)"/></radialGradient>
@@ -66,11 +66,11 @@ const S = `filter="url(#soft)"`;
 function box(x, y, w, h, rot = 0, col = "#a4784a") {
   return `<g transform="rotate(${rot} ${x + w / 2} ${y + h / 2})"><rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${col}" stroke="#3a2814" stroke-width="2"/><path d="M${x + w / 2},${y + 1} V${y + h - 1}" stroke="rgba(220,200,150,0.7)" stroke-width="${f1(Math.min(w, h) * 0.18)}"/></g>`;
 }
-function pallet(x, y, w = 100, h = 100, load = "boxes", r = Math.random, rot = 0) {
+function pallet(x, y, w = 100, h = 100, load = "boxes", r = rng(K + "-pallet"), rot = 0) {
   let o = `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="#3a2a1a"/>`;
   for (let i = 0; i < 5; i++) o += `<rect x="${f1(x + 2 + i * (w - 4) / 5)}" y="${y + 2}" width="${f1((w - 4) / 5 - 6)}" height="${h - 4}" fill="#b8955e" stroke="#5a4020" stroke-width="1.5"/>`;
   if (load === "boxes") {
-    const n = 2 + Math.floor(r() * 2), m = 2 + Math.floor(r() * 2), bw = (w - 8) / n, bh = (h - 8) / m;
+    const n = Math.max(1, Math.round((w - 8) / (36 + r() * 14))), m = Math.max(1, Math.round((h - 8) / (36 + r() * 14))), bw = (w - 8) / n, bh = (h - 8) / m;
     for (let i = 0; i < n; i++) for (let j = 0; j < m; j++) if (r() > 0.08) o += box(x + 4 + i * bw + 1, y + 4 + j * bh + 1, bw - 2, bh - 2, 0, ["#a4784a", "#b08552", "#957046"][Math.floor(r() * 3)]);
   } else if (load === "wrap") {
     o += `<rect x="${x + 3}" y="${y + 3}" width="${w - 6}" height="${h - 6}" rx="6" fill="#8e9aa4" stroke="#4a545c" stroke-width="2"/><path d="M${x + 8},${y + 12} L${x + w - 12},${y + h - 8} M${x + 10},${y + h * 0.6} L${x + w * 0.5},${y + h - 6}" stroke="rgba(255,255,255,0.35)" stroke-width="4"/>`;
@@ -149,14 +149,14 @@ function rackRow(x, y, w, h, r) { // ряд стеллажей; длинная �
 }
 
 function lightPole(x, y, dir = 0) {
-  return `<g ${S}><circle cx="${x}" cy="${y}" r="20" fill="#3a3d42" stroke="#111" stroke-width="3"/><g transform="rotate(${dir} ${x} ${y})"><rect x="${x}" y="${y - 6}" width="70" height="12" fill="#2a2d31"/><rect x="${x + 60}" y="${y - 26}" width="46" height="52" rx="6" fill="#2a2d31" stroke="#111" stroke-width="3"/><rect x="${x + 66}" y="${y - 20}" width="34" height="40" rx="4" fill="#fff1c8" filter="url(#glow)"/></g></g>`;
+  return `<g ${S}><circle cx="${x}" cy="${y}" r="20" fill="#3a3d42" stroke="#111" stroke-width="3"/><g transform="rotate(${dir} ${x} ${y})"><rect x="${x}" y="${y - 6}" width="70" height="12" fill="#2a2d31"/><rect x="${x + 60}" y="${y - 20}" width="40" height="40" rx="6" fill="#2a2d31" stroke="#111" stroke-width="3"/><rect x="${x + 68}" y="${y - 12}" width="24" height="24" rx="4" fill="#fff1c8" filter="url(#glow)"/></g></g>`;
 }
 function bollard(x, y) { return `<g ${S}><circle cx="${x}" cy="${y}" r="26" fill="#24272b" stroke="#0d0e10" stroke-width="4"/><circle cx="${x}" cy="${y}" r="17" fill="#3e434a"/><circle cx="${x - 5}" cy="${y - 5}" r="5" fill="rgba(255,255,255,0.2)"/></g>`; }
 function mooring(x1, y1, x2, y2, sag = 20) {
   const d = `M${x1},${y1} Q${(x1 + x2) / 2},${(y1 + y2) / 2 + sag} ${x2},${y2}`;
   return `<path d="${d}" stroke="#1a1612" stroke-width="10" fill="none"/><path d="${d}" stroke="#c9b48a" stroke-width="6" fill="none"/><path d="${d}" stroke="rgba(80,60,30,0.6)" stroke-width="5" stroke-dasharray="3 5" fill="none"/>`;
 }
-function wallLine(segs, th = 34) {
+function wallLine(segs, th = 52) {
   const d = segs.map(s => `M${s[0][0]},${s[0][1]} L${s[1][0]},${s[1][1]}`).join(" ");
   return `<g filter="url(#wallshadow)"><path d="${d}" stroke="#14161a" stroke-width="${th + 10}" stroke-linecap="square"/><path d="${d}" stroke="url(#${K}-wall)" stroke-width="${th}" stroke-linecap="square"/><path d="${d}" stroke="rgba(255,255,255,0.12)" stroke-width="3" stroke-linecap="square"/></g>`;
 }
@@ -193,6 +193,7 @@ function yard() {
   for (const y of [180, 480, 840]) L.push(`<path d="M${WH.x - 120},${y} H120" stroke="rgba(235,235,225,0.55)" stroke-width="8" stroke-dasharray="60 30"/>`);
   for (const [x, y, a] of [[300, 1130, 0], [620, 1680, 180], [300, 1820, 180]]) L.push(`<path d="M${x - 70},${y} H${x + 40} M${x + 10},${y - 30} L${x + 60},${y} L${x + 10},${y + 30}" stroke="rgba(235,235,225,0.5)" stroke-width="14" fill="none" stroke-linecap="round" stroke-linejoin="round" transform="rotate(${a} ${x} ${y})"/>`);
   L.push(`<path d="M120,1300 H900 M120,1950 H900" stroke="rgba(230,190,60,0.7)" stroke-width="10"/>`);
+  L.push(`<path d="M0,1640 C300,1640 600,1820 930,1820 M0,1700 C300,1700 600,1880 930,1880" stroke="rgba(10,10,10,0.35)" stroke-width="22" fill="none" stroke-dasharray="6 5"/>`);
   // Забор-сетка по левому краю с воротами.
   L.push(`<path d="M40,0 V1380 M40,1880 V2000" stroke="rgba(180,190,200,0.55)" stroke-width="5" stroke-dasharray="3 4"/>`);
   for (let y = 20; y < 2000; y += 120) if (y < 1380 || y > 1880) L.push(`<circle cx="40" cy="${y}" r="7" fill="#6a7078" stroke="#111" stroke-width="2"/>`);
@@ -209,7 +210,6 @@ function yard() {
   L.push(`<g ${S}><rect x="760" y="1760" width="150" height="96" rx="6" fill="#1f5a3a" stroke="#0a1a10" stroke-width="5"/><path d="M770,1808 H900" stroke="#0a1a10" stroke-width="4"/></g>`, drum(820, 1180, 28, "#8a2f2a"), drum(870, 1210, 28, "#2f5d8a"), drum(845, 1255, 28, "#8a2f2a"));
   // Легковушка охраны, следы шин, масляные пятна, лужи.
   L.push(car(330, 1200, 0, "#2b3c55"));
-  L.push(`<path d="M120,1560 C400,1560 600,1700 900,1700 M120,1620 C400,1620 600,1760 900,1760" stroke="rgba(10,10,10,0.35)" stroke-width="22" fill="none" stroke-dasharray="6 5"/>`);
   for (let i = 0; i < 8; i++) L.push(`<ellipse cx="${f1(150 + r() * 700)}" cy="${f1(150 + r() * 1700)}" rx="${f1(20 + r() * 50)}" ry="${f1(14 + r() * 26)}" fill="rgba(5,5,8,${f1(0.25 + r() * 0.2)})"/>`);
   for (const [x, y, rx, ry] of [[640, 420, 110, 34], [300, 1440, 80, 26], [520, 1880, 120, 30]]) L.push(`<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}" fill="rgba(20,40,60,0.55)"/><ellipse cx="${x - rx * 0.2}" cy="${y - ry * 0.2}" rx="${rx * 0.5}" ry="${ry * 0.3}" fill="rgba(255,190,120,0.2)"/>`);
   // Фонарные мачты.
@@ -223,8 +223,8 @@ function warehouse() {
   L.push(`<path d="M1040,${WH.y + 60} V${WH.y2 - 40} M2190,${MEZ.y2 + 40} V${WH.y2 - 40}" stroke="rgba(230,190,60,0.65)" stroke-width="8"/>`);
   L.push(`<rect x="1570" y="${WH.y2 - 120}" width="140" height="100" fill="url(#${K}-hatch)" opacity="0.6"/>`);
   // Стеллажи (ряды север–юг), поперечный проход посередине.
-  L.push(rackRow(1160, 110, 110, 400, r), rackRow(1160, 700, 110, 380, r), rackRow(1400, 110, 110, 400, r), rackRow(1400, 700, 110, 380, r));
-  L.push(rackRow(1760, 720, 110, 360, r), rackRow(2000, 720, 110, 360, r));
+  L.push(rackRow(1150, 110, 130, 400, r), rackRow(1150, 700, 130, 380, r), rackRow(1390, 110, 130, 400, r), rackRow(1390, 700, 130, 380, r));
+  L.push(rackRow(1750, 720, 130, 360, r), rackRow(1990, 720, 130, 360, r));
   // Зона приёмки у доков.
   L.push(pallet(980, 470, 90, 90, "wrap", r, 3), pallet(985, 830, 90, 90, "boxes", r, -5), pallet(985, 940, 90, 90, "boxes", r, 8));
   // Погрузчик и ручная тележка в проходах.
@@ -283,7 +283,7 @@ function containers() {
   L.push(`<g ${S}>${box(1655, 1560, 46, 40, 15)}${box(1700, 1590, 40, 40, -12)}${box(1215, 1395, 44, 38, 30)}</g>`);
   // Лужи.
   for (const [x, y, rx, ry] of [[1580, 1400, 90, 30], [1250, 1640, 70, 24], [2000, 1660, 60, 20]]) L.push(`<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}" fill="rgba(20,40,60,0.55)"/><ellipse cx="${x - rx * 0.2}" cy="${y - ry * 0.2}" rx="${rx * 0.5}" ry="${ry * 0.3}" fill="rgba(255,190,120,0.18)"/>`);
-  L.push(lightPole(1560, 1600, -90));
+  L.push(lightPole(1560, 1620, 0));
   return L.join("\n");
 }
 

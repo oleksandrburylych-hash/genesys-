@@ -1632,6 +1632,299 @@
     }
   },
   {
+    "name": "Заправка в пустоши",
+    "type": "scene",
+    "folder": "Пустошь",
+    "worlds": [
+      "postapoc",
+      "zombie"
+    ],
+    "scene": {
+      "background": {
+        "src": "systems/genesys-rpg/assets/maps/gas-station.jpg"
+      },
+      "thumb": "systems/genesys-rpg/assets/maps/thumbs/gas-station.jpg",
+      "width": 3000,
+      "height": 2000,
+      "padding": 0.05,
+      "backgroundColor": "#3a2414",
+      "grid": {
+        "type": 0,
+        "size": 100
+      },
+      "tokenVision": false,
+      "fog": {
+        "exploration": false
+      },
+      "initial": {
+        "x": 1500,
+        "y": 1000,
+        "scale": 0.45
+      },
+      "flags": {
+        "genesys-rpg": {
+          "zoneMap": true,
+          "bg": "systems/genesys-rpg/assets/maps/gas-station.jpg",
+          "bgColor": "#3a2414",
+          "zones": [
+            {
+              "id": "shop",
+              "name": "Магазинчик",
+              "tags": [
+                "cover"
+              ],
+              "poly": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1000,
+                  0
+                ],
+                [
+                  1000,
+                  960
+                ],
+                [
+                  0,
+                  960
+                ]
+              ]
+            },
+            {
+              "id": "pumps",
+              "name": "Колонки",
+              "tags": [
+                "cover",
+                "hazard"
+              ],
+              "poly": [
+                [
+                  1000,
+                  0
+                ],
+                [
+                  2050,
+                  0
+                ],
+                [
+                  2050,
+                  900
+                ],
+                [
+                  2050,
+                  1180
+                ],
+                [
+                  1000,
+                  1180
+                ],
+                [
+                  1000,
+                  960
+                ]
+              ]
+            },
+            {
+              "id": "tower",
+              "name": "Водонапорная башня",
+              "tags": [
+                "elevated"
+              ],
+              "poly": [
+                [
+                  2050,
+                  0
+                ],
+                [
+                  3000,
+                  0
+                ],
+                [
+                  3000,
+                  860
+                ],
+                [
+                  2700,
+                  910
+                ],
+                [
+                  2400,
+                  870
+                ],
+                [
+                  2050,
+                  900
+                ]
+              ]
+            },
+            {
+              "id": "dunes",
+              "name": "Барханы",
+              "tags": [
+                "difficult"
+              ],
+              "poly": [
+                [
+                  2050,
+                  900
+                ],
+                [
+                  2400,
+                  870
+                ],
+                [
+                  2700,
+                  910
+                ],
+                [
+                  3000,
+                  860
+                ],
+                [
+                  3000,
+                  2000
+                ],
+                [
+                  2250,
+                  2000
+                ],
+                [
+                  2200,
+                  1640
+                ],
+                [
+                  2150,
+                  1330
+                ],
+                [
+                  2050,
+                  1180
+                ]
+              ]
+            },
+            {
+              "id": "barricade",
+              "name": "Баррикада",
+              "tags": [
+                "cover",
+                "elevated"
+              ],
+              "poly": [
+                [
+                  1150,
+                  1180
+                ],
+                [
+                  2050,
+                  1180
+                ],
+                [
+                  2150,
+                  1330
+                ],
+                [
+                  2200,
+                  1640
+                ],
+                [
+                  2250,
+                  2000
+                ],
+                [
+                  1150,
+                  2000
+                ]
+              ]
+            },
+            {
+              "id": "junkyard",
+              "name": "Кладбище машин",
+              "tags": [
+                "cover",
+                "difficult"
+              ],
+              "poly": [
+                [
+                  0,
+                  960
+                ],
+                [
+                  1000,
+                  960
+                ],
+                [
+                  1000,
+                  1180
+                ],
+                [
+                  1150,
+                  1180
+                ],
+                [
+                  1150,
+                  2000
+                ],
+                [
+                  0,
+                  2000
+                ]
+              ]
+            }
+          ],
+          "links": [
+            [
+              "shop",
+              "pumps",
+              "short"
+            ],
+            [
+              "shop",
+              "junkyard",
+              "short"
+            ],
+            [
+              "pumps",
+              "tower",
+              "short"
+            ],
+            [
+              "pumps",
+              "dunes",
+              "short"
+            ],
+            [
+              "pumps",
+              "barricade",
+              "short"
+            ],
+            [
+              "pumps",
+              "junkyard",
+              "short"
+            ],
+            [
+              "tower",
+              "dunes",
+              "short"
+            ],
+            [
+              "barricade",
+              "junkyard",
+              "short"
+            ],
+            [
+              "barricade",
+              "dunes",
+              "short"
+            ]
+          ]
+        }
+      }
+    }
+  },
+  {
     "name": "Склад в порту",
     "type": "scene",
     "folder": "Современность",
@@ -2075,6 +2368,206 @@
             [
               "dining",
               "garden",
+              "short"
+            ]
+          ]
+        }
+      }
+    }
+  },
+  {
+    "name": "Ночная улица и переулок",
+    "type": "scene",
+    "folder": "Современность",
+    "worlds": [
+      "modern",
+      "monster",
+      "zombie",
+      "weirdwar"
+    ],
+    "scene": {
+      "background": {
+        "src": "systems/genesys-rpg/assets/maps/night-street.jpg"
+      },
+      "thumb": "systems/genesys-rpg/assets/maps/thumbs/night-street.jpg",
+      "width": 3000,
+      "height": 2000,
+      "padding": 0.05,
+      "backgroundColor": "#0b0d16",
+      "grid": {
+        "type": 0,
+        "size": 100
+      },
+      "tokenVision": false,
+      "fog": {
+        "exploration": false
+      },
+      "initial": {
+        "x": 1500,
+        "y": 1000,
+        "scale": 0.45
+      },
+      "flags": {
+        "genesys-rpg": {
+          "zoneMap": true,
+          "bg": "systems/genesys-rpg/assets/maps/night-street.jpg",
+          "bgColor": "#0b0d16",
+          "zones": [
+            {
+              "id": "diner",
+              "name": "Закусочная",
+              "tags": [
+                "cover"
+              ],
+              "poly": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1450,
+                  0
+                ],
+                [
+                  1450,
+                  700
+                ],
+                [
+                  0,
+                  700
+                ]
+              ]
+            },
+            {
+              "id": "roof",
+              "name": "Крыша",
+              "tags": [
+                "elevated",
+                "cover"
+              ],
+              "poly": [
+                [
+                  1450,
+                  0
+                ],
+                [
+                  3000,
+                  0
+                ],
+                [
+                  3000,
+                  700
+                ],
+                [
+                  1450,
+                  700
+                ]
+              ]
+            },
+            {
+              "id": "street",
+              "name": "Проезжая часть",
+              "tags": [],
+              "poly": [
+                [
+                  0,
+                  700
+                ],
+                [
+                  3000,
+                  700
+                ],
+                [
+                  3000,
+                  1330
+                ],
+                [
+                  0,
+                  1330
+                ]
+              ]
+            },
+            {
+              "id": "alley",
+              "name": "Тёмный переулок",
+              "tags": [
+                "dark",
+                "cover"
+              ],
+              "poly": [
+                [
+                  0,
+                  1330
+                ],
+                [
+                  1150,
+                  1330
+                ],
+                [
+                  1150,
+                  2000
+                ],
+                [
+                  0,
+                  2000
+                ]
+              ]
+            },
+            {
+              "id": "parking",
+              "name": "Парковка",
+              "tags": [
+                "cover"
+              ],
+              "poly": [
+                [
+                  1150,
+                  1330
+                ],
+                [
+                  3000,
+                  1330
+                ],
+                [
+                  3000,
+                  2000
+                ],
+                [
+                  1150,
+                  2000
+                ]
+              ]
+            }
+          ],
+          "links": [
+            [
+              "street",
+              "diner",
+              "short"
+            ],
+            [
+              "street",
+              "roof",
+              "medium"
+            ],
+            [
+              "street",
+              "alley",
+              "short"
+            ],
+            [
+              "street",
+              "parking",
+              "short"
+            ],
+            [
+              "diner",
+              "roof",
+              "medium"
+            ],
+            [
+              "alley",
+              "parking",
               "short"
             ]
           ]
