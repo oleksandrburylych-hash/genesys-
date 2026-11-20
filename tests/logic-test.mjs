@@ -164,4 +164,24 @@ assert.equal(GENESYS.xp.skill(2, true), 10); assert.equal(GENESYS.xp.skill(1, fa
   assert.equal(Z.tokenZoneRange(tok(50, 50), tok(350, 50)).range, "long");
   delete globalThis.canvas;
 }
+// Боевые карты: разметка зон каждой сцены корректна (многоугольники, связи на существующие зоны, связный граф).
+{
+  const fs = await import("node:fs");
+  const scenes = JSON.parse(fs.readFileSync(`${R}/packs-src/scenes/battlemaps.json`, "utf8"));
+  assert.ok(scenes.length >= 13, `карт: ${scenes.length}`);
+  for (const sc of scenes) {
+    const f = sc.scene.flags["genesys-rpg"];
+    assert.ok(f.zones.length >= 4, `${sc.name}: зон ${f.zones.length}`);
+    for (const z of f.zones) {
+      assert.ok(z.poly.length >= 3 && z.poly.every(p => p.length === 2 && p.every(Number.isFinite)), `${sc.name}/${z.name}: многоугольник`);
+      assert.ok((z.tags ?? []).every(t => ["cover", "difficult", "elevated", "hazard", "dark"].includes(t)), `${sc.name}/${z.name}: теги`);
+    }
+    const ids = new Set(f.zones.map(z => z.id));
+    for (const [a, b, r] of f.links) assert.ok(ids.has(a) && ids.has(b) && ["engaged", "short", "medium", "long", "extreme"].includes(r), `${sc.name}: связь ${a}-${b}`);
+    const seen = new Set([f.zones[0].id]); let grew = true;
+    while (grew) { grew = false; for (const [a, b] of f.links) if (seen.has(a) !== seen.has(b)) { seen.add(a); seen.add(b); grew = true; } }
+    assert.equal(seen.size, ids.size, `${sc.name}: граф зон связный`);
+    assert.ok(fs.existsSync(`${R}/${sc.scene.background.src.replace("systems/genesys-rpg/", "")}`), `${sc.name}: картинка`);
+  }
+}
 console.log("logic tests passed");

@@ -52,7 +52,7 @@ const LIGHTS = [ // x, y, радиус, цвет, сила дырки в тем�
   [330, 780, 330, "sodium", 1], [1330, 780, 330, "sodium", 1], [2420, 780, 330, "sodium", 1], [880, 1270, 330, "sodium", 1], [1960, 1270, 330, "sodium", 1], [2860, 1270, 300, "sodium", 1],
   [650, 760, 330, "pink", 1], [1050, 760, 200, "cyan", 0.8], [2570, 660, 380, "red", 0.9],
   [330, 430, 380, "warm", 1], [900, 430, 380, "warm", 1], [1260, 430, 260, "warm", 0.9],
-  [2120, 1560, 420, "sodium", 1], [850, 1650, 180, "warm", 0.6], [2450, 290, 170, "warm", 0.7], [1660, 270, 130, "warm", 0.7]
+  [2120, 1560, 420, "sodium", 1], [770, 1650, 190, "warm", 0.7], [2450, 290, 170, "warm", 0.7], [1660, 270, 130, "warm", 0.7]
 ];
 function darkMask() {
   return `<mask id="${K}-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="${W}" height="${H}"><rect width="${W}" height="${H}" fill="#fff"/>${LIGHTS.map(([x, y, rr, , k]) => `<circle cx="${x}" cy="${y}" r="${rr}" fill="url(#${K}-hole)" opacity="${k}"/>`).join("")}
@@ -188,6 +188,9 @@ function diner() {
       <rect x="${bx - 46}" y="560" width="92" height="124" rx="6" fill="#e6dccb" stroke="#555" stroke-width="3"/><rect x="${bx - 46}" y="560" width="92" height="124" rx="6" fill="none" stroke="#c8c8cc" stroke-width="5"/></g>`);
     L.push(`<circle cx="${bx - 18}" cy="600" r="18" fill="#f4f2ec" stroke="#999" stroke-width="2"/><circle cx="${bx + 20}" cy="640" r="12" fill="#f0eee8" stroke="#888" stroke-width="2"/><circle cx="${bx + 20}" cy="640" r="7" fill="#3a1e10"/><rect x="${bx - 10}" y="662" width="20" height="14" fill="#c8c8cc"/>`);
   }
+  // Подвесные лампы над столиками и стойкой.
+  for (const lx of [170, 400, 630, 860]) L.push(`<circle cx="${lx}" cy="622" r="15" fill="#ffe6b0" stroke="#3a2a10" stroke-width="3" filter="url(#glow)"/>`);
+  for (const lx of [260, 560, 860]) L.push(`<circle cx="${lx}" cy="250" r="13" fill="#ffe6b0" stroke="#3a2a10" stroke-width="3" filter="url(#glow)"/>`);
   // Опрокинутый стул/стол, рассыпанная еда — следы паники.
   L.push(`<g ${S} transform="rotate(30 1240 560)"><circle cx="1240" cy="560" r="44" fill="#e6dccb" stroke="#555" stroke-width="3"/><circle cx="1240" cy="560" r="44" fill="none" stroke="#c8c8cc" stroke-width="5"/></g><g ${S}><rect x="1180" y="620" width="44" height="40" rx="8" fill="#c8303a" stroke="#2a0a0e" stroke-width="3" transform="rotate(-40 1200 640)"/><rect x="1290" y="500" width="44" height="40" rx="8" fill="#c8303a" stroke="#2a0a0e" stroke-width="3"/></g>`);
   L.push(`<circle cx="1160" cy="520" r="18" fill="#f4f2ec" stroke="#999" stroke-width="2"/><path d="M1130,540 q30,20 70,6" stroke="#8a1a10" stroke-width="10" fill="none" stroke-linecap="round" opacity="0.8"/>`);
@@ -201,7 +204,7 @@ function diner() {
   L.push(wall(`M${x},-20 V${yS} H80 M${x2},-20 V${yS} H1390`));
   L.push(`<path d="M80,${yS} H1150 M1260,${yS} H1390" stroke="#14181e" stroke-width="22"/><path d="M80,${yS} H1150 M1260,${yS} H1390" stroke="url(#${K}-glass)" stroke-width="14"/>`);
   for (let mx = 80; mx <= 1150; mx += 214) L.push(`<rect x="${mx - 6}" y="${yS - 13}" width="12" height="26" fill="#c8c8cc"/>`);
-  L.push(`<path d="M1150,${yS} l80,60" stroke="url(#${K}-glass)" stroke-width="10"/><path d="M1150,${yS} l80,60" stroke="#c8c8cc" stroke-width="3"/>`);
+  L.push(`<path d="M1150,${yS} l70,-70" stroke="url(#${K}-glass)" stroke-width="10"/><path d="M1150,${yS} l70,-70" stroke="#c8c8cc" stroke-width="3"/><path d="M1150,${yS - 100} A100,100 0 0 1 1250,${yS}" stroke="rgba(255,255,255,0.25)" stroke-width="3" fill="none" stroke-dasharray="8 6"/>`);
   // Козырёк-маркиза над тротуаром.
   L.push(`<g filter="url(#${K}-high)">${Array.from({ length: 13 }, (_, i) => `<rect x="${80 + i * 82}" y="${yS + 12}" width="82" height="56" fill="${i % 2 ? "#e8e2d4" : "#b02a34"}"/>`).join("")}<path d="M80,${yS + 68} ${Array.from({ length: 13 }, (_, i) => `q20,14 41,0 q20,14 41,0`).join(" ")}" fill="none" stroke="#2a0a0e" stroke-width="3"/></g>`);
   return L.join("\n");
@@ -231,9 +234,13 @@ function roof() {
   L.push(`<g filter="url(#${K}-high)">${tank}</g>`);
   // Тарелка, антенны, вентиляционные трубы.
   L.push(`<g filter="url(#${K}-high)"><ellipse cx="2470" cy="110" rx="56" ry="44" fill="#d8d8d4" stroke="#333" stroke-width="4" transform="rotate(-30 2470 110)"/><path d="M2470,110 l40,-30" stroke="#333" stroke-width="5"/><circle cx="2510" cy="80" r="8" fill="#555"/></g>`);
-  const antenna = (ax, ay, len, rot) => `<g transform="rotate(${rot} ${ax} ${ay})" filter="url(#${K}-high)"><path d="M${ax},${ay} V${ay - len}" stroke="#1a1c20" stroke-width="7"/>${[0.2, 0.4, 0.6, 0.8].map((t, i) => `<path d="M${ax - 50 + i * 8},${ay - len * t} H${ax + 50 - i * 8}" stroke="#2a2d33" stroke-width="5"/>`).join("")}<circle cx="${ax}" cy="${ay}" r="10" fill="#2a2d33"/></g>`;
+  const antenna = (ax, ay, len, rot) => `<g transform="rotate(${rot} ${ax} ${ay})" filter="url(#${K}-high)"><path d="M${ax},${ay} V${ay - len}" stroke="#0e0f12" stroke-width="11"/><path d="M${ax},${ay} V${ay - len}" stroke="#7a8088" stroke-width="5"/>${[0.2, 0.4, 0.6, 0.8].map((t, i) => `<path d="M${ax - 50 + i * 8},${ay - len * t} H${ax + 50 - i * 8}" stroke="#0e0f12" stroke-width="8"/><path d="M${ax - 50 + i * 8},${ay - len * t} H${ax + 50 - i * 8}" stroke="#8a9098" stroke-width="4"/>`).join("")}<circle cx="${ax}" cy="${ay}" r="10" fill="#5a6068" stroke="#0e0f12" stroke-width="3"/></g>`;
   L.push(antenna(2140, 560, 180, 30), antenna(2920, 600, 160, -20), antenna(1840, 120, 150, 10));
   for (let i = 0; i < 9; i++) { const vx = 1560 + r() * 1400, vy = 40 + r() * 600; if (vx > 1560 && vx < 2040 && vy > 400) continue; L.push(`<g ${S}><circle cx="${f1(vx)}" cy="${f1(vy)}" r="14" fill="#5a5f66" stroke="#111" stroke-width="3"/><circle cx="${f1(vx)}" cy="${f1(vy)}" r="7" fill="#111"/></g>`); }
+  // Уголок отдыха: шезлонги, переносной холодильник, гирлянда.
+  L.push(`<g ${S}>${[[2470, 500, -12], [2580, 520, 10]].map(([cx, cy, a]) => `<g transform="rotate(${a} ${cx} ${cy})"><rect x="${cx - 26}" y="${cy - 60}" width="52" height="120" rx="8" fill="#2a6a8a" stroke="#0a1a24" stroke-width="3"/>${[0, 1, 2, 3, 4].map(i => `<path d="M${cx - 22},${cy - 40 + i * 20} H${cx + 22}" stroke="#e8e2d4" stroke-width="5"/>`).join("")}</g>`).join("")}<rect x="2500" y="590" width="60" height="40" rx="6" fill="#c8402a" stroke="#2a0a04" stroke-width="3"/><rect x="2500" y="590" width="60" height="12" fill="#e8e8e8"/></g>`);
+  const lights = []; for (let t = 0; t <= 1.0001; t += 1 / 22) { const lx = 1760 + (2640 - 1760) * t, ly = 240 + (420 - 240) * t + Math.sin(t * Math.PI) * 120; lights.push([lx, ly]); }
+  L.push(`<path d="M${lights.map(p => `${f1(p[0])},${f1(p[1])}`).join(" L")}" stroke="#111" stroke-width="3" fill="none"/>${lights.map(([lx, ly], i) => `<circle cx="${f1(lx)}" cy="${f1(ly)}" r="6" fill="${["#ffd27a", "#ff7ab0", "#7ae0ff", "#b0ff7a"][i % 4]}" filter="url(#glow)"/>`).join("")}`);
   // Парапет крыши.
   L.push(parapet(x0, -40, W - x0 + 60, yS + 40));
   // Неоновая вывеска на парапете над улицей.
@@ -257,10 +264,10 @@ function alley() {
   L.push(`<g filter="url(#${K}-high)"><rect x="60" y="1500" width="110" height="90" fill="#7a7e84" stroke="#1a1c1f" stroke-width="4"/><circle cx="115" cy="1545" r="32" fill="#1a1c20"/><rect x="920" y="1780" width="150" height="110" fill="#7a7e84" stroke="#1a1c1f" stroke-width="4"/><circle cx="965" cy="1835" r="30" fill="#1a1c20"/><circle cx="1030" cy="1835" r="30" fill="#1a1c20"/></g>`);
   L.push(`<g ${S}><rect x="980" y="1420" width="90" height="90" fill="#2e2f34" stroke="#0c0c0e" stroke-width="4"/><rect x="990" y="1430" width="70" height="70" fill="#3e3f44"/></g>`);
   // Пожарные лестницы на стенах переулка.
-  L.push(fireEscape(ALLEY.x - 4, 1600, 92, 300, -1), fireEscape(ALLEY.x2 - 88, 1440, 92, 260, 1), fireEscape(ALLEY.x2 - 88, 1790, 92, 200, 1));
+  L.push(fireEscape(ALLEY.x - 4, 1720, 92, 250, -1), fireEscape(ALLEY.x2 - 88, 1440, 92, 260, 1), fireEscape(ALLEY.x2 - 88, 1790, 92, 200, 1));
   // Мусорные баки, пакеты, коробки, тележка из магазина.
   L.push(dumpster(ALLEY.x + 20, 1400, 110, 170, "#2a5a3a", 0), dumpster(ALLEY.x2 - 230, 1700, 120, 170, "#3a4a6a", 6));
-  L.push(trashBags(ALLEY.x + 140, 1470, 5, r), trashBags(ALLEY.x2 - 110, 1620, 3, r), trashBags(ALLEY.x + 70, 1930, 4, r));
+  L.push(trashBags(ALLEY.x + 140, 1470, 5, r), trashBags(ALLEY.x2 - 110, 1620, 3, r), trashBags(ALLEY.x + 150, 1950, 4, r));
   L.push(`<g ${S}>${[[380, 1650, 70, 50, 20], [420, 1700, 60, 46, -15], [700, 1950, 80, 56, 8]].map(([bx, by, w, h, a]) => `<g transform="rotate(${a} ${bx} ${by})"><rect x="${bx - w / 2}" y="${by - h / 2}" width="${w}" height="${h}" fill="#9a7a50" stroke="#3a2a14" stroke-width="3"/><path d="M${bx - w / 2},${by} H${bx + w / 2}" stroke="#6a5030" stroke-width="3"/></g>`).join("")}</g>`);
   L.push(`<g ${S} transform="rotate(-25 560 1780)"><rect x="510" y="1745" width="100" height="70" fill="none" stroke="#b8bcc2" stroke-width="5"/>${[0, 1, 2, 3].map(i => `<path d="M${520 + i * 24},1748 V1812" stroke="#8a8e94" stroke-width="2"/>`).join("")}<path d="M610,1750 l26,-10 M610,1810 l26,10" stroke="#b8bcc2" stroke-width="5"/></g>`);
   // Пар из решётки, лампа над чёрным входом.
