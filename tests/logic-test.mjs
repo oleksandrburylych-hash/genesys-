@@ -129,4 +129,39 @@ assert.equal(GENESYS.xp.skill(2, true), 10); assert.equal(GENESYS.xp.skill(1, fa
   assert.ok(M.hasMedkit({ itemTypes: { gear: [{ name: "Аптечка первой помощи", system: { quantity: 1, carried: true } }] } }));
   assert.ok(!M.hasMedkit({ itemTypes: { gear: [{ name: "Верёвка", system: { quantity: 1 } }] } }));
 }
+// Зоны боя: попадание в зону, дистанция по графу, соседство, цена перехода, модификаторы атаки.
+{
+  globalThis.game ??= {}; game.i18n ??= { format: (k, d) => `${k}${JSON.stringify(d ?? {})}`, localize: k => k };
+  const Z = await import(`${R}/module/zones.mjs`);
+  const sq = (x, y, w = 100, h = 100) => [[x, y], [x + w, y], [x + w, y + h], [x, y + h]];
+  const zones = [
+    { id: "a", name: "A", tags: [], poly: sq(0, 0) }, { id: "b", name: "B", tags: ["cover"], poly: sq(100, 0) },
+    { id: "c", name: "C", tags: ["dark", "difficult"], poly: sq(200, 0) }, { id: "d", name: "D", tags: ["elevated"], poly: sq(300, 0) },
+    { id: "e", name: "E", tags: [], poly: sq(400, 0) }, { id: "f", name: "F", tags: [], poly: sq(500, 0) }
+  ];
+  const geo = { zones, links: [] };
+  assert.ok(Z.pointInPolygon(50, 50, zones[0].poly)); assert.ok(!Z.pointInPolygon(150, 50, zones[0].poly));
+  assert.equal(Z.zoneAt(250, 50, geo).id, "c");
+  assert.ok(Z.zonesTouch(zones[0], zones[1])); assert.ok(!Z.zonesTouch(zones[0], zones[2]));
+  // По геометрии: та же — короткая, соседняя — короткая, через одну — средняя, через две — длинная, дальше — экстремальная.
+  assert.deepEqual(["a", "b", "c", "d", "e", "f"].map(id => Z.zoneRange(zones[0], zones.find(z => z.id === id), geo)), ["short", "short", "medium", "long", "extreme", "extreme"]);
+  // Явные связи важнее: A–B средняя ⇒ A–C (через B) длинная.
+  const linked = { zones, links: [["a", "b", "medium"], ["b", "c", "short"], ["c", "d", "short"]] };
+  assert.equal(Z.zoneRange(zones[0], zones[1], linked), "medium");
+  assert.equal(Z.zoneRange(zones[0], zones[2], linked), "long");
+  assert.equal(Z.zoneRange(zones[0], zones[5], linked), "extreme", "нет пути — экстремальная");
+  // Перемещение: короткая — 1 манёвр, в труднопроходимую зону — вдвое.
+  assert.equal(Z.moveCost(zones[0], zones[1], geo), 1);
+  assert.equal(Z.moveCost(zones[1], zones[2], geo), 2);
+  // Атака: цель в укрытии и темноте, стрелок на возвышенности.
+  globalThis.canvas = { scene: { flags: { "genesys-rpg": { zones, links: [] } } } };
+  const tok = (x, y) => ({ center: { x, y }, scene: canvas.scene });
+  const m1 = Z.zoneAttackMods(tok(350, 50), tok(150, 50), false);
+  assert.equal(m1.defense, 1); assert.equal(m1.boost, 1); assert.equal(m1.setback, 0);
+  const m2 = Z.zoneAttackMods(tok(50, 50), tok(250, 50), false);
+  assert.equal(m2.setback, 1); assert.equal(m2.defense, 0);
+  assert.equal(Z.zoneAttackMods(tok(50, 50), tok(150, 50), true).defense, 0, "в ближнем бою укрытие зоны не действует");
+  assert.equal(Z.tokenZoneRange(tok(50, 50), tok(350, 50)).range, "long");
+  delete globalThis.canvas;
+}
 console.log("logic tests passed");

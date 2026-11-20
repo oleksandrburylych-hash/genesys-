@@ -1,6 +1,7 @@
 import { GENESYS, SYSTEM_ID } from "../config.mjs";
 import { applyTimedStatus } from "./conditions.mjs";
 import { injuryPoolModifiers } from "../injuries.mjs";
+import { tokenZoneRange, zoneAttackMods } from "../zones.mjs";
 
 /**
  * Боевая автоматика: цели, дистанция, защита, урон, состояния.
@@ -107,7 +108,13 @@ export function attackModifiers(attacker, weapon, target) {
   const attackerToken = getActorToken(attacker);
 
   if (target) {
-    const band = rangeBand(attackerToken, target.token);
+    let band = rangeBand(attackerToken, target.token);
+    // Карта с зонами: дистанция по зонам («вплотную» — по расстоянию между токенами).
+    const zr = band !== "engaged" ? tokenZoneRange(attackerToken, target.token) : null;
+    if (zr) {
+      band = zr.range;
+      res.notes.push(i18n(zr.from.id === zr.to.id ? "GENESYS.Zone.NoteSame" : "GENESYS.Zone.NoteRange", { from: zr.from.name, to: zr.to.name }));
+    }
     res.range = band;
     if (band) {
       res.notes.push(i18n("GENESYS.Combat.Range", { range: game.i18n.localize(GENESYS.ranges[band]?.label ?? band) }));
@@ -118,7 +125,11 @@ export function attackModifiers(attacker, weapon, target) {
       }
     }
     // Защита цели → кости штрафа.
-    const def = targetDefense(target.actor, melee);
+    // Укрытие зоны «даёт» дальнюю защиту 1 — не складывается с бронёй (берётся лучшее); плохая видимость, возвышенность.
+    const zm = zoneAttackMods(attackerToken, target.token, melee);
+    res.notes.push(...zm.notes);
+    res.setback += zm.setback; res.boost += zm.boost;
+    const def = Math.max(targetDefense(target.actor, melee), zm.defense);
     if (def > 0) { res.setback += def; res.notes.push(i18n("GENESYS.Combat.Defense", { value: def })); }
     // Талант «Противник» → усиление сложности.
     const adv = adversaryRank(target.actor);

@@ -164,7 +164,13 @@ async function repairZoneMaps() {
     else if (!level && !scene.background?.src) await scene.update({ "background.src": f.bg });
   }
 }
-Hooks.on("createScene", scene => { if (game.user.isActiveGM && scene.getFlag?.(SYSTEM_ID, "zoneMap")) repairZoneMaps().catch(() => {}); });
+Hooks.on("createScene", scene => {
+  if (!game.user.isActiveGM || !scene.getFlag?.(SYSTEM_ID, "zoneMap")) return;
+  repairZoneMaps().catch(() => {});
+  import("./module/zones.mjs").then(m => m.ensureZoneRegions(scene)).catch(() => {});
+});
+// Зоны боя: регионы для карт «Боевые зоны» при открытии сцены; панель токена следит за перемещением.
+Hooks.on("canvasReady", () => { if (game.user.isActiveGM) import("./module/zones.mjs").then(m => m.ensureZoneRegions(canvas.scene)).catch(() => {}); });
 
 /** Дополнить способности у архетипов мира по одноимённым архетипам компендиума. */
 async function repairWorldArchetypes() {

@@ -50,6 +50,7 @@ export class GMScreen extends HandlebarsApplicationMixin(ApplicationV2) {
       interpRandom: GMScreen.#onInterpRandom, interpWhisper: GMScreen.#onInterpWhisper,
       shopGenerate: GMScreen.#onShopGenerate, shopRemove: GMScreen.#onShopRemove, shopToChat: GMScreen.#onShopToChat, npcGenerate: GMScreen.#onNpcGenerate,
       fear: async () => (await import("./fear.mjs")).promptFearCheck(),
+      zoneEditor: async () => (await import("./zone-editor.mjs")).openZoneEditor(),
       social: () => game.genesys.SocialEncounter.open()
     },
     form: { handler: GMScreen.#onChange, submitOnChange: true, closeOnSubmit: false }

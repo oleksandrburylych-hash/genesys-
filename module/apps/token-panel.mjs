@@ -51,7 +51,27 @@ export class TokenPanel extends HandlebarsApplicationMixin(ApplicationV2) {
     const skills = a.itemTypes.skill.filter(sk => sk.system.rank > 0 || ["perception", "vigilance", "cool", "athletics", "discipline"].includes(sk.system.key))
       .sort((x, y) => y.system.rank - x.system.rank || x.name.localeCompare(y.name, game.i18n.lang))
       .map(sk => ({ id: sk.id, name: sk.name, rank: sk.system.rank }));
+    // Зона токена на карте с зонами: свойства и соседи с ценой перехода.
+    let zone = null;
+    try {
+      const Z = await import("../zones.mjs");
+      const token = canvas?.tokens?.controlled?.find(t => t.actor === a) ?? a.getActiveTokens?.()[0];
+      const data = Z.sceneZones(canvas?.scene);
+      const here = token && data ? Z.tokenZone(token, data) : null;
+      if (here) {
+        const L = k => game.i18n.localize(k);
+        const linked = data.links?.length
+          ? data.links.filter(l => l[0] === here.id || l[1] === here.id).map(l => data.zones.find(z => z.id === (l[0] === here.id ? l[1] : l[0]))).filter(Boolean)
+          : data.zones.filter(z => z.id !== here.id && Z.zonesTouch(here, z));
+        zone = {
+          name: here.name,
+          tags: (here.tags ?? []).map(t => ({ label: L(`GENESYS.Zone.Tag.${t}`), hint: L(`GENESYS.Zone.TagHint.${t}`) })),
+          neighbors: linked.map(z => ({ name: z.name, range: L(`GENESYS.Range.${Z.zoneRange(here, z, data)}`), cost: Z.moveCost(here, z, data) }))
+        };
+      }
+    } catch (err) { console.warn("genesys-rpg | зона токена", err); }
     return {
+      zone,
       name: a.name, img: a.img, vehicle, character: a.type === "character",
       wounds: vehicle ? bar(s.hullTrauma.value, s.hullTrauma.max) : bar(s.wounds.value, a.type === "adversary" && s.isMinion ? s.groupWounds : s.wounds.max),
       strain: vehicle ? bar(s.systemStrain.value, s.systemStrain.max) : (s.strain?.max ? bar(s.strain.value, s.strain.max) : null),
@@ -108,5 +128,7 @@ export function registerTokenPanel() {
     else TokenPanel.hide();
   });
   const refresh = doc => TokenPanel.refresh(doc?.parent ?? doc);
+  // Перемещение токена — зона могла смениться.
+  Hooks.on("updateToken", (tokenDoc, change) => { if ("x" in change || "y" in change) TokenPanel.refresh(tokenDoc.actor); });
   for (const h of ["updateActor", "createActiveEffect", "deleteActiveEffect", "updateActiveEffect", "createItem", "deleteItem", "updateItem"]) Hooks.on(h, refresh);
 }

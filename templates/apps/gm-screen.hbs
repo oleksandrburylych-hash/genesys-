@@ -77,6 +77,7 @@
       <div class="gm-actions">
         <button type="button" data-action="place" data-combat="1" {{#unless hasScene}}disabled{{/unless}}><i class="fa-solid fa-swords"></i> {{localize "GENESYS.GM.PlaceCombat"}}</button>
         <button type="button" data-action="place" data-hidden="1" {{#unless hasScene}}disabled{{/unless}}><i class="fa-solid fa-eye-slash"></i> {{localize "GENESYS.GM.PlaceHidden"}}</button>
+        <button type="button" data-action="zoneEditor" {{#unless hasScene}}disabled{{/unless}} data-tooltip="GENESYS.Zone.EditorHint"><i class="fa-solid fa-map-location-dot"></i> {{localize "GENESYS.Zone.Button"}}</button>
         <button type="button" data-action="clear"><i class="fa-solid fa-broom"></i> {{localize "GENESYS.GM.Clear"}}</button>
       </div>
       {{/if}}
