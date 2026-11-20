@@ -1,38 +1,60 @@
 <section class="tab experience {{tab.cssClass}}" data-tab="experience" data-group="primary">
-  <div class="xp-summary">
-    <div class="xp-box"><span class="label">{{localize "GENESYS.XP.Total"}}</span><span class="value">{{system.experience.total}}</span></div>
-    <div class="xp-box"><span class="label">{{localize "GENESYS.XP.Spent"}}</span><span class="value">{{system.experience.spent}}</span></div>
-    <div class="xp-box highlight"><span class="label">{{localize "GENESYS.XP.Available"}}</span><span class="value">{{system.experience.available}}</span></div>
-  </div>
+  <div class="gs-xpl">
+    <div class="gs-xpl-top">
+      <div class="gs-xpl-big earn"><span>{{xpLedger.total}}</span><small>{{localize "GENESYS.XP.Total"}}</small></div>
+      <div class="gs-xpl-big spend"><span>{{xpLedger.spent}}</span><small>{{localize "GENESYS.XP.Spent"}}</small></div>
+      <div class="gs-xpl-big left"><span>{{xpLedger.available}}</span><small>{{localize "GENESYS.XP.Left"}}</small></div>
+    </div>
 
-  <div class="xp-options">
-    <label class="checkbox">
-      <input type="checkbox" name="system.autoXP" {{checked system.autoXP}}>
-      {{localize "GENESYS.XP.Auto"}}
-    </label>
-    <p class="hint">{{localize "GENESYS.XP.AutoHint"}}</p>
-  </div>
+    <div class="gs-xpl-bar" data-tooltip="GENESYS.XP.BarHint">
+      {{#each xpLedger.cats}}{{#if pct}}<div class="seg xc-{{key}}" style="width: {{pct}}%" data-tooltip="{{label}}: {{amount}}"></div>{{/if}}{{/each}}
+      {{#if xpLedger.availablePct}}<div class="seg xc-left" style="width: {{xpLedger.availablePct}}%" data-tooltip="{{localize 'GENESYS.XP.Left'}}: {{xpLedger.available}}"></div>{{/if}}
+    </div>
+    <div class="gs-xpl-legend">
+      {{#each xpLedger.cats}}<span><i class="dot xc-{{key}}"></i>{{label}} {{amount}}</span>{{/each}}
+      <span><i class="dot xc-left"></i>{{localize "GENESYS.XP.Left"}} {{xpLedger.available}}</span>
+    </div>
 
-  {{#if editable}}
-  <div class="xp-buttons">
-    <button type="button" data-action="xpAdd" data-type="earn"><i class="fa-solid fa-plus"></i> {{localize "GENESYS.XP.Earn"}}</button>
-    <button type="button" data-action="xpAdd" data-type="spend"><i class="fa-solid fa-minus"></i> {{localize "GENESYS.XP.Spend"}}</button>
-  </div>
-  {{/if}}
-
-  <section class="block">
-    <header class="list-header"><h3>{{localize "GENESYS.XP.Log"}}</h3></header>
-    <ol class="table-list xp-log">
-      {{#each xpLog}}
-      <li class="table-row xp-cols {{#if isEarn}}earn{{else}}spend{{/if}}" data-entry-id="{{id}}">
-        <span class="amount">{{#if isEarn}}+{{else}}−{{/if}}{{amount}}</span>
-        <span class="label">{{label}}</span>
-        <span class="date">{{date}}</span>
-        <span class="item-controls">{{#if @root.editable}}<a data-action="xpDelete" data-tooltip="GENESYS.XP.DeleteHint"><i class="fa-solid fa-trash"></i></a>{{/if}}</span>
-      </li>
-      {{else}}
-      <li class="empty">{{localize "GENESYS.XP.Empty"}}</li>
+    <div class="gs-xpl-cards">
+      {{#each xpLedger.cats}}
+      <details class="gs-xpl-card xc-{{key}}" {{#if count}}open{{/if}}>
+        <summary><i class="fa-solid {{icon}}"></i> <b>{{label}}</b> <span class="amt">{{amount}}</span> <small>({{count}})</small></summary>
+        <ul>{{#each details}}<li><span>{{name}}{{#if steps}} <small>{{steps}}</small>{{/if}}</span><b>{{amount}}</b></li>{{else}}<li class="gs-empty">—</li>{{/each}}</ul>
+      </details>
       {{/each}}
-    </ol>
-  </section>
+      <div class="gs-xpl-card xc-earned">
+        <div class="summary"><i class="fa-solid fa-coins"></i> <b>{{localize "GENESYS.XP.Earned"}}</b></div>
+        <ul>{{#each xpLedger.earned}}<li><span><i class="fa-solid {{icon}}"></i> {{label}}</span><b>+{{amount}}</b></li>{{else}}<li class="gs-empty">—</li>{{/each}}</ul>
+      </div>
+    </div>
+
+    <div class="gs-xpl-tools">
+      <label class="checkbox"><input type="checkbox" name="system.autoXP" {{checked system.autoXP}}> {{localize "GENESYS.XP.Auto"}}</label>
+      {{#if editable}}
+      <button type="button" data-action="xpAdd" data-type="earn"><i class="fa-solid fa-plus"></i> {{localize "GENESYS.XP.Earn"}}</button>
+      <button type="button" data-action="xpAdd" data-type="spend"><i class="fa-solid fa-minus"></i> {{localize "GENESYS.XP.Spend"}}</button>
+      {{/if}}
+    </div>
+    <p class="gs-help">{{localize "GENESYS.XP.AutoHint"}}</p>
+
+    <div class="gs-ribbon"><span>{{localize "GENESYS.XP.Log"}}</span></div>
+    {{#each xpLedger.days}}
+    <div class="gs-xpl-day">
+      <div class="gs-xpl-day-head"><span>{{date}}</span><span>{{#if earned}}<b class="earn">+{{earned}}</b>{{/if}} {{#if spent}}<b class="spend">−{{spent}}</b>{{/if}}</span></div>
+      <ol class="gs-xpl-log">
+        {{#each entries}}
+        <li class="{{#if isEarn}}earn{{else}}spend{{/if}} xc-{{cat}}" data-entry-id="{{id}}">
+          <i class="fa-solid {{icon}}"></i>
+          <span class="lbl">{{label}}</span>
+          <span class="amt">{{#if isEarn}}+{{else}}−{{/if}}{{amount}}</span>
+          <span class="bal" data-tooltip="GENESYS.XP.BalanceHint">{{balance}}</span>
+          {{#if @root.editable}}<a data-action="xpDelete" data-tooltip="GENESYS.XP.DeleteHint"><i class="fa-solid fa-xmark"></i></a>{{/if}}
+        </li>
+        {{/each}}
+      </ol>
+    </div>
+    {{else}}
+    <p class="gs-empty">{{localize "GENESYS.XP.Empty"}}</p>
+    {{/each}}
+  </div>
 </section>

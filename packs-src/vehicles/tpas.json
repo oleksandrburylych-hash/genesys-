@@ -1,0 +1,180 @@
+[
+ {
+  "name": "Скорая помощь",
+  "nameEn": "Ambulance",
+  "type": "vehicle",
+  "folder": "Полиция (To Protect and Serve)",
+  "system": {
+   "silhouette": 2,
+   "speed": {
+    "value": 0,
+    "max": 3
+   },
+   "handling": -1,
+   "defense": {
+    "fore": 0,
+    "aft": 0,
+    "port": 0,
+    "starboard": 0
+   },
+   "armor": 0,
+   "hullTrauma": {
+    "value": 0,
+    "max": 8
+   },
+   "systemStrain": {
+    "value": 0,
+    "max": 7
+   },
+   "skill": "driving",
+   "crew": "1 водитель",
+   "passengers": 4,
+   "encumbrance": 10,
+   "price": 4650,
+   "rarity": 6,
+   "hardPoints": 0,
+   "description": "<p>Медоборудование считается аптечкой: можно лечить раны, стабилизировать и лечить критические травмы; к проверкам Медицины — автоматический успех и 2 преимущества. 1 пассажир — на носилках.</p><p>Припасы на 6 часов.</p>",
+   "source": "To Protect and Serve, с. 10–11",
+   "worlds": [
+    "modern",
+    "monster",
+    "zombie",
+    "postapoc"
+   ]
+  },
+  "items": []
+ },
+ {
+  "name": "Грузовой фургон",
+  "nameEn": "Cargo Van",
+  "type": "vehicle",
+  "folder": "Полиция (To Protect and Serve)",
+  "system": {
+   "silhouette": 2,
+   "speed": {
+    "value": 0,
+    "max": 3
+   },
+   "handling": -2,
+   "defense": {
+    "fore": 0,
+    "aft": 0,
+    "port": 0,
+    "starboard": 0
+   },
+   "armor": 0,
+   "hullTrauma": {
+    "value": 0,
+    "max": 8
+   },
+   "systemStrain": {
+    "value": 0,
+    "max": 8
+   },
+   "skill": "driving",
+   "crew": "1 водитель",
+   "passengers": 1,
+   "encumbrance": 60,
+   "price": 3800,
+   "rarity": 3,
+   "hardPoints": 0,
+   "description": "<p>Варианты: для скрытной перевозки людей (броня 1, 9 пассажиров, 6550/6) и фургон наблюдения (броня 1, 3–4 пассажира, аппаратура для прослушки и видеонаблюдения, 8350/7).</p><p>Припасы на 6 часов.</p>",
+   "source": "To Protect and Serve, с. 10–11",
+   "worlds": [
+    "modern",
+    "monster",
+    "zombie",
+    "postapoc"
+   ]
+  },
+  "items": []
+ },
+ {
+  "name": "Полицейская машина",
+  "nameEn": "Police Car",
+  "type": "vehicle",
+  "folder": "Полиция (To Protect and Serve)",
+  "system": {
+   "silhouette": 2,
+   "speed": {
+    "value": 0,
+    "max": 4
+   },
+   "handling": 1,
+   "defense": {
+    "fore": 0,
+    "aft": 0,
+    "port": 0,
+    "starboard": 0
+   },
+   "armor": 1,
+   "hullTrauma": {
+    "value": 0,
+    "max": 4
+   },
+   "systemStrain": {
+    "value": 0,
+    "max": 5
+   },
+   "skill": "driving",
+   "crew": "1 водитель",
+   "passengers": 3,
+   "encumbrance": 20,
+   "price": 10900,
+   "rarity": 5,
+   "hardPoints": 0,
+   "description": "<p>Рация, сканер, камера; 2 пассажира — за решёткой сзади. Кенгурятник: встречная проверка Вождения при лёгком столкновении — при успехе результат критического попадания по машине −50 (до 0 — без критического попадания). Ограниченный предмет (R).</p><p>Припасы на 6 часов.</p>",
+   "source": "To Protect and Serve, с. 10–11",
+   "worlds": [
+    "modern",
+    "monster",
+    "zombie"
+   ]
+  },
+  "items": []
+ },
+ {
+  "name": "Тактический внедорожник",
+  "nameEn": "Tactical Support SUV",
+  "type": "vehicle",
+  "folder": "Полиция (To Protect and Serve)",
+  "system": {
+   "silhouette": 2,
+   "speed": {
+    "value": 0,
+    "max": 3
+   },
+   "handling": 0,
+   "defense": {
+    "fore": 0,
+    "aft": 0,
+    "port": 0,
+    "starboard": 0
+   },
+   "armor": 1,
+   "hullTrauma": {
+    "value": 0,
+    "max": 9
+   },
+   "systemStrain": {
+    "value": 0,
+    "max": 8
+   },
+   "skill": "driving",
+   "crew": "1 водитель",
+   "passengers": 4,
+   "encumbrance": 35,
+   "price": 12500,
+   "rarity": 6,
+   "hardPoints": 0,
+   "description": "<p>Кенгурятник, укреплённые двери и стёкла, рация, сканер, камера; тактический запас (2 автомата, 2 тяжёлых пистолета, 4 обоймы, 2 бронежилета, 2 рации, 4 гранаты). Вездеход: убирает 2 кости штрафа за местность. Ограниченный предмет (R).</p><p>Припасы на 6 часов.</p>",
+   "source": "To Protect and Serve, с. 10–11",
+   "worlds": [
+    "modern",
+    "zombie",
+    "postapoc"
+   ]
+  },
+  "items": []
+ }
+]

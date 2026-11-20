@@ -4,22 +4,43 @@ import { GenesysRoll } from "../dice/roll.mjs";
 
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
+/** Режимы видимости сообщения: v14 — CONFIG.ChatMessage.modes / core.messageMode, раньше — CONFIG.Dice.rollModes / core.rollMode. */
+export function messageModeChoices() {
+  return CONFIG.ChatMessage?.modes ?? CONFIG.Dice?.rollModes ?? {};
+}
+export function currentMessageMode() {
+  for (const key of ["messageMode", "rollMode"]) {
+    try { const v = game.settings.get("core", key); if (v) return v; } catch { /* нет такой настройки в этой версии */ }
+  }
+  return Object.keys(messageModeChoices())[0] ?? "public";
+}
+/** Опции toMessage для выбранного режима. */
+export function messageModeOptions(mode) {
+  if (!mode) return {};
+  return CONFIG.ChatMessage?.modes ? { messageMode: mode } : { rollMode: mode };
+}
+
 /**
  * Окно сборки пула кубиков перед броском.
  * Использование: await DicePoolDialog.prompt({ pool, label, actor, rollOptions })
  */
 export class DicePoolDialog extends HandlebarsApplicationMixin(ApplicationV2) {
-  constructor({ pool, label, actor, rollOptions = {}, ...options } = {}) {
+  constructor({ pool, label, actor, rollOptions = {}, notes = [], dodge = null, ...options } = {}) {
     super(options);
+    /** Уклонение цели: { rank, uuid, name } — сколько ступеней усилить, решает цель (вслух за столом). */
+    this.dodge = dodge;
+    this.dodgeUsed = 0;
+    this.notes = notes;
+    this.storyPointUsed = false;
     this.pool = pool instanceof DicePool ? pool : new DicePool(pool);
     this.label = label ?? "";
     this.actor = actor ?? null;
     this.rollOptions = rollOptions;
-    this.messageMode = game.settings.get("core", "messageMode");
+    this.messageMode = currentMessageMode();
   }
 
   static DEFAULT_OPTIONS = {
-    classes: ["genesys", "dice-pool-dialog"],
+    classes: ["genesys", "themed", "theme-light", "dice-pool-dialog"],
     tag: "form",
     window: { title: "GENESYS.Roll.Title", icon: "fa-solid fa-dice-d20", resizable: false },
     position: { width: 460 },
@@ -29,7 +50,9 @@ export class DicePoolDialog extends HandlebarsApplicationMixin(ApplicationV2) {
       upgrade: DicePoolDialog.#onUpgrade,
       downgrade: DicePoolDialog.#onDowngrade,
       setDifficulty: DicePoolDialog.#onSetDifficulty,
-      roll: DicePoolDialog.#onRoll
+      roll: DicePoolDialog.#onRoll,
+      storyPoint: DicePoolDialog.#onStoryPoint,
+      dodge: DicePoolDialog.#onDodge
     },
     form: { handler: DicePoolDialog.#onSubmit, submitOnChange: true, closeOnSubmit: false }
   };
@@ -46,7 +69,7 @@ export class DicePoolDialog extends HandlebarsApplicationMixin(ApplicationV2) {
 
   /** @override */
   async _prepareContext(options) {
-    const modes = CONFIG.ChatMessage?.modes ?? {};
+    const modes = messageModeChoices();
     return {
       label: this.label,
       pool: this.pool.display,
@@ -57,8 +80,50 @@ export class DicePoolDialog extends HandlebarsApplicationMixin(ApplicationV2) {
       messageModes: Object.entries(modes).map(([key, cfg]) => ({
         key, label: typeof cfg === "string" ? cfg : cfg.label, selected: key === this.messageMode
       })),
-      empty: this.pool.isEmpty
+      empty: this.pool.isEmpty,
+      notes: this.notes,
+      storyPoints: this.#storyPointInfo(),
+      dodge: this.dodge ? {
+        name: this.dodge.name, used: this.dodgeUsed,
+        options: Array.from({ length: this.dodge.rank }, (_, i) => ({ n: i + 1 }))
+      } : null
     };
+  }
+
+  /** Можно ли потратить очко сюжета (одно за проверку). */
+  #storyPointInfo() {
+    let points;
+    try { points = game.settings.get("genesys-rpg", "storyPoints"); } catch { return null; }
+    // Сторона определяется тем, кто бросает: персонаж игрока — очки игроков (даже если бросает ведущий за него),
+    // противник/NPC — очки ведущего.
+    const gm = this.actor ? !this.actor.hasPlayerOwner : game.user.isGM;
+    const available = gm ? points.gm : points.player;
+    return { gm, available, used: this.storyPointUsed, can: !this.storyPointUsed && available > 0 };
+  }
+
+  /**
+   * Потратить очко сюжета: игрок усиливает свою кость способности,
+   * ведущий — сложность проверки (очко переходит к другой стороне).
+   */
+  static async #onStoryPoint() {
+    const info = this.#storyPointInfo();
+    if (!info?.can) return;
+    const { StoryPointsTracker } = await import("./story-points.mjs");
+    StoryPointsTracker.request(info.gm ? "useGM" : "usePlayer", { actor: this.actor?.name });
+    if (info.gm) this.pool.upgradeDifficulty(); else this.pool.upgradeAbility();
+    this.storyPointUsed = true;
+    this.notes = [...this.notes, game.i18n.localize(info.gm ? "GENESYS.StoryPoints.UpgradedDifficulty" : "GENESYS.StoryPoints.UpgradedAbility")];
+    this.render();
+  }
+
+  /** Цель уклоняется: усилить сложность на n, цель получит n усталости при броске. */
+  static #onDodge(event, target) {
+    if (!this.dodge || this.dodgeUsed) return;
+    const n = Math.min(Number(target.dataset.n) || 1, this.dodge.rank);
+    this.pool.upgradeDifficulty(n);
+    this.dodgeUsed = n;
+    this.notes = [...this.notes, game.i18n.format("GENESYS.Reaction.DodgeUsed", { name: this.dodge.name, value: n })];
+    this.render();
   }
 
   static #onAdd(event, target) {
@@ -99,6 +164,11 @@ export class DicePoolDialog extends HandlebarsApplicationMixin(ApplicationV2) {
     const roll = await DicePoolDialog.rollPool(this.pool, {
       label: this.label, actor: this.actor, messageMode: this.messageMode, rollOptions: this.rollOptions
     });
+    if (this.dodgeUsed && this.dodge) {
+      const { actOnActor } = await import("../combat/combat.mjs");
+      const target = await fromUuid(this.dodge.uuid);
+      if (target) await actOnActor(target, "adjust", { strain: this.dodgeUsed });
+    }
     this._resolve?.(roll);
     this._resolve = null;
     await this.close();
@@ -116,9 +186,18 @@ export class DicePoolDialog extends HandlebarsApplicationMixin(ApplicationV2) {
    */
   static prompt(config = {}) {
     return new Promise(resolve => {
-      const app = new this(config);
-      app._resolve = resolve;
-      app.render({ force: true });
+      const fallback = err => {
+        // Окно не открылось — не оставляем игрока без броска: бросаем пул как есть и сообщаем причину.
+        console.error("genesys-rpg | окно броска", err);
+        ui.notifications.error(game.i18n.format("GENESYS.Roll.DialogError", { error: err?.message ?? err }));
+        const pool = config.pool instanceof DicePool ? config.pool : new DicePool(config.pool);
+        DicePoolDialog.rollPool(pool, { label: config.label, actor: config.actor, rollOptions: config.rollOptions }).then(resolve, () => resolve(null));
+      };
+      try {
+        const app = new this(config);
+        app._resolve = resolve;
+        Promise.resolve(app.render({ force: true })).catch(err => { app._resolve = null; fallback(err); });
+      } catch (err) { fallback(err); }
     });
   }
 
@@ -126,9 +205,10 @@ export class DicePoolDialog extends HandlebarsApplicationMixin(ApplicationV2) {
   static async rollPool(pool, { label = "", actor = null, messageMode, rollOptions = {}, flavor } = {}) {
     const roll = GenesysRoll.fromPool(pool, { label, ...rollOptions });
     await roll.evaluate();
+    // Разовый штраф «к следующей проверке» (критические травмы) израсходован.
+    if (pool._consumeNext?.isOwner) await pool._consumeNext.unsetFlag("genesys-rpg", "nextCheck");
     const speaker = ChatMessage.implementation.getSpeaker({ actor });
-    const options = messageMode ? { messageMode } : {};
-    await roll.toMessage({ speaker, flavor }, options);
+    await roll.toMessage({ speaker, flavor }, messageModeOptions(messageMode));
     return roll;
   }
 }

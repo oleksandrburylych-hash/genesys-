@@ -5,4 +5,36 @@
   <div class="form-group"><label>{{localize "GENESYS.Rarity"}}</label><input type="number" name="system.rarity" value="{{system.rarity}}" min="0" max="10" data-dtype="Number"></div>
   <div class="form-group"><label>{{localize "GENESYS.Carried"}}</label>
     <input type="checkbox" name="system.carried" {{checked system.carried}}></div>
-</div></section>
+  <div class="form-group"><label>{{localize "GENESYS.Worn"}}</label>
+    <input type="checkbox" name="system.equipped" {{checked system.equipped}}></div>
+</div>
+
+<fieldset class="gs-gear-mech">
+  <legend>{{localize "GENESYS.Equip.Mechanics"}}</legend>
+  <p class="hint">{{localize "GENESYS.Equip.MechanicsHint"}}</p>
+  <div class="grid-3">
+    <div class="form-group"><label data-tooltip="GENESYS.Equip.ThresholdHint">{{localize "GENESYS.Equip.Threshold"}}</label>
+      <input type="number" name="system.thresholdBonus" value="{{system.thresholdBonus}}" placeholder="{{gearAuto.threshold}}" data-dtype="Number"></div>
+    <div class="form-group"><label data-tooltip="GENESYS.Equip.WornHint">{{localize "GENESYS.Equip.WornEnc"}}</label>
+      <input type="number" name="system.wornEncumbrance" value="{{system.wornEncumbrance}}" placeholder="{{gearAuto.worn}}" min="0" data-dtype="Number"></div>
+    <div class="form-group"><label data-tooltip="GENESYS.Equip.BundleHint">{{localize "GENESYS.Equip.Bundle"}}</label>
+      <input type="number" name="system.bundle" value="{{system.bundle}}" placeholder="{{gearAuto.bundle}}" min="1" data-dtype="Number"></div>
+    <div class="form-group"><label>{{localize "GENESYS.Equip.Painkiller"}}</label>
+      <select name="system.painkiller">{{selectOptions painkillerChoices selected=system.painkiller localize=true}}</select></div>
+    <div class="form-group"><label data-tooltip="GENESYS.Equip.ImplantHint">{{localize "GENESYS.Equip.Implant"}}</label>
+      <input type="checkbox" name="system.implant" {{checked system.implant}}></div>
+  </div>
+  <p class="hint">{{localize "GENESYS.Equip.Auto"}}: {{localize "GENESYS.Equip.Threshold"}} {{gearAuto.threshold}} · {{localize "GENESYS.Equip.WornEnc"}} {{gearAuto.worn}} · {{localize "GENESYS.Equip.Bundle"}} {{gearAuto.bundle}} · {{gearAuto.painkiller}}{{#if gearAuto.implant}} · {{localize "GENESYS.Equip.TagImplant"}}{{/if}}{{#if gearAuto.mods}} · {{gearAuto.mods}}{{/if}}</p>
+  <div class="gs-mods">
+    <label>{{localize "GENESYS.Equip.Mods"}}
+      {{#if editable}}<a data-action="addRow" data-field="system.mods" data-tooltip="GENESYS.Equip.AddMod"><i class="fa-solid fa-plus"></i></a>{{/if}}</label>
+    {{#each system.mods}}
+    <div class="gs-mod-row">
+      <select name="system.mods.{{@index}}.target">{{selectOptions @root.modTargets selected=target localize=true}}</select>
+      <input type="number" name="system.mods.{{@index}}.value" value="{{value}}" data-dtype="Number">
+      {{#if @root.editable}}<a data-action="removeRow" data-field="system.mods" data-index="{{@index}}"><i class="fa-solid fa-trash"></i></a>{{/if}}
+    </div>
+    {{/each}}
+  </div>
+</fieldset>
+</section>

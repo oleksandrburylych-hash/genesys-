@@ -1,0 +1,1054 @@
+[
+  {
+    "name": "Карабин-буллпап",
+    "nameEn": "Bullpup Carbine",
+    "type": "weapon",
+    "folder": "Энциклопедия: киберпанк",
+    "system": {
+      "skill": "rangedHeavy",
+      "damage": 7,
+      "brawnDamage": false,
+      "crit": 3,
+      "range": "medium",
+      "encumbrance": 3,
+      "hardPoints": 2,
+      "price": 825,
+      "rarity": 7,
+      "qualities": [
+        {
+          "name": "Точное",
+          "rating": 1
+        },
+        {
+          "name": "Автоматическое",
+          "rating": null
+        }
+      ],
+      "description": "<p>Компактная автоматическая винтовка с магазином позади рукояти: короче и точнее штурмовой, но бьёт лишь на среднюю дистанцию.</p>",
+      "source": "Equipment Encyclopedia (Shadow of the Beanstalk), с. 85",
+      "worlds": [
+        "scifi",
+        "spaceopera"
+      ]
+    }
+  },
+  {
+    "name": "Боевой дробовик",
+    "nameEn": "Combat Shotgun",
+    "type": "weapon",
+    "folder": "Энциклопедия: киберпанк",
+    "system": {
+      "skill": "rangedHeavy",
+      "damage": 8,
+      "brawnDamage": false,
+      "crit": 3,
+      "range": "short",
+      "encumbrance": 4,
+      "hardPoints": 2,
+      "price": 1000,
+      "rarity": 5,
+      "qualities": [
+        {
+          "name": "Автоматическое",
+          "rating": null
+        },
+        {
+          "name": "Взрыв",
+          "rating": 5
+        },
+        {
+          "name": "Неточное",
+          "rating": 1
+        },
+        {
+          "name": "Высококритичное",
+          "rating": 2
+        }
+      ],
+      "description": "<p>Автоматический дробовик для штурмовых групп: поливает ближнюю зону картечью, жертвуя точностью. Предмет с ограниченным оборотом (R).</p>",
+      "source": "Equipment Encyclopedia (Shadow of the Beanstalk), с. 85",
+      "worlds": [
+        "scifi",
+        "spaceopera"
+      ]
+    }
+  },
+  {
+    "name": "Крупнокалиберный пистолет",
+    "nameEn": "Hand Cannon",
+    "type": "weapon",
+    "folder": "Энциклопедия: киберпанк",
+    "system": {
+      "skill": "rangedLight",
+      "damage": 7,
+      "brawnDamage": false,
+      "crit": 3,
+      "range": "medium",
+      "encumbrance": 1,
+      "hardPoints": 3,
+      "price": 345,
+      "rarity": 3,
+      "qualities": [
+        {
+          "name": "Неточное",
+          "rating": 1
+        },
+        {
+          "name": "Ограниченный боезапас",
+          "rating": 4
+        }
+      ],
+      "description": "<p>Мощный пистолет под тяжёлый патрон: сильная отдача снижает точность, а маленький барабан или магазин требует перезарядки после четырёх выстрелов.</p>",
+      "source": "Equipment Encyclopedia (Shadow of the Beanstalk), с. 85",
+      "worlds": [
+        "scifi",
+        "spaceopera"
+      ]
+    }
+  },
+  {
+    "name": "Винтовка",
+    "nameEn": "Rifle",
+    "type": "weapon",
+    "folder": "Энциклопедия: киберпанк",
+    "system": {
+      "skill": "rangedHeavy",
+      "damage": 8,
+      "brawnDamage": false,
+      "crit": 3,
+      "range": "long",
+      "encumbrance": 4,
+      "hardPoints": 3,
+      "price": 875,
+      "rarity": 4,
+      "qualities": [
+        {
+          "name": "Точное",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Обычная пулевая винтовка ближнего будущего с хорошей оптикой: точная на длинной дистанции.</p>",
+      "source": "Equipment Encyclopedia (Shadow of the Beanstalk), с. 85",
+      "worlds": [
+        "scifi",
+        "spaceopera"
+      ]
+    }
+  },
+  {
+    "name": "Дробовик (киберпанк)",
+    "nameEn": "Shotgun",
+    "type": "weapon",
+    "folder": "Энциклопедия: киберпанк",
+    "system": {
+      "skill": "rangedHeavy",
+      "damage": 8,
+      "brawnDamage": false,
+      "crit": 3,
+      "range": "short",
+      "encumbrance": 3,
+      "hardPoints": 2,
+      "price": 900,
+      "rarity": 4,
+      "qualities": [
+        {
+          "name": "Взрыв",
+          "rating": 5
+        },
+        {
+          "name": "Нокдаун",
+          "rating": null
+        },
+        {
+          "name": "Высококритичное",
+          "rating": 2
+        }
+      ],
+      "description": "<p>Гладкоствольное ружьё мира Android: разлёт дроби задевает соседние цели и может сбить противника с ног.</p>",
+      "source": "Equipment Encyclopedia (Shadow of the Beanstalk), с. 85",
+      "worlds": [
+        "scifi",
+        "spaceopera"
+      ]
+    }
+  },
+  {
+    "name": "Автоматический игломёт",
+    "nameEn": "Auto-Fletcher",
+    "type": "weapon",
+    "folder": "Энциклопедия: киберпанк",
+    "system": {
+      "skill": "rangedLight",
+      "damage": 3,
+      "brawnDamage": false,
+      "crit": 2,
+      "range": "medium",
+      "encumbrance": 2,
+      "hardPoints": 1,
+      "price": 500,
+      "rarity": 5,
+      "qualities": [
+        {
+          "name": "Автоматическое",
+          "rating": null
+        },
+        {
+          "name": "Проникающее",
+          "rating": 2
+        },
+        {
+          "name": "Высококритичное",
+          "rating": 2
+        }
+      ],
+      "description": "<p>Магнитный ускоритель, очередями выпускающий стальные иглы-флешетты: слабый урон компенсируется пробиванием брони и тяжёлыми ранами.</p>",
+      "source": "Equipment Encyclopedia (Shadow of the Beanstalk), с. 85",
+      "worlds": [
+        "scifi",
+        "spaceopera"
+      ]
+    }
+  },
+  {
+    "name": "Синап-пистолет",
+    "nameEn": "Synap Pistol",
+    "type": "weapon",
+    "folder": "Энциклопедия: киберпанк",
+    "system": {
+      "skill": "rangedLight",
+      "damage": 5,
+      "brawnDamage": false,
+      "crit": 6,
+      "range": "short",
+      "encumbrance": 1,
+      "hardPoints": 2,
+      "price": 375,
+      "rarity": 2,
+      "qualities": [
+        {
+          "name": "Дезориентация",
+          "rating": 4
+        },
+        {
+          "name": "Оглушение",
+          "rating": 3
+        },
+        {
+          "name": "Оглушающий урон",
+          "rating": null
+        }
+      ],
+      "description": "<p>Несмертельный пистолет, поражающий нервную систему импульсом: наносит только урон усталости и надолго дезориентирует цель.</p>",
+      "source": "Equipment Encyclopedia (Shadow of the Beanstalk), с. 85",
+      "worlds": [
+        "scifi",
+        "spaceopera"
+      ]
+    }
+  },
+  {
+    "name": "Пусковая установка управляемых ракет",
+    "nameEn": "Guided Missile Launcher",
+    "type": "weapon",
+    "folder": "Энциклопедия: киберпанк",
+    "system": {
+      "skill": "gunnery",
+      "damage": 20,
+      "brawnDamage": false,
+      "crit": 3,
+      "range": "strategic",
+      "encumbrance": 6,
+      "hardPoints": 3,
+      "price": 25000,
+      "rarity": 8,
+      "qualities": [
+        {
+          "name": "Взрыв",
+          "rating": 10
+        },
+        {
+          "name": "Бронебойное",
+          "rating": 2
+        },
+        {
+          "name": "Громоздкое",
+          "rating": 5
+        },
+        {
+          "name": "Наведение",
+          "rating": 4
+        },
+        {
+          "name": "Ограниченный боезапас",
+          "rating": 1
+        },
+        {
+          "name": "Подготовка",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Переносной комплекс управляемых ракет, способный поражать цели на стратегической дистанции, включая технику. Предмет с ограниченным оборотом (R).</p>",
+      "source": "Equipment Encyclopedia (Shadow of the Beanstalk), с. 85",
+      "worlds": [
+        "scifi",
+        "spaceopera"
+      ]
+    }
+  },
+  {
+    "name": "Тяжёлый игломёт",
+    "nameEn": "Heavy Fletcher",
+    "type": "weapon",
+    "folder": "Энциклопедия: киберпанк",
+    "system": {
+      "skill": "gunnery",
+      "damage": 6,
+      "brawnDamage": false,
+      "crit": 2,
+      "range": "medium",
+      "encumbrance": 6,
+      "hardPoints": 3,
+      "price": 1400,
+      "rarity": 5,
+      "qualities": [
+        {
+          "name": "Громоздкое",
+          "rating": 3
+        },
+        {
+          "name": "Взрыв",
+          "rating": 6
+        },
+        {
+          "name": "Проникающее",
+          "rating": 4
+        },
+        {
+          "name": "Высококритичное",
+          "rating": 3
+        }
+      ],
+      "description": "<p>Станковый игломёт, засыпающий площадь роем флешетт. В первоисточнике для него есть дополнительные особые правила. Предмет с ограниченным оборотом (R).</p>",
+      "source": "Equipment Encyclopedia (Shadow of the Beanstalk), с. 85",
+      "worlds": [
+        "scifi",
+        "spaceopera"
+      ]
+    }
+  },
+  {
+    "name": "Тяжёлая винтовка Гаусса",
+    "nameEn": "Heavy Gauss Rifle",
+    "type": "weapon",
+    "folder": "Энциклопедия: киберпанк",
+    "system": {
+      "skill": "gunnery",
+      "damage": 15,
+      "brawnDamage": false,
+      "crit": 2,
+      "range": "extreme",
+      "encumbrance": 7,
+      "hardPoints": 3,
+      "price": 4000,
+      "rarity": 8,
+      "qualities": [
+        {
+          "name": "Бронебойное",
+          "rating": 1
+        },
+        {
+          "name": "Громоздкое",
+          "rating": 5
+        },
+        {
+          "name": "Медленное",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Крупный электромагнитный ускоритель, пробивающий броню техники; после выстрела конденсаторам нужен раунд на перезарядку. Предмет с ограниченным оборотом (R).</p>",
+      "source": "Equipment Encyclopedia (Shadow of the Beanstalk), с. 85",
+      "worlds": [
+        "scifi",
+        "spaceopera"
+      ]
+    }
+  },
+  {
+    "name": "Лазерная пушка (киберпанк)",
+    "nameEn": "Laser Cannon",
+    "type": "weapon",
+    "folder": "Энциклопедия: киберпанк",
+    "system": {
+      "skill": "gunnery",
+      "damage": 10,
+      "brawnDamage": false,
+      "crit": 3,
+      "range": "long",
+      "encumbrance": 6,
+      "hardPoints": 2,
+      "price": 1675,
+      "rarity": 9,
+      "qualities": [
+        {
+          "name": "Точное",
+          "rating": 1
+        },
+        {
+          "name": "Жжение",
+          "rating": 1
+        },
+        {
+          "name": "Громоздкое",
+          "rating": 4
+        },
+        {
+          "name": "Повреждение",
+          "rating": null
+        }
+      ],
+      "description": "<p>Переносной тяжёлый лазер ближнего будущего: точный, поджигает цель и способен испортить снаряжение противника. Предмет с ограниченным оборотом (R).</p>",
+      "source": "Equipment Encyclopedia (Shadow of the Beanstalk), с. 85",
+      "worlds": [
+        "scifi",
+        "spaceopera"
+      ]
+    }
+  },
+  {
+    "name": "Ручной пулемёт",
+    "nameEn": "Light Machine Gun",
+    "type": "weapon",
+    "folder": "Энциклопедия: киберпанк",
+    "system": {
+      "skill": "gunnery",
+      "damage": 10,
+      "brawnDamage": false,
+      "crit": 3,
+      "range": "long",
+      "encumbrance": 6,
+      "hardPoints": 4,
+      "price": 1750,
+      "rarity": 6,
+      "qualities": [
+        {
+          "name": "Автоматическое",
+          "rating": null
+        },
+        {
+          "name": "Громоздкое",
+          "rating": 3
+        },
+        {
+          "name": "Проникающее",
+          "rating": 2
+        },
+        {
+          "name": "Высококритичное",
+          "rating": 2
+        }
+      ],
+      "description": "<p>Лёгкий пулемёт поддержки отделения мира Android: длинные очереди, пробивающие лёгкую броню. Предмет с ограниченным оборотом (R).</p>",
+      "source": "Equipment Encyclopedia (Shadow of the Beanstalk), с. 85",
+      "worlds": [
+        "scifi",
+        "spaceopera"
+      ]
+    }
+  },
+  {
+    "name": "Мазер",
+    "nameEn": "Maser",
+    "type": "weapon",
+    "folder": "Энциклопедия: киберпанк",
+    "system": {
+      "skill": "gunnery",
+      "damage": 5,
+      "brawnDamage": false,
+      "crit": 3,
+      "range": "short",
+      "encumbrance": 6,
+      "hardPoints": 2,
+      "price": 1275,
+      "rarity": 6,
+      "qualities": [
+        {
+          "name": "Бронебойное",
+          "rating": 1
+        },
+        {
+          "name": "Громоздкое",
+          "rating": 5
+        },
+        {
+          "name": "Сноровка",
+          "rating": 2
+        },
+        {
+          "name": "Высококритичное",
+          "rating": 5
+        }
+      ],
+      "description": "<p>Громоздкий микроволновой излучатель: на малой дистанции прожигает даже броню техники и оставляет ужасные внутренние ожоги. Предмет с ограниченным оборотом (R).</p>",
+      "source": "Equipment Encyclopedia (Shadow of the Beanstalk), с. 85",
+      "worlds": [
+        "scifi",
+        "spaceopera"
+      ]
+    }
+  },
+  {
+    "name": "Клеевая граната",
+    "nameEn": "Glop Grenade",
+    "type": "weapon",
+    "folder": "Энциклопедия: киберпанк",
+    "system": {
+      "skill": "rangedLight",
+      "damage": 1,
+      "brawnDamage": false,
+      "crit": 6,
+      "range": "short",
+      "encumbrance": 1,
+      "hardPoints": 0,
+      "price": 50,
+      "rarity": 5,
+      "qualities": [
+        {
+          "name": "Взрыв",
+          "rating": 1
+        },
+        {
+          "name": "Сковывание",
+          "rating": 4
+        },
+        {
+          "name": "Ограниченный боезапас",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Граната, разбрызгивающая быстро застывающую липкую массу: почти не ранит, но надолго обездвиживает цель.</p>",
+      "source": "Equipment Encyclopedia (Shadow of the Beanstalk), с. 85",
+      "worlds": [
+        "scifi",
+        "spaceopera"
+      ]
+    }
+  },
+  {
+    "name": "Мономолекулярная граната",
+    "nameEn": "Monofilament Grenade",
+    "type": "weapon",
+    "folder": "Энциклопедия: киберпанк",
+    "system": {
+      "skill": "rangedLight",
+      "damage": 7,
+      "brawnDamage": false,
+      "crit": 3,
+      "range": "short",
+      "encumbrance": 1,
+      "hardPoints": 0,
+      "price": 85,
+      "rarity": 4,
+      "qualities": [
+        {
+          "name": "Взрыв",
+          "rating": 7
+        },
+        {
+          "name": "Ограниченный боезапас",
+          "rating": 1
+        },
+        {
+          "name": "Высококритичное",
+          "rating": 2
+        }
+      ],
+      "description": "<p>При взрыве разбрасывает облако мономолекулярных нитей, рассекающих всё вокруг. Предмет с ограниченным оборотом (R).</p>",
+      "source": "Equipment Encyclopedia (Shadow of the Beanstalk), с. 85",
+      "worlds": [
+        "scifi",
+        "spaceopera"
+      ]
+    }
+  },
+  {
+    "name": "Светошумовая граната",
+    "nameEn": "Stun Grenade",
+    "type": "weapon",
+    "folder": "Энциклопедия: киберпанк",
+    "system": {
+      "skill": "rangedLight",
+      "damage": 8,
+      "brawnDamage": false,
+      "crit": 5,
+      "range": "short",
+      "encumbrance": 1,
+      "hardPoints": 0,
+      "price": 70,
+      "rarity": 4,
+      "qualities": [
+        {
+          "name": "Взрыв",
+          "rating": 8
+        },
+        {
+          "name": "Дезориентация",
+          "rating": 3
+        },
+        {
+          "name": "Ограниченный боезапас",
+          "rating": 1
+        },
+        {
+          "name": "Оглушающий урон",
+          "rating": null
+        }
+      ],
+      "description": "<p>Несмертельная граната: вспышка и грохот наносят только урон усталости и дезориентируют всех поблизости.</p>",
+      "source": "Equipment Encyclopedia (Shadow of the Beanstalk), с. 85",
+      "worlds": [
+        "scifi",
+        "spaceopera"
+      ]
+    }
+  },
+  {
+    "name": "Хромодробители",
+    "nameEn": "Chromcrushers",
+    "type": "weapon",
+    "folder": "Энциклопедия: киберпанк",
+    "system": {
+      "skill": "brawl",
+      "damage": 3,
+      "brawnDamage": true,
+      "crit": 4,
+      "range": "engaged",
+      "encumbrance": 2,
+      "hardPoints": 1,
+      "price": 250,
+      "rarity": 3,
+      "qualities": [
+        {
+          "name": "Залповое",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Массивные металлические накладки на кулаки, позволяющие наносить серию сокрушительных ударов. Предмет с ограниченным оборотом (R).</p>",
+      "source": "Equipment Encyclopedia (Shadow of the Beanstalk), с. 91",
+      "worlds": [
+        "scifi",
+        "spaceopera"
+      ]
+    }
+  },
+  {
+    "name": "Ладонный шокер",
+    "nameEn": "Palm Stunner",
+    "type": "weapon",
+    "folder": "Энциклопедия: киберпанк",
+    "system": {
+      "skill": "brawl",
+      "damage": 5,
+      "brawnDamage": false,
+      "crit": 5,
+      "range": "engaged",
+      "encumbrance": 0,
+      "hardPoints": 0,
+      "price": 70,
+      "rarity": 3,
+      "qualities": [
+        {
+          "name": "Дезориентация",
+          "rating": 2
+        },
+        {
+          "name": "Медленное",
+          "rating": 2
+        },
+        {
+          "name": "Оглушающий урон",
+          "rating": null
+        }
+      ],
+      "description": "<p>Скрытый в ладони разрядник: удар током наносит только урон усталости и не зависит от Силы, после разряда нужно два раунда на подзарядку.</p>",
+      "source": "Equipment Encyclopedia (Shadow of the Beanstalk), с. 91",
+      "worlds": [
+        "scifi",
+        "spaceopera"
+      ]
+    }
+  },
+  {
+    "name": "Силовая перчатка",
+    "nameEn": "Power Gauntlet",
+    "type": "weapon",
+    "folder": "Энциклопедия: киберпанк",
+    "system": {
+      "skill": "brawl",
+      "damage": 4,
+      "brawnDamage": true,
+      "crit": 4,
+      "range": "engaged",
+      "encumbrance": 3,
+      "hardPoints": 2,
+      "price": 1120,
+      "rarity": 6,
+      "qualities": [
+        {
+          "name": "Ошеломление",
+          "rating": 2
+        },
+        {
+          "name": "Нокдаун",
+          "rating": null
+        },
+        {
+          "name": "Подготовка",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Механизированная перчатка с приводами, многократно усиливающими удар; перед боем её нужно активировать. Предмет с ограниченным оборотом (R).</p>",
+      "source": "Equipment Encyclopedia (Shadow of the Beanstalk), с. 91",
+      "worlds": [
+        "scifi",
+        "spaceopera"
+      ]
+    }
+  },
+  {
+    "name": "Заряженная кристаллическая катана",
+    "nameEn": "Charged Crystal Katana",
+    "type": "weapon",
+    "folder": "Энциклопедия: киберпанк",
+    "system": {
+      "skill": "melee",
+      "damage": 3,
+      "brawnDamage": true,
+      "crit": 2,
+      "range": "engaged",
+      "encumbrance": 3,
+      "hardPoints": 2,
+      "price": 600,
+      "rarity": 10,
+      "qualities": [
+        {
+          "name": "Оборонительное",
+          "rating": 1
+        },
+        {
+          "name": "Проникающее",
+          "rating": 3
+        },
+        {
+          "name": "Укреплённое",
+          "rating": null
+        },
+        {
+          "name": "Сноровка",
+          "rating": 3
+        }
+      ],
+      "description": "<p>Редчайший клинок из выращенного кристалла под напряжением: неразрушим и легко рассекает броню, но требует ловких рук.</p>",
+      "source": "Equipment Encyclopedia (Shadow of the Beanstalk), с. 91",
+      "worlds": [
+        "scifi",
+        "spaceopera"
+      ]
+    }
+  },
+  {
+    "name": "Плазменный резак",
+    "nameEn": "Plasma Cutter",
+    "type": "weapon",
+    "folder": "Энциклопедия: киберпанк",
+    "system": {
+      "skill": "melee",
+      "damage": 12,
+      "brawnDamage": false,
+      "crit": 3,
+      "range": "engaged",
+      "encumbrance": 5,
+      "hardPoints": 3,
+      "price": 725,
+      "rarity": 5,
+      "qualities": [
+        {
+          "name": "Жжение",
+          "rating": 1
+        },
+        {
+          "name": "Подготовка",
+          "rating": 1
+        },
+        {
+          "name": "Повреждение",
+          "rating": null
+        },
+        {
+          "name": "Сноровка",
+          "rating": 2
+        }
+      ],
+      "description": "<p>Промышленный инструмент для резки металла, который можно использовать как оружие: урон не зависит от Силы, перед применением резак нужно запустить.</p>",
+      "source": "Equipment Encyclopedia (Shadow of the Beanstalk), с. 91",
+      "worlds": [
+        "scifi",
+        "spaceopera"
+      ]
+    }
+  },
+  {
+    "name": "Кувалда",
+    "nameEn": "Sledgehammer",
+    "type": "weapon",
+    "folder": "Энциклопедия: киберпанк",
+    "system": {
+      "skill": "melee",
+      "damage": 4,
+      "brawnDamage": true,
+      "crit": 4,
+      "range": "engaged",
+      "encumbrance": 4,
+      "hardPoints": 4,
+      "price": 200,
+      "rarity": 2,
+      "qualities": [
+        {
+          "name": "Громоздкое",
+          "rating": 2
+        },
+        {
+          "name": "Нокдаун",
+          "rating": null
+        }
+      ],
+      "description": "<p>Тяжёлый рабочий молот, который в драке валит противника с ног.</p>",
+      "source": "Equipment Encyclopedia (Shadow of the Beanstalk), с. 91",
+      "worlds": [
+        "steampunk",
+        "weirdwar",
+        "modern",
+        "monster",
+        "postapoc",
+        "zombie",
+        "scifi",
+        "spaceopera"
+      ]
+    }
+  },
+  {
+    "name": "Шоковая дубинка",
+    "nameEn": "Stun Baton",
+    "type": "weapon",
+    "folder": "Энциклопедия: киберпанк",
+    "system": {
+      "skill": "melee",
+      "damage": 2,
+      "brawnDamage": true,
+      "crit": 5,
+      "range": "engaged",
+      "encumbrance": 1,
+      "hardPoints": 2,
+      "price": 125,
+      "rarity": 2,
+      "qualities": [
+        {
+          "name": "Дезориентация",
+          "rating": 3
+        },
+        {
+          "name": "Оглушающий урон",
+          "rating": null
+        }
+      ],
+      "description": "<p>Полицейская дубинка с электрическим разрядом: наносит только урон усталости и дезориентирует. В отличие от варианта из Core, урон прибавляется к Силе.</p>",
+      "source": "Equipment Encyclopedia (Shadow of the Beanstalk), с. 91",
+      "worlds": [
+        "scifi",
+        "spaceopera"
+      ]
+    }
+  },
+  {
+    "name": "Шокер",
+    "nameEn": "Stun Gun",
+    "type": "weapon",
+    "folder": "Энциклопедия: киберпанк",
+    "system": {
+      "skill": "melee",
+      "damage": 6,
+      "brawnDamage": false,
+      "crit": 5,
+      "range": "engaged",
+      "encumbrance": 1,
+      "hardPoints": 1,
+      "price": 200,
+      "rarity": 3,
+      "qualities": [
+        {
+          "name": "Оглушение",
+          "rating": 4
+        },
+        {
+          "name": "Оглушающий урон",
+          "rating": null
+        }
+      ],
+      "description": "<p>Контактный электрошокер ближнего будущего: урон не зависит от Силы и наносится только усталости.</p>",
+      "source": "Equipment Encyclopedia (Shadow of the Beanstalk), с. 91",
+      "worlds": [
+        "scifi",
+        "spaceopera"
+      ]
+    }
+  },
+  {
+    "name": "Водяной нож",
+    "nameEn": "Waterknife",
+    "type": "weapon",
+    "folder": "Энциклопедия: киберпанк",
+    "system": {
+      "skill": "melee",
+      "damage": 10,
+      "brawnDamage": false,
+      "crit": 3,
+      "range": "engaged",
+      "encumbrance": 4,
+      "hardPoints": 1,
+      "price": 850,
+      "rarity": 4,
+      "qualities": [
+        {
+          "name": "Подготовка",
+          "rating": 1
+        },
+        {
+          "name": "Повреждение",
+          "rating": null
+        },
+        {
+          "name": "Сноровка",
+          "rating": 3
+        },
+        {
+          "name": "Высококритичное",
+          "rating": 3
+        }
+      ],
+      "description": "<p>Режущая струя воды под сверхвысоким давлением: урон не зависит от Силы, перед применением устройство нужно запустить.</p>",
+      "source": "Equipment Encyclopedia (Shadow of the Beanstalk), с. 91",
+      "worlds": [
+        "scifi",
+        "spaceopera"
+      ]
+    }
+  },
+  {
+    "name": "Импровизированное оружие (лёгкое)",
+    "nameEn": "Improvised Weapon (Bottle, Fist-Sized Rock)",
+    "type": "weapon",
+    "folder": "Энциклопедия: импровизированное оружие",
+    "system": {
+      "skill": "meleeLight",
+      "damage": 1,
+      "brawnDamage": true,
+      "crit": 5,
+      "range": "engaged",
+      "encumbrance": 1,
+      "hardPoints": 0,
+      "price": 0,
+      "rarity": 0,
+      "qualities": [],
+      "description": "<p>Любой подручный предмет размером с бутылку или камень в кулаке. Цены и редкости нет.</p>",
+      "source": "Equipment Encyclopedia (Core Rulebook), с. 109",
+      "worlds": [
+        "fantasy",
+        "mythic",
+        "terrinoth",
+        "steampunk",
+        "weirdwar",
+        "modern",
+        "monster",
+        "postapoc",
+        "zombie",
+        "scifi",
+        "spaceopera"
+      ]
+    }
+  },
+  {
+    "name": "Импровизированное оружие (двуручное)",
+    "nameEn": "Improvised Weapon (Two-Handed Rock, Chair)",
+    "type": "weapon",
+    "folder": "Энциклопедия: импровизированное оружие",
+    "system": {
+      "skill": "meleeHeavy",
+      "damage": 2,
+      "brawnDamage": true,
+      "crit": 5,
+      "range": "engaged",
+      "encumbrance": 3,
+      "hardPoints": 0,
+      "price": 0,
+      "rarity": 0,
+      "qualities": [
+        {
+          "name": "Громоздкое",
+          "rating": 2
+        }
+      ],
+      "description": "<p>Тяжёлый предмет, который приходится держать двумя руками, — большой камень или стул. Цены и редкости нет.</p>",
+      "source": "Equipment Encyclopedia (Core Rulebook), с. 109",
+      "worlds": [
+        "fantasy",
+        "mythic",
+        "terrinoth",
+        "steampunk",
+        "weirdwar",
+        "modern",
+        "monster",
+        "postapoc",
+        "zombie",
+        "scifi",
+        "spaceopera"
+      ]
+    }
+  },
+  {
+    "name": "Импровизированное оружие (крупное)",
+    "nameEn": "Improvised Weapon (Shovel, Tree Branch, Table)",
+    "type": "weapon",
+    "folder": "Энциклопедия: импровизированное оружие",
+    "system": {
+      "skill": "meleeHeavy",
+      "damage": 3,
+      "brawnDamage": true,
+      "crit": 5,
+      "range": "engaged",
+      "encumbrance": 4,
+      "hardPoints": 0,
+      "price": 0,
+      "rarity": 0,
+      "qualities": [
+        {
+          "name": "Громоздкое",
+          "rating": 4
+        }
+      ],
+      "description": "<p>Крупный неудобный предмет — лопата, толстая ветка, стол. Цены и редкости нет.</p>",
+      "source": "Equipment Encyclopedia (Core Rulebook), с. 109",
+      "worlds": [
+        "fantasy",
+        "mythic",
+        "terrinoth",
+        "steampunk",
+        "weirdwar",
+        "modern",
+        "monster",
+        "postapoc",
+        "zombie",
+        "scifi",
+        "spaceopera"
+      ]
+    }
+  }
+]

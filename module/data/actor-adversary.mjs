@@ -1,5 +1,5 @@
 import { GENESYS } from "../config.mjs";
-import { intField, characteristicsField, choiceField } from "./fields.mjs";
+import { intField, characteristicsField, choiceField, worldsField } from "./fields.mjs";
 
 const { SchemaField, HTMLField } = foundry.data.fields;
 
@@ -22,7 +22,22 @@ export default class AdversaryData extends foundry.abstract.TypeDataModel {
       /** Количество прислужников в группе. */
       groupSize: intField(3, { min: 1, max: 20 }),
       description: new HTMLField(),
-      notes: new HTMLField()
+      notes: new HTMLField(),
+      source: new foundry.data.fields.StringField({ required: true, blank: true, initial: "" }),
+      worlds: worldsField(),
+      /** Тип существа (module/creatures.mjs) и теги добычи — для генераторов встреч и добычи. */
+      creatureType: new foundry.data.fields.StringField({ required: true, blank: true, initial: "" }),
+      /** Уровни силы (Expanded Player's Guide): боевой, социальный, общий; 0 — посчитать автоматически. */
+      power: new SchemaField({
+        combat: intField(0), social: intField(0), general: intField(0),
+        listed: new foundry.data.fields.BooleanField({ initial: false })
+      }),
+      /** Мотивации (для социальных сцен: их можно раскрыть). */
+      motivations: new SchemaField(Object.fromEntries(["strength", "flaw", "desire", "fear"].map(k => [k, new SchemaField({
+        name: new foundry.data.fields.StringField({ required: true, blank: true, initial: "" }),
+        description: new foundry.data.fields.StringField({ required: true, blank: true, initial: "" })
+      })]))),
+      loot: new foundry.data.fields.ArrayField(new foundry.data.fields.StringField({ required: true, blank: false }), { required: true, initial: [] })
     };
   }
 

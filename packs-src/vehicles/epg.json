@@ -1,0 +1,3274 @@
+[
+  {
+    "name": "Колесница",
+    "nameEn": "Chariot",
+    "type": "vehicle",
+    "folder": "Расширенное руководство",
+    "system": {
+      "silhouette": 2,
+      "speed": {
+        "value": 0,
+        "max": 2
+      },
+      "handling": -1,
+      "defense": {
+        "fore": 0,
+        "aft": 0,
+        "port": 0,
+        "starboard": 0
+      },
+      "armor": 0,
+      "hullTrauma": {
+        "value": 0,
+        "max": 3
+      },
+      "systemStrain": {
+        "value": 0,
+        "max": 2
+      },
+      "skill": "riding",
+      "crew": "1 возница",
+      "passengers": 1,
+      "encumbrance": 8,
+      "price": 650,
+      "rarity": 2,
+      "hardPoints": 0,
+      "description": "<p>Двухколёсная повозка, запряжённая двумя или четырьмя лошадьми; в древности служила знати для передвижения, войны (как подвижная платформа для лучников) и гонок. По книге управляется навыком Верховая езда, но допускается Вождение. Оружия нет.</p><p>Припасы: нет.</p><p>Подходит для миров: Эпоха мифов, Фэнтези.</p>",
+      "source": "Expanded Player's Guide, с. 63"
+    },
+    "items": []
+  },
+  {
+    "name": "Карета",
+    "nameEn": "Coach",
+    "type": "vehicle",
+    "folder": "Расширенное руководство",
+    "system": {
+      "silhouette": 2,
+      "speed": {
+        "value": 0,
+        "max": 2
+      },
+      "handling": -1,
+      "defense": {
+        "fore": 0,
+        "aft": 0,
+        "port": 0,
+        "starboard": 0
+      },
+      "armor": 0,
+      "hullTrauma": {
+        "value": 0,
+        "max": 4
+      },
+      "systemStrain": {
+        "value": 0,
+        "max": 4
+      },
+      "skill": "riding",
+      "crew": "1 возница, 1 охранник",
+      "passengers": 6,
+      "encumbrance": 8,
+      "price": 1100,
+      "rarity": 3,
+      "hardPoints": 0,
+      "description": "<p>Крытая четырёхколёсная повозка, которую тянут две или более лошади; рассчитана на скорость и перевозку пассажиров (от кареты знати до дилижанса). По книге управляется навыком Верховая езда, но допускается Вождение. Вариант «телега»: макс. скорость 1, пассажиров 0, вместимость нагрузки 60, цена 300. Оружия нет.</p><p>Припасы: нет.</p><p>Подходит для миров: Эпоха мифов, Фэнтези, Стимпанк.</p>",
+      "source": "Expanded Player's Guide, с. 63"
+    },
+    "items": []
+  },
+  {
+    "name": "Мотоцикл",
+    "nameEn": "Motorcycle",
+    "type": "vehicle",
+    "folder": "Расширенное руководство",
+    "system": {
+      "silhouette": 1,
+      "speed": {
+        "value": 0,
+        "max": 4
+      },
+      "handling": 1,
+      "defense": {
+        "fore": 0,
+        "aft": 0,
+        "port": 0,
+        "starboard": 0
+      },
+      "armor": 0,
+      "hullTrauma": {
+        "value": 0,
+        "max": 2
+      },
+      "systemStrain": {
+        "value": 0,
+        "max": 3
+      },
+      "skill": "driving",
+      "crew": "1 водитель",
+      "passengers": 0,
+      "encumbrance": 4,
+      "price": 3255,
+      "rarity": 4,
+      "hardPoints": 0,
+      "description": "<p>Маленький, манёвренный и экономичный мотоцикл. Пассажиров: 0 (1 без удобств). Профиль подходит для гидроцикла в современности, а с навыком Пилотирование — для ховербайка в научной фантастике. Оружия нет.</p><p>Припасы: 5 часов.</p><p>Подходит для миров: Стимпанк, Моровая война, Современность, Научная фантастика, Космоопера, Постапокалипсис.</p>",
+      "source": "Expanded Player's Guide, с. 63"
+    },
+    "items": []
+  },
+  {
+    "name": "Спортивный автомобиль",
+    "nameEn": "Sports Car",
+    "type": "vehicle",
+    "folder": "Расширенное руководство",
+    "system": {
+      "silhouette": 2,
+      "speed": {
+        "value": 0,
+        "max": 4
+      },
+      "handling": 2,
+      "defense": {
+        "fore": 0,
+        "aft": 0,
+        "port": 0,
+        "starboard": 0
+      },
+      "armor": 0,
+      "hullTrauma": {
+        "value": 0,
+        "max": 3
+      },
+      "systemStrain": {
+        "value": 0,
+        "max": 5
+      },
+      "skill": "driving",
+      "crew": "1 водитель",
+      "passengers": 1,
+      "encumbrance": 12,
+      "price": 8000,
+      "rarity": 5,
+      "hardPoints": 0,
+      "description": "<p>Быстрый и манёвренный автомобиль, жертвующий прочностью, безопасностью и вместимостью. Оружия нет.</p><p>Припасы: 3 часа.</p><p>Подходит для миров: Стимпанк, Моровая война, Современность, Научная фантастика, Космоопера, Постапокалипсис.</p>",
+      "source": "Expanded Player's Guide, с. 64"
+    },
+    "items": []
+  },
+  {
+    "name": "Автобус",
+    "nameEn": "Bus",
+    "type": "vehicle",
+    "folder": "Расширенное руководство",
+    "system": {
+      "silhouette": 3,
+      "speed": {
+        "value": 0,
+        "max": 3
+      },
+      "handling": -2,
+      "defense": {
+        "fore": 0,
+        "aft": 0,
+        "port": 0,
+        "starboard": 0
+      },
+      "armor": 0,
+      "hullTrauma": {
+        "value": 0,
+        "max": 8
+      },
+      "systemStrain": {
+        "value": 0,
+        "max": 6
+      },
+      "skill": "driving",
+      "crew": "1 водитель",
+      "passengers": 48,
+      "encumbrance": 10,
+      "price": 2500,
+      "rarity": 4,
+      "hardPoints": 0,
+      "description": "<p>Городской пассажирский автобус. Оружия нет.</p><p>Припасы: 6 часов.</p><p>Подходит для миров: Стимпанк, Моровая война, Современность, Научная фантастика, Космоопера, Постапокалипсис.</p>",
+      "source": "Expanded Player's Guide, с. 64"
+    },
+    "items": []
+  },
+  {
+    "name": "Грузовик",
+    "nameEn": "Truck",
+    "type": "vehicle",
+    "folder": "Расширенное руководство",
+    "system": {
+      "silhouette": 3,
+      "speed": {
+        "value": 0,
+        "max": 3
+      },
+      "handling": -2,
+      "defense": {
+        "fore": 0,
+        "aft": 0,
+        "port": 0,
+        "starboard": 0
+      },
+      "armor": 0,
+      "hullTrauma": {
+        "value": 0,
+        "max": 10
+      },
+      "systemStrain": {
+        "value": 0,
+        "max": 10
+      },
+      "skill": "driving",
+      "crew": "1 водитель",
+      "passengers": 2,
+      "encumbrance": 125,
+      "price": 8100,
+      "rarity": 4,
+      "hardPoints": 0,
+      "description": "<p>Грузовик среднего размера для перевозки товаров; для фуры увеличьте вместимость нагрузки. Оружия нет.</p><p>Припасы: 1 день.</p><p>Подходит для миров: Современность, Научная фантастика, Космоопера, Постапокалипсис.</p>",
+      "source": "Expanded Player's Guide, с. 64"
+    },
+    "items": []
+  },
+  {
+    "name": "Локомотив",
+    "nameEn": "Locomotive",
+    "type": "vehicle",
+    "folder": "Расширенное руководство",
+    "system": {
+      "silhouette": 3,
+      "speed": {
+        "value": 0,
+        "max": 3
+      },
+      "handling": -3,
+      "defense": {
+        "fore": 0,
+        "aft": 0,
+        "port": 0,
+        "starboard": 0
+      },
+      "armor": 1,
+      "hullTrauma": {
+        "value": 0,
+        "max": 12
+      },
+      "systemStrain": {
+        "value": 0,
+        "max": 12
+      },
+      "skill": "operating",
+      "crew": "1 машинист, 1 механик, 2 наблюдателя",
+      "passengers": 0,
+      "encumbrance": 20,
+      "price": 50000,
+      "rarity": 7,
+      "hardPoints": 0,
+      "description": "<p>Паровоз, тепловоз, электровоз, поезд на магнитной подушке или футуристический аналог; движется только по путям, а экипажу нужно переключать стрелки. Вагоны: каждый имеет те же порог повреждений корпуса, фигуру, защиту и броню, что и локомотив, и поражается отдельно; пассажирский вагон вмещает 100 человек, грузовой — 200 нагрузки; каждый стоит 5 000. Оружия нет.</p><p>Припасы: 1 день.</p><p>Подходит для миров: Стимпанк, Моровая война, Современность, Научная фантастика, Космоопера, Мир чудовищ, Постапокалипсис.</p>",
+      "source": "Expanded Player's Guide, с. 64"
+    },
+    "items": []
+  },
+  {
+    "name": "Багги пустошей",
+    "nameEn": "Wasteland Buggy",
+    "type": "vehicle",
+    "folder": "Расширенное руководство",
+    "system": {
+      "silhouette": 2,
+      "speed": {
+        "value": 0,
+        "max": 4
+      },
+      "handling": 1,
+      "defense": {
+        "fore": 1,
+        "aft": 1,
+        "port": 1,
+        "starboard": 1
+      },
+      "armor": 0,
+      "hullTrauma": {
+        "value": 0,
+        "max": 9
+      },
+      "systemStrain": {
+        "value": 0,
+        "max": 9
+      },
+      "skill": "driving",
+      "crew": "1 водитель, 1 стрелок",
+      "passengers": 2,
+      "encumbrance": 15,
+      "price": 12100,
+      "rarity": 8,
+      "hardPoints": 0,
+      "description": "<p>Машина мародёров, собранная из шасси довоенного автомобиля, с форсированным двигателем и самодельным оружием. Особые правила: Уязвимость, Шипы.</p><p>Припасы: 2 дня.</p><p>Подходит для миров: Постапокалипсис.</p>",
+      "source": "Expanded Player's Guide, с. 64"
+    },
+    "items": [
+      {
+        "name": "Пушка-ломомёт",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 1,
+          "brawnDamage": false,
+          "crit": 4,
+          "range": "medium",
+          "qualities": [
+            {
+              "name": "Неточное",
+              "rating": 1
+            },
+            {
+              "name": "Высококритичное",
+              "rating": 2
+            }
+          ],
+          "firingArc": "впереди, по левому и правому борту",
+          "description": "<p>Самодельное орудие, стреляющее металлоломом.</p>",
+          "source": "Expanded Player's Guide, с. 65",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Лёгкий пулемёт на решётке радиатора",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 10,
+          "brawnDamage": false,
+          "crit": 3,
+          "range": "long",
+          "qualities": [
+            {
+              "name": "Автоматическое",
+              "rating": null
+            },
+            {
+              "name": "Неточное",
+              "rating": 1
+            },
+            {
+              "name": "Персональный масштаб",
+              "rating": null
+            }
+          ],
+          "firingArc": "все",
+          "description": "<p>Пулемёт, наспех закреплённый спереди на машине.</p>",
+          "source": "Expanded Player's Guide, с. 65",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Уязвимость",
+        "type": "ability",
+        "system": {
+          "description": "<p>Транспорт особенно уязвим для огня: к результату каждой успешной боевой проверки, нацеленной на него, добавляются 2 преимущества.</p>"
+        }
+      },
+      {
+        "name": "Шипы",
+        "type": "ability",
+        "system": {
+          "description": "<p>Когда этот транспорт участвует в столкновении (Core Rulebook, с. 222), все остальные транспортные средства и персонажи, участвующие в столкновении, добавляют +30 к результату получаемых критических попаданий и критических травм.</p>"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Тягач кочевников пустошей",
+    "nameEn": "Wasteland Nomad Rig",
+    "type": "vehicle",
+    "folder": "Расширенное руководство",
+    "system": {
+      "silhouette": 3,
+      "speed": {
+        "value": 0,
+        "max": 3
+      },
+      "handling": -1,
+      "defense": {
+        "fore": 0,
+        "aft": 0,
+        "port": 0,
+        "starboard": 0
+      },
+      "armor": 1,
+      "hullTrauma": {
+        "value": 0,
+        "max": 15
+      },
+      "systemStrain": {
+        "value": 0,
+        "max": 12
+      },
+      "skill": "driving",
+      "crew": "1 водитель, 2 стрелка, 1 механик",
+      "passengers": 10,
+      "encumbrance": 100,
+      "price": 20800,
+      "rarity": 7,
+      "hardPoints": 0,
+      "description": "<p>Бронированный седельный тягач, переделанный кочевниками пустошей в передвижной дом-крепость. Особые правила: Живучесть, Шипы.</p><p>Припасы: 2 недели.</p><p>Подходит для миров: Постапокалипсис.</p>",
+      "source": "Expanded Player's Guide, с. 65"
+    },
+    "items": [
+      {
+        "name": "Гарпунная пушка",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 1,
+          "brawnDamage": false,
+          "crit": 2,
+          "range": "medium",
+          "qualities": [
+            {
+              "name": "Сковывание",
+              "rating": 2
+            }
+          ],
+          "firingArc": "сзади, по левому и правому борту",
+          "description": "<p>Если цель имеет фигуру 3 или меньше, стрелок может потратить 2 преимущества или триумф из боевой проверки этим оружием, чтобы подтянуть цель на один диапазон дистанции ближе к своему транспорту.</p>",
+          "source": "Expanded Player's Guide, с. 65",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Турель-шипомёт",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 8,
+          "brawnDamage": false,
+          "crit": 2,
+          "range": "medium",
+          "qualities": [
+            {
+              "name": "Персональный масштаб",
+              "rating": null
+            },
+            {
+              "name": "Проникающее",
+              "rating": 3
+            },
+            {
+              "name": "Высококритичное",
+              "rating": 3
+            }
+          ],
+          "firingArc": "впереди, по левому и правому борту",
+          "description": "<p>Турель, выстреливающая тяжёлые шипы.</p>",
+          "source": "Expanded Player's Guide, с. 65",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Живучесть",
+        "type": "ability",
+        "system": {
+          "description": "<p>Когда транспорт, которым управляет ваш персонаж, получает критическое попадание, можно потратить очко сюжета, чтобы бросить на результат второй раз и выбрать любой из двух результатов.</p>"
+        }
+      },
+      {
+        "name": "Шипы",
+        "type": "ability",
+        "system": {
+          "description": "<p>Когда этот транспорт участвует в столкновении (Core Rulebook, с. 222), все остальные транспортные средства и персонажи, участвующие в столкновении, добавляют +30 к результату получаемых критических попаданий и критических травм.</p>"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Бронетранспортёр",
+    "nameEn": "Armored Personnel Carrier",
+    "type": "vehicle",
+    "folder": "Расширенное руководство",
+    "system": {
+      "silhouette": 3,
+      "speed": {
+        "value": 0,
+        "max": 3
+      },
+      "handling": -2,
+      "defense": {
+        "fore": 0,
+        "aft": 0,
+        "port": 0,
+        "starboard": 0
+      },
+      "armor": 2,
+      "hullTrauma": {
+        "value": 0,
+        "max": 16
+      },
+      "systemStrain": {
+        "value": 0,
+        "max": 15
+      },
+      "skill": "driving",
+      "crew": "1 водитель, 1 стрелок",
+      "passengers": 10,
+      "encumbrance": 30,
+      "price": 16000,
+      "rarity": 5,
+      "hardPoints": 0,
+      "description": "<p>Базовая бронированная военная машина для доставки пехоты по полю боя. Особое правило: Вездеход.</p><p>Припасы: 6 часов. Запрещённый транспорт (R).</p><p>Подходит для миров: Моровая война, Современность, Научная фантастика, Космоопера, Постапокалипсис.</p>",
+      "source": "Expanded Player's Guide, с. 65"
+    },
+    "items": [
+      {
+        "name": "Тяжёлый пулемёт",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 12,
+          "brawnDamage": false,
+          "crit": 3,
+          "range": "long",
+          "qualities": [
+            {
+              "name": "Автоматическое",
+              "rating": null
+            },
+            {
+              "name": "Персональный масштаб",
+              "rating": null
+            },
+            {
+              "name": "Проникающее",
+              "rating": 2
+            },
+            {
+              "name": "Высококритичное",
+              "rating": 2
+            }
+          ],
+          "firingArc": "все",
+          "description": "<p>Станковый крупнокалиберный пулемёт на бронетехнике (в т.ч. на шкворневой установке танка).</p>",
+          "source": "Expanded Player's Guide, с. 65",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Вездеход",
+        "type": "ability",
+        "system": {
+          "description": "<p>При проверке Вождения, Пилотирования или Управления для управления этим транспортом персонаж может убрать из набора до 2 костей штрафа, добавленных из-за местности.</p>"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Танк",
+    "nameEn": "Tank",
+    "type": "vehicle",
+    "folder": "Расширенное руководство",
+    "system": {
+      "silhouette": 3,
+      "speed": {
+        "value": 0,
+        "max": 2
+      },
+      "handling": -2,
+      "defense": {
+        "fore": 0,
+        "aft": 0,
+        "port": 0,
+        "starboard": 0
+      },
+      "armor": 2,
+      "hullTrauma": {
+        "value": 0,
+        "max": 18
+      },
+      "systemStrain": {
+        "value": 0,
+        "max": 14
+      },
+      "skill": "driving",
+      "crew": "1 водитель, 2 стрелка, 1 командир",
+      "passengers": 0,
+      "encumbrance": 5,
+      "price": 25000,
+      "rarity": 6,
+      "hardPoints": 0,
+      "description": "<p>Гусеничная бронемашина, неуязвимая для большей части стрелкового оружия; главное орудие уничтожает бронетехнику и укрепления, пулемёты отгоняют пехоту. Особое правило: Вездеход.</p><p>Припасы: 6 часов. Запрещённый транспорт (R).</p><p>Подходит для миров: Моровая война, Современность, Научная фантастика, Космоопера, Постапокалипсис.</p>",
+      "source": "Expanded Player's Guide, с. 66"
+    },
+    "items": [
+      {
+        "name": "Основное орудие танка",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 3,
+          "brawnDamage": false,
+          "crit": 3,
+          "range": "extreme",
+          "qualities": [
+            {
+              "name": "Бронебойное",
+              "rating": 1
+            },
+            {
+              "name": "Высококритичное",
+              "rating": 3
+            }
+          ],
+          "firingArc": "все",
+          "description": "<p>Башенная пушка для поражения бронетехники и укреплений.</p>",
+          "source": "Expanded Player's Guide, с. 66",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Тяжёлый пулемёт (на шкворневой установке)",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 12,
+          "brawnDamage": false,
+          "crit": 3,
+          "range": "long",
+          "qualities": [
+            {
+              "name": "Автоматическое",
+              "rating": null
+            },
+            {
+              "name": "Персональный масштаб",
+              "rating": null
+            },
+            {
+              "name": "Проникающее",
+              "rating": 2
+            },
+            {
+              "name": "Высококритичное",
+              "rating": 2
+            }
+          ],
+          "firingArc": "все",
+          "description": "<p>Станковый крупнокалиберный пулемёт на бронетехнике (в т.ч. на шкворневой установке танка).</p>",
+          "source": "Expanded Player's Guide, с. 65",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Лёгкий пулемёт (спаренный)",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 10,
+          "brawnDamage": false,
+          "crit": 3,
+          "range": "long",
+          "qualities": [
+            {
+              "name": "Автоматическое",
+              "rating": null
+            },
+            {
+              "name": "Персональный масштаб",
+              "rating": null
+            }
+          ],
+          "firingArc": "все",
+          "description": "<p>Лёгкий пулемёт на транспорте (спаренный с танковой пушкой, на патрульном катере и т.п.).</p>",
+          "source": "Expanded Player's Guide, с. 66",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Вездеход",
+        "type": "ability",
+        "system": {
+          "description": "<p>При проверке Вождения, Пилотирования или Управления для управления этим транспортом персонаж может убрать из набора до 2 костей штрафа, добавленных из-за местности.</p>"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Тактический шагоход",
+    "nameEn": "Tactical Strider",
+    "type": "vehicle",
+    "folder": "Расширенное руководство",
+    "system": {
+      "silhouette": 2,
+      "speed": {
+        "value": 0,
+        "max": 2
+      },
+      "handling": 0,
+      "defense": {
+        "fore": 1,
+        "aft": 1,
+        "port": 1,
+        "starboard": 1
+      },
+      "armor": 1,
+      "hullTrauma": {
+        "value": 0,
+        "max": 12
+      },
+      "systemStrain": {
+        "value": 0,
+        "max": 12
+      },
+      "skill": "driving",
+      "crew": "1 водитель",
+      "passengers": 0,
+      "encumbrance": 5,
+      "price": 40000,
+      "rarity": 6,
+      "hardPoints": 0,
+      "description": "<p>Пилотируемый человекоподобный мех высотой около шести метров: от паро-часового шагохода до боевого костюма с нейроинтерфейсом. Особое правило: Вездеход.</p><p>Припасы: 3 дня. Запрещённый транспорт (R).</p><p>Подходит для миров: Стимпанк, Моровая война, Научная фантастика, Космоопера.</p>",
+      "source": "Expanded Player's Guide, с. 66"
+    },
+    "items": [
+      {
+        "name": "Бронированный кулак шагохода",
+        "type": "weapon",
+        "system": {
+          "skill": "brawl",
+          "damage": 1,
+          "brawnDamage": false,
+          "crit": 4,
+          "range": "engaged",
+          "qualities": [
+            {
+              "name": "Ошеломление",
+              "rating": 1
+            },
+            {
+              "name": "Нокдаун",
+              "rating": null
+            }
+          ],
+          "firingArc": "все",
+          "description": "<p>Удар бронированной рукой шагохода.</p>",
+          "source": "Expanded Player's Guide, с. 66",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Наплечная ракетная установка",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 2,
+          "brawnDamage": false,
+          "crit": 4,
+          "range": "extreme",
+          "qualities": [
+            {
+              "name": "Взрыв",
+              "rating": 1
+            },
+            {
+              "name": "Нокдаун",
+              "rating": null
+            }
+          ],
+          "firingArc": "впереди",
+          "description": "<p>Блок ракет на плече шагохода.</p>",
+          "source": "Expanded Player's Guide, с. 66",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Противошагоходная винтовка",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 1,
+          "brawnDamage": false,
+          "crit": 3,
+          "range": "long",
+          "qualities": [
+            {
+              "name": "Автоматическое",
+              "rating": null
+            }
+          ],
+          "firingArc": "все",
+          "description": "<p>Увеличенная автоматическая винтовка для шагохода.</p>",
+          "source": "Expanded Player's Guide, с. 66",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Вездеход",
+        "type": "ability",
+        "system": {
+          "description": "<p>При проверке Вождения, Пилотирования или Управления для управления этим транспортом персонаж может убрать из набора до 2 костей штрафа, добавленных из-за местности.</p>"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Мех",
+    "nameEn": "Mecha",
+    "type": "vehicle",
+    "folder": "Расширенное руководство",
+    "system": {
+      "silhouette": 4,
+      "speed": {
+        "value": 0,
+        "max": 2
+      },
+      "handling": -1,
+      "defense": {
+        "fore": 2,
+        "aft": 2,
+        "port": 2,
+        "starboard": 2
+      },
+      "armor": 3,
+      "hullTrauma": {
+        "value": 0,
+        "max": 30
+      },
+      "systemStrain": {
+        "value": 0,
+        "max": 25
+      },
+      "skill": "driving",
+      "crew": "1 водитель",
+      "passengers": 0,
+      "encumbrance": 5,
+      "price": 52000,
+      "rarity": 7,
+      "hardPoints": 0,
+      "description": "<p>Человекоподобная боевая машина высотой около тридцати метров с увеличенными копиями личного оружия; управляется вручную, с помощью ИИ или через нейроинтерфейс. Особое правило: Вездеход.</p><p>Припасы: 3 дня. Запрещённый транспорт (R).</p><p>Подходит для миров: Космоопера.</p>",
+      "source": "Expanded Player's Guide, с. 66"
+    },
+    "items": [
+      {
+        "name": "Кулак меха",
+        "type": "weapon",
+        "system": {
+          "skill": "brawl",
+          "damage": 3,
+          "brawnDamage": false,
+          "crit": 4,
+          "range": "engaged",
+          "qualities": [
+            {
+              "name": "Ошеломление",
+              "rating": 1
+            },
+            {
+              "name": "Нокдаун",
+              "rating": null
+            }
+          ],
+          "firingArc": "все",
+          "description": "<p>Удар огромным кулаком меха.</p>",
+          "source": "Expanded Player's Guide, с. 66",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Меч-корпусолом",
+        "type": "weapon",
+        "system": {
+          "skill": "melee",
+          "damage": 4,
+          "brawnDamage": false,
+          "crit": 2,
+          "range": "engaged",
+          "qualities": [
+            {
+              "name": "Бронебойное",
+              "rating": 3
+            },
+            {
+              "name": "Подготовка",
+              "rating": 2
+            },
+            {
+              "name": "Высококритичное",
+              "rating": 3
+            }
+          ],
+          "firingArc": "все",
+          "description": "<p>Исполинский меч меха, прорубающий корпуса техники.</p>",
+          "source": "Expanded Player's Guide, с. 66",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Гигапушка",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 4,
+          "brawnDamage": false,
+          "crit": 3,
+          "range": "extreme",
+          "qualities": [
+            {
+              "name": "Взрыв",
+              "rating": 2
+            },
+            {
+              "name": "Бронебойное",
+              "rating": 2
+            },
+            {
+              "name": "Медленное",
+              "rating": 1
+            }
+          ],
+          "firingArc": "все",
+          "description": "<p>Крупнокалиберное орудие меха размером с артиллерийское.</p>",
+          "source": "Expanded Player's Guide, с. 66",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Вездеход",
+        "type": "ability",
+        "system": {
+          "description": "<p>При проверке Вождения, Пилотирования или Управления для управления этим транспортом персонаж может убрать из набора до 2 костей штрафа, добавленных из-за местности.</p>"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Линейный корабль третьего ранга",
+    "nameEn": "Third-Rate Ship of the Line",
+    "type": "vehicle",
+    "folder": "Расширенное руководство",
+    "system": {
+      "silhouette": 5,
+      "speed": {
+        "value": 0,
+        "max": 2
+      },
+      "handling": -3,
+      "defense": {
+        "fore": 0,
+        "aft": 0,
+        "port": 0,
+        "starboard": 0
+      },
+      "armor": 3,
+      "hullTrauma": {
+        "value": 0,
+        "max": 80
+      },
+      "systemStrain": {
+        "value": 0,
+        "max": 60
+      },
+      "skill": "operating",
+      "crew": "500–700 человек",
+      "passengers": 25,
+      "encumbrance": 200,
+      "price": 1158000,
+      "rarity": 7,
+      "hardPoints": 0,
+      "description": "<p>Парусный военный корабль длиной около 70 м с пушками на трёх палубах — главный боевой корабль эпохи парусного флота.</p><p>Припасы: 6 месяцев. Запрещённый транспорт (R).</p><p>Подходит для миров: Фэнтези, Стимпанк, Мир чудовищ.</p>",
+      "source": "Expanded Player's Guide, с. 67"
+    },
+    "items": [
+      {
+        "name": "36-фунтовая пушка (левый борт) ×14",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 6,
+          "brawnDamage": false,
+          "crit": 2,
+          "range": "long",
+          "qualities": [],
+          "firingArc": "по левому борту",
+          "description": "<p>Количество: 14. Самое тяжёлое бортовое орудие парусного линейного корабля.</p>",
+          "source": "Expanded Player's Guide, с. 67",
+          "equipped": true
+        }
+      },
+      {
+        "name": "36-фунтовая пушка (правый борт) ×14",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 6,
+          "brawnDamage": false,
+          "crit": 2,
+          "range": "long",
+          "qualities": [],
+          "firingArc": "по правому борту",
+          "description": "<p>Количество: 14. Самое тяжёлое бортовое орудие парусного линейного корабля.</p>",
+          "source": "Expanded Player's Guide, с. 67",
+          "equipped": true
+        }
+      },
+      {
+        "name": "24-фунтовая пушка (левый борт) ×15",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 6,
+          "brawnDamage": false,
+          "crit": 3,
+          "range": "long",
+          "qualities": [],
+          "firingArc": "по левому борту",
+          "description": "<p>Количество: 15. Тяжёлое корабельное дульнозарядное орудие парусных кораблей, ставится батареями вдоль бортов.</p>",
+          "source": "Core Rulebook, с. 231",
+          "equipped": true
+        }
+      },
+      {
+        "name": "24-фунтовая пушка (правый борт) ×15",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 6,
+          "brawnDamage": false,
+          "crit": 3,
+          "range": "long",
+          "qualities": [],
+          "firingArc": "по правому борту",
+          "description": "<p>Количество: 15. Тяжёлое корабельное дульнозарядное орудие парусных кораблей, ставится батареями вдоль бортов.</p>",
+          "source": "Core Rulebook, с. 231",
+          "equipped": true
+        }
+      },
+      {
+        "name": "9-фунтовая пушка (левый борт) ×7",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 4,
+          "brawnDamage": false,
+          "crit": 5,
+          "range": "medium",
+          "qualities": [],
+          "firingArc": "по левому борту",
+          "description": "<p>Количество: 7. Лёгкое корабельное орудие парусных кораблей, ставится вдоль бортов.</p>",
+          "source": "Core Rulebook, с. 231",
+          "equipped": true
+        }
+      },
+      {
+        "name": "9-фунтовая пушка (правый борт) ×7",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 4,
+          "brawnDamage": false,
+          "crit": 5,
+          "range": "medium",
+          "qualities": [],
+          "firingArc": "по правому борту",
+          "description": "<p>Количество: 7. Лёгкое корабельное орудие парусных кораблей, ставится вдоль бортов.</p>",
+          "source": "Core Rulebook, с. 231",
+          "equipped": true
+        }
+      }
+    ]
+  },
+  {
+    "name": "Драккар",
+    "nameEn": "Longship",
+    "type": "vehicle",
+    "folder": "Расширенное руководство",
+    "system": {
+      "silhouette": 3,
+      "speed": {
+        "value": 0,
+        "max": 2
+      },
+      "handling": -1,
+      "defense": {
+        "fore": 0,
+        "aft": 0,
+        "port": 0,
+        "starboard": 0
+      },
+      "armor": 0,
+      "hullTrauma": {
+        "value": 0,
+        "max": 18
+      },
+      "systemStrain": {
+        "value": 0,
+        "max": 16
+      },
+      "skill": "operating",
+      "crew": "40 человек",
+      "passengers": 10,
+      "encumbrance": 50,
+      "price": 5400,
+      "rarity": 5,
+      "hardPoints": 0,
+      "description": "<p>Длинный узкий деревянный корабль северных налётчиков с одним прямым парусом. Собственного оружия нет — только луки, пращи и копья воинов на борту.</p><p>Припасы: 1 день.</p><p>Подходит для миров: Эпоха мифов, Фэнтези.</p>",
+      "source": "Expanded Player's Guide, с. 67"
+    },
+    "items": []
+  },
+  {
+    "name": "Трирема/галера",
+    "nameEn": "Trireme/Galley",
+    "type": "vehicle",
+    "folder": "Расширенное руководство",
+    "system": {
+      "silhouette": 4,
+      "speed": {
+        "value": 0,
+        "max": 2
+      },
+      "handling": -2,
+      "defense": {
+        "fore": 0,
+        "aft": 0,
+        "port": 0,
+        "starboard": 0
+      },
+      "armor": 1,
+      "hullTrauma": {
+        "value": 0,
+        "max": 30
+      },
+      "systemStrain": {
+        "value": 0,
+        "max": 20
+      },
+      "skill": "operating",
+      "crew": "200 человек",
+      "passengers": 30,
+      "encumbrance": 0,
+      "price": 24000,
+      "rarity": 6,
+      "hardPoints": 0,
+      "description": "<p>Античный военный корабль с прямым парусом и сотней с лишним вёсел; пассажиры — 30 солдат для стрельбы и абордажа. Главное оружие — таран (особое правило Таран). Вместимости нагрузки нет.</p><p>Припасы: 2 недели.</p><p>Подходит для миров: Эпоха мифов, Фэнтези.</p>",
+      "source": "Expanded Player's Guide, с. 68"
+    },
+    "items": [
+      {
+        "name": "Баллиста (нос)",
+        "type": "weapon",
+        "system": {
+          "skill": "ranged",
+          "damage": 1,
+          "brawnDamage": false,
+          "crit": 2,
+          "range": "long",
+          "qualities": [
+            {
+              "name": "Неточное",
+              "rating": 1
+            }
+          ],
+          "firingArc": "впереди, по левому и правому борту",
+          "description": "<p>Корабельная метательная машина античной галеры.</p>",
+          "source": "Expanded Player's Guide, с. 68",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Баллиста (корма)",
+        "type": "weapon",
+        "system": {
+          "skill": "ranged",
+          "damage": 1,
+          "brawnDamage": false,
+          "crit": 2,
+          "range": "long",
+          "qualities": [
+            {
+              "name": "Неточное",
+              "rating": 1
+            }
+          ],
+          "firingArc": "сзади, по левому и правому борту",
+          "description": "<p>Корабельная метательная машина античной галеры.</p>",
+          "source": "Expanded Player's Guide, с. 68",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Таран",
+        "type": "ability",
+        "system": {
+          "description": "<p>Когда корабль намеренно сталкивается с другим кораблём (Core Rulebook, с. 222), другой корабль получает 8 повреждений корпуса и добавляет +40 к результату получаемого критического попадания. Сам таранящий корабль уменьшает результат своего критического попадания на 20.</p>"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Малое грузовое судно",
+    "nameEn": "Small Cargo Freighter",
+    "type": "vehicle",
+    "folder": "Расширенное руководство",
+    "system": {
+      "silhouette": 5,
+      "speed": {
+        "value": 0,
+        "max": 2
+      },
+      "handling": -3,
+      "defense": {
+        "fore": 0,
+        "aft": 0,
+        "port": 0,
+        "starboard": 0
+      },
+      "armor": 1,
+      "hullTrauma": {
+        "value": 0,
+        "max": 60
+      },
+      "systemStrain": {
+        "value": 0,
+        "max": 40
+      },
+      "skill": "operating",
+      "crew": "15 человек",
+      "passengers": 40,
+      "encumbrance": 4000,
+      "price": 100000,
+      "rarity": 7,
+      "hardPoints": 0,
+      "description": "<p>Независимое грузопассажирское судно длиной 60–90 м: речной пароход, океанский сухогруз или транспорт военного конвоя. Оружия нет.</p><p>Припасы: 2 месяца.</p><p>Подходит для миров: Стимпанк, Моровая война, Современность, Мир чудовищ, Постапокалипсис.</p>",
+      "source": "Expanded Player's Guide, с. 68"
+    },
+    "items": []
+  },
+  {
+    "name": "Эсминец времён Второй мировой",
+    "nameEn": "World War II–Era Destroyer",
+    "type": "vehicle",
+    "folder": "Расширенное руководство",
+    "system": {
+      "silhouette": 5,
+      "speed": {
+        "value": 0,
+        "max": 4
+      },
+      "handling": -1,
+      "defense": {
+        "fore": 0,
+        "aft": 0,
+        "port": 0,
+        "starboard": 0
+      },
+      "armor": 4,
+      "hullTrauma": {
+        "value": 0,
+        "max": 75
+      },
+      "systemStrain": {
+        "value": 0,
+        "max": 60
+      },
+      "skill": "operating",
+      "crew": "300 человек",
+      "passengers": 50,
+      "encumbrance": 125,
+      "price": 380000,
+      "rarity": 7,
+      "hardPoints": 0,
+      "description": "<p>Боевой корабль длиной около 125 м: ведёт бой с кораблями пятидюймовыми орудиями, атакует крупные корабли торпедами и охотится на подлодки.</p><p>Припасы: 2 месяца. Запрещённый транспорт (R).</p><p>Подходит для миров: Стимпанк, Моровая война, Современность.</p>",
+      "source": "Expanded Player's Guide, с. 68"
+    },
+    "items": [
+      {
+        "name": "5-дюймовая орудийная башня (нос) ×2",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 7,
+          "brawnDamage": false,
+          "crit": 3,
+          "range": "long",
+          "qualities": [
+            {
+              "name": "Взрыв",
+              "rating": 2
+            }
+          ],
+          "firingArc": "впереди, по левому и правому борту",
+          "description": "<p>Количество: 2. Корабельная артиллерийская башня среднего калибра.</p>",
+          "source": "Expanded Player's Guide, с. 68",
+          "equipped": true
+        }
+      },
+      {
+        "name": "5-дюймовая орудийная башня (корма) ×2",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 7,
+          "brawnDamage": false,
+          "crit": 3,
+          "range": "long",
+          "qualities": [
+            {
+              "name": "Взрыв",
+              "rating": 2
+            }
+          ],
+          "firingArc": "сзади, по левому и правому борту",
+          "description": "<p>Количество: 2. Корабельная артиллерийская башня среднего калибра.</p>",
+          "source": "Expanded Player's Guide, с. 68",
+          "equipped": true
+        }
+      },
+      {
+        "name": "40-мм зенитное орудие ×8",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 1,
+          "brawnDamage": false,
+          "crit": 4,
+          "range": "medium",
+          "qualities": [],
+          "firingArc": "все",
+          "description": "<p>Количество: 8. Скорострельная корабельная зенитка.</p>",
+          "source": "Expanded Player's Guide, с. 68",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Торпедный аппарат (левый борт)",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 10,
+          "brawnDamage": false,
+          "crit": 2,
+          "range": "extreme",
+          "qualities": [
+            {
+              "name": "Бронебойное",
+              "rating": 2
+            },
+            {
+              "name": "Ограниченный боезапас",
+              "rating": 5
+            },
+            {
+              "name": "Медленное",
+              "rating": 1
+            }
+          ],
+          "firingArc": "по левому борту",
+          "description": "<p>Неуправляемые торпеды эсминца. Отложенная атака: действием определите набор костей, но не бросайте; в конце раунда совершите проверку как свободное действие вне хода. Если цель уже вне дистанции или по иной причине не может быть поражена, проверка провалена.</p>",
+          "source": "Expanded Player's Guide, с. 68",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Торпедный аппарат (правый борт)",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 10,
+          "brawnDamage": false,
+          "crit": 2,
+          "range": "extreme",
+          "qualities": [
+            {
+              "name": "Бронебойное",
+              "rating": 2
+            },
+            {
+              "name": "Ограниченный боезапас",
+              "rating": 5
+            },
+            {
+              "name": "Медленное",
+              "rating": 1
+            }
+          ],
+          "firingArc": "по правому борту",
+          "description": "<p>Неуправляемые торпеды эсминца. Отложенная атака: действием определите набор костей, но не бросайте; в конце раунда совершите проверку как свободное действие вне хода. Если цель уже вне дистанции или по иной причине не может быть поражена, проверка провалена.</p>",
+          "source": "Expanded Player's Guide, с. 68",
+          "equipped": true
+        }
+      }
+    ]
+  },
+  {
+    "name": "Линкор времён Второй мировой",
+    "nameEn": "World War II–Era Battleship",
+    "type": "vehicle",
+    "folder": "Расширенное руководство",
+    "system": {
+      "silhouette": 7,
+      "speed": {
+        "value": 0,
+        "max": 4
+      },
+      "handling": -4,
+      "defense": {
+        "fore": 0,
+        "aft": 0,
+        "port": 0,
+        "starboard": 0
+      },
+      "armor": 7,
+      "hullTrauma": {
+        "value": 0,
+        "max": 120
+      },
+      "systemStrain": {
+        "value": 0,
+        "max": 90
+      },
+      "skill": "operating",
+      "crew": "1 800 человек",
+      "passengers": 200,
+      "encumbrance": 400,
+      "price": 90000000,
+      "rarity": 9,
+      "hardPoints": 0,
+      "description": "<p>Огромный и баснословно дорогой корабль с крупнейшими морскими орудиями — символ национальной гордости. Особое правило: Громадина.</p><p>Припасы: 3 месяца. Запрещённый транспорт (R).</p><p>Подходит для миров: Стимпанк, Моровая война, Современность.</p>",
+      "source": "Expanded Player's Guide, с. 69"
+    },
+    "items": [
+      {
+        "name": "16-дюймовая орудийная башня (нос) ×2",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 15,
+          "brawnDamage": false,
+          "crit": 3,
+          "range": "strategic",
+          "qualities": [
+            {
+              "name": "Взрыв",
+              "rating": 5
+            },
+            {
+              "name": "Бронебойное",
+              "rating": 3
+            },
+            {
+              "name": "Залповое",
+              "rating": 2
+            }
+          ],
+          "firingArc": "впереди, по левому и правому борту",
+          "description": "<p>Количество: 2. Главный калибр линкора. Дистанция по книге — стратегическая (в поле указана экстремальная, т.к. стратегической нет в списке).</p>",
+          "source": "Expanded Player's Guide, с. 69",
+          "equipped": true
+        }
+      },
+      {
+        "name": "16-дюймовая орудийная башня (корма)",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 15,
+          "brawnDamage": false,
+          "crit": 3,
+          "range": "strategic",
+          "qualities": [
+            {
+              "name": "Взрыв",
+              "rating": 5
+            },
+            {
+              "name": "Бронебойное",
+              "rating": 3
+            },
+            {
+              "name": "Залповое",
+              "rating": 2
+            }
+          ],
+          "firingArc": "сзади, по левому и правому борту",
+          "description": "<p>Главный калибр линкора. Дистанция по книге — стратегическая (в поле указана экстремальная, т.к. стратегической нет в списке).</p>",
+          "source": "Expanded Player's Guide, с. 69",
+          "equipped": true
+        }
+      },
+      {
+        "name": "5-дюймовая орудийная башня линкора (левый борт) ×10",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 7,
+          "brawnDamage": false,
+          "crit": 3,
+          "range": "long",
+          "qualities": [
+            {
+              "name": "Взрыв",
+              "rating": 2
+            },
+            {
+              "name": "Залповое",
+              "rating": 1
+            }
+          ],
+          "firingArc": "по левому борту",
+          "description": "<p>Количество: 10. Вспомогательный калибр линкора; в отличие от обычной башни имеет свойство Залповое.</p>",
+          "source": "Expanded Player's Guide, с. 69",
+          "equipped": true
+        }
+      },
+      {
+        "name": "5-дюймовая орудийная башня линкора (правый борт) ×10",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 7,
+          "brawnDamage": false,
+          "crit": 3,
+          "range": "long",
+          "qualities": [
+            {
+              "name": "Взрыв",
+              "rating": 2
+            },
+            {
+              "name": "Залповое",
+              "rating": 1
+            }
+          ],
+          "firingArc": "по правому борту",
+          "description": "<p>Количество: 10. Вспомогательный калибр линкора; в отличие от обычной башни имеет свойство Залповое.</p>",
+          "source": "Expanded Player's Guide, с. 69",
+          "equipped": true
+        }
+      },
+      {
+        "name": "40-мм зенитное орудие (нос) ×20",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 1,
+          "brawnDamage": false,
+          "crit": 4,
+          "range": "medium",
+          "qualities": [],
+          "firingArc": "впереди",
+          "description": "<p>Количество: 20. Скорострельная корабельная зенитка.</p>",
+          "source": "Expanded Player's Guide, с. 68",
+          "equipped": true
+        }
+      },
+      {
+        "name": "40-мм зенитное орудие (корма) ×20",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 1,
+          "brawnDamage": false,
+          "crit": 4,
+          "range": "medium",
+          "qualities": [],
+          "firingArc": "сзади",
+          "description": "<p>Количество: 20. Скорострельная корабельная зенитка.</p>",
+          "source": "Expanded Player's Guide, с. 68",
+          "equipped": true
+        }
+      },
+      {
+        "name": "40-мм зенитное орудие (левый борт) ×20",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 1,
+          "brawnDamage": false,
+          "crit": 4,
+          "range": "medium",
+          "qualities": [],
+          "firingArc": "по левому борту",
+          "description": "<p>Количество: 20. Скорострельная корабельная зенитка.</p>",
+          "source": "Expanded Player's Guide, с. 68",
+          "equipped": true
+        }
+      },
+      {
+        "name": "40-мм зенитное орудие (правый борт) ×20",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 1,
+          "brawnDamage": false,
+          "crit": 4,
+          "range": "medium",
+          "qualities": [],
+          "firingArc": "по правому борту",
+          "description": "<p>Количество: 20. Скорострельная корабельная зенитка.</p>",
+          "source": "Expanded Player's Guide, с. 68",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Громадина",
+        "type": "ability",
+        "system": {
+          "description": "<p>При атаке, нацеленной на этот транспорт, рейтинг критического попадания любого используемого оружия считается на 2 выше. Правило предназначено только для транспорта с фигурой 7 и больше.</p>"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Подводная лодка",
+    "nameEn": "Submarine",
+    "type": "vehicle",
+    "folder": "Расширенное руководство",
+    "system": {
+      "silhouette": 5,
+      "speed": {
+        "value": 0,
+        "max": 2
+      },
+      "handling": -2,
+      "defense": {
+        "fore": 0,
+        "aft": 0,
+        "port": 0,
+        "starboard": 0
+      },
+      "armor": 3,
+      "hullTrauma": {
+        "value": 0,
+        "max": 60
+      },
+      "systemStrain": {
+        "value": 0,
+        "max": 40
+      },
+      "skill": "operating",
+      "crew": "120 человек",
+      "passengers": 10,
+      "encumbrance": 60,
+      "price": 300000,
+      "rarity": 7,
+      "hardPoints": 0,
+      "description": "<p>Скрытно действует под водой: внезапные атаки, разведка, высадка спецназа. Вариант до 1950-х: уберите Наведение у торпед, уменьшите порог повреждений корпуса на 10, экипаж — 50 человек, цена на 40 000 меньше.</p><p>Припасы: 3 месяца. Запрещённый транспорт (R).</p><p>Подходит для миров: Стимпанк, Моровая война, Современность, Научная фантастика.</p>",
+      "source": "Expanded Player's Guide, с. 69"
+    },
+    "items": [
+      {
+        "name": "Торпедный аппарат подводной лодки ×4",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 9,
+          "brawnDamage": false,
+          "crit": 1,
+          "range": "extreme",
+          "qualities": [
+            {
+              "name": "Бронебойное",
+              "rating": 2
+            },
+            {
+              "name": "Наведение",
+              "rating": 4
+            },
+            {
+              "name": "Ограниченный боезапас",
+              "rating": 1
+            },
+            {
+              "name": "Медленное",
+              "rating": 1
+            }
+          ],
+          "firingArc": "впереди",
+          "description": "<p>Количество: 4. Самонаводящиеся торпеды. Для подлодки до 1950-х уберите свойство Наведение. Отложенная атака: действием определите набор костей, но не бросайте; в конце раунда совершите проверку как свободное действие вне хода. Если цель уже вне дистанции или по иной причине не может быть поражена, проверка провалена.</p>",
+          "source": "Expanded Player's Guide, с. 69",
+          "equipped": true
+        }
+      }
+    ]
+  },
+  {
+    "name": "Современный фрегат",
+    "nameEn": "Modern Frigate",
+    "type": "vehicle",
+    "folder": "Расширенное руководство",
+    "system": {
+      "silhouette": 5,
+      "speed": {
+        "value": 0,
+        "max": 4
+      },
+      "handling": -1,
+      "defense": {
+        "fore": 2,
+        "aft": 2,
+        "port": 2,
+        "starboard": 2
+      },
+      "armor": 3,
+      "hullTrauma": {
+        "value": 0,
+        "max": 75
+      },
+      "systemStrain": {
+        "value": 0,
+        "max": 65
+      },
+      "skill": "operating",
+      "crew": "250 человек",
+      "passengers": 25,
+      "encumbrance": 150,
+      "price": 400000,
+      "rarity": 7,
+      "hardPoints": 0,
+      "description": "<p>Корабль сопровождения и охотник за подлодками: брони меньше, зато высокая защита (средства РЭБ, ракеты с дипольными отражателями, оборонительное оружие). Помимо груза несёт 1 вертолёт.</p><p>Припасы: 2 месяца. Запрещённый транспорт (R).</p><p>Подходит для миров: Современность, Научная фантастика.</p>",
+      "source": "Expanded Player's Guide, с. 69"
+    },
+    "items": [
+      {
+        "name": "Сдвоенный торпедный аппарат (левый борт)",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 9,
+          "brawnDamage": false,
+          "crit": 1,
+          "range": "extreme",
+          "qualities": [
+            {
+              "name": "Бронебойное",
+              "rating": 2
+            },
+            {
+              "name": "Наведение",
+              "rating": 4
+            },
+            {
+              "name": "Ограниченный боезапас",
+              "rating": 2
+            },
+            {
+              "name": "Медленное",
+              "rating": 1
+            }
+          ],
+          "firingArc": "впереди и по левому борту",
+          "description": "<p>Самонаводящиеся торпеды современного фрегата. Отложенная атака: действием определите набор костей, но не бросайте; в конце раунда совершите проверку как свободное действие вне хода. Если цель уже вне дистанции или по иной причине не может быть поражена, проверка провалена.</p>",
+          "source": "Expanded Player's Guide, с. 69",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Сдвоенный торпедный аппарат (правый борт)",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 9,
+          "brawnDamage": false,
+          "crit": 1,
+          "range": "extreme",
+          "qualities": [
+            {
+              "name": "Бронебойное",
+              "rating": 2
+            },
+            {
+              "name": "Наведение",
+              "rating": 4
+            },
+            {
+              "name": "Ограниченный боезапас",
+              "rating": 2
+            },
+            {
+              "name": "Медленное",
+              "rating": 1
+            }
+          ],
+          "firingArc": "впереди и по правому борту",
+          "description": "<p>Самонаводящиеся торпеды современного фрегата. Отложенная атака: действием определите набор костей, но не бросайте; в конце раунда совершите проверку как свободное действие вне хода. Если цель уже вне дистанции или по иной причине не может быть поражена, проверка провалена.</p>",
+          "source": "Expanded Player's Guide, с. 69",
+          "equipped": true
+        }
+      },
+      {
+        "name": "5-дюймовая орудийная башня",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 7,
+          "brawnDamage": false,
+          "crit": 3,
+          "range": "long",
+          "qualities": [
+            {
+              "name": "Взрыв",
+              "rating": 2
+            }
+          ],
+          "firingArc": "впереди, по левому и правому борту",
+          "description": "<p>Корабельная артиллерийская башня среднего калибра.</p>",
+          "source": "Expanded Player's Guide, с. 68",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Установка противокорабельных ракет",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 12,
+          "brawnDamage": false,
+          "crit": 2,
+          "range": "strategic",
+          "qualities": [
+            {
+              "name": "Взрыв",
+              "rating": 3
+            },
+            {
+              "name": "Бронебойное",
+              "rating": 5
+            },
+            {
+              "name": "Наведение",
+              "rating": 3
+            },
+            {
+              "name": "Ограниченный боезапас",
+              "rating": 8
+            },
+            {
+              "name": "Медленное",
+              "rating": 2
+            }
+          ],
+          "firingArc": "впереди",
+          "description": "<p>Пусковая установка тяжёлых противокорабельных ракет. Дистанция по книге — стратегическая (в поле указана экстремальная, т.к. стратегической нет в списке).</p>",
+          "source": "Expanded Player's Guide, с. 69",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Комплекс ближней обороны",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 1,
+          "brawnDamage": false,
+          "crit": 5,
+          "range": "medium",
+          "qualities": [
+            {
+              "name": "Точное",
+              "rating": 2
+            },
+            {
+              "name": "Автоматическое",
+              "rating": null
+            }
+          ],
+          "firingArc": "все",
+          "description": "<p>Автоматическая скорострельная установка для перехвата ракет и самолётов вблизи корабля.</p>",
+          "source": "Expanded Player's Guide, с. 69",
+          "equipped": true
+        }
+      }
+    ]
+  },
+  {
+    "name": "Моторная лодка",
+    "nameEn": "Motorboat",
+    "type": "vehicle",
+    "folder": "Расширенное руководство",
+    "system": {
+      "silhouette": 2,
+      "speed": {
+        "value": 0,
+        "max": 4
+      },
+      "handling": 0,
+      "defense": {
+        "fore": 0,
+        "aft": 0,
+        "port": 0,
+        "starboard": 0
+      },
+      "armor": 0,
+      "hullTrauma": {
+        "value": 0,
+        "max": 7
+      },
+      "systemStrain": {
+        "value": 0,
+        "max": 5
+      },
+      "skill": "driving",
+      "crew": "1 водитель",
+      "passengers": 6,
+      "encumbrance": 10,
+      "price": 6500,
+      "rarity": 4,
+      "hardPoints": 0,
+      "description": "<p>Быстроходный катер, рыболовная лодка или патрульный катер для мелководья. Вместимость нагрузки 10 (40 без пассажиров). Без оружия стоит 6 500; вооружённый вариант (лёгкий пулемёт и гранатомёт) — 9 250.</p><p>Припасы: 12 часов.</p><p>Подходит для миров: Стимпанк, Моровая война, Современность, Научная фантастика, Космоопера, Постапокалипсис.</p>",
+      "source": "Expanded Player's Guide, с. 70"
+    },
+    "items": [
+      {
+        "name": "Лёгкий пулемёт",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 10,
+          "brawnDamage": false,
+          "crit": 3,
+          "range": "long",
+          "qualities": [
+            {
+              "name": "Автоматическое",
+              "rating": null
+            },
+            {
+              "name": "Персональный масштаб",
+              "rating": null
+            }
+          ],
+          "firingArc": "впереди, по левому и правому борту",
+          "description": "<p>Лёгкий пулемёт на транспорте (спаренный с танковой пушкой, на патрульном катере и т.п.). Только у вооружённого варианта.</p>",
+          "source": "Expanded Player's Guide, с. 66",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Гранатомёт",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 8,
+          "brawnDamage": false,
+          "crit": 4,
+          "range": "medium",
+          "qualities": [
+            {
+              "name": "Взрыв",
+              "rating": 6
+            },
+            {
+              "name": "Персональный масштаб",
+              "rating": null
+            }
+          ],
+          "firingArc": "впереди, по левому и правому борту",
+          "description": "<p>Автоматический гранатомёт на лёгком транспорте. Только у вооружённого варианта.</p>",
+          "source": "Expanded Player's Guide, с. 70",
+          "equipped": true
+        }
+      }
+    ]
+  },
+  {
+    "name": "Ракетный крейсер",
+    "nameEn": "Guided Missile Cruiser",
+    "type": "vehicle",
+    "folder": "Расширенное руководство",
+    "system": {
+      "silhouette": 6,
+      "speed": {
+        "value": 0,
+        "max": 3
+      },
+      "handling": -2,
+      "defense": {
+        "fore": 3,
+        "aft": 3,
+        "port": 3,
+        "starboard": 3
+      },
+      "armor": 3,
+      "hullTrauma": {
+        "value": 0,
+        "max": 90
+      },
+      "systemStrain": {
+        "value": 0,
+        "max": 70
+      },
+      "skill": "operating",
+      "crew": "350 человек",
+      "passengers": 25,
+      "encumbrance": 160,
+      "price": 1850000,
+      "rarity": 7,
+      "hardPoints": 0,
+      "description": "<p>Современный крейсер с радарами и зенитными ракетами, прикрывающий целые флоты. Помимо груза несёт 2 вертолёта. Особое правило: Громадина.</p><p>Припасы: 3 месяца. Запрещённый транспорт (R).</p><p>Подходит для миров: Современность, Научная фантастика.</p>",
+      "source": "Expanded Player's Guide, с. 70"
+    },
+    "items": [
+      {
+        "name": "Зенитный ракетный комплекс",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 5,
+          "brawnDamage": false,
+          "crit": 3,
+          "range": "extreme",
+          "qualities": [
+            {
+              "name": "Наведение",
+              "rating": 4
+            }
+          ],
+          "firingArc": "все",
+          "description": "<p>Корабельная система зенитных управляемых ракет.</p>",
+          "source": "Expanded Player's Guide, с. 70",
+          "equipped": true
+        }
+      },
+      {
+        "name": "5-дюймовая орудийная башня (нос)",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 7,
+          "brawnDamage": false,
+          "crit": 3,
+          "range": "long",
+          "qualities": [
+            {
+              "name": "Взрыв",
+              "rating": 2
+            }
+          ],
+          "firingArc": "впереди, по левому и правому борту",
+          "description": "<p>Корабельная артиллерийская башня среднего калибра.</p>",
+          "source": "Expanded Player's Guide, с. 68",
+          "equipped": true
+        }
+      },
+      {
+        "name": "5-дюймовая орудийная башня (корма)",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 7,
+          "brawnDamage": false,
+          "crit": 3,
+          "range": "long",
+          "qualities": [
+            {
+              "name": "Взрыв",
+              "rating": 2
+            }
+          ],
+          "firingArc": "сзади, по левому и правому борту",
+          "description": "<p>Корабельная артиллерийская башня среднего калибра.</p>",
+          "source": "Expanded Player's Guide, с. 68",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Стратегический ракетный комплекс",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 15,
+          "brawnDamage": false,
+          "crit": 2,
+          "range": "strategic",
+          "qualities": [
+            {
+              "name": "Взрыв",
+              "rating": 5
+            },
+            {
+              "name": "Бронебойное",
+              "rating": 5
+            },
+            {
+              "name": "Наведение",
+              "rating": 3
+            },
+            {
+              "name": "Ограниченный боезапас",
+              "rating": 6
+            }
+          ],
+          "firingArc": "все",
+          "description": "<p>Крылатые ракеты большой дальности. Дистанция по книге — стратегическая (в поле указана экстремальная, т.к. стратегической нет в списке).</p>",
+          "source": "Expanded Player's Guide, с. 70",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Комплекс ближней обороны ×2",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 1,
+          "brawnDamage": false,
+          "crit": 5,
+          "range": "medium",
+          "qualities": [
+            {
+              "name": "Точное",
+              "rating": 2
+            },
+            {
+              "name": "Автоматическое",
+              "rating": null
+            }
+          ],
+          "firingArc": "все",
+          "description": "<p>Количество: 2. Автоматическая скорострельная установка для перехвата ракет и самолётов вблизи корабля.</p>",
+          "source": "Expanded Player's Guide, с. 69",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Громадина",
+        "type": "ability",
+        "system": {
+          "description": "<p>При атаке, нацеленной на этот транспорт, рейтинг критического попадания любого используемого оружия считается на 2 выше. Правило предназначено только для транспорта с фигурой 7 и больше.</p>"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Бронированный боевой цеппелин",
+    "nameEn": "Armored War Zeppelin",
+    "type": "vehicle",
+    "folder": "Расширенное руководство",
+    "system": {
+      "silhouette": 6,
+      "speed": {
+        "value": 0,
+        "max": 3
+      },
+      "handling": -2,
+      "defense": {
+        "fore": 0,
+        "aft": 0,
+        "port": 0,
+        "starboard": 0
+      },
+      "armor": 2,
+      "hullTrauma": {
+        "value": 0,
+        "max": 50
+      },
+      "systemStrain": {
+        "value": 0,
+        "max": 35
+      },
+      "skill": "operating",
+      "crew": "100 человек",
+      "passengers": 50,
+      "encumbrance": 100,
+      "price": 925000,
+      "rarity": 6,
+      "hardPoints": 0,
+      "description": "<p>Фантастический бронированный дирижабль с орудийными башнями, способный заменить в своём мире морские военные корабли. Особое правило: Громадина.</p><p>Припасы: 3 недели. Запрещённый транспорт (R).</p><p>Подходит для миров: Стимпанк, Моровая война, Мир чудовищ.</p>",
+      "source": "Expanded Player's Guide, с. 70"
+    },
+    "items": [
+      {
+        "name": "Башня со спаренными 25-фунтовыми орудиями (нос)",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 6,
+          "brawnDamage": false,
+          "crit": 3,
+          "range": "long",
+          "qualities": [
+            {
+              "name": "Взрыв",
+              "rating": 2
+            },
+            {
+              "name": "Залповое",
+              "rating": 1
+            }
+          ],
+          "firingArc": "впереди, по левому и правому борту",
+          "description": "<p>Орудийная башня боевого цеппелина.</p>",
+          "source": "Expanded Player's Guide, с. 70",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Башня со спаренными 25-фунтовыми орудиями (корма)",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 6,
+          "brawnDamage": false,
+          "crit": 3,
+          "range": "long",
+          "qualities": [
+            {
+              "name": "Взрыв",
+              "rating": 2
+            },
+            {
+              "name": "Залповое",
+              "rating": 1
+            }
+          ],
+          "firingArc": "сзади, по левому и правому борту",
+          "description": "<p>Орудийная башня боевого цеппелина.</p>",
+          "source": "Expanded Player's Guide, с. 70",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Оборонительная башня с 6-фунтовым орудием (левый борт) ×2",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 2,
+          "brawnDamage": false,
+          "crit": 4,
+          "range": "long",
+          "qualities": [],
+          "firingArc": "по левому борту",
+          "description": "<p>Количество: 2. Лёгкое оборонительное орудие дирижабля.</p>",
+          "source": "Expanded Player's Guide, с. 70",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Оборонительная башня с 6-фунтовым орудием (правый борт) ×2",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 2,
+          "brawnDamage": false,
+          "crit": 4,
+          "range": "long",
+          "qualities": [],
+          "firingArc": "по правому борту",
+          "description": "<p>Количество: 2. Лёгкое оборонительное орудие дирижабля.</p>",
+          "source": "Expanded Player's Guide, с. 70",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Оборонительный пулемёт «Максим» (нос)",
+        "type": "weapon",
+        "system": {
+          "skill": "rangedHeavy",
+          "damage": 8,
+          "brawnDamage": false,
+          "crit": 4,
+          "range": "medium",
+          "qualities": [
+            {
+              "name": "Автоматическое",
+              "rating": null
+            },
+            {
+              "name": "Неточное",
+              "rating": 1
+            },
+            {
+              "name": "Персональный масштаб",
+              "rating": null
+            }
+          ],
+          "firingArc": "впереди",
+          "description": "<p>Станковый пулемёт для отражения абордажа и атак лёгкой техники; стреляют навыком Дальний бой (тяжёлое оружие).</p>",
+          "source": "Expanded Player's Guide, с. 70",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Оборонительный пулемёт «Максим» (левый борт)",
+        "type": "weapon",
+        "system": {
+          "skill": "rangedHeavy",
+          "damage": 8,
+          "brawnDamage": false,
+          "crit": 4,
+          "range": "medium",
+          "qualities": [
+            {
+              "name": "Автоматическое",
+              "rating": null
+            },
+            {
+              "name": "Неточное",
+              "rating": 1
+            },
+            {
+              "name": "Персональный масштаб",
+              "rating": null
+            }
+          ],
+          "firingArc": "по левому борту",
+          "description": "<p>Станковый пулемёт для отражения абордажа и атак лёгкой техники; стреляют навыком Дальний бой (тяжёлое оружие).</p>",
+          "source": "Expanded Player's Guide, с. 70",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Оборонительный пулемёт «Максим» (правый борт)",
+        "type": "weapon",
+        "system": {
+          "skill": "rangedHeavy",
+          "damage": 8,
+          "brawnDamage": false,
+          "crit": 4,
+          "range": "medium",
+          "qualities": [
+            {
+              "name": "Автоматическое",
+              "rating": null
+            },
+            {
+              "name": "Неточное",
+              "rating": 1
+            },
+            {
+              "name": "Персональный масштаб",
+              "rating": null
+            }
+          ],
+          "firingArc": "по правому борту",
+          "description": "<p>Станковый пулемёт для отражения абордажа и атак лёгкой техники; стреляют навыком Дальний бой (тяжёлое оружие).</p>",
+          "source": "Expanded Player's Guide, с. 70",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Оборонительный пулемёт «Максим» (корма)",
+        "type": "weapon",
+        "system": {
+          "skill": "rangedHeavy",
+          "damage": 8,
+          "brawnDamage": false,
+          "crit": 4,
+          "range": "medium",
+          "qualities": [
+            {
+              "name": "Автоматическое",
+              "rating": null
+            },
+            {
+              "name": "Неточное",
+              "rating": 1
+            },
+            {
+              "name": "Персональный масштаб",
+              "rating": null
+            }
+          ],
+          "firingArc": "сзади",
+          "description": "<p>Станковый пулемёт для отражения абордажа и атак лёгкой техники; стреляют навыком Дальний бой (тяжёлое оружие).</p>",
+          "source": "Expanded Player's Guide, с. 70",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Громадина",
+        "type": "ability",
+        "system": {
+          "description": "<p>При атаке, нацеленной на этот транспорт, рейтинг критического попадания любого используемого оружия считается на 2 выше. Правило предназначено только для транспорта с фигурой 7 и больше.</p>"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Транспортный цеппелин",
+    "nameEn": "Transport Zeppelin",
+    "type": "vehicle",
+    "folder": "Расширенное руководство",
+    "system": {
+      "silhouette": 5,
+      "speed": {
+        "value": 0,
+        "max": 2
+      },
+      "handling": -2,
+      "defense": {
+        "fore": 0,
+        "aft": 0,
+        "port": 0,
+        "starboard": 0
+      },
+      "armor": 1,
+      "hullTrauma": {
+        "value": 0,
+        "max": 35
+      },
+      "systemStrain": {
+        "value": 0,
+        "max": 25
+      },
+      "skill": "operating",
+      "crew": "20 человек",
+      "passengers": 40,
+      "encumbrance": 600,
+      "price": 40000,
+      "rarity": 5,
+      "hardPoints": 0,
+      "description": "<p>Жёсткий дирижабль стимпанк-мира для перевозки грузов и пассажиров или для экспедиций; бронирован, но вооружён слабо.</p><p>Припасы: 6 месяцев.</p><p>Подходит для миров: Стимпанк, Моровая война, Мир чудовищ.</p>",
+      "source": "Expanded Player's Guide, с. 70"
+    },
+    "items": [
+      {
+        "name": "Оборонительная башня с 6-фунтовым орудием (нос)",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 2,
+          "brawnDamage": false,
+          "crit": 4,
+          "range": "long",
+          "qualities": [],
+          "firingArc": "впереди, по левому и правому борту",
+          "description": "<p>Лёгкое оборонительное орудие дирижабля.</p>",
+          "source": "Expanded Player's Guide, с. 70",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Оборонительный пулемёт «Максим» (левый борт)",
+        "type": "weapon",
+        "system": {
+          "skill": "rangedHeavy",
+          "damage": 8,
+          "brawnDamage": false,
+          "crit": 4,
+          "range": "medium",
+          "qualities": [
+            {
+              "name": "Автоматическое",
+              "rating": null
+            },
+            {
+              "name": "Неточное",
+              "rating": 1
+            },
+            {
+              "name": "Персональный масштаб",
+              "rating": null
+            }
+          ],
+          "firingArc": "по левому борту",
+          "description": "<p>Станковый пулемёт для отражения абордажа и атак лёгкой техники; стреляют навыком Дальний бой (тяжёлое оружие).</p>",
+          "source": "Expanded Player's Guide, с. 70",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Оборонительный пулемёт «Максим» (правый борт)",
+        "type": "weapon",
+        "system": {
+          "skill": "rangedHeavy",
+          "damage": 8,
+          "brawnDamage": false,
+          "crit": 4,
+          "range": "medium",
+          "qualities": [
+            {
+              "name": "Автоматическое",
+              "rating": null
+            },
+            {
+              "name": "Неточное",
+              "rating": 1
+            },
+            {
+              "name": "Персональный масштаб",
+              "rating": null
+            }
+          ],
+          "firingArc": "по правому борту",
+          "description": "<p>Станковый пулемёт для отражения абордажа и атак лёгкой техники; стреляют навыком Дальний бой (тяжёлое оружие).</p>",
+          "source": "Expanded Player's Guide, с. 70",
+          "equipped": true
+        }
+      }
+    ]
+  },
+  {
+    "name": "Грузовой самолёт",
+    "nameEn": "Cargo Plane",
+    "type": "vehicle",
+    "folder": "Расширенное руководство",
+    "system": {
+      "silhouette": 3,
+      "speed": {
+        "value": 0,
+        "max": 4
+      },
+      "handling": -1,
+      "defense": {
+        "fore": 0,
+        "aft": 0,
+        "port": 0,
+        "starboard": 0
+      },
+      "armor": 0,
+      "hullTrauma": {
+        "value": 0,
+        "max": 16
+      },
+      "systemStrain": {
+        "value": 0,
+        "max": 12
+      },
+      "skill": "piloting",
+      "crew": "1 пилот, 1 второй пилот",
+      "passengers": 4,
+      "encumbrance": 120,
+      "price": 11750,
+      "rarity": 5,
+      "hardPoints": 0,
+      "description": "<p>Рабочая лошадка авиаперевозок: десантирование грузов, перевозка техники и войск. Вместимость нагрузки 120 (или 30 пассажиров вместо груза). Оружия нет.</p><p>Припасы: 1 день.</p><p>Подходит для миров: Моровая война, Современность, Научная фантастика, Постапокалипсис.</p>",
+      "source": "Expanded Player's Guide, с. 71"
+    },
+    "items": []
+  },
+  {
+    "name": "Истребитель времён Второй мировой",
+    "nameEn": "World War II–Era Fighter Plane",
+    "type": "vehicle",
+    "folder": "Расширенное руководство",
+    "system": {
+      "silhouette": 2,
+      "speed": {
+        "value": 0,
+        "max": 5
+      },
+      "handling": 2,
+      "defense": {
+        "fore": 0,
+        "aft": 0,
+        "port": 0,
+        "starboard": 0
+      },
+      "armor": 0,
+      "hullTrauma": {
+        "value": 0,
+        "max": 8
+      },
+      "systemStrain": {
+        "value": 0,
+        "max": 8
+      },
+      "skill": "piloting",
+      "crew": "1 пилот",
+      "passengers": 0,
+      "encumbrance": 4,
+      "price": 40000,
+      "rarity": 4,
+      "hardPoints": 0,
+      "description": "<p>Поршневой истребитель 1940-х: воздушные бои, сопровождение бомбардировщиков, штурмовка. Все пулемёты объединены в одну систему оружия.</p><p>Припасы: 6 часов. Запрещённый транспорт (R).</p><p>Подходит для миров: Моровая война, Современность.</p>",
+      "source": "Expanded Player's Guide, с. 71"
+    },
+    "items": [
+      {
+        "name": "Крыльевые тяжёлые пулемёты",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 12,
+          "brawnDamage": false,
+          "crit": 3,
+          "range": "medium",
+          "qualities": [
+            {
+              "name": "Точное",
+              "rating": 2
+            },
+            {
+              "name": "Автоматическое",
+              "rating": null
+            },
+            {
+              "name": "Персональный масштаб",
+              "rating": null
+            },
+            {
+              "name": "Проникающее",
+              "rating": 2
+            }
+          ],
+          "firingArc": "впереди",
+          "description": "<p>Все пулемёты истребителя, объединённые в одну систему оружия.</p>",
+          "source": "Expanded Player's Guide, с. 71",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Штурмовая ракета",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 5,
+          "brawnDamage": false,
+          "crit": 4,
+          "range": "long",
+          "qualities": [
+            {
+              "name": "Взрыв",
+              "rating": 2
+            },
+            {
+              "name": "Неточное",
+              "rating": 2
+            },
+            {
+              "name": "Ограниченный боезапас",
+              "rating": 2
+            }
+          ],
+          "firingArc": "впереди",
+          "description": "<p>Неуправляемые ракеты для ударов по наземным целям.</p>",
+          "source": "Expanded Player's Guide, с. 71",
+          "equipped": true
+        }
+      }
+    ]
+  },
+  {
+    "name": "Тяжёлый бомбардировщик времён Второй мировой",
+    "nameEn": "World War II–Era Heavy Bomber",
+    "type": "vehicle",
+    "folder": "Расширенное руководство",
+    "system": {
+      "silhouette": 3,
+      "speed": {
+        "value": 0,
+        "max": 4
+      },
+      "handling": -1,
+      "defense": {
+        "fore": 0,
+        "aft": 0,
+        "port": 0,
+        "starboard": 0
+      },
+      "armor": 0,
+      "hullTrauma": {
+        "value": 0,
+        "max": 20
+      },
+      "systemStrain": {
+        "value": 0,
+        "max": 16
+      },
+      "skill": "piloting",
+      "crew": "1 пилот, 1 второй пилот, 1 штурман, 1 бомбардир/стрелок, 1 радист/стрелок, 2 стрелка",
+      "passengers": 2,
+      "encumbrance": 30,
+      "price": 80000,
+      "rarity": 5,
+      "hardPoints": 0,
+      "description": "<p>Тяжёлый бомбардировщик с оборонительными пулемётами и большим бомбовым грузом. Особое правило: Бомбометание.</p><p>Припасы: 12 часов. Запрещённый транспорт (R).</p><p>Подходит для миров: Моровая война, Современность.</p>",
+      "source": "Expanded Player's Guide, с. 72"
+    },
+    "items": [
+      {
+        "name": "Носовые тяжёлые пулемёты",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 12,
+          "brawnDamage": false,
+          "crit": 3,
+          "range": "medium",
+          "qualities": [
+            {
+              "name": "Точное",
+              "rating": 2
+            },
+            {
+              "name": "Автоматическое",
+              "rating": null
+            },
+            {
+              "name": "Персональный масштаб",
+              "rating": null
+            },
+            {
+              "name": "Проникающее",
+              "rating": 2
+            }
+          ],
+          "firingArc": "впереди",
+          "description": "<p>Оборонительные пулемёты в носу бомбардировщика.</p>",
+          "source": "Expanded Player's Guide, с. 72",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Хвостовой тяжёлый пулемёт",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 12,
+          "brawnDamage": false,
+          "crit": 3,
+          "range": "medium",
+          "qualities": [
+            {
+              "name": "Автоматическое",
+              "rating": null
+            },
+            {
+              "name": "Персональный масштаб",
+              "rating": null
+            },
+            {
+              "name": "Проникающее",
+              "rating": 2
+            }
+          ],
+          "firingArc": "сзади",
+          "description": "<p>Оборонительный пулемёт в хвосте бомбардировщика.</p>",
+          "source": "Expanded Player's Guide, с. 72",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Турель со спаренными тяжёлыми пулемётами ×2",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 10,
+          "brawnDamage": false,
+          "crit": 3,
+          "range": "medium",
+          "qualities": [
+            {
+              "name": "Точное",
+              "rating": 1
+            },
+            {
+              "name": "Автоматическое",
+              "rating": null
+            },
+            {
+              "name": "Персональный масштаб",
+              "rating": null
+            },
+            {
+              "name": "Проникающее",
+              "rating": 2
+            }
+          ],
+          "firingArc": "все",
+          "description": "<p>Количество: 2. Оборонительная пулемётная турель бомбардировщика.</p>",
+          "source": "Expanded Player's Guide, с. 72",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Бомбометание",
+        "type": "ability",
+        "system": {
+          "description": "<p>Бомбардир выбирает точку на земле под бомбардировщиком, тратит действие и совершает сложную (3 кости сложности) проверку Артиллерии. При успехе все персонажи и транспорт в пределах средней дистанции от точки получают попадание с уроном 15 +1 за каждый успех. Стрелок может тратить преимущество или триумф, чтобы причинить критическое попадание или критическую травму одной цели в зоне (многократно, каждый раз новой цели). По решению ведущего бомбы могут также разрушать строения и местность. Повторить бомбометание можно только после возвращения на базу и перезарядки бомб.</p>"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Гражданский вертолёт",
+    "nameEn": "Civilian Helicopter",
+    "type": "vehicle",
+    "folder": "Расширенное руководство",
+    "system": {
+      "silhouette": 2,
+      "speed": {
+        "value": 0,
+        "max": 3
+      },
+      "handling": 3,
+      "defense": {
+        "fore": 0,
+        "aft": 0,
+        "port": 0,
+        "starboard": 0
+      },
+      "armor": 0,
+      "hullTrauma": {
+        "value": 0,
+        "max": 7
+      },
+      "systemStrain": {
+        "value": 0,
+        "max": 5
+      },
+      "skill": "piloting",
+      "crew": "1 пилот, 1 второй пилот",
+      "passengers": 4,
+      "encumbrance": 20,
+      "price": 20000,
+      "rarity": 6,
+      "hardPoints": 0,
+      "description": "<p>Городской вертолёт для перевозки VIP-персон, съёмочных групп новостей и полиции. Оружия нет.</p><p>Припасы: 1 день.</p><p>Подходит для миров: Современность, Научная фантастика.</p>",
+      "source": "Expanded Player's Guide, с. 72"
+    },
+    "items": []
+  },
+  {
+    "name": "Боевой вертолёт",
+    "nameEn": "Helicopter Gunship",
+    "type": "vehicle",
+    "folder": "Расширенное руководство",
+    "system": {
+      "silhouette": 3,
+      "speed": {
+        "value": 0,
+        "max": 3
+      },
+      "handling": 3,
+      "defense": {
+        "fore": 0,
+        "aft": 0,
+        "port": 0,
+        "starboard": 0
+      },
+      "armor": 1,
+      "hullTrauma": {
+        "value": 0,
+        "max": 8
+      },
+      "systemStrain": {
+        "value": 0,
+        "max": 8
+      },
+      "skill": "piloting",
+      "crew": "2 человека",
+      "passengers": 0,
+      "encumbrance": 0,
+      "price": 127000,
+      "rarity": 7,
+      "hardPoints": 0,
+      "description": "<p>Ударный вертолёт огневой поддержки войск. Транспортно-боевой вариант: манёвренность на 2 ниже, пассажиров 8, цена та же. Вместимости нагрузки нет.</p><p>Припасы: 1 день. Запрещённый транспорт (R).</p><p>Подходит для миров: Стимпанк, Моровая война, Современность, Научная фантастика, Космоопера, Мир чудовищ, Постапокалипсис.</p>",
+      "source": "Expanded Player's Guide, с. 72"
+    },
+    "items": [
+      {
+        "name": "Противотанковые ракеты",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 3,
+          "brawnDamage": false,
+          "crit": 3,
+          "range": "extreme",
+          "qualities": [
+            {
+              "name": "Взрыв",
+              "rating": 1
+            },
+            {
+              "name": "Бронебойное",
+              "rating": 2
+            },
+            {
+              "name": "Ограниченный боезапас",
+              "rating": 4
+            }
+          ],
+          "firingArc": "впереди",
+          "description": "<p>Ракеты боевого вертолёта для поражения бронетехники.</p>",
+          "source": "Expanded Player's Guide, с. 72",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Противопехотные ракетные блоки",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 12,
+          "brawnDamage": false,
+          "crit": 4,
+          "range": "medium",
+          "qualities": [
+            {
+              "name": "Взрыв",
+              "rating": 12
+            },
+            {
+              "name": "Ограниченный боезапас",
+              "rating": 8
+            },
+            {
+              "name": "Персональный масштаб",
+              "rating": null
+            }
+          ],
+          "firingArc": "впереди",
+          "description": "<p>Блоки неуправляемых ракет против пехоты.</p>",
+          "source": "Expanded Player's Guide, с. 72",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Цепная пушка",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 1,
+          "brawnDamage": false,
+          "crit": 3,
+          "range": "medium",
+          "qualities": [
+            {
+              "name": "Автоматическое",
+              "rating": null
+            },
+            {
+              "name": "Высококритичное",
+              "rating": 1
+            }
+          ],
+          "firingArc": "впереди",
+          "description": "<p>Скорострельная автоматическая пушка боевого вертолёта.</p>",
+          "source": "Expanded Player's Guide, с. 72",
+          "equipped": true
+        }
+      }
+    ]
+  },
+  {
+    "name": "Орбитальный челнок",
+    "nameEn": "Orbital Shuttle",
+    "type": "vehicle",
+    "folder": "Расширенное руководство",
+    "system": {
+      "silhouette": 3,
+      "speed": {
+        "value": 0,
+        "max": 4
+      },
+      "handling": -2,
+      "defense": {
+        "fore": 1,
+        "aft": 1,
+        "port": 1,
+        "starboard": 1
+      },
+      "armor": 1,
+      "hullTrauma": {
+        "value": 0,
+        "max": 15
+      },
+      "systemStrain": {
+        "value": 0,
+        "max": 15
+      },
+      "skill": "piloting",
+      "crew": "1 пилот, 1 второй пилот",
+      "passengers": 12,
+      "encumbrance": 80,
+      "price": 25000,
+      "rarity": 4,
+      "hardPoints": 0,
+      "description": "<p>Аэродинамичный бронированный (или защищённый щитами) челнок для полётов с поверхности на орбиту. Вместимость нагрузки 80 (160 без пассажиров). Оружия нет.</p><p>Припасы: 3 дня.</p><p>Подходит для миров: Научная фантастика, Космоопера.</p>",
+      "source": "Expanded Player's Guide, с. 73"
+    },
+    "items": []
+  },
+  {
+    "name": "Межзвёздный грузовой корабль",
+    "nameEn": "Interstellar Freighter",
+    "type": "vehicle",
+    "folder": "Расширенное руководство",
+    "system": {
+      "silhouette": 5,
+      "speed": {
+        "value": 0,
+        "max": 3
+      },
+      "handling": -2,
+      "defense": {
+        "fore": 2,
+        "aft": 2,
+        "port": 2,
+        "starboard": 2
+      },
+      "armor": 2,
+      "hullTrauma": {
+        "value": 0,
+        "max": 40
+      },
+      "systemStrain": {
+        "value": 0,
+        "max": 20
+      },
+      "skill": "operating",
+      "crew": "5 человек",
+      "passengers": 5,
+      "encumbrance": 600,
+      "price": 75000,
+      "rarity": 5,
+      "hardPoints": 0,
+      "description": "<p>Космический грузовик с маленьким экипажем, большими трюмами и плохой манёвренностью.</p><p>Припасы: 3 месяца.</p><p>Подходит для миров: Научная фантастика, Космоопера.</p>",
+      "source": "Expanded Player's Guide, с. 73"
+    },
+    "items": [
+      {
+        "name": "Оборонительный лазерный излучатель",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 4,
+          "brawnDamage": false,
+          "crit": 5,
+          "range": "extreme",
+          "qualities": [
+            {
+              "name": "Точное",
+              "rating": 2
+            }
+          ],
+          "firingArc": "впереди",
+          "description": "<p>Лазер для защиты грузового звездолёта от ракет и мелких кораблей.</p>",
+          "source": "Expanded Player's Guide, с. 73",
+          "equipped": true
+        }
+      }
+    ]
+  },
+  {
+    "name": "Космический крейсер",
+    "nameEn": "Space Cruiser",
+    "type": "vehicle",
+    "folder": "Расширенное руководство",
+    "system": {
+      "silhouette": 6,
+      "speed": {
+        "value": 0,
+        "max": 3
+      },
+      "handling": -2,
+      "defense": {
+        "fore": 4,
+        "aft": 4,
+        "port": 4,
+        "starboard": 4
+      },
+      "armor": 6,
+      "hullTrauma": {
+        "value": 0,
+        "max": 65
+      },
+      "systemStrain": {
+        "value": 0,
+        "max": 40
+      },
+      "skill": "operating",
+      "crew": "175 человек",
+      "passengers": 40,
+      "encumbrance": 200,
+      "price": 4200000,
+      "rarity": 7,
+      "hardPoints": 0,
+      "description": "<p>Футуристический боевой корабль: передовая линия, блокады, охрана и рейды на линиях снабжения, таможенные патрули. Помимо груза несёт 2 челнока. Особое правило: Громадина.</p><p>Припасы: 9 месяцев. Запрещённый транспорт (R).</p><p>Подходит для миров: Научная фантастика, Космоопера.</p>",
+      "source": "Expanded Player's Guide, с. 73"
+    },
+    "items": [
+      {
+        "name": "Осевой рельсотрон «Крушитель кораблей»",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 12,
+          "brawnDamage": false,
+          "crit": 2,
+          "range": "extreme",
+          "qualities": [
+            {
+              "name": "Бронебойное",
+              "rating": 4
+            },
+            {
+              "name": "Медленное",
+              "rating": 1
+            },
+            {
+              "name": "Высококритичное",
+              "rating": 3
+            }
+          ],
+          "firingArc": "впереди",
+          "description": "<p>Главное орудие, проходящее вдоль корпуса космического крейсера.</p>",
+          "source": "Expanded Player's Guide, с. 73",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Пусковая шахта термоядерных ракет ×2",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 15,
+          "brawnDamage": false,
+          "crit": 3,
+          "range": "strategic",
+          "qualities": [
+            {
+              "name": "Взрыв",
+              "rating": 10
+            },
+            {
+              "name": "Наведение",
+              "rating": 4
+            },
+            {
+              "name": "Медленное",
+              "rating": 2
+            },
+            {
+              "name": "Высококритичное",
+              "rating": 1
+            }
+          ],
+          "firingArc": "все",
+          "description": "<p>Количество: 2. Термоядерные ракеты. Когда срабатывает свойство Взрыв, попадание получают все транспортные средства в пределах средней дистанции. Дистанция по книге — стратегическая (в поле указана экстремальная, т.к. стратегической нет в списке).</p>",
+          "source": "Expanded Player's Guide, с. 73",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Тяжёлый лазерный излучатель ×10",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 5,
+          "brawnDamage": false,
+          "crit": 4,
+          "range": "extreme",
+          "qualities": [
+            {
+              "name": "Точное",
+              "rating": 2
+            }
+          ],
+          "firingArc": "все",
+          "description": "<p>Количество: 10. Излучатели разнесены по корпусу корабля, поэтому по одной цели могут стрелять не более двух из них.</p>",
+          "source": "Expanded Player's Guide, с. 73",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Громадина",
+        "type": "ability",
+        "system": {
+          "description": "<p>При атаке, нацеленной на этот транспорт, рейтинг критического попадания любого используемого оружия считается на 2 выше. Правило предназначено только для транспорта с фигурой 7 и больше.</p>"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Исследовательский крейсер дальнего действия",
+    "nameEn": "Long-Range Exploration Cruiser",
+    "type": "vehicle",
+    "folder": "Расширенное руководство",
+    "system": {
+      "silhouette": 6,
+      "speed": {
+        "value": 0,
+        "max": 3
+      },
+      "handling": -3,
+      "defense": {
+        "fore": 3,
+        "aft": 3,
+        "port": 3,
+        "starboard": 3
+      },
+      "armor": 4,
+      "hullTrauma": {
+        "value": 0,
+        "max": 90
+      },
+      "systemStrain": {
+        "value": 0,
+        "max": 60
+      },
+      "skill": "operating",
+      "crew": "660 человек",
+      "passengers": 314,
+      "encumbrance": 500,
+      "price": 2400000,
+      "rarity": 8,
+      "hardPoints": 0,
+      "description": "<p>Огромный корабль дальней разведки с учёными, их семьями и даже питомцами на борту — подходит как место действия целой кампании. Помимо груза несёт 3 орбитальных челнока. Особое правило: Громадина.</p><p>Припасы: 3 года.</p><p>Подходит для миров: Научная фантастика, Космоопера.</p>",
+      "source": "Expanded Player's Guide, с. 73"
+    },
+    "items": [
+      {
+        "name": "Пусковая шахта ракет-охотников ×2",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 8,
+          "brawnDamage": false,
+          "crit": 1,
+          "range": "strategic",
+          "qualities": [
+            {
+              "name": "Взрыв",
+              "rating": 2
+            },
+            {
+              "name": "Наведение",
+              "rating": 5
+            },
+            {
+              "name": "Медленное",
+              "rating": 2
+            }
+          ],
+          "firingArc": "все",
+          "description": "<p>Количество: 2. Самонаводящиеся противокорабельные ракеты исследовательского крейсера. Дистанция по книге — стратегическая (в поле указана экстремальная, т.к. стратегической нет в списке).</p>",
+          "source": "Expanded Player's Guide, с. 73",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Тяжёлый лазерный излучатель ×4",
+        "type": "weapon",
+        "system": {
+          "skill": "gunnery",
+          "damage": 5,
+          "brawnDamage": false,
+          "crit": 4,
+          "range": "extreme",
+          "qualities": [
+            {
+              "name": "Точное",
+              "rating": 2
+            }
+          ],
+          "firingArc": "все",
+          "description": "<p>Количество: 4. Излучатели разнесены по корпусу корабля, поэтому по одной цели могут стрелять не более двух из них.</p>",
+          "source": "Expanded Player's Guide, с. 73",
+          "equipped": true
+        }
+      },
+      {
+        "name": "Громадина",
+        "type": "ability",
+        "system": {
+          "description": "<p>При атаке, нацеленной на этот транспорт, рейтинг критического попадания любого используемого оружия считается на 2 выше. Правило предназначено только для транспорта с фигурой 7 и больше.</p>"
+        }
+      }
+    ]
+  }
+]

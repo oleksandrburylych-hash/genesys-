@@ -1,73 +1,144 @@
 <section class="tab main {{tab.cssClass}}" data-tab="main" data-group="primary">
-  <div class="main-columns">
-    <div class="column skills-column">
-      {{> "systems/genesys-rpg/templates/actor/parts/skill-list.hbs"}}
+  <div class="gs-ribbon"><span>{{localize "GENESYS.Sheet.Skills"}}</span></div>
+  <p class="gs-help">{{localize "GENESYS.Sheet.SkillsHelp"}}</p>
+
+  <div class="gs-skill-columns">
+    {{#each skillColumns as |column|}}
+    <div class="gs-skill-column">
+      {{#each column as |group|}}
+      <table class="gs-skill-table">
+        <thead>
+          <tr>
+            <th class="gs-col-name">{{localize group.label}}
+              {{#if @root.editable}}<a class="gs-add" data-action="itemCreate" data-type="skill" data-category="{{group.key}}" data-tooltip="GENESYS.AddSkill"><i class="fa-solid fa-plus"></i></a>{{/if}}
+            </th>
+            <th class="gs-col-career">{{localize "GENESYS.Sheet.CareerQ"}}</th>
+            <th class="gs-col-rank">{{localize "GENESYS.Rank"}}</th>
+            <th class="gs-col-pool">{{localize "GENESYS.Sheet.Pool"}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each group.skills as |skill|}}
+          <tr class="gs-skill {{#if skill.career}}career{{/if}}" data-item-id="{{skill.id}}">
+            <td class="gs-col-name">
+              <a class="gs-skill-name rollable" data-action="rollSkill" data-tooltip="GENESYS.Hint.RollSkill">{{skill.name}} <span class="gs-abbr">({{localize skill.charAbbr}})</span></a>
+              <a class="gs-row-edit" data-action="itemEdit" data-tooltip="GENESYS.Edit"><i class="fa-solid fa-pen"></i></a>
+            </td>
+            <td class="gs-col-career">
+              <a class="gs-check {{#if skill.career}}on{{/if}}" {{#if @root.editable}}data-action="toggleCareer"{{/if}} data-tooltip="GENESYS.Sheet.CareerHint"></a>
+            </td>
+            <td class="gs-col-rank">
+              <span class="gs-chevrons">
+                {{#each skill.ranks}}<a class="gs-chevron {{#if this}}on{{/if}}" {{#if @root.editable}}data-action="setSkillRank"{{/if}} data-rank="{{add @index 1}}"></a>{{/each}}
+              </span>
+            </td>
+            <td class="gs-col-pool"><span class="skill-pool">{{#each skill.pool}}{{genesysDie key label}}{{/each}}</span></td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+      {{/each}}
     </div>
+    {{/each}}
+  </div>
 
-    <div class="column side-column">
-      <section class="block weapons-block">
-        <header class="list-header">
-          <h3>{{localize "GENESYS.Weapons"}}</h3>
-          {{#if editable}}<a class="item-control" data-action="itemCreate" data-type="weapon"><i class="fa-solid fa-plus"></i></a>{{/if}}
-        </header>
-        <ol class="compact-list">
-          {{#each weapons}}
-          <li class="weapon {{#unless equipped}}unequipped{{/unless}}" data-item-id="{{id}}">
-            <img src="{{img}}" alt="">
-            <div class="weapon-info">
-              <a class="rollable name" data-action="rollWeapon" data-tooltip="GENESYS.Hint.RollWeapon">{{name}}</a>
-              <span class="sub">{{skillName}} · {{localize "GENESYS.DamageShort"}} {{damage}} · {{localize "GENESYS.CritShort"}} {{crit}} · {{localize range}}</span>
-              {{#if qualities}}<span class="sub qualities">{{qualities}}</span>{{/if}}
-            </div>
-            <span class="skill-pool">{{#each pool}}{{genesysDie key label}}{{/each}}</span>
-          </li>
-          {{else}}
-          <li class="empty">{{localize "GENESYS.Hint.NoWeapons"}}</li>
-          {{/each}}
-        </ol>
-      </section>
+  <div class="gs-ribbon"><span>{{localize "GENESYS.Weapons"}}</span></div>
+  <table class="gs-table gs-weapons">
+    <thead>
+      <tr>
+        <th class="gs-w-name">{{localize "GENESYS.Sheet.Weapon"}}</th>
+        <th>{{localize "GENESYS.SkillLabel"}}</th>
+        <th>{{localize "GENESYS.Damage"}}</th>
+        <th>{{localize "GENESYS.Crit"}}</th>
+        <th>{{localize "GENESYS.Range.label"}}</th>
+        <th class="gs-w-q">{{localize "GENESYS.Sheet.Special"}}</th>
+        <th>{{localize "GENESYS.Sheet.Pool"}}</th>
+        <th>{{#if editable}}<a class="gs-add" data-action="itemCreate" data-type="weapon"><i class="fa-solid fa-plus"></i></a>{{/if}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each weapons}}
+      <tr class="{{#unless equipped}}unequipped{{/unless}}" data-item-id="{{id}}">
+        <td class="gs-w-name"><img src="{{img}}" alt=""><a class="rollable" data-action="rollWeapon" data-tooltip="GENESYS.Hint.RollWeapon">{{name}}</a></td>
+        <td>{{skillName}}</td>
+        <td class="gs-num">{{damage}}</td>
+        <td class="gs-num">{{crit}}</td>
+        <td>{{localize range}}</td>
+        <td class="gs-w-q">{{qualities}}</td>
+        <td><span class="skill-pool">{{#each pool}}{{genesysDie key label}}{{/each}}</span></td>
+        <td class="gs-row-ctrl">
+          <a data-action="rollWeapon" data-tooltip="GENESYS.Hint.RollWeapon"><i class="fa-solid fa-crosshairs"></i></a>
+          <a data-action="itemEdit"><i class="fa-solid fa-pen"></i></a>
+        </td>
+      </tr>
+      {{else}}
+      <tr><td colspan="8" class="gs-empty">{{localize "GENESYS.Sheet.NoWeaponsHint"}}</td></tr>
+      {{/each}}
+    </tbody>
+  </table>
 
-      <section class="block injuries-block">
-        <header class="list-header">
-          <h3>{{localize "GENESYS.CriticalInjuries"}}</h3>
-          {{#if editable}}<a class="item-control" data-action="itemCreate" data-type="injury"><i class="fa-solid fa-plus"></i></a>{{/if}}
-        </header>
-        <ol class="compact-list">
-          {{#each injuries}}
-          <li data-item-id="{{id}}">
-            <span class="severity" data-tooltip="GENESYS.Injury.Severity">{{#times system.severity}}{{genesysDie "difficulty"}}{{/times}}</span>
-            <a class="name" data-action="itemEdit">{{name}}</a>
-            <span class="item-controls">
-              <a data-action="itemChat" data-tooltip="GENESYS.ToChat"><i class="fa-solid fa-comment"></i></a>
-              {{#if @root.editable}}<a data-action="itemDelete"><i class="fa-solid fa-trash"></i></a>{{/if}}
-            </span>
-          </li>
-          {{else}}
-          <li class="empty">{{localize "GENESYS.Hint.NoInjuries"}}</li>
-          {{/each}}
-        </ol>
-      </section>
+  <div class="gs-two">
+    <section class="gs-box">
+      <header class="gs-box-head">
+        <span>{{localize "GENESYS.CriticalInjuries"}}</span>
+        {{#if editable}}
+        <a data-action="rollInjury" data-tooltip="GENESYS.Injury.Roll"><i class="fa-solid fa-dice"></i></a>
+        <a data-action="itemCreate" data-type="injury"><i class="fa-solid fa-plus"></i></a>
+        {{/if}}
+      </header>
+      <ol class="gs-list">
+        {{#each injuries}}
+        <li data-item-id="{{id}}">
+          <span class="gs-severity">{{#times system.severity}}{{genesysDie "difficulty"}}{{/times}}</span>
+          <a class="gs-list-name" data-action="itemEdit">{{name}}</a>
+          <span class="gs-row-ctrl">
+            {{#if @root.editable}}<a data-action="healInjury" data-tooltip="GENESYS.Rest.HealInjuryHint"><i class="fa-solid fa-kit-medical"></i></a>{{/if}}
+            <a data-action="itemChat" data-tooltip="GENESYS.ToChat"><i class="fa-solid fa-comment"></i></a>
+            {{#if @root.editable}}<a data-action="itemDelete"><i class="fa-solid fa-trash"></i></a>{{/if}}
+          </span>
+        </li>
+        {{else}}
+        <li class="gs-empty">{{localize "GENESYS.Hint.NoInjuries"}}</li>
+        {{/each}}
+      </ol>
+    </section>
 
-      <section class="block bonuses-block">
-        <header class="list-header"><h3>{{localize "GENESYS.Bonuses"}}</h3></header>
-        <div class="bonus-grid">
-          <label>{{localize "GENESYS.WoundBase"}}</label>
-          <input type="number" name="system.wounds.base" value="{{source.wounds.base}}" data-dtype="Number">
-          <label>{{localize "GENESYS.StrainBase"}}</label>
-          <input type="number" name="system.strain.base" value="{{source.strain.base}}" data-dtype="Number">
-          <label>{{localize "GENESYS.WoundBonus"}}</label>
-          <input type="number" name="system.wounds.bonus" value="{{source.wounds.bonus}}" data-dtype="Number">
-          <label>{{localize "GENESYS.StrainBonus"}}</label>
-          <input type="number" name="system.strain.bonus" value="{{source.strain.bonus}}" data-dtype="Number">
-          <label>{{localize "GENESYS.SoakBonus"}}</label>
-          <input type="number" name="system.soak.bonus" value="{{source.soak.bonus}}" data-dtype="Number">
-          <label>{{localize "GENESYS.DefenseMelee"}}</label>
-          <input type="number" name="system.defense.melee.bonus" value="{{source.defense.melee.bonus}}" data-dtype="Number">
-          <label>{{localize "GENESYS.DefenseRanged"}}</label>
-          <input type="number" name="system.defense.ranged.bonus" value="{{source.defense.ranged.bonus}}" data-dtype="Number">
+    <section class="gs-box gs-mount">
+      <div class="gs-box-head"><span>{{localize "GENESYS.Mount.Title"}}</span></div>
+      {{#if mount}}
+      <div class="gs-mount-row">
+        <img src="{{mount.img}}" alt="">
+        <div class="gs-mount-info">
+          <a data-action="mountOpen">{{mount.name}}</a>
+          <span class="gs-help">{{localize "GENESYS.Wounds"}} {{mount.wounds}}/{{mount.max}} · {{localize "GENESYS.Soak"}} {{mount.soak}} · {{localize "GENESYS.Defense"}} {{mount.defense}}</span>
         </div>
-        <p class="hint">{{localize "GENESYS.Hint.Bonuses"}}</p>
-      </section>
-    </div>
+        {{#if mounted}}<span class="gs-world on" style="--world: #5b7a2e">{{localize "GENESYS.Status.mounted"}}</span>{{/if}}
+        {{#if @root.editable}}<a data-action="mountRemove" data-tooltip="GENESYS.Mount.Remove"><i class="fa-solid fa-xmark"></i></a>{{/if}}
+      </div>
+      <div class="gs-mount-actions">
+        <button type="button" data-action="mountToggle"><i class="fa-solid fa-horse"></i> {{#if mounted}}{{localize "GENESYS.Mount.Dismount"}}{{else}}{{localize "GENESYS.Mount.Mount"}}{{/if}}</button>
+        <button type="button" data-action="mountControl"><i class="fa-solid fa-dice-d20"></i> {{localize "GENESYS.Mount.Control"}}</button>
+        {{#each mount.weapons}}<button type="button" data-action="mountAttack" data-weapon-id="{{id}}"><i class="fa-solid fa-paw"></i> {{name}}</button>{{/each}}
+      </div>
+      {{else}}
+      <p class="gs-empty">{{localize "GENESYS.Mount.Empty"}}</p>
+      {{/if}}
+    </section>
+    <section class="gs-box">
+      <details>
+        <summary class="gs-box-head"><span>{{localize "GENESYS.Bonuses"}}</span><i class="fa-solid fa-chevron-down"></i></summary>
+        <div class="gs-bonus-grid">
+          <label>{{localize "GENESYS.WoundBase"}}</label><input type="number" name="system.wounds.base" value="{{source.wounds.base}}" data-dtype="Number">
+          <label>{{localize "GENESYS.StrainBase"}}</label><input type="number" name="system.strain.base" value="{{source.strain.base}}" data-dtype="Number">
+          <label>{{localize "GENESYS.WoundBonus"}}</label><input type="number" name="system.wounds.bonus" value="{{source.wounds.bonus}}" data-dtype="Number">
+          <label>{{localize "GENESYS.StrainBonus"}}</label><input type="number" name="system.strain.bonus" value="{{source.strain.bonus}}" data-dtype="Number">
+          <label>{{localize "GENESYS.SoakBonus"}}</label><input type="number" name="system.soak.bonus" value="{{source.soak.bonus}}" data-dtype="Number">
+          <label>{{localize "GENESYS.DefenseMelee"}}</label><input type="number" name="system.defense.melee.bonus" value="{{source.defense.melee.bonus}}" data-dtype="Number">
+          <label>{{localize "GENESYS.DefenseRanged"}}</label><input type="number" name="system.defense.ranged.bonus" value="{{source.defense.ranged.bonus}}" data-dtype="Number">
+        </div>
+        <p class="gs-help">{{localize "GENESYS.Hint.Bonuses"}}</p>
+      </details>
+      {{#if talentBonusText}}<p class="gs-help"><i class="fa-solid fa-star"></i> {{talentBonusText}}</p>{{/if}}
+    </section>
   </div>
 </section>

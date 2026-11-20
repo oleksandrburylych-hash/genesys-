@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Нож",
+    "nameEn": "Knife",
+    "type": "weapon",
+    "folder": "Общие",
+    "system": {
+      "skill": "melee",
+      "damage": 1,
+      "brawnDamage": true,
+      "crit": 3,
+      "range": "engaged",
+      "encumbrance": 1,
+      "hardPoints": 0,
+      "price": 25,
+      "rarity": 1,
+      "qualities": [],
+      "description": "<p>Универсальный пример оружия ближнего боя, подходящий для любой эпохи. Использует навык Ближний бой (в мирах с разделёнными навыками — Ближний бой (лёгкое оружие)); урон +1 к Силе владельца. Особых свойств нет.</p>",
+      "source": "Core Rulebook, с. 91"
+    }
+  },
+  {
+    "name": "Револьвер",
+    "nameEn": "Revolver",
+    "type": "weapon",
+    "folder": "Общие",
+    "system": {
+      "skill": "ranged",
+      "damage": 6,
+      "brawnDamage": false,
+      "crit": 4,
+      "range": "medium",
+      "encumbrance": 2,
+      "hardPoints": 0,
+      "price": 350,
+      "rarity": 4,
+      "qualities": [
+        {
+          "name": "Точное",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Универсальный пример огнестрельного оружия (от шестизарядника XIX века до современного пистолета). Использует навык Дальний бой (в мирах с разделёнными навыками — Дальний бой (лёгкое оружие)). Свойства Ограниченный боезапас не имеет: расход патронов отслеживается по правилу трат краха.</p>",
+      "source": "Core Rulebook, с. 91"
+    }
+  }
+]

@@ -2,39 +2,332 @@
   "id": "genesys-rpg",
   "title": "Genesys RPG",
   "description": "Система Genesys (Narrative Dice System) для Foundry VTT v14: нарративные кубики, автоматический расчёт персонажа, трата опыта, таланты-пирамида, снаряжение, противники и очки истории.",
-  "version": "0.1.0",
+  "version": "0.16.0",
   "compatibility": {
     "minimum": "14",
     "verified": "14.370"
   },
   "authors": [
-    { "name": "oleksandrburylych-hash" }
+    {
+      "name": "oleksandrburylych-hash"
+    }
   ],
-  "esmodules": ["genesys.mjs"],
-  "styles": ["styles/genesys.css"],
+  "esmodules": [
+    "genesys.mjs"
+  ],
+  "styles": [
+    "styles/fonts.css",
+    "styles/genesys.css",
+    "styles/sheet.css"
+  ],
   "languages": [
-    { "lang": "ru", "name": "Русский", "path": "lang/ru.json" },
-    { "lang": "en", "name": "English", "path": "lang/en.json" }
+    {
+      "lang": "ru",
+      "name": "Русский",
+      "path": "lang/ru.json"
+    },
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
   ],
   "documentTypes": {
     "Actor": {
-      "character": { "htmlFields": ["biography", "notes"] },
-      "adversary": { "htmlFields": ["description", "notes"] }
+      "character": {
+        "htmlFields": [
+          "biography",
+          "notes"
+        ]
+      },
+      "adversary": {
+        "htmlFields": [
+          "description",
+          "notes"
+        ]
+      },
+      "vehicle": {
+        "htmlFields": [
+          "description",
+          "notes"
+        ]
+      }
     },
     "Item": {
-      "skill": { "htmlFields": ["description"] },
-      "talent": { "htmlFields": ["description"] },
-      "ability": { "htmlFields": ["description"] },
-      "archetype": { "htmlFields": ["description"] },
-      "career": { "htmlFields": ["description"] },
-      "weapon": { "htmlFields": ["description"] },
-      "armor": { "htmlFields": ["description"] },
-      "gear": { "htmlFields": ["description"] },
-      "quality": { "htmlFields": ["description"] },
-      "injury": { "htmlFields": ["description"] }
+      "skill": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "talent": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "ability": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "archetype": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "career": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "weapon": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "armor": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "gear": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "quality": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "injury": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "spell": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "heroic": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "attachment": {
+        "htmlFields": [
+          "description",
+          "modifications"
+        ]
+      }
     }
   },
-  "packs": [],
+  "packs": [
+    {
+      "name": "archetypes",
+      "label": "Архетипы и расы",
+      "path": "packs/archetypes",
+      "type": "Item",
+      "system": "genesys-rpg",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "careers",
+      "label": "Карьеры",
+      "path": "packs/careers",
+      "type": "Item",
+      "system": "genesys-rpg",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "skills",
+      "label": "Навыки",
+      "path": "packs/skills",
+      "type": "Item",
+      "system": "genesys-rpg",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "talents",
+      "label": "Таланты",
+      "path": "packs/talents",
+      "type": "Item",
+      "system": "genesys-rpg",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "abilities",
+      "label": "Особые способности",
+      "path": "packs/abilities",
+      "type": "Item",
+      "system": "genesys-rpg",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "heroic",
+      "label": "Героические способности",
+      "path": "packs/heroic",
+      "type": "Item",
+      "system": "genesys-rpg",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "spells",
+      "label": "Магия",
+      "path": "packs/spells",
+      "type": "Item",
+      "system": "genesys-rpg",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "weapons",
+      "label": "Оружие",
+      "path": "packs/weapons",
+      "type": "Item",
+      "system": "genesys-rpg",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "armor",
+      "label": "Броня",
+      "path": "packs/armor",
+      "type": "Item",
+      "system": "genesys-rpg",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "gear",
+      "label": "Снаряжение",
+      "path": "packs/gear",
+      "type": "Item",
+      "system": "genesys-rpg",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "qualities",
+      "label": "Свойства предметов",
+      "path": "packs/qualities",
+      "type": "Item",
+      "system": "genesys-rpg",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "attachments",
+      "label": "Модификации и зачарования",
+      "path": "packs/attachments",
+      "type": "Item",
+      "system": "genesys-rpg",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "injuries",
+      "label": "Критические травмы",
+      "path": "packs/injuries",
+      "type": "Item",
+      "system": "genesys-rpg",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "vehicle-crits",
+      "label": "Критические попадания (транспорт)",
+      "path": "packs/vehicle-crits",
+      "type": "Item",
+      "system": "genesys-rpg",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "adversaries",
+      "label": "Противники",
+      "path": "packs/adversaries",
+      "type": "Actor",
+      "system": "genesys-rpg",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "vehicles",
+      "label": "Транспорт",
+      "path": "packs/vehicles",
+      "type": "Actor",
+      "system": "genesys-rpg",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    },
+    {
+      "name": "scenes",
+      "label": "Боевые зоны",
+      "path": "packs/scenes",
+      "type": "Scene",
+      "system": "genesys-rpg",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    }
+  ],
   "socket": true,
   "grid": {
     "type": 1,
@@ -44,6 +337,46 @@
   "primaryTokenAttribute": "wounds",
   "secondaryTokenAttribute": "strain",
   "url": "https://github.com/oleksandrburylych-hash/genesys-",
-  "manifest": "https://raw.githubusercontent.com/oleksandrburylych-hash/genesys-/main/system.json",
-  "download": "https://github.com/oleksandrburylych-hash/genesys-/archive/refs/heads/main.zip"
+  "manifest": "https://github.com/oleksandrburylych-hash/genesys-/releases/latest/download/system.json",
+  "download": "https://github.com/oleksandrburylych-hash/genesys-/releases/latest/download/genesys-rpg.zip",
+  "packFolders": [
+    {
+      "name": "Genesys",
+      "sorting": "m",
+      "color": "#2f6f8f",
+      "packs": [
+        "archetypes",
+        "careers",
+        "skills",
+        "talents",
+        "abilities",
+        "heroic",
+        "spells",
+        "weapons",
+        "armor",
+        "gear",
+        "qualities",
+        "attachments",
+        "injuries",
+        "vehicle-crits"
+      ],
+      "folders": [
+        {
+          "name": "Противники и транспорт",
+          "sorting": "m",
+          "packs": [
+            "adversaries",
+            "vehicles"
+          ]
+        },
+        {
+          "name": "Карты",
+          "sorting": "m",
+          "packs": [
+            "scenes"
+          ]
+        }
+      ]
+    }
+  ]
 }

@@ -1,0 +1,350 @@
+[
+  {
+    "name": "Небольшая царапина",
+    "nameEn": "Minor Nick",
+    "type": "injury",
+    "folder": "Общие",
+    "system": {
+      "severity": 1,
+      "rollRange": "01-05",
+      "description": "<p>Цель получает 1 усталость.</p>",
+      "source": "Core Rulebook, с. 115"
+    }
+  },
+  {
+    "name": "Замедление",
+    "nameEn": "Slowed Down",
+    "type": "injury",
+    "folder": "Общие",
+    "system": {
+      "severity": 1,
+      "rollRange": "06-10",
+      "description": "<p>В свой следующий ход цель может действовать только в последней ячейке инициативы своей стороны.</p>",
+      "source": "Core Rulebook, с. 115"
+    }
+  },
+  {
+    "name": "Внезапный толчок",
+    "nameEn": "Sudden Jolt",
+    "type": "injury",
+    "folder": "Общие",
+    "system": {
+      "severity": 1,
+      "rollRange": "11-15",
+      "description": "<p>Цель роняет предмет, который держит в руке.</p>",
+      "source": "Core Rulebook, с. 115"
+    }
+  },
+  {
+    "name": "Отвлечение",
+    "nameEn": "Distracted",
+    "type": "injury",
+    "folder": "Общие",
+    "system": {
+      "severity": 1,
+      "rollRange": "16-20",
+      "description": "<p>В свой следующий ход цель не получает свободного манёвра.</p>",
+      "source": "Core Rulebook, с. 115"
+    }
+  },
+  {
+    "name": "Потеря равновесия",
+    "nameEn": "Off-Balance",
+    "type": "injury",
+    "folder": "Общие",
+    "system": {
+      "severity": 1,
+      "rollRange": "21-25",
+      "description": "<p>К следующей проверке навыка цели добавляется кость штрафа.</p>",
+      "source": "Core Rulebook, с. 115"
+    }
+  },
+  {
+    "name": "Удручающая рана",
+    "nameEn": "Discouraging Wound",
+    "type": "injury",
+    "folder": "Общие",
+    "system": {
+      "severity": 1,
+      "rollRange": "26-30",
+      "description": "<p>Одно очко сюжета переходит из запаса игроков в запас ведущего (если травму получил персонаж ведущего — наоборот).</p>",
+      "source": "Core Rulebook, с. 115"
+    }
+  },
+  {
+    "name": "Остолбенение",
+    "nameEn": "Stunned",
+    "type": "injury",
+    "folder": "Общие",
+    "system": {
+      "severity": 1,
+      "rollRange": "31-35",
+      "description": "<p>Цель в замешательстве до конца своего следующего хода.</p>",
+      "source": "Core Rulebook, с. 115"
+    }
+  },
+  {
+    "name": "Резкий удар",
+    "nameEn": "Stinger",
+    "type": "injury",
+    "folder": "Общие",
+    "system": {
+      "severity": 1,
+      "rollRange": "36-40",
+      "description": "<p>Сложность следующей проверки цели увеличивается на 1.</p>",
+      "source": "Core Rulebook, с. 115"
+    }
+  },
+  {
+    "name": "Сбивание с ног",
+    "nameEn": "Bowled Over",
+    "type": "injury",
+    "folder": "Общие",
+    "system": {
+      "severity": 2,
+      "rollRange": "41-45",
+      "description": "<p>Цель падает ничком и получает 1 усталость.</p>",
+      "source": "Core Rulebook, с. 115"
+    }
+  },
+  {
+    "name": "Звон в ушах",
+    "nameEn": "Head Ringer",
+    "type": "injury",
+    "folder": "Общие",
+    "system": {
+      "severity": 2,
+      "rollRange": "46-50",
+      "description": "<p>Пока травма не вылечена, сложность всех проверок Интеллекта и Смекалки цели увеличивается на 1.</p>",
+      "source": "Core Rulebook, с. 115"
+    }
+  },
+  {
+    "name": "Страшная рана",
+    "nameEn": "Fearsome Wound",
+    "type": "injury",
+    "folder": "Общие",
+    "system": {
+      "severity": 2,
+      "rollRange": "51-55",
+      "description": "<p>Пока травма не вылечена, сложность всех проверок Харизмы и Воли цели увеличивается на 1.</p>",
+      "source": "Core Rulebook, с. 115"
+    }
+  },
+  {
+    "name": "Мучительная рана",
+    "nameEn": "Agonizing Wound",
+    "type": "injury",
+    "folder": "Общие",
+    "system": {
+      "severity": 2,
+      "rollRange": "56-60",
+      "description": "<p>Пока травма не вылечена, сложность всех проверок Силы и Ловкости цели увеличивается на 1.</p>",
+      "source": "Core Rulebook, с. 115"
+    }
+  },
+  {
+    "name": "Лёгкое потрясение",
+    "nameEn": "Slightly Dazed",
+    "type": "injury",
+    "folder": "Общие",
+    "system": {
+      "severity": 2,
+      "rollRange": "61-65",
+      "description": "<p>Цель дезориентирована, пока травма не вылечена.</p>",
+      "source": "Core Rulebook, с. 115"
+    }
+  },
+  {
+    "name": "В растерянных чувствах",
+    "nameEn": "Scattered Senses",
+    "type": "injury",
+    "folder": "Общие",
+    "system": {
+      "severity": 2,
+      "rollRange": "66-70",
+      "description": "<p>Пока травма не вылечена, цель убирает все кости бонуса из своих проверок навыков.</p>",
+      "source": "Core Rulebook, с. 115"
+    }
+  },
+  {
+    "name": "Хромота",
+    "nameEn": "Hamstrung",
+    "type": "injury",
+    "folder": "Общие",
+    "system": {
+      "severity": 2,
+      "rollRange": "71-75",
+      "description": "<p>Пока травма не вылечена, цель не получает свободного манёвра.</p>",
+      "source": "Core Rulebook, с. 115"
+    }
+  },
+  {
+    "name": "Подавленность",
+    "nameEn": "Overpowered",
+    "type": "injury",
+    "folder": "Общие",
+    "system": {
+      "severity": 2,
+      "rollRange": "76-80",
+      "description": "<p>Цель раскрывается: атакующий может сразу же провести по ней ещё одну атаку свободным действием, используя тот же набор костей, что и в исходной атаке.</p>",
+      "source": "Core Rulebook, с. 115"
+    }
+  },
+  {
+    "name": "Изнурение",
+    "nameEn": "Winded",
+    "type": "injury",
+    "folder": "Общие",
+    "system": {
+      "severity": 2,
+      "rollRange": "81-85",
+      "description": "<p>Пока травма не вылечена, цель не может добровольно получать усталость ради активации способностей или дополнительных манёвров.</p>",
+      "source": "Core Rulebook, с. 115"
+    }
+  },
+  {
+    "name": "Срыв планов",
+    "nameEn": "Compromised",
+    "type": "injury",
+    "folder": "Общие",
+    "system": {
+      "severity": 2,
+      "rollRange": "86-90",
+      "description": "<p>Пока травма не вылечена, сложность всех проверок навыков цели увеличивается на 1.</p>",
+      "source": "Core Rulebook, с. 115"
+    }
+  },
+  {
+    "name": "На грани",
+    "nameEn": "At the Brink",
+    "type": "injury",
+    "folder": "Общие",
+    "system": {
+      "severity": 3,
+      "rollRange": "91-95",
+      "description": "<p>Пока травма не вылечена, цель получает 2 усталости каждый раз, когда совершает действие.</p>",
+      "source": "Core Rulebook, с. 115"
+    }
+  },
+  {
+    "name": "Калека",
+    "nameEn": "Crippled",
+    "type": "injury",
+    "folder": "Общие",
+    "system": {
+      "severity": 3,
+      "rollRange": "96-100",
+      "description": "<p>Одна конечность цели (на выбор ведущего) повреждена, пока травма не вылечена: сложность всех проверок, требующих этой конечности, увеличивается на 1.</p>",
+      "source": "Core Rulebook, с. 115"
+    }
+  },
+  {
+    "name": "Уродство",
+    "nameEn": "Maimed",
+    "type": "injury",
+    "folder": "Общие",
+    "system": {
+      "severity": 3,
+      "rollRange": "101-105",
+      "description": "<p>Цель навсегда теряет одну конечность (на выбор ведущего). Без кибернетической замены или протеза она не может совершать действия, требующие этой конечности. Пока травма не вылечена, ко всем остальным действиям добавляется кость штрафа.</p>",
+      "source": "Core Rulebook, с. 115"
+    }
+  },
+  {
+    "name": "Ужасная травма",
+    "nameEn": "Horrific Injury",
+    "type": "injury",
+    "folder": "Общие",
+    "system": {
+      "severity": 3,
+      "rollRange": "106-110",
+      "description": "<p>Бросьте d10, чтобы определить характеристику: 1–3 Сила, 4–6 Ловкость, 7 Интеллект, 8 Смекалка, 9 Харизма, 10 Воля. Пока травма не вылечена, эта характеристика считается меньше на 1.</p>",
+      "source": "Core Rulebook, с. 115"
+    }
+  },
+  {
+    "name": "Временная недееспособность",
+    "nameEn": "Temporarily Disabled",
+    "type": "injury",
+    "folder": "Общие",
+    "system": {
+      "severity": 3,
+      "rollRange": "111-115",
+      "description": "<p>Цель обездвижена, пока травма не вылечена.</p>",
+      "source": "Core Rulebook, с. 115"
+    }
+  },
+  {
+    "name": "Слепота",
+    "nameEn": "Blinded",
+    "type": "injury",
+    "folder": "Общие",
+    "system": {
+      "severity": 3,
+      "rollRange": "116-120",
+      "description": "<p>Цель ничего не видит. Пока травма не вылечена, сложность всех её проверок усиливается дважды, а проверок Внимания и Бдительности — трижды.</p>",
+      "source": "Core Rulebook, с. 115"
+    }
+  },
+  {
+    "name": "Лишение чувств",
+    "nameEn": "Knocked Senseless",
+    "type": "injury",
+    "folder": "Общие",
+    "system": {
+      "severity": 3,
+      "rollRange": "121-125",
+      "description": "<p>Цель в замешательстве, пока травма не вылечена.</p>",
+      "source": "Core Rulebook, с. 115"
+    }
+  },
+  {
+    "name": "Чудовищная травма",
+    "nameEn": "Gruesome Injury",
+    "type": "injury",
+    "folder": "Общие",
+    "system": {
+      "severity": 4,
+      "rollRange": "126-130",
+      "description": "<p>Бросьте d10, чтобы определить характеристику: 1–3 Сила, 4–6 Ловкость, 7 Интеллект, 8 Смекалка, 9 Харизма, 10 Воля. Эта характеристика навсегда уменьшается на 1 (но не ниже 1).</p>",
+      "source": "Core Rulebook, с. 115"
+    }
+  },
+  {
+    "name": "Кровотечение",
+    "nameEn": "Bleeding Out",
+    "type": "injury",
+    "folder": "Общие",
+    "system": {
+      "severity": 4,
+      "rollRange": "131-140",
+      "description": "<p>Пока травма не вылечена, в начале каждого своего хода цель получает 1 рану и 1 усталость. За каждые 5 ран сверх порога ран цель получает ещё одну критическую травму (бросок по таблице; если снова выпадает этот результат, бросок повторяется).</p>",
+      "source": "Core Rulebook, с. 115"
+    }
+  },
+  {
+    "name": "Конец близок",
+    "nameEn": "The End Is Nigh",
+    "type": "injury",
+    "folder": "Общие",
+    "system": {
+      "severity": 4,
+      "rollRange": "141-150",
+      "description": "<p>Если травма не будет вылечена, цель умирает после последней ячейки инициативы следующего раунда.</p>",
+      "source": "Core Rulebook, с. 115"
+    }
+  },
+  {
+    "name": "Смерть",
+    "nameEn": "Dead",
+    "type": "injury",
+    "folder": "Общие",
+    "system": {
+      "severity": 0,
+      "rollRange": "151+",
+      "description": "<p>Цель окончательно и бесповоротно погибает.</p>",
+      "source": "Core Rulebook, с. 115"
+    }
+  }
+]

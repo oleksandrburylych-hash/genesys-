@@ -3,11 +3,17 @@
  * Всё, что видит игрок, задаётся ключами локализации (lang/*.json).
  */
 
+import { WORLDS, ADVENTURES } from "./worlds.mjs";
+
 export const SYSTEM_ID = "genesys-rpg";
 export const SYSTEM_PATH = `systems/${SYSTEM_ID}`;
 export const TEMPLATES = `${SYSTEM_PATH}/templates`;
 
 export const GENESYS = {};
+
+/** Теги миров и типы приключений (module/worlds.mjs). */
+GENESYS.worlds = WORLDS;
+GENESYS.adventures = ADVENTURES;
 
 /** Шесть характеристик. */
 GENESYS.characteristics = {
@@ -32,25 +38,25 @@ GENESYS.skillCategories = {
  * Базовый список навыков. Используется для автодобавления навыков новому персонажу.
  * key — стабильный идентификатор (не зависит от языка), по нему ищутся навыки
  * для инициативы, оружия и т.п. Список правится после загрузки книг правил.
- * settings — в каких сеттингах навык обычно используется (для пресетов).
+ * settings — в каких сеттингах навык используется (по таблице навыков Core Rulebook).
  */
 GENESYS.defaultSkills = [
   // Общие
-  { key: "alchemy", characteristic: "intellect", category: "general", settings: ["fantasy"] },
-  { key: "astrocartography", characteristic: "intellect", category: "general", settings: ["scifi"] },
+  { key: "alchemy", characteristic: "intellect", category: "general", settings: ["fantasy", "steampunk", "weirdwar"] },
+  { key: "astrocartography", characteristic: "intellect", category: "general", settings: ["spaceopera"] },
   { key: "athletics", characteristic: "brawn", category: "general", settings: ["all"] },
-  { key: "computers", characteristic: "intellect", category: "general", settings: ["modern", "scifi"] },
+  { key: "computers", characteristic: "intellect", category: "general", settings: ["modern", "scifi", "spaceopera"] },
   { key: "cool", characteristic: "presence", category: "general", settings: ["all"] },
   { key: "coordination", characteristic: "agility", category: "general", settings: ["all"] },
   { key: "discipline", characteristic: "willpower", category: "general", settings: ["all"] },
-  { key: "driving", characteristic: "agility", category: "general", settings: ["modern", "scifi"] },
+  { key: "driving", characteristic: "agility", category: "general", settings: ["steampunk", "weirdwar", "modern", "scifi", "spaceopera"] },
   { key: "mechanics", characteristic: "intellect", category: "general", settings: ["all"] },
   { key: "medicine", characteristic: "intellect", category: "general", settings: ["all"] },
-  { key: "operating", characteristic: "intellect", category: "general", settings: ["modern", "scifi"] },
+  { key: "operating", characteristic: "intellect", category: "general", settings: ["all"] },
   { key: "perception", characteristic: "cunning", category: "general", settings: ["all"] },
-  { key: "piloting", characteristic: "agility", category: "general", settings: ["modern", "scifi"] },
+  { key: "piloting", characteristic: "agility", category: "general", settings: ["weirdwar", "modern", "scifi", "spaceopera"] },
   { key: "resilience", characteristic: "brawn", category: "general", settings: ["all"] },
-  { key: "riding", characteristic: "agility", category: "general", settings: ["fantasy"] },
+  { key: "riding", characteristic: "agility", category: "general", settings: ["fantasy", "steampunk"] },
   { key: "skulduggery", characteristic: "cunning", category: "general", settings: ["all"] },
   { key: "stealth", characteristic: "agility", category: "general", settings: ["all"] },
   { key: "streetwise", characteristic: "cunning", category: "general", settings: ["all"] },
@@ -62,12 +68,12 @@ GENESYS.defaultSkills = [
   { key: "primal", characteristic: "cunning", category: "magic", settings: ["fantasy"] },
   // Боевые
   { key: "brawl", characteristic: "brawn", category: "combat", settings: ["all"] },
-  { key: "gunnery", characteristic: "agility", category: "combat", settings: ["modern", "scifi"] },
-  { key: "melee", characteristic: "brawn", category: "combat", settings: ["modern", "scifi"] },
+  { key: "gunnery", characteristic: "agility", category: "combat", settings: ["steampunk", "weirdwar", "modern", "scifi", "spaceopera"] },
+  { key: "melee", characteristic: "brawn", category: "combat", settings: ["steampunk", "weirdwar", "modern", "scifi", "spaceopera"] },
   { key: "meleeLight", characteristic: "brawn", category: "combat", settings: ["fantasy"] },
   { key: "meleeHeavy", characteristic: "brawn", category: "combat", settings: ["fantasy"] },
-  { key: "rangedLight", characteristic: "agility", category: "combat", settings: ["modern", "scifi"] },
-  { key: "rangedHeavy", characteristic: "agility", category: "combat", settings: ["modern", "scifi"] },
+  { key: "rangedLight", characteristic: "agility", category: "combat", settings: ["steampunk", "weirdwar", "modern", "scifi", "spaceopera"] },
+  { key: "rangedHeavy", characteristic: "agility", category: "combat", settings: ["steampunk", "weirdwar", "modern", "scifi", "spaceopera"] },
   { key: "ranged", characteristic: "agility", category: "combat", settings: ["fantasy"] },
   // Социальные
   { key: "charm", characteristic: "presence", category: "social", settings: ["all"] },
@@ -83,8 +89,12 @@ GENESYS.defaultSkills = [
 GENESYS.skillPresets = {
   all: "GENESYS.Settings.SkillPreset.all",
   fantasy: "GENESYS.Settings.SkillPreset.fantasy",
+  steampunk: "GENESYS.Settings.SkillPreset.steampunk",
+  weirdwar: "GENESYS.Settings.SkillPreset.weirdwar",
   modern: "GENESYS.Settings.SkillPreset.modern",
   scifi: "GENESYS.Settings.SkillPreset.scifi",
+  spaceopera: "GENESYS.Settings.SkillPreset.spaceopera",
+  terrinoth: "GENESYS.Settings.SkillPreset.terrinoth",
   none: "GENESYS.Settings.SkillPreset.none"
 };
 
@@ -104,7 +114,8 @@ GENESYS.ranges = {
   short: { label: "GENESYS.Range.short", difficulty: 1 },
   medium: { label: "GENESYS.Range.medium", difficulty: 2 },
   long: { label: "GENESYS.Range.long", difficulty: 3 },
-  extreme: { label: "GENESYS.Range.extreme", difficulty: 4 }
+  extreme: { label: "GENESYS.Range.extreme", difficulty: 4 },
+  strategic: { label: "GENESYS.Range.strategic", difficulty: 4 }
 };
 
 /** Типы активации талантов. */
@@ -165,4 +176,227 @@ GENESYS.xp = {
   /** Максимальный ранг навыка при создании / вообще. */
   maxSkillCreation: 2,
   maxSkill: 5
+};
+
+/**
+ * Встречные проверки: навык → навык цели, который задаёт сложность
+ * (кости способности цели → кости сложности, мастерства → вызова).
+ */
+GENESYS.opposed = {
+  charm: "cool",
+  deception: "vigilance",
+  coercion: "discipline",
+  leadership: "discipline",
+  negotiation: "negotiation",
+  stealth: "perception",
+  skulduggery: "perception"
+};
+
+/**
+ * Пороги диапазонов дистанции в единицах сетки сцены (по умолчанию метры).
+ * Расстояние больше «длинной» — экстремальная. Настраивается в параметрах мира.
+ */
+GENESYS.rangeThresholds = { engaged: 2, short: 15, medium: 50, long: 200 };
+
+/** Состояния персонажей (значки на токене). */
+GENESYS.statusEffects = [
+  { id: "incapacitated", name: "GENESYS.Status.incapacitated", img: "systems/genesys-rpg/assets/icons/gi/status/knocked-out-stars.svg" },
+  { id: "dead", name: "GENESYS.Status.dead", img: "systems/genesys-rpg/assets/icons/gi/status/skull-crossed-bones.svg" },
+  { id: "disoriented", name: "GENESYS.Status.disoriented", img: "systems/genesys-rpg/assets/icons/gi/status/spinning-top.svg" },
+  { id: "staggered", name: "GENESYS.Status.staggered", img: "systems/genesys-rpg/assets/icons/gi/status/stoned-skull.svg" },
+  { id: "immobilized", name: "GENESYS.Status.immobilized", img: "systems/genesys-rpg/assets/icons/gi/status/manacles.svg" },
+  { id: "prone", name: "GENESYS.Status.prone", img: "systems/genesys-rpg/assets/icons/gi/status/falling.svg" },
+  { id: "burning", name: "GENESYS.Status.burning", img: "systems/genesys-rpg/assets/icons/gi/status/burning-embers.svg" },
+  { id: "bleeding", name: "GENESYS.Status.bleeding", img: "systems/genesys-rpg/assets/icons/gi/status/bleeding-wound.svg" },
+  { id: "poisoned", name: "GENESYS.Status.poisoned", img: "systems/genesys-rpg/assets/icons/gi/status/poison-bottle.svg" },
+  { id: "frightened", name: "GENESYS.Status.frightened", img: "systems/genesys-rpg/assets/icons/gi/status/terror.svg" },
+  { id: "blind", name: "GENESYS.Status.blind", img: "systems/genesys-rpg/assets/icons/gi/status/blindfold.svg" },
+  { id: "concentrating", name: "GENESYS.Status.concentrating", img: "systems/genesys-rpg/assets/icons/gi/status/meditation.svg" },
+  { id: "invisible", name: "GENESYS.Status.invisible", img: "systems/genesys-rpg/assets/icons/gi/status/invisible.svg" },
+  { id: "defensiveStance", name: "GENESYS.Status.defensiveStance", img: "systems/genesys-rpg/assets/icons/gi/status/shield-reflect.svg" },
+  { id: "sideStep", name: "GENESYS.Status.sideStep", img: "systems/genesys-rpg/assets/icons/gi/status/dodging.svg" },
+  { id: "evasive", name: "GENESYS.Status.evasive", img: "systems/genesys-rpg/assets/icons/gi/status/fast-arrow.svg" },
+  { id: "braced", name: "GENESYS.Status.braced", img: "systems/genesys-rpg/assets/icons/gi/status/shield-impact.svg" },
+  { id: "vehicleAdvantage", name: "GENESYS.Status.vehicleAdvantage", img: "systems/genesys-rpg/assets/icons/gi/status/targeting.svg" },
+  { id: "mounted", name: "GENESYS.Status.mounted", img: "systems/genesys-rpg/assets/icons/gi/status/cavalry.svg" }
+];
+
+/**
+ * Активируемые свойства оружия: стоимость (преимуществ) и что делает автоматика.
+ * status — какое состояние повесить на цель; strain — урон усталостью (рейтинг).
+ */
+GENESYS.activeQualities = {
+  "Автоматическое": { cost: 2, note: "GENESYS.Quality.AutoFire" },
+  "Взрыв": { cost: 2, note: "GENESYS.Quality.Blast" },
+  "Дезориентация": { cost: 2, status: "disoriented", timed: true },
+  "Жжение": { cost: 2, status: "burning", timed: true, burn: true },
+  "Залповое": { cost: 2, note: "GENESYS.Quality.Linked" },
+  "Наведение": { cost: 2, note: "GENESYS.Quality.Guided" },
+  "Нокдаун": { cost: 2, status: "prone" },
+  "Оглушение": { cost: 2, strain: true },
+  "Ошеломление": { cost: 2, status: "staggered", timed: true },
+  "Повреждение": { cost: 1, note: "GENESYS.Quality.Sunder" },
+  "Сковывание": { cost: 2, status: "immobilized", timed: true }
+};
+
+/**
+ * Числовые эффекты талантов (по английскому названию из флага nameEn).
+ * Значения умножаются на ранг таланта.
+ */
+GENESYS.talentEffects = {
+  "Toughened": { wounds: 2 },
+  "Grit": { strain: 1 },
+  "Durable": { critical: -10 },
+  "Defensive": { meleeDefense: 1, rangedDefense: 1 },
+  "Enduring": { soak: 1 }
+};
+
+/** Магические навыки и связанные с ними характеристики (урон Атаки). */
+GENESYS.magicSkills = {
+  arcana: "intellect",
+  divine: "willpower",
+  primal: "cunning",
+  runes: "intellect",
+  verse: "presence",
+  psychic: "presence",
+  // PSI (Genesys Foundry): три пси-навыка, все на Воле.
+  psiExtrasensory: "willpower",
+  psiMind: "willpower",
+  psiProjection: "willpower"
+};
+
+/**
+ * Наборы навыков, заданные явным списком (вместо тегов settings).
+ * Realms of Terrinoth: четыре навыка Знания заменяют общее Знание, добавлены Руны и Стихосложение.
+ */
+GENESYS.presetSkills = {
+  terrinoth: ["alchemy", "arcana", "athletics", "brawl", "charm", "coercion", "cool", "coordination", "deception",
+    "discipline", "divine", "knowledgeAdventuring", "knowledgeForbidden", "knowledgeGeography", "knowledgeLore",
+    "leadership", "mechanics", "medicine", "meleeHeavy", "meleeLight", "negotiation", "perception", "primal",
+    "ranged", "resilience", "riding", "runes", "skulduggery", "stealth", "streetwise", "survival", "verse", "vigilance"]
+};
+
+/** Навыки, которых нет в базовом списке (характеристика, категория) — для наборов вроде Терринота. */
+GENESYS.extraSkills = {
+  knowledgeAdventuring: { characteristic: "intellect", category: "knowledge" },
+  knowledgeForbidden: { characteristic: "intellect", category: "knowledge" },
+  knowledgeGeography: { characteristic: "intellect", category: "knowledge" },
+  knowledgeLore: { characteristic: "intellect", category: "knowledge" },
+  runes: { characteristic: "intellect", category: "magic" },
+  verse: { characteristic: "presence", category: "magic" },
+  psychic: { characteristic: "presence", category: "magic" },
+  knowledgeSupernatural: { characteristic: "intellect", category: "knowledge" },
+  knowledgeScience: { characteristic: "intellect", category: "knowledge" },
+  knowledgeAnalytics: { characteristic: "intellect", category: "knowledge" },
+  knowledgeEducation: { characteristic: "intellect", category: "knowledge" },
+  knowledgePsychology: { characteristic: "intellect", category: "knowledge" },
+  psiExtrasensory: { characteristic: "willpower", category: "magic" },
+  psiMind: { characteristic: "willpower", category: "magic" },
+  psiProjection: { characteristic: "willpower", category: "magic" }
+};
+
+/**
+ * Источники (книги) по началу строки source.
+ * kind: official — официальные книги; fan — фанатские дополнения Genesys Foundry; module — дополнительные модули
+ * правил (по умолчанию выключены, ведущий включает в мастере настройки мира).
+ */
+GENESYS.sources = {
+  core: { label: "Core Rulebook", match: "Core Rulebook", kind: "official" },
+  epg: { label: "Expanded Player's Guide", match: "Expanded Player's Guide", kind: "official" },
+  rot: { label: "Realms of Terrinoth", match: "Realms of Terrinoth", kind: "official" },
+  zgm: { label: "Zynnythryx's Guide to Magic", match: "Zynnythryx", kind: "official" },
+  creatures: { label: "Creature Catalogue", match: "Creature Catalogue", kind: "fan" },
+  equipment: { label: "Equipment Encyclopedia", match: "Equipment Encyclopedia", kind: "fan" },
+  tpas: { label: "To Protect and Serve", match: "To Protect and Serve", kind: "fan" },
+  psi: { label: "PSI", match: "PSI", kind: "module", hint: "GENESYS.Modules.psi" },
+  fear: { label: "Expanded Fear Guidelines", match: "Expanded Fear", kind: "module", hint: "GENESYS.Modules.fear" },
+  talentsExpanded: { label: "Talents Expanded", match: "Talents Expanded", kind: "module", hint: "GENESYS.Modules.talentsExpanded" }
+};
+
+/** Модули, выключенные, пока ведущий их не включит. */
+GENESYS.defaultDisabledSources = ["psi", "fear", "talentsExpanded"];
+
+/** Таланты Core, разрешённые в Терриноте (Таблица 2–4 Realms of Terrinoth). */
+GENESYS.terrinothCoreTalents = ["Животное-спутник", "Берсерк", "Покупка информации", "Может, обсудим это?", "Остроумный ответ",
+  "Скоординированная атака", "Встречное предложение", "Меткий глаз", "Повышение", "Оборона", "Оборонительная тактика",
+  "Отчаянное восстановление", "Уклонение", "Обоерукий", "Дуэлянт", "Крепость", "Орлиный глаз", "Выносливость",
+  "Полевой командир", "Полевой командир (улучшенный)", "Добытчик", "Упорство", "Обездвиживающий выстрел",
+  "Повышенное внимание", "Героическая воля", "Воодушевляющая речь", "Воодушевляющая речь (улучшенный)",
+  "Воодушевляющая речь (мастерский)", "Изобретатель", "Подскок", "Квалификация", "Торговые связи", "Поехали",
+  "Счастливое попадание", "Мастер", "Одарённость", "Единение с природой", "Знаток болеутоляющих", "Парирование",
+  "Парирование (улучшенный)", "Пристойное поведение", "Выхватывание", "Быстрый удар", "Быстрая стрельба из лука"];
+
+/** Плашки по умолчанию (генерируются tools/build-packs.mjs). */
+GENESYS.icons = {
+  "defaults": {
+    "weapon": "systems/genesys-rpg/assets/icons/gi/weapon/sword-brandish.svg",
+    "armor": "systems/genesys-rpg/assets/icons/gi/armor/chest-armor.svg",
+    "gear": "systems/genesys-rpg/assets/icons/gi/gear/swap-bag.svg",
+    "spell": "systems/genesys-rpg/assets/icons/gi/spell/magic-swirl.svg",
+    "talent": "systems/genesys-rpg/assets/icons/gi/talent/laurels.svg",
+    "ability": "systems/genesys-rpg/assets/icons/gi/ability/star-swirl.svg",
+    "heroic": "systems/genesys-rpg/assets/icons/gi/heroic/sunbeams.svg",
+    "skill": "systems/genesys-rpg/assets/icons/gi/skill/skills.svg",
+    "archetype": "systems/genesys-rpg/assets/icons/gi/archetype/person.svg",
+    "career": "systems/genesys-rpg/assets/icons/gi/career/person.svg",
+    "quality": "systems/genesys-rpg/assets/icons/gi/quality/upgrade.svg",
+    "attachment": "systems/genesys-rpg/assets/icons/gi/attachment/gear-hammer.svg",
+    "injury": "systems/genesys-rpg/assets/icons/gi/injury/bleeding-wound.svg",
+    "adversary": "systems/genesys-rpg/assets/icons/gi/adversary/evil-minion.svg",
+    "vehicle": "systems/genesys-rpg/assets/icons/gi/vehicle/steering-wheel.svg"
+  },
+  "skills": {
+    "alchemy": "systems/genesys-rpg/assets/icons/gi/skill/bubbling-flask.svg",
+    "astrocartography": "systems/genesys-rpg/assets/icons/gi/skill/galaxy.svg",
+    "athletics": "systems/genesys-rpg/assets/icons/gi/skill/run.svg",
+    "computers": "systems/genesys-rpg/assets/icons/gi/skill/laptop.svg",
+    "cool": "systems/genesys-rpg/assets/icons/gi/skill/meditation.svg",
+    "coordination": "systems/genesys-rpg/assets/icons/gi/skill/acrobatic.svg",
+    "discipline": "systems/genesys-rpg/assets/icons/gi/skill/inner-self.svg",
+    "driving": "systems/genesys-rpg/assets/icons/gi/skill/steering-wheel.svg",
+    "mechanics": "systems/genesys-rpg/assets/icons/gi/skill/spanner.svg",
+    "medicine": "systems/genesys-rpg/assets/icons/gi/skill/health-normal.svg",
+    "operating": "systems/genesys-rpg/assets/icons/gi/skill/control-tower.svg",
+    "perception": "systems/genesys-rpg/assets/icons/gi/skill/eye-target.svg",
+    "piloting": "systems/genesys-rpg/assets/icons/gi/skill/jet-fighter.svg",
+    "resilience": "systems/genesys-rpg/assets/icons/gi/skill/muscle-up.svg",
+    "riding": "systems/genesys-rpg/assets/icons/gi/skill/horse-head.svg",
+    "skulduggery": "systems/genesys-rpg/assets/icons/gi/skill/lockpicks.svg",
+    "stealth": "systems/genesys-rpg/assets/icons/gi/skill/hood.svg",
+    "streetwise": "systems/genesys-rpg/assets/icons/gi/skill/shaking-hands.svg",
+    "survival": "systems/genesys-rpg/assets/icons/gi/skill/campfire.svg",
+    "vigilance": "systems/genesys-rpg/assets/icons/gi/skill/sight-disabled.svg",
+    "arcana": "systems/genesys-rpg/assets/icons/gi/skill/spell-book.svg",
+    "divine": "systems/genesys-rpg/assets/icons/gi/skill/prayer.svg",
+    "primal": "systems/genesys-rpg/assets/icons/gi/skill/oak-leaf.svg",
+    "runes": "systems/genesys-rpg/assets/icons/gi/skill/rune-stone.svg",
+    "verse": "systems/genesys-rpg/assets/icons/gi/skill/lyre.svg",
+    "psychic": "systems/genesys-rpg/assets/icons/gi/skill/brain.svg",
+    "brawl": "systems/genesys-rpg/assets/icons/gi/skill/fist.svg",
+    "gunnery": "systems/genesys-rpg/assets/icons/gi/skill/cannon.svg",
+    "melee": "systems/genesys-rpg/assets/icons/gi/skill/broadsword.svg",
+    "meleeLight": "systems/genesys-rpg/assets/icons/gi/skill/plain-dagger.svg",
+    "meleeHeavy": "systems/genesys-rpg/assets/icons/gi/skill/battle-axe.svg",
+    "ranged": "systems/genesys-rpg/assets/icons/gi/skill/bow-arrow.svg",
+    "rangedLight": "systems/genesys-rpg/assets/icons/gi/skill/pistol-gun.svg",
+    "rangedHeavy": "systems/genesys-rpg/assets/icons/gi/skill/winchester-rifle.svg",
+    "charm": "systems/genesys-rpg/assets/icons/gi/skill/charm.svg",
+    "coercion": "systems/genesys-rpg/assets/icons/gi/skill/shouting.svg",
+    "deception": "systems/genesys-rpg/assets/icons/gi/skill/domino-mask.svg",
+    "leadership": "systems/genesys-rpg/assets/icons/gi/skill/rally-the-troops.svg",
+    "negotiation": "systems/genesys-rpg/assets/icons/gi/skill/shaking-hands.svg",
+    "knowledge": "systems/genesys-rpg/assets/icons/gi/skill/book-pile.svg",
+    "knowledgeLore": "systems/genesys-rpg/assets/icons/gi/skill/book-pile.svg",
+    "knowledgeForbidden": "systems/genesys-rpg/assets/icons/gi/skill/evil-book.svg",
+    "knowledgeAdventuring": "systems/genesys-rpg/assets/icons/gi/skill/treasure-map.svg",
+    "knowledgeGeography": "systems/genesys-rpg/assets/icons/gi/skill/world.svg",
+    "knowledgeScience": "systems/genesys-rpg/assets/icons/gi/skill/erlenmeyer.svg",
+    "knowledgeSupernatural": "systems/genesys-rpg/assets/icons/gi/skill/pentacle.svg",
+    "knowledgeAnalytics": "systems/genesys-rpg/assets/icons/gi/skill/magnifying-glass.svg",
+    "knowledgeEducation": "systems/genesys-rpg/assets/icons/gi/skill/graduate-cap.svg",
+    "knowledgePsychology": "systems/genesys-rpg/assets/icons/gi/skill/brain.svg",
+    "psiExtrasensory": "systems/genesys-rpg/assets/icons/gi/skill/third-eye.svg",
+    "psiMind": "systems/genesys-rpg/assets/icons/gi/skill/brain-tentacle.svg",
+    "psiProjection": "systems/genesys-rpg/assets/icons/gi/skill/psychic-waves.svg"
+  }
 };

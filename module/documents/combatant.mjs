@@ -16,11 +16,11 @@ export class GenesysCombatant extends Combatant {
       const skill = actor.getSkill(skillKey);
       pool = skill
         ? actor.getSkillPool(skill, 0)
-        : new DicePool({ ability: actor.characteristic("willpower") });
+        : (actor.untrainedPool ? actor.untrainedPool(skillKey, 0) : new DicePool({ ability: actor.characteristic("willpower") }));
     }
     else pool = new DicePool({ ability: 1 });
     if (pool.isEmpty) pool.ability = 1;
-    const label = game.i18n.localize("GENESYS.Initiative");
+    const label = game.i18n.localize("GENESYS.Initiative.label");
     return GenesysRoll.fromPool(pool, { initiative: true, label });
   }
 }

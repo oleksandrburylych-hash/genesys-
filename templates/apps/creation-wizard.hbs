@@ -1,0 +1,289 @@
+<div class="wz">
+  <nav class="wz-steps">
+    {{#each steps}}
+    <a class="wz-step {{#if active}}active{{/if}} {{#if done}}done{{/if}}" data-action="goto" data-index="{{index}}">
+      <span class="wz-num">{{#if done}}<i class="fa-solid fa-check"></i>{{else}}{{num}}{{/if}}</span>
+      <span>{{localize label}}</span>
+    </a>
+    {{/each}}
+    <div class="wz-budget {{#if (lt budget.left 0)}}over{{/if}}">
+      <span class="wz-budget-value">{{budget.left}}</span>
+      <span class="wz-budget-label">{{localize "GENESYS.Wizard.XPLeft"}}</span>
+      <span class="wz-budget-sub">{{budget.spent}} / {{budget.total}}</span>
+    </div>
+    <a class="wz-random" data-action="random" data-tooltip="GENESYS.Wizard.RandomHint"><i class="fa-solid fa-dice"></i> {{localize "GENESYS.Wizard.Random"}}</a>
+    {{#if adventureName}}<div class="wz-adv-badge"><img src="{{adventureImg}}" alt=""><span>{{adventureName}}</span></div>{{/if}}
+    {{#if archetypeName}}<div class="wz-mini">{{archetypeName}}{{#if careerName}} · {{careerName}}{{/if}}</div>{{/if}}
+  </nav>
+
+  <div class="wz-main">
+    <header class="wz-head">
+      <span class="wz-head-num">{{localize "GENESYS.Wizard.StepN"}} {{add stepIndex 1}}</span>
+      <h2>{{localize (concat "GENESYS.Wizard.Step." step)}}</h2>
+      <p class="gs-help">{{localize (concat "GENESYS.Wizard.Help." step)}}</p>
+    </header>
+
+    {{#if (or (eq step "archetype") (eq step "career"))}}
+    <div class="wz-split">
+      <div class="wz-browser">
+        <div class="wz-filters">
+          <a class="wz-chip {{#if list.allActive}}active{{/if}}" data-action="group" data-kind="{{step}}" data-group="">{{localize "GENESYS.Wizard.All"}}</a>
+          {{#each list.groups}}<a class="wz-chip {{#if active}}active{{/if}}" data-action="group" data-kind="{{@root.step}}" data-group="{{name}}">{{name}}</a>{{/each}}
+        </div>
+        <input class="wz-search" type="text" name="search.{{step}}" value="{{list.search}}" placeholder="{{localize 'GENESYS.Wizard.Search'}}">
+        <div class="wz-list wz-cards">
+          {{#each list.cards}}
+          <a class="wz-card {{#if selected}}selected{{/if}}" data-action="pick" data-kind="{{@root.step}}" data-uuid="{{uuid}}">
+            <img src="{{img}}" alt="">
+            <span class="wz-card-text">
+              <span class="wz-card-name">{{name}}</span>
+              <span class="wz-card-group">{{group}}</span>
+              <span class="wz-card-line">{{line}}</span>
+            </span>
+          </a>
+          {{else}}<p class="gs-empty">{{localize "GENESYS.Wizard.Nothing"}}</p>{{/each}}
+        </div>
+      </div>
+
+      <div class="wz-detail">
+        {{#if detail}}
+        <div class="wz-detail-head">
+          <img src="{{detail.img}}" alt="">
+          <div><h3>{{detail.name}}</h3><span class="wz-card-group">{{detail.group}}</span></div>
+        </div>
+        {{#if detail.chars}}
+        <div class="wz-chars">
+          {{#each detail.chars}}<div class="wz-char"><span class="wz-char-v">{{value}}</span><span class="wz-char-l">{{localize label}}</span></div>{{/each}}
+        </div>
+        <div class="wz-stats">
+          <span><b>{{detail.wounds}}</b> + {{localize "GENESYS.Characteristic.brawn"}} — {{localize "GENESYS.Sheet.WoundsTh"}}</span>
+          <span><b>{{detail.strain}}</b> + {{localize "GENESYS.Characteristic.willpower"}} — {{localize "GENESYS.Sheet.StrainTh"}}</span>
+          <span><b>{{detail.xp}}</b> {{localize "GENESYS.XP.Starting"}}</span>
+        </div>
+        {{#if detail.startingSkills}}<p><b>{{localize "GENESYS.StartingSkills"}}:</b> {{detail.startingSkills}}</p>{{/if}}
+        {{#each detail.abilities}}<div class="wz-ability"><b>{{name}}.</b> {{{description}}}</div>{{/each}}
+        {{/if}}
+        {{#if detail.careerSkills}}
+        <h4>{{localize "GENESYS.CareerSkills"}}</h4>
+        <div class="wz-tags">{{#each detail.careerSkills}}<span class="wz-tag">{{this}}</span>{{/each}}</div>
+        {{/if}}
+        {{#if detail.gear}}<p><b>{{localize "GENESYS.Wizard.StartingGear"}}:</b> {{detail.gear}}</p>{{/if}}
+        <div class="wz-desc">{{{detail.description}}}</div>
+        {{else}}
+        <p class="gs-empty">{{localize "GENESYS.Wizard.PickLeft"}}</p>
+        {{/if}}
+      </div>
+    </div>
+    {{/if}}
+
+    {{#if (eq step "skills")}}
+    <div class="wz-body">
+      <div class="gs-ribbon"><span>{{localize "GENESYS.Wizard.CareerFree"}} ({{careerFreeCount}}/{{careerMax}})</span></div>
+      <div class="wz-tags big">
+        {{#each careerSkills}}<a class="wz-tag {{#if checked}}on{{/if}}" data-action="toggle" data-list="careerFree" data-name="{{name}}">{{name}}</a>{{/each}}
+      </div>
+      {{#if startMax}}<div class="gs-ribbon"><span>{{localize "GENESYS.Wizard.StartFree"}} ({{startCount}}/{{startMax}})</span></div>
+      {{#if startingText}}<p class="wz-note"><i class="fa-solid fa-circle-info"></i> {{startingText}}</p>{{/if}}
+      <div class="wz-tags">
+        {{#each allSkills}}<a class="wz-tag small {{#if checked}}on{{/if}} {{#if career}}career{{/if}}" data-action="toggle" data-list="startFree" data-name="{{name}}">{{name}}</a>{{/each}}
+      </div>
+      {{else}}{{#if startingText}}<p class="wz-note"><i class="fa-solid fa-circle-info"></i> {{startingText}}</p>{{/if}}{{/if}}
+    </div>
+    {{/if}}
+
+    {{#if (eq step "xp")}}
+    <div class="wz-body">
+      <div class="gs-ribbon"><span>{{localize "GENESYS.Sheet.Characteristics"}}</span></div>
+      <div class="wz-chars buy">
+        {{#each chars}}
+        <div class="wz-char">
+          <span class="wz-char-v">{{value}}</span>
+          <span class="wz-char-l">{{localize label}}</span>
+          <span class="wz-ctrl">
+            <a data-action="char" data-key="{{key}}" data-delta="-1"><i class="fa-solid fa-minus"></i></a>
+            <a data-action="char" data-key="{{key}}" data-delta="1"><i class="fa-solid fa-plus"></i></a>
+          </span>
+          {{#if next}}<span class="wz-cost">+1: {{next}}</span>{{else}}<span class="wz-cost">max</span>{{/if}}
+        </div>
+        {{/each}}
+      </div>
+      <div class="gs-ribbon"><span>{{localize "GENESYS.Sheet.Skills"}}</span></div>
+      <div class="wz-skillgrid">
+        {{#each skillRows}}
+        <div class="wz-skillrow {{#if career}}career{{/if}} {{#if locked}}locked{{/if}}">
+          <span class="wz-sname">{{name}} <span class="gs-abbr">({{localize abbr}})</span></span>
+          <span class="gs-chevrons">{{#each ranks}}<span class="gs-chevron {{#if this}}on{{/if}}"></span>{{/each}}</span>
+          <span class="wz-ctrl">
+            <a data-action="skill" data-name="{{name}}" data-delta="-1"><i class="fa-solid fa-minus"></i></a>
+            {{#if locked}}<i class="fa-solid fa-lock" data-tooltip="GENESYS.Wizard.MagicLocked"></i>
+            {{else}}<a data-action="skill" data-name="{{name}}" data-delta="1"><i class="fa-solid fa-plus"></i></a>{{/if}}
+          </span>
+          <span class="wz-cost">{{#if locked}}—{{else}}{{#if next}}{{next}}{{else}}max{{/if}}{{/if}}</span>
+        </div>
+        {{/each}}
+      </div>
+      <p class="gs-help">{{localize "GENESYS.Wizard.XPRules"}}</p>
+    </div>
+    {{/if}}
+
+    {{#if (eq step "talents")}}
+    <div class="wz-split">
+      <div class="wz-browser">
+        <div class="wz-filters">
+          {{#each tierFilter}}<a class="wz-chip {{#if active}}active{{/if}}" data-action="tier" data-tier="{{t}}">{{label}}</a>{{/each}}
+        </div>
+        <input class="wz-search" type="text" name="search.talent" value="{{talentSearch}}" placeholder="{{localize 'GENESYS.Wizard.Search'}}">
+        <div class="wz-list">
+          {{#each talentCards}}
+          <div class="wz-talent {{#if owned}}owned{{/if}}">
+            <img src="{{img}}" alt="">
+            <div class="wz-talent-text">
+              <div class="wz-card-name">{{name}} <span class="wz-card-group">· {{localize "GENESYS.Talent.Tier"}} {{tier}} · {{localize activation}}{{#if ranked}} · {{localize "GENESYS.Talent.Ranked"}}{{/if}}</span></div>
+              <div class="wz-talent-desc">{{{description}}}</div>
+            </div>
+            <a class="gs-btn" data-action="talent" data-uuid="{{uuid}}">+ {{cost}}</a>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+      <div class="wz-detail">
+        <h3>{{localize "GENESYS.Wizard.ChosenTalents"}}</h3>
+        <div class="wz-pyr">{{#each counts}}<span>{{localize "GENESYS.Talent.Tier"}} {{t}}: <b>{{n}}</b></span>{{/each}}</div>
+        <ol class="gs-list">
+          {{#each chosenTalents}}
+          <li><img src="{{img}}" alt=""><span class="gs-list-name">{{name}}{{#if (gt rank 1)}} ({{rank}}){{/if}}</span><span class="wz-cost">{{cost}}</span>
+            <a data-action="talent" data-index="{{index}}"><i class="fa-solid fa-xmark"></i></a></li>
+          {{else}}<li class="gs-empty">{{localize "GENESYS.Wizard.NoTalents"}}</li>{{/each}}
+        </ol>
+      </div>
+    </div>
+    {{/if}}
+
+    {{#if (eq step "motivations")}}
+    <div class="wz-body">
+      {{#if hasTables}}<div class="wz-roll-all"><a class="gs-btn gs-btn-gold" data-action="rollMotivation"><i class="fa-solid fa-dice"></i> {{localize "GENESYS.Wizard.RollAll"}}</a></div>{{/if}}
+      <div class="wz-motivations">
+        {{#each motivations}}
+        <div class="gs-box wz-mot">
+          <header class="gs-box-head"><span>{{localize label}}</span>{{#if options.length}}<a data-action="rollMotivation" data-key="{{key}}" data-tooltip="GENESYS.Wizard.RollOne"><i class="fa-solid fa-dice-d6"></i></a>{{/if}}</header>
+          <div class="wz-mot-body">
+            <input type="text" name="mot.{{key}}.name" value="{{value.name}}" placeholder="{{localize label}}">
+            <textarea name="mot.{{key}}.text" rows="2">{{value.text}}</textarea>
+            {{#if options.length}}
+            <div class="wz-mot-options">
+              {{#each options}}<a class="wz-tag small {{#if selected}}on{{/if}}" data-action="pickMotivation" data-key="{{../key}}" data-index="{{index}}" data-tooltip="{{text}}">{{roll}}. {{name}}</a>{{/each}}
+            </div>
+            {{/if}}
+          </div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+    {{/if}}
+
+    {{#if (eq step "heroic")}}
+    <div class="wz-body">
+      <div class="wz-heroics">
+        {{#each heroics}}
+        <a class="wz-heroic {{#if selected}}selected{{/if}}" data-action="pick" data-kind="heroic" data-uuid="{{uuid}}">
+          <img src="{{img}}" alt="">
+          <div><div class="wz-card-name">{{name}}</div><div class="wz-talent-desc">{{{description}}}</div></div>
+        </a>
+        {{/each}}
+      </div>
+    </div>
+    {{/if}}
+
+    {{#if (eq step "gear")}}
+    <div class="wz-split">
+      <div class="wz-browser">
+        <div class="wz-filters">
+          {{#each gearTypes}}<a class="wz-chip {{#if active}}active{{/if}}" data-action="gearType" data-type="{{key}}">{{localize label}}</a>{{/each}}
+        </div>
+        <input class="wz-search" type="text" name="search.gear" value="{{gearSearch}}" placeholder="{{localize 'GENESYS.Wizard.Search'}}">
+        <div class="wz-list wz-shop">
+          {{#each shop}}
+          <a class="wz-card wz-shop-item {{#unless affordable}}dim{{/unless}} {{#if inCart}}selected{{/if}}" data-action="buy" data-uuid="{{uuid}}">
+            <img src="{{img}}" alt="">
+            <span class="wz-card-text">
+              <span class="wz-card-name">{{name}}</span>
+              {{#if line}}<span class="wz-card-line">{{line}}</span>{{/if}}
+              <span class="wz-card-group">{{localize "GENESYS.Rarity"}} {{rarity}} · {{localize "GENESYS.EncShort"}} {{enc}}</span>
+            </span>
+            <span class="wz-price">{{price}}</span>
+          </a>
+          {{else}}<p class="gs-empty">{{localize "GENESYS.Wizard.Nothing"}}</p>{{/each}}
+        </div>
+      </div>
+      <div class="wz-detail">
+        <div class="wz-wallet">
+          <span><b>{{money.budget}}</b> {{localize "GENESYS.Wizard.Budget"}}</span>
+          <span><b>−{{money.spent}}</b> {{localize "GENESYS.Wizard.Spent"}}</span>
+          <span class="{{#if (lt money.left 0)}}over{{/if}}"><b>{{money.left}}</b> {{localize "GENESYS.Wizard.Left"}}</span>
+        </div>
+        <h4>{{localize "GENESYS.Wizard.Cart"}}</h4>
+        {{#each cart}}
+        <div class="wz-cart-row">
+          <img src="{{img}}" alt=""><span class="wz-cart-name">{{name}}</span>
+          <a data-action="cartQty" data-index="{{index}}" data-delta="-1"><i class="fa-solid fa-minus"></i></a>
+          <span>×{{qty}}</span>
+          <a data-action="cartQty" data-index="{{index}}" data-delta="1"><i class="fa-solid fa-plus"></i></a>
+          <span class="wz-price">{{price}}</span>
+        </div>
+        {{else}}<p class="gs-empty">{{localize "GENESYS.Wizard.CartEmpty"}}</p>{{/each}}
+        {{#if careerGear}}<p class="wz-note"><i class="fa-solid fa-sack"></i> <b>{{localize "GENESYS.Wizard.StartingGear"}}:</b> {{careerGear}}</p>{{/if}}
+        <p class="gs-help">{{localize "GENESYS.Wizard.ShopHint"}}</p>
+      </div>
+    </div>
+    {{/if}}
+
+    {{#if (eq step "details")}}
+    <div class="wz-body">
+      <div class="wz-details">
+        <label class="wide">{{localize "GENESYS.Name"}}<input type="text" name="details.name" value="{{details.name}}"></label>
+        <label>{{localize "GENESYS.Details.gender"}}<input type="text" name="details.gender" value="{{details.gender}}"></label>
+        <label>{{localize "GENESYS.Details.age"}}<input type="text" name="details.age" value="{{details.age}}"></label>
+        <label>{{localize "GENESYS.Details.height"}}<input type="text" name="details.height" value="{{details.height}}"></label>
+        <label>{{localize "GENESYS.Details.build"}}<input type="text" name="details.build" value="{{details.build}}"></label>
+        <label>{{localize "GENESYS.Details.hair"}}<input type="text" name="details.hair" value="{{details.hair}}"></label>
+        <label>{{localize "GENESYS.Details.eyes"}}<input type="text" name="details.eyes" value="{{details.eyes}}"></label>
+        <label class="wide">{{localize "GENESYS.Details.features"}}<input type="text" name="details.features" value="{{details.features}}"></label>
+        <label>{{localize "GENESYS.Wizard.Budget"}}<input type="number" name="details.money" value="{{details.money}}" min="0"></label>
+        <label>{{localize "GENESYS.Wizard.Pocket"}}<span class="wz-inline"><input type="number" name="details.pocket" value="{{details.pocket}}" min="0">
+          <a class="wz-roll" data-action="rollPocket" data-tooltip="GENESYS.Wizard.RollPocket"><i class="fa-solid fa-dice"></i> d100</a></span></label>
+      </div>
+      <p class="wz-note"><i class="fa-solid fa-coins"></i> {{localize "GENESYS.Wizard.MoneyTotal"}}: {{money.budget}} − {{money.spent}} + {{money.pocket}} = <b>{{money.final}}</b></p>
+      {{#if moneyText}}<p class="wz-note"><i class="fa-solid fa-coins"></i> {{moneyText}}</p>{{/if}}
+      {{#if careerGear}}<p class="wz-note"><i class="fa-solid fa-sack"></i> <b>{{localize "GENESYS.Wizard.StartingGear"}}:</b> {{careerGear}}</p>{{/if}}
+      <p class="gs-help">{{localize "GENESYS.Wizard.GearHint"}}</p>
+    </div>
+    {{/if}}
+
+    {{#if (eq step "summary")}}
+    <div class="wz-body wz-summary">
+      <h3>{{summary.name}}</h3>
+      {{#if summary.adventure}}<p><b>{{localize "GENESYS.Wizard.Adventure"}}:</b> {{summary.adventure}}</p>{{/if}}
+      <p><b>{{localize "TYPES.Item.archetype"}}:</b> {{summary.archetype}} · <b>{{localize "TYPES.Item.career"}}:</b> {{summary.career}}{{#if summary.heroic}} · <b>{{localize "GENESYS.Heroic.Title"}}:</b> {{summary.heroic}}{{/if}}</p>
+      <div class="wz-chars">{{#each summary.chars}}<div class="wz-char"><span class="wz-char-v">{{value}}</span><span class="wz-char-l">{{localize label}}</span></div>{{/each}}</div>
+      <p><b>{{localize "GENESYS.Wizard.FreeCareerRanks"}}:</b> {{summary.careerFree}}</p>
+      <p><b>{{localize "GENESYS.Wizard.FreeStartingRanks"}}:</b> {{summary.startFree}}</p>
+      <p><b>{{localize "GENESYS.Sheet.Skills"}}:</b> {{summary.skills}}</p>
+      <p><b>{{localize "TYPES.Item.talent"}}:</b> {{summary.talents}}</p>
+      {{#each summary.motivations}}<p><b>{{localize label}}:</b> {{name}}</p>{{/each}}
+      {{#if summary.gear}}<p><b>{{localize "GENESYS.Wizard.Cart"}}:</b> {{summary.gear}}</p>{{/if}}
+      <p><b>{{localize "GENESYS.Money"}}:</b> {{summary.money}}</p>
+      <p class="gs-help">{{localize "GENESYS.Wizard.SummaryHint"}}</p>
+    </div>
+    {{/if}}
+
+    <footer class="wz-foot">
+      {{#unless isFirst}}<button type="button" class="gs-btn" data-action="back"><i class="fa-solid fa-arrow-left"></i> {{localize "GENESYS.Wizard.Back"}}</button>{{/unless}}
+      <span class="gs-toolbar-sep"></span>
+      {{#if isLast}}
+      <button type="button" class="gs-btn gs-btn-gold" data-action="finish" {{#unless ready}}disabled{{/unless}}><i class="fa-solid fa-check"></i> {{localize "GENESYS.Wizard.Finish"}}</button>
+      {{else}}
+      <button type="button" class="gs-btn gs-btn-maroon" data-action="next">{{localize "GENESYS.Wizard.Next"}} <i class="fa-solid fa-arrow-right"></i></button>
+      {{/if}}
+    </footer>
+  </div>
+</div>

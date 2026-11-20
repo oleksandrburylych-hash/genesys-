@@ -1,0 +1,17 @@
+<div class="attachments-block attachments-drop">
+  <header class="list-header">
+    <h4>{{localize "GENESYS.Attachment.Installed"}} ({{attachmentsInfo.used}} / {{system.hardPoints}})</h4>
+  </header>
+  <ol class="attachment-list">
+    {{#each system.attachments}}
+    <li>
+      <strong>{{name}}</strong> <span class="hint">({{hardPoints}} {{localize "GENESYS.Attachment.HP"}})</span>
+      {{#if description}}<div class="hint">{{description}}</div>{{/if}}
+      {{#if @root.editable}}<a data-action="removeAttachment" data-index="{{@index}}"><i class="fa-solid fa-trash"></i></a>{{/if}}
+    </li>
+    {{else}}
+    <li class="empty">{{localize "GENESYS.Attachment.DropHere"}}</li>
+    {{/each}}
+  </ol>
+  {{#if attachmentsInfo.over}}<p class="warning">{{localize "GENESYS.Attachment.OverHP"}}</p>{{/if}}
+</div>

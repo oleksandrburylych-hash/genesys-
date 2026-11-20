@@ -1,0 +1,10 @@
+<div class="gs-creature">
+  <select name="system.creatureType" data-tooltip="GENESYS.Creature.TypeHint">
+    <option value="">{{localize "GENESYS.Creature.TypeNone"}}</option>
+    {{#each creatureTypes}}<option value="{{key}}" {{#if selected}}selected{{/if}}>{{label}}</option>{{/each}}
+  </select>
+  <div class="gs-worlds" data-tooltip="GENESYS.Creature.LootHint">
+    <i class="fa-solid fa-sack-dollar" style="margin-right:6px;color:var(--gs-muted)"></i>
+    {{#each lootChoices}}<button type="button" class="gs-world {{#if on}}on{{/if}}" style="--world: #8a6a2b" data-action="toggleLoot" data-key="{{key}}" {{#unless @root.editable}}disabled{{/unless}}>{{label}}</button>{{/each}}
+  </div>
+</div>

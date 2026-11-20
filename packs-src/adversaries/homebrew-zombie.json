@@ -1,0 +1,560 @@
+[
+ {
+  "name": "Ходячий мертвец",
+  "type": "adversary",
+  "folder": "Зомби-апокалипсис",
+  "system": {
+   "adversaryType": "minion",
+   "characteristics": {
+    "brawn": {
+     "value": 3
+    },
+    "agility": {
+     "value": 1
+    },
+    "intellect": {
+     "value": 1
+    },
+    "cunning": {
+     "value": 1
+    },
+    "willpower": {
+     "value": 1
+    },
+    "presence": {
+     "value": 1
+    }
+   },
+   "wounds": {
+    "value": 0,
+    "max": 5
+   },
+   "strain": {
+    "value": 0,
+    "max": 0
+   },
+   "soak": {
+    "value": 3
+   },
+   "defense": {
+    "melee": {
+     "value": 0
+    },
+    "ranged": {
+     "value": 0
+    }
+   },
+   "groupSize": 5,
+   "description": "<p>Шаркающие мертвецы — самая частая угроза: поодиночке медленные и неуклюжие, но их всегда больше, чем патронов.</p><p><em>Домашний материал системы: в книгах Genesys зомби нет, статблоки составлены по правилам создания противников Core Rulebook.</em></p>",
+   "source": "Домашние правила системы Genesys RPG для Foundry (не из книг)",
+   "worlds": [
+    "zombie",
+    "postapoc",
+    "monster"
+   ]
+  },
+  "items": [
+   {
+    "name": "Грубая сила",
+    "type": "skill",
+    "system": {
+     "key": "brawl",
+     "characteristic": "brawn",
+     "category": "combat",
+     "rank": 0,
+     "career": true
+    }
+   },
+   {
+    "name": "Внимание",
+    "type": "skill",
+    "system": {
+     "key": "perception",
+     "characteristic": "cunning",
+     "category": "general",
+     "rank": 0,
+     "career": true
+    }
+   },
+   {
+    "name": "Неживой",
+    "type": "ability",
+    "system": {
+     "description": "<p>Не дышит и не чувствует боли: невосприимчив к ядам, болезням и проверкам страха. Не получает усталость — урон по усталости он игнорирует.</p>",
+     "source": "Домашние правила системы Genesys RPG для Foundry (не из книг)"
+    }
+   },
+   {
+    "name": "Заразный укус",
+    "type": "ability",
+    "system": {
+     "description": "<p>Если атака Грубой силой нанесла цели хотя бы 1 рану, в конце встречи цель делает трудную (3 кости сложности) проверку Стойкости. При провале она заражена: пока её не вылечат (Запредельная проверка Медицины и редкое лекарство — на усмотрение ведущего), каждое утро она получает 3 усталости, которые нельзя восстановить отдыхом.</p>",
+     "source": "Домашние правила системы Genesys RPG для Foundry (не из книг)"
+    }
+   },
+   {
+    "name": "Медлительный",
+    "type": "ability",
+    "system": {
+     "description": "<p>Может выполнять не больше одного манёвра перемещения за ход.</p>",
+     "source": "Домашние правила системы Genesys RPG для Foundry (не из книг)"
+    }
+   },
+   {
+    "name": "Только в голову",
+    "type": "ability",
+    "system": {
+     "description": "<p>Атакующий может потратить триумф или 3 преимущества успешной атаки, чтобы попасть в голову: мертвец сразу выводится из строя.</p>",
+     "source": "Домашние правила системы Genesys RPG для Foundry (не из книг)"
+    }
+   },
+   {
+    "name": "Укус и когти",
+    "type": "weapon",
+    "system": {
+     "skill": "brawl",
+     "damage": 4,
+     "brawnDamage": false,
+     "crit": 4,
+     "range": "engaged",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Высококритичное",
+       "rating": 1
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Домашние правила системы Genesys RPG для Foundry (не из книг)"
+    }
+   }
+  ]
+ },
+ {
+  "name": "Бегун",
+  "type": "adversary",
+  "folder": "Зомби-апокалипсис",
+  "system": {
+   "adversaryType": "minion",
+   "characteristics": {
+    "brawn": {
+     "value": 2
+    },
+    "agility": {
+     "value": 3
+    },
+    "intellect": {
+     "value": 1
+    },
+    "cunning": {
+     "value": 2
+    },
+    "willpower": {
+     "value": 1
+    },
+    "presence": {
+     "value": 1
+    }
+   },
+   "wounds": {
+    "value": 0,
+    "max": 4
+   },
+   "strain": {
+    "value": 0,
+    "max": 0
+   },
+   "soak": {
+    "value": 2
+   },
+   "defense": {
+    "melee": {
+     "value": 1
+    },
+    "ranged": {
+     "value": 1
+    }
+   },
+   "groupSize": 3,
+   "description": "<p>Свежие мертвецы, ещё не растерявшие прыти: срываются на бег, как только почуют живых.</p><p><em>Домашний материал системы: в книгах Genesys зомби нет, статблоки составлены по правилам создания противников Core Rulebook.</em></p>",
+   "source": "Домашние правила системы Genesys RPG для Foundry (не из книг)",
+   "worlds": [
+    "zombie",
+    "postapoc",
+    "monster"
+   ]
+  },
+  "items": [
+   {
+    "name": "Атлетика",
+    "type": "skill",
+    "system": {
+     "key": "athletics",
+     "characteristic": "brawn",
+     "category": "general",
+     "rank": 0,
+     "career": true
+    }
+   },
+   {
+    "name": "Грубая сила",
+    "type": "skill",
+    "system": {
+     "key": "brawl",
+     "characteristic": "brawn",
+     "category": "combat",
+     "rank": 0,
+     "career": true
+    }
+   },
+   {
+    "name": "Внимание",
+    "type": "skill",
+    "system": {
+     "key": "perception",
+     "characteristic": "cunning",
+     "category": "general",
+     "rank": 0,
+     "career": true
+    }
+   },
+   {
+    "name": "Неживой",
+    "type": "ability",
+    "system": {
+     "description": "<p>Не дышит и не чувствует боли: невосприимчив к ядам, болезням и проверкам страха. Не получает усталость — урон по усталости он игнорирует.</p>",
+     "source": "Домашние правила системы Genesys RPG для Foundry (не из книг)"
+    }
+   },
+   {
+    "name": "Заразный укус",
+    "type": "ability",
+    "system": {
+     "description": "<p>Если атака Грубой силой нанесла цели хотя бы 1 рану, в конце встречи цель делает трудную (3 кости сложности) проверку Стойкости. При провале она заражена: пока её не вылечат (Запредельная проверка Медицины и редкое лекарство — на усмотрение ведущего), каждое утро она получает 3 усталости, которые нельзя восстановить отдыхом.</p>",
+     "source": "Домашние правила системы Genesys RPG для Foundry (не из книг)"
+    }
+   },
+   {
+    "name": "Только в голову",
+    "type": "ability",
+    "system": {
+     "description": "<p>Атакующий может потратить триумф или 3 преимущества успешной атаки, чтобы попасть в голову: мертвец сразу выводится из строя.</p>",
+     "source": "Домашние правила системы Genesys RPG для Foundry (не из книг)"
+    }
+   },
+   {
+    "name": "Рывок",
+    "type": "ability",
+    "system": {
+     "description": "<p>Если в этом ходу бегун выполнил манёвр перемещения, его следующая атака Грубой силой получает 1 кость бонуса.</p>",
+     "source": "Домашние правила системы Genesys RPG для Foundry (не из книг)"
+    }
+   },
+   {
+    "name": "Укус и когти",
+    "type": "weapon",
+    "system": {
+     "skill": "brawl",
+     "damage": 3,
+     "brawnDamage": false,
+     "crit": 4,
+     "range": "engaged",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Высококритичное",
+       "rating": 1
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Домашние правила системы Genesys RPG для Foundry (не из книг)"
+    }
+   }
+  ]
+ },
+ {
+  "name": "Раздутый",
+  "type": "adversary",
+  "folder": "Зомби-апокалипсис",
+  "system": {
+   "adversaryType": "rival",
+   "characteristics": {
+    "brawn": {
+     "value": 4
+    },
+    "agility": {
+     "value": 1
+    },
+    "intellect": {
+     "value": 1
+    },
+    "cunning": {
+     "value": 1
+    },
+    "willpower": {
+     "value": 2
+    },
+    "presence": {
+     "value": 1
+    }
+   },
+   "wounds": {
+    "value": 0,
+    "max": 14
+   },
+   "strain": {
+    "value": 0,
+    "max": 0
+   },
+   "soak": {
+    "value": 5
+   },
+   "defense": {
+    "melee": {
+     "value": 0
+    },
+    "ranged": {
+     "value": 0
+    }
+   },
+   "groupSize": 3,
+   "description": "<p>Огромное гниющее тело, накачанное газами. Опаснее всего — когда его наконец свалили.</p><p><em>Домашний материал системы: в книгах Genesys зомби нет, статблоки составлены по правилам создания противников Core Rulebook.</em></p>",
+   "source": "Домашние правила системы Genesys RPG для Foundry (не из книг)",
+   "worlds": [
+    "zombie",
+    "postapoc",
+    "monster"
+   ]
+  },
+  "items": [
+   {
+    "name": "Грубая сила",
+    "type": "skill",
+    "system": {
+     "key": "brawl",
+     "characteristic": "brawn",
+     "category": "combat",
+     "rank": 2,
+     "career": true
+    }
+   },
+   {
+    "name": "Стойкость",
+    "type": "skill",
+    "system": {
+     "key": "resilience",
+     "characteristic": "brawn",
+     "category": "general",
+     "rank": 3,
+     "career": true
+    }
+   },
+   {
+    "name": "Неживой",
+    "type": "ability",
+    "system": {
+     "description": "<p>Не дышит и не чувствует боли: невосприимчив к ядам, болезням и проверкам страха. Не получает усталость — урон по усталости он игнорирует.</p>",
+     "source": "Домашние правила системы Genesys RPG для Foundry (не из книг)"
+    }
+   },
+   {
+    "name": "Заразный укус",
+    "type": "ability",
+    "system": {
+     "description": "<p>Если атака Грубой силой нанесла цели хотя бы 1 рану, в конце встречи цель делает трудную (3 кости сложности) проверку Стойкости. При провале она заражена: пока её не вылечат (Запредельная проверка Медицины и редкое лекарство — на усмотрение ведущего), каждое утро она получает 3 усталости, которые нельзя восстановить отдыхом.</p>",
+     "source": "Домашние правила системы Genesys RPG для Foundry (не из книг)"
+    }
+   },
+   {
+    "name": "Медлительный",
+    "type": "ability",
+    "system": {
+     "description": "<p>Может выполнять не больше одного манёвра перемещения за ход.</p>",
+     "source": "Домашние правила системы Genesys RPG для Foundry (не из книг)"
+    }
+   },
+   {
+    "name": "Взрыв гноя",
+    "type": "ability",
+    "system": {
+     "description": "<p>Когда раздутый выведен из строя, все персонажи, находящиеся с ним вплотную, получают 4 урона (поглощение уменьшает его как обычно) и становятся Дезориентированными на 2 раунда.</p>",
+     "source": "Домашние правила системы Genesys RPG для Foundry (не из книг)"
+    }
+   },
+   {
+    "name": "Тяжёлый удар",
+    "type": "weapon",
+    "system": {
+     "skill": "brawl",
+     "damage": 6,
+     "brawnDamage": false,
+     "crit": 4,
+     "range": "engaged",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Нокдаун",
+       "rating": null
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Домашние правила системы Genesys RPG для Foundry (не из книг)"
+    }
+   }
+  ]
+ },
+ {
+  "name": "Громила-мутант",
+  "type": "adversary",
+  "folder": "Зомби-апокалипсис",
+  "system": {
+   "adversaryType": "rival",
+   "characteristics": {
+    "brawn": {
+     "value": 5
+    },
+    "agility": {
+     "value": 2
+    },
+    "intellect": {
+     "value": 1
+    },
+    "cunning": {
+     "value": 2
+    },
+    "willpower": {
+     "value": 2
+    },
+    "presence": {
+     "value": 1
+    }
+   },
+   "wounds": {
+    "value": 0,
+    "max": 18
+   },
+   "strain": {
+    "value": 0,
+    "max": 0
+   },
+   "soak": {
+    "value": 6
+   },
+   "defense": {
+    "melee": {
+     "value": 1
+    },
+    "ranged": {
+     "value": 1
+    }
+   },
+   "groupSize": 3,
+   "description": "<p>Мертвец, которого вирус превратил в гору мышц. Ломает двери, баррикады и тех, кто за ними прячется.</p><p><em>Домашний материал системы: в книгах Genesys зомби нет, статблоки составлены по правилам создания противников Core Rulebook.</em></p>",
+   "source": "Домашние правила системы Genesys RPG для Foundry (не из книг)",
+   "worlds": [
+    "zombie",
+    "postapoc",
+    "monster"
+   ]
+  },
+  "items": [
+   {
+    "name": "Атлетика",
+    "type": "skill",
+    "system": {
+     "key": "athletics",
+     "characteristic": "brawn",
+     "category": "general",
+     "rank": 2,
+     "career": true
+    }
+   },
+   {
+    "name": "Грубая сила",
+    "type": "skill",
+    "system": {
+     "key": "brawl",
+     "characteristic": "brawn",
+     "category": "combat",
+     "rank": 3,
+     "career": true
+    }
+   },
+   {
+    "name": "Запугивание",
+    "type": "skill",
+    "system": {
+     "key": "coercion",
+     "characteristic": "willpower",
+     "category": "social",
+     "rank": 2,
+     "career": true
+    }
+   },
+   {
+    "name": "Неживой",
+    "type": "ability",
+    "system": {
+     "description": "<p>Не дышит и не чувствует боли: невосприимчив к ядам, болезням и проверкам страха. Не получает усталость — урон по усталости он игнорирует.</p>",
+     "source": "Домашние правила системы Genesys RPG для Foundry (не из книг)"
+    }
+   },
+   {
+    "name": "Заразный укус",
+    "type": "ability",
+    "system": {
+     "description": "<p>Если атака Грубой силой нанесла цели хотя бы 1 рану, в конце встречи цель делает трудную (3 кости сложности) проверку Стойкости. При провале она заражена: пока её не вылечат (Запредельная проверка Медицины и редкое лекарство — на усмотрение ведущего), каждое утро она получает 3 усталости, которые нельзя восстановить отдыхом.</p>",
+     "source": "Домашние правила системы Genesys RPG для Foundry (не из книг)"
+    }
+   },
+   {
+    "name": "Ломает всё",
+    "type": "ability",
+    "system": {
+     "description": "<p>Может маневром разрушить дверь, баррикаду или лёгкое укрытие вплотную к себе. Атаки громилы по транспорту и укрытиям считаются Бронебойными 1.</p>",
+     "source": "Домашние правила системы Genesys RPG для Foundry (не из книг)"
+    }
+   },
+   {
+    "name": "Сокрушающий удар",
+    "type": "weapon",
+    "system": {
+     "skill": "brawl",
+     "damage": 8,
+     "brawnDamage": false,
+     "crit": 3,
+     "range": "engaged",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Нокдаун",
+       "rating": null
+      },
+      {
+       "name": "Ошеломление",
+       "rating": 1
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Домашние правила системы Genesys RPG для Foundry (не из книг)"
+    }
+   }
+  ]
+ }
+]

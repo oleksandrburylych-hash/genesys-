@@ -1,0 +1,56 @@
+<div class="tp">
+  <a class="tp-close" data-action="hidePanel"><i class="fa-solid fa-xmark"></i></a>
+  <div class="tp-head">
+    <img src="{{img}}" alt="" data-action="sheet" data-tooltip="GENESYS.TokenPanel.Sheet">
+    <div class="tp-id">
+      <b>{{name}}</b>
+      <span class="tp-stats">
+        {{#if soak includeZero=true}}<span data-tooltip="{{#if vehicle}}GENESYS.Vehicle.Armor{{else}}GENESYS.Soak{{/if}}"><i class="fa-solid fa-shield"></i> {{soak}}</span>{{/if}}
+        {{#if defense}}<span data-tooltip="GENESYS.Defense"><i class="fa-solid fa-shield-halved"></i> {{defense}}</span>{{/if}}
+        {{#if speed}}<span data-tooltip="GENESYS.Vehicle.Speed"><i class="fa-solid fa-gauge-high"></i> {{speed}}</span>{{/if}}
+        {{#if minions}}<span data-tooltip="GENESYS.Alive"><i class="fa-solid fa-people-group"></i> {{minions}}</span>{{/if}}
+      </span>
+    </div>
+  </div>
+  <div class="tp-bar wounds {{#if wounds.over}}over{{/if}}">
+    <a data-action="adjust" data-path="{{woundsPath}}" data-delta="-1"><i class="fa-solid fa-minus"></i></a>
+    <div class="tp-track"><div class="tp-fill" style="width: {{wounds.pct}}%"></div><span>{{#if vehicle}}{{localize "GENESYS.Vehicle.HullTrauma"}}{{else}}{{localize "GENESYS.Wounds"}}{{/if}} {{wounds.value}} / {{wounds.max}}</span></div>
+    <a data-action="adjust" data-path="{{woundsPath}}" data-delta="1"><i class="fa-solid fa-plus"></i></a>
+  </div>
+  {{#if strain}}
+  <div class="tp-bar strain {{#if strain.over}}over{{/if}}">
+    <a data-action="adjust" data-path="{{strainPath}}" data-delta="-1"><i class="fa-solid fa-minus"></i></a>
+    <div class="tp-track"><div class="tp-fill" style="width: {{strain.pct}}%"></div><span>{{#if vehicle}}{{localize "GENESYS.Vehicle.SystemStrain"}}{{else}}{{localize "GENESYS.Strain"}}{{/if}} {{strain.value}} / {{strain.max}}</span></div>
+    <a data-action="adjust" data-path="{{strainPath}}" data-delta="1"><i class="fa-solid fa-plus"></i></a>
+  </div>
+  {{/if}}
+  {{#if zone}}
+  <div class="tp-zone">
+    <div class="tp-zone-name"><i class="fa-solid fa-map-location-dot"></i> {{localize "GENESYS.Zone.Here"}}: <b>{{zone.name}}</b></div>
+    {{#if zone.tags.length}}<div class="tp-zone-tags">{{#each zone.tags}}<span data-tooltip="{{hint}}">{{label}}</span>{{/each}}</div>{{/if}}
+    {{#if zone.neighbors.length}}<div class="tp-zone-next">{{#each zone.neighbors}}<span>{{name}} · {{range}} · {{cost}} {{localize "GENESYS.Zone.Maneuvers"}}</span>{{/each}}</div>{{/if}}
+  </div>
+  {{/if}}
+  {{#if statuses.length}}
+  <div class="tp-statuses">{{#each statuses}}<a class="gs-status" data-action="status" data-id="{{id}}" data-tooltip="{{name}}"><img src="{{img}}" alt="">{{#if rounds}}<span class="gs-status-rounds">{{rounds}}</span>{{/if}}</a>{{/each}}</div>
+  {{/if}}
+  {{#if weapons.length}}
+  <div class="tp-weapons">
+    {{#each weapons}}
+    <a class="tp-weapon" data-action="attack" data-id="{{id}}" data-tooltip="{{name}}: {{localize 'GENESYS.DamageShort'}} {{damage}} · {{localize 'GENESYS.CritShort'}} {{crit}} · {{range}}">
+      <img src="{{img}}" alt=""><span>{{name}}</span><b>{{damage}}</b>
+    </a>
+    {{/each}}
+  </div>
+  {{/if}}
+  <div class="tp-tools">
+    {{#if skills.length}}
+    <select name="skill"><option value="">{{localize "GENESYS.TokenPanel.Skill"}}</option>{{#each skills}}<option value="{{id}}">{{name}} ({{rank}})</option>{{/each}}</select>
+    {{/if}}
+    {{#if vehicle}}<a class="tp-btn" data-action="pilot" data-tooltip="GENESYS.Vehicle.PilotHint"><i class="fa-solid fa-car"></i></a>{{/if}}
+    {{#if character}}<a class="tp-btn" data-action="medicine" data-tooltip="GENESYS.Medicine.ButtonHint"><i class="fa-solid fa-stethoscope"></i></a>{{/if}}
+    {{#if character}}<a class="tp-btn" data-action="painkiller" data-tooltip="GENESYS.Painkiller.Title"><i class="fa-solid fa-pills"></i></a>{{/if}}
+    {{#if character}}<a class="tp-btn" data-action="rest" data-tooltip="GENESYS.Rest.RecoverHint"><i class="fa-solid fa-mug-hot"></i></a>{{/if}}
+    <a class="tp-btn" data-action="sheet" data-tooltip="GENESYS.TokenPanel.Sheet"><i class="fa-solid fa-id-card"></i></a>
+  </div>
+</div>

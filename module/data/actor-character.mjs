@@ -1,3 +1,4 @@
+import { gearSummary } from "../gear.mjs";
 import { GENESYS } from "../config.mjs";
 import { intField, bonusField, characteristicsField } from "./fields.mjs";
 
@@ -16,19 +17,27 @@ export default class CharacterData extends foundry.abstract.TypeDataModel {
     });
 
     return {
+      /** Тип приключения, по которому создан персонаж (ключ module/worlds.mjs → ADVENTURES или "custom:…"). */
+      adventure: new StringField({ required: true, blank: true, initial: "" }),
+      /** Скакун: UUID актёра-противника (лошадь, боевой скакун и т. п.). */
+      mount: new StringField({ required: true, blank: true, initial: "" }),
       characteristics: characteristicsField(2),
 
+      // creationChar — Сила/Воля, зафиксированные при завершении создания персонажа
+      // (по правилам рост характеристики после создания не меняет порог). 0 — не зафиксировано.
       wounds: new SchemaField({
         value: intField(0),
         max: intField(0),
         base: intField(10),
-        bonus: bonusField()
+        bonus: bonusField(),
+        creationChar: intField(0)
       }),
       strain: new SchemaField({
         value: intField(0),
         max: intField(0),
         base: intField(10),
-        bonus: bonusField()
+        bonus: bonusField(),
+        creationChar: intField(0)
       }),
       soak: new SchemaField({ bonus: bonusField() }),
       defense: new SchemaField({
@@ -77,31 +86,43 @@ export default class CharacterData extends foundry.abstract.TypeDataModel {
     const actor = this.parent;
     const c = Object.fromEntries(Object.entries(this.characteristics).map(([k, v]) => [k, v.value]));
 
-    // Броня: суммируем надетую.
-    let armorSoak = 0, armorMelee = 0, armorRanged = 0, encumbrance = 0;
-    for (const item of actor.items) {
-      const s = item.system;
-      if (item.type === "armor" && s.equipped) {
-        armorSoak += s.soak;
-        armorMelee += s.defense;
-        armorRanged += s.defense;
-      }
-      // Нагрузка: учитываются носимые предметы. Надетая броня весит на 3 меньше.
-      if (["weapon", "armor", "gear"].includes(item.type) && s.carried !== false) {
-        let enc = s.encumbrance * (s.quantity ?? 1);
-        if (item.type === "armor" && s.equipped) enc = Math.max(0, s.encumbrance - 3) * Math.max(1, s.quantity);
-        encumbrance += enc;
-      }
-    }
+    // Снаряжение: один надетый комплект брони (поглощение и защита), «Оборонительное»/«Отражающее» у оружия в руках,
+    // нагрузка (надетая броня −3, надетая одежда, связки), лучший рюкзак, импланты (module/gear.mjs).
+    const gear = gearSummary(actor);
+    this.gear = gear;
+    const armorSoak = gear.soak;
+    const encumbrance = gear.encumbrance;
+    const mod = k => gear.mods[k] ?? 0;
+    for (const k of Object.keys(c)) c[k] += mod(`char.${k}`);
 
-    this.wounds.max = this.wounds.base + c.brawn + this.wounds.bonus;
-    this.strain.max = this.strain.base + c.willpower + this.strain.bonus;
-    this.soak.value = c.brawn + armorSoak + this.soak.bonus;
-    this.defense.melee.value = armorMelee + this.defense.melee.bonus;
-    this.defense.ranged.value = armorRanged + this.defense.ranged.bonus;
+    // Числовые эффекты талантов (Закалённый, Упорство, Оборона, Выносливость, Крепость…).
+    const tb = { wounds: 0, strain: 0, soak: 0, meleeDefense: 0, rangedDefense: 0, critical: 0 };
+    for (const t of actor.itemTypes?.talent ?? []) {
+      const eff = CONFIG.GENESYS?.talentEffects?.[t.getFlag?.("genesys-rpg", "nameEn") || ""];
+      if (!eff) continue;
+      const rank = t.system.ranked ? Math.max(1, t.system.rank) : 1;
+      for (const [k, v] of Object.entries(eff)) tb[k] = (tb[k] ?? 0) + v * rank;
+    }
+    this.talentBonuses = tb;
+    this.criticalModifier = tb.critical;
+
+    // Порог ран/усталости: при создании — от текущих Силы/Воли, после — от зафиксированных.
+    const woundChar = (!this.creation && this.wounds.creationChar) ? this.wounds.creationChar : c.brawn;
+    const strainChar = (!this.creation && this.strain.creationChar) ? this.strain.creationChar : c.willpower;
+    this.wounds.max = this.wounds.base + woundChar + this.wounds.bonus + tb.wounds + mod("wounds");
+    this.strain.max = Math.max(1, this.strain.base + strainChar + this.strain.bonus + tb.strain + mod("strain") - gear.strainPenalty);
+    this.soak.value = c.brawn + armorSoak + this.soak.bonus + tb.soak + mod("soak");
+    // Защита: броня «даёт» защиту (не складывается), «+N» складываются; итог не выше 4 (Core, «Ближняя и дальняя защиты»).
+    this.defense.melee.value = Math.min(4, gear.defense + gear.meleePlus + this.defense.melee.bonus + tb.meleeDefense);
+    this.defense.ranged.value = Math.min(4, gear.defense + gear.rangedPlus + this.defense.ranged.bonus + tb.rangedDefense);
     this.encumbrance.value = encumbrance;
-    this.encumbrance.threshold = 5 + c.brawn + this.encumbrance.bonus;
+    this.encumbrance.container = gear.container;
+    this.encumbrance.containerBonus = gear.thresholdBonus;
+    this.encumbrance.threshold = 5 + c.brawn + this.encumbrance.bonus + gear.thresholdBonus;
     this.encumbrance.over = encumbrance > this.encumbrance.threshold;
+    this.encumbrance.excess = Math.max(0, encumbrance - this.encumbrance.threshold);
+    // Перегрузка на величину Силы и больше — нет свободного манёвра.
+    this.encumbrance.noFreeManeuver = this.encumbrance.excess > 0 && this.encumbrance.excess >= c.brawn;
 
     // Состояния
     this.wounds.critical = this.wounds.value > this.wounds.max;
@@ -116,6 +137,11 @@ export default class CharacterData extends foundry.abstract.TypeDataModel {
     this.experience.total = total;
     this.experience.spent = spent;
     this.experience.available = total - spent;
+    // Очки способностей для героических способностей: 1 за каждые 50 опыта, кроме стартового.
+    const earnedInPlay = this.experience.log.filter(e => e.type === "earn" && e.kind !== "archetype").reduce((s, e) => s + e.amount, 0);
+    const heroicSpent = (actor.itemTypes?.heroic ?? []).reduce((s, h) => s + h.system.spentPoints, 0);
+    this.heroicPoints = { total: Math.floor(earnedInPlay / 50), spent: heroicSpent };
+    this.heroicPoints.available = this.heroicPoints.total - heroicSpent;
 
     // Пирамида талантов: сколько «слотов» занято на каждом уровне.
     this.talentTiers = CharacterData.countTalentTiers(actor.items);

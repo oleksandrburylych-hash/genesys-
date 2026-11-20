@@ -1,6 +1,10 @@
 import { GENESYS, SYSTEM_ID } from "../config.mjs";
 import { DicePool } from "../dice/pool.mjs";
 import { DicePoolDialog } from "../apps/dice-pool-dialog.mjs";
+import { getTargets, attackModifiers, applyStateModifiers, actOnActor } from "../combat/combat.mjs";
+import { getAdventure } from "../worlds.mjs";
+import { injuryCharacteristicPenalty } from "../injuries.mjs";
+import { enabledAdventureKeys, adventureSkillKeys, magicCareerOnly } from "../helpers/adventure.mjs";
 
 /**
  * Актёр Genesys: персонаж или противник.
@@ -16,6 +20,10 @@ export class GenesysActor extends Actor {
     if ((await super._preCreate(data, options, user)) === false) return false;
 
     const updates = {};
+    if (!data.img || data.img === CONST.DEFAULT_TOKEN || data.img === "icons/svg/mystery-man.svg") {
+      const img = { character: GENESYS.icons?.defaults?.archetype, adversary: GENESYS.icons?.defaults?.adversary, vehicle: GENESYS.icons?.defaults?.vehicle }[this.type];
+      if (img) { updates.img = img; updates["prototypeToken.texture.src"] = img; }
+    }
     if (this.type === "character") {
       updates["prototypeToken.actorLink"] = true;
       updates["prototypeToken.disposition"] = CONST.TOKEN_DISPOSITIONS.FRIENDLY;
@@ -24,22 +32,55 @@ export class GenesysActor extends Actor {
     // Новым персонажам — базовый набор навыков, если навыков ещё нет.
     const hasSkills = this.items.some(i => i.type === "skill");
     if (this.type === "character" && !hasSkills) {
-      const preset = game.settings.get(SYSTEM_ID, "skillPreset");
-      const skills = GenesysActor.defaultSkillData(preset);
+      // Если ведущий разрешил один тип приключения — сразу его набор навыков, иначе — пресет мира.
+      const enabled = enabledAdventureKeys();
+      let skills;
+      if (enabled.length === 1 && !data.system?.adventure) {
+        const adventure = getAdventure(enabled[0]);
+        updates["system.adventure"] = adventure.key;
+        skills = adventure.skills === "all" ? GenesysActor.defaultSkillData("all") : GenesysActor.skillDataFromKeys(adventureSkillKeys(adventure));
+      } else {
+        skills = GenesysActor.defaultSkillData(game.settings.get(SYSTEM_ID, "skillPreset"));
+      }
       if (skills.length) updates.items = [...(data.items ?? []), ...skills];
     }
     this.updateSource(updates);
   }
 
+  /** Данные навыков по списку ключей. */
+  static skillDataFromKeys(keys) {
+    return keys.map(key => {
+      const def = GENESYS.defaultSkills.find(s => s.key === key) ?? { key, ...GENESYS.extraSkills[key] };
+      return {
+        name: game.i18n.localize(`GENESYS.Skill.${key}`),
+        type: "skill",
+        img: GENESYS.icons?.skills?.[key] ?? "icons/svg/book.svg",
+        system: { key, characteristic: def.characteristic ?? "intellect", category: def.category ?? "general", rank: 0, career: false }
+      };
+    });
+  }
+
   /** Данные навыков по пресету настройки мира. */
   static defaultSkillData(preset = "all") {
     if (preset === "none") return [];
+    const explicit = GENESYS.presetSkills?.[preset];
+    if (explicit) {
+      return explicit.map(key => {
+        const def = GENESYS.defaultSkills.find(s => s.key === key) ?? { key, ...GENESYS.extraSkills[key] };
+        return {
+          name: game.i18n.localize(`GENESYS.Skill.${key}`),
+          type: "skill",
+          img: GENESYS.icons?.skills?.[key] ?? "icons/svg/book.svg",
+          system: { key, characteristic: def.characteristic, category: def.category, rank: 0, career: false }
+        };
+      });
+    }
     return GENESYS.defaultSkills
       .filter(s => preset === "all" || s.settings.includes("all") || s.settings.includes(preset))
       .map(s => ({
         name: game.i18n.localize(`GENESYS.Skill.${s.key}`),
         type: "skill",
-        img: "icons/svg/book.svg",
+        img: GENESYS.icons?.skills?.[s.key] ?? "icons/svg/book.svg",
         system: { key: s.key, characteristic: s.characteristic, category: s.category, rank: 0, career: false }
       }));
   }
@@ -60,8 +101,26 @@ export class GenesysActor extends Actor {
       ?? null;
   }
 
+  /** Характеристика навыка по ключу или названию, даже если у актёра этого навыка нет (ранг 0). */
+  skillCharacteristic(keyOrName) {
+    const own = this.getSkill(keyOrName);
+    if (own) return own.system.characteristic;
+    const needle = String(keyOrName ?? "").trim().toLowerCase();
+    const def = GENESYS.defaultSkills.find(s => s.key.toLowerCase() === needle || game.i18n.localize(`GENESYS.Skill.${s.key}`).toLowerCase() === needle)
+      ?? Object.entries(GENESYS.extraSkills ?? {}).map(([k, v]) => ({ key: k, ...v })).find(s => s.key.toLowerCase() === needle);
+    return def?.characteristic ?? (/дальн|стрел|ranged|gunnery|артилл/i.test(needle) ? "agility" : "brawn");
+  }
+
+  /** Пул навыка без навыка: кости способности по характеристике (Core: «навыка нет — бросаете характеристику»). */
+  untrainedPool(keyOrName, difficulty = 2) {
+    return DicePool.fromSkill(this.characteristic(this.skillCharacteristic(keyOrName)), 0, difficulty);
+  }
+
   characteristic(key) {
-    return this.system.characteristics?.[key]?.value ?? 0;
+    // Импланты (кибернетическая рука и т. п.) дают +1, не больше.
+    const v = (this.system.characteristics?.[key]?.value ?? 0) + (this.system.gear?.mods?.[`char.${key}`] ?? 0);
+    // «Ужасная травма»: характеристика считается на 1 меньше, пока травма не вылечена.
+    return Math.max(1, v - injuryCharacteristicPenalty(this, key));
   }
 
   /** Эффективный ранг навыка (у прислужников — по размеру группы). */
@@ -72,7 +131,8 @@ export class GenesysActor extends Actor {
       const alive = this.system.aliveMinions ?? this.system.groupSize;
       return Math.clamp(alive - 1, 0, 5);
     }
-    return skill.system.rank;
+    // Импланты (киберглаза: +1 к Бдительности и Вниманию).
+    return Math.min(5, skill.system.rank + (this.system.gear?.mods?.[`skill.${skill.system.key}`] ?? 0));
   }
 
   /** Пул для навыка. */
@@ -92,42 +152,124 @@ export class GenesysActor extends Actor {
    * @param {number} [options.difficulty=2]
    * @param {boolean} [options.skipDialog=false]
    */
-  async rollSkill(skillOrKey, { difficulty = 2, skipDialog = false, label, rollOptions = {} } = {}) {
+  async rollSkill(skillOrKey, { difficulty = 2, skipDialog = false, label, rollOptions = {}, notes: extraNotes = [], upgrades = 0 } = {}) {
     const skill = typeof skillOrKey === "string" ? this.getSkill(skillOrKey) : skillOrKey;
     if (!skill) {
       ui.notifications.warn(game.i18n.format("GENESYS.Warn.SkillNotFound", { name: skillOrKey }));
       return null;
     }
-    const pool = this.getSkillPool(skill, difficulty);
+    const key = skill.system.key;
+    const target = getTargets()[0] ?? null;
+    if (skill.system.category === "social") rollOptions = { ...rollOptions, social: true };
+    rollOptions = { skill: key, ...rollOptions };
+    const notes = [...extraNotes];
+    let pool = this.getSkillPool(skill, difficulty);
+    if (upgrades > 0) pool.upgradeDifficulty(upgrades);
+
+    // Встречная проверка: сложность строится из навыка цели.
+    const opposedKey = GENESYS.opposed[key];
+    if (target && opposedKey && target.actor.getSkillPool) {
+      const oppSkill = target.actor.getSkill(opposedKey);
+      const oppChar = oppSkill ? target.actor.characteristic(oppSkill.system.characteristic) : 0;
+      const opp = oppSkill ? target.actor.getSkillPool(oppSkill, 0) : null;
+      pool.difficulty = opp ? opp.ability : Math.max(1, oppChar);
+      pool.challenge = opp ? opp.proficiency : 0;
+      notes.push(game.i18n.format("GENESYS.Combat.Opposed", { name: target.actor.name, skill: oppSkill?.name ?? game.i18n.localize(`GENESYS.Skill.${opposedKey}`) }));
+    }
+
+    // Медицина по выбранной цели — лечение по правилам (module/medicine.mjs).
+    if (key === "medicine" && !rollOptions.medicine && target?.actor.system?.wounds) {
+      const { rollMedicine } = await import("../medicine.mjs");
+      return rollMedicine(this, { patient: target.actor });
+    }
+
+    notes.push(...applyStateModifiers(this, pool, { characteristic: skill.system.characteristic, skillKey: skill.system.key }));
     const charLabel = game.i18n.localize(GENESYS.characteristics[skill.system.characteristic].abbr);
     label ??= `${skill.name} (${charLabel})`;
-    if (skipDialog) return DicePoolDialog.rollPool(pool, { label, actor: this, rollOptions });
-    return DicePoolDialog.prompt({ pool, label, actor: this, rollOptions });
+    const roll = skipDialog
+      ? await DicePoolDialog.rollPool(pool, { label, actor: this, rollOptions })
+      : await DicePoolDialog.prompt({ pool, label, actor: this, rollOptions, notes });
+
+    return roll;
+  }
+
+  /** Открыть конструктор заклинания. */
+  async castSpell(spell) {
+    const { SpellCastDialog } = await import("../apps/spell-cast-dialog.mjs");
+    return new SpellCastDialog({ actor: this, spell }).render({ force: true });
   }
 
   /** Проверка чистой характеристики. */
   async rollCharacteristic(key, { difficulty = 2 } = {}) {
     const pool = new DicePool({ ability: this.characteristic(key), difficulty });
+    const notes = applyStateModifiers(this, pool, { characteristic: key });
     const label = game.i18n.localize(GENESYS.characteristics[key].label);
-    return DicePoolDialog.prompt({ pool, label, actor: this });
+    return DicePoolDialog.prompt({ pool, label, actor: this, notes });
   }
 
-  /** Атака оружием. */
+  /** Атака оружием: цель, дистанция, защита, «Противник», состояния — автоматически. */
   async rollWeapon(weapon) {
     const sys = weapon.system;
-    const skill = this.getSkill(sys.skill);
-    const difficulty = sys.isMelee ? 2 : (GENESYS.ranges[sys.range]?.difficulty ?? 2);
-    const pool = skill ? this.getSkillPool(skill, difficulty) : new DicePool({ ability: 1, difficulty });
+    // Оружие транспорта стреляет член экипажа: выделенный токен (не сам транспорт) или назначенный персонаж.
+    const shooter = this.type === "vehicle" ? GenesysActor.findCrewMember(this) : this;
+    const skill = shooter?.getSkill?.(sys.skill);
+    const target = getTargets()[0] ?? null;
+    const mods = attackModifiers(this.type === "vehicle" ? this : shooter, weapon, target);
+    const pool = skill ? shooter.getSkillPool(skill, mods.difficulty)
+      : (shooter?.untrainedPool ? shooter.untrainedPool(sys.skill, mods.difficulty) : new DicePool({ ability: 1, difficulty: mods.difficulty }));
+    pool.setback += mods.setback;
+    pool.boost += mods.boost;
+    if (mods.upgrades) pool.upgradeDifficulty(mods.upgrades);
+    if (mods.abilityUpgrades) pool.upgradeAbility(mods.abilityUpgrades);
+    const notes = [...mods.notes, ...applyStateModifiers(shooter, pool, { characteristic: skill?.system.characteristic ?? shooter?.skillCharacteristic?.(sys.skill) })];
+
+    const active = sys.allQualities
+      .filter(q => GENESYS.activeQualities[q.name])
+      .map(q => ({ name: q.name, rating: q.rating ?? 0, cost: GENESYS.activeQualities[q.name].cost }));
     const rollOptions = {
       weapon: {
         name: weapon.name,
         damage: sys.totalDamage,
-        crit: sys.crit,
-        qualities: sys.qualitiesText
-      }
+        crit: sys.totalCrit,
+        qualities: sys.qualitiesText,
+        vicious: sys.qualityRating(/высококрит|vicious/i),
+        pierce: sys.qualityRating(/проникающ|pierce/i),
+        breach: sys.qualityRating(/бронебойн|breach/i),
+        stun: sys.qualityRating(/оглушающий урон|stun damage/i) > 0,
+        active
+      },
+      target: target ? { uuid: target.actor.uuid, name: target.actor.name } : null,
+      skill: skill?.system.key || sys.skill,
+      melee: sys.isMelee || ["melee", "meleeLight", "meleeHeavy", "brawl"].includes(sys.skill)
     };
-    const label = game.i18n.format("GENESYS.Roll.Attack", { name: weapon.name });
-    return DicePoolDialog.prompt({ pool, label, actor: this, rollOptions });
+    let label = game.i18n.format("GENESYS.Roll.Attack", { name: weapon.name });
+    if (this.type === "vehicle") label += ` (${this.name}${shooter && shooter !== this ? `, ${shooter.name}` : ""})`;
+    if (target) label += ` → ${target.actor.name}`;
+    if (mods.blocked) ui.notifications.warn(mods.notes.at(-1));
+    return DicePoolDialog.prompt({ pool, label, actor: shooter ?? this, rollOptions, notes, dodge: mods.dodge ?? null });
+  }
+
+  /** Член экипажа для транспорта: выделенный токен-персонаж или назначенный персонаж пользователя. */
+  static findCrewMember(vehicle) {
+    const controlled = canvas?.tokens?.controlled?.map(t => t.actor).find(a => a && a !== vehicle && a.type !== "vehicle");
+    return controlled ?? game.user.character ?? null;
+  }
+
+  /** Проверка управления транспортом (Вождение/Пилотирование/Управление) от лица экипажа. */
+  async rollPilot({ difficulty = 2, label: title = "" } = {}) {
+    if (this.type !== "vehicle") return null;
+    const crew = GenesysActor.findCrewMember(this);
+    const skill = crew?.getSkill(this.system.skill);
+    const pool = skill ? crew.getSkillPool(skill, difficulty) : (crew?.untrainedPool ? crew.untrainedPool(this.system.skill, difficulty) : new DicePool({ ability: 1, difficulty }));
+    const notes = [];
+    // Управляемость: положительная — кости бонуса, отрицательная — кости штрафа.
+    const h = this.system.handling;
+    if (h > 0) pool.boost += h; else if (h < 0) pool.setback += -h;
+    // Опасная местность (Core, табл. III.2-15).
+    const terrain = this.getFlag(SYSTEM_ID, "terrain") ?? 0;
+    if (terrain > 0) { pool.setback += terrain; notes.push(game.i18n.format("GENESYS.Vehicle.TerrainNote", { value: terrain })); }
+    const label = `${title || game.i18n.localize(`GENESYS.Skill.${this.system.skill}`)} (${this.name})`;
+    return DicePoolDialog.prompt({ pool, label, actor: crew ?? this, notes });
   }
 
   /* -------------------------------------------- */
@@ -137,10 +279,10 @@ export class GenesysActor extends Actor {
   get availableXP() { return this.system.experience?.available ?? 0; }
 
   /** Добавить запись в журнал опыта. */
-  async logXP(type, amount, label) {
+  async logXP(type, amount, label, kind = "") {
     if (!this.isCharacter) return;
     const log = foundry.utils.deepClone(this.system.experience.log);
-    log.push({ id: foundry.utils.randomID(), type, amount, label, timestamp: Date.now() });
+    log.push({ id: foundry.utils.randomID(), type, kind, amount, label, timestamp: Date.now() });
     return this.update({ "system.experience.log": log });
   }
 
@@ -154,13 +296,13 @@ export class GenesysActor extends Actor {
    * Потратить опыт, если включена автоматизация.
    * @returns {Promise<boolean>} удалось ли
    */
-  async spendXP(amount, label) {
+  async spendXP(amount, label, kind = "") {
     if (!this.isCharacter || !this.system.autoXP || amount <= 0) return true;
     if (amount > this.availableXP) {
       ui.notifications.warn(game.i18n.format("GENESYS.Warn.NotEnoughXP", { cost: amount, available: this.availableXP }));
       return false;
     }
-    await this.logXP("spend", amount, label);
+    await this.logXP("spend", amount, label, kind);
     return true;
   }
 
@@ -181,6 +323,10 @@ export class GenesysActor extends Actor {
     if (next < 0 || next > GENESYS.xp.maxSkill) return;
 
     if (this.isCharacter) {
+      if (delta > 0 && skill.system.category === "magic" && !skill.system.career && this.system.autoXP
+        && magicCareerOnly(this.system.adventure)) {
+        return ui.notifications.warn(game.i18n.format("GENESYS.Warn.MagicCareerOnly", { name: skill.name }));
+      }
       if (delta > 0 && this.system.creation && next > GENESYS.xp.maxSkillCreation && this.system.autoXP) {
         return ui.notifications.warn(game.i18n.format("GENESYS.Warn.SkillCreationMax", { max: GENESYS.xp.maxSkillCreation }));
       }
@@ -188,7 +334,7 @@ export class GenesysActor extends Actor {
       const label = game.i18n.format("GENESYS.XP.SkillRank", { name: skill.name, rank: rankForCost });
       if (delta > 0) {
         const cost = GENESYS.xp.skill(next, skill.system.career);
-        if (!(await this.spendXP(cost, label))) return;
+        if (!(await this.spendXP(cost, label, "skill"))) return;
       }
       else await this.refundXP(label);
     }
@@ -197,7 +343,8 @@ export class GenesysActor extends Actor {
 
   /** Изменить характеристику. В режиме создания — за опыт. */
   async changeCharacteristic(key, delta) {
-    const current = this.characteristic(key);
+    // Покупается сама характеристика — без травм и имплантов.
+    const current = this.system.characteristics?.[key]?.value ?? 0;
     const next = current + delta;
     const creation = this.isCharacter && this.system.creation;
     const max = creation ? GENESYS.xp.maxCharacteristicCreation : GENESYS.xp.maxCharacteristic;
@@ -208,7 +355,7 @@ export class GenesysActor extends Actor {
       const value = delta > 0 ? next : current;
       const label = game.i18n.format("GENESYS.XP.Characteristic", { name, value });
       if (delta > 0) {
-        if (!(await this.spendXP(GENESYS.xp.characteristic(next), label))) return;
+        if (!(await this.spendXP(GENESYS.xp.characteristic(next), label, "characteristic"))) return;
       }
       else await this.refundXP(label);
     }
@@ -239,8 +386,43 @@ export class GenesysActor extends Actor {
 
     await this.update(update);
     const [created] = await this.createEmbeddedDocuments("Item", [archetypeData.toObject?.() ?? archetypeData]);
+
+    // Способности архетипа/расы: убрать старые (выданные прошлым архетипом) и добавить новые.
+    const oldAbilities = this.itemTypes.ability.filter(i => i.getFlag(SYSTEM_ID, "fromArchetype"));
+    if (oldAbilities.length) await this.deleteEmbeddedDocuments("Item", oldAbilities.map(i => i.id));
+    await this.syncArchetypeAbilities(archetypeData);
+
     ui.notifications.info(game.i18n.format("GENESYS.Info.ArchetypeApplied", { name: archetypeData.name }));
     return created;
+  }
+
+  /**
+   * Способности архетипа: досоздать недостающие (старые персонажи, архетипы, импортированные в мир без способностей).
+   * Способности берутся из архетипа, а если их там нет — из архетипа с тем же именем в компендиуме; иконки — из компендиума способностей.
+   */
+  async syncArchetypeAbilities(archetype = this.itemTypes?.archetype?.[0]) {
+    if (!archetype || !this.isOwner) return;
+    let list = archetype.system?.abilities ?? [];
+    if (!list.length) {
+      const pack = game.packs.get(`${SYSTEM_ID}.archetypes`);
+      const src = pack ? (await pack.getDocuments()).find(d => d.name === archetype.name) : null;
+      list = src?.system.abilities ?? [];
+    }
+    if (!list.length) return;
+    const abPack = game.packs.get(`${SYSTEM_ID}.abilities`);
+    const index = abPack ? await abPack.getIndex({ fields: ["img"] }) : [];
+    const have = new Set(this.itemTypes.ability.map(i => i.name));
+    const create = list.filter(a => !have.has(a.name)).map(a => ({
+      name: a.name, type: "ability",
+      img: [...index].find(e => e.name === a.name)?.img ?? GENESYS.icons?.defaults?.ability,
+      system: { description: a.description, source: archetype.system?.source ?? "" },
+      flags: { [SYSTEM_ID]: { fromArchetype: true } }
+    }));
+    if (create.length) await this.createEmbeddedDocuments("Item", create);
+    // Старые способности с белой иконкой ядра — на цветную.
+    const fix = this.itemTypes.ability.filter(i => i.img === "icons/svg/upgrade.svg")
+      .map(i => ({ _id: i.id, img: [...index].find(e => e.name === i.name)?.img ?? GENESYS.icons?.defaults?.ability }));
+    if (fix.length) await this.updateEmbeddedDocuments("Item", fix);
   }
 
   /** Применить карьеру: отметить карьерные навыки (создать недостающие). */
@@ -292,12 +474,202 @@ export class GenesysActor extends Actor {
 
     const rank = existing ? existing.system.rank + 1 : 1;
     const label = game.i18n.format("GENESYS.XP.Talent", { name: data.name, rank, tier });
-    if (!(await this.spendXP(GENESYS.xp.talent(tier), label))) return null;
+    if (!(await this.spendXP(GENESYS.xp.talent(tier), label, "talent"))) return null;
 
     if (existing) return existing.update({ "system.rank": rank });
     data.system.rank = 1;
     const [created] = await this.createEmbeddedDocuments("Item", [data]);
     return created;
+  }
+
+  /* -------------------------------------------- */
+  /*  Отдых и восстановление                      */
+  /* -------------------------------------------- */
+
+  /** Конец сцены: Элементарная проверка Хладнокровия или Выдержки (что лучше), успехи снимают усталость. */
+  async recoverStrain() {
+    const options = ["cool", "discipline"].map(k => this.getSkill(k)).filter(Boolean);
+    if (!options.length) return null;
+    const score = sk => { const p = this.getSkillPool(sk, 0); return p.proficiency * 10 + p.ability; };
+    const skill = options.sort((a, b) => score(b) - score(a))[0];
+    const pool = this.getSkillPool(skill, 0);
+    const label = `${game.i18n.localize("GENESYS.Rest.Recover")}: ${skill.name}`;
+    const roll = await DicePoolDialog.prompt({ pool, label, actor: this });
+    if (roll?.results.isSuccess) {
+      const healed = Math.min(roll.results.success, this.system.strain.value);
+      await this.update({ "system.strain.value": this.system.strain.value - healed });
+      ui.notifications.info(game.i18n.format("GENESYS.Rest.StrainRecovered", { name: this.name, value: healed }));
+    }
+    return roll;
+  }
+
+  /** Ночной отдых: вся усталость снимается, лечится 1 рана. */
+  async restOvernight() {
+    const upd = { "system.strain.value": 0, [`flags.${SYSTEM_ID}.painkillers`]: { wounds: 0, strain: 0 } };
+    if (this.system.wounds) upd["system.wounds.value"] = Math.max(0, this.system.wounds.value - 1);
+    await this.update(upd);
+    if (this.statuses?.has("incapacitated") && this.system.wounds.value - 1 <= this.system.wounds.max) {
+      await this.toggleStatusEffect("incapacitated", { active: false });
+    }
+    return ChatMessage.implementation.create({
+      speaker: ChatMessage.implementation.getSpeaker({ actor: this }),
+      content: `<div class="genesys">${game.i18n.format("GENESYS.Rest.Overnight", { name: foundry.utils.escapeHTML(this.name) })}</div>`
+    });
+  }
+
+  /**
+   * Болеутоляющее (Core, «Описание экипировки»): манёвр, на себя или на персонажа вплотную.
+   * Первое за день лечит 5 ран, каждое следующее — на 1 меньше, шестое и далее — без эффекта;
+   * «Знаток болеутоляющих» применяющего: +1 рана за ранг. Предмет расходуется. Счётчик сбрасывает ночной отдых.
+   */
+  async usePainkiller() {
+    const { painkillersOf, painkillersUsed, painkillerHeal, painkillerTalentRanks, gearMechanics } = await import("../gear.mjs");
+    const esc = foundry.utils.escapeHTML;
+    const stock = painkillersOf(this);
+    if (!stock.length) return ui.notifications.warn(game.i18n.format("GENESYS.Painkiller.None", { name: this.name }));
+    const targetActor = [...(game.user.targets ?? [])].map(t => t.actor).find(a => a && a !== this && a.system?.wounds);
+    let item = stock[0], patient = this;
+    if (stock.length > 1 || targetActor) {
+      const items = stock.map((i, n) => `<option value="${i.id}" ${n ? "" : "selected"}>${esc(i.name)} (${i.system.quantity})</option>`).join("");
+      const who = targetActor ? `<label class="gs-pk-who"><input type="radio" name="who" value="self" checked> ${esc(this.name)}</label>
+        <label class="gs-pk-who"><input type="radio" name="who" value="target"> ${esc(targetActor.name)}</label>` : "";
+      const res = await foundry.applications.api.DialogV2.prompt({
+        window: { title: game.i18n.localize("GENESYS.Painkiller.Title"), icon: "fa-solid fa-pills" },
+        content: `<div class="genesys gs-pk-dialog"><p>${game.i18n.localize("GENESYS.Painkiller.Hint")}</p>
+          ${stock.length > 1 ? `<select name="item">${items}</select>` : ""}${who}</div>`,
+        ok: { label: game.i18n.localize("GENESYS.Painkiller.Use"), callback: (ev, button) => ({ item: button.form.elements.item?.value, who: button.form.elements.who?.value }) },
+        rejectClose: false
+      });
+      if (!res) return null;
+      item = stock.find(i => i.id === res.item) ?? item;
+      if (res.who === "target") patient = targetActor;
+    }
+    const kind = gearMechanics(item).painkiller;
+    const used = painkillersUsed(patient, kind);
+    const track = kind === "strain" ? patient.system.strain : patient.system.wounds;
+    if (used >= 5) return ui.notifications.warn(game.i18n.format("GENESYS.Painkiller.Limit", { name: patient.name }));
+    if (!track?.value) return ui.notifications.info(game.i18n.format(kind === "strain" ? "GENESYS.Painkiller.NoStrain" : "GENESYS.Painkiller.NoWounds", { name: patient.name }));
+    const bonus = kind === "wounds" ? painkillerTalentRanks(this) : 0;
+    const qty = item.system.quantity ?? 1;
+    if (qty > 1) await item.update({ "system.quantity": qty - 1 }); else await item.delete();
+    const { actOnActor } = await import("../combat/combat.mjs");
+    return actOnActor(patient, "painkiller", { kind, bonus, item: item.name, by: this.name, heal: painkillerHeal(used, bonus) });
+  }
+
+  /** Медицина: лечить выбранную цель или себя (раны или критическую травму). */
+  async useMedicine(opts = {}) {
+    const { rollMedicine } = await import("../medicine.mjs");
+    return rollMedicine(this, opts);
+  }
+
+  /**
+   * Лечить критическую травму проверкой Медицины (Core: сложность = тяжесть). Лечит выделенный токен другого персонажа,
+   * иначе сам пострадавший (сложность +2).
+   */
+  async healInjury(injury) {
+    const healer = canvas?.tokens?.controlled?.map(t => t.actor).find(a => a && a !== this && a.getSkill?.("medicine")) ?? this;
+    const { rollMedicine } = await import("../medicine.mjs");
+    return rollMedicine(healer, { patient: this, injury });
+  }
+
+  /** (Старое) Излечение травмы проверкой Стойкости — оставлено для макросов. */
+  async healInjuryResilience(injury) {
+    const skill = this.getSkill("resilience");
+    const severity = Math.max(1, injury.system.severity || 1);
+    const pool = skill ? this.getSkillPool(skill, severity) : new DicePool({ ability: this.characteristic("brawn"), difficulty: severity });
+    const label = game.i18n.format("GENESYS.Rest.HealInjury", { name: injury.name });
+    const roll = await DicePoolDialog.prompt({ pool, label, actor: this });
+    if (roll?.results.isSuccess) {
+      await injury.delete();
+      ui.notifications.info(game.i18n.format("GENESYS.Rest.InjuryHealed", { name: injury.name }));
+    }
+    return roll;
+  }
+
+  /** Активировать героическую способность: тратит очки сюжета игроков и считает использования. */
+  async activateHeroic(heroic) {
+    const sys = heroic.system;
+    if (sys.uses >= sys.usesPerSession) {
+      return ui.notifications.warn(game.i18n.format("GENESYS.Heroic.NoUses", { max: sys.usesPerSession }));
+    }
+    let points = 0;
+    try { points = game.settings.get(SYSTEM_ID, "storyPoints").player; } catch {}
+    if (points < sys.storyCost) {
+      return ui.notifications.warn(game.i18n.format("GENESYS.Heroic.NoStoryPoints", { cost: sys.storyCost }));
+    }
+    const { StoryPointsTracker } = await import("../apps/story-points.mjs");
+    for (let i = 0; i < sys.storyCost; i++) StoryPointsTracker.request("usePlayer", { actor: this.name });
+    await heroic.update({ "system.uses": sys.uses + 1 });
+    const upgrades = sys.upgrades.filter(u => u.count > 0).map(u => `<li>${foundry.utils.escapeHTML(u.name)}${u.count > 1 ? ` ×${u.count}` : ""}</li>`).join("");
+    return ChatMessage.implementation.create({
+      speaker: ChatMessage.implementation.getSpeaker({ actor: this }),
+      content: `<div class="genesys item-card heroic-card"><header><img src="${heroic.img}" alt=""><h3>${foundry.utils.escapeHTML(heroic.name)}</h3></header>
+        ${sys.description}${upgrades ? `<ul>${upgrades}</ul>` : ""}</div>`
+    });
+  }
+
+  /* -------------------------------------------- */
+  /*  Критические травмы                          */
+  /* -------------------------------------------- */
+
+  /** Разобрать диапазон «01-05» / «151+» → [min, max]. */
+  static parseRollRange(range) {
+    const nums = String(range ?? "").match(/\d+/g)?.map(Number) ?? [];
+    if (!nums.length) return null;
+    if (String(range).includes("+") || nums.length === 1) return [nums[0], Infinity];
+    return [nums[0], nums[1]];
+  }
+
+  /**
+   * Бросок по таблице критических травм: d100 + 10 за каждую имеющуюся травму + модификатор
+   * (например, Высококритичное N даёт +10×N). Результат добавляется на лист и выводится в чат.
+   */
+  async rollCriticalInjury({ modifier = 0 } = {}) {
+    // Приспешник: критическая травма просто выводит одного из группы.
+    if (this.type === "adversary" && this.system.isMinion) {
+      const { actOnActor } = await import("../combat/combat.mjs");
+      return actOnActor(this, "adjust", { wounds: Math.max(1, this.system.wounds.max) });
+    }
+    const existing = this.itemTypes.injury.length;
+    const durable = this.system.criticalModifier ?? 0;
+    const roll = await new Roll(`1d100 + ${existing * 10} + ${(Number(modifier) || 0) + durable}`).evaluate();
+    const total = Math.max(1, roll.total);
+
+    // Таблица — из компендиума системы (или из предметов мира, если компендиума нет).
+    let table = [];
+    const pack = game.packs.get(`${SYSTEM_ID}.${this.type === "vehicle" ? "vehicle-crits" : "injuries"}`);
+    if (pack) table = await pack.getDocuments();
+    if (!table.length) table = game.items.filter(i => i.type === "injury" && (this.type === "vehicle") === (i.folder?.name === "Транспорт"));
+    const entry = table.find(i => {
+      const r = GenesysActor.parseRollRange(i.system.rollRange);
+      return r && total >= r[0] && total <= r[1];
+    });
+
+    let created = null;
+    if (entry) [created] = await this.createEmbeddedDocuments("Item", [entry.toObject()]);
+
+    const severity = entry ? "◆".repeat(entry.system.severity) || "—" : "";
+    const content = `<div class="genesys item-card critical-injury">
+      <header><img src="${entry?.img ?? "icons/svg/blood.svg"}" alt=""><h3>${game.i18n.localize(this.type === "vehicle" ? "GENESYS.Vehicle.CritRoll" : "GENESYS.Injury.Roll")}: ${total}</h3></header>
+      ${entry ? `<p><strong>${foundry.utils.escapeHTML(entry.name)}</strong> <span class="severity-text">${severity}</span></p>${entry.system.description}`
+        : `<p>${game.i18n.localize("GENESYS.Warn.InjuryTableMissing")}</p>`}
+      <p class="hint">${game.i18n.format("GENESYS.Injury.RollFormula", { existing, modifier: Number(modifier) || 0 })}</p>
+    </div>`;
+    await roll.toMessage({ speaker: ChatMessage.implementation.getSpeaker({ actor: this }), content, flavor: this.name });
+    return created;
+  }
+
+  /** Спросить модификатор и бросить критическую травму. */
+  async promptCriticalInjury() {
+    const result = await foundry.applications.api.DialogV2.input({
+      window: { title: "GENESYS.Injury.Roll" },
+      content: `<div class="form-group"><label>${game.i18n.localize("GENESYS.Injury.Modifier")}</label>
+        <input type="number" name="modifier" value="0" step="10" autofocus></div>
+        <p class="hint">${game.i18n.localize("GENESYS.Injury.ModifierHint")}</p>`,
+      ok: { label: "GENESYS.Injury.Roll" }
+    });
+    if (!result) return null;
+    return this.rollCriticalInjury({ modifier: Number(result.modifier) || 0 });
   }
 
   /* -------------------------------------------- */

@@ -1,0 +1,427 @@
+[
+  {
+    "name": "Связи выпускника",
+    "nameEn": "Alumni Connections, Remembered for Greatness",
+    "type": "ability",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "description": "<p>Один раз за игровую встречу персонаж может использовать ранги Атлетики вместо рангов в одном из навыков Знания.</p><p><em>Дополнительная способность архетипа на выбор (по согласованию с ведущим) для персонажа с упором на Силу.</em></p>",
+      "source": "To Protect and Serve, с. 2",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Выносливость",
+    "nameEn": "Endurance",
+    "type": "ability",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "description": "<p>Один раз за игровую встречу персонаж может совершить проверку Стойкости вместо проверки Атлетики.</p><p><em>Дополнительная способность архетипа на выбор (по согласованию с ведущим) для персонажа с упором на Силу.</em></p>",
+      "source": "To Protect and Serve, с. 2",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Никогда не сдаваться",
+    "nameEn": "Never Give Up",
+    "type": "ability",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "description": "<p>Один раз за игровую встречу, получая критическую травму, персонаж может потратить очко сюжета, чтобы выбрать вместо неё любую другую критическую травму той же степени тяжести.</p><p><em>Дополнительная способность архетипа на выбор (по согласованию с ведущим) для персонажа с упором на Силу.</em></p>",
+      "source": "To Protect and Serve, с. 2",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Спортивная подготовка",
+    "nameEn": "Sports Training",
+    "type": "ability",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "description": "<p>Рейтинг свойства Сноровка у всего оружия персонажа уменьшается на 1.</p><p><em>Дополнительная способность архетипа на выбор (по согласованию с ведущим) для персонажа с упором на Силу.</em></p>",
+      "source": "To Protect and Serve, с. 2",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Привычка к снаряжению",
+    "nameEn": "Used to the Gear",
+    "type": "ability",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "description": "<p>Порог нагрузки персонажа увеличивается на 2.</p><p><em>Дополнительная способность архетипа на выбор (по согласованию с ведущим) для персонажа с упором на Силу.</em></p>",
+      "source": "To Protect and Serve, с. 2",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Совиные глаза",
+    "nameEn": "Owl Eyes",
+    "type": "ability",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "description": "<p>Персонаж убирает 1 кость штрафа из проверок, связанных с укрытием и маскировкой (спрятаться, остаться незамеченным, найти спрятанное).</p><p><em>Дополнительная способность архетипа на выбор (по согласованию с ведущим) для персонажа с упором на Ловкость.</em></p>",
+      "source": "To Protect and Serve, с. 2",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Прицельный выстрел",
+    "nameEn": "Targeted Shot",
+    "type": "ability",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "description": "<p>Один раз за сцену персонаж убирает 1 кость штрафа из проверки прицельной атаки (атаки по конкретной части тела или предмету).</p><p><em>Дополнительная способность архетипа на выбор (по согласованию с ведущим) для персонажа с упором на Ловкость.</em></p>",
+      "source": "To Protect and Serve, с. 2",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Слаженность",
+    "nameEn": "Teamwork",
+    "type": "ability",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "description": "<p>Один раз за сцену, помогая другому персонажу, этот персонаж добавляет к его проверке 2 кости бонуса вместо одной.</p><p><em>Дополнительная способность архетипа на выбор (по согласованию с ведущим) для персонажа с упором на Ловкость.</em></p>",
+      "source": "To Protect and Serve, с. 2",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Трактат",
+    "nameEn": "Treatise",
+    "type": "ability",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "description": "<p>Один раз за игровую встречу персонаж может как побочное действие потратить очко сюжета и предъявить ранее написанный им труд, уместный в текущей сцене или социальной встрече. До конца следующего хода персонажа все персонажи добавляют к своим проверкам автоматическое преимущество.</p><p><em>Дополнительная способность архетипа на выбор (по согласованию с ведущим) для персонажа с упором на Интеллект.</em></p>",
+      "source": "To Protect and Serve, с. 2",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Творческий подход",
+    "nameEn": "Creative Solutions",
+    "type": "ability",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "description": "<p>Один раз за сцену, провалив проверку, персонаж может усилить следующую проверку навыка другого игрока.</p><p><em>Дополнительная способность архетипа на выбор (по согласованию с ведущим) для персонажа с упором на Интеллект.</em></p>",
+      "source": "To Protect and Serve, с. 2",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Фотографическая память",
+    "nameEn": "Photographic Memory",
+    "type": "ability",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "description": "<p>Один раз за игровую встречу персонаж может манёвром получить 2 усталости, чтобы один раз усилить любую проверку навыка.</p><p><em>Дополнительная способность архетипа на выбор (по согласованию с ведущим) для персонажа с упором на Интеллект.</em></p>",
+      "source": "To Protect and Serve, с. 2",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Поверьте, я знаю, что делаю",
+    "nameEn": "Trust Me, I Know What I'm Doing",
+    "type": "ability",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "description": "<p>Один раз за игровую встречу персонаж может потратить очко сюжета, чтобы добавить к проверке Обмана столько костей бонуса, сколько у него Интеллекта.</p><p><em>Дополнительная способность архетипа на выбор (по согласованию с ведущим) для персонажа с упором на Интеллект.</em></p>",
+      "source": "To Protect and Serve, с. 2",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Связи среди коллег",
+    "nameEn": "Colleague Connections",
+    "type": "ability",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "description": "<p>Один раз за игровую встречу персонаж добавляет к проверке Знания столько костей бонуса, сколько у него Харизмы.</p><p><em>Дополнительная способность архетипа на выбор (по согласованию с ведущим) для персонажа с упором на Интеллект.</em></p>",
+      "source": "To Protect and Serve, с. 2",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Лектор",
+    "nameEn": "Lecturer",
+    "type": "ability",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "description": "<p>Один раз за игровую встречу персонаж может оказать квалифицированную помощь в проверке другого игрока, даже если у него самого нет рангов в этом навыке.</p><p><em>Дополнительная способность архетипа на выбор (по согласованию с ведущим) для персонажа с упором на Интеллект.</em></p>",
+      "source": "To Protect and Serve, с. 2",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Прорыв",
+    "nameEn": "Breakthrough",
+    "type": "ability",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "description": "<p>Один раз за игровую встречу персонаж может потратить очко сюжета, чтобы другой игрок добавил к своей следующей проверке навыка автоматический успех и автоматическое преимущество.</p><p><em>Дополнительная способность архетипа на выбор (по согласованию с ведущим) для персонажа с упором на Интеллект.</em></p>",
+      "source": "To Protect and Serve, с. 2",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Безумный учёный",
+    "nameEn": "Mad Scientist",
+    "type": "ability",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "description": "<p>Один раз за игровую встречу персонаж может усилить проверку Знания до стольких раз, сколько у него Смекалки; за каждое усиление к результату добавляются 2 автоматических осложнения.</p><p><em>Дополнительная способность архетипа на выбор (по согласованию с ведущим) для персонажа с упором на Интеллект.</em></p>",
+      "source": "To Protect and Serve, с. 2",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Я на вашей стороне",
+    "nameEn": "I'm On Your Side",
+    "type": "ability",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "description": "<p>Один раз за игровую встречу персонаж совершает проверку Обмана против группы приспешников. При успехе эта группа не может выбирать персонажа целью до конца сцены, если он сам их не атакует.</p><p><em>Дополнительная способность архетипа на выбор (по согласованию с ведущим) для персонажа с упором на Смекалку.</em></p>",
+      "source": "To Protect and Serve, с. 2",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Обсчёт",
+    "nameEn": "Quick Change Counter",
+    "type": "ability",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "description": "<p>Один раз за игровую встречу при сделке с торговцем персонаж может совершить проверку Обмана и получить 100 денежных единиц за каждый успех.</p><p><em>Дополнительная способность архетипа на выбор (по согласованию с ведущим) для персонажа с упором на Смекалку.</em></p>",
+      "source": "To Protect and Serve, с. 2",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Карманник",
+    "nameEn": "Pickpocket",
+    "type": "ability",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "description": "<p>Один раз за сцену персонаж может совершить проверку Жульничества против Бдительности цели и получить 100 денежных единиц за каждый успех.</p><p><em>Дополнительная способность архетипа на выбор (по согласованию с ведущим) для персонажа с упором на Смекалку.</em></p>",
+      "source": "To Protect and Serve, с. 2",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Предложить взятку",
+    "nameEn": "Suggest a Bribe",
+    "type": "ability",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "description": "<p>Когда персонаж становится целью социальной проверки, он может ослабить эту проверку столько раз, сколько у него рангов Уличной интуиции, получая 100 денежных единиц за каждое ослабление (персонаж «берёт на лапу»).</p><p><em>Дополнительная способность архетипа на выбор (по согласованию с ведущим) для персонажа с упором на Смекалку.</em></p>",
+      "source": "To Protect and Serve, с. 2",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Невозмутимость",
+    "nameEn": "Centered",
+    "type": "ability",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "description": "<p>Во встречных проверках Переговоров и Обаяния персонаж может использовать Выдержку.</p><p><em>Дополнительная способность архетипа на выбор (по согласованию с ведущим) для персонажа с упором на Волю.</em></p>",
+      "source": "To Protect and Serve, с. 2",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Закалённый стихиями",
+    "nameEn": "Weathered the Elements",
+    "type": "ability",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "description": "<p>Проверки Стойкости против воздействия окружающей среды персонаж усиливает столько раз, сколько у него Воли.</p><p><em>Дополнительная способность архетипа на выбор (по согласованию с ведущим) для персонажа с упором на Волю.</em></p>",
+      "source": "To Protect and Serve, с. 2",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Монотонный труд",
+    "nameEn": "Mindless Work",
+    "type": "ability",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "description": "<p>Персонаж добавляет кость бонуса ко всем проверкам Выдержки и Стойкости.</p><p><em>Дополнительная способность архетипа на выбор (по согласованию с ведущим) для персонажа с упором на Волю.</em></p>",
+      "source": "To Protect and Serve, с. 2",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Работа с людьми",
+    "nameEn": "Work with the Public",
+    "type": "ability",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "description": "<p>Персонаж убирает 1 кость штрафа из всех проверок Обаяния, Лидерства и Переговоров.</p><p><em>Дополнительная способность архетипа на выбор (по согласованию с ведущим) для персонажа с упором на Волю.</em></p>",
+      "source": "To Protect and Serve, с. 2",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Преданные последователи",
+    "nameEn": "Devoted Followers",
+    "type": "ability",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "description": "<p>Один раз за игровую встречу персонаж может потратить очко сюжета, чтобы получить 2 дополнительных ранга навыка для одной проверки небоевого и немагического навыка.</p><p><em>Дополнительная способность архетипа на выбор (по согласованию с ведущим) для персонажа с упором на Харизму.</em></p>",
+      "source": "To Protect and Serve, с. 2",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "weirdwar"
+      ]
+    }
+  }
+]

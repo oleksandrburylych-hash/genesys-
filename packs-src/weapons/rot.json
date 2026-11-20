@@ -1,0 +1,879 @@
+[
+  {
+    "name": "Топор",
+    "nameEn": "Axe",
+    "type": "weapon",
+    "folder": "Терринот",
+    "system": {
+      "skill": "meleeLight",
+      "damage": 3,
+      "brawnDamage": true,
+      "crit": 3,
+      "range": "engaged",
+      "encumbrance": 2,
+      "hardPoints": 1,
+      "price": 150,
+      "rarity": 1,
+      "qualities": [
+        {
+          "name": "Высококритичное",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Одноручный боевой топор; оставляет тяжёлые калечащие раны.</p>",
+      "source": "Realms of Terrinoth, с. 94"
+    }
+  },
+  {
+    "name": "Цестус",
+    "nameEn": "Cestus",
+    "type": "weapon",
+    "folder": "Терринот",
+    "system": {
+      "skill": "brawl",
+      "damage": 1,
+      "brawnDamage": true,
+      "crit": 4,
+      "range": "engaged",
+      "encumbrance": 1,
+      "hardPoints": 0,
+      "price": 40,
+      "rarity": 1,
+      "qualities": [
+        {
+          "name": "Дезориентация",
+          "rating": 3
+        }
+      ],
+      "description": "<p>Тяжёлые кожаные перчатки с железными заклёпками на костяшках; привлекают меньше внимания, чем обнажённый клинок.</p>",
+      "source": "Realms of Terrinoth, с. 94"
+    }
+  },
+  {
+    "name": "Кинжал",
+    "nameEn": "Dagger",
+    "type": "weapon",
+    "folder": "Терринот",
+    "system": {
+      "skill": "meleeLight",
+      "damage": 2,
+      "brawnDamage": true,
+      "crit": 3,
+      "range": "engaged",
+      "encumbrance": 1,
+      "hardPoints": 1,
+      "price": 60,
+      "rarity": 1,
+      "qualities": [
+        {
+          "name": "Точное",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Сбалансированный боевой кинжал. Его можно метнуть, используя отдельный профиль «Кинжал (бросок)»: Дальний бой; урон +2; крит 3; короткая дистанция; Точное 1, Ограниченный боезапас 1.</p>",
+      "source": "Realms of Terrinoth, с. 94"
+    }
+  },
+  {
+    "name": "Кинжал (бросок)",
+    "nameEn": "Dagger (thrown)",
+    "type": "weapon",
+    "folder": "Терринот",
+    "system": {
+      "skill": "ranged",
+      "damage": 2,
+      "brawnDamage": true,
+      "crit": 3,
+      "range": "short",
+      "encumbrance": 1,
+      "hardPoints": 1,
+      "price": 60,
+      "rarity": 1,
+      "qualities": [
+        {
+          "name": "Точное",
+          "rating": 1
+        },
+        {
+          "name": "Ограниченный боезапас",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Альтернативный профиль кинжала при метании. Урон метательного оружия = Сила + указанный модификатор.</p>",
+      "source": "Realms of Terrinoth, с. 92"
+    }
+  },
+  {
+    "name": "Цеп",
+    "nameEn": "Flail",
+    "type": "weapon",
+    "folder": "Терринот",
+    "system": {
+      "skill": "meleeHeavy",
+      "damage": 4,
+      "brawnDamage": true,
+      "crit": 3,
+      "range": "engaged",
+      "encumbrance": 4,
+      "hardPoints": 2,
+      "price": 150,
+      "rarity": 3,
+      "qualities": [
+        {
+          "name": "Громоздкое",
+          "rating": 3
+        },
+        {
+          "name": "Залповое",
+          "rating": 1
+        },
+        {
+          "name": "Сноровка",
+          "rating": 3
+        }
+      ],
+      "description": "<p>Двуручное древко с тяжёлым бойком на цепи или ремне; бьёт сильно, но неудобен в обращении.</p>",
+      "source": "Realms of Terrinoth, с. 94"
+    }
+  },
+  {
+    "name": "Секира",
+    "nameEn": "Greataxe",
+    "type": "weapon",
+    "folder": "Терринот",
+    "system": {
+      "skill": "meleeHeavy",
+      "damage": 4,
+      "brawnDamage": true,
+      "crit": 3,
+      "range": "engaged",
+      "encumbrance": 4,
+      "hardPoints": 2,
+      "price": 300,
+      "rarity": 4,
+      "qualities": [
+        {
+          "name": "Громоздкое",
+          "rating": 3
+        },
+        {
+          "name": "Проникающее",
+          "rating": 2
+        },
+        {
+          "name": "Высококритичное",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Двуручный топор с длинной рукоятью и крупным лезвием; требует большой силы.</p>",
+      "source": "Realms of Terrinoth, с. 94"
+    }
+  },
+  {
+    "name": "Двуручный меч",
+    "nameEn": "Greatsword",
+    "type": "weapon",
+    "folder": "Терринот",
+    "system": {
+      "skill": "meleeHeavy",
+      "damage": 4,
+      "brawnDamage": true,
+      "crit": 2,
+      "range": "engaged",
+      "encumbrance": 3,
+      "hardPoints": 2,
+      "price": 300,
+      "rarity": 4,
+      "qualities": [
+        {
+          "name": "Оборонительное",
+          "rating": 1
+        },
+        {
+          "name": "Проникающее",
+          "rating": 1
+        },
+        {
+          "name": "Сноровка",
+          "rating": 3
+        }
+      ],
+      "description": "<p>Длинный двуручный клинок, требующий точного контроля и высокой выучки.</p>",
+      "source": "Realms of Terrinoth, с. 94"
+    }
+  },
+  {
+    "name": "Алебарда",
+    "nameEn": "Halberd",
+    "type": "weapon",
+    "folder": "Терринот",
+    "system": {
+      "skill": "meleeHeavy",
+      "damage": 3,
+      "brawnDamage": true,
+      "crit": 3,
+      "range": "engaged",
+      "encumbrance": 5,
+      "hardPoints": 3,
+      "price": 250,
+      "rarity": 3,
+      "qualities": [
+        {
+          "name": "Оборонительное",
+          "rating": 1
+        },
+        {
+          "name": "Проникающее",
+          "rating": 3
+        }
+      ],
+      "description": "<p>Древковое оружие с топорищем и наконечником копья: держит противника на расстоянии и прорубает доспехи.</p>",
+      "source": "Realms of Terrinoth, с. 94"
+    }
+  },
+  {
+    "name": "Катар",
+    "nameEn": "Katar",
+    "type": "weapon",
+    "folder": "Терринот",
+    "system": {
+      "skill": "brawl",
+      "damage": 1,
+      "brawnDamage": true,
+      "crit": 2,
+      "range": "engaged",
+      "encumbrance": 1,
+      "hardPoints": 1,
+      "price": 175,
+      "rarity": 4,
+      "qualities": [
+        {
+          "name": "Точное",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Тычковый кинжал с поперечной рукоятью для быстрых мощных ударов.</p>",
+      "source": "Realms of Terrinoth, с. 94"
+    }
+  },
+  {
+    "name": "Булава",
+    "nameEn": "Mace",
+    "type": "weapon",
+    "folder": "Терринот",
+    "system": {
+      "skill": "meleeLight",
+      "damage": 3,
+      "brawnDamage": true,
+      "crit": 4,
+      "range": "engaged",
+      "encumbrance": 2,
+      "hardPoints": 1,
+      "price": 75,
+      "rarity": 1,
+      "qualities": [],
+      "description": "<p>Простое и дешёвое ударное оружие без особых свойств.</p>",
+      "source": "Realms of Terrinoth, с. 94"
+    }
+  },
+  {
+    "name": "Боевой клевец",
+    "nameEn": "Military Pick",
+    "type": "weapon",
+    "folder": "Терринот",
+    "system": {
+      "skill": "meleeLight",
+      "damage": 1,
+      "brawnDamage": true,
+      "crit": 2,
+      "range": "engaged",
+      "encumbrance": 3,
+      "hardPoints": 1,
+      "price": 160,
+      "rarity": 2,
+      "qualities": [
+        {
+          "name": "Проникающее",
+          "rating": 2
+        }
+      ],
+      "description": "<p>Оружие с одним шипом на бойке, созданное, чтобы пробивать латы.</p>",
+      "source": "Realms of Terrinoth, с. 94"
+    }
+  },
+  {
+    "name": "Пика",
+    "nameEn": "Pike",
+    "type": "weapon",
+    "folder": "Терринот",
+    "system": {
+      "skill": "meleeHeavy",
+      "damage": 4,
+      "brawnDamage": true,
+      "crit": 4,
+      "range": "short",
+      "encumbrance": 4,
+      "hardPoints": 2,
+      "price": 100,
+      "rarity": 2,
+      "qualities": [
+        {
+          "name": "Подготовка",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Очень длинное двуручное копьё. Позволяет совершать атаки ближнего боя по целям на короткой дистанции (сложность остаётся Обычной), но не позволяет атаковать цели, находящиеся вплотную.</p>",
+      "source": "Realms of Terrinoth, с. 94"
+    }
+  },
+  {
+    "name": "Щит",
+    "nameEn": "Shield",
+    "type": "weapon",
+    "folder": "Терринот",
+    "system": {
+      "skill": "meleeLight",
+      "damage": 0,
+      "brawnDamage": true,
+      "crit": 6,
+      "range": "engaged",
+      "encumbrance": 1,
+      "hardPoints": 1,
+      "price": 80,
+      "rarity": 1,
+      "qualities": [
+        {
+          "name": "Оборонительное",
+          "rating": 1
+        },
+        {
+          "name": "Отражающее",
+          "rating": 1
+        },
+        {
+          "name": "Неточное",
+          "rating": 1
+        },
+        {
+          "name": "Нокдаун",
+          "rating": null
+        }
+      ],
+      "description": "<p>Обычный щит.</p><p>Свойства «Оборонительное» и «Отражающее» щита пассивны и действуют всё время, пока персонаж держит щит, даже если он им не атакует; «Громоздкое» (если есть) действует только при использовании щита. Щитом можно атаковать как обычным оружием ближнего боя или в рамках боя двумя оружиями (Core, с. 108), в том числе назначив щит основным оружием; в любом случае применяются все пассивные свойства щита (включая «Неточное»), а при попадании можно активировать его активные свойства (например, «Нокдаун»).</p>",
+      "source": "Realms of Terrinoth, с. 94"
+    }
+  },
+  {
+    "name": "Большой щит",
+    "nameEn": "Shield, Large",
+    "type": "weapon",
+    "folder": "Терринот",
+    "system": {
+      "skill": "meleeLight",
+      "damage": 1,
+      "brawnDamage": true,
+      "crit": 5,
+      "range": "engaged",
+      "encumbrance": 2,
+      "hardPoints": 2,
+      "price": 160,
+      "rarity": 2,
+      "qualities": [
+        {
+          "name": "Оборонительное",
+          "rating": 2
+        },
+        {
+          "name": "Отражающее",
+          "rating": 2
+        },
+        {
+          "name": "Неточное",
+          "rating": 2
+        },
+        {
+          "name": "Нокдаун",
+          "rating": null
+        }
+      ],
+      "description": "<p>Более крупный и прочный щит, дающий лучшую защиту.</p><p>Свойства «Оборонительное» и «Отражающее» щита пассивны и действуют всё время, пока персонаж держит щит, даже если он им не атакует; «Громоздкое» (если есть) действует только при использовании щита. Щитом можно атаковать как обычным оружием ближнего боя или в рамках боя двумя оружиями (Core, с. 108), в том числе назначив щит основным оружием; в любом случае применяются все пассивные свойства щита (включая «Неточное»), а при попадании можно активировать его активные свойства (например, «Нокдаун»).</p>",
+      "source": "Realms of Terrinoth, с. 94"
+    }
+  },
+  {
+    "name": "Ростовой щит",
+    "nameEn": "Shield, Bulwark",
+    "type": "weapon",
+    "folder": "Терринот",
+    "system": {
+      "skill": "meleeLight",
+      "damage": 2,
+      "brawnDamage": true,
+      "crit": 5,
+      "range": "engaged",
+      "encumbrance": 3,
+      "hardPoints": 2,
+      "price": 280,
+      "rarity": 3,
+      "qualities": [
+        {
+          "name": "Громоздкое",
+          "rating": 4
+        },
+        {
+          "name": "Оборонительное",
+          "rating": 2
+        },
+        {
+          "name": "Отражающее",
+          "rating": 3
+        },
+        {
+          "name": "Неточное",
+          "rating": 2
+        },
+        {
+          "name": "Нокдаун",
+          "rating": null
+        },
+        {
+          "name": "Укреплённое",
+          "rating": null
+        }
+      ],
+      "description": "<p>Огромный щит, закрывающий воина от плеч до голеней; особенно хорош против стрел.</p><p>Свойства «Оборонительное» и «Отражающее» щита пассивны и действуют всё время, пока персонаж держит щит, даже если он им не атакует; «Громоздкое» (если есть) действует только при использовании щита. Щитом можно атаковать как обычным оружием ближнего боя или в рамках боя двумя оружиями (Core, с. 108), в том числе назначив щит основным оружием; в любом случае применяются все пассивные свойства щита (включая «Неточное»), а при попадании можно активировать его активные свойства (например, «Нокдаун»).</p>",
+      "source": "Realms of Terrinoth, с. 94"
+    }
+  },
+  {
+    "name": "Копьё",
+    "nameEn": "Spear",
+    "type": "weapon",
+    "folder": "Терринот",
+    "system": {
+      "skill": "meleeHeavy",
+      "damage": 3,
+      "brawnDamage": true,
+      "crit": 3,
+      "range": "engaged",
+      "encumbrance": 3,
+      "hardPoints": 1,
+      "price": 110,
+      "rarity": 2,
+      "qualities": [
+        {
+          "name": "Точное",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Стандартное копьё: слишком тяжёлое, чтобы держать его одной рукой или метать.</p>",
+      "source": "Realms of Terrinoth, с. 94"
+    }
+  },
+  {
+    "name": "Лёгкое копьё",
+    "nameEn": "Spear, Light",
+    "type": "weapon",
+    "folder": "Терринот",
+    "system": {
+      "skill": "meleeLight",
+      "damage": 2,
+      "brawnDamage": true,
+      "crit": 4,
+      "range": "engaged",
+      "encumbrance": 2,
+      "hardPoints": 1,
+      "price": 90,
+      "rarity": 1,
+      "qualities": [
+        {
+          "name": "Точное",
+          "rating": 1
+        },
+        {
+          "name": "Оборонительное",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Одноручное копьё (дротик). Его можно метнуть, используя отдельный профиль «Лёгкое копьё (бросок)»: Дальний бой; урон +2; крит 4; короткая дистанция; Точное 1, Ограниченный боезапас 1.</p>",
+      "source": "Realms of Terrinoth, с. 94"
+    }
+  },
+  {
+    "name": "Лёгкое копьё (бросок)",
+    "nameEn": "Spear, Light (thrown)",
+    "type": "weapon",
+    "folder": "Терринот",
+    "system": {
+      "skill": "ranged",
+      "damage": 2,
+      "brawnDamage": true,
+      "crit": 4,
+      "range": "short",
+      "encumbrance": 2,
+      "hardPoints": 1,
+      "price": 90,
+      "rarity": 1,
+      "qualities": [
+        {
+          "name": "Точное",
+          "rating": 1
+        },
+        {
+          "name": "Ограниченный боезапас",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Альтернативный профиль лёгкого копья при метании. Урон метательного оружия = Сила + указанный модификатор.</p>",
+      "source": "Realms of Terrinoth, с. 94"
+    }
+  },
+  {
+    "name": "Посох",
+    "nameEn": "Staff",
+    "type": "weapon",
+    "folder": "Терринот",
+    "system": {
+      "skill": "meleeHeavy",
+      "damage": 2,
+      "brawnDamage": true,
+      "crit": 4,
+      "range": "engaged",
+      "encumbrance": 2,
+      "hardPoints": 1,
+      "price": 40,
+      "rarity": 0,
+      "qualities": [
+        {
+          "name": "Оборонительное",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Дешёвый деревянный посох, годный и как оружие для защиты.</p>",
+      "source": "Realms of Terrinoth, с. 94"
+    }
+  },
+  {
+    "name": "Меч",
+    "nameEn": "Sword",
+    "type": "weapon",
+    "folder": "Терринот",
+    "system": {
+      "skill": "meleeLight",
+      "damage": 3,
+      "brawnDamage": true,
+      "crit": 2,
+      "range": "engaged",
+      "encumbrance": 1,
+      "hardPoints": 1,
+      "price": 200,
+      "rarity": 2,
+      "qualities": [
+        {
+          "name": "Оборонительное",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Одноручный клинок, пригодный и для атаки, и для парирования.</p>",
+      "source": "Realms of Terrinoth, с. 94"
+    }
+  },
+  {
+    "name": "Боевой молот",
+    "nameEn": "War Hammer",
+    "type": "weapon",
+    "folder": "Терринот",
+    "system": {
+      "skill": "meleeHeavy",
+      "damage": 5,
+      "brawnDamage": true,
+      "crit": 4,
+      "range": "engaged",
+      "encumbrance": 4,
+      "hardPoints": 2,
+      "price": 600,
+      "rarity": 3,
+      "qualities": [
+        {
+          "name": "Ошеломление",
+          "rating": 1
+        },
+        {
+          "name": "Громоздкое",
+          "rating": 4
+        },
+        {
+          "name": "Неточное",
+          "rating": 1
+        },
+        {
+          "name": "Нокдаун",
+          "rating": null
+        }
+      ],
+      "description": "<p>Тяжёлый двуручный молот; мощный удар может оглушить и сбить противника с ног.</p>",
+      "source": "Realms of Terrinoth, с. 94"
+    }
+  },
+  {
+    "name": "Лук",
+    "nameEn": "Bow",
+    "type": "weapon",
+    "folder": "Терринот",
+    "system": {
+      "skill": "ranged",
+      "damage": 7,
+      "brawnDamage": false,
+      "crit": 3,
+      "range": "medium",
+      "encumbrance": 2,
+      "hardPoints": 1,
+      "price": 275,
+      "rarity": 2,
+      "qualities": [
+        {
+          "name": "Сноровка",
+          "rating": 2
+        }
+      ],
+      "description": "<p>Обычный лук для охоты и войны.</p><p>Для учёта боеприпасов используется врезка «Учёт боеприпасов» (Core, с. 89).</p>",
+      "source": "Realms of Terrinoth, с. 95"
+    }
+  },
+  {
+    "name": "Арбалет",
+    "nameEn": "Crossbow",
+    "type": "weapon",
+    "folder": "Терринот",
+    "system": {
+      "skill": "ranged",
+      "damage": 7,
+      "brawnDamage": false,
+      "crit": 2,
+      "range": "medium",
+      "encumbrance": 3,
+      "hardPoints": 1,
+      "price": 600,
+      "rarity": 4,
+      "qualities": [
+        {
+          "name": "Проникающее",
+          "rating": 2
+        },
+        {
+          "name": "Подготовка",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Мощнее лука, но дольше заряжается.</p><p>Для учёта боеприпасов используется врезка «Учёт боеприпасов» (Core, с. 89).</p>",
+      "source": "Realms of Terrinoth, с. 95"
+    }
+  },
+  {
+    "name": "Ручной арбалет",
+    "nameEn": "Crossbow, Hand",
+    "type": "weapon",
+    "folder": "Терринот",
+    "system": {
+      "skill": "ranged",
+      "damage": 5,
+      "brawnDamage": false,
+      "crit": 2,
+      "range": "short",
+      "encumbrance": 2,
+      "hardPoints": 0,
+      "price": 750,
+      "rarity": 5,
+      "qualities": [
+        {
+          "name": "Проникающее",
+          "rating": 1
+        },
+        {
+          "name": "Подготовка",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Небольшой арбалет, который легко спрятать под плащом или закрепить на перчатке.</p><p>Для учёта боеприпасов используется врезка «Учёт боеприпасов» (Core, с. 89).</p>",
+      "source": "Realms of Terrinoth, с. 95"
+    }
+  },
+  {
+    "name": "Тяжёлый арбалет",
+    "nameEn": "Crossbow, Heavy",
+    "type": "weapon",
+    "folder": "Терринот",
+    "system": {
+      "skill": "ranged",
+      "damage": 8,
+      "brawnDamage": false,
+      "crit": 2,
+      "range": "long",
+      "encumbrance": 4,
+      "hardPoints": 2,
+      "price": 1000,
+      "rarity": 5,
+      "qualities": [
+        {
+          "name": "Громоздкое",
+          "rating": 3
+        },
+        {
+          "name": "Проникающее",
+          "rating": 3
+        },
+        {
+          "name": "Подготовка",
+          "rating": 2
+        }
+      ],
+      "description": "<p>Осадный арбалет огромной пробивной силы; тяжёл и громоздок.</p><p>Для учёта боеприпасов используется врезка «Учёт боеприпасов» (Core, с. 89).</p>",
+      "source": "Realms of Terrinoth, с. 95"
+    }
+  },
+  {
+    "name": "Многозарядный арбалет",
+    "nameEn": "Crossbow, Repeating",
+    "type": "weapon",
+    "folder": "Терринот",
+    "system": {
+      "skill": "ranged",
+      "damage": 6,
+      "brawnDamage": false,
+      "crit": 2,
+      "range": "short",
+      "encumbrance": 3,
+      "hardPoints": 2,
+      "price": 800,
+      "rarity": 7,
+      "qualities": [
+        {
+          "name": "Залповое",
+          "rating": 2
+        },
+        {
+          "name": "Подготовка",
+          "rating": 2
+        }
+      ],
+      "description": "<p>Арбалет с двумя парами плеч и тетив: стреляет несколько раз подряд, но долго перезаряжается.</p><p>Для учёта боеприпасов используется врезка «Учёт боеприпасов» (Core, с. 89).</p>",
+      "source": "Realms of Terrinoth, с. 95"
+    }
+  },
+  {
+    "name": "Длинный лук",
+    "nameEn": "Longbow",
+    "type": "weapon",
+    "folder": "Терринот",
+    "system": {
+      "skill": "ranged",
+      "damage": 8,
+      "brawnDamage": false,
+      "crit": 3,
+      "range": "long",
+      "encumbrance": 3,
+      "hardPoints": 2,
+      "price": 450,
+      "rarity": 4,
+      "qualities": [
+        {
+          "name": "Сноровка",
+          "rating": 3
+        }
+      ],
+      "description": "<p>Большой лук с высокой дальностью; требует навыка и координации.</p><p>Для учёта боеприпасов используется врезка «Учёт боеприпасов» (Core, с. 89).</p>",
+      "source": "Realms of Terrinoth, с. 95"
+    }
+  },
+  {
+    "name": "Праща",
+    "nameEn": "Sling",
+    "type": "weapon",
+    "folder": "Терринот",
+    "system": {
+      "skill": "ranged",
+      "damage": 4,
+      "brawnDamage": false,
+      "crit": 4,
+      "range": "medium",
+      "encumbrance": 0,
+      "hardPoints": 0,
+      "price": 20,
+      "rarity": 0,
+      "qualities": [
+        {
+          "name": "Дезориентация",
+          "rating": 2
+        },
+        {
+          "name": "Подготовка",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Кожаная петля на двух шнурах; снарядом служит любой подходящий камень. Крах или осложнения нельзя тратить на то, чтобы у пращи кончились боеприпасы.</p>",
+      "source": "Realms of Terrinoth, с. 96"
+    }
+  },
+  {
+    "name": "Метательный топор",
+    "nameEn": "Throwing Axe",
+    "type": "weapon",
+    "folder": "Терринот",
+    "system": {
+      "skill": "ranged",
+      "damage": 2,
+      "brawnDamage": true,
+      "crit": 3,
+      "range": "short",
+      "encumbrance": 1,
+      "hardPoints": 1,
+      "price": 50,
+      "rarity": 1,
+      "qualities": [
+        {
+          "name": "Неточное",
+          "rating": 1
+        },
+        {
+          "name": "Ограниченный боезапас",
+          "rating": 1
+        },
+        {
+          "name": "Высококритичное",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Сбалансированный для метания топор; урон = Сила + 2. В ближнем бою используется отдельный профиль «Метательный топор (ближний бой)»: Ближний бой (лёгкое оружие); урон +2; крит 3; вплотную; Неточное 1, Высококритичное 1.</p>",
+      "source": "Realms of Terrinoth, с. 95"
+    }
+  },
+  {
+    "name": "Метательный топор (ближний бой)",
+    "nameEn": "Throwing Axe (melee)",
+    "type": "weapon",
+    "folder": "Терринот",
+    "system": {
+      "skill": "meleeLight",
+      "damage": 2,
+      "brawnDamage": true,
+      "crit": 3,
+      "range": "engaged",
+      "encumbrance": 1,
+      "hardPoints": 1,
+      "price": 50,
+      "rarity": 1,
+      "qualities": [
+        {
+          "name": "Неточное",
+          "rating": 1
+        },
+        {
+          "name": "Высококритичное",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Альтернативный профиль метательного топора в ближнем бою.</p>",
+      "source": "Realms of Terrinoth, с. 96"
+    }
+  }
+]

@@ -1,39 +1,52 @@
 <div class="genesys-roll {{outcome}}">
-  {{#if label}}<h4 class="roll-label">{{label}}</h4>{{/if}}
+  <header class="gr-head">
+    {{#if label}}<h4 class="roll-label">{{label}}</h4>{{/if}}
+    {{#if target}}<div class="roll-target"><i class="fa-solid fa-crosshairs"></i> {{target.name}}</div>{{/if}}
+  </header>
   {{#if flavor}}<div class="roll-flavor">{{flavor}}</div>{{/if}}
 
   {{#if isPrivate}}
-  <div class="roll-private">???</div>
+  <div class="roll-private"><i class="fa-solid fa-eye-slash"></i> ???</div>
   {{else}}
   <div class="roll-dice">
-    {{#each dice}}
-    <span class="genesys-die-result {{key}}"><span class="face">{{{label}}}</span></span>
-    {{/each}}
+    {{#each dice}}<span class="gd {{key}}" style="--i: {{i}}" data-tooltip="{{name}}"><span class="gd-face n{{n}}">{{{label}}}</span></span>{{/each}}
   </div>
 
-  <div class="roll-summary">
-    {{#if noSymbols}}<span class="blank">{{localize "GENESYS.Roll.Blank"}}</span>{{else}}{{{summary}}}{{/if}}
+  <div class="gr-result {{#if initiative}}initiative{{else}}{{outcome}}{{/if}}" data-tooltip="{{rawText}}">
+    <div class="gr-verdict">
+      {{#if initiative}}<i class="fa-solid fa-flag-checkered"></i> {{localize "GENESYS.Initiative.label"}}: {{initiative}}
+      {{else}}{{#if results.isSuccess}}<i class="fa-solid fa-check"></i> {{localize "GENESYS.Roll.Success"}}{{else}}<i class="fa-solid fa-xmark"></i> {{localize "GENESYS.Roll.Failure"}}{{/if}}{{/if}}
+    </div>
+    <div class="gr-net">
+      {{#each net}}<span class="gr-chip {{key}} {{#if interp}}interp{{/if}}" {{#if interp}}data-genesys-action="interpret" data-outcome="{{key}}" data-tooltip="GENESYS.Interp.ChipHint"{{/if}}><span class="genesys-symbol {{key}}"></span><b>{{value}}</b><small>{{label}}</small></span>
+      {{else}}<span class="gr-blank">{{localize "GENESYS.Roll.Blank"}}</span>{{/each}}
+    </div>
   </div>
 
-  <div class="roll-outcome">
-    {{#if initiative}}
-      <strong>{{localize "GENESYS.Initiative"}}: {{initiative}}</strong>
+  {{#if medicine}}
+  <div class="roll-medicine {{#if medicine.injury}}{{#if medicine.healed}}ok{{else}}fail{{/if}}{{else}}{{#if medicine.success}}ok{{else}}fail{{/if}}{{/if}}">
+    <i class="fa-solid fa-staff-snake"></i>
+    {{#if medicine.injury}}
+      {{#if medicine.healed}}{{localize "GENESYS.Medicine.InjuryHealed"}} <b>{{medicine.name}}</b> — {{medicine.patient}}
+      {{else}}{{localize "GENESYS.Medicine.InjuryNotHealed"}} <b>{{medicine.name}}</b>{{/if}}
     {{else}}
-      {{#if results.isSuccess}}
-        <strong class="success">{{localize "GENESYS.Roll.Success"}}</strong>
-      {{else}}
-        <strong class="failure">{{localize "GENESYS.Roll.Failure"}}</strong>
-      {{/if}}
+      {{#if medicine.success}}<b>{{medicine.patient}}</b>: −{{medicine.wounds}} {{localize "GENESYS.Medicine.WoundsShort"}}{{#if medicine.strain}}, −{{medicine.strain}} {{localize "GENESYS.Medicine.StrainShort"}}{{/if}}{{#if medicine.surgeon}} <small>({{localize "GENESYS.Medicine.SurgeonShort"}} +{{medicine.surgeon}})</small>{{/if}}
+      {{else}}{{localize "GENESYS.Medicine.NoEffect"}}{{/if}}
     {{/if}}
-    <span class="counts">
-      {{#if results.success}}{{localize "GENESYS.Symbol.success"}}: {{results.success}}{{/if}}
-      {{#if results.failure}}{{localize "GENESYS.Symbol.failure"}}: {{results.failure}}{{/if}}
-      {{#if results.advantage}} · {{localize "GENESYS.Symbol.advantage"}}: {{results.advantage}}{{/if}}
-      {{#if results.threat}} · {{localize "GENESYS.Symbol.threat"}}: {{results.threat}}{{/if}}
-      {{#if results.triumph}} · {{localize "GENESYS.Symbol.triumph"}}: {{results.triumph}}{{/if}}
-      {{#if results.despair}} · {{localize "GENESYS.Symbol.despair"}}: {{results.despair}}{{/if}}
-    </span>
   </div>
+  {{/if}}
+
+  {{#if spell}}
+  <div class="roll-spell">
+    {{#if spell.concentration}}<div class="spell-line"><i class="fa-solid fa-brain"></i> {{localize "GENESYS.Spell.Concentration"}}</div>{{/if}}
+    {{#if spell.effects.length}}
+    <ul class="spell-effects-list">
+      {{#each spell.effects}}<li><strong>{{name}}{{#if (gt count 1)}} ×{{count}}{{/if}}</strong>: {{description}}</li>{{/each}}
+    </ul>
+    {{/if}}
+    <div class="spell-line hint">{{localize "GENESYS.Spell.KnowledgeRank"}}: {{spell.knowledgeRank}}</div>
+  </div>
+  {{/if}}
 
   {{#if attack}}
   <div class="roll-attack">
@@ -42,10 +55,47 @@
     <div class="attack-line crit"><i class="fa-solid fa-skull"></i> {{localize "GENESYS.Roll.CritAvailable"}} ({{localize "GENESYS.Crit"}} {{attack.crit}}, ×{{attack.critCount}})</div>
     {{/if}}
     {{#if attack.qualities}}<div class="attack-line qualities">{{attack.qualities}}</div>{{/if}}
+    {{#if attack.critReady}}
+    <button type="button" data-genesys-action="applyCrit" data-modifier="{{attack.critModifier}}">
+      <i class="fa-solid fa-skull"></i> {{localize "GENESYS.Roll.ApplyCrit"}}
+    </button>
+    {{/if}}
     <button type="button" data-genesys-action="applyDamage" data-damage="{{attack.damage}}">
       <i class="fa-solid fa-heart-crack"></i> {{localize "GENESYS.Roll.ApplyDamage"}}
     </button>
+    {{#if activeQualities.length}}
+    <div class="quality-buttons">
+      {{#each activeQualities}}
+      <button type="button" data-genesys-action="activateQuality" data-quality="{{name}}" data-rating="{{rating}}">
+        <i class="fa-solid fa-bolt"></i> {{name}}{{#if rating}} {{rating}}{{/if}} <span class="cost">({{cost}} {{localize "GENESYS.Spend.AdvShort"}})</span>
+      </button>
+      {{/each}}
+    </div>
+    {{/if}}
   </div>
+  {{/if}}
+
+  {{#if fear}}
+  <div class="fear-outcome fear-{{fear.key}}">
+    <b>{{localize (concat "GENESYS.Fear.Effect." fear.key)}}</b>
+    <span>{{localize (concat "GENESYS.Fear.EffectHint." fear.key)}}</span>
+    {{#if fear.apply}}<button type="button" data-genesys-action="fearApply" data-effect="{{fear.key}}"><i class="fa-solid fa-ghost"></i> {{localize "GENESYS.Fear.Apply"}}</button>{{/if}}
+  </div>
+  {{/if}}
+  {{#if spending.length}}
+  <details class="roll-spending">
+    <summary><i class="fa-solid fa-coins"></i> {{localize "GENESYS.Spend.Title"}}</summary>
+    {{#each spending}}
+    <div class="spend-group {{#if positive}}positive{{else}}negative{{/if}}">
+      <div class="spend-title">{{title}}</div>
+      {{#each rows}}
+      <button type="button" class="spend-row" data-genesys-action="spend" data-table="{{table}}" data-row="{{index}}">
+        <span class="spend-cost">{{cost}}</span> <span class="spend-text">{{text}}</span>
+      </button>
+      {{/each}}
+    </div>
+    {{/each}}
+  </details>
   {{/if}}
   {{/if}}
 </div>

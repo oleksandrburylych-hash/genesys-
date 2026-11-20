@@ -1,0 +1,1261 @@
+/* ==========================================================================
+   Genesys RPG — оформление листов в стиле книги правил
+   Бордовый · тёмно-синий · золотой · «бумага» · узкие заголовки заглавными
+   ========================================================================== */
+
+.genesys,
+.genesys-roll {
+  --gs-maroon: #8e2229;
+  --gs-maroon-d: #5c1217;
+  --gs-navy: #1f3557;
+  --gs-navy-d: #12223a;
+  --gs-gold: #f2a531;
+  --gs-gold-d: #c97f12;
+  --gs-paper: #fbfaf6;
+  --gs-ink: #1d1d1f;
+  --gs-line: #c5cbd2;
+  --gs-muted: #6d747c;
+  --gs-head: "Oswald", "Roboto Condensed", "Arial Narrow", sans-serif;
+  --gs-body: "Roboto Condensed", "Arial Narrow", sans-serif;
+  /* старые переменные системы — под новую палитру */
+  --g-accent: var(--gs-navy);
+  --g-accent-soft: rgba(31, 53, 87, 0.08);
+  --g-border: var(--gs-line);
+  --g-panel: rgba(255, 255, 255, 0.75);
+  --g-ink: var(--gs-ink);
+  --g-muted: var(--gs-muted);
+  --g-danger: var(--gs-maroon);
+}
+
+/* Окно: тёмно-синий заголовок, бумажный фон с тонкой сеткой */
+.genesys.sheet .window-header,
+.genesys.dice-pool-dialog .window-header,
+.genesys.spell-cast-dialog .window-header,
+.genesys.creation-wizard .window-header,
+.genesys.gm-screen .window-header,
+.genesys.workshop .window-header,
+.genesys.world-setup .window-header {
+  background: linear-gradient(180deg, var(--gs-navy) 0%, var(--gs-navy-d) 100%);
+  color: #fff;
+  border-bottom: 3px solid var(--gs-gold);
+  font-family: var(--gs-head);
+  letter-spacing: 0.04em;
+}
+.genesys.sheet .window-header .window-title { font-family: var(--gs-head); text-transform: uppercase; }
+
+.genesys.sheet .window-content,
+.genesys.dice-pool-dialog .window-content,
+.genesys.spell-cast-dialog .window-content,
+.genesys.creation-wizard .window-content,
+.genesys.gm-screen .window-content,
+.genesys.workshop .window-content,
+.genesys.world-setup .window-content {
+  color: var(--gs-ink);
+  font-family: var(--gs-body);
+  font-size: 13px;
+  background:
+    repeating-linear-gradient(60deg, transparent 0 70px, rgba(31, 53, 87, 0.035) 70px 71px),
+    repeating-linear-gradient(-60deg, transparent 0 70px, rgba(31, 53, 87, 0.035) 70px 71px),
+    radial-gradient(ellipse at 50% 0%, #ffffff 0%, var(--gs-paper) 60%, #f1eee6 100%);
+}
+
+/* Поля ввода — «бланк» */
+.genesys.sheet input[type="text"],
+.genesys.sheet input[type="number"],
+.genesys.sheet select,
+.genesys.sheet textarea,
+.genesys.creation-wizard input[type="text"],
+.genesys.creation-wizard input[type="number"],
+.genesys.creation-wizard textarea,
+.genesys.gm-screen input[type="text"],
+.genesys.gm-screen input[type="number"],
+.genesys.gm-screen select,
+.genesys.workshop input[type="text"] {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid var(--gs-line);
+  border-radius: 3px;
+  color: var(--gs-ink);
+  font-family: var(--gs-body);
+}
+.genesys.sheet input:focus, .genesys.sheet select:focus, .genesys.sheet textarea:focus {
+  border-color: var(--gs-navy);
+  box-shadow: 0 0 0 2px rgba(242, 165, 49, 0.45);
+  outline: none;
+}
+.genesys.sheet a { color: inherit; }
+.genesys.sheet a:hover { color: var(--gs-maroon); text-shadow: none; }
+
+/* Кнопки */
+.genesys .gs-btn {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  width: auto; height: 26px; padding: 0 0.7rem;
+  font-family: var(--gs-head); font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em;
+  color: #fff; background: var(--gs-navy); border: 1px solid var(--gs-navy-d); border-radius: 3px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.25) inset, 0 1px 2px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+.genesys .gs-btn:hover { filter: brightness(1.15); }
+.genesys .gs-btn-gold { background: linear-gradient(180deg, #f6bb55, var(--gs-gold-d)); color: var(--gs-navy-d); border-color: var(--gs-gold-d); }
+.genesys .gs-btn-maroon { background: linear-gradient(180deg, #a8343b, var(--gs-maroon-d)); border-color: var(--gs-maroon-d); }
+.genesys .gs-icon-btn { font-size: 18px; color: var(--gs-navy); cursor: pointer; padding: 0 0.15rem; }
+.genesys .gs-icon-btn:hover { color: var(--gs-maroon); }
+
+/* Лента-разделитель (как «ХАРАКТЕРИСТИКИ», «НАВЫКИ» в книге) */
+.genesys .gs-ribbon {
+  position: relative; display: flex; justify-content: center; align-items: center;
+  margin: 12px 0 8px; min-height: 24px;
+}
+.genesys .gs-ribbon::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 50%;
+  border-top: 2px dotted var(--gs-gold);
+}
+.genesys .gs-ribbon span {
+  position: relative; z-index: 1;
+  padding: 3px 34px;
+  background: linear-gradient(180deg, var(--gs-navy), var(--gs-navy-d));
+  color: #fff; font-family: var(--gs-head); font-weight: 600; font-size: 13px;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  clip-path: polygon(14px 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 14px 100%, 0 50%);
+}
+.genesys .gs-ribbon-gold span { background: linear-gradient(180deg, #f6bb55, var(--gs-gold-d)); color: var(--gs-navy-d); }
+.genesys .gs-help { color: var(--gs-muted); font-size: 12px; font-style: italic; margin: 0 0 6px; text-align: center; }
+.genesys .gs-empty { color: var(--gs-muted); font-style: italic; text-align: center; padding: 6px; }
+
+/* ==========================================================================
+   Лист персонажа
+   ========================================================================== */
+.genesys.sheet.character .window-content { padding: 10px 14px; }
+
+.genesys .gs-top { display: grid; grid-template-columns: 1fr 150px 150px; gap: 14px; align-items: stretch; }
+.genesys .gs-kicker { font-family: var(--gs-head); font-size: 12px; letter-spacing: 0.3em; color: var(--gs-muted); }
+.genesys .gs-name {
+  width: 100%; height: auto !important; margin: 2px 0 6px;
+  font-family: var(--gs-head) !important; font-size: 30px; font-weight: 600; text-transform: uppercase;
+  color: var(--gs-navy) !important; background: transparent !important;
+  border: none !important; border-bottom: 2px solid var(--gs-navy) !important; border-radius: 0 !important;
+}
+.genesys .gs-lines { display: flex; flex-direction: column; gap: 3px; }
+.genesys .gs-line { display: flex; align-items: baseline; gap: 8px; border-bottom: 1px solid var(--gs-line); padding: 2px 0; }
+.genesys .gs-line label { flex: 0 0 105px; font-family: var(--gs-head); font-size: 11px; text-transform: uppercase; color: var(--gs-muted); letter-spacing: 0.08em; }
+.genesys .gs-line a, .genesys .gs-line span { font-family: var(--gs-head); font-size: 15px; color: var(--gs-ink); }
+.genesys .gs-line .gs-placeholder { color: var(--gs-muted); font-family: var(--gs-body); font-size: 12px; font-style: italic; }
+.genesys .gs-toolbar { display: flex; align-items: center; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+.genesys .gs-toolbar-sep { flex: 1; }
+
+.genesys .gs-portrait {
+  border: 3px solid var(--gs-navy); border-radius: 6px; padding: 3px;
+  background: #fff; box-shadow: 0 0 0 2px var(--gs-gold), 0 3px 8px rgba(0, 0, 0, 0.25);
+}
+.genesys .gs-portrait img { width: 100%; height: 100%; max-height: 170px; object-fit: cover; border: none; border-radius: 3px; cursor: pointer; }
+
+.genesys .gs-xp-col { display: flex; flex-direction: column; gap: 10px; justify-content: center; }
+.genesys .gs-xp-banner {
+  display: flex; flex-direction: column; align-items: center; overflow: hidden;
+  border: 2px solid var(--gs-navy); border-radius: 26px 26px 6px 6px; background: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+.genesys .gs-xp-value { font-family: var(--gs-head); font-size: 28px; font-weight: 600; color: var(--gs-navy); line-height: 1.25; }
+.genesys .gs-xp-label {
+  width: 100%; text-align: center; padding: 2px 0;
+  background: linear-gradient(180deg, #a8343b, var(--gs-maroon-d));
+  color: #fff; font-family: var(--gs-head); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+}
+.genesys .gs-xp-banner.negative .gs-xp-value { color: var(--gs-maroon); }
+
+/* Щиты: поглощение, раны, усталость, защита */
+.genesys .gs-derived { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 14px; }
+.genesys .gs-shield { display: flex; flex-direction: column; filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2)); }
+.genesys .gs-shield-title {
+  margin: 0 8px; padding: 4px 0 3px; text-align: center;
+  background: linear-gradient(180deg, #a8343b, var(--gs-maroon-d));
+  color: #fff; font-family: var(--gs-head); font-weight: 600; font-size: 15px; letter-spacing: 0.1em; text-transform: uppercase;
+  clip-path: polygon(10px 0, calc(100% - 10px) 0, 100% 100%, 0 100%);
+  border-radius: 4px 4px 0 0;
+}
+.genesys .gs-shield-body {
+  display: flex; align-items: center; justify-content: center; min-height: 54px;
+  background: #fff; border: 2px solid var(--gs-navy); border-bottom: none; border-radius: 16px 16px 0 0;
+}
+.genesys .gs-shield-body.split > * { flex: 1; display: flex; justify-content: center; align-items: center; }
+.genesys .gs-shield-body.split > *:first-child { border-right: 1px solid var(--gs-line); }
+.genesys .gs-big { font-family: var(--gs-head); font-size: 30px; font-weight: 600; color: var(--gs-navy); }
+.genesys .gs-current { gap: 3px; }
+.genesys .gs-current input { width: 44px !important; height: 32px; text-align: center; font-family: var(--gs-head); font-size: 22px; font-weight: 600; color: var(--gs-maroon) !important; border: none !important; background: transparent !important; }
+.genesys .gs-current a { font-size: 11px; color: var(--gs-muted); }
+.genesys .gs-shield-foot {
+  display: flex; background: linear-gradient(180deg, var(--gs-navy), var(--gs-navy-d));
+  border-radius: 0 0 14px 14px; padding: 2px 0;
+}
+.genesys .gs-shield-foot span { flex: 1; text-align: center; color: #fff; font-family: var(--gs-head); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; }
+.genesys .gs-shield.critical .gs-shield-body { border-color: var(--gs-maroon); box-shadow: inset 0 0 12px rgba(142, 34, 41, 0.35); }
+
+/* Характеристики: медальоны на золотой полосе */
+.genesys .gs-chars { position: relative; display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; padding: 0 4px 6px; }
+.genesys .gs-chars::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 58%; height: 26px;
+  background: linear-gradient(180deg, #f6bb55, var(--gs-gold-d)); border-radius: 3px;
+}
+.genesys .gs-char {
+  position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center;
+  padding: 8px 4px 6px; background: linear-gradient(180deg, #2b4672, var(--gs-navy-d));
+  border-radius: 46px 46px 8px 8px; box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+}
+.genesys .gs-char-circle {
+  display: flex; align-items: center; justify-content: center;
+  width: 58px; height: 58px; border-radius: 50%;
+  background: #fff; border: 3px solid var(--gs-gold);
+  font-family: var(--gs-head); font-size: 32px; font-weight: 600; color: var(--gs-navy) !important;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2); cursor: pointer;
+}
+.genesys .gs-char-circle:hover { background: #fff6e4; }
+.genesys .gs-char-name { margin-top: 5px; color: #fff; font-family: var(--gs-head); font-size: 14px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+.genesys .gs-char-ctrl { display: flex; gap: 14px; font-size: 11px; }
+.genesys .gs-char-ctrl a { color: var(--gs-gold) !important; }
+
+/* Вкладки — синяя лента с золотым активным пунктом */
+.genesys.sheet nav.tabs {
+  margin: 10px 0 4px; padding: 0 6px; border: none; border-radius: 4px;
+  background: linear-gradient(180deg, var(--gs-navy), var(--gs-navy-d));
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.genesys.sheet nav.tabs > a, .genesys.sheet nav.tabs .item {
+  color: rgba(255, 255, 255, 0.82); font-family: var(--gs-head); font-size: 13px;
+  text-transform: uppercase; letter-spacing: 0.08em; padding: 5px 10px; border-bottom: 3px solid transparent;
+}
+.genesys.sheet nav.tabs > a.active, .genesys.sheet nav.tabs .item.active { color: var(--gs-gold); border-bottom-color: var(--gs-gold); text-shadow: none; }
+.genesys.sheet nav.tabs > a:hover { color: #fff; }
+
+/* Навыки: две колонки, таблицы как в книге */
+.genesys .gs-skill-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.genesys .gs-skill-table { width: 100%; border-collapse: collapse; margin-bottom: 10px; background: rgba(255, 255, 255, 0.7); border: 1.5px solid var(--gs-navy); border-radius: 4px; }
+.genesys .gs-skill-table thead th {
+  font-family: var(--gs-head); font-weight: 500; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--gs-muted); text-align: center; padding: 3px 4px; border-bottom: 1.5px solid var(--gs-navy); background: #f3f1ea;
+}
+.genesys .gs-skill-table thead th.gs-col-name { text-align: left; color: var(--gs-navy); font-size: 12px; font-weight: 600; }
+.genesys .gs-skill-table td { padding: 2px 4px; border-bottom: 1px dotted var(--gs-line); vertical-align: middle; }
+.genesys .gs-skill-table tr:last-child td { border-bottom: none; }
+.genesys .gs-skill-table tr:hover td { background: rgba(242, 165, 49, 0.12); }
+.genesys .gs-col-career { width: 58px; text-align: center; }
+.genesys .gs-col-rank { width: 112px; text-align: center; }
+.genesys .gs-col-pool { width: 92px; }
+.genesys .gs-skill-name { font-family: var(--gs-head); font-size: 13px; font-weight: 500; text-transform: uppercase; color: var(--gs-ink); cursor: pointer; }
+.genesys .gs-skill.career .gs-skill-name { color: var(--gs-maroon); font-weight: 600; }
+.genesys .gs-abbr { color: var(--gs-muted); font-size: 11px; font-weight: 400; }
+.genesys .gs-row-edit { margin-left: 4px; font-size: 10px; opacity: 0; color: var(--gs-muted); }
+.genesys tr:hover .gs-row-edit { opacity: 0.8; }
+.genesys .gs-add { margin-left: 6px; color: var(--gs-maroon); font-size: 11px; }
+.genesys .gs-check {
+  display: inline-block; width: 16px; height: 16px; vertical-align: middle;
+  border: 2px solid var(--gs-navy); border-radius: 3px; background: #fff; cursor: pointer; position: relative;
+}
+.genesys .gs-check.on { background: var(--gs-maroon); border-color: var(--gs-maroon-d); }
+.genesys .gs-check.on::after { content: "✓"; position: absolute; inset: -3px 0 0 1px; color: #fff; font-size: 13px; font-weight: 700; }
+.genesys .gs-chevrons {
+  display: inline-flex; gap: 2px; padding: 2px 8px; vertical-align: middle;
+  border: 1.5px solid var(--gs-navy); border-radius: 999px; background: #fff;
+}
+.genesys .gs-chevron {
+  display: inline-block; width: 15px; height: 12px; background: #dfe3e8; cursor: pointer;
+  clip-path: polygon(0 0, 65% 0, 100% 50%, 65% 100%, 0 100%, 35% 50%);
+}
+.genesys .gs-chevron.on { background: linear-gradient(180deg, #2b4672, var(--gs-navy-d)); }
+.genesys .gs-chevron:hover { background: var(--gs-gold); }
+.genesys .gs-col-pool .skill-pool .genesys-die-icon { width: 11px; height: 11px; }
+
+/* Таблицы (оружие и др.) */
+.genesys .gs-table { width: 100%; border-collapse: collapse; background: rgba(255, 255, 255, 0.75); border: 1.5px solid var(--gs-navy); border-radius: 4px; }
+.genesys .gs-table thead th {
+  background: linear-gradient(180deg, var(--gs-navy), var(--gs-navy-d)); color: #fff;
+  font-family: var(--gs-head); font-weight: 500; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 4px 5px; text-align: center;
+}
+.genesys .gs-table thead th a { color: var(--gs-gold); }
+.genesys .gs-table td { padding: 3px 5px; border-bottom: 1px dotted var(--gs-line); text-align: center; font-size: 12px; }
+.genesys .gs-table tr:hover td { background: rgba(242, 165, 49, 0.12); }
+.genesys .gs-table .gs-w-name { text-align: left; }
+.genesys .gs-table .gs-w-name img { width: 26px; height: 26px; border: none; vertical-align: middle; margin-right: 6px; }
+.genesys .gs-table .gs-w-name a { font-family: var(--gs-head); font-size: 13px; text-transform: uppercase; }
+.genesys .gs-table td.gs-w-q { text-align: left; font-style: italic; color: var(--gs-muted); }
+.genesys .gs-table th.gs-w-q { text-align: left; }
+.genesys .gs-num { font-family: var(--gs-head); font-size: 15px; font-weight: 600; color: var(--gs-navy); }
+.genesys .gs-row-ctrl { white-space: nowrap; }
+.genesys .gs-row-ctrl a { margin: 0 2px; color: var(--gs-muted); }
+.genesys .gs-row-ctrl a:hover { color: var(--gs-maroon); }
+.genesys .unequipped { opacity: 0.55; }
+
+/* Блоки-рамки */
+.genesys .gs-two { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 12px; }
+.genesys .gs-box { border: 1.5px solid var(--gs-navy); border-radius: 6px; background: rgba(255, 255, 255, 0.75); overflow: hidden; }
+.genesys .gs-box-head {
+  display: flex; align-items: center; gap: 8px; padding: 4px 8px; cursor: default; list-style: none;
+  background: linear-gradient(180deg, var(--gs-navy), var(--gs-navy-d)); color: #fff;
+  font-family: var(--gs-head); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+}
+.genesys summary.gs-box-head { cursor: pointer; }
+.genesys .gs-box-head span { flex: 1; }
+.genesys .gs-box-head a { color: var(--gs-gold); }
+.genesys .gs-list { list-style: none; margin: 0; padding: 0; }
+.genesys .gs-list li { display: flex; align-items: center; gap: 6px; padding: 4px 8px; border-bottom: 1px dotted var(--gs-line); }
+.genesys .gs-list li img { width: 26px; height: 26px; border: none; }
+.genesys .gs-list-name { flex: 1; font-family: var(--gs-head); font-size: 13px; text-transform: uppercase; }
+.genesys .gs-severity .genesys-die-icon { width: 12px; height: 12px; }
+.genesys .gs-bonus-grid { display: grid; grid-template-columns: 1fr 60px; gap: 3px 8px; padding: 6px 8px; align-items: center; }
+.genesys .gs-bonus-grid label { font-size: 12px; }
+.genesys .gs-add-row { justify-content: center; }
+.genesys .gs-add-row a { color: var(--gs-maroon); font-family: var(--gs-head); text-transform: uppercase; font-size: 12px; }
+
+/* Пирамида талантов */
+.genesys .gs-pyramid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; align-items: end; }
+.genesys .gs-tier { display: flex; flex-direction: column; gap: 6px; }
+.genesys .gs-tier-cards { display: flex; flex-direction: column-reverse; gap: 6px; }
+.genesys .gs-talent {
+  background: #fff; border: 1.5px solid var(--gs-navy); border-radius: 5px; padding: 4px 5px;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
+}
+.genesys .gs-talent-head { display: flex; align-items: center; gap: 5px; }
+.genesys .gs-talent-head img { width: 26px; height: 26px; border: none; flex: 0 0 auto; }
+.genesys .gs-talent-name { font-family: var(--gs-head); font-size: 12px; font-weight: 500; text-transform: uppercase; line-height: 1.15; }
+.genesys .gs-talent-foot { display: flex; align-items: center; gap: 4px; margin-top: 3px; font-size: 11px; }
+.genesys .gs-talent-foot .gs-row-ctrl { margin-left: auto; }
+.genesys .gs-tag { padding: 0 5px; border-radius: 3px; font-family: var(--gs-head); font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: #fff; }
+.genesys .gs-tag.active { background: var(--gs-maroon); }
+.genesys .gs-tag.passive { background: var(--gs-navy); }
+.genesys .gs-talent-rank { font-family: var(--gs-head); font-size: 11px; }
+.genesys .gs-talent-slot {
+  display: flex; align-items: center; justify-content: center; height: 30px;
+  border: 1.5px dashed var(--gs-line); border-radius: 5px; color: var(--gs-muted);
+}
+.genesys .gs-talent-slot:hover { border-color: var(--gs-gold); color: var(--gs-maroon); }
+.genesys .gs-tier-label {
+  display: flex; flex-direction: column; align-items: center; padding: 3px;
+  border: 1.5px solid var(--gs-navy); border-radius: 4px; background: #fff;
+  font-family: var(--gs-head); text-transform: uppercase;
+}
+.genesys .gs-tier-label strong { color: var(--gs-navy); font-size: 13px; letter-spacing: 0.06em; }
+.genesys .gs-tier-label span { font-size: 10px; color: var(--gs-muted); }
+.genesys .gs-tier.blocked .gs-tier-label { border-color: var(--gs-maroon); }
+.genesys .gs-tier.blocked .gs-tier-label i { color: var(--gs-maroon); }
+
+/* Героическая способность */
+.genesys .gs-heroic-row { display: flex; flex-direction: column; gap: 6px; }
+.genesys .gs-heroic {
+  display: flex; align-items: center; gap: 10px; padding: 6px 10px;
+  background: linear-gradient(90deg, #fff7e6, #fff); border: 1.5px solid var(--gs-gold-d); border-radius: 6px;
+}
+.genesys .gs-heroic img { width: 44px; height: 44px; border: none; }
+.genesys .gs-heroic-info { flex: 1; display: flex; flex-direction: column; }
+.genesys .gs-heroic-name { font-family: var(--gs-head); font-size: 16px; text-transform: uppercase; color: var(--gs-navy); }
+.genesys .gs-sub { font-size: 11px; color: var(--gs-muted); }
+.genesys .gs-heroic-points { text-align: right; font-family: var(--gs-head); font-size: 12px; text-transform: uppercase; }
+.genesys .gs-heroic-points a { margin-left: 6px; color: var(--gs-maroon); }
+
+/* Остальные вкладки и листы — общий стиль заголовков */
+.genesys.sheet .list-header { border-bottom: 2px solid var(--gs-maroon); }
+.genesys.sheet .list-header h3, .genesys.sheet .list-header h4 {
+  font-family: var(--gs-head); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gs-navy);
+}
+.genesys.sheet .item-control { color: var(--gs-maroon); }
+.genesys.sheet .table-header { background: linear-gradient(180deg, var(--gs-navy), var(--gs-navy-d)); border-bottom: none; padding: 3px 4px; border-radius: 3px 3px 0 0; }
+.genesys.sheet .table-header h3, .genesys.sheet .table-header > span { color: #fff !important; font-family: var(--gs-head); }
+.genesys.sheet .table-header a { color: var(--gs-gold); }
+.genesys.sheet .compact-list li img { border-radius: 4px; }
+.genesys.sheet .xp-box, .genesys.sheet .encumbrance, .genesys.sheet .characteristic, .genesys.sheet .derived-stats .stat {
+  background: #fff; border-color: var(--gs-navy);
+}
+.genesys.sheet .xp-box .value, .genesys.sheet .derived-stats .stat-value { font-family: var(--gs-head); color: var(--gs-navy); }
+.genesys.sheet .xp-box.highlight { border-color: var(--gs-gold-d); background: #fff7e6; }
+.genesys.sheet .motivation label, .genesys.sheet .details-grid label { font-family: var(--gs-head); text-transform: uppercase; font-size: 11px; color: var(--gs-muted); }
+.genesys.sheet .genesys-header .actor-name, .genesys.sheet .genesys-header .item-name {
+  font-family: var(--gs-head); text-transform: uppercase; color: var(--gs-navy); border-bottom-color: var(--gs-navy);
+}
+.genesys.sheet .genesys-header .profile { border: 3px solid var(--gs-navy); box-shadow: 0 0 0 2px var(--gs-gold); }
+.genesys.sheet .characteristic .char-label, .genesys.sheet .derived-stats .stat-label { font-family: var(--gs-head); letter-spacing: 0.08em; }
+.genesys.item .item-type { font-family: var(--gs-head); letter-spacing: 0.12em; color: var(--gs-maroon); }
+.genesys.item .item-description h3 { font-family: var(--gs-head); text-transform: uppercase; color: var(--gs-navy); border-bottom-color: var(--gs-maroon); }
+.genesys .wizard-header h3, .genesys .world-setup h3, .genesys .spell-header h3 { font-family: var(--gs-head); text-transform: uppercase; color: var(--gs-navy); }
+.genesys .world-setup h3 { border-bottom-color: var(--gs-maroon); }
+.genesys .roll-button { font-family: var(--gs-head); text-transform: uppercase; letter-spacing: 0.08em; background: linear-gradient(180deg, #2b4672, var(--gs-navy-d)); color: #fff; border-color: var(--gs-navy-d); }
+
+/* Карточки в чате — заголовки в фирменном стиле */
+.genesys-roll .roll-label { font-family: "Oswald", sans-serif; text-transform: uppercase; letter-spacing: 0.04em; color: #1f3557; border-bottom: 2px solid #8e2229; }
+.genesys.item-card header h3 { font-family: "Oswald", sans-serif; text-transform: uppercase; color: #1f3557; }
+
+/* ==========================================================================
+   Мастер создания персонажа
+   ========================================================================== */
+.genesys.creation-wizard .window-content { padding: 0; }
+.genesys .wz { display: grid; grid-template-columns: 210px 1fr; height: 100%; min-height: 0; }
+.genesys .wz-steps {
+  display: flex; flex-direction: column; gap: 2px; padding: 10px 8px;
+  background: linear-gradient(180deg, var(--gs-navy), var(--gs-navy-d)); color: #fff; overflow-y: auto;
+}
+.genesys .wz-step {
+  display: flex; align-items: center; gap: 8px; padding: 6px 8px; border-radius: 4px; cursor: pointer;
+  font-family: var(--gs-head); font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; color: rgba(255,255,255,0.8) !important;
+}
+.genesys .wz-step:hover { background: rgba(255,255,255,0.08); }
+.genesys .wz-step.active { background: var(--gs-gold); color: var(--gs-navy-d) !important; }
+.genesys .wz-num {
+  display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%;
+  border: 2px solid currentColor; font-size: 11px; flex: 0 0 auto;
+}
+.genesys .wz-step.done:not(.active) .wz-num { background: #3f8f4f; border-color: #3f8f4f; color: #fff; }
+.genesys .wz-budget {
+  margin-top: auto; display: flex; flex-direction: column; align-items: center; padding: 8px;
+  background: #fff; color: var(--gs-navy); border-radius: 26px 26px 6px 6px; border: 2px solid var(--gs-gold);
+}
+.genesys .wz-budget-value { font-family: var(--gs-head); font-size: 32px; font-weight: 600; line-height: 1.1; }
+.genesys .wz-budget-label { font-family: var(--gs-head); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gs-maroon); }
+.genesys .wz-budget-sub { font-size: 11px; color: var(--gs-muted); }
+.genesys .wz-budget.over .wz-budget-value { color: var(--gs-maroon); }
+.genesys .wz-mini { margin-top: 6px; font-size: 11px; text-align: center; color: rgba(255,255,255,0.75); }
+
+.genesys .wz-main { display: flex; flex-direction: column; min-height: 0; padding: 10px 14px; }
+.genesys .wz-head h2 { margin: 0; border: none; font-family: var(--gs-head); font-size: 24px; text-transform: uppercase; color: var(--gs-navy); }
+.genesys .wz-head-num { font-family: var(--gs-head); font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gs-maroon); }
+.genesys .wz-head .gs-help { text-align: left; }
+.genesys .wz-split { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 12px; }
+.genesys .wz-browser { display: flex; flex-direction: column; min-height: 0; gap: 6px; }
+.genesys .wz-filters { display: flex; flex-wrap: wrap; gap: 4px; }
+.genesys .wz-chip {
+  padding: 2px 8px; border-radius: 999px; border: 1px solid var(--gs-navy); background: #fff;
+  font-family: var(--gs-head); font-size: 11px; text-transform: uppercase; cursor: pointer;
+}
+.genesys .wz-chip.active { background: var(--gs-navy); color: #fff !important; }
+.genesys .wz-search { width: 100%; }
+.genesys .wz-list { flex: 1; min-height: 0; overflow-y: auto; padding-right: 4px; }
+.genesys .wz-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 6px; align-content: start; }
+.genesys .wz-card { min-width: 0; }
+.genesys .wz-card {
+  display: flex; gap: 8px; align-items: center; padding: 6px; background: #fff;
+  border: 1.5px solid var(--gs-line); border-radius: 6px; cursor: pointer;
+}
+.genesys .wz-card:hover { border-color: var(--gs-gold); }
+.genesys .wz-card.selected { border-color: var(--gs-maroon); box-shadow: 0 0 0 2px var(--gs-gold); background: #fff8ea; }
+.genesys .wz-card img { width: 44px; height: 44px; border: none; flex: 0 0 auto; }
+.genesys .wz-card-text { display: flex; flex-direction: column; min-width: 0; }
+.genesys .wz-card-name { font-family: var(--gs-head); font-size: 14px; text-transform: uppercase; color: var(--gs-navy); }
+.genesys .wz-card-group { font-size: 10px; color: var(--gs-maroon); text-transform: uppercase; letter-spacing: 0.05em; }
+.genesys .wz-card-line { font-size: 11px; color: var(--gs-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.genesys .wz-detail { min-height: 0; overflow-y: auto; padding: 8px 10px; background: #fff; border: 1.5px solid var(--gs-navy); border-radius: 6px; }
+.genesys .wz-detail h3, .genesys .wz-detail h4 { font-family: var(--gs-head); text-transform: uppercase; color: var(--gs-navy); margin: 4px 0; border: none; }
+.genesys .wz-detail-head { display: flex; gap: 10px; align-items: center; border-bottom: 2px solid var(--gs-maroon); padding-bottom: 6px; margin-bottom: 6px; }
+.genesys .wz-detail-head img { width: 64px; height: 64px; border: none; }
+.genesys .wz-chars { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; margin: 6px 0; }
+.genesys .wz-char {
+  display: flex; flex-direction: column; align-items: center; padding: 4px 2px;
+  background: linear-gradient(180deg, #2b4672, var(--gs-navy-d)); border-radius: 24px 24px 5px 5px; color: #fff;
+}
+.genesys .wz-char-v { display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 50%; background: #fff; border: 2px solid var(--gs-gold); color: var(--gs-navy); font-family: var(--gs-head); font-size: 20px; font-weight: 600; }
+.genesys .wz-char-l { font-family: var(--gs-head); font-size: 10px; text-transform: uppercase; margin-top: 2px; }
+.genesys .wz-ctrl { display: inline-flex; gap: 8px; font-size: 12px; }
+.genesys .wz-char .wz-ctrl a { color: var(--gs-gold) !important; }
+.genesys .wz-cost { font-family: var(--gs-head); font-size: 11px; color: var(--gs-gold); }
+.genesys .wz-skillrow .wz-cost, .genesys .gs-list .wz-cost { color: var(--gs-maroon); }
+.genesys .wz-stats { display: flex; flex-direction: column; gap: 2px; font-size: 12px; margin: 6px 0; }
+.genesys .wz-ability { margin: 4px 0; font-size: 12px; }
+.genesys .wz-ability p { display: inline; margin: 0; }
+.genesys .wz-desc { font-size: 12px; color: #333; }
+.genesys .wz-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.genesys .wz-tag {
+  padding: 3px 9px; border-radius: 4px; border: 1.5px solid var(--gs-navy); background: #fff;
+  font-family: var(--gs-head); font-size: 12px; text-transform: uppercase; cursor: pointer;
+}
+.genesys .wz-tag.small { font-size: 11px; padding: 2px 7px; }
+.genesys .wz-tag.career { border-color: var(--gs-maroon); }
+.genesys .wz-tag.on { background: var(--gs-maroon); border-color: var(--gs-maroon-d); color: #fff !important; }
+.genesys .wz-tags.big .wz-tag { font-size: 14px; padding: 6px 12px; }
+.genesys .wz-body { flex: 1; min-height: 0; overflow-y: auto; }
+.genesys .wz-note { padding: 6px 10px; background: #fff7e6; border-left: 4px solid var(--gs-gold); border-radius: 3px; }
+.genesys .wz-skillgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px 16px; }
+.genesys .wz-skillrow { display: grid; grid-template-columns: 1fr auto auto 38px; gap: 8px; align-items: center; padding: 2px 4px; border-bottom: 1px dotted var(--gs-line); }
+.genesys .wz-skillrow.career .wz-sname { color: var(--gs-maroon); font-weight: 600; }
+.genesys .wz-sname { font-family: var(--gs-head); font-size: 13px; text-transform: uppercase; }
+.genesys .wz-talent { display: flex; gap: 8px; align-items: flex-start; padding: 6px; border-bottom: 1px dotted var(--gs-line); }
+.genesys .wz-talent img { width: 36px; height: 36px; border: none; }
+.genesys .wz-talent.owned { background: #fff8ea; }
+.genesys .wz-talent-text { flex: 1; }
+.genesys .wz-talent-desc { font-size: 11px; color: #444; }
+.genesys .wz-talent-desc p { margin: 0; }
+.genesys .wz-pyr { display: flex; flex-wrap: wrap; gap: 8px; font-size: 11px; font-family: var(--gs-head); text-transform: uppercase; margin-bottom: 6px; }
+.genesys .wz-motivations { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.genesys .wz-mot-body { padding: 6px; display: flex; flex-direction: column; gap: 4px; }
+.genesys .wz-mot-options { display: flex; flex-wrap: wrap; gap: 3px; max-height: 120px; overflow-y: auto; }
+.genesys .wz-roll-all { text-align: right; margin-bottom: 6px; }
+.genesys .wz-heroics { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.genesys .wz-heroic { display: flex; gap: 8px; padding: 8px; border: 1.5px solid var(--gs-gold-d); border-radius: 6px; background: #fff; cursor: pointer; }
+.genesys .wz-heroic img { width: 48px; height: 48px; border: none; }
+.genesys .wz-heroic.selected { background: #fff3d6; box-shadow: 0 0 0 2px var(--gs-maroon); }
+.genesys .wz-details { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px 12px; }
+.genesys .wz-details label { display: flex; flex-direction: column; font-family: var(--gs-head); font-size: 11px; text-transform: uppercase; color: var(--gs-muted); }
+.genesys .wz-details label.wide { grid-column: span 3; }
+.genesys .wz-summary p { margin: 3px 0; }
+.genesys .wz-summary h3 { font-family: var(--gs-head); font-size: 22px; text-transform: uppercase; color: var(--gs-navy); border-bottom: 2px solid var(--gs-maroon); }
+.genesys .wz-foot { display: flex; gap: 8px; padding-top: 8px; margin-top: 8px; border-top: 2px solid var(--gs-gold); }
+
+/* ---------- Теги миров и типы приключений ---------- */
+.genesys .gs-world {
+  display: inline-flex; align-items: center; gap: 4px; margin: 0 4px 4px 0; padding: 1px 9px; height: auto; width: auto;
+  border-radius: 999px; border: 1px solid var(--world, #6b5a3a); background: #fff; color: var(--world, #6b5a3a);
+  font-family: var(--gs-head); font-size: 11px; text-transform: uppercase; letter-spacing: 0.03em; line-height: 18px; cursor: pointer;
+}
+.genesys .gs-world.on, .genesys span.gs-world { background: var(--world, #6b5a3a); color: #fff; }
+.genesys span.gs-world { cursor: default; }
+.genesys .gs-worlds { display: flex; flex-wrap: wrap; align-items: center; }
+.genesys .gs-worlds-edit { margin-top: 4px; }
+.genesys .gs-worlds-edit summary { cursor: pointer; font-size: 11px; color: var(--gs-muted); text-transform: uppercase; }
+
+.genesys .ws-title { display: flex; align-items: center; gap: 8px; }
+.genesys .ws-title span {
+  display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%;
+  background: var(--gs-maroon); color: #fff; font-size: 13px; border: 2px solid var(--gs-gold);
+}
+.genesys .ws-adventures { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 8px; }
+.genesys .ws-adv, .genesys .ws-custom {
+  display: flex; align-items: flex-start; gap: 10px; padding: 8px; text-align: left; height: auto; width: auto; margin: 0;
+  background: #fff; border: 1px solid #c9b48a; border-radius: 8px; color: var(--gs-ink, #1f1a14); cursor: pointer; line-height: 1.25;
+}
+.genesys .ws-adv:hover { border-color: var(--gs-gold); }
+.genesys .ws-adv.selected, .genesys .ws-custom.selected { border-color: var(--gs-maroon); box-shadow: 0 0 0 2px var(--gs-gold); background: #fff8ea; }
+.genesys .ws-adv img, .genesys .ws-custom img { width: 54px; height: 54px; border: none; flex: 0 0 auto; }
+.genesys .ws-adv-body { display: flex; flex-direction: column; gap: 3px; flex: 1; min-width: 0; }
+.genesys .ws-adv strong, .genesys .ws-custom strong { font-family: var(--gs-head); font-size: 15px; text-transform: uppercase; color: var(--gs-navy); font-weight: 500; }
+.genesys .ws-adv-hint { font-size: 11.5px; color: #4a4036; }
+.genesys .ws-adv-counts { font-size: 10.5px; color: var(--gs-maroon); text-transform: uppercase; letter-spacing: 0.03em; }
+.genesys .ws-check { color: var(--gs-maroon); font-size: 18px; }
+.genesys .ws-adv:not(.selected) .ws-check { color: #d6c6a4; }
+.genesys .ws-custom { margin-top: 8px; cursor: default; }
+.genesys .ws-custom .hint { margin: 2px 0 6px; }
+.genesys .ws-chosen { margin: 8px 0 2px; padding: 6px 10px; border-radius: 6px; background: #f3ead6; color: var(--gs-navy); }
+.genesys .ws-chosen.empty { background: #f8e2e2; color: var(--gs-maroon); }
+.genesys .world-setup .form-footer { align-items: center; }
+.genesys .ws-total { flex: 1; color: var(--gs-navy); }
+
+/* Шаг «Приключение» мастера персонажа */
+.genesys .wz-adventures { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px; }
+.genesys .wz-lock { margin-top: 10px; padding: 8px 10px; border-radius: 6px; background: #f3ead6; color: var(--gs-navy); font-size: 12px; }
+.genesys .wz-adv-badge { display: flex; align-items: center; gap: 6px; margin: 6px 0 0; font-size: 11px; color: #fff; }
+.genesys .wz-adv-badge img { width: 28px; height: 28px; border: none; }
+
+/* Реакции и окно броска */
+.genesys .pool-dodge { display: flex; align-items: center; gap: 6px; margin: 6px 0; padding: 6px 8px; border-radius: 6px; background: #f3ead6; }
+.genesys .pool-dodge span { flex: 1; }
+.genesys .pool-dodge button { flex: 0 0 auto; width: auto; padding: 0 10px; }
+.genesys.reaction-card .reaction-buttons, .genesys .reaction-card .reaction-buttons { display: flex; gap: 6px; }
+.genesys .gs-talent-use { margin-left: auto; color: var(--gs-maroon); }
+
+/* ---------- Ширма ведущего ---------- */
+.genesys.gm-screen .window-content { padding: 0; }
+.genesys .gm { display: flex; flex-direction: column; height: 100%; }
+.genesys .gm-tabs { display: flex; gap: 2px; background: var(--gs-navy); padding: 6px 8px 0; }
+.genesys .gm-tab { padding: 6px 16px; color: #dfe6f2; font-family: var(--gs-head); text-transform: uppercase; border-radius: 6px 6px 0 0; }
+.genesys .gm-tab.active { background: #f7f1e3; color: var(--gs-navy); }
+.genesys .gm-split { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 10px; padding: 10px; flex: 1; min-height: 0; }
+.genesys .gm-browser, .genesys .gm-encounter { display: flex; flex-direction: column; min-height: 0; }
+.genesys .gm-encounter { overflow-y: auto; background: #fff; border: 1px solid #c9b48a; border-radius: 8px; padding: 8px; }
+.genesys .gm-filters { display: flex; gap: 6px; margin-bottom: 6px; flex-wrap: wrap; }
+.genesys .gm-filters select, .genesys .gm-filters input { flex: 1; min-width: 120px; }
+.genesys .gm-list { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 4px; }
+.genesys .gm-row, .genesys .gm-enc-row { display: flex; align-items: center; gap: 8px; padding: 4px 6px; background: #fff; border: 1px solid #e0d2b4; border-radius: 6px; }
+.genesys .gm-enc-row { margin-bottom: 4px; }
+.genesys .gm-row img, .genesys .gm-enc-row img { width: 36px; height: 36px; border: none; }
+.genesys .gm-row-text { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.genesys .gm-row-name { font-family: var(--gs-head); text-transform: uppercase; color: var(--gs-navy); }
+.genesys .gm-row-sub { font-size: 11px; color: var(--gs-muted); }
+.genesys .gm-row-sub input { width: 44px; height: 20px; }
+.genesys .gm-add { width: 30px; flex: 0 0 auto; }
+.genesys .gm-actions { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+.genesys .gm-actions button { width: auto; flex: 0 0 auto; padding: 0 10px; }
+.genesys .gm-primary { background: var(--gs-maroon); color: #fff; }
+.genesys .gm-body { padding: 10px 14px; overflow-y: auto; flex: 1; }
+.genesys .gm-chars { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 6px; }
+.genesys .gm-char { display: flex; align-items: center; gap: 8px; padding: 6px; background: #fff; border: 1px solid #c9b48a; border-radius: 8px; }
+.genesys .gm-char.on { border-color: var(--gs-maroon); box-shadow: 0 0 0 2px var(--gs-gold); }
+.genesys .gm-char img { width: 40px; height: 40px; border: none; }
+.genesys .gm-char span { flex: 1; display: flex; flex-direction: column; }
+.genesys .gm-char small { color: var(--gs-muted); }
+.genesys .gm-xp-form { display: flex; gap: 10px; margin-top: 10px; }
+.genesys .gm-xp-form label { display: flex; flex-direction: column; gap: 2px; }
+.genesys .gm-xp-form label.wide { flex: 1; }
+.genesys .gm-ref-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.genesys .gm-table { width: 100%; border-collapse: collapse; font-size: 12px; margin: 4px 0 8px; }
+.genesys .gm-table td { padding: 3px 6px; border-bottom: 1px solid #eadfc6; vertical-align: top; }
+.genesys .gm-cost { white-space: nowrap; font-weight: bold; color: var(--gs-maroon); }
+.genesys .gm-die.difficulty { display: inline-block; width: 12px; height: 12px; margin-right: 2px; background: #5b2d82; transform: rotate(45deg); }
+.genesys .gm-status-img { width: 22px; height: 22px; border: none; vertical-align: middle; }
+.genesys.gs-world-filter { padding: 6px 8px 2px; background: #f7f1e3; border-bottom: 1px solid #c9b48a; }
+.gs-hidden { display: none !important; }
+.genesys .wz-skillrow.locked .wz-sname { color: var(--gs-muted); }
+.genesys .wz-skillrow.locked .fa-lock { color: var(--gs-muted); margin-left: 4px; }
+
+/* Лавка мастера персонажа */
+.genesys .wz-shop { grid-template-columns: 1fr; }
+.genesys .wz-shop-item { align-items: center; }
+.genesys .wz-shop-item.dim { opacity: 0.55; }
+.genesys .wz-price { margin-left: auto; font-family: var(--gs-head); font-size: 15px; color: var(--gs-maroon); white-space: nowrap; }
+.genesys .wz-wallet { display: flex; gap: 12px; padding: 8px 10px; border-radius: 8px; background: var(--gs-navy); color: #fff; margin-bottom: 8px; }
+.genesys .wz-wallet b { font-family: var(--gs-head); font-size: 18px; color: var(--gs-gold); }
+.genesys .wz-wallet .over b { color: #ff8a8a; }
+.genesys .wz-cart-row { display: flex; align-items: center; gap: 6px; padding: 3px 0; border-bottom: 1px solid #eadfc6; }
+.genesys .wz-cart-row img { width: 28px; height: 28px; border: none; }
+.genesys .wz-cart-name { flex: 1; min-width: 0; }
+.genesys .wz-inline { display: flex; gap: 6px; align-items: center; }
+.genesys .wz-roll { white-space: nowrap; color: var(--gs-maroon); }
+.genesys .wz-random { display: block; margin: 8px 0 4px; padding: 6px 8px; border-radius: 6px; text-align: center;
+  background: var(--gs-gold); color: var(--gs-navy); font-family: var(--gs-head); text-transform: uppercase; }
+.genesys .ws-custom > div { flex: 1; min-width: 0; }
+.genesys .ws-custom-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 6px; }
+.genesys .ws-custom-fields label { display: flex; flex-direction: column; gap: 2px; font-size: 12px; }
+
+/* Манёвры транспорта */
+.genesys .vehicle-maneuvers { margin: 6px 0; padding: 6px 8px; background: #f3ead6; border-radius: 6px; }
+.genesys .vm-row { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; margin: 2px 0; }
+.genesys .vm-title { font-family: var(--gs-head, inherit); text-transform: uppercase; margin-right: 6px; color: var(--gs-navy, #1f3557); }
+.genesys .vm-btn { width: auto; flex: 0 0 auto; padding: 0 8px; height: 24px; line-height: 22px; font-size: 12px; }
+.genesys .vm-btn.action { border-color: var(--gs-maroon, #8e2229); color: var(--gs-maroon, #8e2229); }
+.genesys .vm-row label { display: flex; align-items: center; gap: 6px; }
+.genesys .vm-row select { width: auto; }
+.genesys .gs-mount-row { display: flex; align-items: center; gap: 8px; padding: 4px 0; }
+.genesys .gs-mount-row img { width: 40px; height: 40px; border: none; }
+.genesys .gs-mount-info { flex: 1; display: flex; flex-direction: column; }
+.genesys .gs-mount-actions { display: flex; flex-wrap: wrap; gap: 4px; }
+.genesys .gs-mount-actions button { width: auto; flex: 0 0 auto; padding: 0 8px; height: 26px; }
+
+.genesys.workshop .window-content { padding: 0; }
+.genesys .ws { height: 100%; display: flex; flex-direction: column; }
+.genesys .gm-row.selected { border-color: var(--gs-maroon); box-shadow: 0 0 0 2px var(--gs-gold); background: #fff8ea; }
+
+/* Активные состояния на листах */
+.genesys .gs-portrait { position: relative; }
+.genesys .gs-portrait .gs-statuses { position: absolute; left: 4px; right: 4px; bottom: 4px; justify-content: center; }
+.genesys .gs-statuses { display: flex; flex-wrap: wrap; gap: 3px; }
+.genesys .gs-status { position: relative; display: inline-block; width: 30px; height: 30px; }
+.genesys .gs-status img { width: 30px; height: 30px; border: none; filter: drop-shadow(0 1px 2px rgba(0,0,0,.5)); }
+.genesys .gs-status-rounds { position: absolute; right: -3px; bottom: -3px; min-width: 15px; height: 15px; padding: 0 3px; border-radius: 8px;
+  background: var(--gs-gold, #f2a531); color: #1f3557; font: bold 10px/15px sans-serif; text-align: center; }
+.genesys .ws-sub { margin: 8px 0 2px; font-family: var(--gs-head); text-transform: uppercase; color: var(--gs-navy); font-size: 13px; }
+.genesys .ws-modules { display: grid; grid-template-columns: 1fr; gap: 6px; }
+.genesys .ws-module { display: flex; gap: 8px; align-items: flex-start; padding: 6px 8px; background: #fff; border: 1px solid #c9b48a; border-radius: 8px; }
+.genesys .ws-module.on { border-color: var(--gs-maroon); box-shadow: 0 0 0 2px var(--gs-gold); background: #fff8ea; }
+.genesys-roll .fear-outcome { margin: 6px 0; padding: 6px 8px; border-radius: 6px; background: #2b1d33; color: #f1e7ff; display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: center; }
+.genesys-roll .fear-outcome b { color: #f2a531; }
+.genesys-roll .fear-outcome button { width: auto; flex: 0 0 auto; padding: 0 8px; }
+.genesys-roll .fear-steady, .genesys-roll .fear-rally, .genesys-roll .fear-fearless { background: #1f3557; }
+.genesys.fear-prompt label { display: flex; flex-direction: column; gap: 2px; margin-bottom: 6px; }
+/* Социальная сцена */
+.genesys .soc-target { display: flex; gap: 10px; align-items: center; margin-bottom: 6px; }
+.genesys .soc-target img { width: 64px; height: 64px; border: 2px solid var(--gs-gold); border-radius: 8px; }
+.genesys .soc-info { flex: 1; }
+.genesys .soc-bar { position: relative; height: 14px; background: #e6dcc6; border-radius: 7px; overflow: hidden; }
+.genesys .soc-fill { height: 100%; background: var(--gs-navy); }
+.genesys .soc-fill.stage-compromise { background: var(--gs-gold); }
+.genesys .soc-fill.stage-capitulation { background: var(--gs-maroon); }
+.genesys .soc-half { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: #fff; }
+.genesys .soc-mot { display: flex; flex-wrap: wrap; gap: 4px; }
+.genesys .soc-over { color: var(--gs-maroon); font-weight: bold; }
+.genesys .soc-goal { display: flex; flex-direction: column; gap: 2px; margin: 6px 0; }
+.genesys .social-buttons { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+.genesys .social-buttons button { width: auto; flex: 0 0 auto; padding: 0 8px; }
+.genesys.social-encounter .window-content { padding: 0; }
+.genesys .gs-creature { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 4px; }
+.genesys .gs-creature select { width: auto; }
+
+/* Генератор встреч, добыча, NPC */
+.genesys .gm-gen { background: #fff; border: 1px solid #c9b48a; border-radius: 8px; padding: 8px; margin-bottom: 8px; }
+.genesys .gm-gen-head { font-family: var(--gs-head); text-transform: uppercase; color: var(--gs-navy); margin-bottom: 6px; }
+.genesys .gm-seg { display: inline-flex; border: 1px solid var(--gs-navy); border-radius: 6px; overflow: hidden; margin-bottom: 6px; }
+.genesys .gm-seg a { padding: 3px 10px; font-family: var(--gs-head); text-transform: uppercase; font-size: 12px; color: var(--gs-navy); }
+.genesys .gm-seg a.active { background: var(--gs-navy); color: #fff; }
+.genesys .gm-diff { display: grid; grid-template-columns: repeat(5, 1fr); gap: 3px; margin-bottom: 6px; }
+.genesys .gm-diff-btn { text-align: center; padding: 4px 2px; border-radius: 5px; font-size: 11px; font-family: var(--gs-head); text-transform: uppercase; color: #fff; opacity: .55; }
+.genesys .gm-diff-btn.active { opacity: 1; box-shadow: 0 0 0 2px var(--gs-gold); }
+.genesys .gm-diff-btn.d0 { background: #3d7a3a; } .genesys .gm-diff-btn.d1 { background: #2f5f8a; } .genesys .gm-diff-btn.d2 { background: #a8742a; }
+.genesys .gm-diff-btn.d3 { background: #8e2229; } .genesys .gm-diff-btn.d4 { background: #2b1020; }
+.genesys .gm-gen-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 4px 0; }
+.genesys .gm-gen-row label { display: flex; align-items: center; gap: 6px; }
+.genesys .gm-gen-row input[type="number"] { width: 56px; }
+.genesys .gm-gen-go { margin-left: auto; }
+.genesys .gm-creatures { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; margin: 4px 0; }
+.genesys .gm-creature { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 3px 1px; border-radius: 6px; border: 1px solid transparent; opacity: .6; text-align: center; }
+.genesys .gm-creature img { width: 34px; height: 34px; border: none; }
+.genesys .gm-creature span { font-size: 9px; line-height: 1.05; color: var(--gs-navy); }
+.genesys .gm-creature.on { opacity: 1; border-color: var(--gs-maroon); background: #fff8ea; }
+.genesys .gm-threat { position: relative; height: 18px; background: #e6dcc6; border-radius: 9px; overflow: hidden; margin: 4px 0 8px; }
+.genesys .gm-threat-fill { height: 100%; background: linear-gradient(90deg, #3d7a3a, #a8742a); }
+.genesys .gm-threat.over .gm-threat-fill { background: linear-gradient(90deg, #a8742a, #8e2229); }
+.genesys .gm-threat span { position: absolute; inset: 0; text-align: center; font: 11px/18px var(--gs-head); text-transform: uppercase; color: #1f1a14; }
+.genesys .gm-loot-levels { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin: 8px 0; }
+.genesys .gm-loot-level { display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 8px 4px; border-radius: 10px; background: #fff; border: 1px solid #c9b48a; text-align: center; }
+.genesys .gm-loot-level img { width: 48px; height: 48px; border: none; }
+.genesys .gm-loot-level b { font-family: var(--gs-head); text-transform: uppercase; color: var(--gs-navy); font-weight: 500; }
+.genesys .gm-loot-level small { color: var(--gs-muted); font-size: 10.5px; line-height: 1.15; }
+.genesys .gm-loot-level.active { border-color: var(--gs-maroon); box-shadow: 0 0 0 2px var(--gs-gold); background: #fff8ea; }
+.genesys .gm-loot-coins { font-size: 16px; margin: 6px 0; color: #7a5410; }
+.genesys .gm-loot-coins b { font-family: var(--gs-head); font-size: 22px; }
+.genesys .gm-npc-form { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.genesys .gm-npc-form label { display: flex; flex-direction: column; gap: 2px; }
+.genesys .gm-tab { padding: 6px 12px; }
+/* Карточка добычи в чате */
+.genesys.loot-card h4 { margin: 0 0 4px; }
+.genesys .loot-coins { display: flex; align-items: center; gap: 6px; color: #7a5410; }
+.genesys .loot-coins button { margin-left: auto; width: auto; padding: 0 8px; }
+.genesys .loot-list { list-style: none; margin: 4px 0 0; padding: 0; }
+.genesys .loot-list li { display: flex; align-items: center; gap: 6px; padding: 2px 0; border-bottom: 1px solid rgba(0,0,0,.08); }
+.genesys .loot-list li img { width: 26px; height: 26px; border: none; }
+.genesys .loot-name { flex: 1; }
+.genesys .loot-price { color: #7a5410; font-size: 11px; }
+.genesys .loot-list button { width: auto; flex: 0 0 auto; padding: 0 8px; height: 22px; line-height: 20px; }
+.genesys .loot-list li.taken { opacity: .55; }
+.genesys .loot-taken { font-size: 11px; font-style: italic; color: var(--gs-muted, #6b6258); }
+
+/* ---------- Журнал опыта ---------- */
+.genesys .gs-xpl { padding: 6px 10px 12px; }
+.genesys .gs-xpl-top { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.genesys .gs-xpl-big { display: flex; flex-direction: column; align-items: center; padding: 8px 4px 6px; border-radius: 12px; color: #fff;
+  border: 2px solid var(--gs-gold); box-shadow: inset 0 0 0 2px rgba(255,255,255,.15); }
+.genesys .gs-xpl-big span { font-family: var(--gs-head); font-size: 30px; line-height: 1; }
+.genesys .gs-xpl-big small { font-family: var(--gs-head); text-transform: uppercase; letter-spacing: .06em; font-size: 11px; opacity: .9; }
+.genesys .gs-xpl-big.earn { background: linear-gradient(160deg, #2c4c7c, #1f3557); }
+.genesys .gs-xpl-big.spend { background: linear-gradient(160deg, #a83a3f, #8e2229); }
+.genesys .gs-xpl-big.left { background: linear-gradient(160deg, #f6c35a, #e2952a); color: #2b1d08; }
+.genesys .gs-xpl-bar { display: flex; height: 16px; margin: 10px 0 4px; border-radius: 8px; overflow: hidden; background: #e6dcc6; border: 1px solid #c9b48a; }
+.genesys .gs-xpl-bar .seg { height: 100%; }
+.genesys .seg.xc-characteristic, .genesys .dot.xc-characteristic { background: #2f5f8a; }
+.genesys .seg.xc-skill, .genesys .dot.xc-skill { background: #3d7a3a; }
+.genesys .seg.xc-talent, .genesys .dot.xc-talent { background: #8e2229; }
+.genesys .seg.xc-other, .genesys .dot.xc-other { background: #7a7064; }
+.genesys .seg.xc-left, .genesys .dot.xc-left { background: #f2a531; }
+.genesys .gs-xpl-legend { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 11px; color: var(--gs-muted); }
+.genesys .gs-xpl-legend .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 4px; vertical-align: middle; }
+.genesys .gs-xpl-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 6px; margin: 10px 0 6px; }
+.genesys .gs-xpl-card { background: #fff; border: 1px solid #c9b48a; border-left-width: 5px; border-radius: 8px; padding: 5px 8px; }
+.genesys .gs-xpl-card.xc-characteristic { border-left-color: #2f5f8a; } .genesys .gs-xpl-card.xc-skill { border-left-color: #3d7a3a; }
+.genesys .gs-xpl-card.xc-talent { border-left-color: #8e2229; } .genesys .gs-xpl-card.xc-other { border-left-color: #7a7064; }
+.genesys .gs-xpl-card.xc-earned { border-left-color: #f2a531; }
+.genesys .gs-xpl-card summary, .genesys .gs-xpl-card .summary { cursor: pointer; display: flex; align-items: baseline; gap: 6px; font-family: var(--gs-head); text-transform: uppercase; color: var(--gs-navy); }
+.genesys .gs-xpl-card .amt { margin-left: auto; font-size: 18px; color: var(--gs-maroon); }
+.genesys .gs-xpl-card small { color: var(--gs-muted); font-family: var(--gs-body, inherit); text-transform: none; }
+.genesys .gs-xpl-card ul { list-style: none; margin: 4px 0 0; padding: 0; font-size: 12px; }
+.genesys .gs-xpl-card li { display: flex; justify-content: space-between; gap: 6px; padding: 1px 0; border-top: 1px dotted #e0d2b4; }
+.genesys .gs-xpl-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.genesys .gs-xpl-tools button { width: auto; flex: 0 0 auto; padding: 0 10px; }
+.genesys .gs-xpl-tools label { flex: 1; }
+.genesys .gs-xpl-day { margin: 6px 0; }
+.genesys .gs-xpl-day-head { display: flex; justify-content: space-between; font-family: var(--gs-head); text-transform: uppercase; font-size: 12px; color: var(--gs-navy);
+  border-bottom: 2px solid var(--gs-gold); padding: 2px 2px; }
+.genesys .gs-xpl-day-head .earn { color: #3d7a3a; } .genesys .gs-xpl-day-head .spend { color: #8e2229; }
+.genesys .gs-xpl-log { list-style: none; margin: 0; padding: 0; }
+.genesys .gs-xpl-log li { display: grid; grid-template-columns: 18px 1fr 48px 40px 16px; align-items: center; gap: 6px; padding: 3px 4px; border-bottom: 1px solid #eadfc6; font-size: 12.5px; }
+.genesys .gs-xpl-log li:nth-child(even) { background: rgba(255,255,255,.5); }
+.genesys .gs-xpl-log li > i { text-align: center; color: var(--gs-muted); }
+.genesys .gs-xpl-log li.xc-characteristic > i { color: #2f5f8a; } .genesys .gs-xpl-log li.xc-skill > i { color: #3d7a3a; }
+.genesys .gs-xpl-log li.xc-talent > i { color: #8e2229; } .genesys .gs-xpl-log li.earn > i { color: #c58a1e; }
+.genesys .gs-xpl-log .amt { text-align: right; font-family: var(--gs-head); font-size: 14px; }
+.genesys .gs-xpl-log li.earn .amt { color: #3d7a3a; } .genesys .gs-xpl-log li.spend .amt { color: #8e2229; }
+.genesys .gs-xpl-log .bal { text-align: right; color: var(--gs-muted); font-size: 11px; }
+
+/* ---------- Очки сюжета ---------- */
+.genesys.story-points .window-header { background: linear-gradient(90deg, #1f3557, #3a0d16); color: #fff; border-bottom: 2px solid var(--gs-gold, #f2a531); }
+.genesys.story-points { font-family: var(--gs-body); }
+.genesys.story-points .window-header .window-title { font-family: var(--gs-head); text-transform: uppercase; letter-spacing: .05em; }
+.genesys.story-points .window-content { padding: 0; background: radial-gradient(circle at 25% 0%, #2b3f63 0%, #121a2a 60%, #0b0f18 100%); }
+.genesys .sp { display: grid; grid-template-columns: 1fr 28px 1fr; align-items: stretch; padding: 10px; gap: 4px; color: #fff; }
+.genesys .sp-side { display: flex; flex-direction: column; gap: 6px; padding: 8px; border-radius: 12px; min-height: 120px; }
+.genesys .sp-side.player { background: linear-gradient(180deg, rgba(242,165,49,.18), rgba(242,165,49,.04)); border: 1px solid rgba(242,165,49,.5); }
+.genesys .sp-side.gm { background: linear-gradient(180deg, rgba(184,50,63,.25), rgba(184,50,63,.05)); border: 1px solid rgba(184,50,63,.6); }
+.genesys .sp-head { display: flex; align-items: baseline; justify-content: space-between; font-family: var(--gs-head, sans-serif); text-transform: uppercase; letter-spacing: .06em; font-size: 12px; }
+.genesys .sp-num { font-size: 34px; line-height: 1; }
+.genesys .sp-side.player .sp-num { color: #ffd77a; text-shadow: 0 0 12px rgba(255,200,90,.6); }
+.genesys .sp-side.gm .sp-num { color: #ff8f86; text-shadow: 0 0 12px rgba(255,60,60,.6); }
+.genesys .sp-pile { display: flex; flex-wrap: wrap; align-items: center; gap: 0; padding-left: 14px; min-height: 56px; flex: 1; align-content: flex-start; }
+.genesys .sp-coin { width: 46px; height: 46px; margin-left: -14px; margin-bottom: -8px; transition: transform .15s ease, filter .15s ease; filter: drop-shadow(0 3px 4px rgba(0,0,0,.6)); }
+.genesys .sp-coin img { width: 100%; height: 100%; border: none; }
+.genesys .sp-coin[data-action]:hover { transform: translateY(-6px) scale(1.08); filter: drop-shadow(0 6px 10px rgba(255,210,120,.6)); z-index: 2; }
+.genesys .sp-side.gm .sp-coin[data-action]:hover { filter: drop-shadow(0 6px 10px rgba(255,60,60,.7)); }
+.genesys .sp-coin.arrive { animation: sp-flip .9s ease-out; }
+@keyframes sp-flip { 0% { transform: rotateY(180deg) scale(1.4); filter: brightness(2) drop-shadow(0 0 16px #fff); } 60% { transform: rotateY(-20deg) scale(1.1); } 100% { transform: none; } }
+.genesys .sp-more { font-family: var(--gs-head, sans-serif); font-size: 18px; margin-left: 6px; opacity: .8; }
+.genesys .sp-empty { font-size: 11px; opacity: .55; font-style: italic; }
+.genesys .sp-flow { display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.4); font-size: 16px; }
+.genesys .sp-adjust { display: flex; justify-content: center; gap: 14px; opacity: .6; }
+.genesys .sp-adjust a { color: #fff; }
+.genesys .sp-adjust a:hover { opacity: 1; color: var(--gs-gold, #f2a531); }
+.genesys.story-point-message { display: flex; align-items: center; gap: 8px; font-style: normal; }
+.genesys.story-point-message img { width: 34px; height: 34px; border: none; flex: 0 0 auto; }
+
+
+/* ==========================================================================
+   Карточки в чате: бросок, урон, реакции, страх, добыча
+   ========================================================================== */
+.genesys-roll { font-family: var(--gs-body); gap: 6px; }
+.genesys-roll .roll-label {
+  font-family: var(--gs-head); text-transform: uppercase; letter-spacing: .03em; font-weight: 500; font-size: 15px;
+  color: #fff; background: linear-gradient(90deg, var(--gs-navy), #2c4c7c); border: none; border-left: 5px solid var(--gs-maroon);
+  padding: 4px 8px; border-radius: 4px;
+}
+.genesys-roll .roll-target { font-size: 12px; color: var(--gs-maroon); font-weight: bold; }
+.genesys-roll .roll-dice { justify-content: center; gap: 5px; padding: 4px 0; }
+.genesys-roll .roll-outcome { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 6px; }
+.genesys-roll .roll-outcome strong {
+  font-family: var(--gs-head); text-transform: uppercase; letter-spacing: .12em; font-weight: 500; font-size: 15px;
+  padding: 2px 18px; border-radius: 999px; color: #fff;
+}
+.genesys-roll .roll-outcome strong.success { background: linear-gradient(90deg, #2f6b2c, #3d8a39); color: #fff; }
+.genesys-roll .roll-outcome strong.failure { background: linear-gradient(90deg, #7a1b21, #a8322d); color: #fff; }
+.genesys-roll.success { border-left: 3px solid #3d8a39; padding-left: 6px; }
+.genesys-roll.failure { border-left: 3px solid #a8322d; padding-left: 6px; }
+.genesys-roll .roll-attack { border-top: none; background: #fff; border: 1px solid #e3d3ad; border-radius: 8px; padding: 6px 8px; gap: 4px; }
+.genesys-roll .roll-attack .attack-line:first-child { font-family: var(--gs-head); text-transform: uppercase; font-size: 13px; color: var(--gs-navy); }
+.genesys-roll .roll-attack .attack-line:first-child strong { display: inline-block; min-width: 34px; padding: 0 8px; margin-left: 4px; border-radius: 6px; text-align: center;
+  background: var(--gs-maroon); color: #fff; font-size: 20px; border: 2px solid var(--gs-gold); }
+.genesys-roll button, .genesys.reaction-card button, .genesys.fear-card button, .genesys.loot-card button, .genesys .social-buttons button, .genesys.slot-card button {
+  font-family: var(--gs-head); text-transform: uppercase; letter-spacing: .03em; font-size: 12px;
+  background: linear-gradient(180deg, #2c4c7c, var(--gs-navy)); color: #fff; border: 1px solid var(--gs-navy-d); border-radius: 6px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.15);
+}
+.genesys-roll button:hover, .genesys.reaction-card button:hover, .genesys.fear-card button:hover, .genesys.loot-card button:hover, .genesys .social-buttons button:hover {
+  background: linear-gradient(180deg, var(--gs-maroon), var(--gs-maroon-d)); box-shadow: 0 0 6px rgba(242,165,49,.6);
+}
+.genesys-roll button[data-genesys-action="applyCrit"] { background: linear-gradient(180deg, #a8322d, var(--gs-maroon-d)); }
+.genesys-roll .quality-buttons button { background: linear-gradient(180deg, #f6c35a, #d98d1c); color: #2b1d08; border-color: #b0700e; }
+.genesys-roll .roll-spending summary { font-family: var(--gs-head); text-transform: uppercase; font-size: 12px; color: var(--gs-navy); cursor: pointer; }
+.genesys-roll .spend-group { border-radius: 6px; padding: 4px; margin-top: 4px; }
+.genesys-roll .spend-group.positive { background: rgba(61,138,57,.08); }
+.genesys-roll .spend-group.negative { background: rgba(142,34,41,.08); }
+.genesys-roll .spend-title { font-family: var(--gs-head); text-transform: uppercase; font-size: 11px; color: var(--gs-muted); }
+.genesys-roll .spend-row { display: flex; gap: 6px; width: 100%; text-align: left; background: transparent !important; color: var(--gs-ink) !important; border: none !important;
+  border-bottom: 1px dotted rgba(0,0,0,.12) !important; box-shadow: none !important; text-transform: none; font-family: var(--gs-body); font-size: 12px; letter-spacing: 0; border-radius: 0; height: auto; line-height: 1.3; padding: 3px 2px; }
+.genesys-roll .spend-row:hover { background: rgba(242,165,49,.18) !important; }
+.genesys-roll .spend-cost { flex: 0 0 auto; font-weight: bold; color: var(--gs-maroon); }
+.genesys.damage-report, .genesys.status-report, .genesys.spend-report, .genesys.social-report {
+  font-family: var(--gs-body); padding: 4px 8px; border-left: 4px solid var(--gs-maroon); background: #fbf6ea; border-radius: 4px;
+}
+.genesys.status-report { border-left-color: var(--gs-navy); }
+.genesys.spend-report { border-left-color: var(--gs-gold); }
+.genesys.reaction-card, .genesys.fear-card, .genesys.loot-card, .genesys.slot-card, .genesys.xp-award {
+  font-family: var(--gs-body); padding: 6px 8px; border-radius: 8px; background: #fbf6ea; border: 1px solid #e3d3ad;
+}
+.genesys.fear-card { background: linear-gradient(180deg, #2b1d33, #1a1020); color: #f1e7ff; border-color: #4b2f5f; }
+.genesys.fear-card h4, .genesys.loot-card h4, .genesys.xp-award h4 { font-family: var(--gs-head); text-transform: uppercase; margin: 0 0 4px; border: none; }
+.genesys.fear-card .slot-buttons, .genesys.slot-card .slot-buttons { display: flex; flex-wrap: wrap; gap: 4px; }
+.genesys.fear-card .slot-buttons button img, .genesys.slot-card .slot-buttons button img { width: 20px; height: 20px; border: none; vertical-align: middle; }
+.genesys.xp-award { background: linear-gradient(180deg, #fff3cf, #f6dc93); border-color: #d9a54a; }
+.genesys.xp-award h4 { color: #7a5410; }
+
+/* ---------- Окно броска ---------- */
+.genesys.dice-pool-dialog .dice-pool-body { font-family: var(--gs-body); }
+.genesys.dice-pool-dialog .pool-preview { min-height: 58px; background: radial-gradient(circle at 50% 30%, #fff, #f3ead6); border: 2px solid var(--gs-gold); border-radius: 12px; box-shadow: inset 0 2px 6px rgba(0,0,0,.12); }
+.genesys.dice-pool-dialog .pool-preview .genesys-die-icon { width: 30px; height: 30px; filter: drop-shadow(0 2px 2px rgba(0,0,0,.35)); }
+.genesys.dice-pool-dialog .pool-notes { border-left: 4px solid var(--gs-maroon); background: #fbf6ea; border-radius: 4px; }
+.genesys.dice-pool-dialog .pool-row .die-count { font-family: var(--gs-head); font-size: 16px; color: var(--gs-navy); }
+.genesys.dice-pool-dialog .pool-row { padding: 2px 4px; border-radius: 6px; }
+.genesys.dice-pool-dialog .pool-row:hover { background: rgba(242,165,49,.15); }
+.genesys.dice-pool-dialog .pool-upgrades { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.genesys.dice-pool-dialog .upgrade-group { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; padding: 4px 6px; background: #fff; border: 1px solid #e3d3ad; border-radius: 8px; }
+.genesys.dice-pool-dialog .upgrade-group > span { flex: 0 0 100%; font-family: var(--gs-head); text-transform: uppercase; font-size: 11px; color: var(--gs-muted); }
+.genesys.dice-pool-dialog .upgrade-group button { flex: 1; font-size: 12px; }
+.genesys.dice-pool-dialog .pool-difficulty button.active { background: var(--gs-navy); border-color: var(--gs-gold); box-shadow: 0 0 0 2px var(--gs-gold); }
+.genesys.dice-pool-dialog .pool-story-point button { display: flex; align-items: center; justify-content: center; gap: 8px; height: 36px;
+  background: linear-gradient(180deg, #2b3f63, #121a2a); color: #ffd77a; border: 1px solid #f2a531; font-family: var(--gs-head); text-transform: uppercase; letter-spacing: .04em; }
+.genesys.dice-pool-dialog .pool-story-point button:disabled { opacity: .45; }
+.genesys.dice-pool-dialog .pool-sp-coin { width: 26px; height: 26px; border: none; filter: drop-shadow(0 1px 2px rgba(0,0,0,.6)); }
+.genesys.dice-pool-dialog .roll-button { width: 100%; height: 42px; font-size: 18px; font-family: var(--gs-head); text-transform: uppercase; letter-spacing: .12em;
+  background: linear-gradient(180deg, #b0353c, var(--gs-maroon-d)); color: #fff; border: 2px solid var(--gs-gold); border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,.35); }
+.genesys.dice-pool-dialog .roll-button:hover { filter: brightness(1.1); box-shadow: 0 0 10px rgba(242,165,49,.7); }
+.genesys.dice-pool-dialog .form-footer { display: flex; }
+
+/* ---------- Лист противника ---------- */
+.genesys .gs-adv { padding: 8px 12px; font-family: var(--gs-body); }
+.genesys .gs-adv-head { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 6px; }
+.genesys .gs-adv-portrait { width: 110px; height: 110px; object-fit: cover; border: 3px solid var(--gs-gold); border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,.35); background: #222; flex: 0 0 auto; }
+.genesys .gs-adv-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.genesys .gs-adv-title { display: flex; align-items: center; gap: 6px; }
+.genesys .gs-adv-title .gs-name { flex: 1; font-family: var(--gs-head); font-size: 26px; text-transform: uppercase; color: var(--gs-navy); border: none; border-bottom: 2px solid var(--gs-navy); background: transparent; height: auto; }
+.genesys .gs-adv-type { display: flex; align-items: center; gap: 8px; }
+.genesys .gs-adv-badge { width: auto; font-family: var(--gs-head); text-transform: uppercase; letter-spacing: .06em; color: #fff; border: 2px solid var(--gs-gold); border-radius: 999px; padding: 0 10px; height: 26px; }
+.genesys .gs-adv.type-minion .gs-adv-badge { background: #4b5a6b; }
+.genesys .gs-adv.type-rival .gs-adv-badge { background: var(--gs-navy); }
+.genesys .gs-adv.type-nemesis .gs-adv-badge { background: var(--gs-maroon); }
+.genesys .gs-adv-badge option { color: #000; background: #fff; }
+.genesys .gs-adv-threat { font-family: var(--gs-head); text-transform: uppercase; font-size: 12px; color: var(--gs-maroon); }
+.genesys .gs-adv .gs-statuses { margin-top: 2px; }
+.genesys .gs-big-input { width: 64px; height: 40px; border: none; background: transparent; text-align: center; font-family: var(--gs-head); font-size: 28px; color: var(--gs-navy); }
+.genesys .gs-big-input:focus { background: #fff8ea; }
+.genesys .gs-shield.minion .gs-shield-title { background: #4b5a6b; }
+.genesys input.gs-char-input { text-align: center; font-family: var(--gs-head); font-size: 26px; color: var(--gs-navy); padding: 0; }
+.genesys .gs-adv .gs-char-name { cursor: pointer; }
+.genesys .gs-adv .adversary-body { margin-top: 8px; }
+.genesys .gs-adv .list-header h3 { font-family: var(--gs-head); text-transform: uppercase; color: var(--gs-navy); border-bottom: 2px solid var(--gs-maroon); }
+.genesys .gs-adv-mot-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.genesys .gs-adv-mot-grid label { display: flex; flex-direction: column; gap: 2px; font-family: var(--gs-head); text-transform: uppercase; font-size: 11px; color: var(--gs-muted); }
+.genesys.sheet .gs-adv input.gs-char-circle { width: 58px; height: 58px; border-radius: 50%; background: #fff; border: 3px solid var(--gs-gold);
+  font-size: 30px; font-weight: 600; color: var(--gs-navy); box-shadow: inset 0 2px 4px rgba(0,0,0,.2); text-align: center; padding: 0; }
+.genesys.sheet .gs-adv a.gs-char-name { color: #fff !important; }
+.genesys.sheet .gs-adv a.gs-char-name:hover { color: var(--gs-gold) !important; }
+.genesys.sheet .gs-shield input.gs-big-input { width: 64px; height: 40px; border: none; background: transparent; box-shadow: none; text-align: center;
+  font-family: var(--gs-head); font-size: 28px; font-weight: 600; color: var(--gs-navy); padding: 0; }
+.genesys.sheet .gs-shield input.gs-big-input:focus { background: #fff8ea; outline: 1px solid var(--gs-gold); }
+.genesys.sheet select.gs-adv-badge { color: #fff; width: auto; }
+.genesys.sheet .gs-adv .list-header { border-bottom: 2px solid var(--gs-maroon); }
+.genesys.sheet .gs-adv .list-header h3 { border: none; margin: 0; }
+.genesys.sheet .gs-adv .compact-list li { background: #fff; border: 1px solid #e3d3ad; border-radius: 6px; margin: 3px 0; padding: 3px 6px; }
+.genesys.sheet .gs-adv .weapon .name { font-family: var(--gs-head); text-transform: uppercase; color: var(--gs-navy); }
+
+/* ---------- Лист предмета: поля столбиком, крупные значения ---------- */
+.genesys.sheet.item .item-details .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px 10px; }
+.genesys.sheet.item .item-details .form-group { display: flex; flex-direction: column; align-items: stretch; gap: 2px; margin: 0; padding: 4px 6px;
+  background: #fff; border: 1px solid #e3d3ad; border-radius: 8px; }
+.genesys.sheet.item .item-details .form-group > label { flex: none; font-family: var(--gs-head); text-transform: uppercase; letter-spacing: .04em; font-size: 10.5px; color: var(--gs-muted); line-height: 1.2; }
+.genesys.sheet.item .item-details .form-group > input[type="number"] { font-family: var(--gs-head); font-size: 20px; color: var(--gs-navy); text-align: center; height: 30px; border: none; background: transparent; }
+.genesys.sheet.item .item-details .form-group > input[type="number"]:focus { background: #fff8ea; }
+.genesys.sheet.item .item-details .form-group > input[type="checkbox"] { align-self: center; width: 20px; height: 20px; margin: 4px; }
+.genesys.sheet.item .item-details .form-group > select, .genesys.sheet.item .item-details .form-group > input[type="text"] { width: 100%; }
+.genesys.sheet.item .quality-row { display: grid; grid-template-columns: 1fr 70px 20px; gap: 6px; align-items: center; }
+.genesys.sheet.item .item-details .form-group { height: auto; min-height: 0; min-width: 0; }
+.genesys.sheet.item .item-details .form-group > * { flex: none; min-width: 0; }
+.genesys.sheet.item .item-details .form-group > input, .genesys.sheet.item .item-details .form-group > select { height: 28px; }
+.genesys .gm-pl { display: inline-flex; gap: 4px; font-size: 11px; margin-top: 1px; }
+.genesys .gm-pl b { padding: 0 5px; border-radius: 4px; color: #fff; font-weight: 600; }
+.genesys .gm-pl b.c { background: var(--gs-maroon); } .genesys .gm-pl b.s { background: #2f5f8a; } .genesys .gm-pl b.g { background: #6b5a3a; }
+.genesys .gm-pl i { color: var(--gs-muted); }
+.genesys .gm-cr { margin: 4px 0; padding: 4px 6px; background: #f3ead6; border-radius: 6px; font-size: 12px; }
+.genesys .gm-cr b { font-family: var(--gs-head); font-size: 15px; color: var(--gs-navy); }
+.genesys .gm-cr-total { color: var(--gs-maroon) !important; }
+.genesys .gm-cr-mod { padding: 0 4px; margin-left: 2px; background: #fff; border: 1px solid #e3d3ad; border-radius: 4px; font-size: 10.5px; }
+.genesys .gm-warn { color: var(--gs-maroon); font-size: 12px; }
+.genesys .gm-gen .gm-seg { margin-right: 6px; }
+.genesys .gs-adv-pl { display: inline-flex; align-items: center; gap: 4px; }
+.genesys .gs-adv-pl label { display: inline-flex; align-items: center; gap: 2px; padding: 0 0 0 6px; border-radius: 6px; color: #fff; font-size: 12px; }
+.genesys .gs-adv-pl label.c { background: var(--gs-maroon); } .genesys .gs-adv-pl label.s { background: #2f5f8a; } .genesys .gs-adv-pl label.g { background: #6b5a3a; }
+.genesys.sheet .gs-adv-pl input { width: 34px; height: 22px; border: none; background: rgba(255,255,255,.9); text-align: center; font-family: var(--gs-head); font-size: 14px; border-radius: 0 6px 6px 0; }
+.genesys .gs-adv-pl i { color: var(--gs-muted); }
+.genesys .gm-shop-types { display: grid; grid-template-columns: repeat(6, 1fr); gap: 4px; margin: 6px 0; }
+.genesys .gm-shop-types .gm-creature span { font-size: 10px; }
+.genesys .gm-locs { display: flex; flex-wrap: wrap; gap: 4px; margin: 4px 0; }
+.genesys .shop-card .loot-name small { display: block; color: var(--gs-muted); font-size: 10.5px; }
+.genesys .shop-actions { margin-top: 6px; display: flex; justify-content: flex-end; }
+
+/* ---------- Панель на токене ---------- */
+#genesys-token-panel { position: fixed; left: 12px; bottom: 150px; width: 300px; z-index: 70; }
+.genesys.token-panel .tp { position: relative; padding: 8px; border-radius: 12px; font-family: var(--gs-body); color: #fff;
+  background: linear-gradient(180deg, rgba(31,53,87,.96), rgba(18,26,42,.96)); border: 2px solid var(--gs-gold); box-shadow: 0 6px 18px rgba(0,0,0,.5); }
+.genesys .tp-close { position: absolute; top: 4px; right: 8px; color: rgba(255,255,255,.6); }
+.genesys .tp-head { display: flex; gap: 8px; align-items: center; margin-bottom: 6px; }
+.genesys .tp-head img { width: 44px; height: 44px; border-radius: 8px; border: 2px solid var(--gs-gold); object-fit: cover; cursor: pointer; background: #222; }
+.genesys .tp-id b { display: block; font-family: var(--gs-head); text-transform: uppercase; font-size: 15px; letter-spacing: .03em; }
+.genesys .tp-stats { display: flex; gap: 10px; font-size: 12px; color: #ffd77a; }
+.genesys .tp-bar { display: flex; align-items: center; gap: 4px; margin: 3px 0; }
+.genesys .tp-bar > a { width: 20px; text-align: center; color: rgba(255,255,255,.7); }
+.genesys .tp-bar > a:hover { color: var(--gs-gold); }
+.genesys .tp-track { position: relative; flex: 1; height: 18px; background: rgba(255,255,255,.12); border-radius: 9px; overflow: hidden; }
+.genesys .tp-fill { height: 100%; }
+.genesys .tp-bar.wounds .tp-fill { background: linear-gradient(90deg, #a8322d, #8e2229); }
+.genesys .tp-bar.strain .tp-fill { background: linear-gradient(90deg, #4f7bb3, #2c4c7c); }
+.genesys .tp-bar.over .tp-track { box-shadow: 0 0 0 2px #ff6b5e; }
+.genesys .tp-track span { position: absolute; inset: 0; text-align: center; font: 11px/18px var(--gs-head); text-transform: uppercase; letter-spacing: .04em; }
+.genesys .tp-statuses { display: flex; flex-wrap: wrap; gap: 3px; margin: 4px 0; }
+.genesys .tp-weapons { display: flex; flex-direction: column; gap: 3px; margin: 6px 0; }
+.genesys .tp-weapon { display: flex; align-items: center; gap: 6px; padding: 3px 6px; border-radius: 6px; background: rgba(255,255,255,.08); color: #fff; }
+.genesys .tp-weapon:hover { background: rgba(142,34,41,.8); box-shadow: 0 0 6px rgba(242,165,49,.6); }
+.genesys .tp-weapon img { width: 24px; height: 24px; border: none; }
+.genesys .tp-weapon span { flex: 1; font-size: 12.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.genesys .tp-weapon b { font-family: var(--gs-head); color: #ffd77a; }
+.genesys .tp-tools { display: flex; gap: 6px; align-items: center; }
+.genesys .tp-tools select { flex: 1; height: 26px; background: rgba(255,255,255,.92); color: #1d1d1f; border-radius: 6px; }
+.genesys .tp-btn { width: 28px; height: 26px; display: grid; place-items: center; border-radius: 6px; background: rgba(255,255,255,.12); color: #fff; }
+.genesys .tp-btn:hover { background: var(--gs-maroon); }
+
+/* ---------- Лист транспорта в книжном стиле ---------- */
+.genesys .gs-veh .gs-veh-sil { display: inline-flex; align-items: center; gap: 4px; padding-left: 10px; border-radius: 999px; background: var(--gs-navy); color: #fff;
+  font-family: var(--gs-head); text-transform: uppercase; font-size: 11px; letter-spacing: .06em; border: 2px solid var(--gs-gold); }
+.genesys.sheet .gs-veh .gs-veh-sil input { width: 34px; height: 22px; border: none; border-radius: 0 999px 999px 0; text-align: center; font-family: var(--gs-head); font-size: 15px; background: #fff; }
+.genesys.sheet .gs-veh select.gs-veh-skill { background: var(--gs-maroon); }
+.genesys .gs-veh .gs-current { display: flex; align-items: center; gap: 2px; }
+.genesys.sheet .gs-veh .gs-current input { width: 38px; height: 34px; border: none; background: transparent; text-align: center; font-family: var(--gs-head); font-size: 22px; color: var(--gs-maroon); }
+.genesys .gs-veh .gs-current a { color: var(--gs-muted); font-size: 11px; }
+.genesys .gs-veh .gs-veh-dice img, .genesys .gs-veh .gs-veh-dice .genesys-die { width: 14px; height: 14px; vertical-align: middle; }
+.genesys .gs-arcs { display: grid; grid-template: "a f b" 1fr "p c s" 1fr "d t e" 1fr / 1fr 1fr 1fr; place-items: center; padding: 2px; min-height: 76px; }
+.genesys.sheet .gs-arcs input { width: 30px; height: 22px; border: 1px solid var(--gs-line); border-radius: 50%; background: #fff; text-align: center; font-family: var(--gs-head); font-size: 15px; color: var(--gs-navy); padding: 0; }
+.genesys .gs-arcs .fore { grid-area: f; } .genesys .gs-arcs .port { grid-area: p; } .genesys .gs-arcs .starboard { grid-area: s; } .genesys .gs-arcs .aft { grid-area: t; }
+.genesys .gs-arcs i { grid-area: c; font-size: 22px; color: var(--gs-navy); transform: rotate(-90deg); }
+.genesys .gs-veh-tracks { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 12px 0 4px; }
+.genesys .gs-veh-track { display: grid; grid-template-columns: 22px 1fr 22px; grid-template-rows: auto 30px; align-items: center; gap: 2px 4px; }
+.genesys .gs-veh-track-label { grid-column: 1 / -1; font-family: var(--gs-head); text-transform: uppercase; letter-spacing: .08em; font-size: 12px; color: var(--gs-navy); }
+.genesys .gs-veh-track > a { text-align: center; color: var(--gs-muted); }
+.genesys .gs-veh-track > a:hover { color: var(--gs-maroon); }
+.genesys .gs-veh-bar { position: relative; height: 30px; border-radius: 15px; background: #efe5cd; border: 2px solid var(--gs-gold); overflow: hidden; }
+.genesys .gs-veh-bar > div { height: 100%; background: linear-gradient(90deg, #b8423a, #8e2229); transition: width .3s; }
+.genesys .gs-veh-track.strain .gs-veh-bar > div { background: linear-gradient(90deg, #5a86bd, #2c4c7c); }
+.genesys .gs-veh-track.critical .gs-veh-bar { box-shadow: 0 0 0 2px #ff6b5e, 0 0 10px rgba(255,80,60,.6); }
+.genesys .gs-veh-bar > span { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 2px; font-family: var(--gs-head); font-size: 16px; color: #1d1d1f; }
+.genesys.sheet .gs-veh-bar input { width: 40px; height: 24px; border: none; background: rgba(255,255,255,.75); border-radius: 6px; text-align: center; font-family: var(--gs-head); font-size: 16px; padding: 0; }
+.genesys .gs-veh .vehicle-maneuvers { background: transparent; padding: 4px 0; }
+.genesys .gs-veh .vm-btn { font-family: var(--gs-head); text-transform: uppercase; letter-spacing: .04em; border: 2px solid var(--gs-navy); border-radius: 999px; background: #fff; color: var(--gs-navy); }
+.genesys .gs-veh .vm-btn.action { border-color: var(--gs-maroon); color: var(--gs-maroon); }
+.genesys .gs-veh .vm-btn:hover:not([disabled]) { background: var(--gs-navy); color: #fff; }
+.genesys .gs-veh .vm-btn.action:hover:not([disabled]) { background: var(--gs-maroon); }
+.genesys .gs-veh .vm-btn[disabled] { opacity: .35; }
+.genesys .gs-veh .vehicle-misc { display: grid; grid-template-columns: repeat(6, minmax(0,1fr)); gap: 6px; }
+.genesys .gs-veh .vehicle-misc label { display: flex; flex-direction: column; font-family: var(--gs-head); text-transform: uppercase; font-size: 10.5px; color: var(--gs-muted); }
+
+/* ---------- Компактная шапка листа персонажа (≈ на треть ниже) ---------- */
+.genesys.sheet.character .gs-top { grid-template-columns: 1fr 104px 112px; gap: 10px; }
+.genesys.sheet.character .gs-kicker { display: none; }
+.genesys.sheet.character .gs-name { font-size: 22px; margin: 0 0 3px; padding: 0; }
+.genesys.sheet.character .gs-lines { display: grid; grid-template-columns: 1fr 1fr; gap: 0 14px; }
+.genesys.sheet.character .gs-line { padding: 0; gap: 6px; }
+.genesys.sheet.character .gs-line label { flex: 0 0 auto; font-size: 10px; }
+.genesys.sheet.character .gs-line a, .genesys.sheet.character .gs-line span { font-size: 13.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.genesys.sheet.character .gs-toolbar { margin-top: 4px; gap: 4px; }
+.genesys.sheet.character .gs-toolbar .gs-btn { padding: 1px 8px; font-size: 12px; min-height: 0; line-height: 20px; }
+.genesys.sheet.character .gs-icon-btn { font-size: 15px; }
+.genesys.sheet.character .gs-portrait { padding: 2px; }
+.genesys.sheet.character .gs-portrait img { max-height: 104px; height: 104px; }
+.genesys.sheet.character .gs-portrait .gs-statuses img { height: auto; }
+.genesys.sheet.character .gs-xp-col { gap: 6px; }
+.genesys.sheet.character .gs-xp-banner { border-radius: 16px 16px 5px 5px; }
+.genesys.sheet.character .gs-xp-value { font-size: 20px; line-height: 1.2; }
+.genesys.sheet.character .gs-xp-label { font-size: 9.5px; padding: 1px 0; }
+.genesys.sheet.character .gs-derived { gap: 10px; margin-top: 8px; }
+.genesys.sheet.character .gs-shield-title { font-size: 12.5px; padding: 2px 0 1px; }
+.genesys.sheet.character .gs-shield-body { min-height: 36px; border-radius: 12px 12px 0 0; }
+.genesys.sheet.character .gs-big { font-size: 22px; }
+.genesys.sheet.character .gs-current input { height: 26px; font-size: 18px; width: 38px !important; }
+.genesys.sheet.character .gs-shield-foot { padding: 0; border-radius: 0 0 10px 10px; }
+.genesys.sheet.character .gs-shield-foot span { font-size: 9px; }
+.genesys.sheet.character .gs-top-wrap .gs-ribbon { margin: 6px 0 4px; min-height: 18px; }
+.genesys.sheet.character .gs-top-wrap .gs-ribbon span { font-size: 11px; padding: 1px 28px; }
+.genesys.sheet.character .gs-chars { gap: 8px; padding: 0 4px 2px; }
+.genesys.sheet.character .gs-chars::before { height: 18px; top: 52%; }
+.genesys.sheet.character .gs-char { padding: 4px 4px 3px; border-radius: 34px 34px 6px 6px; flex-direction: row; justify-content: center; gap: 8px; flex-wrap: wrap; }
+.genesys.sheet.character .gs-char-circle { width: 40px; height: 40px; font-size: 22px; border-width: 2px; }
+.genesys.sheet.character .gs-char-name { margin-top: 0; font-size: 12px; }
+.genesys.sheet.character .gs-char-ctrl { flex-basis: 100%; justify-content: center; }
+
+/* ---------- Снаряжение и болеутоляющее ---------- */
+.genesys .gs-pk-btn { position: relative; color: #3d7a3a; }
+.genesys .gs-pk-btn.empty { color: var(--gs-muted); opacity: .6; }
+.genesys .gs-pk-count { position: absolute; right: -6px; bottom: -4px; min-width: 14px; height: 14px; padding: 0 2px; border-radius: 7px; background: #3d7a3a; color: #fff;
+  font: 10px/14px var(--gs-head); text-align: center; }
+.genesys .gs-gear-tags { display: block; color: var(--gs-muted); font-size: 10.5px; font-style: italic; line-height: 1.1; }
+.genesys .inventory .name-cell { flex-wrap: wrap; }
+.genesys .enc-container { margin-left: 8px; font-size: 12px; color: #3d7a3a; }
+.genesys .gs-warning { margin: 4px 0; padding: 4px 8px; border-radius: 6px; background: #fbe9d0; border: 1px solid #e2952a; color: #6b3c06; font-size: 12px; }
+.genesys .table-row.extra { opacity: .55; text-decoration: line-through; }
+.genesys .gs-tag-mini { font-size: 10px; padding: 0 5px; border-radius: 8px; background: var(--gs-navy); color: #fff; font-family: var(--gs-head); text-transform: uppercase; }
+.genesys .gs-gear-mech { margin-top: 8px; border: 1px solid var(--gs-line); border-radius: 8px; padding: 4px 10px 8px; }
+.genesys .gs-gear-mech legend { font-family: var(--gs-head); text-transform: uppercase; color: var(--gs-navy); padding: 0 6px; }
+.genesys .gs-mods > label { display: flex; gap: 6px; align-items: center; font-family: var(--gs-head); text-transform: uppercase; font-size: 12px; color: var(--gs-muted); }
+.genesys .gs-mod-row { display: flex; gap: 6px; align-items: center; margin: 3px 0; }
+.genesys .gs-mod-row select { flex: 1; } .genesys .gs-mod-row input { width: 60px; }
+.genesys .gs-pk-dialog { display: flex; flex-direction: column; gap: 6px; }
+.genesys .painkiller-report i { color: #3d7a3a; }
+
+/* ==========================================================================
+   Кубики: гранёные силуэты (assets/dice/shape), карточка броска
+   ========================================================================== */
+.genesys-die-icon { display: inline-block; width: 16px; height: 16px; margin: 0 1px; vertical-align: middle; border: none !important;
+  background: center / contain no-repeat !important; transform: none !important; clip-path: none !important; filter: drop-shadow(0 1px 1px rgba(0,0,0,.35)); }
+.genesys-die-icon.boost, .gd.boost { background-image: url("../assets/dice/shape/boost.svg") !important; }
+.genesys-die-icon.setback, .gd.setback { background-image: url("../assets/dice/shape/setback.svg") !important; }
+.genesys-die-icon.ability, .gd.ability { background-image: url("../assets/dice/shape/ability.svg") !important; }
+.genesys-die-icon.difficulty, .gd.difficulty { background-image: url("../assets/dice/shape/difficulty.svg") !important; }
+.genesys-die-icon.proficiency, .gd.proficiency { background-image: url("../assets/dice/shape/proficiency.svg") !important; }
+.genesys-die-icon.challenge, .gd.challenge { background-image: url("../assets/dice/shape/challenge.svg") !important; }
+
+.genesys-roll .gr-head { display: flex; flex-direction: column; gap: 2px; }
+.genesys-roll .roll-dice {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; padding: 10px 8px;
+  background: radial-gradient(ellipse at 50% 35%, #2f5a45 0%, #1c3a2c 60%, #142a20 100%);
+  border: 2px solid #6b4b22; border-radius: 12px;
+  box-shadow: inset 0 2px 10px rgba(0,0,0,.55), 0 1px 0 rgba(255,255,255,.4);
+}
+.gd {
+  position: relative; display: inline-grid; place-items: center; width: 42px; height: 42px;
+  background: center / contain no-repeat; filter: drop-shadow(0 3px 2px rgba(0,0,0,.55));
+  animation: gd-roll .45s cubic-bezier(.2,.9,.3,1.3) backwards; animation-delay: calc(var(--i, 0) * 60ms);
+}
+@keyframes gd-roll { from { transform: translateY(-14px) rotate(-120deg) scale(.4); opacity: 0; } to { transform: none; opacity: 1; } }
+.gd-face { display: flex; align-items: center; justify-content: center; gap: 1px; }
+.gd-face .genesys-symbol { width: 19px; height: 19px; vertical-align: 0; }
+.gd-face.n2 .genesys-symbol { width: 13px; height: 13px; }
+.gd.boost, .gd.ability, .gd.proficiency { color: #121212; }
+.gd.boost .genesys-symbol, .gd.ability .genesys-symbol, .gd.proficiency .genesys-symbol { filter: drop-shadow(0 0 1px rgba(255,255,255,.9)); }
+.gd.setback, .gd.difficulty, .gd.challenge { color: #fff; }
+.gd.setback .genesys-symbol, .gd.difficulty .genesys-symbol, .gd.challenge .genesys-symbol { filter: drop-shadow(0 0 1px rgba(0,0,0,.9)); }
+.gd.ability .gd-face.n2, .gd.difficulty .gd-face.n2 { flex-direction: column; gap: 0; }
+.gd.ability .gd-face.n2 .genesys-symbol, .gd.difficulty .gd-face.n2 .genesys-symbol { width: 11px; height: 11px; }
+.gd.proficiency .genesys-symbol.triumph { color: #7a0f0f; }
+.gd.challenge .genesys-symbol.despair { color: #fff3c4; }
+
+.genesys-roll .gr-result { border-radius: 12px; overflow: hidden; border: 1px solid #d9c7a0; background: #fffaf0; box-shadow: 0 1px 3px rgba(0,0,0,.15); }
+.genesys-roll .gr-verdict {
+  padding: 4px 10px; text-align: center; color: #fff;
+  font-family: var(--gs-head); text-transform: uppercase; letter-spacing: .16em; font-size: 17px; font-weight: 500;
+  text-shadow: 0 1px 2px rgba(0,0,0,.4);
+}
+.genesys-roll .gr-result.success .gr-verdict { background: linear-gradient(90deg, #255f23, #3d8a39 50%, #255f23); }
+.genesys-roll .gr-result.failure .gr-verdict { background: linear-gradient(90deg, #6a151b, #a8322d 50%, #6a151b); }
+.genesys-roll .gr-result.initiative .gr-verdict { background: linear-gradient(90deg, #1f3557, #2c4c7c 50%, #1f3557); }
+.genesys-roll .gr-net { display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; padding: 7px 6px; }
+.genesys-roll .gr-chip {
+  display: inline-flex; align-items: center; gap: 4px; padding: 2px 9px 2px 5px; border-radius: 999px; color: #fff;
+  font-family: var(--gs-head); box-shadow: inset 0 -2px 0 rgba(0,0,0,.2);
+}
+.genesys-roll .gr-chip .genesys-symbol { width: 18px; height: 18px; }
+.genesys-roll .gr-chip b { font-size: 17px; line-height: 1; }
+.genesys-roll .gr-chip small { font-size: 11px; text-transform: uppercase; letter-spacing: .05em; opacity: .9; }
+.genesys-roll .gr-chip.success { background: linear-gradient(180deg, #46a043, #2f7a2c); }
+.genesys-roll .gr-chip.advantage { background: linear-gradient(180deg, #3f86c9, #285f96); }
+.genesys-roll .gr-chip.triumph { background: linear-gradient(180deg, #ffd65a, #e0a516); color: #3b2600; }
+.genesys-roll .gr-chip.failure { background: linear-gradient(180deg, #c03c40, #8e2229); }
+.genesys-roll .gr-chip.threat { background: linear-gradient(180deg, #7b48b0, #4f2a78); }
+.genesys-roll .gr-chip.despair { background: linear-gradient(180deg, #2a0a0c, #5c1015); color: #ffcdc6; box-shadow: 0 0 0 1px #c9282d inset; }
+.genesys-roll .gr-blank { color: #8a7d68; font-style: italic; font-size: 12px; }
+.genesys-roll .roll-private { text-align: center; padding: 8px; color: #776d60; }
+.genesys-roll.success, .genesys-roll.failure { border-left: none; padding-left: 0; }
+/* Пул в окне броска и на листе */
+.genesys.dice-pool-dialog .pool-preview { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; padding: 10px; border-radius: 12px;
+  background: radial-gradient(ellipse at 50% 35%, #2f5a45 0%, #1c3a2c 60%, #142a20 100%); border: 2px solid #6b4b22; box-shadow: inset 0 2px 10px rgba(0,0,0,.55); min-height: 54px; align-items: center; }
+.genesys.dice-pool-dialog .pool-preview .genesys-die-icon { width: 34px; height: 34px; filter: drop-shadow(0 3px 2px rgba(0,0,0,.55)); }
+.genesys.dice-pool-dialog .pool-preview .hint { color: #cfe3d6; }
+.genesys.dice-pool-dialog .pool-row .genesys-die-icon { width: 22px; height: 22px; }
+
+/* ---------- Ширма: толкования символов ---------- */
+.genesys .gm-interp-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
+.genesys .gm-interp-eras a { display: inline-flex; gap: 6px; align-items: center; }
+.genesys .gm-interp-whisper { padding: 3px 10px; border-radius: 999px; border: 1px solid var(--gs-line); color: var(--gs-muted); font-size: 12px; }
+.genesys .gm-interp-whisper.on { background: var(--gs-navy); color: #fff; border-color: var(--gs-navy); }
+.genesys .gm-interp-skills { display: flex; flex-direction: column; gap: 3px; }
+.genesys .gm-interp-group { display: flex; flex-wrap: wrap; gap: 3px; align-items: center; }
+.genesys .gm-interp-group > b { min-width: 130px; font-family: var(--gs-head); text-transform: uppercase; font-size: 11px; color: var(--gs-muted); letter-spacing: .05em; }
+.genesys .gm-interp-group .wz-chip { padding: 1px 8px; font-size: 12px; }
+.genesys .gm-interp-cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.genesys .gm-interp-col { border-radius: 10px; overflow: hidden; background: #fffaf0; border: 1px solid #d9c7a0; }
+.genesys .gm-interp-col header { display: flex; align-items: center; gap: 6px; padding: 4px 10px; color: #fff; font-family: var(--gs-head); text-transform: uppercase; letter-spacing: .08em; }
+.genesys .gm-interp-col header .genesys-symbol { width: 18px; height: 18px; }
+.genesys .gm-interp-col.advantage header { background: linear-gradient(90deg, #285f96, #3f86c9); }
+.genesys .gm-interp-col.threat header { background: linear-gradient(90deg, #4f2a78, #7b48b0); }
+.genesys .gm-interp-col.triumph header { background: linear-gradient(90deg, #c48f00, #ffd65a); color: #3b2600; }
+.genesys .gm-interp-col.despair header { background: linear-gradient(90deg, #2a0a0c, #8e2229); }
+.genesys .gm-interp-dice { margin-left: auto; color: inherit; font-size: 16px; }
+.genesys .gm-interp-dice:hover { transform: rotate(20deg) scale(1.15); }
+.genesys .gm-interp-col ol { margin: 0; padding: 4px 8px 6px 28px; font-size: 12.5px; line-height: 1.3; }
+.genesys .gm-interp-col li { padding: 3px 4px; border-radius: 6px; cursor: pointer; }
+.genesys .gm-interp-col li:hover { background: #f3e6c8; }
+.genesys .gm-interp-col li.hl { background: #ffe9a8; box-shadow: inset 3px 0 0 var(--gs-gold); }
+.genesys.interp-card h4 { display: flex; align-items: center; gap: 6px; margin: 0 0 4px; font-family: var(--gs-head); text-transform: uppercase; font-size: 13px; color: var(--gs-navy); }
+.genesys.interp-card h4 small { margin-left: auto; color: var(--gs-muted); font-size: 10px; }
+.genesys.interp-card ul { margin: 0; padding-left: 18px; }
+.genesys.interp-card li { margin: 2px 0; }
+.genesys.interp-card.advantage { border-left: 4px solid #3f86c9; padding-left: 6px; }
+.genesys.interp-card.threat { border-left: 4px solid #7b48b0; padding-left: 6px; }
+.genesys.interp-card.triumph { border-left: 4px solid #e0a516; padding-left: 6px; }
+.genesys.interp-card.despair { border-left: 4px solid #8e2229; padding-left: 6px; }
+.genesys-roll .gr-chip.interp { cursor: help; }
+.genesys-roll .gr-chip.interp:hover { filter: brightness(1.12); box-shadow: 0 0 0 2px rgba(255,255,255,.7), 0 0 6px rgba(242,165,49,.8); }
+
+/* ---------- Ширма: читаемые таблицы в любой теме Foundry, прокрутка ---------- */
+.genesys .gm { min-height: 0; }
+.genesys .gm-body { min-height: 0; }
+.genesys.gm-screen .gm-body { background: transparent; color: var(--gs-ink); }
+.genesys table.gm-table, .genesys .gm-table tbody, .genesys .gm-table tr, .genesys .gm-table td {
+  background: transparent; color: var(--gs-ink); text-shadow: none; border-color: #eadfc6;
+}
+.genesys table.gm-table { background: #fffdf7; border: 1px solid #e0d2b4; border-radius: 8px; overflow: hidden; }
+.genesys .gm-table tr:nth-child(even) { background: #f8f1e1; }
+.genesys .gm-table tr:hover { background: #f3e6c8; }
+.genesys .gm-table td.hint, .genesys .gm-table .hint { color: #5d5446; font-style: normal; }
+.genesys .gm-ref .gm-cost { color: var(--gs-maroon); }
+.genesys .gm-ref .gm-die.difficulty { width: 14px; height: 14px; transform: none; background: url("../assets/dice/shape/difficulty.svg") center / contain no-repeat; }
+.genesys .gm-interp-col.mixed { grid-column: 1 / -1; }
+.genesys .gm-interp-col.mixed header { background: linear-gradient(90deg, #c48f00, #e0a516 35%, #8e2229 65%, #2a0a0c); }
+.genesys .gm-interp-col.mixed header small { text-transform: none; letter-spacing: 0; font-family: var(--gs-body); opacity: .85; }
+.genesys .gm-interp-col.mixed ol { columns: 2; column-gap: 18px; }
+.genesys .gm-interp-col.mixed li { break-inside: avoid; }
+.genesys.interp-card.mixed { border-left: 4px solid; border-image: linear-gradient(#e0a516, #8e2229) 1; padding-left: 6px; }
+.genesys .gm-ref .gs-ribbon span { color: #fff; }
+
+/* ---------- Медицина ---------- */
+.genesys-roll .roll-medicine { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; padding: 6px 10px; border-radius: 10px; font-size: 13px;
+  background: #eef7ec; border: 1px solid #9cc79a; color: #1f4d1d; }
+.genesys-roll .roll-medicine.fail { background: #f6ecec; border-color: #d4a3a3; color: #6a1b1b; }
+.genesys-roll .roll-medicine i { font-size: 16px; }
+.genesys .gs-med-dialog select { width: 100%; }
+
+/* ==========================================================================
+   Крупнее текст там, где его много (на ступень)
+   ========================================================================== */
+.genesys.sheet .window-content, .genesys.dice-pool-dialog .window-content, .genesys.spell-cast-dialog .window-content,
+.genesys.creation-wizard .window-content, .genesys.gm-screen .window-content, .genesys.workshop .window-content,
+.genesys.world-setup .window-content { font-size: 14px; }
+.genesys .hint { font-size: 0.95em; }
+.genesys .gs-help { font-size: 13.5px; }
+/* Ширма: справка, толкования, списки */
+.genesys .gm-table { font-size: 14px; }
+.genesys .gm-table td { padding: 5px 8px; line-height: 1.35; }
+.genesys .gm-interp-col ol { font-size: 14.5px; line-height: 1.4; }
+.genesys .gm-interp-col li { padding: 4px 6px; }
+.genesys .gm-row-sub { font-size: 12.5px; }
+.genesys .gm-seg a { font-size: 13px; }
+.genesys .gm-interp-group .wz-chip { font-size: 13px; padding: 2px 9px; }
+/* Мастер создания */
+.genesys .wz-desc, .genesys .wz-ability, .genesys .wz-stats { font-size: 13.5px; line-height: 1.4; }
+.genesys .wz-talent-desc { font-size: 12.5px; }
+.genesys .wz-card-line { font-size: 12.5px; }
+.genesys .ws-adv-hint { font-size: 13px; }
+.genesys .wz-lock, .genesys .wz-note { font-size: 13.5px; }
+/* Описания предметов, талантов, заклинаний */
+.genesys.sheet .editor-content, .genesys.sheet .editor, .genesys.sheet prose-mirror { font-size: 14.5px; line-height: 1.45; }
+.genesys .gs-talent-desc, .genesys .talent-desc, .genesys .gs-gear-tags { font-size: 12.5px; }
+/* Чат */
+.genesys-roll, .genesys.interp-card, .genesys.loot-card, .genesys.status-report, .genesys.spend-report { font-size: 14px; line-height: 1.4; }
+.genesys-roll .spend-row .spend-text { font-size: 13.5px; }
+.genesys-roll .attack-line { font-size: 14px; }
+.genesys.interp-card li { font-size: 14px; }
+.genesys .gm-heal .gm-heal-k { width: 34%; font-family: var(--gs-head); text-transform: uppercase; font-size: 12.5px; letter-spacing: .03em; color: var(--gs-navy); }
+
+/* ---------- Добыча: кого обыскиваем, быстрые враги ---------- */
+.genesys .gm-loot-enemies { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+.genesys .gm-loot-enemy { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px 3px 3px; border-radius: 999px; background: #fff;
+  border: 2px solid #d9c7a0; color: var(--gs-muted); opacity: .55; text-decoration: line-through; }
+.genesys .gm-loot-enemy img { width: 28px; height: 28px; border: none; border-radius: 50%; object-fit: cover; background: var(--gs-navy); }
+.genesys .gm-loot-enemy.on { opacity: 1; text-decoration: none; color: var(--gs-ink); border-color: var(--gs-maroon); box-shadow: 0 1px 3px rgba(0,0,0,.15); }
+.genesys .gm-loot-enemy.dead i { color: var(--gs-maroon); }
+.genesys .gm-loot-quick { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 8px 10px; border-radius: 10px; background: #fff; border: 1px dashed #c9b48a; }
+.genesys .gm-loot-quick-label { font-family: var(--gs-head); text-transform: uppercase; color: var(--gs-navy); font-size: 13px; }
+.genesys .gm-loot-quick select { width: auto; min-width: 180px; }
+.genesys .gm-stepper { display: inline-flex; align-items: center; gap: 2px; }
+.genesys .gm-stepper a { width: 24px; text-align: center; color: var(--gs-navy); }
+.genesys.gm-screen .gm-stepper input { width: 48px; text-align: center; font-family: var(--gs-head); font-size: 16px; }
+
+/* ---------- Лист противника и транспорта: прокрутка, групповые навыки ---------- */
+.genesys.sheet.adversary .window-content, .genesys.sheet.vehicle .window-content { display: flex; flex-direction: column; overflow: hidden; }
+.genesys.sheet.adversary .gs-adv, .genesys.sheet.vehicle .gs-veh { flex: 1; min-height: 0; overflow-y: auto; }
+.genesys .skill .career-mark.toggle { cursor: pointer; }
+.genesys .skill .career-mark.toggle:hover { color: var(--gs-maroon); }
+.genesys .gs-adv .severity .genesys-die-icon { width: 13px; height: 13px; }
+
+/* ---------- Способности расы/архетипа ---------- */
+.genesys.sheet.character .gs-line-wide { grid-column: 1 / -1; }
+.genesys .gs-arch-abilities > span { display: flex; flex-wrap: wrap; gap: 4px; white-space: normal !important; overflow: visible !important; }
+.genesys .gs-ability-chip { display: inline-flex; align-items: center; gap: 4px; padding: 0 8px 0 2px; border-radius: 999px; background: linear-gradient(180deg, #f6bb55, var(--gs-gold-d));
+  color: var(--gs-navy-d) !important; font-family: var(--gs-head); font-size: 12.5px !important; text-transform: uppercase; letter-spacing: .02em; }
+.genesys .gs-ability-chip img { width: 18px; height: 18px; border: none; border-radius: 50%; }
+.genesys .gs-arch-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 8px; margin-bottom: 10px; }
+.genesys .gs-arch-card { display: flex; align-items: center; gap: 8px; padding: 6px 10px; border-radius: 10px; background: #fffaf0; border: 2px solid var(--gs-gold);
+  font-family: var(--gs-head); text-transform: uppercase; color: var(--gs-navy); box-shadow: 0 1px 3px rgba(0,0,0,.12); }
+.genesys .gs-arch-card:hover { background: #fff1d0; }
+.genesys .gs-arch-card img { width: 36px; height: 36px; border: none; }
+.genesys .ws-cost b { font-family: var(--gs-head); font-size: 20px; color: var(--gs-maroon); }
+
+/* ---------- Зона токена на панели ---------- */
+.genesys .tp-zone { margin: 4px 0; padding: 4px 6px; border-radius: 8px; background: rgba(255,255,255,.08); font-size: 12px; }
+.genesys .tp-zone-name b { color: #ffd77a; font-family: var(--gs-head); text-transform: uppercase; letter-spacing: .03em; }
+.genesys .tp-zone-tags { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 3px; }
+.genesys .tp-zone-tags span { padding: 0 6px; border-radius: 999px; background: rgba(242,165,49,.25); color: #ffe2a6; font-size: 11px; }
+.genesys .tp-zone-next { display: flex; flex-direction: column; gap: 1px; margin-top: 3px; color: rgba(255,255,255,.8); font-size: 11px; }
+.genesys.gs-zone-editor, .genesys .gs-zone-editor { display: flex; flex-direction: column; gap: 6px; max-height: 60vh; overflow-y: auto; }
+.genesys .gs-ze-row { padding: 6px 8px; border-radius: 8px; background: rgba(255,255,255,.6); border: 1px solid #d9c7a0; }
+.genesys .gs-ze-tags { display: flex; flex-wrap: wrap; gap: 4px 12px; margin-top: 4px; font-size: 12.5px; }

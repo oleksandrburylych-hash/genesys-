@@ -1,0 +1,121 @@
+[
+  {
+    "name": "Бригантина",
+    "nameEn": "Brigandine",
+    "type": "armor",
+    "folder": "Терринот",
+    "system": {
+      "defense": 1,
+      "soak": 1,
+      "encumbrance": 2,
+      "hardPoints": 1,
+      "price": 400,
+      "rarity": 5,
+      "qualities": [],
+      "description": "<p>Стальные или железные пластины, приклёпанные между двумя слоями ткани; держит удары лучше вываренной кожи.</p>",
+      "source": "Realms of Terrinoth, с. 96"
+    }
+  },
+  {
+    "name": "Кольчуга",
+    "nameEn": "Chainmail",
+    "type": "armor",
+    "folder": "Терринот",
+    "system": {
+      "defense": 0,
+      "soak": 2,
+      "encumbrance": 3,
+      "hardPoints": 2,
+      "price": 550,
+      "rarity": 4,
+      "qualities": [],
+      "description": "<p>Надёжная и гибкая защита от рубящих и колющих ударов. Шумная и сковывающая: пока надета, добавляет кость штрафа к проверкам Скрытности.</p>",
+      "source": "Realms of Terrinoth, с. 96"
+    }
+  },
+  {
+    "name": "Плотная мантия",
+    "nameEn": "Heavy Robes",
+    "type": "armor",
+    "folder": "Терринот",
+    "system": {
+      "defense": 1,
+      "soak": 0,
+      "encumbrance": 1,
+      "hardPoints": 1,
+      "price": 45,
+      "rarity": 0,
+      "qualities": [],
+      "description": "<p>Свободное одеяние из шерсти или меха: скрывает очертания тела и мешает нанести точный удар, но удар не поглощает.</p>",
+      "source": "Realms of Terrinoth, с. 96"
+    }
+  },
+  {
+    "name": "Кожаный доспех",
+    "nameEn": "Leather",
+    "type": "armor",
+    "folder": "Терринот",
+    "system": {
+      "defense": 0,
+      "soak": 1,
+      "encumbrance": 2,
+      "hardPoints": 1,
+      "price": 50,
+      "rarity": 3,
+      "qualities": [],
+      "description": "<p>Доспех из вываренной кожи: скромная защита за небольшую цену.</p>",
+      "source": "Realms of Terrinoth, с. 96"
+    }
+  },
+  {
+    "name": "Стёганый доспех",
+    "nameEn": "Padded",
+    "type": "armor",
+    "folder": "Терринот",
+    "system": {
+      "defense": 0,
+      "soak": 1,
+      "encumbrance": 2,
+      "hardPoints": 0,
+      "price": 35,
+      "rarity": 2,
+      "qualities": [],
+      "description": "<p>Толстые стёганые слои ткани, смягчающие удары.</p>",
+      "source": "Realms of Terrinoth, с. 96"
+    }
+  },
+  {
+    "name": "Латы",
+    "nameEn": "Plate",
+    "type": "armor",
+    "folder": "Терринот",
+    "system": {
+      "defense": 1,
+      "soak": 2,
+      "encumbrance": 4,
+      "hardPoints": 2,
+      "price": 1000,
+      "rarity": 6,
+      "qualities": [],
+      "description": "<p>Полный латный доспех. Тяжёлый и очень шумный: пока надет, добавляет 2 кости штрафа к проверкам Скрытности.</p>",
+      "source": "Realms of Terrinoth, с. 97"
+    }
+  },
+  {
+    "name": "Чешуйчатый доспех",
+    "nameEn": "Scale",
+    "type": "armor",
+    "folder": "Терринот",
+    "system": {
+      "defense": 0,
+      "soak": 2,
+      "encumbrance": 4,
+      "hardPoints": 1,
+      "price": 410,
+      "rarity": 4,
+      "qualities": [],
+      "description": "<p>Металлические чешуйки на кожаной основе; тяжёлый и шумный: пока надет, добавляет кость штрафа к проверкам Скрытности.</p>",
+      "source": "Realms of Terrinoth, с. 97"
+    }
+  }
+]

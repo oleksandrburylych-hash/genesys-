@@ -21,14 +21,7 @@
   --die-setback: #1c1c1c;
 }
 
-.theme-dark .genesys,
-.genesys.theme-dark {
-  --g-border: rgba(255, 255, 255, 0.18);
-  --g-muted: #a5a5a5;
-  --g-panel: rgba(255, 255, 255, 0.05);
-  --g-ink: #e8e6e3;
-  --g-accent-soft: rgba(90, 160, 200, 0.18);
-}
+/* Окна системы всегда светлые («бумага»): классы themed theme-light задаются в самих окнах. */
 
 /* ---------- Символы ---------- */
 .genesys-symbol {
@@ -46,31 +39,6 @@
 .genesys-symbol.threat    { --icon: url("../assets/icons/threat.svg"); }
 .genesys-symbol.triumph   { --icon: url("../assets/icons/triumph.svg"); }
 .genesys-symbol.despair   { --icon: url("../assets/icons/despair.svg"); }
-
-/* ---------- Иконки кубиков в пуле ---------- */
-.genesys-die-icon {
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  margin: 0 1px;
-  vertical-align: middle;
-  border: 1px solid rgba(0, 0, 0, 0.5);
-}
-.genesys-die-icon.boost,
-.genesys-die-icon.setback { border-radius: 2px; }
-.genesys-die-icon.ability,
-.genesys-die-icon.difficulty { transform: rotate(45deg) scale(0.82); }
-.genesys-die-icon.proficiency,
-.genesys-die-icon.challenge {
-  clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%);
-  border: none;
-}
-.genesys-die-icon.proficiency { background: var(--die-proficiency); }
-.genesys-die-icon.ability     { background: var(--die-ability); }
-.genesys-die-icon.boost       { background: var(--die-boost); }
-.genesys-die-icon.challenge   { background: var(--die-challenge); }
-.genesys-die-icon.difficulty  { background: var(--die-difficulty); }
-.genesys-die-icon.setback     { background: var(--die-setback); }
 
 /* ==========================================================================
    Листы
@@ -424,36 +392,6 @@
 .genesys-roll { display: flex; flex-direction: column; gap: 0.35rem; }
 .genesys-roll .roll-label { margin: 0; font-size: 1.05em; border-bottom: 1px solid var(--color-border, #999); }
 .genesys-roll .roll-dice { display: flex; flex-wrap: wrap; gap: 3px; }
-.genesys-die-result {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 30px;
-  height: 30px;
-  font-size: 11px;
-  color: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.5);
-}
-.genesys-die-result .face { display: flex; flex-wrap: wrap; justify-content: center; line-height: 1; }
-.genesys-die-result.boost,
-.genesys-die-result.setback { border-radius: 3px; }
-.genesys-die-result.ability,
-.genesys-die-result.difficulty { transform: rotate(45deg) scale(0.85); }
-.genesys-die-result.ability .face,
-.genesys-die-result.difficulty .face { transform: rotate(-45deg); }
-.genesys-die-result.proficiency,
-.genesys-die-result.challenge {
-  clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%);
-  border: none;
-  width: 34px;
-}
-.genesys-die-result.proficiency { background: var(--die-proficiency, #f2c516); color: #111; }
-.genesys-die-result.ability     { background: var(--die-ability, #3aa845); color: #111; }
-.genesys-die-result.boost       { background: var(--die-boost, #8fd3f2); color: #111; }
-.genesys-die-result.challenge   { background: var(--die-challenge, #c9282d); }
-.genesys-die-result.difficulty  { background: var(--die-difficulty, #5b2d86); }
-.genesys-die-result.setback     { background: var(--die-setback, #1c1c1c); }
-
 .genesys-roll .roll-summary {
   display: flex;
   flex-wrap: wrap;
@@ -505,3 +443,161 @@
 .story-points-body .sp-count { margin-left: auto; font-weight: bold; font-size: 1.2em; }
 .story-points-body .sp-controls { display: flex; gap: 0.4rem; align-items: center; }
 .story-points-body .sp-controls button { flex: 1; }
+
+/* ==========================================================================
+   Магия: конструктор заклинаний, вкладка, редактор эффектов
+   ========================================================================== */
+.genesys .tag {
+  display: inline-block;
+  padding: 0 0.4rem;
+  margin: 0 0.2rem 0.2rem 0;
+  border: 1px solid var(--g-border);
+  border-radius: 999px;
+  font-size: 0.8em;
+  background: var(--g-panel);
+}
+.genesys.spell-cast-dialog .window-content { padding: 0.75rem; }
+.spell-cast-body { display: flex; flex-direction: column; gap: 0.5rem; }
+.spell-cast-body .spell-header { display: flex; gap: 0.6rem; align-items: center; }
+.spell-cast-body .spell-header img { width: 48px; height: 48px; border: none; }
+.spell-cast-body .spell-header h3 { margin: 0; border: none; }
+.spell-cast-body .spell-description { font-size: 0.9em; }
+.spell-cast-body .spell-effects { max-height: 340px; overflow-y: auto; }
+.spell-cast-body .spell-effect {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.25rem;
+  border-bottom: 1px solid var(--g-border);
+}
+.spell-cast-body .spell-effect.chosen { background: var(--g-accent-soft); }
+.spell-cast-body .spell-effect.disabled { opacity: 0.45; }
+.spell-cast-body .effect-control { flex: 0 0 4.2rem; display: flex; align-items: flex-start; gap: 0.3rem; font-size: 1.1em; }
+.spell-cast-body .effect-control .count { font-weight: bold; min-width: 1rem; text-align: center; }
+.spell-cast-body .effect-info { flex: 1; }
+.spell-cast-body .effect-diff { color: var(--g-accent); font-weight: bold; }
+.spell-cast-body .effect-only { color: var(--g-muted); font-size: 0.85em; }
+.spell-cast-body .effect-desc { font-size: 0.85em; color: var(--g-muted); }
+.spell-cast-body .spell-summary {
+  padding: 0.4rem;
+  border: 1px solid var(--g-accent);
+  border-radius: 6px;
+  background: var(--g-accent-soft);
+}
+.spell-cast-body .spell-summary.too-hard { border-color: var(--g-danger); }
+.spell-cast-body .spell-summary .warning { color: var(--g-danger); font-weight: bold; }
+.spell-cast-body .form-footer { display: flex; gap: 0.5rem; }
+
+.genesys .magic-skills { display: flex; flex-wrap: wrap; }
+.genesys .spell-list .sub { font-size: 0.8em; color: var(--g-muted); }
+
+.genesys.item .effect-editor .effect-row { border-bottom: 1px solid var(--g-border); padding: 0.25rem 0; }
+.genesys.item .effect-row-top { display: flex; gap: 0.3rem; align-items: center; }
+.genesys.item .effect-row-top input[type="text"] { flex: 1; }
+.genesys.item .effect-row-top input[type="number"] { flex: 0 0 3.5rem; text-align: center; }
+.genesys.item .effect-row-top select { flex: 0 0 8rem; }
+.genesys.item .effect-row textarea { width: 100%; margin-top: 0.2rem; }
+.genesys.item .spell-skills { flex-wrap: wrap; }
+
+.genesys-roll .roll-spell { font-size: 0.85em; border-top: 1px dashed #999; padding-top: 0.25rem; }
+.genesys-roll .spell-effects-list { margin: 0.2rem 0; padding-left: 1rem; }
+
+/* ==========================================================================
+   Транспорт
+   ========================================================================== */
+.genesys.vehicle .vehicle-profile { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.genesys.vehicle .vstat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.2rem 0.4rem;
+  border: 1px solid var(--g-border);
+  border-radius: 6px;
+  background: var(--g-panel);
+}
+.genesys.vehicle .vstat label { font-size: 0.7em; text-transform: uppercase; color: var(--g-muted); }
+.genesys.vehicle .vstat input { width: 3rem; text-align: center; font-weight: bold; }
+.genesys.vehicle .vstat select { width: auto; }
+.genesys.vehicle .defense-arcs { display: grid; grid-template-columns: repeat(4, auto); gap: 0.3rem; }
+.genesys.vehicle .defense-arcs label { display: flex; align-items: center; gap: 0.1rem; }
+.genesys.vehicle .defense-arcs input { width: 2.4rem; }
+.genesys.vehicle .vehicle-body { flex: 1; overflow-y: auto; margin-top: 0.4rem; }
+.genesys.vehicle .vehicle-misc { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.3rem 0.6rem; }
+.genesys.vehicle .vehicle-misc label { display: flex; flex-direction: column; font-size: 0.8em; }
+.genesys.vehicle .pool-button { font-size: 1.4em; padding: 0 0.3rem; }
+
+/* ==========================================================================
+   0.5: бой, трата символов, слоты, героические способности, мастер создания
+   ========================================================================== */
+.dice-pool-body .pool-notes {
+  margin: 0;
+  padding: 0.3rem 0.3rem 0.3rem 1.2rem;
+  font-size: 0.85em;
+  border-left: 3px solid var(--g-accent);
+  background: var(--g-accent-soft);
+}
+.dice-pool-body .pool-story-point button { width: 100%; }
+
+.genesys-roll .roll-target { font-size: 0.85em; color: #666; }
+.genesys-roll .quality-buttons { display: flex; flex-wrap: wrap; gap: 0.2rem; }
+.genesys-roll .quality-buttons button { flex: 1 1 45%; font-size: 0.85em; line-height: 1.6; }
+.genesys-roll .quality-buttons .cost { color: #777; }
+.genesys-roll .roll-spending { font-size: 0.85em; }
+.genesys-roll .roll-spending summary { cursor: pointer; }
+.genesys-roll .spend-group { margin-top: 0.25rem; }
+.genesys-roll .spend-title { font-weight: bold; }
+.genesys-roll .spend-group.positive .spend-title { color: #2f7d32; }
+.genesys-roll .spend-group.negative .spend-title { color: #a8322d; }
+.genesys-roll .spend-row {
+  display: block;
+  width: 100%;
+  text-align: left;
+  line-height: 1.3;
+  padding: 0.2rem 0.3rem;
+  margin: 0.1rem 0;
+  font-size: 0.95em;
+}
+.genesys-roll .spend-cost { font-weight: bold; }
+.genesys.damage-report, .genesys.status-report, .genesys.spend-report { font-size: 0.95em; }
+
+.genesys.slot-card .slot-buttons { display: flex; flex-direction: column; gap: 0.2rem; }
+.genesys.slot-card button { display: flex; align-items: center; gap: 0.4rem; }
+.genesys.slot-card button img { width: 24px; height: 24px; border: none; }
+
+.genesys .quick-actions { flex-direction: row !important; gap: 0.6rem; font-size: 1.3em; flex: 0 0 auto !important; }
+.genesys .quick-actions a:hover { color: var(--g-accent); }
+.genesys .creation-wizard { flex: 0 0 auto; width: auto; }
+.genesys .heroic-block .heroic-activate { flex: 0 0 auto; width: auto; font-size: 0.85em; }
+.genesys.item .upgrade-count { font-weight: bold; min-width: 2rem; text-align: center; }
+.genesys.item .effect-row.chosen { background: var(--g-accent-soft); }
+.genesys.item .attachments-block {
+  margin-top: 0.5rem;
+  padding: 0.3rem;
+  border: 1px dashed var(--g-border);
+  border-radius: 6px;
+}
+.genesys.item .attachment-list li { display: flex; gap: 0.4rem; align-items: baseline; flex-wrap: wrap; padding: 0.15rem 0; }
+.genesys.item .attachment-list li a { margin-left: auto; }
+.genesys .warning { color: var(--g-danger); font-weight: bold; }
+
+.genesys.creation-wizard .window-content { padding: 0.75rem; }
+.genesys .wizard { display: flex; flex-direction: column; height: 100%; gap: 0.5rem; }
+.genesys .wizard-header { display: flex; align-items: baseline; gap: 0.6rem; }
+.genesys .wizard-header h3 { margin: 0; border: none; }
+.genesys .wizard-step { color: var(--g-muted); }
+.genesys .wizard-body { flex: 1; overflow-y: auto; }
+.genesys .wizard-body h4 { margin: 0.5rem 0 0.2rem; border-bottom: 1px solid var(--g-border); }
+.genesys .wizard-options { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+.genesys .wizard-options button { flex: 0 0 auto; width: auto; }
+.genesys .wizard-options button.active { border-color: var(--g-accent); background: var(--g-accent-soft); font-weight: bold; }
+.genesys .wizard-summary { margin-top: 0.5rem; padding: 0.4rem; border-radius: 6px; background: var(--g-panel); border: 1px solid var(--g-border); }
+.genesys .wizard .form-footer { display: flex; gap: 0.5rem; }
+
+/* Мастер настройки мира */
+.genesys.world-setup .window-content { padding: 0.75rem; }
+.genesys .world-setup { display: flex; flex-direction: column; height: 100%; gap: 0.5rem; }
+.genesys .world-setup .setup-body { flex: 1; overflow-y: auto; }
+.genesys .world-setup h3 { margin: 0.6rem 0 0.2rem; border-bottom: 2px solid var(--g-accent); }
+.genesys .world-setup .setup-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.2rem 0.8rem; }
+.genesys .world-setup .setup-log { margin-top: 0.6rem; padding: 0.4rem 0.4rem 0.4rem 1.6rem; background: var(--g-accent-soft); border-radius: 6px; }
+.genesys .world-setup .form-footer { display: flex; gap: 0.5rem; }
+.genesys-setup-button { width: 100%; margin: 0 0 0.5rem; font-weight: bold; }

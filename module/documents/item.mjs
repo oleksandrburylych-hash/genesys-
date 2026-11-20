@@ -2,24 +2,14 @@
  * Предмет Genesys. Иконки по умолчанию и бросок из предмета.
  */
 export class GenesysItem extends Item {
-  static DEFAULT_ICONS = {
-    skill: "icons/svg/book.svg",
-    talent: "icons/svg/aura.svg",
-    ability: "icons/svg/upgrade.svg",
-    archetype: "icons/svg/mystery-man.svg",
-    career: "icons/svg/statue.svg",
-    weapon: "icons/svg/sword.svg",
-    armor: "icons/svg/shield.svg",
-    gear: "icons/svg/item-bag.svg",
-    quality: "icons/svg/sun.svg",
-    injury: "icons/svg/blood.svg"
-  };
+  /** Плашки по умолчанию для новых предметов (game-icons.net, CC BY 3.0). */
+  static get DEFAULT_ICONS() { return CONFIG.GENESYS?.icons?.defaults ?? {}; }
 
   /** @override */
   async _preCreate(data, options, user) {
     if ((await super._preCreate(data, options, user)) === false) return false;
     if (!data.img || data.img === Item.DEFAULT_ICON) {
-      const img = GenesysItem.DEFAULT_ICONS[this.type];
+      const img = (this.type === "skill" && CONFIG.GENESYS?.icons?.skills?.[data.system?.key]) || GenesysItem.DEFAULT_ICONS[this.type];
       if (img) this.updateSource({ img });
     }
   }
@@ -29,6 +19,7 @@ export class GenesysItem extends Item {
     const actor = this.actor;
     if (actor && this.type === "skill") return actor.rollSkill(this);
     if (actor && this.type === "weapon") return actor.rollWeapon(this);
+    if (actor && this.type === "spell") return actor.castSpell(this);
     return this.toChat();
   }
 

@@ -7,3 +7,12 @@ books/
 node_modules/
 .DS_Store
 *.log
+
+# Сборка компендиумов: служебные файлы LevelDB и временная папка
+.build/
+packs/**/LOCK
+packs/**/LOG
+packs/**/LOG.old
+
+# Сборка релиза (публикуется в GitHub Releases)
+dist/

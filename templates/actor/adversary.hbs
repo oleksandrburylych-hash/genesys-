@@ -1,64 +1,87 @@
-<div class="adversary-sheet">
-  <header class="genesys-header adversary-header">
-    <img class="profile" src="{{actor.img}}" alt="{{actor.name}}" data-edit="img" data-action="editImage">
-    <div class="header-main">
-      <div class="name-row">
-        <input class="actor-name" type="text" name="name" value="{{actor.name}}" placeholder="{{localize 'GENESYS.Name'}}">
-        <select name="system.adversaryType" class="adversary-type">
-          {{selectOptions adversaryTypes selected=system.adversaryType localize=true}}
-        </select>
-        <a class="pool-button" data-action="rollPool" data-tooltip="GENESYS.Roll.Title"><i class="fa-solid fa-dice-d20"></i></a>
+<div class="adversary-sheet gs-adv type-{{system.adversaryType}}">
+  <header class="gs-adv-head">
+    <img class="gs-adv-portrait" src="{{actor.img}}" alt="{{actor.name}}" data-edit="img" data-action="editImage">
+    <div class="gs-adv-main">
+      <div class="gs-adv-title">
+        <input class="gs-name" type="text" name="name" value="{{actor.name}}" placeholder="{{localize 'GENESYS.Name'}}">
+        <a class="gs-icon-btn" data-action="rollPool" data-tooltip="GENESYS.Roll.Title"><i class="fa-solid fa-dice-d20"></i></a>
       </div>
-
-      <div class="characteristics">
-        {{#each characteristics}}
-        <div class="characteristic">
-          <input class="char-input" type="number" name="system.characteristics.{{key}}.value" value="{{value}}" min="1" max="6" data-dtype="Number">
-          <a class="char-label rollable" data-action="rollCharacteristic" data-key="{{key}}">{{localize label}}</a>
-        </div>
-        {{/each}}
+      <div class="gs-adv-type">
+        <select name="system.adversaryType" class="gs-adv-badge">{{selectOptions adversaryTypes selected=system.adversaryType localize=true}}</select>
+        <span class="gs-adv-pl" data-tooltip="GENESYS.GM.PLHint">
+          <label class="c">⚔<input type="number" name="system.power.combat" value="{{pl.combat}}" min="0" data-dtype="Number"></label>
+          <label class="s">✦<input type="number" name="system.power.social" value="{{pl.social}}" min="0" data-dtype="Number"></label>
+          <label class="g">⚙<input type="number" name="system.power.general" value="{{pl.general}}" min="0" data-dtype="Number"></label>
+          {{#unless pl.listed}}<i>≈</i>{{/unless}}
+        </span>
       </div>
+      {{> "systems/genesys-rpg/templates/parts/creature.hbs"}}
+      {{> "systems/genesys-rpg/templates/parts/worlds.hbs"}}
+      {{> "systems/genesys-rpg/templates/parts/statuses.hbs"}}
     </div>
   </header>
 
-  <section class="derived-stats adversary-stats">
-    <div class="stat">
-      <span class="stat-label">{{localize "GENESYS.Soak"}}</span>
-      <input type="number" name="system.soak.value" value="{{system.soak.value}}" data-dtype="Number">
+  <div class="gs-derived">
+    <div class="gs-shield">
+      <div class="gs-shield-title">{{localize "GENESYS.Soak"}}</div>
+      <div class="gs-shield-body"><input class="gs-big-input" type="number" name="system.soak.value" value="{{system.soak.value}}" data-dtype="Number"></div>
+      <div class="gs-shield-foot"><span>&nbsp;</span></div>
     </div>
-    <div class="stat track">
-      <span class="stat-label">{{localize "GENESYS.Wounds"}}{{#if isMinion}} ({{localize "GENESYS.PerMinion"}}){{/if}}</span>
-      <div class="track-values">
-        <input type="number" name="system.wounds.value" value="{{system.wounds.value}}" data-dtype="Number">
-        <span class="sep">/</span>
-        <input type="number" name="system.wounds.max" value="{{system.wounds.max}}" data-dtype="Number">
+    <div class="gs-shield {{#if woundsOver}}critical{{/if}}">
+      <div class="gs-shield-title">{{localize "GENESYS.Wounds"}}{{#if isMinion}} ×{{system.groupSize}}{{/if}}</div>
+      <div class="gs-shield-body split">
+        <input class="gs-big-input" type="number" name="system.wounds.max" value="{{system.wounds.max}}" data-dtype="Number" data-tooltip="{{#if isMinion}}GENESYS.PerMinion{{else}}GENESYS.Sheet.Threshold{{/if}}">
+        <span class="gs-current">
+          <a data-action="advAdjust" data-path="system.wounds.value" data-delta="-1"><i class="fa-solid fa-minus"></i></a>
+          <input type="number" name="system.wounds.value" value="{{system.wounds.value}}" min="0" data-dtype="Number">
+          <a data-action="advAdjust" data-path="system.wounds.value" data-delta="1"><i class="fa-solid fa-plus"></i></a>
+        </span>
       </div>
+      <div class="gs-shield-foot split"><span>{{#if isMinion}}{{localize "GENESYS.PerMinion"}}{{else}}{{localize "GENESYS.Sheet.Threshold"}}{{/if}}</span><span>{{localize "GENESYS.Sheet.Current"}}</span></div>
     </div>
     {{#if isNemesis}}
-    <div class="stat track">
-      <span class="stat-label">{{localize "GENESYS.Strain"}}</span>
-      <div class="track-values">
-        <input type="number" name="system.strain.value" value="{{system.strain.value}}" data-dtype="Number">
-        <span class="sep">/</span>
-        <input type="number" name="system.strain.max" value="{{system.strain.max}}" data-dtype="Number">
+    <div class="gs-shield">
+      <div class="gs-shield-title">{{localize "GENESYS.Strain"}}</div>
+      <div class="gs-shield-body split">
+        <input class="gs-big-input" type="number" name="system.strain.max" value="{{system.strain.max}}" data-dtype="Number">
+        <span class="gs-current">
+          <a data-action="advAdjust" data-path="system.strain.value" data-delta="-1"><i class="fa-solid fa-minus"></i></a>
+          <input type="number" name="system.strain.value" value="{{system.strain.value}}" min="0" data-dtype="Number">
+          <a data-action="advAdjust" data-path="system.strain.value" data-delta="1"><i class="fa-solid fa-plus"></i></a>
+        </span>
       </div>
+      <div class="gs-shield-foot split"><span>{{localize "GENESYS.Sheet.Threshold"}}</span><span>{{localize "GENESYS.Sheet.Current"}}</span></div>
     </div>
     {{/if}}
-    <div class="stat defense">
-      <span class="stat-label">{{localize "GENESYS.Defense"}}</span>
-      <div class="defense-values">
-        <input type="number" name="system.defense.melee.value" value="{{system.defense.melee.value}}" data-dtype="Number" data-tooltip="GENESYS.DefenseMelee">
-        <input type="number" name="system.defense.ranged.value" value="{{system.defense.ranged.value}}" data-dtype="Number" data-tooltip="GENESYS.DefenseRanged">
+    <div class="gs-shield">
+      <div class="gs-shield-title">{{localize "GENESYS.Defense"}}</div>
+      <div class="gs-shield-body split">
+        <input class="gs-big-input" type="number" name="system.defense.melee.value" value="{{system.defense.melee.value}}" data-dtype="Number" data-tooltip="GENESYS.DefenseMelee">
+        <input class="gs-big-input" type="number" name="system.defense.ranged.value" value="{{system.defense.ranged.value}}" data-dtype="Number" data-tooltip="GENESYS.DefenseRanged">
       </div>
+      <div class="gs-shield-foot split"><span>{{localize "GENESYS.Sheet.Melee"}}</span><span>{{localize "GENESYS.Sheet.Ranged"}}</span></div>
     </div>
     {{#if isMinion}}
-    <div class="stat">
-      <span class="stat-label">{{localize "GENESYS.GroupSize"}}</span>
-      <input type="number" name="system.groupSize" value="{{system.groupSize}}" min="1" data-dtype="Number">
-      <span class="sub">{{localize "GENESYS.Alive"}}: {{system.aliveMinions}} · {{localize "GENESYS.GroupWounds"}}: {{system.groupWounds}}</span>
+    <div class="gs-shield minion">
+      <div class="gs-shield-title">{{localize "GENESYS.GroupSize"}}</div>
+      <div class="gs-shield-body split">
+        <input class="gs-big-input" type="number" name="system.groupSize" value="{{system.groupSize}}" min="1" data-dtype="Number">
+        <span class="gs-big" data-tooltip="GENESYS.Alive">{{system.aliveMinions}}</span>
+      </div>
+      <div class="gs-shield-foot split"><span>{{localize "GENESYS.GroupSize"}}</span><span>{{localize "GENESYS.Alive"}}</span></div>
     </div>
     {{/if}}
-  </section>
+  </div>
+
+  <div class="gs-ribbon"><span>{{localize "GENESYS.Sheet.Characteristics"}}</span></div>
+  <div class="gs-chars">
+    {{#each characteristics}}
+    <div class="gs-char">
+      <input class="gs-char-circle gs-char-input" type="number" name="system.characteristics.{{key}}.value" value="{{value}}" min="1" max="6" data-dtype="Number">
+      <a class="gs-char-name" data-action="rollCharacteristic" data-key="{{key}}" data-tooltip="GENESYS.Hint.RollCharacteristic">{{localize label}}</a>
+    </div>
+    {{/each}}
+  </div>
 
   <div class="adversary-body">
     {{#if isMinion}}<p class="hint">{{localize "GENESYS.Hint.MinionSkills"}}</p>{{/if}}
@@ -87,6 +110,28 @@
         {{/each}}
       </ol>
     </section>
+
+    {{#unless isMinion}}
+    <section class="block">
+      <header class="list-header">
+        <h3>{{localize "GENESYS.Injuries"}}</h3>
+        {{#if editable}}<a class="item-control" data-action="rollInjury" data-tooltip="GENESYS.Injury.Roll"><i class="fa-solid fa-dice"></i></a>{{/if}}
+      </header>
+      <ol class="compact-list">
+        {{#each injuries}}
+        <li data-item-id="{{id}}">
+          <span class="severity">{{#times system.severity}}{{genesysDie "difficulty"}}{{/times}}</span>
+          <a class="name" data-action="itemEdit">{{name}}</a>
+          <span class="item-controls">
+            <a data-action="itemChat"><i class="fa-solid fa-comment"></i></a>
+            {{#if @root.editable}}<a data-action="healInjury" data-tooltip="GENESYS.Rest.HealInjuryHint"><i class="fa-solid fa-kit-medical"></i></a>
+            <a data-action="itemDelete"><i class="fa-solid fa-trash"></i></a>{{/if}}
+          </span>
+        </li>
+        {{else}}<li class="gs-empty">{{localize "GENESYS.Injury.None"}}</li>{{/each}}
+      </ol>
+    </section>
+    {{/unless}}
 
     <section class="block">
       <header class="list-header">
@@ -138,6 +183,13 @@
           <span class="item-controls">{{#if @root.editable}}<a data-action="itemDelete"><i class="fa-solid fa-trash"></i></a>{{/if}}</span></li>
         {{/each}}
       </ol>
+    </section>
+
+    <section class="block gs-adv-mot">
+      <header class="list-header"><h3>{{localize "GENESYS.Motivations"}}</h3></header>
+      <div class="gs-adv-mot-grid">
+        {{#each motivations}}<label>{{localize label}}<input type="text" name="system.motivations.{{key}}.name" value="{{name}}"></label>{{/each}}
+      </div>
     </section>
 
     <section class="block editor-block">

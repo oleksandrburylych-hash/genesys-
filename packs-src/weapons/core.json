@@ -1,0 +1,1804 @@
+[
+  {
+    "name": "Алебарда",
+    "nameEn": "Halberd",
+    "type": "weapon",
+    "folder": "Фэнтези",
+    "system": {
+      "skill": "meleeHeavy",
+      "damage": 3,
+      "brawnDamage": true,
+      "crit": 3,
+      "range": "engaged",
+      "encumbrance": 5,
+      "hardPoints": 3,
+      "price": 250,
+      "rarity": 3,
+      "qualities": [
+        {
+          "name": "Оборонительное",
+          "rating": 1
+        },
+        {
+          "name": "Проникающее",
+          "rating": 3
+        }
+      ],
+      "description": "<p>Тяжёлое двуручное древковое оружие пехоты с лезвием топора: дешёвое, держит врага на расстоянии и прорубает доспехи.</p>",
+      "source": "Core Rulebook, с. 144"
+    }
+  },
+  {
+    "name": "Булава",
+    "nameEn": "Mace",
+    "type": "weapon",
+    "folder": "Фэнтези",
+    "system": {
+      "skill": "meleeLight",
+      "damage": 3,
+      "brawnDamage": true,
+      "crit": 4,
+      "range": "engaged",
+      "encumbrance": 2,
+      "hardPoints": 1,
+      "price": 75,
+      "rarity": 1,
+      "qualities": [],
+      "description": "<p>Самое простое и дешёвое ударное оружие, без особых свойств.</p>",
+      "source": "Core Rulebook, с. 144"
+    }
+  },
+  {
+    "name": "Двуручный меч",
+    "nameEn": "Greatsword",
+    "type": "weapon",
+    "folder": "Фэнтези",
+    "system": {
+      "skill": "meleeHeavy",
+      "damage": 4,
+      "brawnDamage": true,
+      "crit": 2,
+      "range": "engaged",
+      "encumbrance": 3,
+      "hardPoints": 2,
+      "price": 300,
+      "rarity": 4,
+      "qualities": [
+        {
+          "name": "Оборонительное",
+          "rating": 1
+        },
+        {
+          "name": "Проникающее",
+          "rating": 1
+        },
+        {
+          "name": "Сноровка",
+          "rating": 3
+        }
+      ],
+      "description": "<p>Двуручный клинок с большим уроном; сохраняет защитные качества меча, но требует ловкости (Сноровка 3).</p>",
+      "source": "Core Rulebook, с. 144"
+    }
+  },
+  {
+    "name": "Лёгкое копьё",
+    "nameEn": "Spear",
+    "type": "weapon",
+    "folder": "Фэнтези",
+    "system": {
+      "skill": "meleeLight",
+      "damage": 2,
+      "brawnDamage": true,
+      "crit": 4,
+      "range": "engaged",
+      "encumbrance": 2,
+      "hardPoints": 1,
+      "price": 90,
+      "rarity": 1,
+      "qualities": [
+        {
+          "name": "Оборонительное",
+          "rating": 1
+        },
+        {
+          "name": "Точное",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Простое в обращении копьё: невысокий урон, зато точное и не подпускает врага близко.</p>",
+      "source": "Core Rulebook, с. 144"
+    }
+  },
+  {
+    "name": "Меч",
+    "nameEn": "Sword",
+    "type": "weapon",
+    "folder": "Фэнтези",
+    "system": {
+      "skill": "meleeLight",
+      "damage": 3,
+      "brawnDamage": true,
+      "crit": 2,
+      "range": "engaged",
+      "encumbrance": 1,
+      "hardPoints": 1,
+      "price": 200,
+      "rarity": 2,
+      "qualities": [
+        {
+          "name": "Оборонительное",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Одноручный клинок, годный и для атаки, и для парирования; острое лезвие облегчает критические травмы.</p>",
+      "source": "Core Rulebook, с. 144"
+    }
+  },
+  {
+    "name": "Секира",
+    "nameEn": "Greataxe",
+    "type": "weapon",
+    "folder": "Фэнтези",
+    "system": {
+      "skill": "meleeHeavy",
+      "damage": 4,
+      "brawnDamage": true,
+      "crit": 3,
+      "range": "engaged",
+      "encumbrance": 4,
+      "hardPoints": 2,
+      "price": 300,
+      "rarity": 4,
+      "qualities": [
+        {
+          "name": "Высококритичное",
+          "rating": 1
+        },
+        {
+          "name": "Громоздкое",
+          "rating": 3
+        },
+        {
+          "name": "Проникающее",
+          "rating": 2
+        }
+      ],
+      "description": "<p>Двуручный топор, наносящий тяжёлые калечащие раны; для замаха нужна большая сила (Громоздкое 3).</p>",
+      "source": "Core Rulebook, с. 144"
+    }
+  },
+  {
+    "name": "Топор",
+    "nameEn": "Axe",
+    "type": "weapon",
+    "folder": "Фэнтези",
+    "system": {
+      "skill": "meleeLight",
+      "damage": 3,
+      "brawnDamage": true,
+      "crit": 3,
+      "range": "engaged",
+      "encumbrance": 2,
+      "hardPoints": 1,
+      "price": 150,
+      "rarity": 1,
+      "qualities": [
+        {
+          "name": "Высококритичное",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Одноручный топор, оставляющий болезненные калечащие раны (более опасные критические травмы).</p>",
+      "source": "Core Rulebook, с. 144"
+    }
+  },
+  {
+    "name": "Щит",
+    "nameEn": "Shield",
+    "type": "weapon",
+    "folder": "Фэнтези",
+    "system": {
+      "skill": "meleeLight",
+      "damage": 0,
+      "brawnDamage": true,
+      "crit": 6,
+      "range": "engaged",
+      "encumbrance": 2,
+      "hardPoints": 1,
+      "price": 80,
+      "rarity": 1,
+      "qualities": [
+        {
+          "name": "Неточное",
+          "rating": 1
+        },
+        {
+          "name": "Нокдаун",
+          "rating": null
+        },
+        {
+          "name": "Оборонительное",
+          "rating": 1
+        },
+        {
+          "name": "Отражающее",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Щит для блокирования и парирования; им можно сбить противника с ног, но попасть щитом труднее, чем клинком.</p>",
+      "source": "Core Rulebook, с. 144"
+    }
+  },
+  {
+    "name": "Арбалет",
+    "nameEn": "Crossbow",
+    "type": "weapon",
+    "folder": "Фэнтези",
+    "system": {
+      "skill": "ranged",
+      "damage": 7,
+      "brawnDamage": false,
+      "crit": 2,
+      "range": "medium",
+      "encumbrance": 3,
+      "hardPoints": 2,
+      "price": 600,
+      "rarity": 4,
+      "qualities": [
+        {
+          "name": "Подготовка",
+          "rating": 1
+        },
+        {
+          "name": "Проникающее",
+          "rating": 2
+        }
+      ],
+      "description": "<p>Мощный и простой в использовании, но натягивание тетивы требует времени (Подготовка 1). Стрелы и болты по умолчанию не учитываются: крах при стрельбе может означать, что боеприпасы кончились. Если их всё же считают, 5 стрел или болтов стоят 1.</p>",
+      "source": "Core Rulebook, с. 144"
+    }
+  },
+  {
+    "name": "Длинный лук",
+    "nameEn": "Longbow",
+    "type": "weapon",
+    "folder": "Фэнтези",
+    "system": {
+      "skill": "ranged",
+      "damage": 8,
+      "brawnDamage": false,
+      "crit": 3,
+      "range": "long",
+      "encumbrance": 3,
+      "hardPoints": 2,
+      "price": 450,
+      "rarity": 4,
+      "qualities": [
+        {
+          "name": "Сноровка",
+          "rating": 3
+        }
+      ],
+      "description": "<p>Большой лук с высокой дальностью; требует навыка и координации (Сноровка 3). Стрелы и болты по умолчанию не учитываются: крах при стрельбе может означать, что боеприпасы кончились. Если их всё же считают, 5 стрел или болтов стоят 1.</p>",
+      "source": "Core Rulebook, с. 144"
+    }
+  },
+  {
+    "name": "Лук",
+    "nameEn": "Bow",
+    "type": "weapon",
+    "folder": "Фэнтези",
+    "system": {
+      "skill": "ranged",
+      "damage": 7,
+      "brawnDamage": false,
+      "crit": 3,
+      "range": "medium",
+      "encumbrance": 2,
+      "hardPoints": 1,
+      "price": 275,
+      "rarity": 2,
+      "qualities": [
+        {
+          "name": "Сноровка",
+          "rating": 2
+        }
+      ],
+      "description": "<p>Опытный стрелок стреляет из лука быстро, поэтому подготовки он не требует, но нужна координация (Сноровка 2). Стрелы и болты по умолчанию не учитываются: крах при стрельбе может означать, что боеприпасы кончились. Если их всё же считают, 5 стрел или болтов стоят 1.</p>",
+      "source": "Core Rulebook, с. 144"
+    }
+  },
+  {
+    "name": "Механический кулак",
+    "nameEn": "",
+    "type": "weapon",
+    "folder": "Стимпанк",
+    "system": {
+      "skill": "brawl",
+      "damage": 4,
+      "brawnDamage": true,
+      "crit": 4,
+      "range": "engaged",
+      "encumbrance": 2,
+      "hardPoints": 1,
+      "price": 525,
+      "rarity": 5,
+      "qualities": [
+        {
+          "name": "Медленное",
+          "rating": 2
+        },
+        {
+          "name": "Ошеломление",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Латунная перчатка на сжатых пружинах, бьющая с сокрушительной силой; после удара пружины нужно взводить (Медленное 2). В промежуточных раундах можно совершать безоружные атаки, но без преимуществ кулака.</p>",
+      "source": "Core Rulebook, с. 154"
+    }
+  },
+  {
+    "name": "Ротомеч",
+    "nameEn": "",
+    "type": "weapon",
+    "folder": "Стимпанк",
+    "system": {
+      "skill": "melee",
+      "damage": 3,
+      "brawnDamage": true,
+      "crit": 2,
+      "range": "engaged",
+      "encumbrance": 5,
+      "hardPoints": 3,
+      "price": 400,
+      "rarity": 7,
+      "qualities": [
+        {
+          "name": "Высококритичное",
+          "rating": 2
+        },
+        {
+          "name": "Громоздкое",
+          "rating": 3
+        },
+        {
+          "name": "Неточное",
+          "rating": 1
+        },
+        {
+          "name": "Повреждение",
+          "rating": null
+        },
+        {
+          "name": "Проникающее",
+          "rating": 2
+        }
+      ],
+      "description": "<p>Паровая цепная пила в форме двуручного меча. Требует двух рук; если в игре есть навык «Ближний бой (тяжёлое оружие)», используется он.</p>",
+      "source": "Core Rulebook, с. 154"
+    }
+  },
+  {
+    "name": "Трость-шпага",
+    "nameEn": "Sword Cane",
+    "type": "weapon",
+    "folder": "Стимпанк",
+    "system": {
+      "skill": "melee",
+      "damage": 1,
+      "brawnDamage": true,
+      "crit": 2,
+      "range": "engaged",
+      "encumbrance": 1,
+      "hardPoints": 1,
+      "price": 110,
+      "rarity": 3,
+      "qualities": [
+        {
+          "name": "Оборонительное",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Клинок, спрятанный в трости. Обыскивающий владельца добавляет кость штрафа ко всем проверкам Внимания, чтобы найти спрятанную шпагу.</p>",
+      "source": "Core Rulebook, с. 154"
+    }
+  },
+  {
+    "name": "Механическая граната",
+    "nameEn": "",
+    "type": "weapon",
+    "folder": "Стимпанк",
+    "system": {
+      "skill": "rangedLight",
+      "damage": 8,
+      "brawnDamage": false,
+      "crit": 3,
+      "range": "short",
+      "encumbrance": 1,
+      "hardPoints": 1,
+      "price": 50,
+      "rarity": 6,
+      "qualities": [
+        {
+          "name": "Взрыв",
+          "rating": 5
+        },
+        {
+          "name": "Жжение",
+          "rating": 1
+        },
+        {
+          "name": "Ограниченный боезапас",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Паровой контейнер с двумя реагентами, разрывающийся шрапнелью и обжигающими брызгами. Крайне нестабильна: если при проверке владельца выпадает крах, граната взрывается у него в руках, и он получает автоматическое попадание с базовым уроном гранаты.</p>",
+      "source": "Core Rulebook, с. 154"
+    }
+  },
+  {
+    "name": "Многоствольный пулемёт",
+    "nameEn": "",
+    "type": "weapon",
+    "folder": "Стимпанк",
+    "system": {
+      "skill": "rangedHeavy",
+      "damage": 11,
+      "brawnDamage": false,
+      "crit": 3,
+      "range": "long",
+      "encumbrance": 7,
+      "hardPoints": 4,
+      "price": 1100,
+      "rarity": 6,
+      "qualities": [
+        {
+          "name": "Автоматическое",
+          "rating": null
+        },
+        {
+          "name": "Громоздкое",
+          "rating": 4
+        },
+        {
+          "name": "Подготовка",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Паровой многоствольный пулемёт: тяжёлый и громоздкий, перед стрельбой его нужно загрузить боеприпасами и углём (Подготовка 1).</p>",
+      "source": "Core Rulebook, с. 154"
+    }
+  },
+  {
+    "name": "Ротопистолет",
+    "nameEn": "",
+    "type": "weapon",
+    "folder": "Стимпанк",
+    "system": {
+      "skill": "rangedLight",
+      "damage": 5,
+      "brawnDamage": false,
+      "crit": 4,
+      "range": "short",
+      "encumbrance": 2,
+      "hardPoints": 1,
+      "price": 280,
+      "rarity": 7,
+      "qualities": [
+        {
+          "name": "Автоматическое",
+          "rating": null
+        },
+        {
+          "name": "Ограниченный боезапас",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Многоствольный пистолет на кварц-гальванитовой батарее. Ограниченный боезапас 1 означает, что одна очередь тратит весь заряд; после стрельбы меняют обойму и батарею.</p>",
+      "source": "Core Rulebook, с. 154"
+    }
+  },
+  {
+    "name": "Ручная пушка",
+    "nameEn": "Hand Cannon",
+    "type": "weapon",
+    "folder": "Стимпанк",
+    "system": {
+      "skill": "rangedLight",
+      "damage": 9,
+      "brawnDamage": false,
+      "crit": 3,
+      "range": "medium",
+      "encumbrance": 3,
+      "hardPoints": 2,
+      "price": 400,
+      "rarity": 5,
+      "qualities": [
+        {
+          "name": "Нокдаун",
+          "rating": null
+        },
+        {
+          "name": "Ограниченный боезапас",
+          "rating": 1
+        },
+        {
+          "name": "Подготовка",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Крупнокалиберный однозарядный пистолет: из-за сильной отдачи требует подготовки, после каждого выстрела его нужно перезаряжать.</p>",
+      "source": "Core Rulebook, с. 154"
+    }
+  },
+  {
+    "name": "Самозарядная винтовка",
+    "nameEn": "",
+    "type": "weapon",
+    "folder": "Стимпанк",
+    "system": {
+      "skill": "rangedHeavy",
+      "damage": 8,
+      "brawnDamage": false,
+      "crit": 3,
+      "range": "long",
+      "encumbrance": 4,
+      "hardPoints": 2,
+      "price": 500,
+      "rarity": 4,
+      "qualities": [],
+      "description": "<p>Многозарядная винтовка с затвором или рычагом; стреляет недостаточно быстро для свойства Автоматическое.</p>",
+      "source": "Core Rulebook, с. 154"
+    }
+  },
+  {
+    "name": "Смертельный луч",
+    "nameEn": "Death Ray",
+    "type": "weapon",
+    "folder": "Стимпанк",
+    "system": {
+      "skill": "rangedHeavy",
+      "damage": 12,
+      "brawnDamage": false,
+      "crit": 1,
+      "range": "short",
+      "encumbrance": 5,
+      "hardPoints": 3,
+      "price": 4500,
+      "rarity": 10,
+      "qualities": [
+        {
+          "name": "Бронебойное",
+          "rating": 2
+        },
+        {
+          "name": "Высококритичное",
+          "rating": 5
+        },
+        {
+          "name": "Медленное",
+          "rating": 1
+        },
+        {
+          "name": "Неточное",
+          "rating": 2
+        }
+      ],
+      "description": "<p>Уникальное творение безумного изобретателя: короткая дистанция, неточность и подзарядка между выстрелами (Медленное 1). Крит. 1 делает его крайне опасным против персонажей игроков.</p>",
+      "source": "Core Rulebook, с. 154"
+    }
+  },
+  {
+    "name": "Бритвенный кнут",
+    "nameEn": "",
+    "type": "weapon",
+    "folder": "Моровая война",
+    "system": {
+      "skill": "melee",
+      "damage": 1,
+      "brawnDamage": true,
+      "crit": 3,
+      "range": "short",
+      "encumbrance": 1,
+      "hardPoints": 1,
+      "price": 290,
+      "rarity": 7,
+      "qualities": [
+        {
+          "name": "Проникающее",
+          "rating": 3
+        },
+        {
+          "name": "Сковывание",
+          "rating": 1
+        },
+        {
+          "name": "Сноровка",
+          "rating": 3
+        }
+      ],
+      "description": "<p>Гибкий кнут со встроенными лезвиями. Им можно совершать атаки ближнего боя против целей на короткой дистанции; сложность такой атаки — обычная (2 кости сложности).</p>",
+      "source": "Core Rulebook, с. 161"
+    }
+  },
+  {
+    "name": "Электродубинка",
+    "nameEn": "",
+    "type": "weapon",
+    "folder": "Моровая война",
+    "system": {
+      "skill": "melee",
+      "damage": 2,
+      "brawnDamage": true,
+      "crit": 3,
+      "range": "engaged",
+      "encumbrance": 1,
+      "hardPoints": 1,
+      "price": 150,
+      "rarity": 5,
+      "qualities": [
+        {
+          "name": "Дезориентация",
+          "rating": 3
+        },
+        {
+          "name": "Оглушающий урон",
+          "rating": null
+        }
+      ],
+      "description": "<p>Дубинка для разгона толп, бьющая током. Урон оглушающий, но критическое значение у неё есть — убить ею всё-таки можно.</p>",
+      "source": "Core Rulebook, с. 161"
+    }
+  },
+  {
+    "name": "Метеоромёт",
+    "nameEn": "",
+    "type": "weapon",
+    "folder": "Моровая война",
+    "system": {
+      "skill": "gunnery",
+      "damage": 12,
+      "brawnDamage": false,
+      "crit": 2,
+      "range": "medium",
+      "encumbrance": 6,
+      "hardPoints": 3,
+      "price": 850,
+      "rarity": 7,
+      "qualities": [
+        {
+          "name": "Взрыв",
+          "rating": 8
+        },
+        {
+          "name": "Громоздкое",
+          "rating": 3
+        },
+        {
+          "name": "Ограниченный боезапас",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Тяжёлый однозарядный пусковой аппарат для взрывных «метеоров», эффективных против пехоты и укреплений.</p>",
+      "source": "Core Rulebook, с. 161"
+    }
+  },
+  {
+    "name": "ОНЭ-винтовка",
+    "nameEn": "DEW Rifle",
+    "type": "weapon",
+    "folder": "Моровая война",
+    "system": {
+      "skill": "rangedHeavy",
+      "damage": 8,
+      "brawnDamage": false,
+      "crit": 3,
+      "range": "medium",
+      "encumbrance": 6,
+      "hardPoints": 3,
+      "price": 900,
+      "rarity": 8,
+      "qualities": [
+        {
+          "name": "Жжение",
+          "rating": 2
+        }
+      ],
+      "description": "<p>Экспериментальное оружие направленной энергии: поджигает цель, но лучше действует на коротких дистанциях и не обладает пробивной силой.</p>",
+      "source": "Core Rulebook, с. 161"
+    }
+  },
+  {
+    "name": "ОНЭ-пистолет",
+    "nameEn": "DEW Pistol",
+    "type": "weapon",
+    "folder": "Моровая война",
+    "system": {
+      "skill": "rangedLight",
+      "damage": 6,
+      "brawnDamage": false,
+      "crit": 3,
+      "range": "short",
+      "encumbrance": 4,
+      "hardPoints": 2,
+      "price": 450,
+      "rarity": 8,
+      "qualities": [
+        {
+          "name": "Жжение",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Пистолетная версия оружия направленной энергии: поджигает цель, но не пробивает броню.</p>",
+      "source": "Core Rulebook, с. 161"
+    }
+  },
+  {
+    "name": "Флэш-оружие",
+    "nameEn": "",
+    "type": "weapon",
+    "folder": "Моровая война",
+    "system": {
+      "skill": "rangedHeavy",
+      "damage": 6,
+      "brawnDamage": false,
+      "crit": 3,
+      "range": "medium",
+      "encumbrance": 4,
+      "hardPoints": 2,
+      "price": 900,
+      "rarity": 7,
+      "qualities": [
+        {
+          "name": "Автоматическое",
+          "rating": null
+        },
+        {
+          "name": "Дезориентация",
+          "rating": 2
+        },
+        {
+          "name": "Проникающее",
+          "rating": 2
+        }
+      ],
+      "description": "<p>Пистолет-пулемёт с силовой установкой на иллириевой батарее. Другие виды флэш-оружия получаются, если взять параметры винтовки или пистолета и добавить свойства Дезориентация и Проникающее.</p>",
+      "source": "Core Rulebook, с. 161"
+    }
+  },
+  {
+    "name": "Флэш-пулемёт",
+    "nameEn": "",
+    "type": "weapon",
+    "folder": "Моровая война",
+    "system": {
+      "skill": "gunnery",
+      "damage": 10,
+      "brawnDamage": false,
+      "crit": 2,
+      "range": "long",
+      "encumbrance": 8,
+      "hardPoints": 4,
+      "price": 1450,
+      "rarity": 9,
+      "qualities": [
+        {
+          "name": "Автоматическое",
+          "rating": null
+        },
+        {
+          "name": "Высококритичное",
+          "rating": 3
+        },
+        {
+          "name": "Громоздкое",
+          "rating": 3
+        },
+        {
+          "name": "Дезориентация",
+          "rating": 2
+        },
+        {
+          "name": "Неточное",
+          "rating": 1
+        },
+        {
+          "name": "Проникающее",
+          "rating": 2
+        }
+      ],
+      "description": "<p>Тяжёлый скорострельный пулемёт на иллириевых батареях; без треноги или иной опоры им могут пользоваться лишь самые сильные стрелки.</p>",
+      "source": "Core Rulebook, с. 161"
+    }
+  },
+  {
+    "name": "Латунный кастет",
+    "nameEn": "Brass Knuckles",
+    "type": "weapon",
+    "folder": "Современность",
+    "system": {
+      "skill": "brawl",
+      "damage": 1,
+      "brawnDamage": true,
+      "crit": 4,
+      "range": "engaged",
+      "encumbrance": 1,
+      "hardPoints": 1,
+      "price": 40,
+      "rarity": 1,
+      "qualities": [
+        {
+          "name": "Дезориентация",
+          "rating": 3
+        }
+      ],
+      "description": "<p>Утяжеляет удар кулака. Те же параметры у мешочка с монетами.</p>",
+      "source": "Core Rulebook, с. 166"
+    }
+  },
+  {
+    "name": "Складная дубинка",
+    "nameEn": "",
+    "type": "weapon",
+    "folder": "Современность",
+    "system": {
+      "skill": "melee",
+      "damage": 2,
+      "brawnDamage": true,
+      "crit": 3,
+      "range": "engaged",
+      "encumbrance": 1,
+      "hardPoints": 1,
+      "price": 70,
+      "rarity": 2,
+      "qualities": [],
+      "description": "<p>Складная дубинка с утяжелённым концом. Вариант для подавления беспорядков: урон +1 или +2, нагрузка увеличивается на ту же величину.</p>",
+      "source": "Core Rulebook, с. 166"
+    }
+  },
+  {
+    "name": "Электрошок",
+    "nameEn": "",
+    "type": "weapon",
+    "folder": "Современность",
+    "system": {
+      "skill": "melee",
+      "damage": 5,
+      "brawnDamage": false,
+      "crit": 6,
+      "range": "engaged",
+      "encumbrance": 1,
+      "hardPoints": 1,
+      "price": 100,
+      "rarity": 1,
+      "qualities": [
+        {
+          "name": "Оглушающий урон",
+          "rating": null
+        },
+        {
+          "name": "Оглушение",
+          "rating": 3
+        }
+      ],
+      "description": "<p>Ручное устройство с электродами. Урон не зависит от Силы (оружием касаются, а не бьют); удар током может вызвать критическую травму.</p>",
+      "source": "Core Rulebook, с. 166"
+    }
+  },
+  {
+    "name": "Автомат",
+    "nameEn": "Assault Rifle",
+    "type": "weapon",
+    "folder": "Современность",
+    "system": {
+      "skill": "rangedHeavy",
+      "damage": 8,
+      "brawnDamage": false,
+      "crit": 3,
+      "range": "long",
+      "encumbrance": 4,
+      "hardPoints": 2,
+      "price": 1000,
+      "rarity": 7,
+      "qualities": [
+        {
+          "name": "Автоматическое",
+          "rating": null
+        }
+      ],
+      "description": "<p>Армейский автомат (серии AR или AK); может стрелять и одиночными — стрелок сам решает, использовать ли Автоматическое. Вариант-карабин: дистанция средняя, нагрузка на 1 меньше.</p>",
+      "source": "Core Rulebook, с. 166"
+    }
+  },
+  {
+    "name": "Дробовик",
+    "nameEn": "Shotgun",
+    "type": "weapon",
+    "folder": "Современность",
+    "system": {
+      "skill": "rangedHeavy",
+      "damage": 8,
+      "brawnDamage": false,
+      "crit": 3,
+      "range": "short",
+      "encumbrance": 3,
+      "hardPoints": 2,
+      "price": 500,
+      "rarity": 3,
+      "qualities": [
+        {
+          "name": "Взрыв",
+          "rating": 4
+        },
+        {
+          "name": "Высококритичное",
+          "rating": 2
+        },
+        {
+          "name": "Нокдаун",
+          "rating": null
+        }
+      ],
+      "description": "<p>Помповое или полуавтоматическое ружьё с картечью. Переломное ружьё с 1–2 стволами получает Ограниченный боезапас 1 или 2; у обреза нагрузка на 2 меньше и есть Неточное 1. Передёргивая затвор, персонаж может добавлять кость бонуса к проверкам Запугивания.</p>",
+      "source": "Core Rulebook, с. 166"
+    }
+  },
+  {
+    "name": "Лёгкий пистолет",
+    "nameEn": "Light Pistol",
+    "type": "weapon",
+    "folder": "Современность",
+    "system": {
+      "skill": "rangedLight",
+      "damage": 5,
+      "brawnDamage": false,
+      "crit": 4,
+      "range": "short",
+      "encumbrance": 1,
+      "hardPoints": 1,
+      "price": 100,
+      "rarity": 3,
+      "qualities": [],
+      "description": "<p>Обычный пистолет калибра 9 мм или .38. Калибр .22: урон −1, крит. +1. Дешёвый пистолет может получить 1–2 ранга Неточное или Низкопробное.</p>",
+      "source": "Core Rulebook, с. 166"
+    }
+  },
+  {
+    "name": "Охотничье ружьё",
+    "nameEn": "Hunting Rifle",
+    "type": "weapon",
+    "folder": "Современность",
+    "system": {
+      "skill": "rangedHeavy",
+      "damage": 8,
+      "brawnDamage": false,
+      "crit": 3,
+      "range": "long",
+      "encumbrance": 4,
+      "hardPoints": 2,
+      "price": 750,
+      "rarity": 4,
+      "qualities": [
+        {
+          "name": "Ограниченный боезапас",
+          "rating": 2
+        },
+        {
+          "name": "Точное",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Двуствольное ружьё с оптическим прицелом. Урон −1 для лёгких вариантов или +1 для оружия на крупную дичь. Вариант с внутренним магазином теряет Ограниченный боезапас 2, но стоит на 100 дороже.</p>",
+      "source": "Core Rulebook, с. 166"
+    }
+  },
+  {
+    "name": "Пистолет-пулемёт",
+    "nameEn": "Submachine Gun",
+    "type": "weapon",
+    "folder": "Современность",
+    "system": {
+      "skill": "rangedLight",
+      "damage": 5,
+      "brawnDamage": false,
+      "crit": 3,
+      "range": "medium",
+      "encumbrance": 2,
+      "hardPoints": 1,
+      "price": 400,
+      "rarity": 6,
+      "qualities": [
+        {
+          "name": "Автоматическое",
+          "rating": null
+        }
+      ],
+      "description": "<p>Компактное скорострельное оружие под пистолетный патрон (9 мм); каждый «выстрел» — несколько пуль.</p>",
+      "source": "Core Rulebook, с. 166"
+    }
+  },
+  {
+    "name": "Портативная ракетная установка",
+    "nameEn": "",
+    "type": "weapon",
+    "folder": "Современность",
+    "system": {
+      "skill": "gunnery",
+      "damage": 20,
+      "brawnDamage": false,
+      "crit": 2,
+      "range": "extreme",
+      "encumbrance": 8,
+      "hardPoints": 4,
+      "price": 100000,
+      "rarity": 8,
+      "qualities": [
+        {
+          "name": "Бронебойное",
+          "rating": 2
+        },
+        {
+          "name": "Взрыв",
+          "rating": 10
+        },
+        {
+          "name": "Громоздкое",
+          "rating": 3
+        },
+        {
+          "name": "Наведение",
+          "rating": 3
+        },
+        {
+          "name": "Ограниченный боезапас",
+          "rating": 1
+        },
+        {
+          "name": "Подготовка",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Переносной зенитный комплекс вроде «Стингера»: одна ракета за раз, требует подготовки. Боеприпас стоит половину начальной цены установки. Противотанковый вариант: Бронебойное 5, Подготовка 2.</p>",
+      "source": "Core Rulebook, с. 166"
+    }
+  },
+  {
+    "name": "Пулемёт",
+    "nameEn": "Machine Gun",
+    "type": "weapon",
+    "folder": "Современность",
+    "system": {
+      "skill": "gunnery",
+      "damage": 10,
+      "brawnDamage": false,
+      "crit": 3,
+      "range": "long",
+      "encumbrance": 6,
+      "hardPoints": 3,
+      "price": 1500,
+      "rarity": 6,
+      "qualities": [
+        {
+          "name": "Автоматическое",
+          "rating": null
+        },
+        {
+          "name": "Высококритичное",
+          "rating": 2
+        },
+        {
+          "name": "Громоздкое",
+          "rating": 2
+        },
+        {
+          "name": "Проникающее",
+          "rating": 2
+        }
+      ],
+      "description": "<p>Пулемёт среднего калибра (M60, M249, MG4), который можно переносить в руках; сошки и треноги — с. 208. Тяжёлый пулемёт: урон +2, нагрузка и рейтинг Громоздкого +2.</p>",
+      "source": "Core Rulebook, с. 166"
+    }
+  },
+  {
+    "name": "Снайперская винтовка",
+    "nameEn": "Sniper Rifle",
+    "type": "weapon",
+    "folder": "Современность",
+    "system": {
+      "skill": "rangedHeavy",
+      "damage": 9,
+      "brawnDamage": false,
+      "crit": 2,
+      "range": "extreme",
+      "encumbrance": 4,
+      "hardPoints": 2,
+      "price": 1200,
+      "rarity": 6,
+      "qualities": [
+        {
+          "name": "Ограниченный боезапас",
+          "rating": 4
+        },
+        {
+          "name": "Проникающее",
+          "rating": 2
+        },
+        {
+          "name": "Точное",
+          "rating": 2
+        }
+      ],
+      "description": "<p>Крупнокалиберная винтовка (вроде M24) с экстремальной дальностью и небольшим магазином.</p>",
+      "source": "Core Rulebook, с. 166"
+    }
+  },
+  {
+    "name": "Тяжёлый пистолет",
+    "nameEn": "Heavy Pistol",
+    "type": "weapon",
+    "folder": "Современность",
+    "system": {
+      "skill": "rangedLight",
+      "damage": 6,
+      "brawnDamage": false,
+      "crit": 3,
+      "range": "medium",
+      "encumbrance": 1,
+      "hardPoints": 1,
+      "price": 300,
+      "rarity": 3,
+      "qualities": [],
+      "description": "<p>Крупнокалиберный пистолет. Урон и крит. можно изменить на 1 (не больше), чтобы отразить калибр.</p>",
+      "source": "Core Rulebook, с. 166"
+    }
+  },
+  {
+    "name": "Моноклинковый нож",
+    "nameEn": "",
+    "type": "weapon",
+    "folder": "Научная фантастика",
+    "system": {
+      "skill": "melee",
+      "damage": 1,
+      "brawnDamage": true,
+      "crit": 2,
+      "range": "engaged",
+      "encumbrance": 1,
+      "hardPoints": 1,
+      "price": 240,
+      "rarity": 3,
+      "qualities": [
+        {
+          "name": "Проникающее",
+          "rating": 2
+        }
+      ],
+      "description": "<p>Нож со сверхострым лезвием из новых материалов: лучше критическое значение, режет прочные материалы. Моноклинковый меч: урон +3, Оборонительное 1, цена ×2.</p>",
+      "source": "Core Rulebook, с. 175"
+    }
+  },
+  {
+    "name": "Оглушающая дубинка",
+    "nameEn": "Stun Baton",
+    "type": "weapon",
+    "folder": "Научная фантастика",
+    "system": {
+      "skill": "melee",
+      "damage": 6,
+      "brawnDamage": false,
+      "crit": 4,
+      "range": "engaged",
+      "encumbrance": 1,
+      "hardPoints": 1,
+      "price": 160,
+      "rarity": 2,
+      "qualities": [
+        {
+          "name": "Дезориентация",
+          "rating": 3
+        },
+        {
+          "name": "Оглушающий урон",
+          "rating": null
+        }
+      ],
+      "description": "<p>Футуристическая полицейская дубинка: электрический разряд, поэтому Сила к урону не прибавляется; несмертельное оружие.</p>",
+      "source": "Core Rulebook, с. 175"
+    }
+  },
+  {
+    "name": "Винтовка Гаусса",
+    "nameEn": "Gauss Rifle",
+    "type": "weapon",
+    "folder": "Научная фантастика",
+    "system": {
+      "skill": "rangedHeavy",
+      "damage": 10,
+      "brawnDamage": false,
+      "crit": 2,
+      "range": "extreme",
+      "encumbrance": 5,
+      "hardPoints": 3,
+      "price": 2000,
+      "rarity": 6,
+      "qualities": [
+        {
+          "name": "Громоздкое",
+          "rating": 3
+        },
+        {
+          "name": "Медленное",
+          "rating": 1
+        },
+        {
+          "name": "Проникающее",
+          "rating": 5
+        }
+      ],
+      "description": "<p>Электромагнитный ускоритель снарядов: очень мощная, но требует перезарядки конденсаторов (Медленное 1). Слабым персонажам нужны сошки (с. 208).</p>",
+      "source": "Core Rulebook, с. 175"
+    }
+  },
+  {
+    "name": "Игловой пистолет",
+    "nameEn": "Needle Pistol",
+    "type": "weapon",
+    "folder": "Научная фантастика",
+    "system": {
+      "skill": "rangedLight",
+      "damage": 4,
+      "brawnDamage": false,
+      "crit": 2,
+      "range": "short",
+      "encumbrance": 1,
+      "hardPoints": 1,
+      "price": 500,
+      "rarity": 5,
+      "qualities": [
+        {
+          "name": "Высококритичное",
+          "rating": 2
+        },
+        {
+          "name": "Проникающее",
+          "rating": 2
+        }
+      ],
+      "description": "<p>Электромагнитный пистолет, метающий пучки крохотных игл: низкий урон, но высокая пробивная сила и опасные критические травмы.</p>",
+      "source": "Core Rulebook, с. 175"
+    }
+  },
+  {
+    "name": "Игломёт",
+    "nameEn": "",
+    "type": "weapon",
+    "folder": "Научная фантастика",
+    "system": {
+      "skill": "rangedHeavy",
+      "damage": 4,
+      "brawnDamage": false,
+      "crit": 2,
+      "range": "medium",
+      "encumbrance": 3,
+      "hardPoints": 2,
+      "price": 800,
+      "rarity": 5,
+      "qualities": [
+        {
+          "name": "Взрыв",
+          "rating": 4
+        },
+        {
+          "name": "Высококритичное",
+          "rating": 3
+        },
+        {
+          "name": "Проникающее",
+          "rating": 2
+        }
+      ],
+      "description": "<p>Тяжёлая версия иглового пистолета, стреляющая крупными пучками игл, как дробовик.</p>",
+      "source": "Core Rulebook, с. 175"
+    }
+  },
+  {
+    "name": "Лазерное ружьё",
+    "nameEn": "Laser Rifle",
+    "type": "weapon",
+    "folder": "Научная фантастика",
+    "system": {
+      "skill": "rangedHeavy",
+      "damage": 8,
+      "brawnDamage": false,
+      "crit": 3,
+      "range": "medium",
+      "encumbrance": 4,
+      "hardPoints": 2,
+      "price": 900,
+      "rarity": 7,
+      "qualities": [
+        {
+          "name": "Жжение",
+          "rating": 1
+        },
+        {
+          "name": "Точное",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Ранняя модель лазерного оружия: точное и поджигает цель, но луч рассеивается с расстоянием и не пробивает броню.</p>",
+      "source": "Core Rulebook, с. 175"
+    }
+  },
+  {
+    "name": "Лазерный пистолет",
+    "nameEn": "Laser Pistol",
+    "type": "weapon",
+    "folder": "Научная фантастика",
+    "system": {
+      "skill": "rangedLight",
+      "damage": 6,
+      "brawnDamage": false,
+      "crit": 3,
+      "range": "short",
+      "encumbrance": 2,
+      "hardPoints": 1,
+      "price": 650,
+      "rarity": 7,
+      "qualities": [
+        {
+          "name": "Жжение",
+          "rating": 1
+        },
+        {
+          "name": "Точное",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Ранняя модель лазерного пистолета: точный и поджигает цель, но с короткой дальностью и без пробивной силы.</p>",
+      "source": "Core Rulebook, с. 175"
+    }
+  },
+  {
+    "name": "Микроракетная установка",
+    "nameEn": "",
+    "type": "weapon",
+    "folder": "Научная фантастика",
+    "system": {
+      "skill": "gunnery",
+      "damage": 12,
+      "brawnDamage": false,
+      "crit": 4,
+      "range": "long",
+      "encumbrance": 5,
+      "hardPoints": 3,
+      "price": 3000,
+      "rarity": 6,
+      "qualities": [
+        {
+          "name": "Взрыв",
+          "rating": 10
+        },
+        {
+          "name": "Громоздкое",
+          "rating": 4
+        },
+        {
+          "name": "Наведение",
+          "rating": 3
+        },
+        {
+          "name": "Ограниченный боезапас",
+          "rating": 3
+        },
+        {
+          "name": "Подготовка",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Переносная установка мини-ракет, захватывающих и преследующих цель; захват требует времени (Подготовка 1). Тяжёлая и громоздкая.</p>",
+      "source": "Core Rulebook, с. 175"
+    }
+  },
+  {
+    "name": "Виброклинок",
+    "nameEn": "",
+    "type": "weapon",
+    "folder": "Космоопера",
+    "system": {
+      "skill": "melee",
+      "damage": 2,
+      "brawnDamage": true,
+      "crit": 2,
+      "range": "engaged",
+      "encumbrance": 1,
+      "hardPoints": 1,
+      "price": 450,
+      "rarity": 5,
+      "qualities": [
+        {
+          "name": "Высококритичное",
+          "rating": 3
+        },
+        {
+          "name": "Проникающее",
+          "rating": 2
+        }
+      ],
+      "description": "<p>Боевой нож из углеродистого сплава, вибрирующий на ультразвуковой частоте и прорезающий даже прочные материалы.</p>",
+      "source": "Core Rulebook, с. 184"
+    }
+  },
+  {
+    "name": "Корпускулярная граната",
+    "nameEn": "",
+    "type": "weapon",
+    "folder": "Космоопера",
+    "system": {
+      "skill": "rangedLight",
+      "damage": 6,
+      "brawnDamage": false,
+      "crit": 4,
+      "range": "short",
+      "encumbrance": 1,
+      "hardPoints": 1,
+      "price": 200,
+      "rarity": 5,
+      "qualities": [
+        {
+          "name": "Взрыв",
+          "rating": 3
+        },
+        {
+          "name": "Дезориентация",
+          "rating": 3
+        },
+        {
+          "name": "Оглушающий урон",
+          "rating": null
+        },
+        {
+          "name": "Ограниченный боезапас",
+          "rating": 1
+        },
+        {
+          "name": "Ошеломление",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Оглушающая граната, поражающая нервную систему высокоэнергетическими частицами; цель остаётся дезориентированной даже после того, как придёт в себя.</p>",
+      "source": "Core Rulebook, с. 184"
+    }
+  },
+  {
+    "name": "Лазерная пушка",
+    "nameEn": "",
+    "type": "weapon",
+    "folder": "Космоопера",
+    "system": {
+      "skill": "gunnery",
+      "damage": 9,
+      "brawnDamage": false,
+      "crit": 3,
+      "range": "extreme",
+      "encumbrance": 8,
+      "hardPoints": 4,
+      "price": 3120,
+      "rarity": 6,
+      "qualities": [
+        {
+          "name": "Бронебойное",
+          "rating": 2
+        },
+        {
+          "name": "Громоздкое",
+          "rating": 3
+        }
+      ],
+      "description": "<p>Тяжёлое лучевое орудие: луч не ослабевает с расстоянием и прожигает даже броню техники.</p>",
+      "source": "Core Rulebook, с. 184"
+    }
+  },
+  {
+    "name": "Лазерное ружьё",
+    "nameEn": "Laser Rifle",
+    "type": "weapon",
+    "folder": "Космоопера",
+    "system": {
+      "skill": "rangedHeavy",
+      "damage": 6,
+      "brawnDamage": false,
+      "crit": 3,
+      "range": "long",
+      "encumbrance": 4,
+      "hardPoints": 2,
+      "price": 860,
+      "rarity": 4,
+      "qualities": [
+        {
+          "name": "Проникающее",
+          "rating": 4
+        }
+      ],
+      "description": "<p>Продвинутое лучевое оружие космооперы: луч не ослабевает с расстоянием и легко прожигает броню.</p>",
+      "source": "Core Rulebook, с. 184"
+    }
+  },
+  {
+    "name": "Лазерный пистолет",
+    "nameEn": "Laser Pistol",
+    "type": "weapon",
+    "folder": "Космоопера",
+    "system": {
+      "skill": "rangedLight",
+      "damage": 5,
+      "brawnDamage": false,
+      "crit": 3,
+      "range": "medium",
+      "encumbrance": 2,
+      "hardPoints": 1,
+      "price": 360,
+      "rarity": 4,
+      "qualities": [
+        {
+          "name": "Проникающее",
+          "rating": 2
+        }
+      ],
+      "description": "<p>Продвинутый лучевой пистолет: луч не ослабевает с расстоянием и прожигает броню.</p>",
+      "source": "Core Rulebook, с. 184"
+    }
+  },
+  {
+    "name": "Плазменная пушка",
+    "nameEn": "Plasma Cannon",
+    "type": "weapon",
+    "folder": "Космоопера",
+    "system": {
+      "skill": "gunnery",
+      "damage": 10,
+      "brawnDamage": false,
+      "crit": 2,
+      "range": "long",
+      "encumbrance": 7,
+      "hardPoints": 4,
+      "price": 2000,
+      "rarity": 7,
+      "qualities": [
+        {
+          "name": "Взрыв",
+          "rating": 10
+        },
+        {
+          "name": "Громоздкое",
+          "rating": 3
+        },
+        {
+          "name": "Жжение",
+          "rating": 1
+        },
+        {
+          "name": "Медленное",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Стреляет сгустками перегретого ионизированного газа; после выстрела пушке нужно время, чтобы остыть (Медленное 1).</p>",
+      "source": "Core Rulebook, с. 184"
+    }
+  },
+  {
+    "name": "Плазменное ружьё",
+    "nameEn": "Plasma Rifle",
+    "type": "weapon",
+    "folder": "Космоопера",
+    "system": {
+      "skill": "rangedHeavy",
+      "damage": 10,
+      "brawnDamage": false,
+      "crit": 2,
+      "range": "medium",
+      "encumbrance": 4,
+      "hardPoints": 2,
+      "price": 1400,
+      "rarity": 4,
+      "qualities": [
+        {
+          "name": "Жжение",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Стреляет раскалёнными сгустками плазмы, прожигающими плоть и броню; дальность ограничена нестабильностью снаряда.</p>",
+      "source": "Core Rulebook, с. 184"
+    }
+  },
+  {
+    "name": "Плазменный пистолет",
+    "nameEn": "Plasma Pistol",
+    "type": "weapon",
+    "folder": "Космоопера",
+    "system": {
+      "skill": "rangedLight",
+      "damage": 10,
+      "brawnDamage": false,
+      "crit": 2,
+      "range": "short",
+      "encumbrance": 2,
+      "hardPoints": 1,
+      "price": 1200,
+      "rarity": 4,
+      "qualities": [
+        {
+          "name": "Жжение",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Пистолет, стреляющий раскалёнными сгустками плазмы; дальность ограничена нестабильностью снаряда.</p>",
+      "source": "Core Rulebook, с. 184"
+    }
+  },
+  {
+    "name": "Пулевое ружьё",
+    "nameEn": "",
+    "type": "weapon",
+    "folder": "Космоопера",
+    "system": {
+      "skill": "rangedHeavy",
+      "damage": 7,
+      "brawnDamage": false,
+      "crit": 4,
+      "range": "medium",
+      "encumbrance": 3,
+      "hardPoints": 2,
+      "price": 375,
+      "rarity": 1,
+      "qualities": [
+        {
+          "name": "Автоматическое",
+          "rating": null
+        }
+      ],
+      "description": "<p>Огнестрельное оружие с твёрдыми пулями — по-прежнему распространено в бедных и менее развитых армиях.</p>",
+      "source": "Core Rulebook, с. 184"
+    }
+  },
+  {
+    "name": "Пулевой пистолет",
+    "nameEn": "",
+    "type": "weapon",
+    "folder": "Космоопера",
+    "system": {
+      "skill": "rangedLight",
+      "damage": 6,
+      "brawnDamage": false,
+      "crit": 4,
+      "range": "short",
+      "encumbrance": 1,
+      "hardPoints": 1,
+      "price": 200,
+      "rarity": 1,
+      "qualities": [],
+      "description": "<p>Простой огнестрельный пистолет с твёрдыми пулями.</p>",
+      "source": "Core Rulebook, с. 184"
+    }
+  },
+  {
+    "name": "Пусковая система игольчатых ракет",
+    "nameEn": "",
+    "type": "weapon",
+    "folder": "Космоопера",
+    "system": {
+      "skill": "gunnery",
+      "damage": 15,
+      "brawnDamage": false,
+      "crit": 2,
+      "range": "extreme",
+      "encumbrance": 7,
+      "hardPoints": 4,
+      "price": 10000,
+      "rarity": 6,
+      "qualities": [
+        {
+          "name": "Бронебойное",
+          "rating": 4
+        },
+        {
+          "name": "Высококритичное",
+          "rating": 5
+        },
+        {
+          "name": "Громоздкое",
+          "rating": 3
+        },
+        {
+          "name": "Наведение",
+          "rating": 4
+        },
+        {
+          "name": "Ограниченный боезапас",
+          "rating": 3
+        },
+        {
+          "name": "Подготовка",
+          "rating": 1
+        }
+      ],
+      "description": "<p>Запускает узкие сверхзвуковые ракеты без взрывчатки с бронебойными боеголовками — разрушительны и для техники, и для живых целей.</p>",
+      "source": "Core Rulebook, с. 184"
+    }
+  },
+  {
+    "name": "Система доставки гранат",
+    "nameEn": "",
+    "type": "weapon",
+    "folder": "Космоопера",
+    "system": {
+      "skill": "gunnery",
+      "damage": 8,
+      "brawnDamage": false,
+      "crit": 4,
+      "range": "long",
+      "encumbrance": 5,
+      "hardPoints": 3,
+      "price": 1000,
+      "rarity": 5,
+      "qualities": [
+        {
+          "name": "Взрыв",
+          "rating": 6
+        },
+        {
+          "name": "Ограниченный боезапас",
+          "rating": 6
+        },
+        {
+          "name": "Точное",
+          "rating": 2
+        }
+      ],
+      "description": "<p>Гранатомёт со сложной системой наведения. Параметры даны для стандартных гранат; для гранат другого типа (например, корпускулярных) замените урон, крит. и добавьте их свойства, но рейтинг Ограниченного боезапаса не меняйте.</p>",
+      "source": "Core Rulebook, с. 184"
+    }
+  },
+  {
+    "name": "Штурмовая пушка",
+    "nameEn": "Assault Cannon",
+    "type": "weapon",
+    "folder": "Космоопера",
+    "system": {
+      "skill": "gunnery",
+      "damage": 15,
+      "brawnDamage": false,
+      "crit": 3,
+      "range": "long",
+      "encumbrance": 6,
+      "hardPoints": 3,
+      "price": 4500,
+      "rarity": 3,
+      "qualities": [
+        {
+          "name": "Автоматическое",
+          "rating": null
+        },
+        {
+          "name": "Высококритичное",
+          "rating": 3
+        },
+        {
+          "name": "Громоздкое",
+          "rating": 4
+        },
+        {
+          "name": "Неточное",
+          "rating": 1
+        },
+        {
+          "name": "Проникающее",
+          "rating": 3
+        }
+      ],
+      "description": "<p>Продвинутое автоматическое орудие, стреляющее вращающимися или бронебойными снарядами — против пехоты и лёгкой техники.</p>",
+      "source": "Core Rulebook, с. 184"
+    }
+  }
+]

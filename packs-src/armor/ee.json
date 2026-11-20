@@ -1,0 +1,107 @@
+[
+  {
+    "name": "Скрытая бакиткань",
+    "nameEn": "Concealed Buckyweave",
+    "type": "armor",
+    "folder": "Энциклопедия: киберпанк",
+    "system": {
+      "defense": 1,
+      "soak": 1,
+      "encumbrance": 1,
+      "hardPoints": 2,
+      "price": 320,
+      "rarity": 5,
+      "qualities": [],
+      "description": "<p>Повседневная одежда с вплетёнными углеродными нанотрубками: выглядит как обычная, но защищает как лёгкий бронежилет.</p>",
+      "source": "Equipment Encyclopedia (Shadow of the Beanstalk), с. 95",
+      "worlds": [
+        "scifi",
+        "spaceopera"
+      ]
+    }
+  },
+  {
+    "name": "Защитный скафандр",
+    "nameEn": "Environment Hardsuit",
+    "type": "armor",
+    "folder": "Энциклопедия: киберпанк",
+    "system": {
+      "defense": 0,
+      "soak": 1,
+      "encumbrance": 4,
+      "hardPoints": 2,
+      "price": 260,
+      "rarity": 4,
+      "qualities": [],
+      "description": "<p>Герметичный жёсткий костюм для работы во враждебной среде — в вакууме, ядовитой атмосфере или на промышленном объекте.</p>",
+      "source": "Equipment Encyclopedia (Shadow of the Beanstalk), с. 95",
+      "worlds": [
+        "scifi",
+        "spaceopera"
+      ]
+    }
+  },
+  {
+    "name": "Лёгкий бронекостюм",
+    "nameEn": "Light Body Armor",
+    "type": "armor",
+    "folder": "Энциклопедия: киберпанк",
+    "system": {
+      "defense": 0,
+      "soak": 2,
+      "encumbrance": 2,
+      "hardPoints": 1,
+      "price": 500,
+      "rarity": 5,
+      "qualities": [],
+      "description": "<p>Облегчённая боевая броня из современных композитов: хорошее поглощение при небольшой нагрузке.</p>",
+      "source": "Equipment Encyclopedia (Shadow of the Beanstalk), с. 95",
+      "worlds": [
+        "scifi",
+        "spaceopera"
+      ]
+    }
+  },
+  {
+    "name": "Персональный экзоскелет",
+    "nameEn": "Personal Exosuit",
+    "type": "armor",
+    "folder": "Энциклопедия: киберпанк",
+    "system": {
+      "defense": 0,
+      "soak": 3,
+      "encumbrance": 5,
+      "hardPoints": 4,
+      "price": 5000,
+      "rarity": 6,
+      "qualities": [],
+      "description": "<p>Тяжёлый бронированный экзоскелет с силовыми приводами: лучшее поглощение среди личной брони и много точек крепления. Предмет с ограниченным оборотом (R).</p>",
+      "source": "Equipment Encyclopedia (Shadow of the Beanstalk), с. 95",
+      "worlds": [
+        "scifi",
+        "spaceopera"
+      ]
+    }
+  },
+  {
+    "name": "Противоударная броня",
+    "nameEn": "Riot Armor",
+    "type": "armor",
+    "folder": "Энциклопедия: киберпанк",
+    "system": {
+      "defense": 0,
+      "soak": 2,
+      "encumbrance": 3,
+      "hardPoints": 2,
+      "price": 550,
+      "rarity": 5,
+      "qualities": [],
+      "description": "<p>Полицейская броня для подавления беспорядков в мире Android: щитки и жилет, держащие удары и пули.</p>",
+      "source": "Equipment Encyclopedia (Shadow of the Beanstalk), с. 95",
+      "worlds": [
+        "scifi",
+        "spaceopera"
+      ]
+    }
+  }
+]

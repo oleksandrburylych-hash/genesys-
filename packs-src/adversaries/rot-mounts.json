@@ -1,0 +1,487 @@
+[
+ {
+  "name": "Вьючное животное",
+  "nameEn": "Beast of Burden",
+  "type": "adversary",
+  "folder": "Терринот: скакуны",
+  "system": {
+   "adversaryType": "minion",
+   "characteristics": {
+    "brawn": {
+     "value": 4
+    },
+    "agility": {
+     "value": 2
+    },
+    "intellect": {
+     "value": 1
+    },
+    "cunning": {
+     "value": 1
+    },
+    "willpower": {
+     "value": 1
+    },
+    "presence": {
+     "value": 1
+    }
+   },
+   "wounds": {
+    "value": 0,
+    "max": 7
+   },
+   "strain": {
+    "value": 0,
+    "max": 0
+   },
+   "soak": {
+    "value": 4
+   },
+   "defense": {
+    "melee": {
+     "value": 0
+    },
+    "ranged": {
+     "value": 0
+    }
+   },
+   "groupSize": 1,
+   "description": "<p>Мул, вол, тягловая лошадь — тянет повозки и несёт поклажу.</p>",
+   "source": "Realms of Terrinoth, с. 104–105",
+   "worlds": [
+    "terrinoth",
+    "fantasy",
+    "mythic",
+    "steampunk",
+    "weirdwar",
+    "monster"
+   ]
+  },
+  "items": [
+   {
+    "name": "Атлетика",
+    "type": "skill",
+    "system": {
+     "key": "athletics",
+     "characteristic": "brawn",
+     "category": "general",
+     "rank": 0,
+     "career": true
+    }
+   },
+   {
+    "name": "Стойкость",
+    "type": "skill",
+    "system": {
+     "key": "resilience",
+     "characteristic": "brawn",
+     "category": "general",
+     "rank": 0,
+     "career": true
+    }
+   },
+   {
+    "name": "Грузоподъёмность 18",
+    "type": "ability",
+    "system": {
+     "description": "<p>Порог нагрузки 18; силуэт 2.</p>",
+     "source": "Realms of Terrinoth, с. 104–105"
+    }
+   }
+  ]
+ },
+ {
+  "name": "Ездовое животное",
+  "nameEn": "Riding Beast",
+  "type": "adversary",
+  "folder": "Терринот: скакуны",
+  "system": {
+   "adversaryType": "minion",
+   "characteristics": {
+    "brawn": {
+     "value": 4
+    },
+    "agility": {
+     "value": 3
+    },
+    "intellect": {
+     "value": 1
+    },
+    "cunning": {
+     "value": 1
+    },
+    "willpower": {
+     "value": 1
+    },
+    "presence": {
+     "value": 1
+    }
+   },
+   "wounds": {
+    "value": 0,
+    "max": 5
+   },
+   "strain": {
+    "value": 0,
+    "max": 0
+   },
+   "soak": {
+    "value": 4
+   },
+   "defense": {
+    "melee": {
+     "value": 0
+    },
+    "ranged": {
+     "value": 0
+    }
+   },
+   "groupSize": 1,
+   "description": "<p>Верховая лошадь или пони, не обученные для боя: чтобы удержать животное в бою или иной напряжённой ситуации, всадник проходит проверку Верховой езды.</p>",
+   "source": "Realms of Terrinoth, с. 104–105",
+   "worlds": [
+    "terrinoth",
+    "fantasy",
+    "mythic",
+    "steampunk",
+    "weirdwar",
+    "monster"
+   ]
+  },
+  "items": [
+   {
+    "name": "Атлетика",
+    "type": "skill",
+    "system": {
+     "key": "athletics",
+     "characteristic": "brawn",
+     "category": "general",
+     "rank": 0,
+     "career": true
+    }
+   },
+   {
+    "name": "Стойкость",
+    "type": "skill",
+    "system": {
+     "key": "resilience",
+     "characteristic": "brawn",
+     "category": "general",
+     "rank": 0,
+     "career": true
+    }
+   },
+   {
+    "name": "Грузоподъёмность 12",
+    "type": "ability",
+    "system": {
+     "description": "<p>Порог нагрузки 12; силуэт 2.</p>",
+     "source": "Realms of Terrinoth, с. 104–105"
+    }
+   }
+  ]
+ },
+ {
+  "name": "Боевой скакун",
+  "nameEn": "War Mount",
+  "type": "adversary",
+  "folder": "Терринот: скакуны",
+  "system": {
+   "adversaryType": "rival",
+   "characteristics": {
+    "brawn": {
+     "value": 4
+    },
+    "agility": {
+     "value": 3
+    },
+    "intellect": {
+     "value": 1
+    },
+    "cunning": {
+     "value": 2
+    },
+    "willpower": {
+     "value": 3
+    },
+    "presence": {
+     "value": 1
+    }
+   },
+   "wounds": {
+    "value": 0,
+    "max": 14
+   },
+   "strain": {
+    "value": 0,
+    "max": 0
+   },
+   "soak": {
+    "value": 4
+   },
+   "defense": {
+    "melee": {
+     "value": 0
+    },
+    "ranged": {
+     "value": 0
+    }
+   },
+   "groupSize": 1,
+   "description": "<p>Скакун, обученный для войны (например, дестриэ): не боится боя и может атаковать сам.</p>",
+   "source": "Realms of Terrinoth, с. 104–105",
+   "worlds": [
+    "terrinoth",
+    "fantasy",
+    "mythic"
+   ]
+  },
+  "items": [
+   {
+    "name": "Атлетика",
+    "type": "skill",
+    "system": {
+     "key": "athletics",
+     "characteristic": "brawn",
+     "category": "general",
+     "rank": 3,
+     "career": true
+    }
+   },
+   {
+    "name": "Выдержка",
+    "type": "skill",
+    "system": {
+     "key": "discipline",
+     "characteristic": "willpower",
+     "category": "general",
+     "rank": 2,
+     "career": true
+    }
+   },
+   {
+    "name": "Выживание",
+    "type": "skill",
+    "system": {
+     "key": "survival",
+     "characteristic": "cunning",
+     "category": "general",
+     "rank": 2,
+     "career": true
+    }
+   },
+   {
+    "name": "Грубая сила",
+    "type": "skill",
+    "system": {
+     "key": "brawl",
+     "characteristic": "brawn",
+     "category": "combat",
+     "rank": 1,
+     "career": true
+    }
+   },
+   {
+    "name": "Стойкость",
+    "type": "skill",
+    "system": {
+     "key": "resilience",
+     "characteristic": "brawn",
+     "category": "general",
+     "rank": 3,
+     "career": true
+    }
+   },
+   {
+    "name": "Грузоподъёмность 13",
+    "type": "ability",
+    "system": {
+     "description": "<p>Порог нагрузки 13; силуэт 2.</p>",
+     "source": "Realms of Terrinoth, с. 104–105"
+    }
+   },
+   {
+    "name": "Копыта или когти",
+    "type": "weapon",
+    "system": {
+     "skill": "brawl",
+     "damage": 6,
+     "brawnDamage": false,
+     "crit": 4,
+     "range": "engaged",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Нокдаун",
+       "rating": null
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Realms of Terrinoth, с. 104–105"
+    }
+   }
+  ]
+ },
+ {
+  "name": "Летающий скакун",
+  "nameEn": "Flying Mount",
+  "type": "adversary",
+  "folder": "Терринот: скакуны",
+  "system": {
+   "adversaryType": "rival",
+   "characteristics": {
+    "brawn": {
+     "value": 3
+    },
+    "agility": {
+     "value": 4
+    },
+    "intellect": {
+     "value": 1
+    },
+    "cunning": {
+     "value": 2
+    },
+    "willpower": {
+     "value": 2
+    },
+    "presence": {
+     "value": 2
+    }
+   },
+   "wounds": {
+    "value": 0,
+    "max": 12
+   },
+   "strain": {
+    "value": 0,
+    "max": 0
+   },
+   "soak": {
+    "value": 3
+   },
+   "defense": {
+    "melee": {
+     "value": 1
+    },
+    "ranged": {
+     "value": 2
+    }
+   },
+   "groupSize": 1,
+   "description": "<p>Обученное летающее существо — рух, йерон и подобные. Только самые умелые и смелые наездники решаются летать на них.</p>",
+   "source": "Realms of Terrinoth, с. 104–105",
+   "worlds": [
+    "terrinoth",
+    "fantasy",
+    "mythic"
+   ]
+  },
+  "items": [
+   {
+    "name": "Атлетика",
+    "type": "skill",
+    "system": {
+     "key": "athletics",
+     "characteristic": "brawn",
+     "category": "general",
+     "rank": 3,
+     "career": true
+    }
+   },
+   {
+    "name": "Выдержка",
+    "type": "skill",
+    "system": {
+     "key": "discipline",
+     "characteristic": "willpower",
+     "category": "general",
+     "rank": 2,
+     "career": true
+    }
+   },
+   {
+    "name": "Выживание",
+    "type": "skill",
+    "system": {
+     "key": "survival",
+     "characteristic": "cunning",
+     "category": "general",
+     "rank": 2,
+     "career": true
+    }
+   },
+   {
+    "name": "Координация",
+    "type": "skill",
+    "system": {
+     "key": "coordination",
+     "characteristic": "agility",
+     "category": "general",
+     "rank": 3,
+     "career": true
+    }
+   },
+   {
+    "name": "Стойкость",
+    "type": "skill",
+    "system": {
+     "key": "resilience",
+     "characteristic": "brawn",
+     "category": "general",
+     "rank": 2,
+     "career": true
+    }
+   },
+   {
+    "name": "Уклонение",
+    "nameEn": "Dodge",
+    "type": "talent",
+    "system": {
+     "tier": 3,
+     "activation": "incidentalOOT",
+     "ranked": true,
+     "rank": 2,
+     "description": "<p>Став целью боевой проверки, может получить усталость (не больше ранга), чтобы усилить её сложность на столько же ступеней.</p>",
+     "source": "Realms of Terrinoth, с. 104–105"
+    }
+   },
+   {
+    "name": "Летун",
+    "type": "ability",
+    "system": {
+     "description": "<p>Умеет летать (Core Rulebook, с. 100). Порог нагрузки 12; силуэт 2.</p>",
+     "source": "Realms of Terrinoth, с. 104–105"
+    }
+   },
+   {
+    "name": "Копыта или когти",
+    "type": "weapon",
+    "system": {
+     "skill": "brawl",
+     "damage": 5,
+     "brawnDamage": false,
+     "crit": 4,
+     "range": "engaged",
+     "encumbrance": 0,
+     "hardPoints": 0,
+     "price": 0,
+     "rarity": 0,
+     "qualities": [
+      {
+       "name": "Нокдаун",
+       "rating": null
+      }
+     ],
+     "description": "",
+     "equipped": true,
+     "source": "Realms of Terrinoth, с. 104–105"
+    }
+   }
+  ]
+ }
+]

@@ -1,4 +1,6 @@
 import { GENESYS, TEMPLATES } from "../config.mjs";
+import { WORLDS } from "../worlds.mjs";
+import { worldLabels } from "../helpers/adventure.mjs";
 
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ItemSheetV2 } = foundry.applications.sheets;
@@ -10,13 +12,19 @@ const T = `${TEMPLATES}/item`;
  */
 export class GenesysItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
   static DEFAULT_OPTIONS = {
-    classes: ["genesys", "sheet", "item"],
+    classes: ["genesys", "themed", "theme-light", "sheet", "item"],
     position: { width: 560, height: 640 },
     window: { resizable: true },
     form: { submitOnChange: true },
     actions: {
       addQuality: GenesysItemSheet.#onAddQuality,
-      removeQuality: GenesysItemSheet.#onRemoveQuality
+      removeQuality: GenesysItemSheet.#onRemoveQuality,
+      addRow: GenesysItemSheet.#onAddRow,
+      removeRow: GenesysItemSheet.#onRemoveRow,
+      castSpell: GenesysItemSheet.#onCastSpell,
+      removeAttachment: GenesysItemSheet.#onRemoveAttachment,
+      buyUpgrade: GenesysItemSheet.#onBuyUpgrade,
+      toggleWorld: GenesysItemSheet.#onToggleWorld
     }
   };
 
@@ -27,7 +35,7 @@ export class GenesysItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
   };
 
   /** Список типов, у которых есть свой шаблон. */
-  static DETAIL_TYPES = ["skill", "talent", "ability", "archetype", "career", "weapon", "armor", "gear", "quality", "injury"];
+  static DETAIL_TYPES = ["skill", "talent", "ability", "archetype", "career", "weapon", "armor", "gear", "quality", "injury", "spell", "heroic", "attachment"];
 
   /** @override */
   _configureRenderParts(options) {
@@ -49,6 +57,22 @@ export class GenesysItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
     if (item.actor) skillOptions = item.actor.itemTypes.skill.filter(s => s.system.category === "combat").map(s => s.name);
     else skillOptions = GENESYS.defaultSkills.filter(s => s.category === "combat").map(s => game.i18n.localize(`GENESYS.Skill.${s.key}`));
 
+    if (item.type === "gear") {
+      const { inferGear } = await import("../gear.mjs");
+      const inf = inferGear(item.name, system.description);
+      const L = k => game.i18n.localize(k);
+      context.gearAuto = {
+        threshold: inf.thresholdBonus, worn: inf.wornEncumbrance ?? "—", bundle: inf.bundle,
+        painkiller: inf.painkiller ? L(`GENESYS.Equip.Pk.${inf.painkiller}`) : L("GENESYS.Equip.Pk.none"), implant: inf.implant,
+        mods: inf.mods.map(m => `${m.target} +${m.value}`).join(", ")
+      };
+      context.painkillerChoices = { "": "GENESYS.Equip.Pk.auto", wounds: "GENESYS.Equip.Pk.wounds", strain: "GENESYS.Equip.Pk.strain", none: "GENESYS.Equip.Pk.none" };
+      context.modTargets = {
+        soak: "GENESYS.Soak", wounds: "GENESYS.Equip.ModWounds", strain: "GENESYS.Equip.ModStrain",
+        ...Object.fromEntries(Object.entries(GENESYS.characteristics).map(([k, v]) => [`char.${k}`, v.label ?? v])),
+        ...Object.fromEntries(GENESYS.defaultSkills.map(s => [`skill.${s.key}`, `GENESYS.Skill.${s.key}`]))
+      };
+    }
     Object.assign(context, {
       item,
       system,
@@ -61,12 +85,29 @@ export class GenesysItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
         characteristics: choices(GENESYS.characteristics),
         skillCategories: choices(GENESYS.skillCategories),
         activations: choices(GENESYS.activations),
-        ranges: choices(GENESYS.ranges)
+        ranges: choices(GENESYS.ranges),
+        appliesTo: { weapon: "TYPES.Item.weapon", armor: "TYPES.Item.armor", any: "GENESYS.Attachment.Any" }
       },
+      owned: !!item.actor,
+      worldTags: worldLabels(system.worlds ?? []),
+      worldChoices: Object.entries(WORLDS).map(([key, w]) => ({ key, label: w.label, color: w.color, on: (system.worlds ?? []).includes(key) })),
+      heroicPoints: item.type === "heroic" ? item.actor?.system.heroicPoints : null,
+      attachmentsInfo: system.attachments ? {
+        used: system.installedHardPoints,
+        over: system.installedHardPoints > system.hardPoints
+      } : null,
       characteristicList: Object.entries(GENESYS.characteristics).map(([key, cfg]) => ({
         key, label: cfg.label, value: system.characteristics?.[key]
       })),
       careerSkillsText: (system.careerSkills ?? []).join(", "),
+      magicSkills: Object.keys(GENESYS.magicSkills).map(k => ({
+        key: k, label: `GENESYS.Skill.${k}`, on: (system.skills ?? []).includes?.(k)
+      })),
+      spellEffects: (system.effects ?? []).map((e, i) => ({
+        ...e, index: i, only: e.skills?.[0] ?? ""
+      })),
+      skillChoices: { "": "—", ...Object.fromEntries(Object.keys(GENESYS.magicSkills).map(k => [k, `GENESYS.Skill.${k}`])) },
+      canCast: item.type === "spell" && !!(item.actor ?? game.user.character),
       skillOptions,
       enrichedDescription: await foundry.applications.ux.TextEditor.implementation.enrichHTML(system.description ?? "", {
         relativeTo: item, secrets: item.isOwner
@@ -78,11 +119,112 @@ export class GenesysItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
   /** @override */
   _prepareSubmitData(event, form, formData, updateData) {
     const obj = formData.object;
+    // Заклинание: навыки — чекбоксы, ограничение эффекта — один навык из списка.
+    if (this.item.type === "spell") {
+      const keys = Object.keys(GENESYS.magicSkills);
+      if (keys.some(k => `spellSkill.${k}` in obj)) {
+        obj["system.skills"] = keys.filter(k => obj[`spellSkill.${k}`]);
+        for (const k of keys) delete obj[`spellSkill.${k}`];
+      }
+      for (const key of Object.keys(obj)) {
+        const m = key.match(/^effectSkill\.(\d+)$/);
+        if (!m) continue;
+        obj[`system.effects.${m[1]}.skills`] = obj[key] ? [obj[key]] : [];
+        delete obj[key];
+      }
+    }
     if ("careerSkillsText" in obj) {
       obj["system.careerSkills"] = String(obj.careerSkillsText).split(/[,;\n]/).map(s => s.trim()).filter(Boolean);
       delete obj.careerSkillsText;
     }
     return super._prepareSubmitData(event, form, formData, updateData);
+  }
+
+  /** Добавить строку в массив (эффекты заклинания, способности архетипа). */
+  static #onAddRow(event, target) {
+    const field = target.dataset.field;
+    const rows = foundry.utils.deepClone(foundry.utils.getProperty(this.item, field) ?? []);
+    if (field === "system.mods") rows.push({ target: "soak", value: 1 });
+    else rows.push(field === "system.effects"
+      ? { name: game.i18n.localize("GENESYS.Spell.NewEffect"), difficulty: 1, skills: [], repeatable: false, description: "" }
+      : { name: game.i18n.localize("GENESYS.NewAbility"), description: "" });
+    return this.item.update({ [field]: rows });
+  }
+
+  static #onRemoveRow(event, target) {
+    const field = target.dataset.field;
+    const rows = foundry.utils.deepClone(foundry.utils.getProperty(this.item, field) ?? []);
+    rows.splice(Number(target.dataset.index), 1);
+    return this.item.update({ [field]: rows });
+  }
+
+  static #onCastSpell() {
+    const actor = this.item.actor ?? game.user.character;
+    return actor?.castSpell(this.item);
+  }
+
+  /** @override — приём модификаций перетаскиванием на оружие/броню. */
+  async _onRender(context, options) {
+    await super._onRender(context, options);
+    if (!this.isEditable || !["weapon", "armor"].includes(this.item.type)) return;
+    for (const zone of this.element.querySelectorAll(".attachments-drop")) {
+      zone.addEventListener("dragover", ev => ev.preventDefault());
+      zone.addEventListener("drop", ev => this.#onDropAttachment(ev));
+    }
+  }
+
+  async #onDropAttachment(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
+    if (data?.type !== "Item") return;
+    const att = await Item.implementation.fromDropData(data);
+    if (att?.type !== "attachment") return ui.notifications.warn("GENESYS.Attachment.NotAttachment", { localize: true });
+    const sys = this.item.system;
+    if (att.system.appliesTo !== "any" && att.system.appliesTo !== this.item.type) {
+      return ui.notifications.warn("GENESYS.Attachment.WrongType", { localize: true });
+    }
+    if (att.system.hardPoints > sys.freeHardPoints) {
+      ui.notifications.warn(game.i18n.format("GENESYS.Attachment.NoHP", { need: att.system.hardPoints, free: sys.freeHardPoints }));
+    }
+    const list = foundry.utils.deepClone(sys.attachments);
+    list.push(att.system.toInstalled(att.name));
+    await this.item.update({ "system.attachments": list });
+  }
+
+  static #onRemoveAttachment(event, target) {
+    const list = foundry.utils.deepClone(this.item.system.attachments);
+    list.splice(Number(target.dataset.index), 1);
+    return this.item.update({ "system.attachments": list });
+  }
+
+  /** Купить/вернуть улучшение героической способности за очки способностей. */
+  /** Включить/выключить тег мира. */
+  static async #onToggleWorld(event, target) {
+    const key = target.dataset.key;
+    const worlds = new Set(this.item.system.worlds ?? []);
+    if (worlds.has(key)) worlds.delete(key); else worlds.add(key);
+    await this.item.update({ "system.worlds": Object.keys(WORLDS).filter(w => worlds.has(w)) });
+  }
+
+  static async #onBuyUpgrade(event, target) {
+    const actor = this.item.actor;
+    if (!actor) return;
+    const i = Number(target.dataset.index);
+    const delta = Number(target.dataset.delta);
+    const ups = foundry.utils.deepClone(this.item.system.upgrades);
+    const u = ups[i];
+    if (!u) return;
+    if (delta > 0) {
+      if (u.max && u.count >= u.max) return ui.notifications.warn("GENESYS.Heroic.MaxReached", { localize: true });
+      const avail = actor.system.heroicPoints?.available ?? 0;
+      if (u.cost > avail) return ui.notifications.warn(game.i18n.format("GENESYS.Heroic.NoPoints", { cost: u.cost, available: avail }));
+      u.count += 1;
+    } else {
+      if (u.count <= 0) return;
+      u.count -= 1;
+    }
+    return this.item.update({ "system.upgrades": ups });
   }
 
   static #onAddQuality() {

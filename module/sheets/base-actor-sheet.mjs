@@ -1,4 +1,6 @@
-import { GENESYS } from "../config.mjs";
+import { GENESYS, SYSTEM_ID } from "../config.mjs";
+import { WORLDS, getAdventure, fitsAdventure } from "../worlds.mjs";
+import { worldLabels } from "../helpers/adventure.mjs";
 import { DicePool } from "../dice/pool.mjs";
 import { DicePoolDialog } from "../apps/dice-pool-dialog.mjs";
 
@@ -11,7 +13,7 @@ const TextEditor = () => foundry.applications.ux.TextEditor.implementation;
  */
 export class GenesysBaseActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
   static DEFAULT_OPTIONS = {
-    classes: ["genesys", "sheet", "actor"],
+    classes: ["genesys", "themed", "theme-light", "sheet", "actor"],
     window: { resizable: true },
     form: { submitOnChange: true },
     actions: {
@@ -24,7 +26,10 @@ export class GenesysBaseActorSheet extends HandlebarsApplicationMixin(ActorSheet
       itemDelete: GenesysBaseActorSheet.#onItemDelete,
       itemToggle: GenesysBaseActorSheet.#onItemToggle,
       itemChat: GenesysBaseActorSheet.#onItemChat,
-      itemQuantity: GenesysBaseActorSheet.#onItemQuantity
+      itemQuantity: GenesysBaseActorSheet.#onItemQuantity,
+      rollInjury: GenesysBaseActorSheet.#onRollInjury,
+      toggleWorld: GenesysBaseActorSheet.#onToggleWorld,
+      removeStatus: GenesysBaseActorSheet.#onRemoveStatus
     }
   };
 
@@ -48,7 +53,7 @@ export class GenesysBaseActorSheet extends HandlebarsApplicationMixin(ActorSheet
         key,
         label: cfg.label,
         abbr: cfg.abbr,
-        value: system.characteristics[key].value
+        value: system.characteristics?.[key]?.value ?? 0
       })),
       skillGroups: this._prepareSkills(),
       weapons: actor.itemTypes.weapon.map(i => this._weaponContext(i)),
@@ -56,7 +61,15 @@ export class GenesysBaseActorSheet extends HandlebarsApplicationMixin(ActorSheet
       gear: actor.itemTypes.gear,
       talents: actor.itemTypes.talent,
       abilities: actor.itemTypes.ability,
-      injuries: actor.itemTypes.injury
+      injuries: actor.itemTypes.injury,
+      activeStatuses: GENESYS.statusEffects.filter(st => actor.statuses?.has(st.id)).map(st => {
+        const effect = actor.effects.find(e => e.statuses?.has(st.id));
+        const rounds = effect?.getFlag(SYSTEM_ID, "rounds") ?? 0;
+        const name = game.i18n.localize(st.name);
+        return { id: st.id, img: st.img, rounds, tooltip: rounds ? `${name} (${game.i18n.format("GENESYS.Conditions.RoundsLeft", { n: rounds })})` : `${name} — ${game.i18n.localize("GENESYS.Conditions.ClickRemove")}` };
+      }),
+      worldTags: system.worlds ? worldLabels(system.worlds) : [],
+      worldChoices: system.worlds ? Object.entries(WORLDS).map(([key, w]) => ({ key, label: w.label, color: w.color, on: system.worlds.includes(key) })) : []
     });
     return context;
   }
@@ -114,7 +127,7 @@ export class GenesysBaseActorSheet extends HandlebarsApplicationMixin(ActorSheet
       range: GENESYS.ranges[s.range]?.label,
       qualities: s.qualitiesText,
       equipped: s.equipped,
-      pool: skill ? this.actor.getSkillPool(skill, 0).display : []
+      pool: skill ? this.actor.getSkillPool(skill, 0).display : (this.actor.untrainedPool?.(s.skill, 0).display ?? [])
     };
   }
 
@@ -127,6 +140,14 @@ export class GenesysBaseActorSheet extends HandlebarsApplicationMixin(ActorSheet
     if (!this.actor.isOwner) return null;
     // Сортировка внутри листа — стандартное поведение.
     if (item.parent?.uuid === this.actor.uuid) return super._onDropItem(event, item);
+
+    // Подсказка, если предмет из другого мира, чем приключение персонажа (не запрет — решает ведущий).
+    const adventureKey = this.actor.system.adventure;
+    if (adventureKey && !fitsAdventure(item, getAdventure(adventureKey))) {
+      ui.notifications.info(game.i18n.format("GENESYS.Worlds.Foreign", {
+        name: item.name, worlds: worldLabels(item.system.worlds).map(w => w.label).join(", "), adventure: getAdventure(adventureKey).label
+      }));
+    }
 
     switch (item.type) {
       case "archetype":
@@ -156,6 +177,20 @@ export class GenesysBaseActorSheet extends HandlebarsApplicationMixin(ActorSheet
   _getItem(target) {
     const id = target.closest("[data-item-id]")?.dataset.itemId;
     return this.actor.items.get(id);
+  }
+
+  /** Снять состояние щелчком по значку. */
+  static async #onRemoveStatus(event, target) {
+    if (!this.isEditable) return;
+    await this.actor.toggleStatusEffect(target.dataset.status, { active: false });
+  }
+
+  /** Включить/выключить тег мира (противник, транспорт). */
+  static async #onToggleWorld(event, target) {
+    const key = target.dataset.key;
+    const worlds = new Set(this.actor.system.worlds ?? []);
+    if (worlds.has(key)) worlds.delete(key); else worlds.add(key);
+    await this.actor.update({ "system.worlds": Object.keys(WORLDS).filter(w => worlds.has(w)) });
   }
 
   static #onRollSkill(event, target) {
@@ -208,6 +243,10 @@ export class GenesysBaseActorSheet extends HandlebarsApplicationMixin(ActorSheet
 
   static #onItemChat(event, target) {
     return this._getItem(target)?.toChat();
+  }
+
+  static #onRollInjury() {
+    return this.actor.promptCriticalInjury();
   }
 
   static #onItemQuantity(event, target) {

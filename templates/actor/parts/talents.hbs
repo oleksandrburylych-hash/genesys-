@@ -1,56 +1,99 @@
 <section class="tab talents {{tab.cssClass}}" data-tab="talents" data-group="primary">
-  <p class="hint">{{localize "GENESYS.Hint.TalentPyramid"}}</p>
+  {{#if archAbilities.length}}
+  <div class="gs-ribbon gs-ribbon-gold"><span>{{localize "GENESYS.Sheet.ArchAbilities"}}</span></div>
+  <div class="gs-arch-cards">
+    {{#each archAbilities}}
+    <a class="gs-arch-card" data-item-id="{{id}}" data-action="itemEdit"><img src="{{img}}" alt=""><span>{{name}}</span></a>
+    {{/each}}
+  </div>
+  {{/if}}
+  {{#if showHeroic}}
+  <div class="gs-ribbon gs-ribbon-gold"><span>{{localize "GENESYS.Heroic.Title"}}</span></div>
+  <div class="gs-heroic-row">
+    {{#each heroics}}
+    <div class="gs-heroic" data-item-id="{{id}}">
+      <img src="{{img}}" alt="">
+      <div class="gs-heroic-info">
+        <a class="gs-heroic-name" data-action="itemEdit">{{name}}</a>
+        {{#if upgrades}}<span class="gs-sub">{{upgrades}}</span>{{/if}}
+        <span class="gs-sub">{{localize "GENESYS.Sheet.UsesThisSession"}}: {{uses}} / {{perSession}}</span>
+      </div>
+      <button type="button" class="gs-btn gs-btn-gold" data-action="activateHeroic" data-tooltip="GENESYS.Heroic.ActivateHint">
+        <i class="fa-solid fa-bolt"></i> {{localize "GENESYS.Heroic.Activate"}} · {{storyCost}} <i class="fa-solid fa-book-open"></i>
+      </button>
+    </div>
+    {{else}}
+    <p class="gs-empty">{{localize "GENESYS.Heroic.None"}}</p>
+    {{/each}}
+    <div class="gs-heroic-points">
+      {{localize "GENESYS.Heroic.Points"}}: <strong>{{heroicPoints.available}}</strong> / {{heroicPoints.total}}
+      {{#if editable}}
+      <a data-action="resetHeroic" data-tooltip="GENESYS.Heroic.Reset"><i class="fa-solid fa-rotate"></i></a>
+      <a data-action="itemCreate" data-type="heroic" data-tooltip="GENESYS.Sheet.AddHeroic"><i class="fa-solid fa-plus"></i></a>
+      {{/if}}
+    </div>
+  </div>
+  {{/if}}
 
-  <div class="pyramid">
+  <div class="gs-ribbon"><span>{{localize "GENESYS.Talent.Pyramid"}}</span></div>
+  <p class="gs-help">{{localize "GENESYS.Sheet.PyramidHelp"}}</p>
+
+  <div class="gs-pyramid">
     {{#each talentTiers}}
-    <section class="tier-block">
-      <header class="list-header">
-        <h3>{{localize "GENESYS.Talent.Tier"}} {{tier}} <span class="count">({{count}})</span></h3>
-        {{#unless canAdd}}<span class="pyramid-warning" data-tooltip="GENESYS.Hint.PyramidBlocked"><i class="fa-solid fa-triangle-exclamation"></i></span>{{/unless}}
-        {{#if @root.editable}}<a class="item-control" data-action="itemCreate" data-type="talent" data-tier="{{tier}}"><i class="fa-solid fa-plus"></i></a>{{/if}}
-      </header>
-      <ol class="compact-list talent-list">
+    <div class="gs-tier {{#unless canAdd}}blocked{{/unless}}">
+      <div class="gs-tier-cards">
         {{#each talents}}
-        <li class="talent" data-item-id="{{id}}">
-          <img src="{{img}}" alt="">
-          <a class="name" data-action="itemEdit">{{name}}</a>
-          <span class="activation">{{localize activation}}</span>
-          {{#if ranked}}
-          <span class="talent-rank">
-            {{#if @root.editable}}<a data-action="talentRank" data-delta="-1"><i class="fa-solid fa-minus"></i></a>{{/if}}
-            <span>{{localize "GENESYS.Rank"}} {{rank}}</span>
-            {{#if @root.editable}}<a data-action="talentRank" data-delta="1"><i class="fa-solid fa-plus"></i></a>{{/if}}
-          </span>
-          {{/if}}
-          <span class="item-controls">
-            <a data-action="itemChat" data-tooltip="GENESYS.ToChat"><i class="fa-solid fa-comment"></i></a>
-            {{#if @root.editable}}<a data-action="itemDelete"><i class="fa-solid fa-trash"></i></a>{{/if}}
-          </span>
-        </li>
+        <div class="gs-talent" data-item-id="{{id}}">
+          <div class="gs-talent-head">
+            <img src="{{img}}" alt="">
+            <a class="gs-talent-name" data-action="itemEdit" data-tooltip="{{activation}}">{{name}}</a>
+            {{#if guard}}<a class="gs-talent-use" data-action="useGuard" data-tooltip="GENESYS.Reaction.UseHint"><i class="fa-solid fa-shield-halved"></i></a>{{/if}}
+          </div>
+          <div class="gs-talent-foot">
+            <span class="gs-tag {{#if passive}}passive{{else}}active{{/if}}">{{#if passive}}{{localize "GENESYS.Sheet.Passive"}}{{else}}{{localize "GENESYS.Sheet.Active"}}{{/if}}</span>
+            {{#if ranked}}
+            <span class="gs-talent-rank">
+              {{#if @root.editable}}<a data-action="talentRank" data-delta="-1"><i class="fa-solid fa-minus"></i></a>{{/if}}
+              {{localize "GENESYS.Rank"}} {{rank}}
+              {{#if @root.editable}}<a data-action="talentRank" data-delta="1"><i class="fa-solid fa-plus"></i></a>{{/if}}
+            </span>
+            {{/if}}
+            <span class="gs-row-ctrl">
+              <a data-action="itemChat" data-tooltip="GENESYS.ToChat"><i class="fa-solid fa-comment"></i></a>
+              {{#if @root.editable}}<a data-action="itemDelete"><i class="fa-solid fa-trash"></i></a>{{/if}}
+            </span>
+          </div>
+        </div>
         {{/each}}
-      </ol>
-    </section>
+        {{#if @root.editable}}
+        <a class="gs-talent-slot" data-action="itemCreate" data-type="talent" data-tier="{{tier}}" data-tooltip="GENESYS.Sheet.TalentSlotHint">
+          <i class="fa-solid fa-plus"></i>
+        </a>
+        {{/if}}
+      </div>
+      <div class="gs-tier-label">
+        <strong>{{localize "GENESYS.Talent.Tier"}} {{tier}}</strong>
+        <span>{{cost}} {{localize "GENESYS.Sheet.XPShort"}} · {{count}}</span>
+        {{#unless canAdd}}<i class="fa-solid fa-lock" data-tooltip="GENESYS.Hint.PyramidBlocked"></i>{{/unless}}
+      </div>
+    </div>
     {{/each}}
   </div>
 
-  <section class="block abilities-block">
-    <header class="list-header">
-      <h3>{{localize "GENESYS.Abilities"}}</h3>
-      {{#if editable}}<a class="item-control" data-action="itemCreate" data-type="ability"><i class="fa-solid fa-plus"></i></a>{{/if}}
-    </header>
-    <ol class="compact-list">
-      {{#each abilities}}
-      <li data-item-id="{{id}}">
-        <img src="{{img}}" alt="">
-        <a class="name" data-action="itemEdit">{{name}}</a>
-        <span class="item-controls">
-          <a data-action="itemChat" data-tooltip="GENESYS.ToChat"><i class="fa-solid fa-comment"></i></a>
-          {{#if @root.editable}}<a data-action="itemDelete"><i class="fa-solid fa-trash"></i></a>{{/if}}
-        </span>
-      </li>
-      {{else}}
-      <li class="empty">{{localize "GENESYS.Hint.NoAbilities"}}</li>
-      {{/each}}
-    </ol>
-  </section>
+  <div class="gs-ribbon"><span>{{localize "GENESYS.Abilities"}}</span></div>
+  <ol class="gs-list gs-abilities">
+    {{#each otherAbilities}}
+    <li data-item-id="{{id}}">
+      <img src="{{img}}" alt="">
+      <a class="gs-list-name" data-action="itemEdit">{{name}}</a>
+      <span class="gs-row-ctrl">
+        <a data-action="itemChat" data-tooltip="GENESYS.ToChat"><i class="fa-solid fa-comment"></i></a>
+        {{#if @root.editable}}<a data-action="itemDelete"><i class="fa-solid fa-trash"></i></a>{{/if}}
+      </span>
+    </li>
+    {{else}}
+    <li class="gs-empty">{{localize "GENESYS.Hint.NoAbilities"}}</li>
+    {{/each}}
+    {{#if editable}}<li class="gs-add-row"><a data-action="itemCreate" data-type="ability"><i class="fa-solid fa-plus"></i> {{localize "GENESYS.Sheet.AddAbility"}}</a></li>{{/if}}
+  </ol>
 </section>

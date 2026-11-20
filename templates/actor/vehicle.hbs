@@ -1,0 +1,160 @@
+<div class="vehicle-sheet gs-adv gs-veh">
+  <header class="gs-adv-head">
+    <img class="gs-adv-portrait" src="{{actor.img}}" alt="{{actor.name}}" data-edit="img" data-action="editImage">
+    <div class="gs-adv-main">
+      <div class="gs-adv-title">
+        <input class="gs-name" type="text" name="name" value="{{actor.name}}" placeholder="{{localize 'GENESYS.Name'}}">
+        <a class="gs-icon-btn" data-action="rollPilot" data-tooltip="GENESYS.Vehicle.PilotHint"><i class="fa-solid fa-car"></i></a>
+      </div>
+      <div class="gs-adv-type">
+        <label class="gs-veh-sil" data-tooltip="GENESYS.Vehicle.Silhouette"><span>{{localize "GENESYS.Vehicle.Silhouette"}}</span><input type="number" name="system.silhouette" value="{{system.silhouette}}" min="0" data-dtype="Number"></label>
+        <select name="system.skill" class="gs-adv-badge gs-veh-skill">{{selectOptions skillChoices selected=system.skill localize=true}}</select>
+        {{#each vehicleStates}}<span class="gs-world on" style="--world: #8e2229">{{this}}</span>{{/each}}
+      </div>
+      {{> "systems/genesys-rpg/templates/parts/worlds.hbs"}}
+      {{> "systems/genesys-rpg/templates/parts/statuses.hbs"}}
+    </div>
+  </header>
+
+  <div class="gs-derived gs-veh-derived">
+    <div class="gs-shield">
+      <div class="gs-shield-title">{{localize "GENESYS.Vehicle.SpeedTitle"}}</div>
+      <div class="gs-shield-body split">
+        <span class="gs-current">
+          <a data-action="adjustVehicle" data-path="system.speed.value" data-delta="-1"><i class="fa-solid fa-minus"></i></a>
+          <input type="number" name="system.speed.value" value="{{system.speed.value}}" min="0" data-dtype="Number">
+          <a data-action="adjustVehicle" data-path="system.speed.value" data-delta="1"><i class="fa-solid fa-plus"></i></a>
+        </span>
+        <input class="gs-big-input" type="number" name="system.speed.max" value="{{system.speed.max}}" data-dtype="Number">
+      </div>
+      <div class="gs-shield-foot split"><span>{{localize "GENESYS.Sheet.Current"}}</span><span>{{localize "GENESYS.Vehicle.Max"}}</span></div>
+    </div>
+    <div class="gs-shield">
+      <div class="gs-shield-title">{{localize "GENESYS.Vehicle.Handling"}}</div>
+      <div class="gs-shield-body"><input class="gs-big-input" type="number" name="system.handling" value="{{system.handling}}" data-dtype="Number"></div>
+      <div class="gs-shield-foot"><span class="gs-veh-dice">{{#times handlingBoost}}{{genesysDie "boost"}}{{/times}}{{#times handlingSetback}}{{genesysDie "setback"}}{{/times}}{{#unless handling}}—{{/unless}}</span></div>
+    </div>
+    <div class="gs-shield">
+      <div class="gs-shield-title">{{localize "GENESYS.Vehicle.Armor"}}</div>
+      <div class="gs-shield-body"><input class="gs-big-input" type="number" name="system.armor" value="{{system.armor}}" data-dtype="Number"></div>
+      <div class="gs-shield-foot"><span>{{localize "GENESYS.Vehicle.VsPersonal"}}</span></div>
+    </div>
+    <div class="gs-shield">
+      <div class="gs-shield-title">{{localize "GENESYS.Defense"}}</div>
+      <div class="gs-shield-body gs-arcs">
+        <input class="fore" type="number" name="system.defense.fore" value="{{system.defense.fore}}" data-dtype="Number" data-tooltip="GENESYS.Vehicle.Fore">
+        <input class="port" type="number" name="system.defense.port" value="{{system.defense.port}}" data-dtype="Number" data-tooltip="GENESYS.Vehicle.Port">
+        <i class="fa-solid fa-car-side"></i>
+        <input class="starboard" type="number" name="system.defense.starboard" value="{{system.defense.starboard}}" data-dtype="Number" data-tooltip="GENESYS.Vehicle.Starboard">
+        <input class="aft" type="number" name="system.defense.aft" value="{{system.defense.aft}}" data-dtype="Number" data-tooltip="GENESYS.Vehicle.Aft">
+      </div>
+      <div class="gs-shield-foot"><span>{{localize "GENESYS.Vehicle.Arcs"}}</span></div>
+    </div>
+  </div>
+
+  <div class="gs-veh-tracks">
+    {{#with hull}}
+    <div class="gs-veh-track {{#if over}}critical{{/if}}">
+      <div class="gs-veh-track-label"><i class="fa-solid fa-car-burst"></i> {{localize "GENESYS.Vehicle.HullTrauma"}}</div>
+      <a data-action="adjustVehicle" data-path="system.hullTrauma.value" data-delta="-1"><i class="fa-solid fa-minus"></i></a>
+      <div class="gs-veh-bar"><div style="width: {{pct}}%"></div>
+        <span><input type="number" name="system.hullTrauma.value" value="{{value}}" min="0" data-dtype="Number"> / <input type="number" name="system.hullTrauma.max" value="{{max}}" data-dtype="Number"></span></div>
+      <a data-action="adjustVehicle" data-path="system.hullTrauma.value" data-delta="1"><i class="fa-solid fa-plus"></i></a>
+    </div>
+    {{/with}}
+    {{#with sysStrain}}
+    <div class="gs-veh-track strain {{#if over}}critical{{/if}}">
+      <div class="gs-veh-track-label"><i class="fa-solid fa-gears"></i> {{localize "GENESYS.Vehicle.SystemStrain"}}</div>
+      <a data-action="adjustVehicle" data-path="system.systemStrain.value" data-delta="-1"><i class="fa-solid fa-minus"></i></a>
+      <div class="gs-veh-bar"><div style="width: {{pct}}%"></div>
+        <span><input type="number" name="system.systemStrain.value" value="{{value}}" min="0" data-dtype="Number"> / <input type="number" name="system.systemStrain.max" value="{{max}}" data-dtype="Number"></span></div>
+      <a data-action="adjustVehicle" data-path="system.systemStrain.value" data-delta="1"><i class="fa-solid fa-plus"></i></a>
+    </div>
+    {{/with}}
+  </div>
+
+  <div class="gs-ribbon"><span>{{localize "GENESYS.Vehicle.Maneuvers"}}</span></div>
+  <section class="vehicle-maneuvers">
+    <div class="vm-row">
+      {{#each maneuvers}}<button type="button" class="vm-btn {{#if action}}action{{/if}}" data-action="maneuver" data-key="{{key}}" data-tooltip="{{localize hint}}" {{#unless allowed}}disabled{{/unless}}>{{localize label}}</button>{{/each}}
+    </div>
+    <div class="vm-row">
+      <label>{{localize "GENESYS.Vehicle.Terrain"}} <select name="flags.genesys-rpg.terrain" data-dtype="Number">{{#each terrainChoices}}<option value="{{n}}" {{#if selected}}selected{{/if}}>{{localize label}}</option>{{/each}}</select></label>
+    </div>
+  </section>
+
+  <div class="vehicle-body">
+    <div class="vehicle-misc">
+      <label>{{localize "GENESYS.Vehicle.Crew"}}<input type="text" name="system.crew" value="{{system.crew}}"></label>
+      <label>{{localize "GENESYS.Vehicle.Passengers"}}<input type="number" name="system.passengers" value="{{system.passengers}}" data-dtype="Number"></label>
+      <label>{{localize "GENESYS.Vehicle.Capacity"}}<input type="number" name="system.encumbrance" value="{{system.encumbrance}}" data-dtype="Number"></label>
+      <label>{{localize "GENESYS.HardPoints"}}<input type="number" name="system.hardPoints" value="{{system.hardPoints}}" data-dtype="Number"></label>
+      <label>{{localize "GENESYS.Price"}}<input type="number" name="system.price" value="{{system.price}}" data-dtype="Number"></label>
+      <label>{{localize "GENESYS.Rarity"}}<input type="number" name="system.rarity" value="{{system.rarity}}" data-dtype="Number"></label>
+    </div>
+    <p class="hint">{{localize "GENESYS.Vehicle.CrewHint"}}</p>
+
+    <section class="block">
+      <header class="list-header">
+        <h3>{{localize "GENESYS.Weapons"}}</h3>
+        {{#if editable}}<a class="item-control" data-action="itemCreate" data-type="weapon"><i class="fa-solid fa-plus"></i></a>{{/if}}
+      </header>
+      <ol class="compact-list">
+        {{#each weapons}}
+        <li class="weapon" data-item-id="{{id}}">
+          <img src="{{img}}" alt="">
+          <div class="weapon-info">
+            <a class="rollable name" data-action="rollWeapon">{{name}}</a>
+            <span class="sub">{{skillName}} · {{localize "GENESYS.DamageShort"}} {{damage}} · {{localize "GENESYS.CritShort"}} {{crit}} · {{localize range}}{{#if firingArc}} · {{localize "GENESYS.Vehicle.FiringArc"}}: {{firingArc}}{{/if}}</span>
+            {{#if qualities}}<span class="sub qualities">{{qualities}}</span>{{/if}}
+          </div>
+          <span class="item-controls">
+            <a data-action="itemEdit"><i class="fa-solid fa-pen"></i></a>
+            {{#if @root.editable}}<a data-action="itemDelete"><i class="fa-solid fa-trash"></i></a>{{/if}}
+          </span>
+        </li>
+        {{/each}}
+      </ol>
+    </section>
+
+    <section class="block">
+      <header class="list-header">
+        <h3>{{localize "GENESYS.Vehicle.Crits"}}</h3>
+        {{#if editable}}
+        <a class="item-control" data-action="rollInjury" data-tooltip="GENESYS.Vehicle.CritRoll"><i class="fa-solid fa-dice"></i></a>
+        <a class="item-control" data-action="itemCreate" data-type="injury"><i class="fa-solid fa-plus"></i></a>
+        {{/if}}
+      </header>
+      <ol class="compact-list">
+        {{#each crits}}
+        <li data-item-id="{{id}}">
+          <span class="severity">{{#times system.severity}}{{genesysDie "difficulty"}}{{/times}}</span>
+          <a class="name" data-action="itemEdit">{{name}}</a>
+          <span class="item-controls">
+            <a data-action="itemChat"><i class="fa-solid fa-comment"></i></a>
+            {{#if @root.editable}}<a data-action="itemDelete"><i class="fa-solid fa-trash"></i></a>{{/if}}
+          </span>
+        </li>
+        {{/each}}
+      </ol>
+    </section>
+
+    <section class="block">
+      <header class="list-header">
+        <h3>{{localize "GENESYS.Equipment"}}</h3>
+        {{#if editable}}<a class="item-control" data-action="itemCreate" data-type="gear"><i class="fa-solid fa-plus"></i></a>{{/if}}
+      </header>
+      <ol class="compact-list">
+        {{#each gear}}
+        <li data-item-id="{{id}}"><img src="{{img}}" alt=""><a class="name" data-action="itemEdit">{{name}}</a>
+          <span class="item-controls">{{#if @root.editable}}<a data-action="itemDelete"><i class="fa-solid fa-trash"></i></a>{{/if}}</span></li>
+        {{/each}}
+      </ol>
+    </section>
+
+    <section class="block editor-block">
+      <header class="list-header"><h3>{{localize "GENESYS.Description"}}</h3></header>
+      {{formInput systemFields.description name="system.description" enriched=enriched.description value=system.description toggled=true}}
+    </section>
+  </div>
+</div>

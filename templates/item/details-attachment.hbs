@@ -1,0 +1,24 @@
+<section class="item-details">
+  <div class="grid-3">
+    <div class="form-group"><label>{{localize "GENESYS.Attachment.AppliesTo"}}</label>
+      <select name="system.appliesTo">{{selectOptions choices.appliesTo selected=system.appliesTo localize=true}}</select></div>
+    <div class="form-group"><label>{{localize "GENESYS.HardPoints"}}</label>
+      <input type="number" name="system.hardPoints" value="{{system.hardPoints}}" min="0" data-dtype="Number"></div>
+    <div class="form-group"><label>{{localize "GENESYS.Price"}}</label>
+      <input type="number" name="system.price" value="{{system.price}}" min="0" data-dtype="Number"></div>
+    <div class="form-group"><label>{{localize "GENESYS.Rarity"}}</label>
+      <input type="number" name="system.rarity" value="{{system.rarity}}" data-dtype="Number"></div>
+    <div class="form-group"><label>{{localize "GENESYS.Damage"}}</label>
+      <input type="number" name="system.damage" value="{{system.damage}}" data-dtype="Number"></div>
+    <div class="form-group"><label>{{localize "GENESYS.Crit"}}</label>
+      <input type="number" name="system.crit" value="{{system.crit}}" data-dtype="Number"></div>
+    <div class="form-group"><label>{{localize "GENESYS.Soak"}}</label>
+      <input type="number" name="system.soak" value="{{system.soak}}" data-dtype="Number"></div>
+    <div class="form-group"><label>{{localize "GENESYS.Defense"}}</label>
+      <input type="number" name="system.defense" value="{{system.defense}}" data-dtype="Number"></div>
+    <div class="form-group"><label>{{localize "GENESYS.Encumbrance"}}</label>
+      <input type="number" name="system.encumbrance" value="{{system.encumbrance}}" data-dtype="Number"></div>
+  </div>
+  {{> "systems/genesys-rpg/templates/item/qualities.hbs"}}
+  <p class="hint">{{localize "GENESYS.Attachment.Hint"}}</p>
+</section>

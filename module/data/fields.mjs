@@ -53,3 +53,8 @@ export function formatQualities(qualities = []) {
     .map(q => (q.rating ? `${q.name} ${q.rating}` : q.name))
     .join(", ");
 }
+
+/** Теги игровых миров (см. module/worlds.mjs); пустой список — любой мир. */
+export function worldsField() {
+  return new ArrayField(new StringField({ required: true, blank: false }), { required: true, initial: [] });
+}

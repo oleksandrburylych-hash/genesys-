@@ -1,0 +1,631 @@
+[
+  {
+    "name": "Правила: To Protect and Serve",
+    "nameEn": "Rules: To Protect and Serve",
+    "type": "gear",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "encumbrance": 0,
+      "price": 0,
+      "rarity": 0,
+      "description": "<p>Сеттинг о полицейских, следователях и подразделениях спецопераций наших дней.</p><ul><li><strong>Знания.</strong> Вместо общего навыка Знание используются Знание (аналитика), Знание (образование) и Знание (психология); они же заменяют талант «Элементарно», давая героям разный уровень аналитических способностей.</li><li><strong>Осмотр места преступления.</strong> Аналитика или Психология со Смекалкой; ведущий задаёт сложность и кости штрафа по месту. Доп. успехи — лишние сведения, преимущества — бонус в этой или следующей сцене и экономия времени, триумф — ключевая улика или ошибка преступника; провал — потеря времени и помехи в следующей сцене, осложнения — следы, оставленные героями, или внимание преступников, крах — преступник узнаёт о расследовании.</li><li><strong>Психология в социальной встрече.</strong> Мотивация цели: проверка с Харизмой против Бдительности или Выдержки. Действием: Сложная (3) проверка усиливает следующую проверку против цели; Пугающая (4) — понять, близка ли цель к согласию, проговорится ли на допросе, собирается ли напасть или сбежать.</li><li><strong>Архетипы.</strong> Новых архетипов нет; вместо них — список дополнительных способностей архетипов по ведущей характеристике (компендиум способностей, папка этого сеттинга), которые можно обсудить с ведущим.</li><li><strong>Оружие.</strong> Берётся из современного сеттинга Core Rulebook (с. 166 и далее).</li><li><strong>Транспорт</strong> (с. 10–11; всё — Вождение, водитель 1, припасы на 6 часов; силуэт / скорость / управляемость / защита / броня / порог корпуса / порог систем; пассажиры, нагрузка, цена/редкость):<ul><li><em>Скорая помощь</em> (Ambulance): 2/3/−1/0/0/8/7; 4 пассажира (1 на носилках), нагрузка 10, 4650/6. Медоборудование: считается аптечкой, позволяет лечить раны, стабилизировать и лечить критические травмы, к проверкам Медицины — автоматический успех и 2 преимущества.</li><li><em>Грузовой фургон</em> (Cargo Van): 2/3/−2/0/0/8/8; пассажиров 1, нагрузка 60, 3800/3. Вариант для скрытной перевозки людей: броня 1, пассажиров 9, 6550/6. Фургон наблюдения: броня 1, пассажиров 3 (4 в тесноте), нагрузка меньше, аудио- и видеоаппаратура для прослушки, 8350/7.</li><li><em>Полицейская машина</em> (Police Car): 2/4/+1/0/1/4/5; 3 пассажира (2 за решёткой сзади), нагрузка 20, 10 900/5(R). Рация, сканер, камера. Кенгурятник: встречная проверка Вождения для лёгкого столкновения — при успехе результат критического попадания по машине уменьшается на 50 (до 0 — без критического попадания).</li><li><em>Тактический внедорожник</em> (Tactical Support SUV): 2/3/+0/0/1/9/8; 4 пассажира, нагрузка 35, 12 500/6(R). Кенгурятник, укреплённые двери и стёкла, рация, сканер, камера; тактический запас: 2 автомата, 2 тяжёлых пистолета, 4 запасные обоймы, 2 бронежилета, 2 рации с гарнитурами, 4 гранаты. Вездеход: при управлении убирает 2 кости штрафа за местность.</li></ul></li></ul>",
+      "source": "To Protect and Serve, с. 1–11",
+      "worlds": [
+        "modern"
+      ]
+    }
+  },
+  {
+    "name": "Подрывной заряд",
+    "nameEn": "Breaching Charge",
+    "type": "gear",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "encumbrance": 1,
+      "price": 200,
+      "rarity": 6,
+      "description": "<p>Взрывчатка для быстрого вскрытия дверей и других точек входа. Установка — Обычная (2) проверка Механики; при успехе заряд подрывается побочным действием и наносит двери или конструкции 10 урона плюс число неотменённых успехов проверки Механики, со свойствами Бронебойное 2 и Взрыв 4. Взрыв срабатывает за 2 преимущества или 2 осложнения.</p>",
+      "source": "To Protect and Serve, с. 8",
+      "worlds": [
+        "modern",
+        "zombie",
+        "postapoc",
+        "weirdwar",
+        "scifi"
+      ]
+    }
+  },
+  {
+    "name": "Бензопила",
+    "nameEn": "Chainsaw",
+    "type": "gear",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "encumbrance": 2,
+      "price": 150,
+      "rarity": 2,
+      "description": "<p>Применяется при штурме, чтобы попасть в труднодоступное место: действием прорезает новый проход в деревянной стене или двери.</p>",
+      "source": "To Protect and Serve, с. 8",
+      "worlds": [
+        "modern",
+        "zombie",
+        "postapoc",
+        "monster"
+      ]
+    }
+  },
+  {
+    "name": "Альпинистское снаряжение",
+    "nameEn": "Climbing Gear",
+    "type": "gear",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "encumbrance": 3,
+      "price": 200,
+      "rarity": 2,
+      "description": "<p>Верёвки, крючья, кирки, ботинки и прочее для лазания по почти любой естественной поверхности: убирает 2 кости штрафа из проверок Атлетики при лазании.</p>",
+      "source": "To Protect and Serve, с. 8",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "weirdwar",
+        "scifi"
+      ]
+    }
+  },
+  {
+    "name": "Компас и карта",
+    "nameEn": "Compass and Map",
+    "type": "gear",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "encumbrance": 0,
+      "price": 50,
+      "rarity": 3,
+      "description": "<p>Компас и топографическая карта для пеших переходов: убирают 2 кости штрафа из проверок Выживания на ориентирование и передвижение по местности.</p>",
+      "source": "To Protect and Serve, с. 8",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "weirdwar",
+        "scifi",
+        "steampunk"
+      ]
+    }
+  },
+  {
+    "name": "Таран для дверей",
+    "nameEn": "Door Battering Ram",
+    "type": "gear",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "encumbrance": 3,
+      "price": 450,
+      "rarity": 6,
+      "description": "<p>Массивная труба с ремнём для быстрого выбивания дверей: дважды усиливает проверку Атлетики при выбивании двери.</p>",
+      "source": "To Protect and Serve, с. 8",
+      "worlds": [
+        "modern",
+        "zombie",
+        "postapoc",
+        "weirdwar",
+        "scifi"
+      ]
+    }
+  },
+  {
+    "name": "Огнеупорный комбинезон",
+    "nameEn": "Flame-Resistant Jumpsuit",
+    "type": "gear",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "encumbrance": 1,
+      "price": 200,
+      "rarity": 5,
+      "description": "<p>Полимерный комбинезон, надеваемый под броню: даёт +2 к поглощению против огня и подобных эффектов.</p>",
+      "source": "To Protect and Serve, с. 8",
+      "worlds": [
+        "modern",
+        "zombie",
+        "postapoc",
+        "scifi"
+      ]
+    }
+  },
+  {
+    "name": "Крюк-кошка",
+    "nameEn": "Grappling Hook",
+    "type": "gear",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "encumbrance": 0,
+      "price": 0,
+      "rarity": 0,
+      "description": "<p>Крюк с несколькими метрами верёвки. Зацепиться за цель — проверка Координации; при успехе персонаж может взобраться даже по отвесной стене и убирает 2 кости штрафа из этой проверки. В таблице снаряжения книги отсутствует — нагрузку, цену и редкость задаёт ведущий.</p>",
+      "source": "To Protect and Serve, с. 8",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "weirdwar",
+        "scifi",
+        "steampunk"
+      ]
+    }
+  },
+  {
+    "name": "Лазерный прицел",
+    "nameEn": "Laser Sight",
+    "type": "gear",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "encumbrance": 1,
+      "price": 150,
+      "rarity": 5,
+      "description": "<p>Навесное устройство (1 точка крепления): если персонаж сначала выполняет манёвр прицеливания, атака оружием с лазерным прицелом игнорирует 1 кость штрафа за укрытие или темноту.</p>",
+      "source": "To Protect and Serve, с. 8",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi"
+      ]
+    }
+  },
+  {
+    "name": "Маячок",
+    "nameEn": "Locator Beacon",
+    "type": "gear",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "encumbrance": 1,
+      "price": 50,
+      "rarity": 5,
+      "description": "<p>Передаёт сигнал, чтобы персонажа нашли и эвакуировали после задания; можно прикрепить к машине или предмету, чтобы отслеживать его издалека.</p>",
+      "source": "To Protect and Serve, с. 8",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi"
+      ]
+    }
+  },
+  {
+    "name": "Набор отмычек",
+    "nameEn": "Lockpicking Kit",
+    "type": "gear",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "encumbrance": 1,
+      "price": 125,
+      "rarity": 5,
+      "description": "<p>Инструменты для механических замков: позволяют вскрывать их проверкой Жульничества и добавляют к ней автоматическое преимущество. Бесполезен против электронных замков.</p>",
+      "source": "To Protect and Serve, с. 8",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "weirdwar",
+        "steampunk"
+      ]
+    }
+  },
+  {
+    "name": "Халлиган",
+    "nameEn": "Hallagan Tool",
+    "type": "gear",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "encumbrance": 2,
+      "price": 150,
+      "rarity": 4,
+      "description": "<p>Большой лом для штурма: один раз усиливает проверку при выламывании двери на петлях.</p>",
+      "source": "To Protect and Serve, с. 8",
+      "worlds": [
+        "modern",
+        "zombie",
+        "postapoc",
+        "weirdwar",
+        "scifi"
+      ]
+    }
+  },
+  {
+    "name": "Глушитель",
+    "nameEn": "Silencer",
+    "type": "gear",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "encumbrance": 1,
+      "price": 400,
+      "rarity": 6,
+      "description": "<p>Ставится на некоторые пистолеты и винтовки (по решению ведущего); снимается и ставится манёвром, точек крепления не занимает. Дважды усиливает проверки Внимания, чтобы услышать выстрел.</p>",
+      "source": "To Protect and Serve, с. 8",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "weirdwar",
+        "scifi"
+      ]
+    }
+  },
+  {
+    "name": "Тактическая гарнитура",
+    "nameEn": "Tactical Headset",
+    "type": "gear",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "encumbrance": 0,
+      "price": 150,
+      "rarity": 4,
+      "description": "<p>Наушник с микрофоном или гарнитура рации минимум с двумя каналами (общий и тактический). Связь шифрована: для перехвата нужны специальное оборудование и опытный хакер.</p>",
+      "source": "To Protect and Serve, с. 8–9",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi",
+        "spaceopera"
+      ]
+    }
+  },
+  {
+    "name": "Микрофон на липучке",
+    "nameEn": "Adhesive Microphone",
+    "type": "gear",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "encumbrance": 0,
+      "price": 700,
+      "rarity": 6,
+      "description": "<p>Крепится на стену, подоконник, пол или потолок; персонаж слышит любой разговор в пределах короткой дистанции от микрофона, как если бы был там сам.</p>",
+      "source": "To Protect and Serve, с. 9",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi"
+      ]
+    }
+  },
+  {
+    "name": "Жучок",
+    "nameEn": "Audio Bug",
+    "type": "gear",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "encumbrance": 0,
+      "price": 50,
+      "rarity": 5,
+      "description": "<p>Крошечное подслушивающее устройство для дома, машины или одежды: передаёт на приёмник звук в пределах короткой дистанции.</p>",
+      "source": "To Protect and Serve, с. 9",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi"
+      ]
+    }
+  },
+  {
+    "name": "Детектор жучков",
+    "nameEn": "Audio Bug Detector",
+    "type": "gear",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "encumbrance": 1,
+      "price": 400,
+      "rarity": 4,
+      "description": "<p>Сканер для поиска подслушивающих устройств; требует внимательной работы. Дважды усиливает проверку Внимания на поиск скрытых прослушивающих устройств в помещении.</p>",
+      "source": "To Protect and Serve, с. 9",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi"
+      ]
+    }
+  },
+  {
+    "name": "Бинокль",
+    "nameEn": "Binoculars",
+    "type": "gear",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "encumbrance": 0,
+      "price": 50,
+      "rarity": 2,
+      "description": "<p>Позволяет совершать проверки Внимания на экстремальной дистанции, как на короткой.</p>",
+      "source": "To Protect and Serve, с. 9",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "weirdwar",
+        "steampunk",
+        "scifi"
+      ]
+    }
+  },
+  {
+    "name": "Ручка-камера",
+    "nameEn": "Camera Pen",
+    "type": "gear",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "encumbrance": 0,
+      "price": 400,
+      "rarity": 6,
+      "description": "<p>Камера в корпусе ручки: записывает или передаёт изображение на приёмник; незаметна для большинства детекторов — проверка на её обнаружение дважды усиливается.</p>",
+      "source": "To Protect and Serve, с. 9",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi"
+      ]
+    }
+  },
+  {
+    "name": "Направленный микрофон",
+    "nameEn": "Directional Microphone",
+    "type": "gear",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "encumbrance": 2,
+      "price": 350,
+      "rarity": 4,
+      "description": "<p>Микрофон-рупор с наушниками: персонаж может совершать проверки Координации, чтобы слышать разговоры на дистанции от короткой до длинной, как вплотную.</p>",
+      "source": "To Protect and Serve, с. 9",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi"
+      ]
+    }
+  },
+  {
+    "name": "Оптоволоконная камера",
+    "nameEn": "Fiber Optic Camera",
+    "type": "gear",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "encumbrance": 0,
+      "price": 400,
+      "rarity": 5,
+      "description": "<p>Просовывается под дверь, в замочную скважину или вентиляцию и показывает, что внутри. Заметить её — Пугающая (4) проверка Внимания.</p>",
+      "source": "To Protect and Serve, с. 9",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi"
+      ]
+    }
+  },
+  {
+    "name": "Кейлоггер",
+    "nameEn": "Keylogger",
+    "type": "gear",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "encumbrance": 0,
+      "price": 100,
+      "rarity": 5,
+      "description": "<p>USB-устройство, записывающее нажатия клавиш, чтобы узнать пароль; после этого доступны все незашифрованные файлы. Требует Обычной (2) проверки Компьютеров.</p>",
+      "source": "To Protect and Serve, с. 9",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "scifi"
+      ]
+    }
+  },
+  {
+    "name": "Зеркало на штанге",
+    "nameEn": "Mirror",
+    "type": "gear",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "encumbrance": 0,
+      "price": 25,
+      "rarity": 1,
+      "description": "<p>Небольшое зеркало на телескопической ручке: позволяет заглянуть за угол или в окно, не выходя на линию обзора.</p>",
+      "source": "To Protect and Serve, с. 9",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "weirdwar",
+        "scifi",
+        "steampunk"
+      ]
+    }
+  },
+  {
+    "name": "Трубчатый микрофон",
+    "nameEn": "Snake Microphone",
+    "type": "gear",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "encumbrance": 0,
+      "price": 400,
+      "rarity": 6,
+      "description": "<p>Тонкий микрофон, который просовывают в щели, чтобы слышать звук в соседнем помещении (в тексте книги — Tube Microphone).</p>",
+      "source": "To Protect and Serve, с. 9",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "scifi"
+      ]
+    }
+  },
+  {
+    "name": "Глушилка мобильной связи",
+    "nameEn": "Mobile Phone Jammer",
+    "type": "gear",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "encumbrance": 2,
+      "price": 100,
+      "rarity": 4,
+      "description": "<p>Подавляет все сигналы сотовой связи в пределах длинной дистанции.</p>",
+      "source": "To Protect and Serve, с. 9",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "scifi"
+      ]
+    }
+  },
+  {
+    "name": "Рыболовные снасти",
+    "nameEn": "Fishing Gear",
+    "type": "gear",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "encumbrance": 3,
+      "price": 75,
+      "rarity": 1,
+      "description": "<p>Удочка, леска и приманки: добавляют 2 автоматических преимущества к проверкам Выживания на добычу пищи.</p>",
+      "source": "To Protect and Serve, с. 9",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "weirdwar",
+        "scifi",
+        "steampunk"
+      ]
+    }
+  },
+  {
+    "name": "Садовый инвентарь",
+    "nameEn": "Gardening Gear",
+    "type": "gear",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "encumbrance": 3,
+      "price": 50,
+      "rarity": 1,
+      "description": "<p>Ручные инструменты, перчатки и семена; урожай созревает лишь через несколько месяцев.</p>",
+      "source": "To Protect and Serve, с. 9",
+      "worlds": [
+        "modern",
+        "zombie",
+        "postapoc",
+        "monster"
+      ]
+    }
+  },
+  {
+    "name": "Мультитул",
+    "nameEn": "Multitool",
+    "type": "gear",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "encumbrance": 1,
+      "price": 25,
+      "rarity": 1,
+      "description": "<p>Складной нож с набором инструментов; по решению ведущего позволяет совершать проверки Жульничества.</p>",
+      "source": "To Protect and Serve, с. 9",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "weirdwar",
+        "scifi"
+      ]
+    }
+  },
+  {
+    "name": "Походная посуда",
+    "nameEn": "Portable Cookware",
+    "type": "gear",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "encumbrance": 2,
+      "price": 50,
+      "rarity": 1,
+      "description": "<p>Складные миски, котелки и прочая утварь для готовки на костре.</p>",
+      "source": "To Protect and Serve, с. 9",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "weirdwar",
+        "scifi",
+        "steampunk"
+      ]
+    }
+  },
+  {
+    "name": "Сухой паёк",
+    "nameEn": "Rations",
+    "type": "gear",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "encumbrance": 1,
+      "price": 5,
+      "rarity": 1,
+      "description": "<p>Армейские пайки и сублимированная еда, удобные в переноске. Нагрузка указана за 5 пайков.</p>",
+      "source": "To Protect and Serve, с. 9",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "weirdwar"
+      ]
+    }
+  },
+  {
+    "name": "Палатка и спальник",
+    "nameEn": "Tent and Sleeping Bag",
+    "type": "gear",
+    "folder": "Полиция (To Protect and Serve)",
+    "system": {
+      "encumbrance": 3,
+      "price": 100,
+      "rarity": 1,
+      "description": "<p>Одноместная палатка и спальный мешок для долгих ночёвок под открытым небом: добавляют автоматическое преимущество к проверкам Выживания или Стойкости, связанным с долгим пребыванием на природе.</p>",
+      "source": "To Protect and Serve, с. 9–10",
+      "worlds": [
+        "modern",
+        "monster",
+        "zombie",
+        "postapoc",
+        "weirdwar",
+        "scifi"
+      ]
+    }
+  }
+]
